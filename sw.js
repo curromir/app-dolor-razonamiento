@@ -1,5 +1,5 @@
-// Service Worker v31.0 - Plantillas Ecográficas & Fichas Notion v2.6 (Alto Contraste)
-const CACHE_NAME = 'dolor-tests-v31';
+// Service Worker v32.0 - Modo Claro por Defecto & Pestaña de Cambio de Tema
+const CACHE_NAME = 'dolor-tests-v32';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

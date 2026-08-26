@@ -21,6 +21,18 @@
   <link rel="stylesheet" href="clinical/reasoning-styles.css?v=1.0">
 </head>
 <body class="light-theme">
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('dolor_theme');
+        if (t === 'dark') {
+          document.body.className = 'dark-theme';
+        } else {
+          document.body.className = 'light-theme';
+        }
+      } catch (e) {}
+    })();
+  </script>
   <div class="app-wrapper">
     
     <!-- DUAL HOME SCREEN (Modo Consulta vs Modo Biblioteca) -->
@@ -236,6 +248,10 @@
           <span class="tab-icon">⭐</span>
           <span class="tab-text">Mis Favoritos</span>
           <span id="favTabBadge" class="tab-badge">0</span>
+        </button>
+        <button class="nav-tab nav-tab-theme" id="navTabThemeToggle" onclick="window.toggleAppTheme()" title="Alternar entre modo Claro y Oscuro">
+          <span class="tab-icon" id="navThemeIcon">🌙</span>
+          <span class="tab-text" id="navThemeLabel">Modo Oscuro</span>
         </button>
       </div>
     </nav>

@@ -83,7 +83,13 @@
 
     containers.home.innerHTML = `
       <div class="home-hero glass-panel">
-        <div class="home-hero-badge">🩺 Sistema de Apoyo al Razonamiento Clínico</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="home-hero-badge">🩺 Sistema de Apoyo al Razonamiento Clínico</div>
+          <button class="home-theme-toggle-btn" onclick="window.toggleAppTheme()" style="background: var(--bg-surface); border: 1.5px solid var(--border-color); border-radius: var(--radius-full); padding: 0.35rem 0.85rem; font-size: 0.8rem; font-weight: 700; color: var(--text-primary); cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);" title="Alternar entre modo Claro y Oscuro">
+            <span id="homeThemeIcon">${(localStorage.getItem('dolor_theme') === 'dark') ? '☀️' : '🌙'}</span>
+            <span id="homeThemeLabel">${(localStorage.getItem('dolor_theme') === 'dark') ? 'Modo Claro' : 'Modo Oscuro'}</span>
+          </button>
+        </div>
         <h1>Medicina del Dolor de Alta Precisión</h1>
         <p>Acompañamiento diagnóstico estructurado desde el motivo de consulta del paciente hasta el generador probable, ecografía dirigida y plan terapéutico.</p>
       </div>

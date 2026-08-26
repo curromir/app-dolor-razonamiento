@@ -1157,6 +1157,13 @@ function initTheme() {
   const saved = localStorage.getItem('dolor_theme');
   state.theme = (saved === 'dark') ? 'dark' : 'light';
   document.body.className = state.theme === 'dark' ? 'dark-theme' : 'light-theme';
+  
+  // Update meta theme-color for iOS status bar
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) {
+    metaTheme.setAttribute('content', state.theme === 'dark' ? '#0a0f1d' : '#f8fafc');
+  }
+
   updateThemeButton();
 }
 
@@ -1166,14 +1173,30 @@ function toggleTheme() {
   initTheme();
 }
 
+window.toggleAppTheme = function() {
+  toggleTheme();
+};
+
 function updateThemeButton() {
-  if (!DOM.themeIcon || !DOM.themeLabel) return;
+  const navIcon = document.getElementById('navThemeIcon');
+  const navLabel = document.getElementById('navThemeLabel');
+  const homeIcon = document.getElementById('homeThemeIcon');
+  const homeLabel = document.getElementById('homeThemeLabel');
+
   if (state.theme === 'light') {
-    DOM.themeIcon.textContent = '🌙';
-    DOM.themeLabel.textContent = 'Oscuro';
+    if (DOM.themeIcon) DOM.themeIcon.textContent = '🌙';
+    if (DOM.themeLabel) DOM.themeLabel.textContent = 'Oscuro';
+    if (navIcon) navIcon.textContent = '🌙';
+    if (navLabel) navLabel.textContent = 'Modo Oscuro';
+    if (homeIcon) homeIcon.textContent = '🌙';
+    if (homeLabel) homeLabel.textContent = 'Modo Oscuro';
   } else {
-    DOM.themeIcon.textContent = '☀️';
-    DOM.themeLabel.textContent = 'Claro';
+    if (DOM.themeIcon) DOM.themeIcon.textContent = '☀️';
+    if (DOM.themeLabel) DOM.themeLabel.textContent = 'Claro';
+    if (navIcon) navIcon.textContent = '☀️';
+    if (navLabel) navLabel.textContent = 'Modo Claro';
+    if (homeIcon) homeIcon.textContent = '☀️';
+    if (homeLabel) homeLabel.textContent = 'Modo Claro';
   }
 }
 

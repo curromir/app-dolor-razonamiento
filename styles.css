@@ -518,6 +518,34 @@ body.dark-theme .tab-badge {
   color: #ffffff;
 }
 
+.nav-tab-theme {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #0f172a;
+  font-weight: 700;
+  margin-left: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.nav-tab-theme:hover {
+  background: #f1f5f9;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+body.dark-theme .nav-tab-theme {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(99, 102, 241, 0.35);
+  color: #93c5fd;
+  box-shadow: none;
+}
+
+body.dark-theme .nav-tab-theme:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: #818cf8;
+  color: #c7d2fe;
+}
+
 /* ==========================================================================
    FILTER CHIPS
    ========================================================================== */
