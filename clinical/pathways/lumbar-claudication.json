@@ -1,0 +1,382 @@
+{
+  "id": "lumbar-claudication",
+  "region": "lumbar",
+  "regionLabel": "Columna Lumbar / Torácica",
+  "regionIcon": "⚡",
+  "presentation": "Claudicación al caminar (Estenosis de Canal vs Vascular)",
+  "presentationDesc": "Dolor, pesadez y adormecimiento en ambas piernas que aparece al caminar o estar de pie y obliga a pararse (Estenosis Lumbar vs Isquemia Vascular)",
+  "redFlags": [
+    {
+      "id": "rf-acute-limb-ischemia",
+      "text": "Dolor agudo severo súbito en una pierna con pie frío, blanco/cianótico, sin pulsos periféricos y pérdida de sensibilidad ('Las 6 P' de la isquemia arterial aguda)",
+      "severity": "critical",
+      "action": "Derivación inmediata a Cirugía Vascular / Revascularización urgente"
+    },
+    {
+      "id": "rf-cauda-equina-claudication",
+      "text": "Aparición de incontinencia o retención urinaria, pérdida de control fecal o anestesia en la zona genital ('silla de montar') asociada a la claudicación",
+      "severity": "critical",
+      "action": "RM lumbar urgente y descompresión neuroquirúrgica de urgencia"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-neurogenic-claudication",
+      "name": "Claudicación Neurógena (Estenosis de Canal Lumbar Central / Receso Lateral)",
+      "shortName": "Claudicación Neurógena (Estenosis)",
+      "description": "Estrechamiento del canal vertebral lumbar con compresión y congestión venosa de la cauda equina inducida por la lordosis al caminar.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-vascular-claudication",
+      "name": "Claudicación Vascular Periférica (Enfermedad Arterial Oclusiva / Arteriopatía)",
+      "shortName": "Claudicación Vascular Periférica",
+      "description": "Isquemia muscular de esfuerzo en pantorrillas y muslos por estenosis aterosclerótica arterial de miembros inferiores.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-bilateral-hip-oa",
+      "name": "Coxartrosis Bilateral / Dolor Referido de Cadera",
+      "shortName": "Coxartrosis Bilateral",
+      "description": "Artrosis de ambas caderas que limita la distancia de marcha por dolor articular mecánico sin alivio postural en flexión.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Cómo se alivia el dolor o la pesadez en las piernas cuando tiene que pararse?»",
+      "explanation": "La claudicación neurógena necesita abrir el canal espinal (sentarse o inclinarse hacia adelante); la claudicación vascular se alivia simplemente quedándose de pie inmóvil.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Tengo que sentarme obligatoriamente o agacharme inclinando el cuerpo hacia adelante ('Signo del Carrito')",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 7 },
+            { "hypothesisId": "hyp-vascular-claudication", "effect": "decrease", "weight": 4 }
+          ]
+        },
+        {
+          "label": "Se me alivia con solo quedarme de pie quieto en la acera (como mirando un escaparate)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 7 },
+            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "decrease", "weight": 4 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Es capaz de pedalear en una bicicleta estática sin que le duelan las piernas?»",
+      "explanation": "Al pedalear en bicicleta el tronco está flexionado hacia adelante (abriendo el canal lumbar) lo que permite a los pacientes con estenosis pedalear sin dolor. En la claudicación vascular duelen los gemelos por demanda muscular.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, puedo pedalear en bicicleta inclinándome hacia adelante sin notar dolor en las piernas (Bicycle Test +)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 7 },
+            { "hypothesisId": "hyp-vascular-claudication", "effect": "decrease", "weight": 4 }
+          ]
+        },
+        {
+          "label": "No, al pedalear me queman y duelen los gemelos exactamente a la misma distancia",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Sube las cuestas o escaleras mejor que cuando las baja?»",
+      "explanation": "Subir cuestas flexiona el tronco hacia adelante (abre el canal); bajar cuestas obliga a hiperextensión lumbar (cierra el canal y empeora la estenosis).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, subo mejor las cuestas arriba y empeoro mucho al bajar cuestas hacia abajo",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 6 }
+          ]
+        },
+        {
+          "label": "Empeoro cuesta arriba porque exige más esfuerzo muscular a las piernas",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Cuál es su meta funcional prioritaria?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder caminar por la calle más de 500 metros seguidos sin tener que sentarme en un banco", "hypothesisEffects": [] },
+        { "label": "Hacer la compra o pasear con mi familia sin pesadez extrema en las piernas", "hypothesisEffects": [] },
+        { "label": "Permanecer de pie cocinando o hablando sin dolor en las lumbares y piernas", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Claudicación Lumbar vs Vascular",
+    "steps": [
+      {
+        "id": "exam-van-gelderen-bicycle",
+        "order": 1,
+        "name": "Bicycle Test de Van Gelderen (Ergometría Postural en Bicicleta)",
+        "category": "claudicacion",
+        "essential": true,
+        "instruction": "Fase 1: El paciente pedalea erguido con lordosis lumbar hasta la aparición de dolor en piernas. Fase 2: Se inclina hacia adelante en flexión lumbar mientras continúa pedaleando.",
+        "whatToLookFor": "Desaparición o alivio inmediato de los síntomas al flexionar el tronco (Sensibilidad 94%, Especificidad 92% para Claudicación Neurógena por Estenosis de Canal).",
+        "mentorTip": "La flexión aumenta el diámetro del canal espinal en un 16%, aliviando la isquemia de las raíces nerviosas.",
+        "results": [
+          {
+            "label": "Alivio inmediato al flexionar el tronco (Claudicación Neurógena)",
+            "value": "positive_neurogenic",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 8 },
+              { "hypothesisId": "hyp-vascular-claudication", "effect": "decrease", "weight": 5 }
+            ]
+          },
+          {
+            "label": "Dolor persiste idéntico en flexión (Claudicación Vascular)",
+            "value": "positive_vascular",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 7 },
+              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-peripheral-pulses",
+        "order": 2,
+        "name": "Palpación de Pulsos Periféricos y Trofismo Cutáneo (Pedio y Tibial Posterior)",
+        "category": "vascular",
+        "essential": true,
+        "instruction": "Palpar bilateralmente pulso pedio dorsal y tibial posterior retromaleolar medial; valorar temperatura y pérdida de vello distal.",
+        "whatToLookFor": "Ausencia de pulsos periféricos, pies fríos o palidez al elevar las extremidades (Signos de Arteriopatía Periférica).",
+        "mentorTip": "Pulsos periféricos simétricos y potentes descartan prácticamente la claudicación vascular periférica severa.",
+        "results": [
+          {
+            "label": "Pulsos pedio y tibial posterior potentes y simétricos con piel normotérmica",
+            "value": "normal_pulses",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 5 },
+              { "hypothesisId": "hyp-vascular-claudication", "effect": "decrease", "weight": 7 }
+            ]
+          },
+          {
+            "label": "Pulsos distales ausentes / disminuidos con frialdad cutánea",
+            "value": "absent_pulses",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 7 },
+              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "decrease", "weight": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-postural-extension-walk",
+        "order": 3,
+        "name": "Test de Marcha en Extensión Lumbar vs Cifosis",
+        "category": "postura",
+        "essential": true,
+        "instruction": "Hacer caminar al paciente erguido con hiperextensión lumbar y registrar la distancia hasta la claudicación; repetir al cabo de 5 min caminando flexionado hacia adelante.",
+        "whatToLookFor": "Claudicación precoz en extensión que se triplica en distancia al caminar en flexión.",
+        "results": [
+          {
+            "label": "Claudicación muy precoz en extensión que mejora ampliamente en flexión",
+            "value": "positive_stenosis",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Distancia de marcha invariable",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-neurogenic-claudication",
+      "name": "Criterios Clínicos de Claudicación Neurógena por Estenosis Lumbar",
+      "description": "1. Dolor bilateral en piernas inducido por bipedestación/marcha + 2. Alivio sentado o en flexión (Signo del Carrito) + 3. Bicycle test positivo + 4. Pulsos distales conservados",
+      "requiredTests": ["exam-van-gelderen-bicycle", "exam-peripheral-pulses"],
+      "threshold": 2,
+      "concordanceText": "Tríada clásica de Claudicación Neurógena por Estenosis de Canal Lumbar confirmada (Sensibilidad >93%).",
+      "evidenceNote": "El Bicycle test de Van Gelderen tiene una sensibilidad del 94% para discriminar claudicación neurógena de vascular (Dyck 1979)."
+    }
+  ],
+  "imaging": {
+    "type": "RM Lumbar / Índice Tobillo-Brazo (ITB)",
+    "clinicalQuestion": "¿Existe estenosis central o foraminal del canal lumbar (área del saco dural <75-100 mm²) o índice tobillo-brazo patológico (<0.9)?",
+    "structures": [
+      {
+        "id": "lumbar-imaging-canal",
+        "name": "Canal Vertebral Lumbar (Niveles L3-L4 y L4-L5)",
+        "priority": 1,
+        "findings": [
+          { "id": "canal-normal", "label": "Canal raquídeo amplio sin compresión de cauda equina", "concordanceEffect": "neutral" },
+          { "id": "canal-stenosis-severe", "label": "Estenosis central severa (área saco dural <75 mm²) por hipertrofia de ligamento amarillo y artrosis facetaria", "concordanceEffect": "concordant" },
+          { "id": "vascular-itb-low", "label": "Índice Tobillo-Brazo patológico <0.9 (Arteriopatía oclusiva periférica)", "concordanceEffect": "discordant" }
+        ]
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta con Estenosis de Canal",
+        "description": "Signo del carrito positivo, bicycle test en flexión indoloro, pulsos conservados y RM con estenosis severa del saco dural.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Estenosis moderada en RM con componente mixto vascular o artrosis de cadera.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia / Sospecha Vascular",
+        "description": "Pulsos abolidos y bicycle test que no mejora en flexión: sospecha de claudicación vascular periférica (derivar a Cirugía Vascular).",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-vascular-from-neurogenic",
+      "name": "Claudicación Vascular Periférica",
+      "whatWouldReconsider": "Dolor de gemelos que se alivia inmediatamente de pie sin sentarse, pulsos pedios ausentes, ITB <0.9.",
+      "keyDiscriminatingTest": "Bicycle Test de Van Gelderen vs Palpación de Pulsos"
+    },
+    {
+      "id": "dd-hip-from-stenosis",
+      "name": "Coxartrosis Bilateral",
+      "whatWouldReconsider": "Dolor inguinal en carga que no mejora sentado ni en flexión, con rotación interna de cadera <15° bilateral.",
+      "keyDiscriminatingTest": "Test FADIR y rotación interna de cadera"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-neurogenic-stenosis",
+      "structuralDiagnosis": "Estenosis Degenerativa Central del Canal Lumbar (L3-L4 / L4-L5)",
+      "painGenerator": "Claudicación Neurógena por Isquemia Radicular Posicional",
+      "mechanism": "neuropathic_ischemic",
+      "mechanismLabel": "Predominio Isquémico Radicular / Neuropático de Esfuerzo",
+      "supportingFindings": [
+        "Signo del Carrito de compra positivo",
+        "Bicycle test aliviado en flexión",
+        "Pulsos periféricos conservados",
+        "RM con área de saco dural <75 mm²"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su limitación al caminar se debe al estrechamiento del conducto por donde bajan los nervios en la columna lumbar. Al caminar erguido, la columna se curva y aprieta los nervios; al sentarse o inclinarse hacia adelante (como al empujar un carrito de la compra), el canal se abre y los nervios reciben oxígeno de nuevo. El uso de bicicleta estática y ejercicios en flexión son muy beneficiosos.",
+      "mentorNote": "La postura en flexión lumbar ('cifosis protectora') alivia la presión hidrostática del saco dural en más de un 70%."
+    },
+    "exercise": {
+      "objective": "Promover la flexión lumbar, abrir el canal espinal y fortalecer los estabilizadores abdominales.",
+      "phases": [
+        {
+          "name": "Fase 1: Ejercicios de Flexión de Williams y Bicicleta",
+          "description": "Bicicleta estática inclinada hacia adelante y ejercicios de flexión de rodillas al pecho (ejercicios de Williams) en decúbito supino.",
+          "duration": "1-4 semanas"
+        },
+        {
+          "name": "Fase 2: Estabilidad de Core en Flexión",
+          "description": "Activación de transverso abdominal en posición neutra-cifótica y fortalecimiento de glúteos.",
+          "duration": "4-12 semanas"
+        },
+        {
+          "name": "Fase 3: Marcha Fraccionada con Bastones",
+          "description": "Caminatas con bastones de marcha nórdica (que inducen ligera flexión anterior del tronco) para aumentar la distancia recorrida.",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar posturas mantenidas de hiperextensión lumbar o caminar cuesta abajo."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "Neuromoduladores (Pregabalina / Gabapentina)",
+          "indication": "Parestesias y disestesias en piernas durante la deambulación.",
+          "example": "Pregabalina 25-50 mg/noche, titular según tolerancia",
+          "duration": "4-8 semanas",
+          "guardrails": ["Somnolencia matutina", "Función renal", "Riesgo de caídas en ancianos"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Claudicación neurógena severa con distancia de marcha <100 metros refractaria a fisioterapia y fármacos.",
+      "objective": "Infiltración epidural interlaminar o caudal ecoguiada/fluoroscópica.",
+      "targets": [
+        {
+          "name": "Infiltración Epidural Interlaminar o Caudal",
+          "indication": "Estenosis de canal lumbar sintomática.",
+          "options": [
+            { "name": "Infiltración epidural interlaminar o caudal con corticoide de depósito (Triamcinolona 40-80mg) + anestésico local", "evidence": "Alta / Nivel I (alivio de 3-6 meses para facilitar rehabilitación)" }
+          ],
+          "contraindications": [
+            "Déficit motor progresivo o síndrome de cauda equina (indicación quirúrgica descompresiva urgente)",
+            "Infección sistémica",
+            "Anticoagulación no controlada"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 6-8 semanas",
+    "parameters": [
+      { "name": "Distancia de marcha libre de claudicación (metros)", "icon": "🚶" },
+      { "name": "Frecuencia de paradas para sentarse", "icon": "🪑" },
+      { "name": "Fuerza y reflejos en miembros inferiores", "icon": "💪" },
+      { "name": "Ausencia de síntomas de cauda equina", "icon": "⚠️" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Aumento significativo de la distancia caminada (>500m)",
+        "action": "Mantener ejercicios en flexión y marcha con bastones.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial tras infiltración epidural",
+        "action": "Considerar segundo ciclo de infiltración epidural interlaminar o espaciadores intersomáticos percutáneos.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Claudicación severa incapacitante (<50-100m) o debilidad motora progresiva",
+        "action": "Derivación a Neurocirugía / Cirugía de Columna para laminectomía descompresiva.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "Diferenciar la claudicación neurógena (que mejora en flexión y en bicicleta) de la vascular (que exige estudio arterial urgente) es una de las decisiones más críticas de la consulta de dolor."
+  },
+  "evidence": [
+    {
+      "citation": "Dyck P. The stoop test in lumbar spinal stenosis. Clin Orthop Relat Res. 1979;(145):141-144.",
+      "topic": "El test de postura e inclinación en el diagnóstico de la estenosis de canal",
+      "year": 1979
+    },
+    {
+      "citation": "Katz JN, Harris MB. Clinical practice. Lumbar spinal stenosis. N Engl J Med. 2008;358(8):818-825.",
+      "topic": "Revisión en NEJM del diagnóstico y manejo de la estenosis de canal lumbar",
+      "year": 2008
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+[
+  {
+    "id": "case-s1-canonical",
+    "title": "Caso 1: Ciatalgia Clásica Derecha con Afectación del Talón",
+    "category": "lumbar",
+    "pathwayId": "lumbar-radicular-pain",
+    "difficulty": "canonico",
+    "difficultyLabel": "Canónico",
+    "difficultyIcon": "🟢",
+    "patient": {
+      "age": 46,
+      "gender": "Varón",
+      "profession": "Conductor de reparto",
+      "chiefComplaint": "Dolor punzante y quemazón en glúteo derecho que desciende por la parte posterior del muslo y pantorrilla hasta la planta del pie y talón desde hace 3 semanas.",
+      "history": "Empezó tras levantar un paquete pesado en el trabajo. Empeora con los estornudos y al estar sentado en el camión. Se alivia tumbado boca arriba con las piernas flexionadas."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": true,
+      "topHypothesis": "hyp-s1",
+      "discriminatorNote": "La irradiación a planta/talón con reflejo aquíleo disminuido y Lasègue positivo a 40° confirma afectación selectiva de la raíz S1.",
+      "keyTests": ["exam-motor-s1", "exam-reflex-s1", "exam-lasegue"],
+      "imagingConcordance": "concordant",
+      "expectedGenerator": "Radiculopatía S1 (Neuropático)",
+      "targetTreatment": "Neuromoduladores + Ejercicio de dirección preferencial + Infiltración epidural transforaminal si dolor incapacitante"
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "anclaje",
+        "description": "Etiquetar como dolor piriforme o lumbago común sin realizar examen neurológico completo de raíz S1."
+      }
+    ]
+  },
+  {
+    "id": "case-s1-trap-plantar",
+    "title": "Caso 2: 'Talalgia Rebelde' que No Responde a Plantillas",
+    "category": "tobillo_pie",
+    "pathwayId": "lumbar-radicular-pain",
+    "difficulty": "trampa",
+    "difficultyLabel": "Trampa Clínica",
+    "difficultyIcon": "🟣",
+    "patient": {
+      "age": 52,
+      "gender": "Mujer",
+      "profession": "Profesora",
+      "chiefComplaint": "Dolor continuo en el talón derecho desde hace 4 meses catalogado de 'fascitis plantar' que no ha mejorado con plantillas ni ondas de choque.",
+      "history": "Al interrogar detalladamente, el dolor no es solo al dar los primeros pasos por la mañana, sino que siente un ardor que sube por la pantorrilla y sensación de 'corcho' en el talón y borde lateral del pie."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": true,
+      "topHypothesis": "hyp-s1",
+      "discriminatorNote": "Test de Windlass negativo, tubérculo medial indoloro. En cambio, Lasègue derecho positivo a 50° y reflejo aquíleo derecho abolido: se trata de una radiculopatía S1 enmascarada.",
+      "keyTests": ["exam-tobillo-windlass", "exam-reflex-s1", "exam-lasegue"],
+      "imagingConcordance": "concordant",
+      "expectedGenerator": "Radiculopatía S1 (Dolor Neuropático Referido a Talón)",
+      "targetTreatment": "Reorientar tratamiento: suspender ondas de choque locales y pautar abordaje para radiculopatía lumbar S1 (neuromodulador + fisioterapia neural)."
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "cierre_prematuro",
+        "description": "Aceptar el diagnóstico previo de fascitis plantar sin explorar el reflejo aquíleo ni la neurodinámica lumbar."
+      }
+    ]
+  },
+  {
+    "id": "case-shoulder-supraspinatus-canonical",
+    "title": "Caso 3: Dolor Lateral al Levantar el Brazo en Pintor",
+    "category": "hombro",
+    "pathwayId": "shoulder-lateral-pain",
+    "difficulty": "canonico",
+    "difficultyLabel": "Canónico",
+    "difficultyIcon": "🟢",
+    "patient": {
+      "age": 48,
+      "gender": "Varón",
+      "profession": "Pintor",
+      "chiefComplaint": "Dolor en cara lateral del hombro derecho al trabajar con los brazos en alto y al dormir sobre ese lado desde hace 2 meses.",
+      "history": "Sin traumatismo agudo. Arco doloroso muy marcado entre 70° y 110° de abducción activa. Movilidad pasiva glenohumeral 100% libre."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": true,
+      "topHypothesis": "hyp-subacromial",
+      "discriminatorNote": "Movilidad pasiva libre (descarta capsulitis) con Jobe doloroso pero con fuerza 5/5 conservada (descarta rotura masiva): tendinopatía subacromial de supraespinoso.",
+      "keyTests": ["exam-arc", "exam-jobe", "exam-hawkins", "exam-passive-rom"],
+      "imagingConcordance": "concordant",
+      "expectedGenerator": "Dolor relacionado con manguito rotador / región subacromial",
+      "targetTreatment": "Educación + Carga excéntrica e isométrica de manguito + AINE tópico"
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "sesgo_imagen",
+        "description": "Indicar cirugía por una rotura intrasubstancia parcial incidental en ecografía cuando la fuerza está íntegra."
+      }
+    ]
+  },
+  {
+    "id": "case-shoulder-trap-cervical",
+    "title": "Caso 4: Dolor en Región Deltoidea que Viene del Cuello",
+    "category": "hombro",
+    "pathwayId": "shoulder-lateral-pain",
+    "difficulty": "trampa",
+    "difficultyLabel": "Trampa Clínica",
+    "difficultyIcon": "🟣",
+    "patient": {
+      "age": 55,
+      "gender": "Mujer",
+      "profession": "Administrativa",
+      "chiefComplaint": "Dolor sordo en hombro y parte externa del brazo que empeora al trabajar en el ordenador y mirar a los monitores.",
+      "history": "Lleva 3 meses con tratamiento de fisioterapia de hombro sin éxito. La elevación pasiva del hombro es completamente indolora. Al inclinar la cabeza hacia la derecha y comprimir el cuello, se dispara el dolor en el hombro."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": true,
+      "topHypothesis": "hyp-cervical",
+      "discriminatorNote": "Jobe y Hawkins negativos con movilidad de hombro libre. Test de Spurling cervical positivo y parestesias en primer dedo: se trata de una radiculopatía C5-C6 referida a hombro.",
+      "keyTests": ["exam-cervical-screening", "exam-jobe", "exam-arc"],
+      "imagingConcordance": "concordant",
+      "expectedGenerator": "Radiculopatía Cervical C5/C6 (Dolor Referido a Hombro)",
+      "targetTreatment": "Descartar patología de hombro y tratar columna cervical (retracción cervical, neuromodulación)."
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "infraexploracion_neurologica",
+        "description": "Tratar el hombro durante meses sin realizar un screening cervical rápido de 15 segundos."
+      }
+    ]
+  },
+  {
+    "id": "case-cts-canonical",
+    "title": "Caso 5: Despertares Nocturnos con Hormigueo en Pulgar e Índice",
+    "category": "muneca_mano",
+    "pathwayId": "wrist-cts",
+    "difficulty": "canonico",
+    "difficultyLabel": "Canónico",
+    "difficultyIcon": "🟢",
+    "patient": {
+      "age": 44,
+      "gender": "Mujer",
+      "profession": "Cajera de supermercado",
+      "chiefComplaint": "Se despierta varias veces por la noche con la mano derecha entumecida, quemazón en dedos 1º, 2º y 3º y necesidad de sacudirla.",
+      "history": "El 5º dedo (meñique) está totalmente normal. Por el día nota pérdida de tacto fino al coger monedas o agujas."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": true,
+      "topHypothesis": "hyp-cts-idiopathic",
+      "discriminatorNote": "Flick sign positivo, Durkan intensamente positivo a los 10 segundos, respeto estricto del meñique y ecografía con CSA del nervio mediano de 13.5 mm² en pisiforme.",
+      "keyTests": ["exam-mano-durkan", "exam-mano-phalen", "exam-thenar-motor"],
+      "imagingConcordance": "concordant",
+      "expectedGenerator": "Síndrome del Túnel Carpiano (Nervio Mediano)",
+      "targetTreatment": "Férula nocturna neutra de 0° + Infiltración ecoguiada del túnel carpiano"
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "anclaje",
+        "description": "No verificar la fuerza de abducción del pulgar ni buscar atrofia tenar."
+      }
+    ]
+  },
+  {
+    "id": "case-lumbar-claudication-canonical",
+    "title": "Caso 6: Jubilado que Se Para en los Bancos para Poder Pasear",
+    "category": "lumbar",
+    "pathwayId": "lumbar-claudication",
+    "difficulty": "canonico",
+    "difficultyLabel": "Canónico",
+    "difficultyIcon": "🟢",
+    "patient": {
+      "age": 73,
+      "gender": "Varón",
+      "profession": "Jubilado",
+      "chiefComplaint": "Dolor lumbar sordo y sensación de pesadez 'como plomo' en ambas piernas a los 150 metros de caminar que le obliga a sentarse en un banco.",
+      "history": "Al sentarse o empujar el carrito del supermercado inclinado hacia adelante puede caminar más de 1 km sin dolor. En bicicleta estática pedalea 30 minutos sin molestias."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": true,
+      "topHypothesis": "hyp-neurogenic-claudication",
+      "discriminatorNote": "Signo del carrito positivo, Bicycle test aliviado en flexión, pulsos pedios presentes y potentes: estenosis de canal lumbar típica.",
+      "keyTests": ["exam-van-gelderen-bicycle", "exam-peripheral-pulses", "exam-postural-extension-walk"],
+      "imagingConcordance": "concordant",
+      "expectedGenerator": "Claudicación Neurógena por Estenosis de Canal Lumbar",
+      "targetTreatment": "Ejercicios de flexión lumbar + Bicicleta estática + Infiltración epidural interlaminar"
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "sesgo_imagen",
+        "description": "Confundir con claudicación vascular sin palpar los pulsos distales."
+      }
+    ]
+  },
+  {
+    "id": "case-claudication-trap-vascular",
+    "title": "Caso 7: Claudicación que No Mejora al Sentarse",
+    "category": "lumbar",
+    "pathwayId": "lumbar-claudication",
+    "difficulty": "trampa",
+    "difficultyLabel": "Trampa Clínica",
+    "difficultyIcon": "🟣",
+    "patient": {
+      "age": 69,
+      "gender": "Varón",
+      "profession": "Fumador de 40 paquetes/año",
+      "chiefComplaint": "Dolor y quemazón intensa en ambos gemelos que aparece siempre a los 100 metros de marcha exacta.",
+      "history": "El dolor se calma con solo detenerse de pie inmóvil en la acera. En la bicicleta estática los gemelos le arden a los 2 minutos exactamente igual que caminando."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": true,
+      "topHypothesis": "hyp-vascular-claudication",
+      "discriminatorNote": "Bicycle test positivo invariable en flexión, pulsos pedios y tibiales posteriores abolidos bilateralmente y pies fríos: arteriopatía periférica obstructiva.",
+      "keyTests": ["exam-van-gelderen-bicycle", "exam-peripheral-pulses"],
+      "imagingConcordance": "discordant",
+      "expectedGenerator": "Claudicación Vascular Periférica (Isquemia de Esfuerzo)",
+      "targetTreatment": "Derivación preferente a Cirugía Vascular + Índice Tobillo-Brazo + Abandono tabáquico."
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "cierre_prematuro",
+        "description": "Asumir que toda claudicación en >65 años es estenosis de columna sin palpar pulsos arteriales."
+      }
+    ]
+  },
+  {
+    "id": "case-safety-cervical-myelopathy",
+    "title": "Caso 8: Cuello Rígido con Caídas Frecuentes y Torpeza Manual",
+    "category": "cervical",
+    "pathwayId": "cervical-axial",
+    "difficulty": "seguridad",
+    "difficultyLabel": "Emergencia / Seguridad",
+    "difficultyIcon": "🔴",
+    "patient": {
+      "age": 64,
+      "gender": "Varón",
+      "profession": "Abogado",
+      "chiefComplaint": "Consulta por dolor cervical de larga evolución, pero refiere que en el último mes se le caen los bolígrafos, no puede abotonarse la camisa y nota las piernas 'rígidas como palos' al caminar.",
+      "history": "Ha sufrido dos tropiezos y caídas en la última semana sin causa mecánica clara."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": false,
+      "topHypothesis": "rf-cervical-myelopathy",
+      "discriminatorNote": "🚨 BANDERA ROJA CRÍTICA: Signo de Hoffmann positivo bilateral, hiperreflexia rotuliana y marcha espástica espinotalámica: Mielopatía Cervical Compresiva.",
+      "keyTests": ["exam-hoffmann-cervical"],
+      "imagingConcordance": "discordant",
+      "expectedGenerator": "Compresión Medular Cervical (Mielopatía)",
+      "targetTreatment": "🚨 PARADA INMEDIATA DEL PATHWAY MUSCULOESQUELÉTICO → Collarín cervical rígido + RM cervical urgente + Derivación a Neurocirugía."
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "infraexploracion_neurologica",
+        "description": "Realizar manipulaciones vertebrales o tracciones en una médula comprimida en riesgo de tetraplejía."
+      }
+    ]
+  },
+  {
+    "id": "case-safety-cauda-equina",
+    "title": "Caso 9: Lumbociática con Dificultad para Orinar",
+    "category": "lumbar",
+    "pathwayId": "lumbar-radicular-pain",
+    "difficulty": "seguridad",
+    "difficultyLabel": "Emergencia / Seguridad",
+    "difficultyIcon": "🔴",
+    "patient": {
+      "age": 39,
+      "gender": "Mujer",
+      "profession": "Enfermera",
+      "chiefComplaint": "Lumbociática bilateral severa tras esfuerzo. En las últimas 12 horas nota que no siente el papel higiénico al limpiarse y tiene escape involuntario de orina.",
+      "history": "Incapacidad para vaciar la vejiga por completo (retención con incontinencia por rebosamiento)."
+    },
+    "expectedFlow": {
+      "redFlagsSafe": false,
+      "topHypothesis": "rf-cauda-equina",
+      "discriminatorNote": "🚨 BANDERA ROJA CRÍTICA: Anestesia en silla de montar + alteración de esfínteres = Síndrome de Cauda Equina por hernia masiva L4-L5.",
+      "keyTests": ["exam-lasegue"],
+      "imagingConcordance": "concordant",
+      "expectedGenerator": "Síndrome de Cauda Equina Agudo",
+      "targetTreatment": "🚨 DERIVACIÓN URGENTE A URGENCIAS QUIRÚRGICAS para descompresión neuroquirúrgica en <24-48 horas."
+    },
+    "trapsToAvoid": [
+      {
+        "bias": "cierre_prematuro",
+        "description": "Tratar con analgésicos o reposo una compresión masiva de cauda equina."
+      }
+    ]
+  }
+]

@@ -1,0 +1,450 @@
+{
+  "id": "cervical-axial",
+  "region": "cervical",
+  "regionLabel": "Columna Cervical",
+  "regionIcon": "🧠",
+  "presentation": "Cervicalgia axial (Dolor de Cuello / Cefalea)",
+  "presentationDesc": "Dolor localizado en la región posterior del cuello, nuca y cintura escapular alta, con o sin cefalea cervicogénica referida",
+  "redFlags": [
+    {
+      "id": "rf-cervical-myelopathy",
+      "text": "Torpeza progresiva en ambas manos (dificultad para abotonarse), alteración de la marcha/equilibrio espástica, signo de Hoffmann positivo o hiperreflexia generalizada (sospecha de Mielopatía Cervical Compresiva)",
+      "severity": "critical",
+      "action": "Inmovilización con collarín y RM cervical urgente para descompresión neuroquirúrgica"
+    },
+    {
+      "id": "rf-cervical-dissection",
+      "text": "Dolor cervical agudo intenso y súbito ('en trueno') o tras manipulación quiropráctica/traumatismo con síndrome de Horner ipsilateral (ptosis + miosis) o síntomas neurológicos focales transitorios (sospecha de disección de arteria vertebral/carótida)",
+      "severity": "critical",
+      "action": "Derivación inmediata a Código Ictus / Angio-TC de troncos supraaórticos"
+    },
+    {
+      "id": "rf-cervical-infection-tumor",
+      "text": "Fiebre, dolor cervical continuo no mecánico que empeora de noche, disfagia o antecedente oncológico",
+      "severity": "critical",
+      "action": "Analítica urgente con hemocultivos y RM cervical con contraste"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-cervical-facet",
+      "name": "Síndrome Facetario Cervical (Artropatía Zigoapofisaria C2-C3 a C6-C7)",
+      "shortName": "Síndrome Facetario Cervical",
+      "description": "Dolor somático articular en pilares articulares cervicales agravado por la extensión y rotación ipsilateral, con mapas de dolor referido a nuca (C2-C3) o trapecio/escápula (C5-C7).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-myofascial-cervical",
+      "name": "Dolor Miofascial Cervical / Trapecio Superior y Elevador de la Escápula",
+      "shortName": "Dolor Miofascial Cervical",
+      "description": "Puntos gatillo miofasciales activos en musculatura paravertebral y periescapular vinculados a sobrecarga postural y estrés.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-cervicogenic-headache",
+      "name": "Cefalea Cervicogénica (Complejo Trigémino-Cervical C1-C3)",
+      "shortName": "Cefalea Cervicogénica",
+      "description": "Cefalea hemicraneal no pulsátil que se origina en la nuca y se irradia hacia la región frontal/orbitaria, agravada por posturas del cuello.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-discogenic-cervical",
+      "name": "Dolor Discogénico Cervical Axial",
+      "shortName": "Dolor Discogénico Axial",
+      "description": "Dolor profundo en línea media cervical anterior/posterior agravado por la flexión mantenida del cuello (pantallas, lectura prolongada).",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Con qué movimientos específicos del cuello aumenta más su dolor?»",
+      "explanation": "La extensión con rotación hacia el lado doloroso sobrecarga las facetas articulares posteriores. La flexión mantenida sobrecarga los discos intervertebrales y la musculatura extensora.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Al mirar hacia arriba y girar la cabeza hacia el lado doloroso (Extensión + Rotación)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical-facet", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-discogenic-cervical", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Al estar horas con la cabeza agachada mirando el móvil o trabajando frente al ordenador (Flexión sostenida)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-myofascial-cervical", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-discogenic-cervical", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-cervical-facet", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "El dolor del cuello me sube por la nuca hacia la frente o detrás del ojo del mismo lado",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervicogenic-headache", "effect": "increase", "weight": 7 },
+            { "hypothesisId": "hyp-cervical-facet", "effect": "increase", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿El dolor desciende por el brazo hasta la mano con sensación de calambre o adormecimiento?»",
+      "explanation": "El dolor cervical axial puede referirse a la escápula o hombro pero respeta el codo. Si baja al antebrazo o dedos, indica conflicto radicular (C6/C7).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "No, se queda en el cuello, nuca o encima del hombro/trapecio",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical-facet", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-myofascial-cervical", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "Sí, baja por el brazo hasta los dedos con hormigueo (Sospecha Radiculopatía)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical-facet", "effect": "decrease", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Ha notado pérdida de fuerza para abrir botellas o torpeza al abrocharse los botones de la camisa?»",
+      "explanation": "Evalúa signos de compresión medular o radicular motora.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "No, mantengo perfecta fuerza y destreza en ambas manos",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Sí, noto las manos torpes y dificultad para la motricidad fina (Alerta de Mielopatía)",
+          "hypothesisEffects": []
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Cuál es su meta funcional prioritaria?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder girar el cuello para conducir o mirar atrás sin dolor ni bloqueo", "hypothesisEffects": [] },
+        { "label": "Eliminar el dolor de cabeza y la tensión constante en el trapecio", "hypothesisEffects": [] },
+        { "label": "Trabajar en el ordenador sin fatiga cervical ni quemazón", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Cervicalgia Axial y Cefalea",
+    "steps": [
+      {
+        "id": "exam-cervical-quadrant-facet",
+        "order": 1,
+        "name": "Test del Cuadrante Cervical de Kemp / Carga Facetaria",
+        "category": "articular",
+        "essential": true,
+        "instruction": "Paciente sentado. El examinador guía la columna cervical a extensión completa, inclinación lateral y rotación hacia el lado afecto mientras aplica una suave compresión axial descendente.",
+        "whatToLookFor": "Reproducción del dolor cervical localizado en la columna posterior o pilar articular facetario sin irradiación por debajo del hombro.",
+        "mentorTip": "La maniobra de compresión en cuadrante posterior cierra el foramen y comprime las carillas articulares. Si reproduce dolor axial puro orienta a síndrome facetario.",
+        "results": [
+          {
+            "label": "Positivo (reproduce dolor axial focal en pilar articular)",
+            "value": "positive_facet",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cervical-facet", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-myofascial-cervical", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Negativo (extensión y rotación indoloras)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cervical-facet", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-flexion-rotation-test",
+        "order": 2,
+        "name": "Flexion-Rotation Test (FRT para C1-C2 / Cefalea Cervicogénica)",
+        "category": "cefalea",
+        "essential": true,
+        "instruction": "Paciente en supino. El examinador flexiona completamente la columna cervical para bloquear los niveles C3-C7 y realiza una rotación pasiva máxima de la cabeza a cada lado.",
+        "whatToLookFor": "Restricción de la rotación (<32° de rango) o dolor en nuca/cabeza ipsilateral (Sensibilidad 91%, Especificidad 90% para disfunción atlantoaxoidea C1-C2).",
+        "mentorTip": "El FRT es el test clínico de referencia para confirmar cefalea de origen cervicogénico.",
+        "results": [
+          {
+            "label": "Positivo (rango <32° y reproducción de la cefalea habitual)",
+            "value": "positive_frt",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cervicogenic-headache", "effect": "increase", "weight": 7 }
+            ]
+          },
+          {
+            "label": "Negativo (rango completo >40° simétrico e indoloro)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cervicogenic-headache", "effect": "decrease", "weight": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-cervical-trigger-points",
+        "order": 3,
+        "name": "Palpación de Bandas Tensas y Puntos Gatillo Miofasciales",
+        "category": "miofascial",
+        "essential": true,
+        "instruction": "Palpar en pinza el vientre del trapecio superior, elevador de la escápula y musculatura esplenio del cuello.",
+        "whatToLookFor": "Presencia de nódulos dolorosos en banda tensa con respuesta de espasmo local y reproducción del dolor referido característico.",
+        "mentorTip": "Los puntos gatillo del trapecio refieren dolor en signo de interrogación hacia la sien.",
+        "results": [
+          {
+            "label": "Puntos gatillo activos en trapecio / elevador con espasmo local",
+            "value": "positive_trigger",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-myofascial-cervical", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Musculatura flexible y sin puntos gatillo reproducibles",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-myofascial-cervical", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-hoffmann-cervical",
+        "order": 4,
+        "name": "Signo de Hoffmann y Reflejo Invertido (Descarte de Mielopatía)",
+        "category": "seguridad",
+        "essential": true,
+        "instruction": "Sujetar la falange media del tercer dedo y pellizcar rápidamente la uña hacia abajo.",
+        "whatToLookFor": "Flexión refleja involuntaria de la falange distal del pulgar e índice (Signo de Hoffmann positivo = compromiso de vía piramidal).",
+        "results": [
+          {
+            "label": "Negativo (reflejos fisiológicos normales)",
+            "value": "negative",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Positivo bilateral (sospecha de compresión medular / Mielopatía)",
+            "value": "positive_myelopathy",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-cervical-facet",
+      "name": "Criterios Clínicos de Sospecha de Síndrome Facetario Cervical",
+      "description": "1. Dolor a la extensión + rotación ipsilateral + 2. Palpación dolorosa del pilar articular + 3. Ausencia de compromiso neurológico distal",
+      "requiredTests": ["exam-cervical-quadrant-facet", "exam-hoffmann-cervical"],
+      "threshold": 1,
+      "concordanceText": "Patrón clínico compatible con dolor zigoapofisario / facetario cervical.",
+      "evidenceNote": "El patrón de dolor referido facetario cervical fue mapeado por Dwyer y Aprill con bloqueos controlados."
+    }
+  ],
+  "imaging": {
+    "type": "RM / Radiografía Cervical Dinámica",
+    "clinicalQuestion": "¿Existe artrosis facetaria zigoapofisaria con edema en STIR o estenosis foraminal/canal que justifique el patrón doloroso?",
+    "structures": [
+      {
+        "id": "cervical-imaging-facets",
+        "name": "Pilares Articulares y Articulaciones Zigoapofisarias (C2-C7)",
+        "priority": 1,
+        "findings": [
+          { "id": "cervical-facet-normal", "label": "Alineación y carillas articulares normales para la edad", "concordanceEffect": "neutral" },
+          { "id": "cervical-facet-arthrosis", "label": "Hipertrofia facetaria con esclerosis y estrechamiento foraminal", "concordanceEffect": "concordant" },
+          { "id": "cervical-disc-modic", "label": "Cambios Modic tipo I/II en platillos vertebrales cervicales (dolor discogénico)", "concordanceEffect": "concordant" }
+        ]
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Cuadrante cervical positivo y artrosis facetaria congruente en el nivel sospechado.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor clínico con cambios degenerativos difusos multinivel comunes para la edad.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Marcada discopatía en RM pero clínica de dolor miofascial puro sin rigidez articular.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-cervical-radic-from-axial",
+      "name": "Radiculopatía Cervical",
+      "whatWouldReconsider": "Dolor que sobrepasa el hombro y desciende al antebrazo/mano con Spurling positivo y alteración de reflejos/miotomas.",
+      "keyDiscriminatingTest": "Test de Spurling vs Cuadrante facetario puro"
+    },
+    {
+      "id": "dd-shoulder-from-neck",
+      "name": "Patología Intrínseca de Hombro",
+      "whatWouldReconsider": "Dolor con la elevación activa del brazo y arco doloroso con movilidad cervical pasiva libre e indolora.",
+      "keyDiscriminatingTest": "Arco doloroso de hombro vs Movilidad cervical activa"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-cervical-facet",
+      "structuralDiagnosis": "Artropatía Zigoapofisaria Cervical (C3-C4 a C6-C7)",
+      "painGenerator": "Síndrome Facetario Cervical",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Articular",
+      "supportingFindings": [
+        "Dolor con extensión y rotación ipsilateral",
+        "Palpación dolorosa sobre pilares articulares",
+        "Ausencia de déficit neurológico motor o sensitivo"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-cervicogenic-headache",
+      "structuralDiagnosis": "Disfunción Articular Atlantoaxoidea (C1-C2) y Raíces C1-C3",
+      "painGenerator": "Cefalea Cervicogénica",
+      "mechanism": "nociceptive_referred",
+      "mechanismLabel": "Dolor Somático Referido al Núcleo Trigeminocervical",
+      "supportingFindings": [
+        "Flexion-Rotation Test positivo (<32°)",
+        "Dolor unilateral que irradia desde nuca a frente/órbita",
+        "Agravado por posturas cervicales mantenidas"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-myofascial-cervical",
+      "structuralDiagnosis": "Síndrome de Dolor Miofascial de Trapecio y Elevador de la Escápula",
+      "painGenerator": "Dolor Miofascial Cervicoescapular",
+      "mechanism": "nociceptive_muscular",
+      "mechanismLabel": "Predominio Nociceptivo Muscular",
+      "supportingFindings": [
+        "Puntos gatillo activos en trapecio",
+        "Relación directa con estrés y postura de flexión",
+        "Cuadrante facetario negativo"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor se debe a una sobrecarga de las articulaciones posteriores del cuello o de la musculatura de los hombros. Es un cuadro frecuente que mejora notablemente adaptando la postura frente a las pantallas, realizando descansos activos y fortaleciendo la musculatura profunda que sostiene la cabeza.",
+      "mentorNote": "Desmitificar las rectificaciones de la lordosis cervical en radiografía: no son patológicas por sí solas."
+    },
+    "exercise": {
+      "objective": "Activar y fortalecer los flexores profundos cervicales (Longus colli/capitis) y estabilizadores escapulares.",
+      "phases": [
+        {
+          "name": "Fase 1: Activación de Flexores Profundos (Chin-Tuck)",
+          "description": "Retracción de barbilla (doble mentón) mantenida 5-10 segundos en supino sin levantar la cabeza (control con toalla enrollada).",
+          "duration": "1-3 semanas"
+        },
+        {
+          "name": "Fase 2: Movilidad e Isométricos Suaves",
+          "description": "Isométricos cervicales en posición neutra y ejercicios de control escapular (retracción y descenso de escápulas).",
+          "duration": "3-6 semanas"
+        },
+        {
+          "name": "Fase 3: Carga Funcional y Postural",
+          "description": "Fortalecimiento de trapecio medio/inferior con bandas elásticas y pausas activas en jornada laboral.",
+          "duration": "6-12 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar rotaciones bruscas o hiperextensión cervical forzada en fase aguda."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs en ciclo corto o Paracetamol",
+          "indication": "Dolor agudo moderado limitante.",
+          "example": "Etoricoxib 60 mg/día o Ibuprofeno 400-600mg/8h",
+          "duration": "5-7 días",
+          "guardrails": ["Función renal", "Riesgo cardiovascular"]
+        },
+        {
+          "name": "Relajantes musculares (Ciclobenzaprina) en pauta nocturna breve",
+          "indication": "Contractura muscular dolorosa que dificulta el descanso.",
+          "example": "Ciclobenzaprina 5 mg antes de dormir",
+          "duration": "3-5 días máximo",
+          "guardrails": ["Somnolencia", "Evitar conducción"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Síndrome facetario cervical o cefalea cervicogénica crónica (>3-6 meses) refractaria a fisioterapia y ejercicio.",
+      "objective": "Bloqueo diagnóstico del ramo medial cervical (C3-C7) o del nervio occipital mayor (GON) / Radiofrecuencia térmica de ramos mediales.",
+      "targets": [
+        {
+          "name": "Bloqueo de Ramos Mediales Cervicales y Radiofrecuencia (Rizolisis Cervical)",
+          "indication": "Dolor facetario confirmado con bloqueo anestésico previo positivo (>50-80% de alivio).",
+          "options": [
+            { "name": "Bloqueo ecoguiado/fluoroscópico de ramos mediales con anestésico local", "evidence": "Alta / Nivel I (Manchikanti 2016)" },
+            { "name": "Radiofrecuencia térmica convencional de ramos mediales a 80°C durante 90 segundos", "evidence": "Alta (alivio de 6-12 meses según Lord / Bogduk)" },
+            { "name": "Bloqueo ecoguiado del Nervio Occipital Mayor (GON) para Cefalea Cervicogénica", "evidence": "Alta" }
+          ],
+          "contraindications": ["Infección activa", "Anticoagulación no controlada", "Inestabilidad atlantoaxoidea"]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 4-6 semanas",
+    "parameters": [
+      { "name": "Rango de rotación cervical activa", "icon": "🔄" },
+      { "name": "Dolor con el cuadrante facetario", "icon": "📊" },
+      { "name": "Frecuencia e intensidad de cefaleas", "icon": "💆" },
+      { "name": "Tolerancia a la jornada laboral", "icon": "💻" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría franca >50%",
+        "action": "Mantener ejercicios de flexores profundos y pausas ergonómicas.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio temporal tras bloqueo",
+        "action": "Indicar radiofrecuencia de ramos mediales cervicales.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Dolor persistente",
+        "action": "Reevaluar posible discopatía cervical o dolor de origen central/nociplástico.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "El bloqueo diagnóstico de ramos mediales cervicales es el único estándar validado para confirmar la articulación zigoapofisaria como generador principal del dolor."
+  },
+  "evidence": [
+    {
+      "citation": "Manchikanti L et al. Cervical medial branch blocks for chronic cervical facet joint pain: a randomized, double-blind, active-controlled trial with 1-year follow-up. Spine (Phila Pa 1976). 2008;33(17):1813-1820.",
+      "topic": "Eficacia de los bloqueos de ramos mediales cervicales en dolor facetario",
+      "year": 2008
+    },
+    {
+      "citation": "Ogince M et al. The diagnostic validity of the cervical flexion-rotation test in C1/2-related cervicogenic headache. Man Ther. 2007;12(3):256-262.",
+      "topic": "Validación diagnóstica del Flexion-Rotation Test en cefalea cervicogénica",
+      "year": 2007
+    }
+  ]
+}

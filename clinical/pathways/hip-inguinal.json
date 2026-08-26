@@ -1,0 +1,392 @@
+{
+  "id": "hip-inguinal",
+  "region": "cadera",
+  "regionLabel": "Cadera y Pelvis",
+  "regionIcon": "🦿",
+  "presentation": "Dolor inguinal (Coxofemoral / Cara Anterior de Cadera)",
+  "presentationDesc": "Dolor en el pliegue de la ingle que empeora al caminar, sentarse en asientos bajos o ponerse los zapatos (Coxartrosis vs Choque FAI vs Psoas)",
+  "redFlags": [
+    {
+      "id": "rf-femoral-neck-fracture",
+      "text": "Impotencia funcional para el apoyo monopodal con miembro inferior acortado en rotación externa tras caída o dolor agudo en anciano (sospecha de fractura de cuello femoral)",
+      "severity": "critical",
+      "action": "Descarga articular inmediata, radiografía de pelvis AP y TC urgente"
+    },
+    {
+      "id": "rf-avascular-necrosis",
+      "text": "Dolor inguinal severo progresivo en reposo y de noche en paciente con tratamiento prolongado con corticoides sistémicos o alcoholismo (sospecha de Necrosis Avascular de Cabeza Femoral)",
+      "severity": "critical",
+      "action": "RM urgente de ambas caderas para valorar descompresión / injerto antes del colapso"
+    },
+    {
+      "id": "rf-strangulated-hernia",
+      "text": "Bultoma doloroso irreductible a tensión en el conducto inguinal o crural con vómitos o estreñimiento (sospecha de hernia inguinal estrangulada)",
+      "severity": "critical",
+      "action": "Derivación quirúrgica urgente"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-coxarthrosis-primary",
+      "name": "Coxartrosis (Artrosis de la Articulación Coxofemoral)",
+      "shortName": "Coxartrosis",
+      "description": "Degeneración del cartílago articular coxofemoral con pérdida progresiva de la rotación interna y dolor en carga.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-fai-labral-tear",
+      "name": "Choque Femoroacetabular (FAI Cam/Pincer) y Lesión de Labrum Acetabular",
+      "shortName": "Choque FAI / Labrum",
+      "description": "Conflicto mecánico de contacto entre el cuello femoral y el reborde acetabular común en adultos jóvenes y deportistas.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-iliopsoas-tendinopathy",
+      "name": "Tendinopatía / Bursitis del Músculo Iliopsoas (Snapping Hip Anterior)",
+      "shortName": "Tendinopatía del Psoas",
+      "description": "Inflamación o resalte doloroso del tendón del psoasiliaco al pasar sobre la eminencia iliopectínea.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-lumbar-referred-l2-l3",
+      "name": "Dolor Referido Lumbar Alto (Raíces L1-L2-L3 / Nervio Ilioinguinal)",
+      "shortName": "Dolor Referido Lumbar L2-L3",
+      "description": "Dolor neurálgico o somático referido a la ingle desde la columna lumbar alta o charnela dorsolumbar.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Cómo señala el dolor con su mano?»",
+      "explanation": "El 'Signo de la C' (agarrar la cadera entre el pulgar posterior y el índice en la ingle) es característico del dolor intraarticular coxofemoral. El dolor en la cara lateral externa corresponde a trocanteritis (GTPS).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Mano en forma de 'C' abarcando la ingle y la parte profunda de la cadera (Signo de la C +)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-fai-labral-tear", "effect": "increase", "weight": 6 }
+          ]
+        },
+        {
+          "label": "En el pliegue de la ingle profundo al flexionar la pierna hacia el pecho",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-iliopsoas-tendinopathy", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-fai-labral-tear", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "Se origina en la cintura baja y baja en banda diagonal hacia la ingle",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-lumbar-referred-l2-l3", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Tiene dificultad para ponerse los calcetines, cortarse las uñas de los pies o entrar/salir del coche?»",
+      "explanation": "La pérdida de rotación interna y flexión pasiva de la cadera dificulta de forma temprana estas tareas cotidianas en la artrosis coxofemoral.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me cuesta mucho agacharme a ponerme los zapatos o cruzar la pierna afectada",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "increase", "weight": 6 }
+          ]
+        },
+        {
+          "label": "No, mantengo buena elasticidad para llegar a los pies",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "decrease", "weight": 4 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Cuál es su meta funcional prioritaria?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Caminar distancias medias y subir cuestas sin pinchazo en la ingle", "hypothesisEffects": [] },
+        { "label": "Ponerse los calcetines y calzado con independencia y sin dolor", "hypothesisEffects": [] },
+        { "label": "Levantarme de sofás bajos o del coche sin bloqueo articular", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Dolor Inguinal de Cadera",
+    "steps": [
+      {
+        "id": "exam-fadir-hip",
+        "order": 1,
+        "name": "Test FADIR (Flexión 90°, Aducción y Rotación Interna)",
+        "category": "choque",
+        "essential": true,
+        "instruction": "Paciente en supino. El examinador flexiona la cadera a 90°, la aduce hacia la línea media y aplica rotación interna máxima forzada.",
+        "whatToLookFor": "Reproducción del dolor agudo punzante en la ingle (Sensibilidad 96% para Choque FAI y patología de labrum).",
+        "mentorTip": "FADIR es el test de screening más sensible para dolor intraarticular coxofemoral anterior.",
+        "results": [
+          {
+            "label": "Positivo (dolor agudo en la ingle a la flexión-aducción-rotación interna)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-fai-labral-tear", "effect": "increase", "weight": 7 },
+              { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Negativo (maniobra FADIR indolora y con rango libre)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-fai-labral-tear", "effect": "decrease", "weight": 5 },
+              { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "decrease", "weight": 3 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-passive-ir-hip",
+        "order": 2,
+        "name": "Rango de Movilidad Pasiva: Rotación Interna de Cadera",
+        "category": "articular",
+        "essential": true,
+        "instruction": "Paciente en prono o supino con cadera y rodilla a 90°. Medir los grados de rotación interna pasiva comparando con el lado contralateral.",
+        "whatToLookFor": "Restricción asimétrica de la rotación interna (<15°-20° o dolor al tope final elástico/óseo).",
+        "mentorTip": "La pérdida de rotación interna pasiva es el signo físico más constante y precoz en la artrosis coxofemoral.",
+        "results": [
+          {
+            "label": "Restricción severa (<15°) con tope duro doloroso (Coxartrosis)",
+            "value": "restricted",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "increase", "weight": 7 }
+            ]
+          },
+          {
+            "label": "Rotación interna conservada (>30°) simétrica",
+            "value": "normal",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "decrease", "weight": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-thomas-stinchfield",
+        "order": 3,
+        "name": "Test de Thomas y Test de Stinchfield (Músculo Psoas)",
+        "category": "psoas",
+        "essential": true,
+        "instruction": "Test de Thomas: abrazar la rodilla sana al pecho y observar si el muslo afecto se despega de la camilla. Test de Stinchfield: elevación activa de pierna recta a 30° resistida por el examinador.",
+        "whatToLookFor": "Reproducción del dolor en la ingle anterior al resistir la flexión activa (Psoas) vs estiramiento en hiperextensión.",
+        "mentorTip": "Stinchfield positivo con FADIR negativo orienta fuertemente a tendinopatía del iliopsoas.",
+        "results": [
+          {
+            "label": "Dolor en ingle al resistir la flexión de pierna recta (Test de Stinchfield +)",
+            "value": "positive_psoas",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-iliopsoas-tendinopathy", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-iliopsoas-tendinopathy", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-coxofemoral-oa",
+      "name": "Criterios Clínicos ACR para Artrosis de Cadera (Coxartrosis)",
+      "description": "1. Dolor inguinal en carga + 2. Rotación interna pasiva <15° + 3. Dolor con rotación interna + 4. Edad >50 años",
+      "requiredTests": ["exam-fadir-hip", "exam-passive-ir-hip"],
+      "threshold": 2,
+      "concordanceText": "Cumple criterios clínicos del Colegio Americano de Reumatología (ACR) para Coxartrosis (Sensibilidad 89%, Especificidad 89%).",
+      "evidenceNote": "La combinación de dolor inguinal con limitación de rotación interna tiene la máxima precisión diagnóstica clínica."
+    }
+  ],
+  "imaging": {
+    "type": "Radiografía de Pelvis AP & Falso Perfil / Ecografía Coxofemoral",
+    "clinicalQuestion": "¿Existe estrechamiento de la interlínea superolateral coxofemoral, osteofitosis/geodas (coxartrosis) o giba anterosuperior tipo Cam en cuello femoral (FAI)?",
+    "structures": [
+      {
+        "id": "hip-imaging-joint",
+        "name": "Articulación Coxofemoral",
+        "priority": 1,
+        "findings": [
+          { "id": "hip-normal", "label": "Interlínea articular coxofemoral preservada y esférica", "concordanceEffect": "neutral" },
+          { "id": "hip-oa-advanced", "label": "Estrechamiento de la interlínea articular, esclerosis subcondral y osteofitos periacetabulares (Coxartrosis)", "concordanceEffect": "concordant" },
+          { "id": "hip-fai-cam", "label": "Deformidad en mango de pistola / pérdida de concavidad cuello femoral (Giba tipo Cam / ángulo alfa >55°)", "concordanceEffect": "concordant" },
+          { "id": "hip-psoas-bursitis", "label": "Distensión líquida anecoica de la bursa iliopectínea / psoas en ecografía", "concordanceEffect": "concordant" }
+        ]
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Signo de la C, rotación interna <15° y radiografía con estrechamiento coxofemoral franco.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor clínico con cambios radiológicos leves; valorar componente miofascial de psoas o aductores.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Cadera con movilidad pasiva completa indolora; investigar dolor referido lumbar L1-L3 o patología urológica/inguinal.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-gtps-from-groin",
+      "name": "Síndrome de Dolor Trocantérico Mayor (GTPS)",
+      "whatWouldReconsider": "Dolor lateral puro sobre el trocánter que duele al dormir de lado, con ingle indolora y rotación interna libre.",
+      "keyDiscriminatingTest": "Palpación trocantérea vs Rotación interna pasiva"
+    },
+    {
+      "id": "dd-lumbar-from-groin",
+      "name": "Dolor Referido Lumbar L2-L3",
+      "whatWouldReconsider": "Dolor en ingle que se modifica con movimientos de flexoextensión de columna lumbar y FADIR negativo.",
+      "keyDiscriminatingTest": "Test de Kemp lumbar vs FADIR de cadera"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-coxarthrosis",
+      "structuralDiagnosis": "Coxartrosis Primaria (Grado II-IV Kellgren-Lawrence)",
+      "painGenerator": "Dolor Articular Coxofemoral en Carga",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Articular Coxofemoral",
+      "supportingFindings": [
+        "Signo de la C positivo en ingle",
+        "Rotación interna pasiva limitada <15°",
+        "Test FADIR positivo",
+        "Radiografía con estrechamiento coxofemoral"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-fai-labrum",
+      "structuralDiagnosis": "Choque Femoroacetabular (FAI Cam/Pincer) con Desgarro Labral",
+      "painGenerator": "Dolor por Conflicto Mecánico Femoroacetabular",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Labral / Mecánico",
+      "supportingFindings": [
+        "FADIR test intensamente positivo en adulto joven",
+        "Dolor punzante profundo a la flexión",
+        "Preservación de la interlínea articular"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El dolor en la ingle se debe al desgaste o sobrecarga de la articulación profunda de la cadera. Caminar con calzado amortiguado, usar bastón en la mano contraria en días de mayor dolor y mantener los músculos glúteos fuertes reduce la presión sobre la articulación en un 30%.",
+      "mentorNote": "El uso de un bastón en la mano contralateral reduce en un 50% la fuerza de reacción articular en la cadera afecta (Biomecánica de Pauwels)."
+    },
+    "exercise": {
+      "objective": "Mantener el rango de movilidad articular (especialmente extensión y rotación) y fortalecer abductores y extensores de cadera.",
+      "phases": [
+        {
+          "name": "Fase 1: Movilidad Pasiva y Bicicleta Estática",
+          "description": "Bicicleta estática sin resistencia con sillín alto y ejercicios de tracción/movilidad suave en decúbito.",
+          "duration": "1-3 semanas"
+        },
+        {
+          "name": "Fase 2: Fortalecimiento de Glúteo Mayor y Medio",
+          "description": "Puentes de glúteo bipodales, abducción con banda elástica en bipedestación y extensiones de cadera en prono.",
+          "duration": "3-8 semanas"
+        },
+        {
+          "name": "Fase 3: Readaptación Funcional y Marcha",
+          "description": "Caminatas fraccionadas en llano, hidroterapia / natación y subidas a escalón con control pélvico.",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar sentarse en sofás muy bajos que fuercen la cadera a más de 90° de flexión continua."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs orales en pauta corta con protección gástrica",
+          "indication": "Dolor moderado-severo en brote inflamatorio.",
+          "example": "Naproxeno 500mg/12h con Omeprazol o Etoricoxib 60 mg/día",
+          "duration": "7-14 días",
+          "guardrails": ["Función renal", "Riesgo cardiovascular", "Edad >65 años"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Dolor coxofemoral moderado-severo refractario a tratamiento farmacológico y fisioterapia.",
+      "objective": "Infiltración intraarticular coxofemoral ecoguiada o bloqueo de nervios articulares (PENG / Femoral).",
+      "targets": [
+        {
+          "name": "Infiltración Intraarticular Coxofemoral Ecoguiada",
+          "indication": "Coxartrosis grado II-III o choque FAI doloroso.",
+          "options": [
+            { "name": "Infiltración ecoguiada en plano de ácido hialurónico de alto peso molecular o corticoide de depósito (Triamcinolona 40mg)", "evidence": "Alta / Nivel I (alivio de 3-6 meses)" },
+            { "name": "Bloqueo ecoguiado del plano pericapsular de cadera (PENG block) y radiofrecuencia de ramos articulares", "evidence": "Moderada-Alta para dolor refractario" }
+          ],
+          "contraindications": ["Infección articular activa", "Necrosis avascular avanzada"]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 6-8 semanas",
+    "parameters": [
+      { "name": "Distancia caminada sin dolor en ingle", "icon": "🚶" },
+      { "name": "Grados de rotación interna pasiva", "icon": "📐" },
+      { "name": "Capacidad para calzarse independientemente", "icon": "👟" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría franca de la movilidad y marcha",
+        "action": "Mantener ejercicios de glúteos y control de peso.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial temporal tras infiltración",
+        "action": "Valorar repetición de viscosuplementación o radiofrecuencia de ramos articulares (PENG).",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Coxartrosis severa Grado IV con colapso articular y dolor nocturno continuo",
+        "action": "Derivación a Cirugía Ortopédica para Artroplastia Total de Cadera (Prótesis de Cadera).",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "El dolor inguinal con limitación de rotación interna es articular coxofemoral hasta que se demuestre lo contrario; el dolor lateral es trocantéreo."
+  },
+  "evidence": [
+    {
+      "citation": "Altman R et al. The American College of Rheumatology criteria for the classification and reporting of osteoarthritis of the hip. Arthritis Rheum. 1991;34(5):505-514.",
+      "topic": "Criterios diagnósticos ACR de coxartrosis",
+      "year": 1991
+    },
+    {
+      "citation": "Reiman MP et al. Diagnostic accuracy of clinical tests for assessment of hamstrings, psoas, and hip joint pathology: a systematic review. J Athl Train. 2014;49(4):545-562.",
+      "topic": "Precisión diagnóstica de las pruebas de exploración de cadera",
+      "year": 2014
+    }
+  ]
+}

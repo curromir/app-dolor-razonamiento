@@ -69,12 +69,12 @@
         <article class="mode-card primary-mode" id="btnLaunchClinicalMode">
           <div>
             <span class="mode-card-icon">🩺</span>
-            <h2>Razonamiento Clínico</h2>
-            <p><strong>Modo Consulta interactivo:</strong> Diseñado para utilizar con el paciente delante. Anamnesis dirigida, exploración express, ecografía concordante y plan.</p>
+            <h2>Modo Consulta</h2>
+            <p><strong>Copiloto en tiempo real:</strong> Diseñado para usar con el paciente delante. Anamnesis dirigida, discriminación de hipótesis, exploración express y plan.</p>
             <div class="mode-card-features">
               <span class="mode-feature-pill">⚠️ Red Flags</span>
               <span class="mode-feature-pill">⚡ Express 90s</span>
-              <span class="mode-feature-pill">🔊 Eco Dirigida</span>
+              <span class="mode-feature-pill">💡 Discriminador</span>
               <span class="mode-feature-pill">📋 Copiar a HC</span>
             </div>
           </div>
@@ -83,7 +83,25 @@
           </div>
         </article>
 
-        <!-- MODE 2: CLINICAL LIBRARY -->
+        <!-- MODE 2: TRAINING CASES -->
+        <article class="mode-card" id="btnLaunchTrainingMode" style="border-color: rgba(139, 92, 246, 0.4); background: linear-gradient(145deg, rgba(139, 92, 246, 0.08) 0%, rgba(30, 41, 59, 0.6) 100%);">
+          <div>
+            <span class="mode-card-icon">🎓</span>
+            <h2>Modo Entrenamiento</h2>
+            <p><strong>Casos Clínicos Simulados a Ciegas:</strong> Entrena con casos Canónicos, Realistas, Trampas Diagnósticas y Emergencias de Seguridad con auditoría de sesgos.</p>
+            <div class="mode-card-features">
+              <span class="mode-feature-pill">🟢 Canónicos</span>
+              <span class="mode-feature-pill">🟡 Realistas</span>
+              <span class="mode-feature-pill">🟣 Trampas</span>
+              <span class="mode-feature-pill">🔴 Seguridad</span>
+            </div>
+          </div>
+          <div class="mode-card-cta" style="color: #a78bfa;">
+            <span>Entrenar con Casos</span> <span>→</span>
+          </div>
+        </article>
+
+        <!-- MODE 3: CLINICAL LIBRARY -->
         <article class="mode-card" id="btnLaunchLibraryMode">
           <div>
             <span class="mode-card-icon">📚</span>
@@ -105,14 +123,17 @@
       <!-- Recent Consultations Bar -->
       <div class="home-recents-section glass-panel" id="homeRecentsBox">
         <div class="home-recents-title">
-          <span>⚡</span> <span>Acceso Rápido a Clinical Pathways</span>
+          <span>⚡</span> <span>Acceso Directo a los 19 Clinical Pathways Activos</span>
         </div>
         <div class="recents-chips-list" id="recentsChipsList">
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('shoulder-lateral-pain')">
-            <span>🦴</span> <span>Hombro: Dolor Lateral</span>
+            <span>🦴</span> <span>Hombro: Lateral</span>
           </button>
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('shoulder-stiffness')">
             <span>🧊</span> <span>Hombro: Rigidez</span>
+          </button>
+          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('shoulder-anterior-pain')">
+            <span>🦴</span> <span>Hombro: Anterior / Bíceps</span>
           </button>
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('lumbar-radicular-pain')">
             <span>⚡</span> <span>Lumbar: Radiculopatía L4-S1</span>
@@ -120,14 +141,26 @@
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('lumbar-axial-pain')">
             <span>🦴</span> <span>Lumbar: Axial (Facetas)</span>
           </button>
+          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('lumbar-claudication')">
+            <span>⚡</span> <span>Lumbar: Claudicación / Estenosis</span>
+          </button>
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('cervical-radicular')">
             <span>🧠</span> <span>Cervical: Radiculopatía C6/C7</span>
+          </button>
+          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('cervical-axial')">
+            <span>🧠</span> <span>Cervical: Axial / Cefalea</span>
           </button>
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('hip-lateral')">
             <span>🦿</span> <span>Cadera: Lateral (GTPS)</span>
           </button>
+          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('hip-inguinal')">
+            <span>🦿</span> <span>Cadera: Inguinal (Coxartrosis)</span>
+          </button>
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('knee-oa-anterior')">
             <span>🦵</span> <span>Rodilla: Anterior / Artrosis</span>
+          </button>
+          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('knee-medial')">
+            <span>🦵</span> <span>Rodilla: Medial / Menisco</span>
           </button>
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('si-posterior-pelvic')">
             <span>🎯</span> <span>Sacroilíaca: Laslett</span>
@@ -144,6 +177,9 @@
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('ankle-plantar')">
             <span>🦶</span> <span>Pie: Fascitis Plantar</span>
           </button>
+          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('ankle-medial')">
+            <span>🦶</span> <span>Tobillo: Medial / Tibial Post</span>
+          </button>
           <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('nociplastic-pain')">
             <span>🌪️</span> <span>Dolor Nociplástico / Fibromialgia</span>
           </button>
@@ -159,6 +195,11 @@
     document.getElementById('btnLaunchClinicalMode')?.addEventListener('click', () => {
       window.ClinicalUI.switchAppMode('clinical');
       renderRegionSelector();
+    });
+
+    document.getElementById('btnLaunchTrainingMode')?.addEventListener('click', () => {
+      window.ClinicalUI.switchAppMode('clinical');
+      renderCaseSelector();
     });
 
     document.getElementById('btnLaunchLibraryMode')?.addEventListener('click', () => {
@@ -628,8 +669,9 @@
   function renderHypothesesListHTML() {
     if (!uiState.engine) return '';
     const ranked = uiState.engine.getHypothesesRanked();
+    const discriminator = uiState.engine.getDifferentialDiscriminator ? uiState.engine.getDifferentialDiscriminator() : null;
 
-    return ranked.map(h => {
+    const listHtml = ranked.map(h => {
       const levelLabel = uiState.engine.getHypothesisLevelLabel(h.level);
       const icon = uiState.engine.getHypothesisLevelIcon(h.level);
       const color = uiState.engine.getHypothesisLevelColor(h.level);
@@ -644,6 +686,27 @@
         </div>
       `;
     }).join('');
+
+    const discriminatorHtml = discriminator ? `
+      <div class="hypothesis-discriminator-card" style="margin-top: 0.85rem; padding: 0.75rem 0.85rem; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: var(--radius-md);">
+        <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; color: #f59e0b; font-size: 0.78rem; font-weight: 800; text-transform: uppercase;">
+          <span>💡</span> <span>¿Qué dato separaría las 2 primeras?</span>
+        </div>
+        <p style="margin: 0; font-size: 0.8rem; line-height: 1.35; color: var(--text-primary);">
+          ${discriminator.recommendation}
+        </p>
+      </div>
+    ` : '';
+
+    const whatIBelieveBtnHtml = `
+      <div style="margin-top: 0.75rem;">
+        <button class="exam-tool-btn" style="width: 100%; justify-content: center; background: rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.35); color: #818cf8; font-weight: 700;" onclick="window.ClinicalUI.openWhatIDoBelieveModal()">
+          <span>🧠</span> <span>¿Qué creo ahora? (Síntesis)</span>
+        </button>
+      </div>
+    `;
+
+    return listHtml + discriminatorHtml + whatIBelieveBtnHtml;
   }
 
   function answerQuestion(questionId, answerIndex) {
@@ -1380,15 +1443,68 @@
     `);
   }
 
+  function openWhatIDoBelieveModal() {
+    if (!uiState.engine) return;
+    const what = uiState.engine.getWhatIDoBelieveNow();
+
+    showAuxModal(`
+      <div class="aux-modal-header" style="border-bottom: 2px solid #6366f1;">
+        <h3><span>🧠</span> <span>¿Qué creo ahora? (Síntesis de Trabajo)</span></h3>
+      </div>
+      <div class="aux-items-list">
+        <div class="structure-box" style="background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.3);">
+          <div style="font-size: 0.72rem; color: #818cf8; font-weight: 800; text-transform: uppercase; margin-bottom: 0.25rem;">Generador Principal Candidato</div>
+          <h4 style="font-size: 1.1rem; color: var(--text-primary); margin: 0 0 0.25rem;">${what.topCandidate}</h4>
+          <span class="pres-badge-status available" style="font-size: 0.72rem;">Nivel de Confianza: ${what.confidence}</span>
+        </div>
+
+        <div class="structure-box">
+          <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase; margin-bottom: 0.25rem;">Segundo Candidato en Diferencial</div>
+          <h4 style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">${what.runnerUp}</h4>
+        </div>
+
+        <div class="aux-item-card">
+          <h4 style="color: var(--color-safe);">🟢 Hallazgo que más apoya esta hipótesis</h4>
+          <p style="font-size: 0.84rem; color: var(--text-primary); margin: 0;">${what.topSupporting}</p>
+        </div>
+
+        <div class="aux-item-card">
+          <h4 style="color: #f59e0b;">⚠️ Hallazgo que más la contradice / Datos discordantes</h4>
+          <p style="font-size: 0.84rem; color: var(--text-primary); margin: 0;">${what.topConflicting}</p>
+        </div>
+
+        <div class="aux-item-card" style="border-left: 3px solid var(--color-warning);">
+          <h4>Seguridad y Banderas Rojas</h4>
+          <p style="font-size: 0.84rem; font-weight: 700; color: var(--text-primary); margin: 0;">${what.safetyStatus}</p>
+        </div>
+      </div>
+    `);
+  }
+
   function openReconsiderModal() {
     if (!uiState.engine) return;
     const data = uiState.engine.reconsiderDiagnosis();
+    const audit = uiState.engine.runDiscordanceAudit ? uiState.engine.runDiscordanceAudit() : { hasWarnings: false, warnings: [] };
 
     showAuxModal(`
       <div class="aux-modal-header">
-        <h3><span>🤔</span> <span>No me cuadra — Reevaluación Rápida</span></h3>
+        <h3><span>🤔</span> <span>No me cuadra — Auditoría de Discordancias Clínicas</span></h3>
       </div>
       <div class="aux-items-list">
+        ${audit.hasWarnings ? `
+          <div style="margin-bottom: 0.75rem;">
+            ${audit.warnings.map(w => `
+              <div class="safety-header-banner" style="margin-bottom: 0.5rem; background: ${w.severity === 'high' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(245, 158, 11, 0.15)'}; border-color: ${w.severity === 'high' ? 'rgba(239, 68, 68, 0.4)' : 'rgba(245, 158, 11, 0.4)'};">
+                <span class="safety-banner-icon">${w.severity === 'high' ? '🚨' : '⚠️'}</span>
+                <div class="safety-banner-text">
+                  <h4 style="margin: 0 0 0.15rem; color: var(--text-primary);">${w.title}</h4>
+                  <p style="font-size: 0.8rem; margin: 0;">${w.description}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+
         <div class="safety-header-banner" style="margin-bottom: 0.5rem;">
           <span class="safety-banner-icon">💡</span>
           <div class="safety-banner-text">
@@ -1412,6 +1528,98 @@
         </div>
       </div>
     `);
+  }
+
+  // ─────────────────────────────────────────────
+  // TRAINING MODE 2.0 (CASOS CLÍNICOS SIMULADOS)
+  // ─────────────────────────────────────────────
+
+  async function renderCaseSelector() {
+    const container = containers.clinical;
+    if (!container) return;
+
+    let casesCatalog = uiState.casesCatalog;
+    if (!casesCatalog) {
+      try {
+        const res = await fetch('clinical/cases/cases_catalog.json?v=' + Date.now());
+        if (res.ok) {
+          casesCatalog = await res.json();
+          uiState.casesCatalog = casesCatalog;
+        }
+      } catch (err) {
+        console.warn('Error loading cases catalog:', err);
+      }
+    }
+
+    if (!casesCatalog || casesCatalog.length === 0) {
+      container.innerHTML = `
+        <div class="clinical-flow-container">
+          <h2>Modo Entrenamiento con Casos</h2>
+          <p>No se han podido cargar los casos clínicos.</p>
+          <button class="clinical-action-btn" onclick="window.ClinicalUI.switchAppMode('home')">← Volver al Inicio</button>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = `
+      <div class="clinical-flow-container">
+        <div class="region-selector-header">
+          <div class="home-hero-badge" style="background: rgba(139, 92, 246, 0.15); color: #a78bfa; border-color: rgba(139, 92, 246, 0.3);">
+            🎓 Modo Entrenamiento Clínico 2.0
+          </div>
+          <h1>Simulador de Casos Clínicos a Ciegas</h1>
+          <p>Elige un caso clínico simulado. Toma decisiones diagnósticas paso a paso y recibe una auditoría completa de razonamiento y detección de sesgos cognitivos.</p>
+        </div>
+
+        <div class="presentations-list" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+          ${casesCatalog.map(c => `
+            <div class="presentation-card active-pathway" style="border-left: 4px solid ${c.difficulty === 'seguridad' ? 'var(--color-danger)' : c.difficulty === 'trampa' ? '#a855f7' : c.difficulty === 'realista' ? '#f59e0b' : 'var(--color-safe)'};"
+                 onclick="window.ClinicalUI.startTrainingCase('${c.id}')">
+              <div class="pres-info-group">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <span class="pres-badge-status available" style="background: ${c.difficulty === 'seguridad' ? 'rgba(239, 68, 68, 0.15)' : c.difficulty === 'trampa' ? 'rgba(168, 85, 247, 0.15)' : c.difficulty === 'realista' ? 'rgba(245, 158, 11, 0.15)' : 'rgba(34, 197, 94, 0.15)'}; color: ${c.difficulty === 'seguridad' ? '#ef4444' : c.difficulty === 'trampa' ? '#a855f7' : c.difficulty === 'realista' ? '#f59e0b' : '#22c55e'}; font-weight: 800;">
+                    ${c.difficultyIcon} ${c.difficultyLabel}
+                  </span>
+                  <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">${c.patient.age} años · ${c.patient.gender}</span>
+                </div>
+                <h4 style="font-size: 1rem; color: var(--text-primary); margin-bottom: 0.35rem;">${c.title}</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.35;">«${c.patient.chiefComplaint}»</p>
+              </div>
+              <span class="pres-badge-status available" style="margin-top: 0.5rem; align-self: flex-start;">
+                ▶ Iniciar Caso Clínico
+              </span>
+            </div>
+          `).join('')}
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+          <button class="clinical-action-btn" onclick="window.ClinicalUI.switchAppMode('home')">
+            <span>← Volver al Inicio</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  async function startTrainingCase(caseId) {
+    const casesCatalog = uiState.casesCatalog || [];
+    const c = casesCatalog.find(item => item.id === caseId);
+    if (!c) {
+      alert('Caso no encontrado');
+      return;
+    }
+
+    // Launch pathway associated with case
+    await startPathway(c.pathwayId);
+
+    // Instantiate simulation engine
+    if (window.SimulationEngine) {
+      uiState.simulation = new window.SimulationEngine(c, window.state ? window.state.catalog : null);
+    }
+
+    // Pre-populate patient chief complaint in clinical view banner
+    alert(`🎓 INICIANDO CASO: ${c.title}\n\nMotivo de consulta:\n«${c.patient.chiefComplaint}»\n\nProcederás a ciegas a través del algoritmo clínico.`);
   }
 
   function openMissingInfoModal() {
@@ -1574,7 +1782,10 @@
     proceedToSummary: proceedToSummary,
     openDifferentialModal: openDifferentialModal,
     openReconsiderModal: openReconsiderModal,
-    openMissingInfoModal: openMissingInfoModal
+    openMissingInfoModal: openMissingInfoModal,
+    openWhatIDoBelieveModal: openWhatIDoBelieveModal,
+    renderCaseSelector: renderCaseSelector,
+    startTrainingCase: startTrainingCase
   };
 
 })();

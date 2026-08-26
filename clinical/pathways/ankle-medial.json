@@ -1,0 +1,352 @@
+{
+  "id": "ankle-medial",
+  "region": "tobillo_pie",
+  "regionLabel": "Tobillo y Pie",
+  "regionIcon": "🦶",
+  "presentation": "Dolor medial (Tendón Tibial Posterior / Retromaleolar)",
+  "presentationDesc": "Dolor y tumefacción detrás del tobillo interno que aumenta al caminar y estar de pie (Tendón Tibial Posterior vs Túnel del Tarso)",
+  "redFlags": [
+    {
+      "id": "rf-medial-malleolus-fracture",
+      "text": "Incapacidad para dar 4 pasos seguidos inmediatamente tras torcedura de tobillo con dolor óseo en maléolo medial (Criterios de Ottawa positivos para fractura)",
+      "severity": "critical",
+      "action": "Radiografía de tobillo serie completa (AP, lateral y mortaja) y descarga"
+    },
+    {
+      "id": "rf-diabetic-medial-ulcer",
+      "text": "Celulitis eritematosa ascendente o herida no dolorosa en paciente con neuropatía diabética",
+      "severity": "critical",
+      "action": "Derivación urgente a Unidad de Pie Diabético"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-pttd-tibialis-posterior",
+      "name": "Disfunción / Tendinopatía del Músculo Tibial Posterior (Disfunción TTP / Pie Plano Adquirido)",
+      "shortName": "Tendinopatía Tibial Posterior (TTP)",
+      "description": "Insuficiencia degenerativa del estabilizador dinámico principal del arco plantar medial, provocando colapso en valgo del retropié.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-tarsal-tunnel-medial",
+      "name": "Síndrome del Túnel del Tarso (Atrapamiento del Nervio Tibial)",
+      "shortName": "Túnel del Tarso",
+      "description": "Compresión del nervio tibial posterior bajo el retináculo flexor con quemazón y parestesias plantares.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-subtalar-oa",
+      "name": "Artropatía Subastragalina / Tibioastragalina Medial",
+      "shortName": "Artrosis Subastragalina",
+      "description": "Desgaste del cartílago en la articulación subastragalina con limitación dolorosa de la inversión y eversión.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Ha notado que el arco interno del pie se le está 'cayendo' o aplanando progresivamente?»",
+      "explanation": "La pérdida del arco longitudinal interno y el desgaste asimétrico del calzado por la cara interna es la manifestación clásica de la insuficiencia del tendón tibial posterior.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, el pie se me ha vuelto más plano y el talón se me va hacia afuera (Disfunción TTP)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "increase", "weight": 7 }
+          ]
+        },
+        {
+          "label": "No, mantengo el arco del pie normal, el dolor es como ardor u hormigueo eléctrico",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-tarsal-tunnel-medial", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "decrease", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Dónde siente el dolor o hinchazón más intensa?»",
+      "explanation": "El tendón tibial posterior duele siguiendo una curva justo detrás del maléolo interno y hacia el hueso navicular/escafoides del pie.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "A lo largo de la cuerda tendinosa detrás y debajo del tobillo interno que baja hacia el empeine",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "Dentro de la articulación profunda del tobillo al caminar por terrenos irregulares o empedrados",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-subtalar-oa", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Cuál es su meta funcional prioritaria?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder caminar distancias normales sin cojera ni cansancio en el tobillo", "hypothesisEffects": [] },
+        { "label": "Poder ponerme de puntillas con una sola pierna sin dolor", "hypothesisEffects": [] },
+        { "label": "Calzarme cómodamente sin que el pie deforme los zapatos hacia adentro", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Dolor Medial de Tobillo y Pie",
+    "steps": [
+      {
+        "id": "exam-single-heel-rise",
+        "order": 1,
+        "name": "Single Heel Rise Test (Elevación Monopodal de Talón)",
+        "category": "tendon",
+        "essential": true,
+        "instruction": "Paciente de pie apoyado solo sobre la pierna sintomática (puede rozar la pared con los dedos para equilibrio). Pedirle que se ponga de puntillas elevando el talón al máximo.",
+        "whatToLookFor": "Incapacidad para despegar el talón del suelo o ausencia de inversión/varización fisiológica del calcáneo durante la subida (Signo patognomónico de disfunción del TTP).",
+        "mentorTip": "Normalmente el talón debe girar hacia adentro (varo) al subir. Si permanece en valgo plano o no puede subir, confirma insuficiencia de TTP.",
+        "results": [
+          {
+            "label": "Incapaz de elevarse o el talón no invierte (Disfunción TTP positiva)",
+            "value": "positive_pttd",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "increase", "weight": 7 }
+            ]
+          },
+          {
+            "label": "Elevación monopodal potente con inversión simétrica indolora",
+            "value": "normal",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "decrease", "weight": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-too-many-toes",
+        "order": 2,
+        "name": "Signo de 'Too Many Toes' (Inspección Posterior de Alineación)",
+        "category": "alineacion",
+        "essential": true,
+        "instruction": "Examinar al paciente en bipedestación desde atrás mirando ambos pies.",
+        "whatToLookFor": "Visibilidad de más de 2 dedos por el borde lateral del pie afecto debido a la abducción del antepié y colapso en valgo del talón.",
+        "results": [
+          {
+            "label": "Positivo (se ven 3 o más dedos por el lateral / pie plano valgo evidente)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Negativo (alineación simétrica del retropié)",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-tinel-tarsal-tunnel",
+        "order": 3,
+        "name": "Signo de Tinel en el Túnel del Tarso",
+        "category": "neuropatia",
+        "essential": true,
+        "instruction": "Percutir el trayecto del nervio tibial posterior detrás y debajo del maléolo medial.",
+        "whatToLookFor": "Disparo de parestesias y descargas eléctricas hacia la planta del pie y dedos.",
+        "results": [
+          {
+            "label": "Positivo (descargas eléctricas plantares)",
+            "value": "positive_tinel",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-tarsal-tunnel-medial", "effect": "increase", "weight": 7 },
+              { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-tarsal-tunnel-medial", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-pttd-medial",
+      "name": "Criterios Clínicos de Disfunción del Tendón Tibial Posterior",
+      "description": "1. Single Heel Rise test patológico + 2. Palpación dolorosa del TTP + 3. Signo de 'Too Many Toes'",
+      "requiredTests": ["exam-single-heel-rise", "exam-too-many-toes"],
+      "threshold": 1,
+      "concordanceText": "Patrón clínico patognomónico de Disfunción / Tendinopatía del Tibial Posterior (Sensibilidad >92%).",
+      "evidenceNote": "El Single Heel Rise test es el estándar clínico funcional de referencia (Kohls-Gatzoulis et al., 2004)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe tenosinovitis anecoica peritendinosa con líquido >2 mm alrededor del TTP, engrosamiento hipoecoico, rotura parcial o desinserción del escafoides?",
+    "structures": [
+      {
+        "id": "us-tibialis-posterior-tendon",
+        "name": "Tendón Tibial Posterior (TTP)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-ttp-normal", "label": "Tendón regular y continuo sin líquido en vaina", "concordanceEffect": "neutral" },
+          { "id": "us-ttp-tenosynovitis", "label": "Tenosinovitis anecoica moderada-severa e hiperemia Doppler en corte transversal", "concordanceEffect": "concordant" },
+          { "id": "us-ttp-tendinosis-tear", "label": "Tendinosis severa (engrosamiento hipoecoico >6 mm) / Desgarro longitudinal intrasubstancia", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Tendón tibial posterior: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Incapacidad para ponerse de puntillas y ecografía con tenosinovitis / tendinosis franca del TTP.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor clínico con cambios ecográficos sutiles; pautar soporte con ortesis plantar.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "TTP normal con Tinel positivo: sospechar síndrome del túnel del tarso.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-tarsal-tunnel-from-ttp",
+      "name": "Síndrome del Túnel del Tarso",
+      "whatWouldReconsider": "Parestesias nocturnas en planta del pie con Tinel retromaleolar positivo y Single Heel Rise normal.",
+      "keyDiscriminatingTest": "Tinel retromaleolar vs Single Heel Rise Test"
+    },
+    {
+      "id": "dd-subtalar-from-ttp",
+      "name": "Artrosis Subastragalina",
+      "whatWouldReconsider": "Dolor al caminar por terreno irregular con inversión pasiva muy rígida y dolorosa, TTP ecográficamente intacto.",
+      "keyDiscriminatingTest": "Movilidad pasiva subastragalina vs Palpación de TTP"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-pttd",
+      "structuralDiagnosis": "Disfunción / Tendinopatía del Músculo Tibial Posterior (Estadio I-II)",
+      "painGenerator": "Tendinopatía / Insuficiencia del Tibial Posterior",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Tendinoso por Sobrecarga de Tracción",
+      "supportingFindings": [
+        "Single Heel Rise test patológico",
+        "Signo de Too Many Toes positivo",
+        "Ecografía con tenosinovitis del TTP"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El tendón tibial posterior es el 'tirante' que sujeta el puente del pie. Si se inflama o se debilita, el arco cede y el pie se aplana hacia adentro al caminar. La base del tratamiento es colocar una plantilla ortopédica a medida que sujete el arco para descargar el tendón mientras realizamos ejercicios para devolverle la fuerza.",
+      "mentorNote": "La ortesis con soporte de arco medial precoz detiene la progresión hacia pie plano rígido irreversible (Estadio III)."
+    },
+    "exercise": {
+      "objective": "Fortalecer el músculo tibial posterior mediante ejercicios de inversión activa y elevación excéntrica de talón.",
+      "phases": [
+        {
+          "name": "Fase 1: Ortesis Plantar y Descarga de Impacto",
+          "description": "Plantilla termoconformada a medida con soporte de arco medial longitudinal y cuña supinadora medial de retropié de 4-6 mm.",
+          "duration": "1-4 semanas"
+        },
+        {
+          "name": "Fase 2: Ejercicios de Inversión con Banda Elástica",
+          "description": "Inversión activa resistida del pie con banda elástica (3 series de 15 repeticiones diarias) y elevaciones bipodales de talón con pelota entre los tobillos.",
+          "duration": "4-12 semanas"
+        },
+        {
+          "name": "Fase 3: Carga Excéntrica Monopodal",
+          "description": "Elevaciones de talón sobre un escalón con descenso lento controlado (fase excéntrica de 4 segundos).",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar caminar descalzo o usar calzado plano sin soporte durante las primeras semanas."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs tópicos o pauta oral breve",
+          "indication": "Dolor agudo moderado limitante.",
+          "example": "Gel de diclofenaco 3 veces/día o Ibuprofeno 600mg/8h durante 7-10 días",
+          "duration": "10 días",
+          "guardrails": ["Excelente seguridad con formulación tópica"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Tenosinovitis severa de TTP confirmada en ecografía que no responde a plantillas y fisioterapia.",
+      "objective": "Infiltración peritendinosa ecoguiada dentro de la vaina del TTP (¡NUNCA intratendinosa!).",
+      "targets": [
+        {
+          "name": "Infiltración Ecoguiada de la Vaina Sinovial del TTP",
+          "indication": "Tenosinovitis con líquido anecoico circunferencial en ecografía.",
+          "options": [
+            { "name": "Infiltración ecoguiada en plano con aguja fina dentro de la vaina sinovial de 1 ml corticoide + 2 ml anestésico local/suero", "evidence": "Alta / Nivel I (evita el riesgo de rotura completa)" }
+          ],
+          "contraindications": [
+            "Infiltración intratendinosa a ciegas (alto riesgo de rotura espontánea del tendón y colapso del pie)"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 6-8 semanas",
+    "parameters": [
+      { "name": "Capacidad de Single Heel Rise Test", "icon": "🦶" },
+      { "name": "Dolor a la palpación del TTP", "icon": "📊" },
+      { "name": "Tolerancia a las plantillas ortopédicas", "icon": "👟" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Recuperación de la elevación de talón",
+        "action": "Mantener ejercicios de fuerza y uso continuo de plantillas ortopédicas.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial",
+        "action": "Ajustar cuña supinadora de la plantilla o valorar ondas de choque.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Colapso articular severo y pie plano rígido no reductible",
+        "action": "Derivación a Cirugía de Pie y Tobillo para osteotomía o artrodesis subastragalina.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "El test de ponerse de puntillas sobre una sola pierna (Single Heel Rise) es la prueba clave para diagnosticar la insuficiencia del tibial posterior antes de que el pie se deforme irreversiblemente."
+  },
+  "evidence": [
+    {
+      "citation": "Kohls-Gatzoulis J et al. Tibialis posterior dysfunction: a common and treatable cause of adult acquired flatfoot deformity. BMJ. 2004;329(7478):1328-1333.",
+      "topic": "Diagnóstico y manejo clínico de la disfunción del tibial posterior en BMJ",
+      "year": 2004
+    },
+    {
+      "citation": "Kulig K et al. Nonsurgical management of posterior tibial tendon dysfunction with orthoses and resistive exercise: a randomized controlled trial. Phys Ther. 2009;89(1):26-37.",
+      "topic": "Eficacia de ortesis y ejercicios resistidos en TTP",
+      "year": 2009
+    }
+  ]
+}

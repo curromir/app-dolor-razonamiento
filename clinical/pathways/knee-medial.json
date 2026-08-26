@@ -1,0 +1,404 @@
+{
+  "id": "knee-medial",
+  "region": "rodilla",
+  "regionLabel": "Rodilla",
+  "regionIcon": "🦵",
+  "presentation": "Dolor medial (Cara Interna de Rodilla)",
+  "presentationDesc": "Dolor en la cara interna de la rodilla al caminar, bajar escaleras o girar el cuerpo (Gonartrosis Medial vs Menisco Interno vs Pata de Ganso)",
+  "redFlags": [
+    {
+      "id": "rf-locked-knee",
+      "text": "Bloqueo articular mecánico agudo con rodilla fija en semiflexión e imposibilidad absoluta de extensión pasiva (sospecha de rotura meniscal en asa de cubo luxada)",
+      "severity": "critical",
+      "action": "RM urgente de rodilla y derivación a Cirugía Ortopédica para artroscopia"
+    },
+    {
+      "id": "rf-septic-knee",
+      "text": "Rodilla muy caliente, tumefacta con derrame a tensión, eritematosa y fiebre sistémica con impotencia funcional total",
+      "severity": "critical",
+      "action": "Artrocentesis evacuadora diagnóstica urgente con cultivo de líquido sinovial"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-medial-compartment-oa",
+      "name": "Gonartrosis del Compartimento Femorotibial Medial",
+      "shortName": "Gonartrosis Medial",
+      "description": "Desgaste del cartílago articular en el compartimento interno de la rodilla con sobrecarga en varo.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-medial-meniscus-tear",
+      "name": "Meniscopatía / Desgarro Degenerativo del Menisco Medial",
+      "shortName": "Meniscopatía Medial",
+      "description": "Fisura o rotura del cuerno posterior del menisco interno con dolor a los giros y flexión profunda.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-pes-anserine-bursitis",
+      "name": "Tendinobursitis Anserina (Pata de Ganso: Sartorio, Grácil, Semitendinoso)",
+      "shortName": "Pata de Ganso (Bursitis Anserina)",
+      "description": "Inflamación de la bursa o entesis tendinosa a 4-5 cm distal de la interlínea medial en la tibia.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-mcl-sprain",
+      "name": "Esguince / Lesión del Ligamento Colateral Medial (LCM)",
+      "shortName": "Ligamento Colateral Medial",
+      "description": "Lesión ligamentosa por estrés en valgo con dolor a lo largo del trayecto del LCM.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Dónde señala con un dedo el punto exacto de mayor dolor en la parte interna?»",
+      "explanation": "La gonartrosis y el menisco duelen sobre la hendidura o interlínea articular; la pata de ganso duele 4-5 cm más abajo en la cara anteromedial de la tibia.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Justo en la hendidura media entre los dos huesos (Interlínea articular medial)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-medial-compartment-oa", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "decrease", "weight": 4 }
+          ]
+        },
+        {
+          "label": "Unos 4-5 centímetros por debajo de la rodilla, en la parte alta de la espinilla/tibia",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "increase", "weight": 7 },
+            { "hypothesisId": "hyp-medial-compartment-oa", "effect": "decrease", "weight": 3 },
+            { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "decrease", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿En qué gestos específicos siente el dolor más limitante?»",
+      "explanation": "Los giros sobre la pierna en carga o agacharse en cuclillas comprimen el menisco; el dolor continuo al caminar que mejora en reposo indica artrosis; el dolor al dormir rozando una rodilla con otra o bajar escaleras orienta a pata de ganso.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Al rotar o girar el cuerpo sobre la pierna apoyada o al ponerme en cuclillas (con sensación de pinchazo/chasquido)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "increase", "weight": 6 }
+          ]
+        },
+        {
+          "label": "Al caminar distancias continuas o estar de pie mucho rato (me alivia sentarme)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-medial-compartment-oa", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "Al bajar escaleras y por la noche en la cama si las rodillas se tocan",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "increase", "weight": 6 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Cuál es su meta funcional prioritaria?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder caminar distancias medias sin cojera ni pinchazos internos", "hypothesisEffects": [] },
+        { "label": "Subir y bajar escaleras de forma fluida", "hypothesisEffects": [] },
+        { "label": "Dormir de lado cómodamente y levantarme sin rigidez", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Dolor Medial de Rodilla",
+    "steps": [
+      {
+        "id": "exam-palpation-joint-line-medial",
+        "order": 1,
+        "name": "Palpación de la Interlínea Articular Medial vs Pata de Ganso",
+        "category": "palpacion",
+        "essential": true,
+        "instruction": "Rodilla flexionada a 90°. Palpar meticulosamente el borde medial femorotibial y luego descender 4 cm hacia la tuberosidad tibial anteromedial.",
+        "whatToLookFor": "Dolor exquisito en interlínea (menisco/artrosis) vs dolor focal 4 cm distal (pata de ganso).",
+        "mentorTip": "La palpación precisa de la interlínea tiene una sensibilidad del 83% para patología meniscal.",
+        "results": [
+          {
+            "label": "Dolor exquisito en interlínea femorotibial medial",
+            "value": "joint_line_pain",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-medial-compartment-oa", "effect": "increase", "weight": 5 },
+              { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "increase", "weight": 5 },
+              { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "decrease", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Dolor selectivo a 4-5 cm distal en inserción anserina (Pata de Ganso)",
+            "value": "anserine_pain",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "increase", "weight": 7 },
+              { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "decrease", "weight": 3 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-thessaly-medial",
+        "order": 2,
+        "name": "Test de Thessaly a 20° de Flexión (Menisco Medial)",
+        "catalogTestId": "rodilla-thessaly",
+        "category": "menisco",
+        "essential": true,
+        "instruction": "Paciente en apoyo monopodal sobre la pierna sintomática con rodilla flexionada a 20°. El examinador sujeta sus manos mientras el paciente rota el tronco 3 veces a cada lado.",
+        "whatToLookFor": "Reproducción del dolor o bloqueo mecánico en la interlínea articular medial (Sensibilidad 90%, Especificidad 89% para desgarro meniscal).",
+        "mentorTip": "Thessaly dinámico a 20° es significativamente superior al clásico test de McMurray.",
+        "results": [
+          {
+            "label": "Positivo (reproduce pinchazo agudo en interlínea interna a la rotación)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "increase", "weight": 7 },
+              { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "decrease", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Negativo (giro indoloro sobre la pierna)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "decrease", "weight": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-valgus-stress",
+        "order": 3,
+        "name": "Test de Estrés en Valgo a 30° (Ligamento Colateral Medial)",
+        "category": "ligamentos",
+        "essential": true,
+        "instruction": "Rodilla a 30° de flexión. El examinador estabiliza el fémur lateral y aplica una fuerza en valgo hacia afuera desde el tobillo.",
+        "whatToLookFor": "Dolor o bostezo articular medial anormal (Sensibilidad 86% para lesión del LCM).",
+        "results": [
+          {
+            "label": "Positivo (dolor a lo largo del ligamento colateral medial sin bostezo / Grado I)",
+            "value": "positive_mcl",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-mcl-sprain", "effect": "increase", "weight": 7 }
+            ]
+          },
+          {
+            "label": "Negativo (articulación firme e indolora al valgo)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-mcl-sprain", "effect": "decrease", "weight": 5 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-meniscal-medial",
+      "name": "Clúster Compuesto de Lesión Meniscal Medial",
+      "description": "1. Dolor a la palpación de interlínea + 2. Test de Thessaly (+) + 3. Dolor en rotación forzada",
+      "requiredTests": ["exam-palpation-joint-line-medial", "exam-thessaly-medial"],
+      "threshold": 2,
+      "concordanceText": "Alta probabilidad clínica de meniscopatía medial (Sensibilidad >90%).",
+      "evidenceNote": "El clúster meniscal combinado supera ampliamente el rendimiento de cualquier prueba aislada (Wagemakers et al., 2008)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe extrusión del menisco medial (>3 mm), estrechamiento femorotibial u osteofitosis (gonartrosis) vs líquido en bursa anserina?",
+    "structures": [
+      {
+        "id": "us-medial-meniscus-joint",
+        "name": "Interlínea Femorotibial y Menisco Medial (Corte Coronal)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-medial-normal", "label": "Menisco triangular homogéneo alineado con el borde óseo", "concordanceEffect": "neutral" },
+          { "id": "us-medial-extrusion", "label": "Extrusión meniscal patológica (>3.0 mm fuera del borde tibial) con osteofitos marginales (Gonartrosis)", "concordanceEffect": "concordant" },
+          { "id": "us-medial-parameniscal-cyst", "label": "Quiste parameniscal anecoico / rotura meniscal horizontal", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Interlínea medial de rodilla: {finding}."
+      },
+      {
+        "id": "us-pes-anserine",
+        "name": "Bursa y Tendones de la Pata de Ganso",
+        "priority": 2,
+        "findings": [
+          { "id": "us-anserine-normal", "label": "Tendones anserinos finos sin líquido en bursa", "concordanceEffect": "neutral" },
+          { "id": "us-anserine-distended", "label": "Distensión líquida anecoica de la bursa anserina e hiperemia Doppler", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Área de la pata de ganso: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Dolor en interlínea con Thessaly positivo y extrusión meniscal / gonartrosis concordante en ecografía.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor difuso con cambios degenerativos leves en cartílago.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Interlínea normal pero bursa anserina distendida a 4 cm distal; tratar como bursitis anserina.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-anserine-from-oa",
+      "name": "Bursitis Anserina (Pata de Ganso)",
+      "whatWouldReconsider": "Dolor a 4 cm distal a la interlínea, dolor al cruzar las piernas, Thessaly negativo.",
+      "keyDiscriminatingTest": "Palpación en tuberosidad tibial anteromedial vs Interlínea"
+    },
+    {
+      "id": "dd-lcm-from-meniscus",
+      "name": "Esguince de Ligamento Colateral Medial",
+      "whatWouldReconsider": "Antecedente de traumatismo en valgo con dolor a lo largo de las fibras del LCM y Thessaly negativo.",
+      "keyDiscriminatingTest": "Estrés en valgo a 30° vs Thessaly"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-medial-oa",
+      "structuralDiagnosis": "Gonartrosis del Compartimento Femorotibial Medial (Grado II-III Kellgren-Lawrence)",
+      "painGenerator": "Dolor Articular por Gonartrosis Medial",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Articular en Carga",
+      "supportingFindings": [
+        "Dolor en interlínea femorotibial medial",
+        "Dolor continuo al caminar en carga",
+        "Ecografía con osteofitosis y extrusión meniscal >3 mm"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-pes-anserine",
+      "structuralDiagnosis": "Tendinobursitis Anserina (Pata de Ganso)",
+      "painGenerator": "Dolor Bursal / Tendinoso Anserino",
+      "mechanism": "nociceptive_inflammatory",
+      "mechanismLabel": "Predominio Nociceptivo Bursal / Entesis",
+      "supportingFindings": [
+        "Dolor a 4-5 cm distal a la interlínea",
+        "Dolor nocturno al contacto entre rodillas",
+        "Ecografía con distensión anecoica de bursa anserina"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor en la cara interna de la rodilla se debe al desgaste articular o a la sobrecarga de los tendones internos. La articulación necesita movimiento para nutrir su cartílago; el reposo prolongado debilita los músculos y empeora el dolor. El ejercicio terapéutico de cuádriceps y glúteos es el pilar más efectivo para descargar la rodilla.",
+      "mentorNote": "La pérdida de peso (incluso 5%) y el ejercicio reducen el dolor artrósico medial en más del 40%."
+    },
+    "exercise": {
+      "objective": "Fortalecer el cuádriceps (vasto medial) y estabilizadores pélvicos (glúteo medio) para reducir el momento de aducción en varo de rodilla.",
+      "phases": [
+        {
+          "name": "Fase 1: Isométricos y Bicicleta Estática",
+          "description": "Isométricos de cuádriceps en extensión completa con toalla bajo la rodilla y bicicleta estática con sillín alto (sin resistencia).",
+          "duration": "1-3 semanas"
+        },
+        {
+          "name": "Fase 2: Cadena Cinética Cerrada y Control Pélvico",
+          "description": "Sentadillas parciales guiadas (0°-45° de flexión), puente de glúteos y abducción con banda elástica (glúteo medio).",
+          "duration": "3-8 semanas"
+        },
+        {
+          "name": "Fase 3: Readaptación Funcional y Marcha",
+          "description": "Caminatas en terreno llano, subidas controladas a escalón y natación/aquagym.",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar sentadillas profundas >60° o caminar en pendientes pronunciadas en fase dolorosa."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs tópicos en gel",
+          "indication": "Tratamiento de primera línea con máxima seguridad.",
+          "example": "Gel de diclofenaco 3 veces/día",
+          "duration": "4-6 semanas",
+          "guardrails": ["Excelente perfil de seguridad"]
+        },
+        {
+          "name": "Paracetamol o AINE oral en ciclo breve",
+          "indication": "Dolor moderado no controlado con tópico.",
+          "example": "Paracetamol 1g/8h o Naproxeno 500mg/12h con IBP",
+          "duration": "7-10 días",
+          "guardrails": ["Función renal", "Riesgo GI", "Edad >65 años"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Dolor medial severo con limitación funcional que no responde a ejercicio y analgesia básica.",
+      "objective": "Infiltración intraarticular o de bursa anserina ecoguiada.",
+      "targets": [
+        {
+          "name": "Viscosuplementación con Ácido Hialurónico o Corticoide Intraarticular",
+          "indication": "Gonartrosis medial confirmada.",
+          "options": [
+            { "name": "Ácido hialurónico de alto peso molecular intraarticular ecoguiado (1 inyección)", "evidence": "Alta / Nivel I (alivio de 6 meses)" },
+            { "name": "Infiltración ecoguiada de bursa anserina con 1 ml corticoide + 2 ml anestésico local (si bursitis asociada)", "evidence": "Alta" }
+          ],
+          "contraindications": ["Infección activa", "Artritis séptica"]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 6 semanas",
+    "parameters": [
+      { "name": "Distancia caminada sin dolor (metros)", "icon": "🚶" },
+      { "name": "Dolor al bajar escaleras (EVA)", "icon": "📊" },
+      { "name": "Fuerza de cuádriceps", "icon": "💪" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría franca de la marcha",
+        "action": "Mantener programa domiciliario de fuerza y control de peso.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial tras infiltración",
+        "action": "Asociar viscosuplementación con ácido hialurónico o radiofrecuencia de nervios geniculados mediales.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Artrosis severa grado IV con colapso articular",
+        "action": "Derivación a Cirugía Ortopédica para valoración de artroplastia unicompartimental / total de rodilla.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "Diferenciar la bursitis de la pata de ganso (tratamiento extracapsular con infiltración de bursa) de la gonartrosis medial pura evita infiltraciones intraarticulares innecesarias."
+  },
+  "evidence": [
+    {
+      "citation": "Wagemakers HP et al. Diagnostic value of history and physical examination for assessing meniscal tears of the knee in general practice. Clin J Sport Med. 2008;18(1):24-30.",
+      "topic": "Precisión diagnóstica de la exploración en meniscopatía medial",
+      "year": 2008
+    },
+    {
+      "citation": "Bannuru RR et al. OARSI guidelines for the non-surgical management of knee, hip, and polyarticular osteoarthritis. Osteoarthritis Cartilage. 2019;27(11):1578-1589.",
+      "topic": "Guías OARSI para el tratamiento no quirúrgico de la gonartrosis",
+      "year": 2019
+    }
+  ]
+}

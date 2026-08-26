@@ -1044,35 +1044,332 @@ class ClinicalReasoningEngine {
   }
 
   // ─────────────────────────────────────────────
-  // EVIDENCE
+  // CLINICAL REASONING 2.0 ENHANCEMENTS
   // ─────────────────────────────────────────────
 
-  getEvidence() {
-    return this.pathway.evidence || [];
-  }
+  /**
+   * Identifies the key discriminatory question, test or clinical clue
+   * that separates the top 2 competing hypotheses in real time.
+   */
+  getDifferentialDiscriminator() {
+    const ranked = this.getHypothesesRanked();
+    if (!ranked || ranked.length < 2) return null;
 
-  getEvidenceForStep(stepId) {
-    // Look for evidence related to a specific examination step
-    const step = this.getExaminationStep(stepId);
-    if (step && step.catalogTestId) {
-      const catalogTest = this.getCatalogTest(step.catalogTestId);
-      if (catalogTest) {
-        return {
-          sensitivity: catalogTest.sensitivity,
-          specificity: catalogTest.specificity,
-          lr_plus: catalogTest.lr_plus,
-          lr_minus: catalogTest.lr_minus,
-          cluster: catalogTest.cluster,
-          exam_pearl: catalogTest.exam_pearl
+    const top1 = ranked[0];
+    const top2 = ranked[1];
+    const scoreDiff = top1.score - top2.score;
+
+    // Check if pathway has specific differential pairs defined
+    const diffList = this.pathway.differentialDiagnosis || [];
+    let customClue = null;
+    for (const d of diffList) {
+      const top2Label = (top2.shortName || top2.name || '').toLowerCase();
+      if (d.id && (d.id.includes(top2.id) || top2.id.includes(d.id) || (d.name && d.name.toLowerCase().includes(top2Label)))) {
+        customClue = {
+          whatWouldReconsider: d.whatWouldReconsider,
+          keyDiscriminatingTest: d.keyDiscriminatingTest
         };
+        break;
       }
     }
-    return null;
+
+    // Standard clinical discrimination rules for high-yield pairs
+    let recommendation = '';
+    const id1 = top1.id.toLowerCase();
+    const id2 = top2.id.toLowerCase();
+
+    if ((id1.includes('gtps') || id1.includes('trocant')) && (id2.includes('coxart') || id2.includes('hip') || id2.includes('cadera'))) {
+      recommendation = 'Valora localización inguinal, rotación interna pasiva de cadera (<15°) y provocación lateral (FADIR vs Palpación trocantérea).';
+    } else if ((id1.includes('coxart') || id1.includes('hip')) && (id2.includes('gtps') || id2.includes('trocant'))) {
+      recommendation = 'Diferencia el dolor inguinal con pérdida de rotación interna (coxartrosis) frente al dolor lateral puro al dormir de lado (GTPS).';
+    } else if ((id1.includes('subacromial') || id1.includes('supra')) && (id2.includes('stiff') || id2.includes('capsul') || id2.includes('rigidez'))) {
+      recommendation = 'Compara movilidad activa vs movilidad pasiva: una limitación pasiva severa de la rotación externa (<30°) define capsulitis / artropatía GH frente a manguito.';
+    } else if ((id1.includes('s1') || id1.includes('radic')) && (id2.includes('fascia') || id2.includes('plantar'))) {
+      recommendation = 'Busca territorio neural, parestesias, reflejo aquíleo, fuerza de flexión plantar y test de Lasègue vs dolor selectivo matutino en tubérculo medial (Windlass).';
+    } else if (id1.includes('facet') && id2.includes('disc')) {
+      recommendation = 'Compara dolor a la extensión + rotación ipsilateral (Test de Kemp) vs dolor en flexión anterior sostenida / sedestación prolongada.';
+    } else if (id1.includes('neurogenic') || id2.includes('vascular') || id1.includes('claudic') || id2.includes('claudic')) {
+      recommendation = 'Realiza el Bicycle test de Van Gelderen (alivio en flexión anterior = neurógena) y palpa los pulsos arteriales distales (pedio y tibial posterior).';
+    } else if (id1.includes('cts') && (id2.includes('c6') || id2.includes('cervic'))) {
+      recommendation = 'Explora el test de Durkan y signo del sacudido (Flick) con respeto del meñique vs reflejo bicipital y test de Spurling cervical.';
+    } else if (id1.includes('epicondyl') && id2.includes('radial')) {
+      recommendation = 'Palpa la inserción ósea exacta del epicóndilo (Cozen) vs la masa muscular a 4 cm distal en la arcada de Frohse (túnel radial).';
+    } else if (id1.includes('menisc') && (id2.includes('anser') || id2.includes('pata'))) {
+      recommendation = 'Palpa la interlínea articular medial (Thessaly a 20°) vs dolor focal a 4-5 cm distal en la cara anteromedial de la tibia (bursa anserina).';
+    } else if (id1.includes('lhbt') && id2.includes('slap')) {
+      recommendation = 'Compara el Speed test / palpación en corredera vs dolor intraarticular profundo en el Test de O\'Brien.';
+    } else if (id1.includes('pttd') && id2.includes('tarsal')) {
+      recommendation = 'Realiza el Single Heel Rise test (elevación monopodal con inversión de calcáneo) vs signo de Tinel retromaleolar con parestesias plantares.';
+    } else if (customClue) {
+      recommendation = `${customClue.keyDiscriminatingTest}: ${customClue.whatWouldReconsider}`;
+    } else {
+      recommendation = `Evalúa pruebas de provocación biomecánicas dirigidas para aislar ${top1.shortName} frente a ${top2.shortName}.`;
+    }
+
+    return {
+      top1,
+      top2,
+      scoreDiff,
+      recommendation,
+      isTied: Math.abs(scoreDiff) <= 1
+    };
+  }
+
+  /**
+   * Generates the "What do I believe now?" (¿Qué creo ahora?) summary card.
+   */
+  getWhatIDoBelieveNow() {
+    const ranked = this.getHypothesesRanked();
+    const top1 = ranked[0] || null;
+    const top2 = ranked[1] || null;
+
+    // Find top supporting finding
+    let topSupporting = null;
+    let topConflicting = null;
+    let maxWeight = 0;
+
+    if (top1 && top1.history) {
+      for (const h of top1.history) {
+        if (h.effect === 'increase' && h.weight > maxWeight) {
+          maxWeight = h.weight;
+          topSupporting = h.reason || h.source;
+        }
+        if (h.effect === 'decrease') {
+          topConflicting = h.reason || h.source;
+        }
+      }
+    }
+
+    // Safety status
+    const redFlagsChecked = this.session.redFlagsChecked;
+    const hasActiveRedFlag = this.session.hasActiveRedFlag;
+
+    // Working confidence
+    let confidence = 'Baja';
+    if (top1) {
+      if (top1.score >= 10 && this.session.concordanceLevel === 'high') confidence = 'Alta';
+      else if (top1.score >= 5) confidence = 'Moderada';
+    }
+
+    return {
+      topCandidate: top1 ? top1.name : 'Sin definir',
+      topShortName: top1 ? top1.shortName : 'N/A',
+      runnerUp: top2 ? top2.name : 'Ninguno identificado',
+      runnerUpShortName: top2 ? top2.shortName : 'N/A',
+      safetyStatus: !redFlagsChecked ? 'Banderas rojas pendientes de verificar'
+        : hasActiveRedFlag ? '🚨 BANDERAS ROJAS ACTIVAS'
+        : '🟢 Banderas rojas descartadas / Ausentes',
+      topSupporting: topSupporting || 'Patrón clínico inicial concordante',
+      topConflicting: topConflicting || 'Sin hallazgos contradictorios relevantes',
+      confidence
+    };
+  }
+
+  /**
+   * Automated smart Discordance Auditor ("No me cuadra")
+   * Detects 7 clinical traps and pitfalls.
+   */
+  runDiscordanceAudit() {
+    const warnings = [];
+    const answers = this.session.answers;
+    const examFindings = this.session.examinationFindings;
+    const imagingFindings = this.session.imagingFindings;
+    const pathwayId = this.pathway.id;
+    const ranked = this.getHypothesesRanked();
+    const top = ranked[0] || {};
+
+    // 1. Severe imaging lesion but negative/normal physical exam (Sesgo de Imagen)
+    const hasImagingAbnormality = Object.keys(imagingFindings).length > 0 &&
+      Object.values(imagingFindings).some(v => v !== 'us-supra-normal' && v !== 'img-normal' && v !== 'us-median-normal' && v !== 'us-fascia-normal');
+    const examHasNoPositives = Object.keys(examFindings).length > 0 &&
+      Object.values(examFindings).every(v => v === 'negative' || v === 'normal');
+
+    if (hasImagingAbnormality && examHasNoPositives) {
+      warnings.push({
+        id: 'trap-imaging-bias',
+        type: 'sesgo_imagen',
+        title: '⚠️ Sospecha de Hallazgo Incidental / Sesgo de Imagen',
+        description: 'La prueba de imagen muestra anomalías anatómicas pero la exploración física es completamente negativa. Evita tratar la imagen: el hallazgo puede ser asintomático.',
+        severity: 'high'
+      });
+    }
+
+    // 2. Neuropathic symptoms without complete neurological exploration
+    const answersText = JSON.stringify(answers);
+    const mentionsNeuropathic = answersText.includes('hormigueo') || answersText.includes('adormecimiento') || answersText.includes('quemazón');
+    const hasMotorOrReflexExam = Object.keys(examFindings).some(k => k.includes('motor') || k.includes('reflex') || k.includes('sensory') || k.includes('durkan') || k.includes('tinel'));
+
+    if (mentionsNeuropathic && !hasMotorOrReflexExam && this.session.completedSteps.includes('examination')) {
+      warnings.push({
+        id: 'trap-under-explored-neuro',
+        type: 'infraexploracion',
+        title: '⚠️ Síntomas Neuropáticos sin Examen Neurológico',
+        description: 'El paciente refiere parestesias o quemazón pero no se han registrado miotomas, sensibilidad ni reflejos osteotendinosos.',
+        severity: 'medium'
+      });
+    }
+
+    // 3. Shoulder pain radiating past elbow without cervical screening
+    if (pathwayId.includes('shoulder')) {
+      const hasCervicalScreening = Object.keys(examFindings).some(k => k.includes('cervical'));
+      if (!hasCervicalScreening && this.session.completedSteps.includes('examination')) {
+        warnings.push({
+          id: 'trap-shoulder-no-cervical-screen',
+          type: 'omision_exploracion',
+          title: '⚠️ Hombro sin Screening Cervical',
+          description: 'No se ha realizado screening de columna cervical (movilidad activa o Spurling) para descartar dolor referido C5-C6.',
+          severity: 'medium'
+        });
+      }
+    }
+
+    // 4. Sacroiliac diagnosis with insufficient Laslett cluster (<2 positive tests)
+    if (pathwayId.includes('si-posterior') || top.id?.includes('si-dysfunction')) {
+      const clusterSI = this.session.clusterResults['cluster-laslett-si'];
+      if (clusterSI && !clusterSI.met && this.session.completedSteps.includes('examination')) {
+        warnings.push({
+          id: 'trap-insufficient-si-cluster',
+          type: 'cluster_insuficiente',
+          title: '⚠️ Clúster de Laslett Insuficiente para Dolor Sacroilíaco',
+          description: 'La sospecha de patología sacroilíaca no alcanza el umbral de ≥2 maniobras positivas del Clúster de Laslett. Reconsiderar columna lumbar L5-S1 o cadera.',
+          severity: 'high'
+        });
+      }
+    }
+
+    // 5. Radicular diagnosis without nerve root tension or objective deficit
+    if (pathwayId.includes('radicular') || top.id?.includes('radic')) {
+      const lasegue = examFindings['exam-lasegue'];
+      const slump = examFindings['exam-slump'];
+      const spurling = examFindings['exam-spurling'];
+      const allNeurodynamicNegative = (lasegue === 'negative' || lasegue === 'pain_back_only') && (!slump || slump === 'negative') && (!spurling || spurling === 'negative');
+
+      if (allNeurodynamicNegative && this.session.completedSteps.includes('examination')) {
+        warnings.push({
+          id: 'trap-radicular-without-tension',
+          type: 'discordancia_radicular',
+          title: '⚠️ Sospecha Radicular sin Tensión Neural Objetiva',
+          description: 'Las maniobras neurodinámicas (Lasègue / Slump / Spurling) son negativas. Considerar dolor somático referido facetario o patología de cadera/hombro.',
+          severity: 'medium'
+        });
+      }
+    }
+
+    // 6. Tendinopathy with pain not reproducible by mechanical load
+    if (top.id?.includes('tendin') || top.id?.includes('epicondyl') || top.id?.includes('fascia')) {
+      const allLoadNegative = Object.values(examFindings).every(v => v === 'negative' || v === 'normal');
+      if (allLoadNegative && this.session.completedSteps.includes('examination')) {
+        warnings.push({
+          id: 'trap-tendinopathy-unloaded',
+          type: 'tendinopatia_sin_carga',
+          title: '⚠️ Tendinopatía sin Dolor a la Carga Mecánica',
+          description: 'La tendinopatía mecánica típicamente duele al tensar o cargar el tendón. Si la carga es indolora, reconsiderar dolor neuropático o nociplástico.',
+          severity: 'medium'
+        });
+      }
+    }
+
+    // 7. Proposed interventional therapy with low/discordant correlation
+    if (this.session.concordanceLevel === 'discordant' && this.session.selectedGenerator) {
+      warnings.push({
+        id: 'trap-discordant-intervention',
+        type: 'intervencionismo_discordante',
+        title: '⚠️ Discordancia Clínico-Imagen: Reconsiderar Procedimientos Invasivos',
+        description: 'Existe discordancia entre los síntomas del paciente y la imagen. No se recomienda realizar infiltraciones invasivas dirigidas a hallazgos incidentales.',
+        severity: 'high'
+      });
+    }
+
+    return {
+      hasWarnings: warnings.length > 0,
+      count: warnings.length,
+      warnings
+    };
   }
 }
 
 // ─────────────────────────────────────────────
-// AVAILABLE PATHWAYS REGISTRY
+// SIMULATION & TRAINING ENGINE 2.0
+// ─────────────────────────────────────────────
+
+class SimulationEngine {
+  constructor(caseData, testsCatalog) {
+    this.caseData = caseData;
+    this.catalog = testsCatalog;
+    this.history = [];
+    this.scores = {
+      seguridad: 100,
+      anamnesis: 100,
+      diferencial: 100,
+      exploracion: 100,
+      imagen: 100,
+      concordancia: 100,
+      generador: 100,
+      tratamiento: 100,
+      seguimiento: 100
+    };
+    this.biasesDetected = [];
+    this.completed = false;
+  }
+
+  evaluateDecision(dimension, actionKey, isCorrect, penalty = 20, feedback = '') {
+    if (!this.scores[dimension]) this.scores[dimension] = 100;
+
+    if (!isCorrect) {
+      this.scores[dimension] = Math.max(0, this.scores[dimension] - penalty);
+      this.history.push({
+        dimension,
+        actionKey,
+        success: false,
+        penalty,
+        feedback
+      });
+    } else {
+      this.history.push({
+        dimension,
+        actionKey,
+        success: true,
+        feedback
+      });
+    }
+  }
+
+  recordBias(biasType, title, explanation) {
+    if (!this.biasesDetected.some(b => b.biasType === biasType)) {
+      this.biasesDetected.push({
+        biasType,
+        title,
+        explanation
+      });
+    }
+  }
+
+  getOverallScore() {
+    const keys = Object.keys(this.scores);
+    const sum = keys.reduce((acc, k) => acc + this.scores[k], 0);
+    return Math.round(sum / keys.length);
+  }
+
+  getDebriefingReport() {
+    const overall = this.getOverallScore();
+    return {
+      caseTitle: this.caseData.title,
+      difficulty: this.caseData.difficultyLabel,
+      overallScore: overall,
+      grade: overall >= 85 ? 'Excelente (Maestría Clínica)'
+        : overall >= 70 ? 'Competente (Buen Razonamiento)'
+        : overall >= 50 ? 'En Desarrollo (Requiere Ajuste)'
+        : 'Riesgo Clínico (Revisar Seguridad y Sesgos)',
+      radarScores: { ...this.scores },
+      biasesDetected: this.biasesDetected,
+      history: this.history,
+      takeHomePearl: this.caseData.expectedFlow?.discriminatorNote || 'La clave del caso radica en correlacionar siempre la clínica con la imagen.'
+    };
+  }
+}
+
+// ─────────────────────────────────────────────
+// AVAILABLE PATHWAYS REGISTRY (19 MASTER PATHWAYS)
 // ─────────────────────────────────────────────
 
 const CLINICAL_PATHWAYS_REGISTRY = {
@@ -1082,7 +1379,7 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     presentations: [
       { id: 'shoulder-lateral-pain', label: 'Dolor lateral (Subacromial / Manguito)', file: 'clinical/pathways/shoulder-lateral.json', available: true },
       { id: 'shoulder-stiffness', label: 'Rigidez (Capsulitis Adhesiva vs Artrosis)', file: 'clinical/pathways/shoulder-stiffness.json', available: true },
-      { id: 'shoulder-anterior-pain', label: 'Dolor anterior (Bíceps / Corredera)', file: null, available: false },
+      { id: 'shoulder-anterior-pain', label: 'Dolor anterior (Bíceps / Corredera / SLAP)', file: 'clinical/pathways/shoulder-anterior.json', available: true },
       { id: 'shoulder-superior-pain', label: 'Dolor superior (Acromioclavicular)', file: null, available: false },
       { id: 'shoulder-posterior-pain', label: 'Dolor posterior (Infraespinoso)', file: null, available: false },
       { id: 'shoulder-weakness', label: 'Debilidad / Pseudoparálisis', file: null, available: false },
@@ -1096,8 +1393,8 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     presentations: [
       { id: 'lumbar-radicular-pain', label: 'Lumbar + irradiación a pierna (Radiculopatía L4/L5/S1)', file: 'clinical/pathways/lumbar-radicular.json', available: true },
       { id: 'lumbar-axial-pain', label: 'Dolor lumbar axial (Síndrome Facetario vs Discogénico)', file: 'clinical/pathways/lumbar-axial.json', available: true },
+      { id: 'lumbar-claudication', label: 'Claudicación al caminar (Estenosis de Canal vs Vascular)', file: 'clinical/pathways/lumbar-claudication.json', available: true },
       { id: 'lumbar-gluteal', label: 'Lumbar + glúteo', file: null, available: false },
-      { id: 'lumbar-claudication', label: 'Claudicación al caminar (Estenosis)', file: null, available: false },
       { id: 'lumbar-nocturnal', label: 'Dolor nocturno / en reposo', file: null, available: false },
       { id: 'lumbar-trauma', label: 'Traumatismo', file: null, available: false },
       { id: 'lumbar-unclear', label: 'No está claro', file: null, available: false }
@@ -1108,7 +1405,7 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     icon: '🧠',
     presentations: [
       { id: 'cervical-radicular', label: 'Dolor cervical irradiado (Radiculopatía C6/C7)', file: 'clinical/pathways/cervical-radicular.json', available: true },
-      { id: 'cervical-axial', label: 'Cervicalgia axial', file: null, available: false }
+      { id: 'cervical-axial', label: 'Cervicalgia axial (Facetario vs Miofascial vs Cefalea)', file: 'clinical/pathways/cervical-axial.json', available: true }
     ]
   },
   rodilla: {
@@ -1116,7 +1413,7 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     icon: '🦵',
     presentations: [
       { id: 'knee-oa-anterior', label: 'Dolor anterior / Artrosis (SDFP vs Gonartrosis vs Menisco)', file: 'clinical/pathways/knee-oa-anterior.json', available: true },
-      { id: 'knee-medial', label: 'Dolor medial', file: null, available: false },
+      { id: 'knee-medial', label: 'Dolor medial (Gonartrosis Medial vs Menisco Interno vs Pata de Ganso)', file: 'clinical/pathways/knee-medial.json', available: true },
       { id: 'knee-lateral', label: 'Dolor lateral', file: null, available: false },
       { id: 'knee-posterior', label: 'Dolor posterior', file: null, available: false }
     ]
@@ -1126,7 +1423,7 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     icon: '🦿',
     presentations: [
       { id: 'hip-lateral', label: 'Dolor lateral (Síndrome Trocantérico / GTPS / Glúteo medio)', file: 'clinical/pathways/hip-lateral.json', available: true },
-      { id: 'hip-inguinal', label: 'Dolor inguinal (Coxartrosis / Choque)', file: null, available: false },
+      { id: 'hip-inguinal', label: 'Dolor inguinal (Coxartrosis vs Choque FAI vs Psoas)', file: 'clinical/pathways/hip-inguinal.json', available: true },
       { id: 'hip-gluteal', label: 'Dolor glúteo profundo', file: null, available: false }
     ]
   },
@@ -1134,14 +1431,14 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     label: 'Pelvis / Sacroilíaca',
     icon: '🎯',
     presentations: [
-      { id: 'si-posterior-pelvic', label: 'Dolor posterior pélvico (Articulación Sacroilíaca)', file: 'clinical/pathways/si-posterior-pelvic.json', available: true }
+      { id: 'si-posterior-pelvic', label: 'Dolor posterior pélvico (Articulación Sacroilíaca / Clúster de Laslett)', file: 'clinical/pathways/si-posterior-pelvic.json', available: true }
     ]
   },
   codo: {
     label: 'Codo',
     icon: '🦾',
     presentations: [
-      { id: 'elbow-lateral', label: 'Dolor lateral (Epicondilalgia / Codo de Tenista)', file: 'clinical/pathways/elbow-lateral.json', available: true },
+      { id: 'elbow-lateral', label: 'Dolor lateral (Epicondilalgia / Codo de Tenista vs Túnel Radial)', file: 'clinical/pathways/elbow-lateral.json', available: true },
       { id: 'elbow-medial', label: 'Dolor medial (Epitroclealgia / Codo de Golfista)', file: null, available: false }
     ]
   },
@@ -1149,8 +1446,8 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     label: 'Muñeca y Mano',
     icon: '🤲',
     presentations: [
-      { id: 'wrist-cts', label: 'Túnel carpiano (Nervio Mediano)', file: 'clinical/pathways/wrist-cts.json', available: true },
-      { id: 'wrist-radial', label: 'Dolor radial (Tenosinovitis de De Quervain)', file: 'clinical/pathways/wrist-radial.json', available: true },
+      { id: 'wrist-cts', label: 'Túnel carpiano (Nervio Mediano / Durkan / Phalen)', file: 'clinical/pathways/wrist-cts.json', available: true },
+      { id: 'wrist-radial', label: 'Dolor radial (Tenosinovitis de De Quervain / WHAT test)', file: 'clinical/pathways/wrist-radial.json', available: true },
       { id: 'wrist-ulnar', label: 'Dolor cubital (Fibrocartílago triangular)', file: null, available: false }
     ]
   },
@@ -1158,9 +1455,9 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     label: 'Tobillo y Pie',
     icon: '🦶',
     presentations: [
-      { id: 'ankle-plantar', label: 'Dolor plantar (Fascitis Plantar / Talalgia)', file: 'clinical/pathways/ankle-plantar.json', available: true },
+      { id: 'ankle-plantar', label: 'Dolor plantar (Fascitis Plantar / Test de Windlass)', file: 'clinical/pathways/ankle-plantar.json', available: true },
+      { id: 'ankle-medial', label: 'Dolor medial (Tendón Tibial Posterior / TTP vs Túnel del Tarso)', file: 'clinical/pathways/ankle-medial.json', available: true },
       { id: 'ankle-achilles', label: 'Tendón de Aquiles (Tendinopatía)', file: null, available: false },
-      { id: 'ankle-medial', label: 'Dolor medial (Tendón tibial posterior)', file: null, available: false },
       { id: 'ankle-lateral', label: 'Dolor lateral (Ligamentos peroneos)', file: null, available: false }
     ]
   },
@@ -1176,8 +1473,10 @@ const CLINICAL_PATHWAYS_REGISTRY = {
 // Export for use by reasoning-ui.js, app.js and Node.js
 if (typeof window !== 'undefined') {
   window.ClinicalReasoningEngine = ClinicalReasoningEngine;
+  window.SimulationEngine = SimulationEngine;
   window.CLINICAL_PATHWAYS_REGISTRY = CLINICAL_PATHWAYS_REGISTRY;
 }
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { ClinicalReasoningEngine, CLINICAL_PATHWAYS_REGISTRY };
+  module.exports = { ClinicalReasoningEngine, SimulationEngine, CLINICAL_PATHWAYS_REGISTRY };
 }
+

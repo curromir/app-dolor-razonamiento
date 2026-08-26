@@ -1,0 +1,423 @@
+{
+  "id": "shoulder-anterior-pain",
+  "region": "hombro",
+  "regionLabel": "Hombro y Cintura Escapular",
+  "regionIcon": "🦴",
+  "presentation": "Dolor anterior (Bíceps / Corredera bicipital)",
+  "presentationDesc": "Dolor focal en la cara anterior del hombro agravado por la flexión anterior, carga frontal y actividades de lanzamiento (Bíceps vs Labrum/SLAP vs Subescapular)",
+  "redFlags": [
+    {
+      "id": "rf-popeye-rupture",
+      "text": "Chasquido audible súbito al hacer un esfuerzo con aparición de masa globular en el tercio distal del brazo y hematoma ('Signo de Popeye' por rotura aguda de LHBT)",
+      "severity": "high",
+      "action": "Ecografía de hombro y valoración de tenodesis quirúrgica en pacientes activos/jóvenes"
+    },
+    {
+      "id": "rf-glenohumeral-dislocation",
+      "text": "Deformidad 'en charretera' con dolor intolerable e impotencia funcional tras traumatismo (sospecha de luxación glenohumeral anterior)",
+      "severity": "critical",
+      "action": "Radiografía simple urgente de hombro y reducción cerrada bajo sedación"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-lhbt-tendinopathy",
+      "name": "Tendinopatía / Tenosinovitis de la Porción Larga del Bíceps (LHBT)",
+      "shortName": "Tendinopatía de Bíceps (LHBT)",
+      "description": "Inflamación o degeneración del tendón bicipital al discurrir por la corredera intertubercular humeral.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-slap-labrum",
+      "name": "Lesión del Labrum Superior y Anclaje Bicipital (Lesión SLAP)",
+      "shortName": "Lesión de Labrum / SLAP",
+      "description": "Desgarro del labrum glenoideo superior en el origen del bíceps común en deportistas de lanzamiento o por tracción súbita.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-subscapularis-tendinopathy",
+      "name": "Tendinopatía / Rotura del Tendón Subescapular",
+      "shortName": "Tendinopatía del Subescapular",
+      "description": "Afectación del rotador interno principal del hombro en su inserción en el troquín menor.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-ac-joint-anterior",
+      "name": "Artropatía Acromioclavicular con Dolor Referido Anterior",
+      "shortName": "Articulación Acromioclavicular",
+      "description": "Artrosis o esguince de la articulación acromioclavicular que refiere dolor a cara anterior del deltoides.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿En qué gestos específicos siente el dolor más punzante en la parte frontal del hombro?»",
+      "explanation": "La flexión anterior con palma hacia arriba (levantar bolsas, coger a un niño hacia adelante, lanzar) activa al máximo el tendón largo del bíceps. La rotación interna forzada o llevar la mano a la espalda activa el subescapular.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Al levantar el brazo recto hacia adelante con la palma hacia arriba o al cargar peso frontal",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-slap-labrum", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "Al llevar la mano detrás de la espalda (desabrochar sujetador / sacar cartera del bolsillo trasero)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-subscapularis-tendinopathy", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Siento un chasquido profundo doloroso con el brazo en alto al rotarlo o lanzar (como si algo se enganchara dentro)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-slap-labrum", "effect": "increase", "weight": 6 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Dónde señala con la punta de un dedo el punto exacto donde más le duele?»",
+      "explanation": "La palpación en corredera bicipital (cara anterior humeral 4-5 cm distal al acromion) orienta a bíceps; el troquín menor más medial orienta a subescapular; la articulación AC está en el techo del hombro.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "En una línea vertical por delante del hombro (corredera del brazo)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "En la parte más alta superior donde se juntan la clavícula y el hombro",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-ac-joint-anterior", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "decrease", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Cuál es su meta funcional prioritaria?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder levantar objetos por delante del cuerpo y cargar peso sin pinchazo en el brazo", "hypothesisEffects": [] },
+        { "label": "Volver a practicar natación, pádel o ejercicios de gimnasio", "hypothesisEffects": [] },
+        { "label": "Mover el brazo hacia atrás sin tirantez ni dolor", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Dolor Anterior de Hombro",
+    "steps": [
+      {
+        "id": "exam-speed-test",
+        "order": 1,
+        "name": "Speed Test (Flexión Anterior de Hombro Resistida)",
+        "catalogTestId": "hombro-speed",
+        "category": "biceps",
+        "essential": true,
+        "instruction": "Hombro flexionado a 90° con codo extendido y antebrazo en supinación completa (palma hacia arriba). El examinador empuja hacia abajo mientras el paciente resiste activamente.",
+        "whatToLookFor": "Reproducción del dolor agudo focal en la corredera bicipital anterior (Sensibilidad 70%, Especificidad 75%).",
+        "mentorTip": "Es el test más sensible para afectación del tendón largo del bíceps.",
+        "results": [
+          {
+            "label": "Positivo (dolor en la corredera bicipital anterior)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-subscapularis-tendinopathy", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Negativo (flexión anterior resistida indolora)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-yergason-test",
+        "order": 2,
+        "name": "Test de Yergason (Supinación de Antebrazo Resistida)",
+        "catalogTestId": "hombro-yergason",
+        "category": "biceps",
+        "essential": true,
+        "instruction": "Codo flexionado a 90° pegado al tronco y antebrazo en pronación. El examinador resiste la supinación activa y rotación externa mientras palpa la corredera.",
+        "whatToLookFor": "Dolor o sensación de chasquido / resalte por inestabilidad o subluxación del bíceps fuera de la corredera.",
+        "mentorTip": "Yergason tiene una especificidad muy alta (>85%) para inestabilidad de la polea bicipital (pulley lesion).",
+        "results": [
+          {
+            "label": "Positivo (dolor o chasquido en corredera bicipital)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "increase", "weight": 5 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-obrien-slap",
+        "order": 3,
+        "name": "Test de O'Brien / Active Compression Test (Descarte de Lesión SLAP)",
+        "category": "labrum",
+        "essential": true,
+        "instruction": "Hombro a 90° de flexión y 10° de aducción horizontal. Fase 1: pulgar hacia abajo (pronación máxima), aplicar fuerza descendente. Fase 2: palma hacia arriba (supinación), repetir fuerza descendente.",
+        "whatToLookFor": "Dolor 'profundo dentro de la articulación' en Fase 1 que se alivia o desaparece claramente en Fase 2 (Sensibilidad 88%, Especificidad 82% para SLAP).",
+        "mentorTip": "Si el dolor es superficial sobre la articulación AC, orienta a patología acromioclavicular más que a SLAP.",
+        "results": [
+          {
+            "label": "Positivo para dolor profundo en fase 1 que cede en fase 2 (Sospecha SLAP)",
+            "value": "positive_slap",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-slap-labrum", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "decrease", "weight": 1 }
+            ]
+          },
+          {
+            "label": "Negativo (sin dolor o no varía entre fases)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-slap-labrum", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-bear-hug-subscapular",
+        "order": 4,
+        "name": "Bear-Hug Test / Abrazo del Oso (Tendón Subescapular)",
+        "category": "subescapular",
+        "essential": true,
+        "instruction": "El paciente coloca la palma de la mano afecta sobre el hombro contralateral con el codo elevado a 90°. El examinador intenta despegar la mano mientras el paciente resiste con rotación interna activa.",
+        "whatToLookFor": "Dolor o debilidad marcada para mantener la palma pegada al hombro contralateral (el test más sensible para desgarro del subescapular).",
+        "mentorTip": "El Bear-Hug es más sensible que el clásico Lift-Off test cuando la movilidad de rotación interna está algo limitada.",
+        "results": [
+          {
+            "label": "Positivo (dolor anterior y debilidad franca de rotación interna)",
+            "value": "positive_subscap",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subscapularis-tendinopathy", "effect": "increase", "weight": 7 }
+            ]
+          },
+          {
+            "label": "Negativo (fuerza potente indolora)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subscapularis-tendinopathy", "effect": "decrease", "weight": 5 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-biceps-anterior",
+      "name": "Batería de Afectación de Porción Larga del Bíceps",
+      "description": "1. Speed Test (+) + 2. Test de Yergason (+) + 3. Palpación dolorosa en corredera bicipital",
+      "requiredTests": ["exam-speed-test", "exam-yergason-test"],
+      "threshold": 1,
+      "concordanceText": "Batería de provocación bicipital positiva (Sensibilidad combinada >85%).",
+      "evidenceNote": "La combinación de Speed + Yergason ofrece el mejor balance de sensibilidad y especificidad para tendinopatía de LHBT."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe tenosinovitis anecoica con líquido alrededor del tendón largo del bíceps en la corredera, tendinosis hipoecoica, subluxación o rotura del subescapular?",
+    "structures": [
+      {
+        "id": "us-biceps-groove",
+        "name": "Porción Larga del Bíceps en Corredera (Cortes Transversal y Longitudinal)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-lhbt-normal", "label": "Tendón ovalado centrado en corredera sin líquido peritendinoso", "concordanceEffect": "neutral" },
+          { "id": "us-lhbt-tenosynovitis", "label": "Halo de líquido anecoico circumferential >2 mm / Tenosinovitis bicipital e hiperemia Doppler", "concordanceEffect": "concordant" },
+          { "id": "us-lhbt-subluxation", "label": "Subluxación o luxación medial del bíceps fuera de la corredera (rotura de polea / subescapular)", "concordanceEffect": "concordant" },
+          { "id": "us-lhbt-tear", "label": "Corredera vacía / Desgarro completo de LHBT", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Tendón largo del bíceps en corredera: {finding}."
+      },
+      {
+        "id": "us-subscapularis-tendon",
+        "name": "Tendón Subescapular en Troquín Menor",
+        "priority": 2,
+        "findings": [
+          { "id": "us-subscap-normal", "label": "Tendón continuo y homogéneo", "concordanceEffect": "neutral" },
+          { "id": "us-subscap-tear", "label": "Rotura parcial o completa de fibras superiores del subescapular", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Tendón subescapular: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Speed test positivo y ecografía con tenosinovitis bicipital franca con líquido en corredera.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Mínimo líquido en corredera que puede ser un derrame reactivo de la articulación glenohumeral; reevaluar manguito rotador.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Bíceps normal; dolor posiblemente originado en el labrum superior (SLAP) o articulación acromioclavicular.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-slap-diff",
+      "name": "Lesión SLAP de Labrum",
+      "whatWouldReconsider": "Deportista joven con dolor profundo intraarticular a 90° de abducción y O'Brien positivo, corredera ecográficamente sana.",
+      "keyDiscriminatingTest": "Test de O'Brien vs Speed Test"
+    },
+    {
+      "id": "dd-subacromial-diff",
+      "name": "Síndrome Subacromial / Supraespinoso",
+      "whatWouldReconsider": "Dolor lateral puro con arco doloroso entre 60°-120° y Test de Jobe positivo.",
+      "keyDiscriminatingTest": "Test de Jobe vs Speed Test"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-lhbt",
+      "structuralDiagnosis": "Tenosinovitis / Tendinopatía de la Porción Larga del Bíceps Braquial",
+      "painGenerator": "Dolor Nociceptivo del Tendón Largo del Bíceps",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Tendinoso / Vaina Sinovial",
+      "supportingFindings": [
+        "Dolor focal en corredera anterior",
+        "Speed Test positivo",
+        "Ecografía con líquido en vaina de LHBT"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-subscapularis",
+      "structuralDiagnosis": "Tendinopatía / Rotura del Tendón Subescapular",
+      "painGenerator": "Dolor del Manguito Anterior (Subescapular)",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Musculotendinoso",
+      "supportingFindings": [
+        "Bear-Hug test positivo con debilidad de rotación interna",
+        "Dolor en troquín menor",
+        "Ecografía concordante"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor en la parte delantera del hombro se localiza en el tendón largo del bíceps, que actúa como un estabilizador dinámico del brazo. Suele sobrecargarse por gestos repetitivos de tracción o lanzamiento hacia adelante. Con ejercicios de estabilidad escapular, fortalecimiento isométrico y adaptación de cargas, la gran mayoría de casos evolucionan favorablemente.",
+      "mentorNote": "La tenosinovitis bicipital suele ser secundaria a sobrecarga o inestabilidad escapulotorácica asociada."
+    },
+    "exercise": {
+      "objective": "Fortalecer la estabilidad dinámica escapular y reducir la fricción del tendón bicipital en la corredera.",
+      "phases": [
+        {
+          "name": "Fase 1: Isométricos y Reposo Relativo de Cargas Frontales",
+          "description": "Isométricos suaves de flexión de codo y rotadores en posición neutra evitando levantar cargas por encima de la cabeza.",
+          "duration": "1-3 semanas"
+        },
+        {
+          "name": "Fase 2: Carga Excéntrica Bicipital y Rotación Interna",
+          "description": "Ejercicios de bíceps con fase excéntrica lenta (bajada en 4s) con banda elástica y trabajo de rotadores internos (subescapular).",
+          "duration": "3-8 semanas"
+        },
+        {
+          "name": "Fase 3: Control Escapulotorácico y Readaptación Funcional",
+          "description": "Remo con banda, flexiones contra la pared con control escapular y retorno a actividades deportivas.",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar lanzamientos con el brazo por detrás del cuerpo en hiperextensión durante las primeras semanas."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs tópicos o pauta oral breve",
+          "indication": "Dolor agudo moderado limitante.",
+          "example": "Gel de diclofenaco 3 veces/día o Naproxeno 500mg/12h durante 7-10 días",
+          "duration": "10 días",
+          "guardrails": ["Excelente perfil de seguridad con gel tópico"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Tenosinovitis bicipital severa refractaria a tratamiento conservador (>6-8 semanas) con confirmación ecográfica.",
+      "objective": "Infiltración ecoguiada de la vaina del tendón largo del bíceps.",
+      "targets": [
+        {
+          "name": "Infiltración Ecoguiada de la Vaina Bicipital (LHBT Sheath)",
+          "indication": "Tenosinovitis con líquido anecoico periclavicular en corredera.",
+          "options": [
+            { "name": "Infiltración ecoguiada con aguja en plano dentro de la vaina sinovial (sin penetrar el tendón): 1 ml corticoide de depósito + 2 ml anestésico local", "evidence": "Alta / Nivel I (evita el riesgo de rotura intratendinosa)" }
+          ],
+          "contraindications": [
+            "Infiltración intratendinosa a ciegas (alto riesgo de necrosis fibrilar y rotura espontánea)",
+            "Infección articular"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 4-6 semanas",
+    "parameters": [
+      { "name": "Dolor con el Speed Test", "icon": "✋" },
+      { "name": "Fuerza en rotación interna (Bear-Hug)", "icon": "💪" },
+      { "name": "Líquido ecográfico en vaina bicipital", "icon": "🔊" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Remisión del dolor frontal",
+        "action": "Consolidar fortalecimiento escapulotorácico y retorno deportivo progresivo.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio temporal con dolor residual profundo",
+        "action": "Solicitar artro-RM para descartar lesión SLAP de labrum superior o rotura parcial del subescapular.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Dolor persistente con inestabilidad/subluxación tendinosa",
+        "action": "Valorar derivación a traumatología para tenodesis o tenotomía bicipital artroscópica.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "La ecografía permite infiltrar la vaina del bíceps con máxima precisión y seguridad, eliminando el riesgo de rotura tendinosa por punción intratendinosa."
+  },
+  "evidence": [
+    {
+      "citation": "Bennett WF. Specificity of the Speed's test: arthroscopic technique for evaluating the biceps tendon at the level of the bicipital groove. Arthroscopy. 1998;14(8):789-796.",
+      "topic": "Precisión diagnóstica del Speed Test en patología bicipital",
+      "year": 1998
+    },
+    {
+      "citation": "Girish G et al. Ultrasound-guided injection of the biceps tendon sheath: technique and clinical utility. AJR Am J Roentgenol. 2011;197(1):W120-128.",
+      "topic": "Seguridad y efectividad de la infiltración ecoguiada de la vaina bicipital",
+      "year": 2011
+    }
+  ]
+}
