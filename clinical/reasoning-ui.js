@@ -1466,7 +1466,7 @@
                       <span style="font-size: 0.74rem; color: var(--text-muted); margin-left: 0.4rem;">(${opt.category})</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 0.35rem;">
-                      <button class="vade-link-btn-mini" onclick="window.Vademecum.openDrug('${opt.id?.startsWith('med-') ? opt.id : 'med-' + opt.id.replace(/_/g, '-')}')" title="Ver ficha en Vademécum">
+                      <button class="vade-link-btn-mini" onclick="window.Vademecum.openDrug('${opt.id?.startsWith('med-') ? opt.id : 'med-' + opt.id.replace(/_/g, '-')}', true)" title="Ver ficha en Vademécum">
                         💊 Vademécum
                       </button>
                       <span class="pres-badge-status ${opt.isContraindicated ? 'upcoming' : 'available'}" style="font-size: 0.68rem;">
@@ -1552,7 +1552,7 @@
                       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.3rem;">
                         <strong style="font-size: 0.88rem; color: ${!drug.isRoutinelyRecommended ? '#ef4444' : '#818cf8'};">${drug.genericName}</strong>
                         <div style="display: flex; align-items: center; gap: 0.35rem;">
-                          <button class="vade-link-btn-mini" onclick="window.Vademecum.openDrug('${drug.id?.startsWith('med-') ? drug.id : 'med-' + drug.id.replace(/_/g, '-')}')" title="Ver ficha en Vademécum">
+                          <button class="vade-link-btn-mini" onclick="window.Vademecum.openDrug('${drug.id?.startsWith('med-') ? drug.id : 'med-' + drug.id.replace(/_/g, '-')}', true)" title="Ver ficha en Vademécum">
                             💊 Vademécum
                           </button>
                           <span class="treatment-badge-pill ${drug.overrideBadge?.includes('🔴') ? 'red' : drug.overrideBadge?.includes('🟢') ? 'green' : 'yellow'}" style="font-size: 0.68rem;">

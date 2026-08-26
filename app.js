@@ -1130,6 +1130,10 @@ window.switchTab = function(tabId) {
     pane.classList.toggle('active', pane.id === tabId);
   });
 
+  if (tabId === 'tab-vademecum' && window.Vademecum) {
+    window.Vademecum.setMode('express');
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 

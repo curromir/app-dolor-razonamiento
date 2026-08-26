@@ -1,5 +1,5 @@
-// Service Worker v32.0 - Modo Claro por Defecto & Pestaña de Cambio de Tema
-const CACHE_NAME = 'dolor-tests-v32';
+// Service Worker v33.0 - Vademécum Express por Defecto & Fichas Farmacológicas Nivel 2
+const CACHE_NAME = 'dolor-tests-v33';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

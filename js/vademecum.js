@@ -1,7 +1,11 @@
 /**
- * VADEMÉCUM DE DOLOR - CONTROLADOR CLÍNICO
- * Versión 1.0.0 (Agosto 2026)
- * Permite recordar pautas, dosis, precauciones y contraindicaciones en 5-20 segundos.
+ * VADEMÉCUM DE DOLOR - CONTROLADOR CLÍNICO DE ALTA PRECISIÓN
+ * Notion Oficial v2.6 & Clinical Pathways Integrados
+ * 
+ * Principio rector:
+ * 1. Pantalla inicial SIEMPRE EXPRESS (Cuadro clínico → 1ª Opción → 2ª Opción → Qué Evitar → Revisión).
+ * 2. Segundo nivel detallado accesible con 1 clic en "Ampliar Ficha" (Indicaciones, dosis, titulación, ajustes, interacciones y matices clave como Ciática NICE NG59).
+ * 3. Integración de ida y vuelta con el Modo Consulta / Clinical Pathways.
  */
 
 (function(window) {
@@ -9,12 +13,13 @@
 
   const Vademecum = {
     data: null,
-    mode: 'express', // 'express' | 'full' | 'favs'
+    mode: 'express', // Default ALWAYS 'express'
     activeCategory: 'all',
     activeDrugGroup: 'all',
     searchQuery: '',
     expandedDrugIds: new Set(),
     favorites: new Set(),
+    returnContext: null, // { fromClinical: true, pathwayId, presentation, step }
 
     async init() {
       try {
@@ -30,6 +35,7 @@
           } catch(e) {}
         }
 
+        this.mode = 'express';
         this.attachGlobalEvents();
         this.render();
       } catch (err) {
@@ -49,6 +55,19 @@
           this.render();
         });
       }
+
+      // Close modal on Escape key
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.closeDrugModal();
+          this.closeInteractionsModal();
+        }
+      });
+    },
+
+    getDrugById(drugId) {
+      if (!this.data || !this.data.drugs) return null;
+      return this.data.drugs.find(d => d.id === drugId) || null;
     },
 
     setMode(newMode) {
@@ -80,6 +99,23 @@
       this.render();
     },
 
+    setReturnContext(ctx) {
+      this.returnContext = ctx;
+    },
+
+    clearReturnContext() {
+      this.returnContext = null;
+    },
+
+    returnToConsultation() {
+      if (typeof window.ClinicalUI !== 'undefined' && typeof window.ClinicalUI.switchAppMode === 'function') {
+        window.ClinicalUI.switchAppMode('clinical');
+      } else if (typeof window.switchTab === 'function') {
+        window.switchTab('tab-clinical');
+      }
+      this.closeDrugModal();
+    },
+
     toggleDrugExpanded(drugId) {
       if (this.expandedDrugIds.has(drugId)) {
         this.expandedDrugIds.delete(drugId);
@@ -100,39 +136,289 @@
       this.render();
     },
 
-    openDrug(drugId) {
-      if (typeof window.switchTab === 'function') {
-        window.switchTab('tab-vademecum');
-      } else {
-        const tabBtn = document.querySelector('[data-tab="tab-vademecum"]');
-        if (tabBtn) tabBtn.click();
+    copyCustomText(text, event, label = 'Pauta') {
+      if (event) event.stopPropagation();
+      navigator.clipboard.writeText(text).then(() => {
+        this.showToast(`📋 ${label} copiada`);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        this.showToast(`📋 ${label} copiada`);
+      });
+    },
+
+    copyPrescription(drugId, event) {
+      if (event) event.stopPropagation();
+      const drug = this.getDrugById(drugId);
+      if (!drug) return;
+
+      const text = drug.prescriptionTemplate || `${drug.genericName}: ${drug.dosing.initial}. ${drug.dosing.timing}`;
+      this.copyCustomText(text, event, `Pauta de ${drug.genericName}`);
+    },
+
+    openDrug(drugId, options = {}) {
+      this.openDrugModal(drugId, options);
+    },
+
+    openDrugModal(drugId, options = {}) {
+      if (typeof options === 'boolean') {
+        options = { fromClinical: options };
+      }
+      if (options && options.fromClinical) {
+        this.setReturnContext({ fromClinical: true });
       }
 
-      this.mode = 'full';
-      this.activeDrugGroup = 'all';
-      this.searchQuery = '';
-      this.expandedDrugIds.add(drugId);
-      
-      const searchInput = document.getElementById('vademecum-search-input');
-      if (searchInput) searchInput.value = '';
+      const drug = this.getDrugById(drugId);
+      if (!drug) {
+        console.warn('Fármaco no encontrado:', drugId);
+        return;
+      }
 
-      const btnFull = document.getElementById('vade-tab-btn-full');
-      const btnExpress = document.getElementById('vade-tab-btn-express');
-      const btnFavs = document.getElementById('vade-tab-btn-favs');
-      if (btnFull) btnFull.classList.add('active');
-      if (btnExpress) btnExpress.classList.remove('active');
-      if (btnFavs) btnFavs.classList.remove('active');
+      const modal = document.getElementById('vade-drug-modal');
+      const body = document.getElementById('vade-drug-modal-body');
+      const icon = document.getElementById('vadeModalDrugIcon');
+      const title = document.getElementById('vadeModalDrugTitle');
+      const subtitle = document.getElementById('vadeModalDrugSubtitle');
 
-      this.render();
+      if (!modal || !body) return;
 
-      setTimeout(() => {
-        const el = document.getElementById(`drug-${drugId}`);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          el.classList.add('highlight-pulse');
-          setTimeout(() => el.classList.remove('highlight-pulse'), 2500);
-        }
-      }, 150);
+      if (icon) icon.textContent = drug.classIcon || '💊';
+      if (title) title.textContent = `${drug.genericName} (${drug.brandNames.join(' · ')})`;
+      if (subtitle) subtitle.textContent = `${drug.drugClassLabel} · Ficha Farmacológica Nivel 2`;
+
+      const isFav = this.favorites.has(drug.id);
+      const isNSAID = drug.drugClass === 'nsaid_oral' || drug.drugClass === 'nsaid_topical';
+      const isStrongOpioid = drug.drugClass === 'opioid_strong';
+      const isSciaticaWarning = drug.id === 'med-pregabalin' || drug.id === 'med-gabapentin';
+      const isFibroPreferred = drug.id === 'med-duloxetine';
+
+      body.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 1.15rem; padding: 0.25rem 0;">
+          
+          ${this.returnContext ? `
+            <div class="vade-return-consultation-banner">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <span style="font-size: 1.3rem;">🩺</span>
+                <div>
+                  <strong style="font-size: 0.88rem; color: var(--accent-blue);">Consulta Clínica Activa</strong>
+                  <div style="font-size: 0.76rem; color: var(--text-secondary);">Revisa la dosis y vuelve directamente al plan de tu paciente.</div>
+                </div>
+              </div>
+              <button class="vade-primary-btn" onclick="window.Vademecum.returnToConsultation()" style="font-size: 0.78rem; padding: 0.35rem 0.85rem;">
+                ← Volver al Plan de Tratamiento
+              </button>
+            </div>
+          ` : ''}
+
+          <!-- DOSIS EXPRESS (5 SEGUNDOS) -->
+          <div class="vade-ultraexpress-box" style="margin: 0;">
+            <div class="vade-ultra-dose-row">
+              <div class="vade-ultra-dose-item">
+                <span class="vade-ultra-lbl">Dosis Inicial:</span>
+                <span class="vade-ultra-val">${drug.quickSummary.initialDose}</span>
+              </div>
+              <div class="vade-ultra-dose-item">
+                <span class="vade-ultra-lbl">Objetivo Habitual:</span>
+                <span class="vade-ultra-val highlight">${drug.quickSummary.targetDose}</span>
+              </div>
+              ${drug.quickSummary.maxDose ? `
+                <div class="vade-ultra-dose-item">
+                  <span class="vade-ultra-lbl">Dosis Máxima / Techo:</span>
+                  <span class="vade-ultra-val">${drug.quickSummary.maxDose}</span>
+                </div>
+              ` : ''}
+            </div>
+            <div class="vade-ultra-tags-row">
+              <div class="vade-ultra-indications">
+                <strong>💡 Pensarlo en:</strong> ${drug.quickSummary.keyIndications.join(' · ')}
+              </div>
+              <div class="vade-ultra-warnings">
+                <strong>⚠️ Alertas:</strong> ${drug.quickSummary.mainWarnings.join(' · ')}
+              </div>
+            </div>
+          </div>
+
+          <!-- MATICES CLÍNICOS CRÍTICOS (ALERTA DE SEGURIDAD / GUÍAS) -->
+          ${isSciaticaWarning ? `
+            <div class="vade-sciatica-override-box">
+              <strong>🚫 ADVERTENCIA GUÍAS CLÍNICAS (NICE NG59 / ACP) — CIÁTICA:</strong><br>
+              Aunque la ${drug.genericName} es 1ª línea en dolor neuropático periférico focal (neuralgia postherpética, neuropatía diabética), <strong>múltiples ensayos y las guías NICE desaconsejan su uso rutinario en Ciática / Radiculopatía Lumbar</strong> por falta de eficacia analgésica superior a placebo y alta tasa de mareos, sedación y caídas.
+            </div>
+          ` : ''}
+
+          ${isFibroPreferred ? `
+            <div class="vade-nociplastic-override-box">
+              <strong>🟢 RECOMENDACIÓN DE PRIMERA LÍNEA (NICE) — DOLOR NOCIPLÁSTICO:</strong><br>
+              La Duloxetina cuenta con el mayor respaldo de evidencia entre los neuromoduladores para el dolor nociplástico / fibromialgia. Iniciar con 30 mg matutinos y titular a 60 mg/día a las 1–2 semanas.
+            </div>
+          ` : ''}
+
+          ${isNSAID ? `
+            <div class="vade-nsaid-checklist-box">
+              <div class="vade-box-title">🛡️ CHECKLIST DE SEGURIDAD AINE (5 SEGUNDOS ANTES DE PRESCRIBIR)</div>
+              <div class="vade-checklist-grid">
+                <div>🫘 <strong>Riñón:</strong> Evitar si FG <30. Precaución con deshidratación.</div>
+                <div>🩸 <strong>GI / Úlcera:</strong> Gastroprotección (IBP) obligatoria si >65 años o antecedente ulceroso.</div>
+                <div>❤️ <strong>CV / HTA:</strong> Descompensa tensión arterial (+5-10 mmHg) e insuficiencia cardiaca.</div>
+                <div>💉 <strong>Anticoagulación:</strong> Multiplica el riesgo de sangrado digestivo.</div>
+                <div>💊 <strong>Triple Whammy:</strong> IECA/ARA-II + Diurético + AINE = Fracaso Renal Agudo.</div>
+              </div>
+            </div>
+          ` : ''}
+
+          ${isStrongOpioid ? `
+            <div class="vade-opioid-banner-box">
+              <div class="vade-box-title">🔴 BANNER DE SEGURIDAD PARA OPIOIDES FUERTES</div>
+              <p style="margin: 0.25rem 0 0.4rem; font-size: 0.8rem; line-height: 1.5;">
+                ¿Dolor severo incapacitante? + ¿Otras opciones insuficientes/inapropiadas? + ¿Objetivo funcional claro y medible? + ¿Beneficio esperado > Riesgo? + ¿Plan de reevaluación y retirada acordado?
+              </p>
+              <div style="font-size: 0.76rem; color: #fca5a5; font-weight: 700;">
+                🚫 No es tratamiento rutinario de dolor crónico no oncológico (lumbalgia mecánica o artrosis) sin objetivo funcional. Profilaxis obligatoria de estreñimiento desde el día 1.
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- INDICACIONES Y RECOMENDACIONES -->
+          <div class="vade-detail-section">
+            <h4 class="vade-section-subtitle">🎯 Indicaciones & Recomendación por Tipo de Dolor</h4>
+            <div class="vade-indications-table">
+              ${drug.indications.map(ind => `
+                <div class="vade-indication-row">
+                  <div>
+                    <span class="vade-ind-badge ${ind.recommendation}">${ind.badge}</span>
+                    <strong>${ind.conditionName}</strong>
+                  </div>
+                  <div class="vade-ind-rationale">${ind.rationale}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- PAUTA Y TITULACIÓN -->
+          <div class="vade-detail-section">
+            <h4 class="vade-section-subtitle">💊 Pauta de Dosificación & Titulación Progresiva</h4>
+            <div class="vade-dosing-grid">
+              <div><strong>Dosis Inicial:</strong> ${drug.dosing.initial}</div>
+              <div><strong>Dosis Habitual:</strong> ${drug.dosing.usual}</div>
+              <div><strong>Dosis Máxima:</strong> ${drug.dosing.maximum || 'Ver ficha técnica'}</div>
+              <div><strong>Cómo tomarlo:</strong> ${drug.dosing.timing}</div>
+              <div><strong>Inicio de efecto:</strong> ${drug.dosing.onset}</div>
+              <div><strong>Reevaluar en:</strong> ${drug.dosing.reviewInterval}</div>
+            </div>
+            ${drug.dosing.titration && drug.dosing.titration.length ? `
+              <div class="vade-titration-steps" style="margin-top: 0.75rem;">
+                <strong>📈 Pauta de escalada recomendada:</strong>
+                <ul style="margin: 0.25rem 0 0 1rem; padding: 0;">
+                  ${drug.dosing.titration.map(step => `<li>${step}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- SEGURIDAD Y AJUSTES RENAL / HEPÁTICO -->
+          <div class="vade-detail-section">
+            <h4 class="vade-section-subtitle">🛡️ Contraindicaciones, Ajuste Renal y Hepático</h4>
+            <div class="vade-safety-grid">
+              <div>
+                <strong style="color: #ef4444;">Contraindicaciones:</strong>
+                <ul style="margin: 0.25rem 0 0 1rem; padding: 0;">${drug.safety.contraindications.map(c => `<li>${c}</li>`).join('')}</ul>
+              </div>
+              <div>
+                <strong style="color: #f59e0b;">Precauciones:</strong>
+                <ul style="margin: 0.25rem 0 0 1rem; padding: 0;">${drug.safety.precautions.map(p => `<li>${p}</li>`).join('')}</ul>
+              </div>
+              <div>
+                <strong style="color: #38bdf8;">🫘 Ajuste Renal:</strong>
+                <p style="margin: 0.25rem 0; font-size: 0.82rem;">${drug.safety.renalAdjustment}</p>
+              </div>
+              <div>
+                <strong style="color: #a855f7;">🧪 Ajuste Hepático:</strong>
+                <p style="margin: 0.25rem 0; font-size: 0.82rem;">${drug.safety.hepaticAdjustment}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- INTERACCIONES CLAVE -->
+          ${drug.interactions && drug.interactions.length ? `
+            <div class="vade-detail-section">
+              <h4 class="vade-section-subtitle">⚠️ Interacciones Destacadas de Consulta</h4>
+              <div class="vade-interactions-list">
+                ${drug.interactions.map(inter => `
+                  <div class="vade-interaction-card ${inter.severity}">
+                    <strong>${inter.drugGroup}:</strong> ${inter.risk} <br>
+                    <span style="font-size: 0.78rem; color: var(--text-secondary);">👉 Conducta: ${inter.action}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- CÓMO RETIRAR Y PERLAS -->
+          <div class="vade-detail-section">
+            <h4 class="vade-section-subtitle">💡 Perlas Clínicas & Retirada Segura</h4>
+            <div class="vade-pearls-box">
+              <div style="margin-bottom: 0.5rem;">
+                <strong>🔄 Cómo retirar:</strong> ${drug.safety.withdrawal}
+              </div>
+              ${drug.clinicalPearls && drug.clinicalPearls.length ? `
+                <div style="border-top: 1px dashed var(--border-color); padding-top: 0.5rem; margin-top: 0.5rem;">
+                  <strong>✨ Perlas clínicas de consulta:</strong>
+                  <ul style="margin: 0.25rem 0 0 1rem; padding: 0;">${drug.clinicalPearls.map(pearl => `<li>${pearl}</li>`).join('')}</ul>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- TEXTO DE PRESCRIPCIÓN COPIABLE -->
+          <div class="vade-prescription-copy-box">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+              <span style="font-weight: 800; font-size: 0.86rem; color: var(--accent-blue);">📋 Pauta Lista para Historia Clínica</span>
+              <button class="vade-action-btn" onclick="window.Vademecum.copyPrescription('${drug.id}', event)">
+                📋 Copiar Pauta
+              </button>
+            </div>
+            <div class="vade-prescription-text">${drug.prescriptionTemplate}</div>
+          </div>
+
+          <!-- ACCIONES INFERIORES -->
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color);">
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="vade-action-btn" onclick="window.Vademecum.toggleFavorite('${drug.id}', event)">
+                ${isFav ? '⭐ Guardado en Mis Fármacos' : '☆ Guardar en Favoritos'}
+              </button>
+              <button class="vade-action-btn" onclick="window.Vademecum.copyPrescription('${drug.id}', event)">
+                📋 Copiar Pauta
+              </button>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              ${this.returnContext ? `
+                <button class="vade-primary-btn" onclick="window.Vademecum.returnToConsultation()">
+                  🩺 Volver a la Consulta
+                </button>
+              ` : ''}
+              <button class="ctrl-btn" onclick="window.Vademecum.closeDrugModal()">
+                ✖️ Cerrar Ficha
+              </button>
+            </div>
+          </div>
+
+        </div>
+      `;
+
+      modal.style.display = 'flex';
+      modal.classList.add('open');
+    },
+
+    closeDrugModal() {
+      const modal = document.getElementById('vade-drug-modal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('open');
+      }
     },
 
     openCondition(conditionId) {
@@ -152,25 +438,6 @@
           setTimeout(() => el.classList.remove('highlight-pulse'), 2500);
         }
       }, 150);
-    },
-
-    copyPrescription(drugId, event) {
-      if (event) event.stopPropagation();
-      const drug = this.data.drugs.find(d => d.id === drugId);
-      if (!drug) return;
-
-      const text = drug.prescriptionTemplate || `${drug.genericName}: ${drug.dosing.initial}. ${drug.dosing.timing}`;
-      navigator.clipboard.writeText(text).then(() => {
-        this.showToast(`📋 Pauta de ${drug.genericName} copiada`);
-      }).catch(() => {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        this.showToast(`📋 Pauta de ${drug.genericName} copiada`);
-      });
     },
 
     showToast(message) {
@@ -219,13 +486,13 @@
             <span style="font-size: 1.3rem;">🧠</span>
             <div>
               <h3 style="font-size: 1rem; font-weight: 900; color: var(--accent-blue); margin: 0;">5 DOSIS QUE QUIERO RECORDAR (Neuromoduladores)</h3>
-              <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0.15rem 0 0;">Acceso ultrarrápido para consulta en menos de 5 segundos</p>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0.15rem 0 0;">Toca cualquier fármaco para abrir su ficha completa o copiar la pauta</p>
             </div>
           </div>
 
           <div class="vade-five-doses-grid">
             ${fiveDoses.map(d => `
-              <div class="vade-dose-pill-card" onclick="window.Vademecum.openDrug('${d.id}')">
+              <div class="vade-dose-pill-card" onclick="window.Vademecum.openDrugModal('${d.id}')" title="Abrir ficha detallada de ${d.drugName}">
                 <div class="vade-dose-pill-header">
                   <span class="vade-dose-pill-name">${d.drugName}</span>
                   <span class="vade-dose-pill-badge">${d.badge}</span>
@@ -267,7 +534,7 @@
                 </div>
                 ${c.relatedPathwayId ? `
                   <button class="vade-pathway-link-btn" onclick="window.startPathwayFromVademecum('${c.relatedPathwayId}')" title="Abrir Clinical Pathway de Razonamiento">
-                    🩺 Ver Pathway
+                    🩺 Razonar en Consulta
                   </button>
                 ` : ''}
               </div>
@@ -278,6 +545,18 @@
                   <div class="vade-step-label">🟢 PRIMERA OPCIÓN</div>
                   <div class="vade-step-content">${c.firstOption}</div>
                   <div class="vade-step-dose">💊 <strong>Pauta:</strong> ${c.firstDose}</div>
+                  <div class="vade-step-actions-bar">
+                    <button class="vade-copy-pill-btn" onclick="window.Vademecum.copyCustomText('${c.firstOption}: ${c.firstDose}', event)" title="Copiar pauta a Historia Clínica">
+                      📋 Copiar Pauta
+                    </button>
+                    ${(c.firstDrugIds || []).map(dId => {
+                      const drugObj = window.Vademecum.getDrugById(dId);
+                      const name = drugObj ? drugObj.genericName : dId;
+                      return `<button class="vade-pill-link-btn" onclick="window.Vademecum.openDrugModal('${dId}')" title="Ver ficha detallada (Nivel 2)">
+                        📖 Ficha ${name}
+                      </button>`;
+                    }).join('')}
+                  </div>
                 </div>
 
                 <!-- 🟡 SEGUNDA OPCIÓN -->
@@ -285,6 +564,18 @@
                   <div class="vade-step-label">🟡 SEGUNDA OPCIÓN</div>
                   <div class="vade-step-content">${c.secondOption}</div>
                   <div class="vade-step-dose">💊 <strong>Pauta:</strong> ${c.secondDose}</div>
+                  <div class="vade-step-actions-bar">
+                    <button class="vade-copy-pill-btn" onclick="window.Vademecum.copyCustomText('${c.secondOption}: ${c.secondDose}', event)" title="Copiar pauta a Historia Clínica">
+                      📋 Copiar Pauta
+                    </button>
+                    ${(c.secondDrugIds || []).map(dId => {
+                      const drugObj = window.Vademecum.getDrugById(dId);
+                      const name = drugObj ? drugObj.genericName : dId;
+                      return `<button class="vade-pill-link-btn" onclick="window.Vademecum.openDrugModal('${dId}')" title="Ver ficha detallada (Nivel 2)">
+                        📖 Ficha ${name}
+                      </button>`;
+                    }).join('')}
+                  </div>
                 </div>
 
                 <!-- 🚫 QUÉ EVITAR -->
@@ -293,7 +584,7 @@
                   <div class="vade-step-avoid-text">${c.avoid}</div>
                 </div>
 
-                <!-- 📅 REVISIÓN -->
+                <!-- 📅 REVISIÓN & PERLA -->
                 <div class="vade-step-footer">
                   <div>📅 <strong>Revisar:</strong> ${c.review}</div>
                   <div class="vade-pearl-text">💡 ${c.whyThis}</div>
@@ -360,6 +651,9 @@
                 <button class="vade-action-btn" onclick="window.Vademecum.copyPrescription('${drug.id}', event)" title="Copiar pauta clínica">
                   📋 Copiar Pauta
                 </button>
+                <button class="vade-pill-link-btn" onclick="window.Vademecum.openDrugModal('${drug.id}')" title="Ver en Modal">
+                  🔍 Modal
+                </button>
               </div>
             </div>
 
@@ -398,11 +692,10 @@
             </button>
           </div>
 
-          <!-- CUERPO DETALLADO (Progressive Disclosure) -->
+          <!-- CUERPO DETALLADO -->
           ${isExpanded ? `
             <div class="vade-drug-expanded-body">
               ${isNSAID ? `
-                <!-- 🛡️ CHECKLIST AINE 5 SEGUNDOS -->
                 <div class="vade-nsaid-checklist-box">
                   <div class="vade-box-title">🛡️ CHECKLIST DE SEGURIDAD AINE (5 SEGUNDOS ANTES DE RECETAR)</div>
                   <div class="vade-checklist-grid">
@@ -416,7 +709,6 @@
               ` : ''}
 
               ${isStrongOpioid ? `
-                <!-- 🔴 BANNER DE SEGURIDAD OPIOIDES FUERTES -->
                 <div class="vade-opioid-banner-box">
                   <div class="vade-box-title">🔴 BANNER DE SEGURIDAD PARA OPIOIDES FUERTES</div>
                   <p style="margin: 0.25rem 0 0.5rem; font-size: 0.8rem; line-height: 1.5;">
@@ -429,14 +721,13 @@
               ` : ''}
 
               ${isSciaticaWarning ? `
-                <!-- 🚫 ALERTA CIÁTICA GABAPENTINOIDES -->
                 <div class="vade-sciatica-override-box">
                   <strong>🚫 ALERTA DE PRESCRIPCIÓN EN CIÁTICA (NICE NG59 / ACP):</strong><br>
                   No prescribir pregabalina ni gabapentina de rutina para ciática/radiculopatía lumbar aguda o subaguda. La evidencia demuestra falta de beneficio analgésico frente a placebo y alta tasa de efectos secundarios.
                 </div>
               ` : ''}
 
-              <!-- Indicaciones y Recomendaciones -->
+              <!-- Indicaciones -->
               <div class="vade-detail-section">
                 <h4 class="vade-section-subtitle">🎯 Indicaciones & Recomendación por Cuadro</h4>
                 <div class="vade-indications-table">
@@ -473,7 +764,7 @@
                 ` : ''}
               </div>
 
-              <!-- Seguridad, Renal y Hepático -->
+              <!-- Seguridad -->
               <div class="vade-detail-section">
                 <h4 class="vade-section-subtitle">🛡️ Contraindicaciones, Ajuste Renal y Hepático</h4>
                 <div class="vade-safety-grid">
@@ -496,7 +787,7 @@
                 </div>
               </div>
 
-              <!-- Interacciones Clave -->
+              <!-- Interacciones -->
               ${drug.interactions && drug.interactions.length ? `
                 <div class="vade-detail-section">
                   <h4 class="vade-section-subtitle">⚠️ Interacciones Destacadas</h4>
@@ -511,7 +802,7 @@
                 </div>
               ` : ''}
 
-              <!-- Cómo Retirar & Perlas Clínicas -->
+              <!-- Retirada y Perlas -->
               <div class="vade-detail-section">
                 <h4 class="vade-section-subtitle">💡 Perlas Clínicas & Retirada</h4>
                 <div class="vade-pearls-box">
@@ -527,7 +818,7 @@
                 </div>
               </div>
 
-              <!-- Plantilla de Prescripción Editable -->
+              <!-- Prescripción -->
               <div class="vade-prescription-copy-box">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
                   <span style="font-weight: 700; font-size: 0.84rem; color: #38bdf8;">📋 Texto de Prescripción para Historia Clínica</span>
@@ -643,6 +934,18 @@
                       <div class="vade-step-label">🟢 1ª OPCIÓN</div>
                       <div>${c.firstOption}</div>
                       <div class="vade-step-dose">💊 ${c.firstDose}</div>
+                      <div class="vade-step-actions-bar">
+                        <button class="vade-copy-pill-btn" onclick="window.Vademecum.copyCustomText('${c.firstOption}: ${c.firstDose}', event)">
+                          📋 Copiar Pauta
+                        </button>
+                        ${(c.firstDrugIds || []).map(dId => {
+                          const drugObj = window.Vademecum.getDrugById(dId);
+                          const name = drugObj ? drugObj.genericName : dId;
+                          return `<button class="vade-pill-link-btn" onclick="window.Vademecum.openDrugModal('${dId}')">
+                            📖 Ficha ${name}
+                          </button>`;
+                        }).join('')}
+                      </div>
                     </div>
                     <div class="vade-step-block vade-step-avoid">
                       <div class="vade-step-label">🚫 EVITAR</div>
@@ -693,12 +996,16 @@
           </div>
         `;
       }
+      modal.style.display = 'flex';
       modal.classList.add('open');
     },
 
     closeInteractionsModal() {
       const modal = document.getElementById('vade-interactions-modal');
-      if (modal) modal.classList.remove('open');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('open');
+      }
     }
   };
 

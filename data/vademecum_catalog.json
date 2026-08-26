@@ -169,7 +169,15 @@
       "avoidBadge": "🚫 Evitar reposo y opioides",
       "review": "1–2 semanas si persiste limitación",
       "whyThis": "El dolor musculoesquelético agudo responde a la carga adaptada precoz. La analgesia busca facilitar el movimiento, no el dolor cero.",
-      "relatedPathwayId": "cervical-axial-pain"
+      "relatedPathwayId": "cervical-axial-pain",
+      "firstDrugIds": [
+        "med-ibuprofen",
+        "med-naproxen"
+      ],
+      "secondDrugIds": [
+        "med-paracetamol",
+        "med-metamizole"
+      ]
     },
     {
       "id": "exp-artrosis",
@@ -185,7 +193,15 @@
       "avoidBadge": "🚫 Opioides NO rutinarios",
       "review": "4–8 semanas (evaluar función, marcha y sueño)",
       "whyThis": "La piedra angular de la artrosis es la mejora biomecánica y la musculatura de soporte. El AINE tópico aporta alivio con mínima toxicidad sistémica.",
-      "relatedPathwayId": "knee-oa-anterior"
+      "relatedPathwayId": "knee-oa-anterior",
+      "firstDrugIds": [
+        "med-diclofenac-topical"
+      ],
+      "secondDrugIds": [
+        "med-paracetamol",
+        "med-etoricoxib",
+        "med-duloxetine"
+      ]
     },
     {
       "id": "exp-brote-artrosico",
@@ -201,7 +217,15 @@
       "avoidBadge": "🚫 No cronificar AINEs",
       "review": "1–2 semanas tras brote agudo",
       "whyThis": "El brote sinovial requiere control rápido del proceso inflamatorio agudo para retomar la fisioterapia activa.",
-      "relatedPathwayId": "knee-oa-anterior"
+      "relatedPathwayId": "knee-oa-anterior",
+      "firstDrugIds": [
+        "med-naproxen",
+        "med-celecoxib"
+      ],
+      "secondDrugIds": [
+        "med-paracetamol",
+        "med-tramadol-paracetamol"
+      ]
     },
     {
       "id": "exp-tendinopatia",
@@ -217,7 +241,14 @@
       "avoidBadge": "🚫 Corticoide intratendinoso PROHIBIDO",
       "review": "4–8 semanas (el remodelado del tendón requiere semanas)",
       "whyThis": "El tendón necesita carga mecánica controlada para sintetizar colágeno. Los antiinflamatorios no curan la tendinopatía pero ayudan en fases hiperálgicas.",
-      "relatedPathwayId": "shoulder-lateral-pain"
+      "relatedPathwayId": "shoulder-lateral-pain",
+      "firstDrugIds": [
+        "med-diclofenac-topical"
+      ],
+      "secondDrugIds": [
+        "med-paracetamol",
+        "med-ibuprofen"
+      ]
     },
     {
       "id": "exp-radiculopatia-aguda",
@@ -233,7 +264,15 @@
       "avoidBadge": "🔴 Gabapentinoides NO de rutina",
       "review": "1–3 semanas (vigilar fuerza motora L4/L5/S1 y banderas rojas)",
       "whyThis": "La mayoría de hernias discales tienen evolución natural favorable con reabsorción espontánea. La analgesia busca abrir ventana de tolerancia al movimiento.",
-      "relatedPathwayId": "lumbar-radicular-pain"
+      "relatedPathwayId": "lumbar-radicular-pain",
+      "firstDrugIds": [
+        "med-naproxen",
+        "med-ibuprofen"
+      ],
+      "secondDrugIds": [
+        "med-tramadol-paracetamol",
+        "med-paracetamol"
+      ]
     },
     {
       "id": "exp-radiculopatia-subaguda",
@@ -249,7 +288,15 @@
       "avoidBadge": "🚫 No repetir técnicas ineficaces",
       "review": "2–4 semanas post-intervención",
       "whyThis": "A partir de las 6 semanas con dolor incapacitante y concordancia clínico-RM, la inyección epidural ofrece una ventana analgésica óptima (AAN 2025).",
-      "relatedPathwayId": "lumbar-radicular-pain"
+      "relatedPathwayId": "lumbar-radicular-pain",
+      "firstDrugIds": [
+        "med-tramadol-paracetamol",
+        "med-paracetamol"
+      ],
+      "secondDrugIds": [
+        "med-duloxetine",
+        "med-amitriptyline"
+      ]
     },
     {
       "id": "exp-radiculopatia-cronica",
@@ -265,7 +312,15 @@
       "avoidBadge": "❌ RF ramos mediales PROHIBIDA",
       "review": "4–8 semanas",
       "whyThis": "En cronicidad es obligatorio descartar dolor lumbar axial superpuesto o centralización.",
-      "relatedPathwayId": "lumbar-radicular-pain"
+      "relatedPathwayId": "lumbar-radicular-pain",
+      "firstDrugIds": [
+        "med-duloxetine",
+        "med-amitriptyline"
+      ],
+      "secondDrugIds": [
+        "med-tramadol-paracetamol",
+        "med-tapentadol"
+      ]
     },
     {
       "id": "exp-neuropatico-periferico",
@@ -281,7 +336,17 @@
       "avoidBadge": "🚫 No usar AINEs",
       "review": "4–8 semanas (titular despacio buscando tolerabilidad)",
       "whyThis": "La dosis objetivo es la mínima que aporta mejoría funcional con tolerabilidad aceptable (NeuPSIG 2025).",
-      "relatedPathwayId": "nociplastic-pain"
+      "relatedPathwayId": "nociplastic-pain",
+      "firstDrugIds": [
+        "med-duloxetine",
+        "med-pregabalin",
+        "med-gabapentin",
+        "med-amitriptyline"
+      ],
+      "secondDrugIds": [
+        "med-venlafaxine-xr",
+        "med-tramadol"
+      ]
     },
     {
       "id": "exp-neuropatico-ansiedad",
@@ -297,7 +362,15 @@
       "avoidBadge": "⚠️ Alerta Serotoninérgica",
       "review": "4–6 semanas",
       "whyThis": "La inhibición dual de recaptación de serotonina y noradrenalina potencia las vías descendentes inhibitorias del dolor y mejora el estado de ánimo.",
-      "relatedPathwayId": "nociplastic-pain"
+      "relatedPathwayId": "nociplastic-pain",
+      "firstDrugIds": [
+        "med-duloxetine",
+        "med-venlafaxine-xr"
+      ],
+      "secondDrugIds": [
+        "med-amitriptyline",
+        "med-pregabalin"
+      ]
     },
     {
       "id": "exp-neuropatico-localizado",
@@ -313,7 +386,14 @@
       "avoidBadge": "🟢 Prioridad Tópica",
       "review": "4–8 semanas",
       "whyThis": "El tratamiento tópico actúa directamente en los canales de sodio y nociceptores cutáneos sin toxicidad sistémica ni sedación.",
-      "relatedPathwayId": "nociplastic-pain"
+      "relatedPathwayId": "nociplastic-pain",
+      "firstDrugIds": [
+        "med-lidocaine-patch"
+      ],
+      "secondDrugIds": [
+        "med-capsaicin",
+        "med-pregabalin"
+      ]
     },
     {
       "id": "exp-nociplastico",
@@ -329,7 +409,14 @@
       "avoidBadge": "🚫 OPIOIDES CONTRAINDICADOS",
       "review": "4–8 semanas",
       "whyThis": "El dolor nociplástico es una alteración en el procesamiento y amplificación del dolor central. La base es activa (ejercicio, sueño) y la farmacología solo un coadyuvante modulador.",
-      "relatedPathwayId": "nociplastic-pain"
+      "relatedPathwayId": "nociplastic-pain",
+      "firstDrugIds": [
+        "med-duloxetine"
+      ],
+      "secondDrugIds": [
+        "med-amitriptyline",
+        "med-venlafaxine-xr"
+      ]
     },
     {
       "id": "exp-nociplastico-sueno",
@@ -345,7 +432,14 @@
       "avoidBadge": "🚫 No cronificar BZD",
       "review": "3–4 semanas",
       "whyThis": "El sueño no reparador perpetúa la sensibilización central. Mejorar la fase de ondas lentas rompe el círculo vicioso dolor-insomnio.",
-      "relatedPathwayId": "nociplastic-pain"
+      "relatedPathwayId": "nociplastic-pain",
+      "firstDrugIds": [
+        "med-amitriptyline"
+      ],
+      "secondDrugIds": [
+        "med-cyclobenzaprine",
+        "med-duloxetine"
+      ]
     },
     {
       "id": "exp-tunel-carpiano",
@@ -361,7 +455,15 @@
       "avoidBadge": "⚠️ Quirúrgico si déficit",
       "review": "4–6 semanas (EMG y seguimiento clínico)",
       "whyThis": "La compresión mecánica se trata mecánicamente (ortesis/descompresión) o desinflamando el perineuro; los fármacos orales aportan escaso beneficio.",
-      "relatedPathwayId": "wrist-cts"
+      "relatedPathwayId": "wrist-cts",
+      "firstDrugIds": [
+        "med-paracetamol",
+        "med-naproxen"
+      ],
+      "secondDrugIds": [
+        "med-gabapentin",
+        "med-pregabalin"
+      ]
     },
     {
       "id": "exp-trigemino",
@@ -377,7 +479,14 @@
       "avoidBadge": "⚠️ Monitorizar Na y hemograma",
       "review": "1–2 semanas tras inicio (revisar sodio, transaminasas y toxicodermia)",
       "whyThis": "La descarga paroxística en descargas eléctricas requiere bloqueo de canales de sodio dependientes de voltaje.",
-      "relatedPathwayId": "nociplastic-pain"
+      "relatedPathwayId": "nociplastic-pain",
+      "firstDrugIds": [
+        "med-carbamazepine"
+      ],
+      "secondDrugIds": [
+        "med-pregabalin",
+        "med-gabapentin"
+      ]
     },
     {
       "id": "exp-dolor-moderado-intenso",
@@ -393,7 +502,14 @@
       "avoidBadge": "⚠️ Máx 8 comp/d Tramadol/Parac",
       "review": "1–2 semanas",
       "whyThis": "Combinar mecanismos (sinergia analgésica) permite reducir la dosis individual de opioide minimizando efectos adversos.",
-      "relatedPathwayId": "cervical-axial-pain"
+      "relatedPathwayId": "cervical-axial-pain",
+      "firstDrugIds": [
+        "med-tramadol-paracetamol"
+      ],
+      "secondDrugIds": [
+        "med-tramadol",
+        "med-metamizole"
+      ]
     },
     {
       "id": "exp-dolor-intenso-opioide",
@@ -409,7 +525,15 @@
       "avoidBadge": "🔴 NO rutinario en no-oncológico",
       "review": "3–7 días tras inicio o cambio de dosis",
       "whyThis": "Los opioides fuertes solo se justifican cuando el dolor severo incapacita, otras opciones han fracasado, y existe un objetivo funcional claro medible.",
-      "relatedPathwayId": "cervical-axial-pain"
+      "relatedPathwayId": "cervical-axial-pain",
+      "firstDrugIds": [
+        "med-tapentadol",
+        "med-oxycodone-naloxone"
+      ],
+      "secondDrugIds": [
+        "med-morphine",
+        "med-buprenorphine"
+      ]
     },
     {
       "id": "exp-dolor-oncologico",
@@ -425,7 +549,16 @@
       "avoidBadge": "🟢 Pauta fija + Rescates",
       "review": "Estrecho (24–72 h en ajuste inicial)",
       "whyThis": "En dolor oncológico se prioriza el alivio del sufrimiento y la calidad de vida con titulación rápida y manejo integral de síntomas.",
-      "relatedPathwayId": "nociplastic-pain"
+      "relatedPathwayId": "nociplastic-pain",
+      "firstDrugIds": [
+        "med-morphine",
+        "med-oxycodone-retard"
+      ],
+      "secondDrugIds": [
+        "med-buprenorphine",
+        "med-prednisone",
+        "med-pregabalin"
+      ]
     }
   ],
   "drugs": [
