@@ -1,0 +1,384 @@
+{
+  "id": "wrist-cts",
+  "region": "muneca_mano",
+  "regionLabel": "Muñeca y Mano",
+  "regionIcon": "🤲",
+  "presentation": "Túnel carpiano (Parestesias de Mano)",
+  "presentationDesc": "Adormecimiento, hormigueo nocturno y quemazón en los dedos pulgar, índice y medio (Atrapamiento del Nervio Mediano)",
+  "redFlags": [
+    {
+      "id": "rf-acute-compartment-hand",
+      "text": "Tumefacción a tensión tras traumatismo, dolor desproporcionado al estiramiento pasivo de los dedos y palidez (sospecha de síndrome compartimental de mano)",
+      "severity": "critical",
+      "action": "Fasciotomía quirúrgica urgente de descompresión"
+    },
+    {
+      "id": "rf-severe-thenar-atrophy",
+      "text": "Atrofia tenar franca y rápida con pérdida completa de la oposición del pulgar (fuerza <3/5 en abductor corto del pulgar)",
+      "severity": "critical",
+      "action": "Derivación urgente para electromiografía y valoración de liberación quirúrgica"
+    },
+    {
+      "id": "rf-kanavel-tenosynovitis",
+      "text": "Dedo en flexión rígida ('en salchicha'), dolor exquisito a lo largo de toda la vaina flexora y calor local (Signos de Kanavel de tenosinovitis infecciosa)",
+      "severity": "critical",
+      "action": "Drenaje quirúrgico urgente y antibioterapia intravenosa"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-cts-idiopathic",
+      "name": "Síndrome del Túnel Carpiano (Neuropatía por Atrapamiento del Nervio Mediano)",
+      "shortName": "Túnel Carpiano (Nervio Mediano)",
+      "description": "Compresión e isquemia del nervio mediano bajo el retináculo flexor en la muñeca (la neuropatía por atrapamiento más frecuente).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-c6-c7-radiculopathy",
+      "name": "Radiculopatía Cervical C6 o C7 (Fenómeno de Double Crush)",
+      "shortName": "Radiculopatía Cervical (Double Crush)",
+      "description": "Compresión de la raíz nerviosa cervical que sensibiliza al nervio mediano a nivel distal.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-rhizarthrosis",
+      "name": "Rizartrosis (Artrosis Trapeciometacarpiana)",
+      "shortName": "Rizartrosis del Pulgar",
+      "description": "Degeneración articular en la base del pulgar con dolor al hacer la pinza (sin parestesias nocturnas).",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿En qué dedos exactos nota el hormigueo o adormecimiento?»",
+      "explanation": "El nervio mediano inerva sensitivamente los dedos pulgar, índice, medio y la mitad radial del anular. Si el meñique (5º dedo) también está dormido, hay que sospechar radiculopatía C8/T1, neuropatía cubital o polineuropatía.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Pulgar, índice, dedo medio y mitad del anular (el meñique NO está afectado)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-rhizarthrosis", "effect": "decrease", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Toda la mano completa incluidos el meñique y el dorso de la mano",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-c6-c7-radiculopathy", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Solo dolor en la base del pulgar al hacer fuerza de pinza (sin hormigueo)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-rhizarthrosis", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 4 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Le despierta el hormigueo por la noche y siente la necesidad de sacudir la mano para aliviarlo?»",
+      "explanation": "El 'Signo del sacudido' (Flick sign) o necesidad de agitar la mano para restaurar la circulación en el túnel carpiano tiene una sensibilidad del 93% y especificidad del 96% (Pryse-Phillips 1984).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me despierto con la mano dormida y tengo que agitarla o sacudirla para que despierte (Flick sign +)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "No me despierta por la noche",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Nota torpeza para abrocharse botones pequeños o se le caen objetos de las manos?»",
+      "explanation": "La pérdida de sensibilidad fina en yemas de los dedos y la afectación motora del abductor corto del pulgar causan torpeza manipulativa.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí, se me caen tazas o vasos y me cuesta abotonarme la camisa",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "No noto pérdida de destreza motora",
+          "hypothesisEffects": []
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Cuál es su objetivo funcional principal?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Dormir toda la noche de un tirón sin que se me duerma la mano", "hypothesisEffects": [] },
+        { "label": "Trabajar en teclado/ratón o tareas manuales sin dolor ni entumecimiento", "hypothesisEffects": [] },
+        { "label": "Recuperar la fuerza y precisión para coger objetos sin que se me caigan", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Síndrome del Túnel Carpiano",
+    "steps": [
+      {
+        "id": "exam-mano-durkan",
+        "order": 1,
+        "name": "Test de Durkan (Compresión Carpiana Directa)",
+        "catalogTestId": "mano-durkan",
+        "category": "neuropatia",
+        "essential": true,
+        "instruction": "Aplicar presión constante con ambos pulgares directamente sobre el túnel carpiano en la cara palmar de la muñeca durante 30 segundos.",
+        "whatToLookFor": "Reproducción o aumento de parestesias y adormecimiento en territorio del nervio mediano (Sensibilidad 89%, Especificidad 87% - el más sensible de todos los tests de STC).",
+        "mentorTip": "Durkan es significativamente superior a Tinel y Phalen en sensibilidad diagnóstica.",
+        "results": [
+          {
+            "label": "Positivo (reproduce parestesias en dedos 1º a 3º en <30 segundos)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-rhizarthrosis", "effect": "decrease", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Negativo (tolera 30 segundos de compresión sin síntomas)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-mano-phalen",
+        "order": 2,
+        "name": "Test de Phalen (Flexión Palmar Máxima 60 Segundos)",
+        "catalogTestId": "mano-phalen",
+        "category": "neuropatia",
+        "essential": true,
+        "instruction": "Pedir al paciente que flexione ambas muñecas a 90° aproximando los dorsos de las manos durante 60 segundos.",
+        "whatToLookFor": "Aparición de parestesias en territorio mediano por aumento de la presión intracarpiana.",
+        "mentorTip": "Si los síntomas aparecen en menos de 20 segundos, correlaciona con atrapamiento moderado-severo.",
+        "results": [
+          {
+            "label": "Positivo (parestesias en <60 segundos)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 5 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-thenar-motor",
+        "order": 3,
+        "name": "Evaluación Motora de Abducción Corta del Pulgar y Atrofia Tenar",
+        "category": "neurologia",
+        "essential": true,
+        "instruction": "Palma hacia arriba. Pedir al paciente que apunte con el pulgar hacia el techo verticalmente contra la resistencia del examinador (Abductor pollicis brevis). Inspeccionar volumen muscular de eminencia tenar.",
+        "whatToLookFor": "Debilidad motora <4/5 o aplanamiento visible de la eminencia tenar (marcador de compromiso axonal severo).",
+        "mentorTip": "La atrofia tenar indica daño axonal avanzado y es un criterio formal de derivación quirúrgica.",
+        "results": [
+          {
+            "label": "Fuerza 5/5 potente y eminencia tenar simétrica",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Paresia del abductor corto o atrofia tenar incipiente",
+            "value": "weakness_atrophy",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 5 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-cts-kuhlman",
+      "name": "Clúster Diagnóstico de Síndrome del Túnel Carpiano",
+      "description": "1. Test de Durkan (+) + 2. Test de Phalen (+) + 3. Signo del sacudido (Flick +) + 4. Distribución en dedos 1º-3º",
+      "requiredTests": ["exam-mano-durkan", "exam-mano-phalen", "exam-thenar-motor"],
+      "threshold": 2,
+      "concordanceText": "Cumple criterios clínicos de Síndrome del Túnel Carpiano (Sensibilidad >92%). Indicación de ecografía o EMG para graduación.",
+      "evidenceNote": "La combinación de Durkan + Phalen + distribución nocturna tiene una especificidad diagnóstica del 95% (MacDermid et al., 2004)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe engrosamiento del área de sección transversal (CSA) del nervio mediano a la entrada del túnel carpiano (a nivel de pisiforme) >10-12 mm² o hipervascularización Doppler?",
+    "structures": [
+      {
+        "id": "us-median-nerve-csa",
+        "name": "Nervio Mediano a nivel del Pisiforme (Entrada al Túnel)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-median-normal", "label": "Área de sección transversal normal (<9 mm²)", "concordanceEffect": "neutral" },
+          { "id": "us-median-mild", "label": "Engrosamiento leve del nervio mediano (CSA 10-12 mm²)", "concordanceEffect": "concordant" },
+          { "id": "us-median-severe", "label": "Engrosamiento severo / neuroma pseudotumoral (CSA >13-15 mm²) y aplanamiento distal", "concordanceEffect": "concordant" },
+          { "id": "us-median-doppler", "label": "Hipervascularización Doppler intraneural activa (hiperemia inflamatoria)", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Nervio mediano en túnel carpiano: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Clínica clásica con Durkan positivo y ecografía con CSA del nervio mediano ≥12 mm².",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Clínica compatible con nervio mediano limítrofe (9-10 mm²); solicitar EMG confirmatorio.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Nervio mediano ecográficamente fino (<8 mm²). Reevaluar radiculopatía C6 o pronador redondo.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-c6-radic-hand",
+      "name": "Radiculopatía Cervical C6",
+      "whatWouldReconsider": "Dolor y parestesias que bajan desde el cuello con Spurling y distracción positivos, Durkan negativo.",
+      "keyDiscriminatingTest": "Test de Spurling vs Test de Durkan"
+    },
+    {
+      "id": "dd-rhizarthrosis-hand",
+      "name": "Rizartrosis del Pulgar",
+      "whatWouldReconsider": "Dolor mecánico a la palpación de la articulación trapeciometacarpiana (Grind test +), Durkan negativo.",
+      "keyDiscriminatingTest": "Grind test del pulgar vs Durkan"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-cts",
+      "structuralDiagnosis": "Neuropatía por Atrapamiento del Nervio Mediano en Túnel Carpiano",
+      "painGenerator": "Síndrome del Túnel Carpiano (Dolor Neuropático Periférico)",
+      "mechanism": "neuropathic",
+      "mechanismLabel": "Predominio Neuropático por Atrapamiento",
+      "supportingFindings": [
+        "Parestesias nocturnas en dedos 1º a 3º",
+        "Flick sign positivo",
+        "Test de Durkan y Phalen positivos",
+        "Ecografía con CSA mediano >10 mm²"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El adormecimiento de su mano se debe a la compresión del nervio mediano al pasar por la muñeca. Por la noche, al doblar inconscientemente la muñeca, la presión sobre el nervio se multiplica por cinco. El uso regular de una férula neutra para dormir es el pilar más eficaz en fases leves y moderadas.",
+      "mentorNote": "La férula nocturna en posición neutra (0°-10° extensión) reduce drásticamente la presión hidrostática intracarpiana."
+    },
+    "exercise": {
+      "objective": "Facilitar el deslizamiento del nervio mediano (neurodinámica) y de los tendones flexores de los dedos.",
+      "phases": [
+        {
+          "name": "Fase 1: Férula Nocturna y Reposo Relativo",
+          "description": "Férula termoplástica rígida nocturna para mantener la muñeca en posición neutra durante el sueño.",
+          "duration": "4-8 semanas"
+        },
+        {
+          "name": "Fase 2: Ejercicios de Deslizamiento Neural (Nerve Gliding)",
+          "description": "Ejercicios de deslizamiento activo del nervio mediano (técnica de Totten y Hunter en 6 posiciones de mano y muñeca).",
+          "duration": "4-12 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar posturas mantenidas de flexión palmar forzada (teclados sin reposamuñecas, agarres prolongados)."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "Neuromoduladores nocturnos (Pregabalina / Gabapentina)",
+          "indication": "Parestesias nocturnas intensas que alteran el descanso.",
+          "example": "Pregabalina 25-50mg antes de dormir",
+          "duration": "4-8 semanas",
+          "guardrails": ["Somnolencia matutina", "Función renal"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Síndrome del túnel carpiano moderado con mala respuesta a férula nocturna (>6 semanas).",
+      "objective": "Desinflamar el nervio mediano y descomprimir el túnel carpiano.",
+      "targets": [
+        {
+          "name": "Infiltración Perineural Ecoguiada del Túnel Carpiano / Hidrodisección",
+          "indication": "STC moderado sin atrofia tenar severa.",
+          "options": [
+            { "name": "Infiltración ecoguiada ulnar con aguja en plano: 1 ml corticoide de depósito (Metilprednisolona o Triamcinolona) + 2-3 ml anestésico local/suero", "evidence": "Alta / Nivel I (Chesterton 2018)" },
+            { "name": "Hidrodisección ecoguiada del nervio mediano con suero salino o dextrosa 5%", "evidence": "Moderada" }
+          ],
+          "contraindications": ["Atrofia tenar severa o denervación axonal completa (indicación de cirugía descompresiva)", "Infección local"]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 6-8 semanas",
+    "parameters": [
+      { "name": "Parestesias nocturnas (frecuencia)", "icon": "😴" },
+      { "name": "Test de Durkan y sensibilidad en dedos", "icon": "✋" },
+      { "name": "Fuerza de abductor corto del pulgar", "icon": "💪" },
+      { "name": "Área ecográfica del nervio mediano (CSA)", "icon": "📐" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Desaparición de parestesias nocturnas",
+        "action": "Mantener férula nocturna de mantenimiento y ejercicios de neurodinámica.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial tras férula",
+        "action": "Realizar infiltración perineural ecoguiada.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Fracaso conservador o pérdida de fuerza/atrofia",
+        "action": "Derivación a Cirugía de Mano para liberación quirúrgica del ligamento anular anterior del carpo.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "La presencia de atrofia tenar o pérdida franca de la oposición del pulgar convierte el caso en tributario de descompresión quirúrgica."
+  },
+  "evidence": [
+    {
+      "citation": "Chesterton LS et al. The clinical and cost-effectiveness of corticosteroid injection versus night splints for carpal tunnel syndrome (INSTINCT trial): an open-label, parallel group, randomised controlled trial. Lancet. 2018;392(10156):1423-1433.",
+      "topic": "Evidencia de infiltración ecoguiada vs férula nocturna en STC (Lancet)",
+      "year": 2018
+    },
+    {
+      "citation": "MacDermid JC, Wessel J. Clinical diagnosis of carpal tunnel syndrome: a systematic review. J Hand Ther. 2004;17(2):309-319.",
+      "topic": "Precisión diagnóstica de las pruebas de exploración física en STC",
+      "year": 2004
+    }
+  ]
+}

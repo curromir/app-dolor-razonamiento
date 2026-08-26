@@ -1,0 +1,476 @@
+{
+  "id": "knee-oa-anterior",
+  "region": "rodilla",
+  "regionLabel": "Rodilla",
+  "regionIcon": "🦵",
+  "presentation": "Dolor anterior / Artrosis",
+  "presentationDesc": "Dolor perirrotuliano o articular con crepitación y sobrecarga mecánica (Dolor Patelofemoral vs Gonartrosis vs Meniscopatía)",
+  "redFlags": [
+    {
+      "id": "rf-septic-knee",
+      "text": "Derrame articular a tensión de instauración rápida, calor local intenso, enrojecimiento y fiebre (sospecha de artritis séptica)",
+      "severity": "critical",
+      "action": "Artrocentesis diagnóstica urgente con análisis de líquido sinovial y cultivo"
+    },
+    {
+      "id": "rf-extensor-rupture",
+      "text": "Incapacidad absoluta para extender activamente la rodilla tras un esfuerzo brusco o caída (sospecha de rotura de tendón rotuliano o cuadricipital)",
+      "severity": "critical",
+      "action": "Ecografía urgente y derivación inmediata a Traumatología"
+    },
+    {
+      "id": "rf-dvt",
+      "text": "Edema unilateral severo de pantorrilla con fóvea, empastamiento muscular y signo de Homans positivo (sospecha de Trombosis Venosa Profunda)",
+      "severity": "critical",
+      "action": "Eco-Doppler venoso de miembro inferior urgente"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-pfp",
+      "name": "Síndrome de Dolor Patelofemoral (SDFP / Condromalacia Rotuliana)",
+      "shortName": "Dolor Patelofemoral",
+      "description": "Dolor peripatelar difuso agravado al bajar escaleras, agacharse o tras sedestación prolongada (signo de la butaca de cine).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-knee-osteoarthritis",
+      "name": "Gonartrosis (Artrosis de Rodilla Femorotibial / Femoropatelar)",
+      "shortName": "Gonartrosis",
+      "description": "Degeneración progresiva del cartílago articular con estrechamiento del espacio, crepitación palpable y osteofitos en pacientes >50 años.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-degenerative-meniscus",
+      "name": "Meniscopatía Degenerativa (Menisco Interno / Externo)",
+      "shortName": "Meniscopatía Degenerativa",
+      "description": "Dolor focal en la interlínea articular con episodios de bloqueo mecánico o sensación de fallo.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-patellar-tendinopathy",
+      "name": "Tendinopatía Rotuliana ('Jumper's Knee')",
+      "shortName": "Tendinopatía Rotuliana",
+      "description": "Dolor focal en el polo inferior de la rótula exacerbado con desaceleraciones y saltos.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿En qué actividades concretas nota mayor dolor en la rodilla?»",
+      "explanation": "Bajar escaleras y levantarse de una silla cargan de forma máxima la articulación patelofemoral (3 a 7 veces el peso corporal). La carga en bipedestación prolongada o caminar en llano orienta a afectación del compartimento femorotibial.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Al bajar escaleras, agacharme en cuclillas o levantarme de una silla baja (Carga patelofemoral)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-pfp", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Al caminar un rato en llano o estar de pie derecho continuo (Carga femorotibial)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-pfp", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Al girar o rotar el cuerpo sobre la pierna apoyada",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Le molesta la rodilla tras estar sentado mucho rato con las piernas dobladas (cine, coche, oficina)?»",
+      "explanation": "El 'Signo del espectador de cine' o dolor a la flexión mantenida prolongada es muy característico de la sobrepresión patelofemoral.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, tengo que estirar la pierna enseguida porque siento una molestia sorda profunda ('Signo del cine +')",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-pfp", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "No me molesta estar sentado doblado",
+          "hypothesisEffects": []
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Ha sentido crujidos óseos ásperos o rigidez al levantarse de la cama?»",
+      "explanation": "La crepitación ósea palpable con rigidez matutina breve (<30 min) en mayores de 50 años forma parte de los criterios diagnósticos del Colegio Americano de Reumatología (ACR) para artrosis de rodilla.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí, crujidos evidentes como si tuviera arenilla o piedras dentro de la rodilla",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-pfp", "effect": "increase", "weight": 2 }
+          ]
+        },
+        {
+          "label": "No noto crujidos ni rigidez matutina",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "decrease", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Cuál es la meta funcional prioritaria que desea conseguir?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Bajar y subir escaleras sin dolor ni sensación de fallo", "hypothesisEffects": [] },
+        { "label": "Poder caminar 30-60 minutos al día de forma cómoda", "hypothesisEffects": [] },
+        { "label": "Volver a practicar deporte, senderismo o carrera", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Gonalgia / Artrosis",
+    "steps": [
+      {
+        "id": "exam-clark-grind",
+        "order": 1,
+        "name": "Test de Compresión Patelofemoral y Cepillo Rotuliano",
+        "category": "patelofemoral",
+        "essential": true,
+        "instruction": "Paciente en supino con rodilla en extensión completa. Deslizar pasivamente la rótula medial y lateralmente comprimiéndola contra la tróclea femoral (Signo del cepillo).",
+        "whatToLookFor": "Reproducción del dolor retroperipatelar y crepitación áspera subrotuliana.",
+        "mentorTip": "La reproducción del dolor a la compresión patelar tiene una alta sensibilidad (~80%) para dolor patelofemoral.",
+        "results": [
+          {
+            "label": "Dolor o crepitación marcado a la compresión patelar (Positivo)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-pfp", "effect": "increase", "weight": 5 },
+              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Deslizamiento patelar indoloro y suave",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-pfp", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-joint-line-tenderness",
+        "order": 2,
+        "name": "Palpación de la Interlínea Articular Medial y Lateral",
+        "category": "interlinea",
+        "essential": true,
+        "instruction": "Rodilla flexionada a 90°. Palpar con el pulgar la interlínea articular femorotibial medial y lateral a lo largo de todo su trayecto.",
+        "whatToLookFor": "Dolor exquisito localizado sobre la interlínea articular (Sensibilidad 83% para meniscopatía o artrosis de compartimento).",
+        "mentorTip": "La interlínea medial es la diana más sensible para artrosis femorotibial interna y rotura de cuerno posterior.",
+        "results": [
+          {
+            "label": "Dolor selectivo en la interlínea articular medial",
+            "value": "medial_pain",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 4 },
+              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Dolor selectivo en interlínea lateral",
+            "value": "lateral_pain",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 3 },
+              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Interlíneas articulares completamente indoloras",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "decrease", "weight": 3 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-thessaly-meniscus",
+        "order": 3,
+        "name": "Test de Thessaly (a 20° de flexión en carga)",
+        "catalogTestId": "rodilla-thessaly",
+        "category": "meniscos",
+        "essential": true,
+        "instruction": "Paciente de pie en apoyo monopodal sobre la rodilla sintomática con 20° de flexión. Sostener las manos del examinador y realizar rotaciones internas y externas de tronco 3 veces.",
+        "whatToLookFor": "Dolor o chasquido en la interlínea articular al rotar en carga dinámica (Sensibilidad 90%, Especificidad 96%).",
+        "mentorTip": "Es la prueba clínica más sensible para meniscopatía sintomática activa en consulta.",
+        "results": [
+          {
+            "label": "Positivo (reproduce dolor o chasquido en interlínea al girar)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Negativo (rotaciones completas en carga sin dolor)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-effusion-bulge",
+        "order": 4,
+        "name": "Evaluación de Derrame Articular (Signo de la Oleada / Choque Rotuliano)",
+        "category": "articular",
+        "essential": false,
+        "instruction": "Vaciar el receso suprarrotuliano con la mano craneal y percutir la cara lateral para observar la onda de líquido en el fondo de saco medial.",
+        "whatToLookFor": "Presencia de líquido intraarticular en el receso articular.",
+        "results": [
+          {
+            "label": "Derrame articular evidente (Oleada o choque rotuliano +)",
+            "value": "effusion_present",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 4 },
+              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Sin derrame articular detectable",
+            "value": "no_effusion",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-knee-oa-acr",
+      "name": "Criterios Clínicos ACR para Artrosis de Rodilla",
+      "description": "Dolor de rodilla + al menos 3 de 6: 1. Edad >50 años + 2. Rigidez <30 min + 3. Crepitación + 4. Dolor óseo + 5. Engrosamiento óseo + 6. Sin calor local",
+      "requiredTests": ["exam-clark-grind", "exam-joint-line-tenderness"],
+      "threshold": 2,
+      "concordanceText": "Cumple criterios clínicos del Colegio Americano de Reumatología (ACR) para Gonartrosis (Sensibilidad 95%, Especificidad 69%).",
+      "evidenceNote": "Los criterios clínicos ACR permiten diagnosticar gonartrosis sin necesidad imperativa de radiografía en atención primaria (Altman et al., 1986)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe derrame en receso suprarrotuliano, osteofitosis marginal, adelgazamiento del cartílago troclear o extrusión meniscal?",
+    "structures": [
+      {
+        "id": "us-suprapatellar-recess",
+        "name": "Receso Suprarrotuliano (Derrame y Sinovitis)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-recess-normal", "label": "Sin derrame ni engrosamiento sinovial (<2 mm)", "concordanceEffect": "neutral" },
+          { "id": "us-recess-effusion", "label": "Derrame intraarticular anecoico moderado/severo", "concordanceEffect": "concordant" },
+          { "id": "us-recess-synovitis", "label": "Hipertrofia sinovial con señal Doppler positiva", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Receso suprarrotuliano: {finding}."
+      },
+      {
+        "id": "us-femoral-trochlea",
+        "name": "Cartílago de la Tróclea Femoral (en flexión máxima)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-trochlea-normal", "label": "Banda hipoecoica de cartílago homogénea y regular (>2 mm)", "concordanceEffect": "neutral" },
+          { "id": "us-trochlea-degeneration", "label": "Pérdida de espesor cartilaginoso, irregularidad y osteofitosis troclear", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Cartílago troclear femoral: {finding}."
+      },
+      {
+        "id": "us-meniscus-extrusion",
+        "name": "Menisco Medial y Lateral (Extrusión en Carga)",
+        "priority": 2,
+        "findings": [
+          { "id": "us-meniscus-normal", "label": "Morfología triangular regular sin extrusión (<2 mm)", "concordanceEffect": "neutral" },
+          { "id": "us-meniscus-extruded", "label": "Extrusión meniscal medial significativa (>3 mm) y osteofitosis marginal", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Menisco medial: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "La clínica de dolor mecánico en carga y la ecografía de gonartrosis con derrame o extrusión meniscal convergen plenamente.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Cambios degenerativos leves; considerar dolor patelofemoral funcional por debilidad muscular o déficit biomecánico.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Estructuras articulares conservadas. Reevaluar dolor referido de cadera o columna lumbar (radiculopatía L4).",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-hip-referred",
+      "name": "Dolor Referido de Cadera (Coxartrosis oculta)",
+      "whatWouldReconsider": "Dolor en cara anterior de muslo y rodilla con exploración de rodilla normal y rotación interna de cadera limitada.",
+      "keyDiscriminatingTest": "Exploración pasiva de cadera (FABER y rotaciones)"
+    },
+    {
+      "id": "dd-l4-radic",
+      "name": "Radiculopatía L4",
+      "whatWouldReconsider": "Hipoestesia en cara anterior de rodilla, reflejo rotuliano disminuido, dolor que desciende desde la zona lumbar.",
+      "keyDiscriminatingTest": "Reflejo rotuliano y sensibilidad L4"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-knee-oa",
+      "structuralDiagnosis": "Gonartrosis Femorotibial / Femoropatelar con Sinovitis reactiva",
+      "painGenerator": "Dolor Articular por Gonartrosis",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Articular",
+      "supportingFindings": [
+        "Edad >50 años y dolor en carga",
+        "Crepitación ósea articular",
+        "Dolor en interlíneas articulares",
+        "Ecografía concordante"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-pfp",
+      "structuralDiagnosis": "Síndrome de Dolor Patelofemoral",
+      "painGenerator": "Sobrecarga de la Articulación Patelofemoral",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Biomecánico",
+      "supportingFindings": [
+        "Dolor al bajar escaleras y cuclillas",
+        "Signo del cine positivo",
+        "Test de compresión patelar positivo",
+        "Ausencia de extrusión meniscal"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El dolor de rodilla por desgaste o sobrecarga patelofemoral mejora notablemente con ejercicio regular adaptado. El cartílago se nutre gracias al movimiento; el reposo debilita la musculatura y empeora el dolor. La combinación de fortalecimiento del muslo (cuádriceps y glúteos) y control de peso es la intervención más eficaz demostrada por la ciencia.",
+      "mentorNote": "Desmitificar la idea de que 'hacer ejercicio desgasta más la articulación'."
+    },
+    "exercise": {
+      "objective": "Fortalecer el cuádriceps en arcos indoloros y potenciar los abductores de cadera para evitar el valgo dinámico de rodilla.",
+      "phases": [
+        {
+          "name": "Fase 1: Isométricos y Cadena Cinética Cerrada",
+          "description": "Contracciones isométricas de cuádriceps a 30°-60° de flexión, sentadilla isométrica en pared (wall-sit) y elevación de pierna recta (SLR).",
+          "duration": "1-4 semanas"
+        },
+        {
+          "name": "Fase 2: Fortalecimiento Funcional",
+          "description": "Mini-sentadillas, prensa de piernas en rango confortable (0°-60°), fortalecimiento de glúteo medio con banda elástica.",
+          "duration": "4-8 semanas"
+        },
+        {
+          "name": "Fase 3: Carga y Resistencia Aeróbica",
+          "description": "Bicicleta estática con sillín alto y baja resistencia, natación o caminata nórdica progresiva.",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar máquinas de extensiones de rodilla en banco en últimos grados si hay dolor patelofemoral severo."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs tópicos en gel (Primera elección)",
+          "indication": "Dolor moderado por gonartrosis con máxima seguridad gastrointestinal y renal.",
+          "example": "Diclofenaco gel 1-2% 3 veces al día sobre la rodilla",
+          "duration": "4-12 semanas",
+          "guardrails": ["Excelente perfil de seguridad, recomendado por guías OARSI"]
+        },
+        {
+          "name": "Paracetamol o AINEs orales en pauta corta para brote",
+          "indication": "Brote inflamatorio con dolor que impide el ejercicio.",
+          "example": "Paracetamol 1g/8h o Ibuprofeno 400-600mg/8h en ciclo de 7-10 días",
+          "duration": "10 días",
+          "guardrails": ["Función renal", "Riesgo cardiovascular", "Edad >65"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Dolor limitante de gonartrosis o dolor patelofemoral refractario a fisioterapia y tratamiento oral.",
+      "objective": "Reducir el dolor articular y mejorar la viscoelasticidad sinovial para permitir la rehabilitación activa.",
+      "targets": [
+        {
+          "name": "Infiltración Intraarticular de Rodilla Ecoguiada",
+          "indication": "Gonartrosis sintomática grado II-III de Kellgren-Lawrence.",
+          "options": [
+            { "name": "Ácido Hialurónico de alto peso molecular (Viscosuplementación)", "evidence": "Alta / Recomendación OARSI" },
+            { "name": "Corticoide de depósito (Triamcinolona 40mg) si existe brote con derrame sinovial", "evidence": "Alta a corto plazo" },
+            { "name": "Radiofrecuencia (Neurotomía) de Nervios Geniculados de la rodilla en gonartrosis avanzada no quirúrgica", "evidence": "Alta / Nivel I (Choi 2011)" }
+          ],
+          "contraindications": [
+            "Infección articular activa (artritis séptica)",
+            "Prótesis total de rodilla ya implantada"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 6-8 semanas",
+    "parameters": [
+      { "name": "Dolor al bajar escaleras (EVA)", "icon": "📉" },
+      { "name": "Distancia caminada sin dolor", "icon": "🚶" },
+      { "name": "Presencia de derrame articular", "icon": "💧" },
+      { "name": "Fuerza de cuádriceps", "icon": "💪" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría franca y aumento de actividad",
+        "action": "Mantener programa activo de ejercicios y control de peso.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial",
+        "action": "Valorar viscosuplementación con ácido hialurónico o radiofrecuencia de geniculados.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Artrosis severa tricompartimental grado IV refractaria",
+        "action": "Derivación a Cirugía Ortopédica para valoración de artroplastia total de rodilla.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "El fortalecimiento del cuádriceps y glúteo medio reduce hasta un 40% la carga sobre la articulación femorotibial y patelofemoral."
+  },
+  "evidence": [
+    {
+      "citation": "Bannuru RR et al. OARSI guidelines for the non-surgical management of knee, hip, and polyarticular osteoarthritis. Osteoarthritis Cartilage. 2019;27(11):1578-1589.",
+      "topic": "Guía OARSI para el tratamiento de la artrosis de rodilla",
+      "year": 2019
+    },
+    {
+      "citation": "Crossley KM et al. 2016 Patellofemoral pain consensus statement from the 4th International Patellofemoral Pain Research Retreat. Br J Sports Med. 2016;50(14):839-843.",
+      "topic": "Consenso internacional en dolor patelofemoral",
+      "year": 2016
+    }
+  ]
+}

@@ -1,0 +1,429 @@
+{
+  "id": "si-posterior-pelvic",
+  "region": "sacroiliaca",
+  "regionLabel": "Pelvis / Sacroilíaca",
+  "regionIcon": "🎯",
+  "presentation": "Dolor posterior pélvico (Articulación Sacroilíaca)",
+  "presentationDesc": "Dolor focal en el área del surco sacroilíaco y glúteo alto, a menudo referido a la cara posterior del muslo o ingle (Clúster de Laslett)",
+  "redFlags": [
+    {
+      "id": "rf-sacroiliitis-septic",
+      "text": "Fiebre, dolor pélvico e ilíaco agudo severo con impotencia para la marcha tras infección o posparto (sospecha de sacroileítis séptica)",
+      "severity": "critical",
+      "action": "Analítica urgente con hemocultivos y RM sacroilíaca urgente"
+    },
+    {
+      "id": "rf-sacral-fracture",
+      "text": "Dolor sacro agudo incapacitante tras caída o esfuerzo en paciente anciano o con osteoporosis/radioterapia pélvica (sospecha de fractura de sacro por estrés/insuficiencia)",
+      "severity": "critical",
+      "action": "RM o TC de pelvis urgente para descartar fractura en H de Honda"
+    },
+    {
+      "id": "rf-spondylitis",
+      "text": "Varón joven (<45 años) con dolor lumbar/glúteo de ritmo inflamatorio (despierta en segunda mitad de la noche, rigidez >60 min y mejora con ejercicio) y talalgia (sospecha de Espondiloartritis anquilosante / HLA-B27)",
+      "severity": "high",
+      "action": "HLA-B27, analítica con PCR/VSG y RM sacroilíaca (secuencias STIR para edema óseo subcondral)"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-si-dysfunction",
+      "name": "Disfunción / Artropatía de la Articulación Sacroilíaca",
+      "shortName": "Articulación Sacroilíaca",
+      "description": "Dolor originado en los ligamentos sacroilíacos posteriores o en la superficie articular (15-30% de dolores lumbares bajos).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-piriformis-syndrome",
+      "name": "Síndrome del Músculo Piriforme (Atrapamiento ciático profundo)",
+      "shortName": "Síndrome del Piriforme",
+      "description": "Espasmo o hipertrofia del músculo piriforme con compresión del nervio ciático en la escotadura ciática mayor.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-facet-l5-s1",
+      "name": "Dolor Referido Facetario L5-S1 o Discopatía Lumbar Baja",
+      "shortName": "Dolor Lumbar Referido L5-S1",
+      "description": "Dolor somático referido desde el segmento móvil L5-S1 hacia la región glútea superior.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Dónde señala con un dedo el punto exacto donde más le duele?»",
+      "explanation": "El dolor sacroilíaco se localiza típicamente dentro de una zona de 1-2 cm por debajo de la Espina Ilíaca Posterosuperior (EIPS) (Signo de Fortin). El dolor por encima de L5 orienta a facetas lumbares; el dolor en el centro del glúteo a piriforme.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Justo debajo del hoyuelo de la espalda baja / EIPS en un lado (Signo de Fortin +)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-facet-l5-s1", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "En el centro del glúteo (vientre muscular) que baja por la parte posterior del muslo",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 1 }
+          ]
+        },
+        {
+          "label": "En la parte alta lumbar central o paravertebral por encima de la cintura",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-facet-l5-s1", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-si-dysfunction", "effect": "decrease", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿En qué actividades concretas aumenta claramente el dolor?»",
+      "explanation": "Las maniobras que generan cizallamiento en la pelvis (apoyo monopodal, transferencias de sentado a de pie, ponerse los pantalones, darse la vuelta en la cama) provocan dolor sacroilíaco.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Al levantarme de la silla, apoyarme en una sola pierna o girarme en la cama",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "Al estar mucho rato sentado en superficies duras (empeora sentado continuo)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿El dolor desciende por debajo de la rodilla hacia el pie?»",
+      "explanation": "El dolor sacroilíaco puede referirse a la nalga, ingle y cara posterior del muslo, pero de forma casi invariable respeta la rodilla y no desciende al pie ni produce déficit neurológico motor.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "No, se queda en la nalga y muslo posterior sin pasar de la rodilla",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Sí, baja hasta el pie con sensación de hormigueo o descarga",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-si-dysfunction", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Cuál es su objetivo funcional principal?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder caminar distancias medias y estar de pie sin dolor en la nalga", "hypothesisEffects": [] },
+        { "label": "Levantarme del sofá o de la cama sin pinchazo agudo en la pelvis", "hypothesisEffects": [] },
+        { "label": "Conducir y permanecer sentado de forma cómoda", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Clúster de Laslett (Sacroilíaca)",
+    "steps": [
+      {
+        "id": "exam-si-thigh-thrust",
+        "order": 1,
+        "name": "Test de Empuje Muscular / Thigh Thrust (P4)",
+        "catalogTestId": "si-thigh-thrust",
+        "category": "sacroiliaca",
+        "essential": true,
+        "instruction": "Paciente en supino. Cadera sintomática flexionada a 90°. El examinador coloca una mano bajo el sacro y aplica una fuerza vertical axial descendente sobre el fémur.",
+        "whatToLookFor": "Reproducción del dolor en la articulación sacroilíaca ipsilateral por cizallamiento posterior (Sensibilidad 88%, la más sensible del clúster).",
+        "mentorTip": "Es la prueba más sensible de todo el Clúster de Laslett. Si Thigh Thrust y Distracción son positivas, se confirma sospecha sacroilíaca.",
+        "results": [
+          {
+            "label": "Positivo (reproduce dolor agudo sacroilíaco habitual)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-facet-l5-s1", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Negativo (indoloro al empuje femoral axial)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-si-dysfunction", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-si-distraction",
+        "order": 2,
+        "name": "Test de Distracción Sacroilíaca (Gapping)",
+        "catalogTestId": "si-distraction",
+        "category": "sacroiliaca",
+        "essential": true,
+        "instruction": "Paciente en supino. El examinador cruza los brazos y aplica una fuerza sostenida hacia afuera y abajo sobre ambas Espinas Ilíacas Anterosuperiores (EIAS).",
+        "whatToLookFor": "Reproducción del dolor sacroilíaco posterior al tensar los ligamentos anteriores.",
+        "mentorTip": "Es la prueba más específica del Clúster de Laslett (Especificidad 89%).",
+        "results": [
+          {
+            "label": "Positivo (reproduce dolor posterior en la articulación)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 5 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-si-compression",
+        "order": 3,
+        "name": "Test de Compresión Sacroilíaca",
+        "category": "sacroiliaca",
+        "essential": true,
+        "instruction": "Paciente en decúbito lateral sobre el lado sano con caderas a 45°. Aplicar presión vertical hacia abajo sobre la cresta ilíaca superior.",
+        "whatToLookFor": "Dolor en la articulación sacroilíaca superior o ligamentos posteriores.",
+        "mentorTip": "Si las 2 primeras pruebas son discordantes, realizar Compresión y Sacral Thrust.",
+        "results": [
+          {
+            "label": "Positivo (dolor en surco sacroilíaco)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-si-fair-test",
+        "order": 4,
+        "name": "Test FAIR (Descarte de Síndrome del Piriforme)",
+        "catalogTestId": "si-fair-test",
+        "category": "piriforme",
+        "essential": false,
+        "instruction": "Paciente en decúbito lateral con cadera a 90° de flexión. Aplicar Aducción y Rotación Interna máxima (Flexión-Aducción-Rotación Interna).",
+        "whatToLookFor": "Reproducción del dolor ciático en el vientre del músculo piriforme a la tensión del nervio.",
+        "mentorTip": "Un FAIR positivo con dolor focal a la palpación del vientre del piriforme orienta a atrapamiento ciático extrapélvico.",
+        "results": [
+          {
+            "label": "Positivo (dolor profundo en el piriforme con irradiación)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-si-dysfunction", "effect": "decrease", "weight": 1 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-laslett-si",
+      "name": "Clúster de Provocación de Laslett (Sacroilíaca)",
+      "description": "1. Thigh Thrust (+) + 2. Distracción (+) + 3. Compresión (+) + 4. Sacral Thrust (+) (≥2 de 4 pruebas positivas)",
+      "requiredTests": ["exam-si-thigh-thrust", "exam-si-distraction", "exam-si-compression"],
+      "threshold": 2,
+      "concordanceText": "Cumple criterios del Clúster de Laslett (≥2 de 3 maniobras de provocación positivas). Sensibilidad 91%, Especificidad 87% para dolor de origen sacroilíaco.",
+      "evidenceNote": "El Clúster de Laslett tiene la mayor precisión diagnóstica validada contra bloqueos anestésicos intraarticulares de referencia (Laslett et al., Spine 2005)."
+    }
+  ],
+  "imaging": {
+    "type": "RM / Radiografía de Pelvis",
+    "clinicalQuestion": "¿Existe edema óseo subcondral activo en secuencias STIR (sacroileítis inflamatoria) o esclerosis/osteofitosis degenerativa?",
+    "structures": [
+      {
+        "id": "si-imaging-joint",
+        "name": "Articulación Sacroilíaca",
+        "priority": 1,
+        "findings": [
+          { "id": "si-normal", "label": "Interlínea sacroilíaca normal y simétrica", "concordanceEffect": "neutral" },
+          { "id": "si-edema-stir", "label": "Edema óseo subcondral en STIR / Sacroileítis activa", "concordanceEffect": "concordant" },
+          { "id": "si-osteoarthritis", "label": "Esclerosis subcondral, puentes óseos y estrechamiento degenerativo", "concordanceEffect": "concordant" }
+        ]
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Clúster de Laslett positivo y hallazgos en imagen compatibles con artropatía sacroilíaca.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Clúster positivo con imagen normal (muy frecuente en disfunción biomecánica o ligamentosa posterior).",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Clúster de Laslett negativo con cambios de imagen incidentales. Reconsiderar facetas L5-S1 o cadera.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-facet-l5",
+      "name": "Síndrome Facetario L5-S1",
+      "whatWouldReconsider": "Dolor reproducido en extensión lumbar pura de Kemp, palpación paravertebral dolorosa, Laslett negativo.",
+      "keyDiscriminatingTest": "Test de Kemp vs Thigh Thrust"
+    },
+    {
+      "id": "dd-piriforme",
+      "name": "Síndrome del Piriforme",
+      "whatWouldReconsider": "Dolor en glúteo medio a la flexión-aducción-rotación interna (FAIR test +), Thigh Thrust negativo.",
+      "keyDiscriminatingTest": "Test FAIR y palpación del vientre del piriforme"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-si-joint",
+      "structuralDiagnosis": "Artropatía / Disfunción Sacroilíaca con sobrecarga de ligamentos posteriores",
+      "painGenerator": "Dolor Articular / Ligamentoso Sacroilíaco",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Pélvico",
+      "supportingFindings": [
+        "Signo de Fortin positivo bajo la EIPS",
+        "Clúster de Laslett positivo (≥2 pruebas)",
+        "Dolor a las transferencias de sentado a bipedestación"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-piriformis",
+      "structuralDiagnosis": "Síndrome de Atrapamiento del Músculo Piriforme",
+      "painGenerator": "Dolor Miofascial / Neural del Piriforme",
+      "mechanism": "mixed",
+      "mechanismLabel": "Predominio Mixto (Miofascial + Neural)",
+      "supportingFindings": [
+        "Dolor central glúteo a la sedestación",
+        "Test FAIR positivo",
+        "Thigh Thrust negativo"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor se genera en la articulación sacroilíaca, que une la pelvis con la columna. Es una articulación muy estable con ligamentos fuertes diseñada para transmitir el peso del cuerpo a las piernas. Con ejercicios de estabilidad pélvica, fortalecimiento de glúteos y pautas posturales de carga, la gran mayoría de pacientes mejoran sin necesidad de cirugía.",
+      "mentorNote": "Explicar que la articulación no está 'descolocada' (kinesiofobia común), sino inflamada o sobrecargada."
+    },
+    "exercise": {
+      "objective": "Fortalecer la musculatura estabilizadora del cinturón pélvico (glúteo mayor, medio y transverso del abdomen).",
+      "phases": [
+        {
+          "name": "Fase 1: Estabilidad Lumbopélvica Básica",
+          "description": "Puentes de glúteo bipodales con banda elástica, activación de transverso abdominal en supino.",
+          "duration": "1-3 semanas"
+        },
+        {
+          "name": "Fase 2: Carga Asimétrica y Marcha",
+          "description": "Puente unipodal controlado, peso muerto con una pierna asistido, subidas a escalón con control pélvico.",
+          "duration": "3-6 semanas"
+        },
+        {
+          "name": "Fase 3: Ejercicios Funcionales de Fuerza",
+          "description": "Sentadillas profundas con bisagra de cadera y zancadas funcionales.",
+          "duration": "6-12 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar zancadas amplias o saltos de impacto en fase aguda dolorosa."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs en ciclo corto",
+          "indication": "Agudización de dolor articular sacroilíaco.",
+          "example": "Etoricoxib 60-90 mg/día o Naproxeno 500mg/12h",
+          "duration": "7-14 días",
+          "guardrails": ["Función renal", "Riesgo cardiovascular", "Riesgo GI"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Dolor sacroilíaco severo (>3 meses) con Clúster de Laslett positivo refractario a tratamiento médico.",
+      "objective": "Infiltración intraarticular o bloqueo de ramos laterales sacros (S1-S3) guiado por fluoroscopia o ecografía.",
+      "targets": [
+        {
+          "name": "Infiltración Intraarticular Sacroilíaca Ecoguiada o Fluoroscópica",
+          "indication": "Sacroileítis o artropatía dolorosa confirmada.",
+          "options": [
+            { "name": "Infiltración de corticoide de depósito (Triamcinolona 40mg) + anestésico local", "evidence": "Alta / Nivel I" },
+            { "name": "Radiofrecuencia (Neurotomía) de Ramos Laterales Sacros (S1, S2, S3) y ramo dorsal L5 (Rizolisis sacroilíaca)", "evidence": "Alta a medio-largo plazo (Cohen 2015)" }
+          ],
+          "contraindications": ["Infección activa", "Anticoagulación no suspendida según protocolo"]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 4-6 semanas",
+    "parameters": [
+      { "name": "Dolor al levantarse de la silla (EVA)", "icon": "📊" },
+      { "name": "Tolerancia a la bipedestación", "icon": "🚶" },
+      { "name": "Thigh Thrust y test de Laslett", "icon": "🎯" },
+      { "name": "Fuerza y estabilidad de glúteos", "icon": "💪" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Alivio >50% del dolor",
+        "action": "Consolidar fortalecimiento de glúteo y core pélvico.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial temporal",
+        "action": "Valorar radiofrecuencia (rizolisis) de ramos laterales sacros S1-S3.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Sin mejoría",
+        "action": "Reevaluar columna lumbar L5-S1 o patología coxofemoral.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "El Clúster de Laslett de 3 o más pruebas positivas predice con altísima fiabilidad la respuesta favorable al bloqueo sacroilíaco."
+  },
+  "evidence": [
+    {
+      "citation": "Laslett M et al. Diagnosis of sacroiliac joint pain: validity of individual tests and composites of tests. Man Ther. 2005;10(3):207-218.",
+      "topic": "Validación del Clúster de Laslett para diagnóstico de dolor sacroilíaco",
+      "year": 2005
+    },
+    {
+      "citation": "Cohen SP et al. Randomized placebo-controlled study evaluating lateral branch radiofrequency denervation for sacroiliac joint pain. Anesthesiology. 2008;109(2):279-288.",
+      "topic": "Eficacia de la denervación por radiofrecuencia de ramos laterales sacros",
+      "year": 2008
+    }
+  ]
+}

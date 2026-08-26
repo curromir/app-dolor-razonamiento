@@ -1,0 +1,644 @@
+{
+  "id": "cervical-radicular",
+  "region": "cervical",
+  "regionLabel": "Columna Cervical",
+  "regionIcon": "🧠",
+  "presentation": "Dolor cervical irradiado",
+  "presentationDesc": "Dolor en cuello irradiado al hombro, brazo o mano con posible componente radicular o neural",
+  "redFlags": [
+    {
+      "id": "rf-myelopathy",
+      "text": "Signos de mielopatía cervical (marcha atáxica/torpe, pérdida de destreza manual en ambas manos, hiperreflexia, clonus)",
+      "severity": "critical",
+      "action": "Derivación urgente a Neurocirugía / RM cervical urgente por sospecha de compresión medular"
+    },
+    {
+      "id": "rf-progressive-motor",
+      "text": "Déficit motor franco o rápidamente progresivo (fuerza <3/5 en deltoides, bíceps, tríceps o intrínsecos de la mano)",
+      "severity": "critical",
+      "action": "Evaluación neuroquirúrgica prioritaria"
+    },
+    {
+      "id": "rf-trauma",
+      "text": "Traumatismo cervical de alta energía (accidente de tráfico, caída) o antecedente de latigazo severo",
+      "severity": "high",
+      "action": "Inmovilización y descartar fractura / inestabilidad con TC/RX según reglas de columna cervical"
+    },
+    {
+      "id": "rf-cancer",
+      "text": "Antecedente de cáncer con dolor nocturno no mecánico continuo o pérdida de peso inexplicable",
+      "severity": "high",
+      "action": "Estudio urgente de imagen y marcadores tumorales"
+    },
+    {
+      "id": "rf-fever",
+      "text": "Fiebre, escalofríos, inmunosupresión o uso de drogas parenterales (sospecha de espondilodiscitis / absceso epidural)",
+      "severity": "high",
+      "action": "Analítica urgente con PCR/VSG y RM contrastada"
+    },
+    {
+      "id": "rf-vascular",
+      "text": "Síntomas vertebrobasilares (mareo tipo drop attacks, disartria, disfagia, diplopía, nistagmo)",
+      "severity": "critical",
+      "action": "Descartar disección arterial vertebral o insuficiencia vertebrobasilar"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-radic-c7",
+      "name": "Radiculopatía C7 (Tríceps, extensión muñeca, dedo medio)",
+      "shortName": "Radiculopatía C7",
+      "description": "Compresión o inflamación de la raíz C7 (la más frecuente: 60-70% de radiculopatías cervicales).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-radic-c6",
+      "name": "Radiculopatía C6 (Bíceps, braquiorradial, pulgar e índice)",
+      "shortName": "Radiculopatía C6",
+      "description": "Afectación de la raíz C6 (segunda más frecuente: 20-25%).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-radic-c5-c8",
+      "name": "Radiculopatía C5 o C8 (Deltoides / Borde cubital)",
+      "shortName": "Radiculopatía C5/C8",
+      "description": "Compresión de raíces C5 (hombro/deltoides) o C8 (dedos 4º-5º y flexores de dedos).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-tos",
+      "name": "Síndrome del Desfiladero Torácico (TOS)",
+      "shortName": "Desfiladero Torácico",
+      "description": "Compresión del plexo braquial en triángulo interescalénico o espacio costoclavicular.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-cervical-referred",
+      "name": "Dolor referido somático cervical / miofascial",
+      "shortName": "Dolor Referido Cervical",
+      "description": "Dolor irradiado por espondiloartrosis o puntos gatillo miofasciales sin compromiso radicular.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor baja claramente por el brazo? ¿Hasta dónde llega exactamente?»",
+      "explanation": "El trayecto dermatómico es el dato anamnésico más discriminativo. El dolor somático referido raramente pasa del codo; el dolor que alcanza los dedos orienta con alta probabilidad a compromiso radicular específico.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Baja por cara posterior del brazo hacia el dedo medio (Dermatoma C7)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Baja por cara lateral del brazo y antebrazo hacia el pulgar e índice (Dermatoma C6)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Baja por cara medial/cubital hacia el 4º y 5º dedo (Dermatoma C8 / T1)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-radic-c5-c8", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-tos", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Se queda en hombro o cara lateral del brazo sin sobrepasar el codo (Dermatoma C5 o referido)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-radic-c5-c8", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Solo dolor en cuello, trapecio y escápula (no baja del hombro)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-radic-c7", "effect": "decrease", "weight": 2 },
+            { "hypothesisId": "hyp-radic-c6", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Nota hormigueo, adormecimiento, quemazón o sensación de descargas eléctricas?»",
+      "explanation": "Los síntomas disestésicos positivos apoyan fuertemente dolor neuropático por irritación de la raíz nerviosa frente a dolor musculoesquelético somático.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, hormigueo intenso o descargas hacia los dedos de la mano",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "No, es una pesadez o contractura constante sin hormigueo",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-radic-c7", "effect": "decrease", "weight": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Alivia los síntomas colocar la mano sobre la cabeza (Signo de Bakody)?»",
+      "explanation": "El signo de Bakody o abducción del hombro relaja la raíz nerviosa cervical y reduce la tracción del foramen, siendo altamente específico de radiculopatía cervical (especialmente C5-C6).",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí, poner la mano en la cabeza me alivia notablemente (Bakody +)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "No alivia o incluso empeora",
+          "hypothesisEffects": []
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Empeora con movimientos cervicales concretos (como mirar hacia atrás o al lado del dolor)?»",
+      "explanation": "La reproducción del dolor distal al realizar extensión y rotación ipsilateral es la base mecánica del Test de Spurling (cierre foraminal).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, girar la cabeza hacia el lado doloroso dispara el dolor al brazo",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "No se modifica con los movimientos del cuello",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-tos", "effect": "increase", "weight": 2 },
+            { "hypothesisId": "hyp-radic-c7", "effect": "decrease", "weight": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "«¿Qué actividad o meta funcional desea recuperar prioritariamente?»",
+      "explanation": "La intervención médica debe orientarse a las metas de vida del paciente.",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Dormir sin dolor y descansar por la noche", "hypothesisEffects": [] },
+        { "label": "Trabajar en ordenador / oficina sin quemazón en el brazo", "hypothesisEffects": [] },
+        { "label": "Conducir y mirar por los retrovisores sin dolor", "hypothesisEffects": [] },
+        { "label": "Cargar peso y realizar deporte / vida activa", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Guiada — Radiculopatía Cervical",
+    "steps": [
+      {
+        "id": "exam-cervical-spurling",
+        "order": 1,
+        "name": "Test de Spurling (Compresión Foraminal)",
+        "catalogTestId": "cervical-spurling",
+        "category": "provocacion",
+        "essential": true,
+        "instruction": "Paciente sentado. Extensión cervical, inclinación y rotación hacia el lado sintomático. Aplicar compresión axial suave.",
+        "whatToLookFor": "Reproducción del dolor irradiado o parestesias hacia el dermatoma diana (no solo dolor local en cuello).",
+        "mentorTip": "Spurling tiene altísima especificidad (SpPin >95%). Si es positivo, prácticamente confirma compromiso foraminal.",
+        "results": [
+          {
+            "label": "Positivo (reproduce dolor/parestesias hacia el brazo)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 5 },
+              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 5 },
+              { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Negativo (sin irradiación distal)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 1 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-cervical-distraction",
+        "order": 2,
+        "name": "Test de Distracción Cervical",
+        "catalogTestId": "cervical-distraction",
+        "category": "alivio",
+        "essential": true,
+        "instruction": "Paciente en decúbito supino o sentado. Tracción axial manual suave en occipucio y mentón hacia arriba (aprox 10-15 kg).",
+        "whatToLookFor": "Alivio o desaparición de los síntomas irradiados en el brazo al descomprimir el foramen.",
+        "mentorTip": "Test complementario a Spurling con alta especificidad (95%). Si alivia, suma al Clúster de Wainner.",
+        "results": [
+          {
+            "label": "Positivo (alivio claro de los síntomas del brazo)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 4 },
+              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Negativo (sin cambio en los síntomas)",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-cervical-ultt1",
+        "order": 3,
+        "name": "Test de Tensión Neural del Miembro Superior (ULTT 1 - Mediano)",
+        "catalogTestId": "cervical-ultt1",
+        "category": "neurodinamica",
+        "essential": true,
+        "instruction": "Depresión escapular, abducción glenohumeral a 110°, extensión de muñeca y dedos, supinación y extensión de codo. Añadir inclinación cervical contralateral.",
+        "whatToLookFor": "Reproducción del dolor neural con sensibilización cervical contralateral (SnNOut alta ~88%).",
+        "mentorTip": "Es el Lasègue del brazo. Si es negativo, descarta radiculopatía con gran fiabilidad.",
+        "results": [
+          {
+            "label": "Positivo con sensibilización contralateral",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 4 },
+              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 4 },
+              { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Negativo (movimiento simétrico sin dolor neural)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c7", "effect": "decrease", "weight": 4 },
+              { "hypothesisId": "hyp-radic-c6", "effect": "decrease", "weight": 4 },
+              { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 3 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-cervical-rotation",
+        "order": 4,
+        "name": "Rotación Cervical Ipsilateral <60°",
+        "category": "movilidad",
+        "essential": true,
+        "instruction": "Medir la rotación activa del cuello hacia el lado doloroso.",
+        "whatToLookFor": "Limitación del rango a menos de 60 grados (4º elemento del Clúster de Wainner).",
+        "mentorTip": "La combinación de 4/4 criterios del Clúster de Wainner tiene un LR+ de 30.3 (probabilidad post-test >90%).",
+        "results": [
+          {
+            "label": "Rotación limitada (<60° con dolor)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 3 },
+              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Rotación conservada (≥60°)",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-cervical-motor",
+        "order": 5,
+        "name": "Exploración Motora por Miotomas (C5-T1)",
+        "category": "neurologia",
+        "essential": true,
+        "instruction": "Testar: C5 (deltoides/abducción), C6 (bíceps/extensión muñeca), C7 (tríceps/flexión muñeca), C8 (flexión dedos), T1 (interóseos).",
+        "whatToLookFor": "Paresia objetiva en el miotoma correspondiente.",
+        "mentorTip": "Diferenciar dolor de paresia. Una paresia <4/5 en tríceps indica afectación franca de C7.",
+        "results": [
+          {
+            "label": "Fuerza 5/5 normal en todos los miotomas",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Paresia en Tríceps / Extensores de muñeca (Miotoma C7)",
+            "value": "c7_paresis",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Paresia en Bíceps / Extensores radiales (Miotoma C6)",
+            "value": "c6_paresis",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Paresia en Deltoides (C5) o Interóseos (C8/T1)",
+            "value": "c5_c8_paresis",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c5-c8", "effect": "increase", "weight": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-cervical-reflexes",
+        "order": 6,
+        "name": "Reflejos Osteotendinosos (Bicipital C5-C6, Tricipital C7)",
+        "category": "neurologia",
+        "essential": false,
+        "instruction": "Comparar reflejo bicipital (C5-C6), estilorradial (C6) y tricipital (C7) con el lado sano.",
+        "whatToLookFor": "Hiporreflexia o arreflexia unilateral en la raíz comprometida.",
+        "mentorTip": "La asimetría en el reflejo tricipital es un fuerte marcador confirmatorio de C7.",
+        "results": [
+          {
+            "label": "Reflejos simétricos y normales",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Reflejo Tricipital disminuido o abolido (C7)",
+            "value": "c7_reflex_drop",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Reflejo Bicipital / Estilorradial disminuido (C6)",
+            "value": "c6_reflex_drop",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 4 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-wainner",
+      "name": "Clúster de Wainner (Radiculopatía Cervical)",
+      "description": "1. Spurling (+) + 2. Distracción (+) + 3. ULTT1 (+) + 4. Rotación cervical <60°",
+      "requiredTests": [
+        "exam-cervical-spurling",
+        "exam-cervical-distraction",
+        "exam-cervical-ultt1",
+        "exam-cervical-rotation"
+      ],
+      "threshold": 3,
+      "concordanceText": "Los hallazgos cumplen el Clúster de Wainner (≥3 de 4 pruebas positivas, LR+ >6.0). Alta concordancia para radiculopatía cervical.",
+      "evidenceNote": "4/4 positivos: LR+ 30.3 (probabilidad >90%). 3/4 positivos: LR+ 6.1 (Wainner et al., Spine 2003)."
+    }
+  ],
+  "imaging": {
+    "type": "RM Columna Cervical",
+    "clinicalQuestion": "¿Existe hernia discal posterolateral o foraminosis uncovertebral que comprima la raíz nerviosa concordante con la clínica?",
+    "structures": [
+      {
+        "id": "cervical-mri",
+        "name": "Resonancia Magnética Cervical",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "mri-normal",
+            "label": "Sin compromiso radicular evidente (cambios degenerativos leves)",
+            "concordanceEffect": "discordant"
+          },
+          {
+            "id": "mri-hernia-c6-c7",
+            "label": "Hernia discal C6-C7 posterolateral con compresión de raíz C7",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "mri-hernia-c5-c6",
+            "label": "Hernia discal C5-C6 posterolateral con compresión de raíz C6",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "mri-uncoartrosis",
+            "label": "Uncoartrosis con estenosis foraminal ósea",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "mri-multilevel",
+            "label": "Discopatía multinivel sin clara compresión monorradicular",
+            "concordanceEffect": "possible"
+          }
+        ]
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "La clínica, el miotoma/dermatoma y la imagen por RM convergen exactamente en el mismo nivel foraminal.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Hay alteraciones discales multinivel; correlacionar estrechamente con la exploración física para no tratar imágenes incidentales.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "La RM no muestra compresión que justifique el dolor. Reconsiderar origen miofascial, plexopatía o túnel carpiano (Double Crush).",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-subacromial",
+      "name": "Patología del Manguito Rotador / Hombro",
+      "whatWouldReconsider": "Dolor agravado por movimientos de hombro en vez de cuello, signos de Neer/Hawkins positivos, screening cervical normal.",
+      "keyDiscriminatingTest": "Test de Neer y Hawkins vs Spurling"
+    },
+    {
+      "id": "dd-cts",
+      "name": "Síndrome del Túnel Carpiano (Atrapamiento periférico)",
+      "whatWouldReconsider": "Parestesias limitadas a dedos 1º a 3º que despiertan de noche, Phalen y Durkan positivos, cuello asintomático.",
+      "keyDiscriminatingTest": "Test de Durkan y Phalen vs ULTT1"
+    },
+    {
+      "id": "dd-myofascial",
+      "name": "Dolor Miofascial de Trapecio y Elevador de la Escápula",
+      "whatWouldReconsider": "Puntos gatillo palpables con dolor referido local, sin déficit motor ni reflejo alterado.",
+      "keyDiscriminatingTest": "Palpación miofascial y ausencia de parestesias"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-radic-c7",
+      "structuralDiagnosis": "Hernia discal C6-C7 / Foraminosis C7",
+      "painGenerator": "Radiculopatía Cervical C7 (Predominio Neuropático)",
+      "mechanism": "neuropathic",
+      "mechanismLabel": "Predominio Neuropático Radicular",
+      "supportingFindings": [
+        "Dolor irradiado al dedo medio",
+        "Clúster de Wainner positivo",
+        "Reflejo tricipital disminuido",
+        "Paresia tríceps/extensión muñeca"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-radic-c6",
+      "structuralDiagnosis": "Hernia discal C5-C6 / Foraminosis C6",
+      "painGenerator": "Radiculopatía Cervical C6 (Predominio Neuropático)",
+      "mechanism": "neuropathic",
+      "mechanismLabel": "Predominio Neuropático Radicular",
+      "supportingFindings": [
+        "Dolor irradiado a pulgar e índice",
+        "Spurling y ULTT1 positivos",
+        "Reflejo bicipital disminuido"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-cervical-referred",
+      "structuralDiagnosis": "Cervicoartrosis / Síndrome miofascial cervical",
+      "painGenerator": "Dolor Somático Referido Cervical",
+      "mechanism": "nociceptive",
+      "mechanismLabel": "Predominio Nociceptivo Somático",
+      "supportingFindings": [
+        "Dolor axial que no sobrepasa el codo",
+        "ULTT1 y Spurling negativos",
+        "Ausencia de déficit neurológico"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El dolor que baja por su brazo se debe a la irritación o compresión de una raíz nerviosa en el cuello. La gran mayoría de los casos (>80%) mejoran significativamente en las primeras 6 a 12 semanas combinando medicación específica para el nervio, ejercicios guiados y mantenimiento de la actividad sin posturas forzadas.",
+      "mentorNote": "Explicar el curso favorable natural y tranquilizar al paciente frente a hallazgos en resonancia magnética."
+    },
+    "exercise": {
+      "objective": "Recuperar movilidad cervical sin provocar dolor irradiado y descomprimir las raíces nerviosas mediante neurodinámica.",
+      "phases": [
+        {
+          "name": "Fase 1: Alivio y Neurodinámica Suave",
+          "description": "Deslizamientos neurales del nervio mediano (flossing) sin tensión máxima, tracción cervical suave.",
+          "duration": "1-3 semanas"
+        },
+        {
+          "name": "Fase 2: Isométricos y Control Motor",
+          "description": "Reeducación de flexores cervicales profundos (chin tucks en supino), fortalecimiento escapular.",
+          "duration": "3-6 semanas"
+        },
+        {
+          "name": "Fase 3: Fortalecimiento y Carga Funcional",
+          "description": "Fortalecimiento progresivo de cintura escapular, trapecio medio/inferior y ergonomía postural.",
+          "duration": "6-12 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar movimientos de extensión + rotación ipsilateral mantenida si reproducen dolor eléctrico."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "Neuromoduladores (Pregabalina / Gabapentina / Duloxetina)",
+          "indication": "Dolor neuropático radicular con quemazón, descargas o parestesias.",
+          "example": "Pregabalina 25-75mg noche (titular hasta 150mg/12h) o Duloxetina 30-60mg/24h",
+          "duration": "4-12 semanas según respuesta",
+          "guardrails": ["Función renal", "Somnolencia/mareo inicial", "Evitar retirada brusca"]
+        },
+        {
+          "name": "AINEs / Corticoides en ciclo corto",
+          "indication": "Fase hiperaguda inflamatoria (primeras 1-2 semanas).",
+          "example": "Metilprednisolona oral pauta descendente en 6 días o Naproxeno 500mg/12h",
+          "duration": "7-10 días máximo",
+          "guardrails": ["Riesgo gastrointestinal", "Hipertensión", "Diabetes (control de glucemias)"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si dolor radicular severo refractario a tratamiento médico (>4 semanas) con concordancia clínico-imagen alta/parcial.",
+      "objective": "Desinflamar la raíz nerviosa comprometida mediante depósito de anestésico local y corticoide guiado por fluoroscopia o ecografía.",
+      "targets": [
+        {
+          "name": "Epidural Cervical Interlaminar (C7-T1) o Bloqueo Foraminal Selectivo",
+          "indication": "Radiculopatía cervical C6 o C7 confirmada con dolor limitante.",
+          "options": [
+            { "name": "Infiltración epidural interlaminar C7-T1 con corticoide no particulado (Dexametasona)", "evidence": "Alta / Nivel I" },
+            { "name": "Bloqueo radicular selectivo cervical guiado por ecografía/fluroscopia", "evidence": "Moderada" }
+          ],
+          "contraindications": [
+            "Coagulopatía / Anticoagulación activa",
+            "Infección local o sistémica",
+            "Uso de corticoides particulados en columna cervical (Riesgo de embolización)"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 3-4 semanas",
+    "parameters": [
+      { "name": "Dolor radicular en brazo (EVA)", "icon": "📊" },
+      { "name": "Fuerza muscular en miotomas", "icon": "💪" },
+      { "name": "Reflejos osteotendinosos", "icon": "⚡" },
+      { "name": "Sensibilidad y parestesias", "icon": "🤲" },
+      { "name": "Calidad del sueño", "icon": "😴" },
+      { "name": "Objetivo funcional del paciente", "icon": "🎯" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría clínica clara",
+        "action": "Consolidar fisioterapia y retirar progresivamente neuromoduladores.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Mejoría parcial",
+        "action": "Ajustar dosis de neuromoduladores y considerar abordaje intervencionista si dolor limitante.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Sin mejoría tras 6 semanas",
+        "action": "Revisar RM, valorar infiltración epidural cervical o interconsulta quirúrgica.",
+        "icon": "🔴"
+      },
+      {
+        "result": "worsening",
+        "label": "Déficit motor progresivo",
+        "action": "Derivación urgente a Neurocirugía por riesgo de lesión neurológica permanente.",
+        "icon": "🚨"
+      }
+    ],
+    "keyPrinciple": "Si aparece pérdida progresiva de fuerza en la extremidad, suspender tratamiento conservador y solicitar valoración neuroquirúrgica inmediata."
+  },
+  "evidence": [
+    {
+      "citation": "Wainner RS et al. Reliability and diagnostic accuracy of the clinical examination and patient self-report measures for cervical radiculopathy. Spine (Phila Pa 1976). 2003;28(1):52-62.",
+      "topic": "Clúster de Wainner y precisión diagnóstica en radiculopatía cervical",
+      "year": 2003
+    },
+    {
+      "citation": "Manchikanti L et al. Epidural interventions in the management of chronic spinal pain: American Society of Interventional Pain Physicians (ASIPP) comprehensive evidence-based guidelines. Pain Physician. 2021;24(S1):S27-S208.",
+      "topic": "Evidencia de infiltraciones epidurales cervicales",
+      "year": 2021
+    }
+  ]
+}

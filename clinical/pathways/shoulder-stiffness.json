@@ -1,0 +1,522 @@
+{
+  "id": "shoulder-stiffness",
+  "region": "hombro",
+  "regionLabel": "Hombro y Cintura Escapular",
+  "regionIcon": "🦴",
+  "presentation": "Rigidez",
+  "presentationDesc": "Pérdida marcada de movilidad glenohumeral activa y pasiva (Hombro Congelado / Capsulitis Adhesiva vs Artrosis GH)",
+  "redFlags": [
+    {
+      "id": "rf-septic",
+      "text": "Fiebre, calor local intenso, eritema o antecedente de infiltración reciente (sospecha de artritis séptica glenohumeral)",
+      "severity": "critical",
+      "action": "Artrocentesis urgente, analítica y cobertura antibiótica hospitalaria"
+    },
+    {
+      "id": "rf-post-luxation",
+      "text": "Antecedente de crisis convulsiva, electrocución o traumatismo con rotación interna fija bloqueada (sospecha de luxación posterior no diagnosticada)",
+      "severity": "critical",
+      "action": "Radiografía axilar / TC de hombro urgente"
+    },
+    {
+      "id": "rf-tumor",
+      "text": "Masa palpable, dolor óseo nocturno profundo no mecánico o antecedentes de neoplasia",
+      "severity": "high",
+      "action": "Radiografía urgente y resonancia magnética"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-capsulitis",
+      "name": "Capsulitis Adhesiva (Hombro Congelado / Frozen Shoulder)",
+      "shortName": "Capsulitis Adhesiva",
+      "description": "Fibrosis e inflamación de la cápsula articular y del intervalo de los rotadores (patrón capsular RE > ABD > RI).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-gh-osteoarthritis",
+      "name": "Artrosis Glenohumeral (Omartrosis)",
+      "shortName": "Omartrosis GH",
+      "description": "Degeneración del cartílago articular glenohumeral con crepitación ósea y osteofitos.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-massive-cuff-tear",
+      "name": "Rotura Masiva de Manguito Rotador con Pseudoparálisis",
+      "shortName": "Rotura Masiva de Manguito",
+      "description": "Pérdida de elevación activa pero con movilidad PASIVA relativamente conservada.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-calcific-block",
+      "name": "Tendinopatía Calcificante en fase hiperálgica con bloqueo antiálgico",
+      "shortName": "Tendinopatía Calcificante",
+      "description": "Bloqueo por dolor severo agudo y efecto masa de calcificación voluminosa.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El hombro está rígido tanto cuando intenta moverlo usted como cuando alguien intenta movérselo de forma relajada?»",
+      "explanation": "La pérdida de movilidad PASIVA es la clave innegociable que define la afectación capsular o articular ósea. Si la movilidad pasiva está libre pero la activa perdida, se trata de una rotura tendinosa o denervación (pseudoparálisis).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, está totalmente bloqueado y nadie puede moverlo más allá de un tope duro (Pérdida PASIVA y Activa)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-massive-cuff-tear", "effect": "decrease", "weight": 4 }
+          ]
+        },
+        {
+          "label": "No, yo no puedo levantarlo, pero el explorador puede moverlo casi completo (Pérdida solo ACTIVA)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-massive-cuff-tear", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 4 },
+            { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "decrease", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Qué movimiento es el que nota más limitado para su vida diaria?»",
+      "explanation": "El patrón capsular clásico de Cyriax en el hombro se caracteriza por una restricción predominante de la Rotación Externa, seguida de la Abducción y finalmente la Rotación Interna.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Rotación externa: no puedo peinarme, lavarme la nuca ni abrir la puerta hacia afuera",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Rotación interna: no puedo abrocharme el sostén ni alcanzarme el bolsillo trasero",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Elevación pura hacia arriba",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-massive-cuff-tear", "effect": "increase", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Padece Diabetes Mellitus, problemas de tiroides (hipo/hipertiroidismo) o antecedente de Dupuytren?»",
+      "explanation": "La diabetes mellitus confiere un riesgo 5 a 10 veces mayor de capsulitis adhesiva, a menudo con curso más prolongado y resistente.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, tengo Diabetes Mellitus o patología tiroidea",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "No tengo antecedentes endocrinológicos",
+          "hypothesisEffects": []
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿En qué fase de evolución se encuentra el cuadro?»",
+      "explanation": "La capsulitis evoluciona en 3 etapas: 1. Fase de congelación (predomina dolor nocturno severo), 2. Fase congelada (predomina rigidez mecánica con menos dolor), 3. Descongelación (recuperación lenta del rango).",
+      "essential": false,
+      "answers": [
+        {
+          "label": "1-4 meses: Dolor agudo muy intenso, especialmente nocturno, y empieza a perderse movimiento",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-calcific-block", "effect": "increase", "weight": 2 }
+          ]
+        },
+        {
+          "label": "4-12 meses: Dolor en reposo ha disminuido, pero el hombro está 'rígido como una piedra'",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "Varios años de evolución lenta progresiva con crujidos óseos ásperos",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "«¿Cuál es su objetivo funcional principal?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder dormir de noche sobre ese lado sin despertarme", "hypothesisEffects": [] },
+        { "label": "Poder vestirme y asearme de forma independiente (peinado, espalda)", "hypothesisEffects": [] },
+        { "label": "Volver a realizar actividades laborales y deportivas", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Hombro Rígido",
+    "steps": [
+      {
+        "id": "exam-passive-er",
+        "order": 1,
+        "name": "Medición de Rotación Externa PASIVA con codo pegado al cuerpo",
+        "category": "movilidad_pasiva",
+        "essential": true,
+        "instruction": "Paciente sentado o en decúbito supino. Codo flexionado a 90° pegado al tronco. Evaluar pasivamente la rotación externa y comparar con el lado sano.",
+        "whatToLookFor": "Pérdida del rango >50% o <30° de rotación externa pasiva con tope capsular duro.",
+        "mentorTip": "Es el signo clínico aislado más sensible y específico para capsulitis adhesiva frente a cualquier otra patología del manguito.",
+        "results": [
+          {
+            "label": "Restricción severa (<30° o pérdida >50% respecto al lado sano)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Rotación externa pasiva conservada (>60° simétrica)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 6 },
+              { "hypothesisId": "hyp-massive-cuff-tear", "effect": "increase", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-passive-abduction",
+        "order": 2,
+        "name": "Abducción Pasiva con Fijación Escapular",
+        "category": "movilidad_pasiva",
+        "essential": true,
+        "instruction": "Fijar con una mano el ángulo inferior de la escápula y elevar pasivamente el brazo lateralmente.",
+        "whatToLookFor": "Restricción glenohumeral pura (<90°) con sustitución temprana mediante báscula escapular ('shrug sign').",
+        "mentorTip": "El encogimiento de hombros temprano al intentar abducir demuestra la pérdida de excursión glenohumeral.",
+        "results": [
+          {
+            "label": "Abducción GH pasiva limitada (<90°) con báscula escapular compensatoria",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 },
+              { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Abducción pasiva completa (>150°)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-crepitus",
+        "order": 3,
+        "name": "Evaluación de Crepitación Ósea Articular Glenohumeral",
+        "category": "articular",
+        "essential": true,
+        "instruction": "Colocar la mano sobre la cabeza humeral mientras se moviliza pasivamente el hombro en arcos completos.",
+        "whatToLookFor": "Crepitación áspera ósea continua y tope articular duro óseo vs elástico capsular.",
+        "mentorTip": "La crepitación palpable continua orienta fuertemente hacia artrosis glenohumeral avanzada frente a capsulitis adhesiva pura.",
+        "results": [
+          {
+            "label": "Crepitación ósea franca y palpable con tope duro",
+            "value": "bone_crepitus",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Tope firme elástico sin crepitación ósea",
+            "value": "capsular_endfeel",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-drop-arm-stiff",
+        "order": 4,
+        "name": "Drop Arm Test (Descarte de Rotura Masiva)",
+        "catalogTestId": "hombro-drop-arm",
+        "category": "manguito",
+        "essential": false,
+        "instruction": "Elevar pasivamente el brazo a 90° de abducción y pedir al paciente que lo baje lentamente.",
+        "whatToLookFor": "Caída brusca del brazo por incapacidad motora sin tope mecánico.",
+        "results": [
+          {
+            "label": "El brazo cae bruscamente (Drop Arm +)",
+            "value": "drop_arm_positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-massive-cuff-tear", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Negativo o imposible por rigidez previa",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-capsulitis",
+      "name": "Criterios Clínicos de Capsulitis Adhesiva",
+      "description": "1. Pérdida pasiva de RE >50% + 2. Pérdida pasiva de ABD + 3. Antecedente endocrino/curso temporal + 4. Ausencia de crepitación ósea",
+      "requiredTests": ["exam-passive-er", "exam-passive-abduction", "exam-crepitus"],
+      "threshold": 2,
+      "concordanceText": "Patrón capsular clásico con restricción multidireccional pasiva. Alta probabilidad diagnóstica de Capsulitis Adhesiva.",
+      "evidenceNote": "La pérdida aislada de rotación externa pasiva presenta especificidad >90% para capsulitis adhesiva (Kelley et al., JOSPT 2013)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe engrosamiento de la cápsula en el receso axilar, engrosamiento del ligamento coracohumeral o signos de omartrosis?",
+    "structures": [
+      {
+        "id": "us-axillary-recess",
+        "name": "Receso Axilar Glenohumeral",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-axil-normal",
+            "label": "Cápsula normal (<3 mm de espesor)",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-axil-thickened",
+            "label": "Engrosamiento capsular axilar (>3.5-4.0 mm) con hipoecogenicidad",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Receso axilar glenohumeral: {finding}."
+      },
+      {
+        "id": "us-rotator-interval",
+        "name": "Intervalo de los Rotadores y Ligamento Coracohumeral (CHL)",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-chl-normal",
+            "label": "Ligamento coracohumeral normal (<2.5 mm)",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-chl-thickened",
+            "label": "Engrosamiento del ligamento coracohumeral (>3.0 mm) y señal Doppler hipervascular",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Intervalo de los rotadores y ligamento CHL: {finding}."
+      },
+      {
+        "id": "us-gh-joint",
+        "name": "Articulación Glenohumeral Posterior (Cartílago y Reborde)",
+        "priority": 2,
+        "findings": [
+          {
+            "id": "us-gh-smooth",
+            "label": "Contorno óseo liso sin osteofitos",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-gh-osteophytes",
+            "label": "Osteofitosis marginal severa y adelgazamiento de cartílago (Omartrosis)",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Articulación glenohumeral posterior: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "La clínica de patrón capsular pasivo y el engrosamiento del receso axilar/CHL en ecografía confirman Capsulitis Adhesiva.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Rigidez clínica con cambios ecográficos leves; valorar radiografía simple para descartar calcificación oculta u omartrosis.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "La ecografía muestra rotura masiva de manguito con cápsula fina. La limitación puede ser por dolor o pseudoparálisis.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-omartrosis",
+      "name": "Artrosis Glenohumeral",
+      "whatWouldReconsider": "Crepitación ósea franca en radiografía, disminución del espacio articular en RX AP en rotación neutra.",
+      "keyDiscriminatingTest": "Radiografía simple de hombro (AP y axilar)"
+    },
+    {
+      "id": "dd-cuff-tear",
+      "name": "Rotura Masiva de Manguito Rotador",
+      "whatWouldReconsider": "Movilidad pasiva libre con pérdida exclusiva de elevación activa (pseudoparálisis).",
+      "keyDiscriminatingTest": "Movilidad pasiva en decúbito supino"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-capsulitis-freezing",
+      "structuralDiagnosis": "Capsulitis Adhesiva en fase de congelación / inflamatoria",
+      "painGenerator": "Inflamación capsulo-sinovial del intervalo de los rotadores",
+      "mechanism": "nociceptive_inflammatory",
+      "mechanismLabel": "Predominio Nociceptivo Inflamatorio",
+      "supportingFindings": [
+        "Pérdida pasiva de rotación externa",
+        "Dolor nocturno severo",
+        "Engrosamiento ligamento coracohumeral en ecografía",
+        "Antecedente endocrino compatible"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-gh-oa",
+      "structuralDiagnosis": "Artrosis Glenohumeral avanzada",
+      "painGenerator": "Degeneración articular y osteofitosis glenohumeral",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Mecánico",
+      "supportingFindings": [
+        "Crepitación ósea palpable",
+        "Pérdida articular global de larga evolución",
+        "Osteofitos en ecografía/radiografía"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Presenta una capsulitis adhesiva ('hombro congelado'). Es un proceso inflamatorio y fibrótico que cura espontáneamente en la mayoría de los pacientes, aunque su curso natural suele durar entre 12 y 24 meses. El objetivo del tratamiento es reducir el dolor nocturno, evitar la pérdida de más movimiento y acelerar la fase de recuperación sin forzar ejercicios agresivos que aumenten la inflamación.",
+      "mentorNote": "La educación es crítica: forzar ejercicios dolorosos en fase 1 aumenta la sinovitis y empeora el pronóstico."
+    },
+    "exercise": {
+      "objective": "Mantener la movilidad escapular y recuperar suavemente los rangos articulares sin despertar dolor reactivo.",
+      "phases": [
+        {
+          "name": "Fase 1: Alivio y Rango no Doloroso",
+          "description": "Ejercicios pendulares de Codman, estiramientos capsulares pasivos suaves en decúbito (bajo umbral de dolor ≤3/10).",
+          "duration": "1-6 semanas"
+        },
+        {
+          "name": "Fase 2: Estiramiento Capsular Progresivo",
+          "description": "Estiramiento pasivo con pica en rotación externa y poleas de tracción suave.",
+          "duration": "6-16 semanas"
+        },
+        {
+          "name": "Fase 3: Fortalecimiento y Carga Funcional",
+          "description": "Fortalecimiento progresivo de manguito rotador y musculatura periescapular al recuperar arcos funcionales.",
+          "duration": "4-8 meses"
+        }
+      ],
+      "loadGuidance": "Respetar la regla de no dolor post-ejercicio. No realizar manipulaciones intempestivas en fase inflamatoria."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "Corticoide oral en ciclo corto (Fase de Congelación)",
+          "indication": "Dolor nocturno severo de fase inflamatoria temprana (<3 meses).",
+          "example": "Prednisona 30 mg/día durante 10 días con pauta descendente rápida en 2 semanas",
+          "duration": "2 semanas",
+          "guardrails": ["Diabetes mellitus (estrecha monitorización de glucemia)", "Hipertensión", "Riesgo GI"]
+        },
+        {
+          "name": "AINEs pauta corta + Analgesia simple",
+          "indication": "Dolor moderado diurno.",
+          "example": "Ibuprofeno 600mg/8h o Paracetamol 1g/8h",
+          "duration": "2-3 semanas según necesidad",
+          "guardrails": ["Función renal", "Riesgo cardiovascular"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Indicada en fase dolorosa o rígida precoz con gran impacto en el sueño y calidad de vida.",
+      "objective": "Distender mecánicamente la cápsula fibrótica y suprimir la sinovitis para abrir una ventana de rehabilitación inmediata.",
+      "targets": [
+        {
+          "name": "Hidrodilatación Capsular Glenohumeral Ecoguiada (Capsular Distension)",
+          "indication": "Capsulitis adhesiva refractaria con pérdida marcada de rotación externa.",
+          "options": [
+            { "name": "Inyección intraarticular GH de suero salino (20-40 ml) + corticoide + anestésico local hasta rotura capsular controlada", "evidence": "Alta / Nivel I" },
+            { "name": "Bloqueo ecoguiado del nervio supraescapular (SSNB) concomitante", "evidence": "Alta" }
+          ],
+          "contraindications": [
+            "Infección local o sistémica",
+            "Alergia a fármacos",
+            "Desgarro masivo no diagnosticado"
+          ],
+          "postProcedure": "Iniciar movilización activa y pasiva asistida en las primeras 24-48 horas post-hidrodilatación."
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 4-6 semanas",
+    "parameters": [
+      { "name": "Grados de Rotación Externa Pasiva", "icon": "📐" },
+      { "name": "Dolor nocturno y calidad del sueño", "icon": "😴" },
+      { "name": "Capacidad para vestirse y asearse", "icon": "👕" },
+      { "name": "Consumo de analgésicos", "icon": "💊" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Ganancia de rango >20° y alivio del dolor",
+        "action": "Intensificar fisioterapia activa y estiramientos.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio del dolor pero persiste rigidez severa",
+        "action": "Considerar segunda sesión de hidrodilatación o infiltración de receso axilar.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Rigidez refractaria completa tras 6-9 meses",
+        "action": "Valorar liberación capsular artroscópica con Cirugía Ortopédica.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "La hidrodilatación ecoguiada combinada con fisioterapia inmediata acorta en meses la evolución de la capsulitis adhesiva."
+  },
+  "evidence": [
+    {
+      "citation": "Kelley MJ et al. Shoulder pain and mobility deficits: adhesive capsulitis. J Orthop Sports Phys Ther. 2013;43(5):A1-31.",
+      "topic": "Guía de práctica clínica en capsulitis adhesiva",
+      "year": 2013
+    },
+    {
+      "citation": "Catapano M et al. Effectiveness of Hydrodilatation in Addition to Physical Therapy for Adhesive Capsulitis: A Systematic Review and Meta-Analysis. Am J Sports Med. 2018;46(8):2007-2016.",
+      "topic": "Evidencia de la hidrodilatación capsular ecoguiada",
+      "year": 2018
+    }
+  ]
+}

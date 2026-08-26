@@ -1,0 +1,460 @@
+{
+  "id": "lumbar-axial",
+  "region": "lumbar",
+  "regionLabel": "Columna Lumbar / Torácica",
+  "regionIcon": "⚡",
+  "presentation": "Dolor lumbar axial",
+  "presentationDesc": "Dolor centrado en la zona lumbar baja o paravertebral sin irradiación radicular clara por debajo de la rodilla (Facetario vs Discogénico vs Miofascial)",
+  "redFlags": [
+    {
+      "id": "rf-fracture",
+      "text": "Antecedente de caída, esfuerzo con osteoporosis conocida o uso prolongado de corticoides orales (sospecha de fractura vertebral por compresión)",
+      "severity": "critical",
+      "action": "Radiografía simple lateral urgente / RM para valorar edema óseo agudo"
+    },
+    {
+      "id": "rf-spondylodiscitis",
+      "text": "Fiebre, infección urinaria/respiratoria reciente, dolor lumbar inflamatorio nocturno severo y constante en reposo",
+      "severity": "critical",
+      "action": "Analítica urgente (PCR/VSG/hemocultivos) y RM contrastada urgente"
+    },
+    {
+      "id": "rf-oncology",
+      "text": "Historia previa de neoplasia con dolor continuo progresivo que empeora al acostarse y no cede en ninguna postura",
+      "severity": "high",
+      "action": "RM lumbar completa y estudio de extensión"
+    },
+    {
+      "id": "rf-cauda",
+      "text": "Alteración aguda del control de esfínteres (retención urinaria o incontinencia) o anestesia perianal en silla de montar",
+      "severity": "critical",
+      "action": "Derivación neuroquirúrgica inmediata por sospecha de Síndrome de Cauda Equina"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-facet-syndrome",
+      "name": "Síndrome Facetario Lumbar (Artropatía Zigoapofisaria)",
+      "shortName": "Síndrome Facetario",
+      "description": "Dolor nociceptivo originado en las articulaciones facetarias posteriores (L4-L5 y L5-S1 más comunes), agravado con extensión y rotación.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-discogenic",
+      "name": "Dolor Lumbar Discogénico (Desgarro Anular / Degeneración Discal)",
+      "shortName": "Dolor Discogénico",
+      "description": "Dolor originado en las fibras externas del anillo fibroso inervadas por el nervio sinuvertebral, agravado en flexión y sedestación prolongada.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-myofascial-core",
+      "name": "Lumbalgia Mecánica Inespecífica / Síndrome Miofascial Paravertebral",
+      "shortName": "Dolor Miofascial / Inespecífico",
+      "description": "Sobrecarga muscular paravertebral, glútea y del cuadrado lumbar con déficit de control motor del core.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-si-referred",
+      "name": "Disfunción de la Articulación Sacroilíaca",
+      "shortName": "Articulación Sacroilíaca",
+      "description": "Dolor en región del surco sacroilíaco y glúteo alto con irradiación a ingle o cara posterior de muslo.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿En qué postura o movimiento empeora claramente su dolor lumbar?»",
+      "explanation": "La postura agravante es el discriminador clínico maestro: la extensión lumbar y la bipedestación cargan las articulaciones facetarias posteriores; la flexión lumbar y la posición sentada aumentan la presión intradiscal.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Empeora al ponerme de pie derecho, caminar erguido o inclinarme hacia atrás (Extensión)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-discogenic", "effect": "decrease", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Empeora al estar sentado mucho rato, al atarme los cordones o al toser/flexionar (Flexión)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-facet-syndrome", "effect": "decrease", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Empeora con cualquier esfuerzo postural y fatiga muscular sin un patrón claro",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-myofascial-core", "effect": "increase", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Siente rigidez en la espalda al levantarse de la cama por la mañana?»",
+      "explanation": "Una rigidez matutina breve (<30 min) que mejora con el movimiento suave es típica de la artrosis facetaria lumbar; si dura >60 min orienta a espondiloartropatía inflamatoria axial (espondilitis).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me levanto muy rígido y tardo 15-30 minutos en 'engrasar' la espalda",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "No tengo rigidez matutina, el dolor aparece al cabo de las horas de actividad",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-myofascial-core", "effect": "increase", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿El dolor baja hacia alguna otra zona de la pierna?»",
+      "explanation": "El dolor facetario y sacroilíaco puede dar 'pseudociática' referida a glúteo y cara posterior de muslo, pero de forma característica no sobrepasa la rodilla ni presenta déficit neurológico motor o sensitivo.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Se queda en la zona lumbar baja y glúteos/muslo alto (nunca pasa de la rodilla)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 2 },
+            { "hypothesisId": "hyp-si-referred", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "Es un dolor exclusivamente central en la línea media lumbar",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-facet-syndrome", "effect": "decrease", "weight": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Cuál es la meta u objetivo funcional que más desea alcanzar?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder estar de pie o caminar sin tener que sentarme por dolor", "hypothesisEffects": [] },
+        { "label": "Poder trabajar sentado en la oficina la jornada completa", "hypothesisEffects": [] },
+        { "label": "Realizar tareas domésticas o levantar peso sin miedo a quedarme clavado", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Lumbalgia Axial",
+    "steps": [
+      {
+        "id": "exam-lumbar-kemp",
+        "order": 1,
+        "name": "Test de Kemp / Test del Cuadrante Lumbar",
+        "catalogTestId": "lumbar-kemp",
+        "category": "facetas",
+        "essential": true,
+        "instruction": "Paciente de pie. Extensión lumbar máxima combinada con rotación e inclinación lateral hacia el lado evaluado mientras el examinador aplica compresión axial suave sobre los hombros.",
+        "whatToLookFor": "Reproducción del dolor lumbar ipsilateral característico al comprimir las carillas articulares facetarias.",
+        "mentorTip": "Kemp positivo bilateral con dolor a la palpación paravertebral es el hallazgo clínico cardinal del síndrome facetario.",
+        "results": [
+          {
+            "label": "Positivo (reproduce dolor lumbar/glúteo ipsilateral)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-discogenic", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Negativo (no reproduce dolor en extensión)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-facet-syndrome", "effect": "decrease", "weight": 4 },
+              { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-facet-palpation",
+        "order": 2,
+        "name": "Palpación Paravertebral Profunda sobre Articulaciones Facetarias",
+        "category": "palpacion",
+        "essential": true,
+        "instruction": "Paciente en decúbito prono con almohada bajo abdomen. Presión directa con el pulgar a 2 cm de la línea media espinosa sobre L4-L5 y L5-S1.",
+        "whatToLookFor": "Dolor a la presión selectiva paravertebral que reproduce el dolor habitual del paciente.",
+        "mentorTip": "La palpación dolorosa sobre la columna articular junto a Kemp positivo aumenta fuertemente la probabilidad diagnóstica.",
+        "results": [
+          {
+            "label": "Dolor selectivo a la palpación en línea facetaria L4-L5 o L5-S1",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Sin dolor a la palpación articular",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-flexion-provocation",
+        "order": 3,
+        "name": "Flexión Lumbar Activa y Respuesta a Carga Anterior",
+        "category": "movilidad",
+        "essential": true,
+        "instruction": "Paciente de pie. Flexión anterior de tronco completa con rodillas estiradas.",
+        "whatToLookFor": "Aumento marcado del dolor lumbar en flexión máxima o alivio al realizar extensiones repetidas (centralización de McKenzie).",
+        "mentorTip": "El empeoramiento en flexión con alivio en extensión orienta hacia dolor de origen discogénico anterior.",
+        "results": [
+          {
+            "label": "Dolor marcado en flexión lumbar anterior (Patrón discogénico)",
+            "value": "flexion_pain",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 5 },
+              { "hypothesisId": "hyp-facet-syndrome", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Flexión libre y confortable; extensión bloqueada",
+            "value": "extension_block",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 4 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-slr-descarte",
+        "order": 4,
+        "name": "Test de Lasègue (Descarte de Conflicto Radicular)",
+        "catalogTestId": "lumbar-lasegue",
+        "category": "radiculopatia",
+        "essential": true,
+        "instruction": "Elevación de pierna recta en decúbito supino.",
+        "whatToLookFor": "Confirmar que es NEGATIVO (sin irradiación distal a pie) para ratificar dolor puramente axial.",
+        "results": [
+          {
+            "label": "Negativo (>70° sin dolor radicular)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 2 },
+              { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Positivo franco con dolor radicular irradiado a pie",
+            "value": "positive_radicular",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-revel-facet",
+      "name": "Criterios Clínicos de Revel para Síndrome Facetario Lumbar",
+      "description": "1. Edad >65 años + 2. Dolor no empeora en flexión + 3. Empeora en extensión + 4. Empeora con rotación + 5. Kemp (+) + 6. Ausencia de radiculalgia",
+      "requiredTests": ["exam-lumbar-kemp", "exam-facet-palpation", "exam-flexion-provocation", "exam-slr-descarte"],
+      "threshold": 3,
+      "concordanceText": "Cumple criterios clínicos de sospecha de Síndrome Facetario Lumbar (Criterios de Revel). Candidato a bloqueo diagnóstico de ramos mediales.",
+      "evidenceNote": "La combinación de 5/7 criterios de Revel tiene una especificidad del 92% para dolor facetario confirmado por bloqueo (Revel et al., Spine 1998)."
+    }
+  ],
+  "imaging": {
+    "type": "RM / Radiografía Columna Lumbar",
+    "clinicalQuestion": "¿Existe artrosis facetaria con hipertrofia y derrame zigoapofisario, o cambios Modic / discopatía avanzada concordante?",
+    "structures": [
+      {
+        "id": "imaging-facet-mri",
+        "name": "Articulaciones Facetarias L3-S1",
+        "priority": 1,
+        "findings": [
+          { "id": "facet-normal", "label": "Facetas normales y simétricas", "concordanceEffect": "discordant" },
+          { "id": "facet-arthrosis", "label": "Hipertrofia facetaria con estrechamiento del espacio articular (L4-L5 / L5-S1)", "concordanceEffect": "concordant" },
+          { "id": "facet-effusion", "label": "Derrame intraarticular facetario / quiste sinovial facetario", "concordanceEffect": "concordant" },
+          { "id": "modic-changes", "label": "Cambios Modic tipo I / II en platillos vertebrales y desgarro anular (HIZ) discogénico", "concordanceEffect": "concordant" }
+        ]
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "La clínica de dolor en extensión (Kemp +) y la artropatía facetaria en imagen convergen en el mismo nivel.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Artrosis multinivel habitual por edad; es imprescindible confirmar con bloqueo diagnóstico anestésico antes de cualquier procedimiento definitivo.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Imagen sin cambios facetarios significativos. Reevaluar dolor miofascial o sacroilíaco.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-si",
+      "name": "Articulación Sacroilíaca",
+      "whatWouldReconsider": "Dolor en surco sacroilíaco por debajo de EIPS, Thigh Thrust y Distracción sacroilíaca positivos.",
+      "keyDiscriminatingTest": "Clúster de Laslett (Thigh Thrust + Distracción)"
+    },
+    {
+      "id": "dd-disc",
+      "name": "Dolor Discogénico",
+      "whatWouldReconsider": "Empeoramiento franco sentado y en flexión de tronco, cambios Modic I severos.",
+      "keyDiscriminatingTest": "Flexión lumbar vs Extensión de Kemp"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-facet",
+      "structuralDiagnosis": "Artropatía Facetaria Lumbar L4-L5 / L5-S1",
+      "painGenerator": "Síndrome Facetario Lumbar (Dolor Nociceptivo Articular)",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Articular",
+      "supportingFindings": [
+        "Dolor en extensión y bipedestación",
+        "Test de Kemp positivo",
+        "Palpación paravertebral dolorosa",
+        "Lasègue negativo"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-discogenic",
+      "structuralDiagnosis": "Discopatía Lumbar Degenerativa con Desgarro Anular",
+      "painGenerator": "Dolor Lumbar Discogénico",
+      "mechanism": "nociceptive_inflammatory",
+      "mechanismLabel": "Predominio Nociceptivo / Químico",
+      "supportingFindings": [
+        "Dolor en flexión y sedestación",
+        "Kemp negativo",
+        "Cambios Modic en RM"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor proviene de las pequeñas articulaciones posteriores de la columna (facetas) o del disco intervertebral. El desgaste en las pruebas de imagen es un hallazgo muy común similar a las canas en el pelo y no significa que su espalda sea frágil. Mantenerse activo, fortalecer la faja muscular lumbar y evitar reposos prolongados es el tratamiento más eficaz para recuperar su calidad de vida.",
+      "mentorNote": "Desmitificar el daño estructural en RM para reducir catastrofismo y kinesiofobia."
+    },
+    "exercise": {
+      "objective": "Fortalecer la musculatura estabilizadora del tronco (core) y mejorar el control lumbopélvico.",
+      "phases": [
+        {
+          "name": "Fase 1: Control Motor y Flexión Suave",
+          "description": "Activación del transverso del abdomen y multífidos en supino, basculación pélvica, puente de glúteo.",
+          "duration": "1-4 semanas"
+        },
+        {
+          "name": "Fase 2: Ejercicios de Estabilización (McGill Big 3)",
+          "description": "Bird-Dog (perro-pájaro), plancha lateral y Curl-Up modificado de McGill manteniendo columna neutra.",
+          "duration": "4-8 semanas"
+        },
+        {
+          "name": "Fase 3: Carga Funcional Progresiva",
+          "description": "Reeducación de levantamiento de peso con bisagra de cadera (hip hinge) y caminata diaria.",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar extensiones forzadas si el generador es facetario, o flexiones mantenidas si es discogénico."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs en ciclos cortos (pauta antiinflamatoria)",
+          "indication": "Agudización de dolor articular facetario o brote discogénico.",
+          "example": "Dexketoprofeno 25mg/8h o Naproxeno 500mg/12h",
+          "duration": "7-10 días",
+          "guardrails": ["Función renal", "Riesgo GI", "Hipertensión"]
+        },
+        {
+          "name": "Paracetamol + Relajante muscular pauta breve",
+          "indication": "Contractura refleja paravertebral severa.",
+          "example": "Paracetamol 1g/8h + Ciclobenzaprina 5-10mg noche (máximo 5-7 días)",
+          "duration": "5-7 días",
+          "guardrails": ["Somnolencia diurna", "Evitar relajantes musculares crónicos"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Dolor facetario severo y limitante (>3 meses) refractario a fisioterapia con sospecha clínica y de imagen concordante.",
+      "objective": "Confirmar el generador mediante bloqueo diagnóstico de ramos mediales y proceder a radiofrecuencia (rizolisis) para alivio duradero de 9 a 18 meses.",
+      "targets": [
+        {
+          "name": "Bloqueo Diagnóstico de Ramos Mediales Lumbares (MBB)",
+          "indication": "Paso 1 OBLIGATORIO: Infiltración de 0.5 ml de anestésico local sobre el ramo medial de la rama dorsal guiado por fluoroscopia o ecografía.",
+          "options": [
+            { "name": "Bloqueo diagnóstico con Lidocaína / Bupivacaína (alivio >70-80% en diario de dolor de 6 horas confirma diagnóstico)", "evidence": "Alta / Nivel I" }
+          ],
+          "contraindications": ["Infección activa", "Anticoagulación no controlada"]
+        },
+        {
+          "name": "Radiofrecuencia Convencional Térmica de Ramos Mediales (Rizolisis Facetaria)",
+          "indication": "Paso 2: Realizar tras confirmación con bloqueo diagnóstico positivo previo.",
+          "options": [
+            { "name": "Termolesión a 80°C durante 90 segundos sobre el ramo medial en la unión apófisis transversa-superior", "evidence": "Alta / Nivel I (Manchikanti 2020)" }
+          ],
+          "contraindications": ["Portador de marcapasos sin control", "Infección local"]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 4-6 semanas (o post-bloqueo diagnóstico)",
+    "parameters": [
+      { "name": "Dolor lumbar en bipedestación (EVA)", "icon": "📊" },
+      { "name": "Tolerancia a caminar y estar de pie", "icon": "🚶" },
+      { "name": "Diario de dolor post-bloqueo diagnóstico", "icon": "📝" },
+      { "name": "Cumplimiento del programa de ejercicios de Core", "icon": "💪" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Alivio >70% tras bloqueo diagnóstico / radiofrecuencia",
+        "action": "Mantener programa activo de ejercicios y control postural.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial (<50%)",
+        "action": "Revisar articulación sacroilíaca o componente discogénico asociado.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Sin alivio tras bloqueo diagnóstico de ramos mediales",
+        "action": "Descartar origen facetario. El generador no son las facetas; evitar radiofrecuencia.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "El bloqueo diagnóstico anestésico es obligatorio antes de indicar radiofrecuencia de facetas. Sin alivio con el bloqueo, la radiofrecuencia está contraindicada."
+  },
+  "evidence": [
+    {
+      "citation": "Manchikanti L et al. An update of comprehensive evidence-based guidelines for interventional techniques in chronic spinal pain. Part II: guidance and recommendations. Pain Physician. 2020;23(2S):S251-S484.",
+      "topic": "Guía ASIPP de bloqueos diagnósticos y radiofrecuencia facetaria",
+      "year": 2020
+    },
+    {
+      "citation": "Revel M et al. Automated intradiscal lumbar discectomy. Results of a randomized study with 6 months follow-up. Spine. 1998;23(17):1858-1863.",
+      "topic": "Criterios clínicos de selección para dolor facetario lumbar",
+      "year": 1998
+    }
+  ]
+}

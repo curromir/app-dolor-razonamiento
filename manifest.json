@@ -1,0 +1,24 @@
+{
+  "name": "Test de Exploración Física en Dolor",
+  "short_name": "Exploración Dolor",
+  "description": "Atlas clínico interactivo de pruebas ortopédicas y maniobras de exploración en medicina del dolor.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0a0f1d",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

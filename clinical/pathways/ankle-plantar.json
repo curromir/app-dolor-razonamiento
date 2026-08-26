@@ -1,0 +1,375 @@
+{
+  "id": "ankle-plantar",
+  "region": "tobillo_pie",
+  "regionLabel": "Tobillo y Pie",
+  "regionIcon": "🦶",
+  "presentation": "Dolor plantar (Fascitis Plantar / Talalgia)",
+  "presentationDesc": "Dolor punzante en el talón o planta del pie al dar los primeros pasos por la mañana (Fascitis Plantar vs Túnel del Tarso)",
+  "redFlags": [
+    {
+      "id": "rf-calcaneal-stress-fracture",
+      "text": "Dolor óseo severo al presionar con ambos pulgares los laterales del calcáneo (Squeeze test calcáneo +) en corredor o anciano con osteoporosis (sospecha de fractura de estrés)",
+      "severity": "critical",
+      "action": "Descarga articular inmediata con bota y RM de calcáneo"
+    },
+    {
+      "id": "rf-diabetic-phlegmon",
+      "text": "Úlcera plantar, flemón con eritema ascendente o pérdida severa de sensibilidad en paciente diabético (sospecha de pie diabético infectado / celulitis)",
+      "severity": "critical",
+      "action": "Derivación urgente a Unidad de Pie Diabético / Cirugía Vascular"
+    },
+    {
+      "id": "rf-bilateral-spondylitis",
+      "text": "Talalgia bilateral severa en varón joven con dolor lumbar nocturno y rigidez matutina (sospecha de entesitis por espondiloartritis anquilosante)",
+      "severity": "high",
+      "action": "Analítica con HLA-B27, PCR y RM sacroilíaca"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-plantar-fasciitis",
+      "name": "Fascitis Plantar (Entesopatía Proximal de la Fascia Plantar)",
+      "shortName": "Fascitis Plantar",
+      "description": "Degeneración y sobrecarga microtraumática de la aponeurosis plantar en su inserción en el tubérculo medial del calcáneo.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-tarsal-tunnel",
+      "name": "Síndrome del Túnel del Tarso (Atrapamiento del Nervio Tibial Posterior)",
+      "shortName": "Túnel del Tarso (Nervio Tibial)",
+      "description": "Compresión del nervio tibial posterior o de los nervios plantares medial y lateral tras el maléolo interno con quemazón que irradia a los dedos.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-fat-pad-atrophy",
+      "name": "Atrofia de la Almohadilla Grasa Plantar (Heel Fat Pad Syndrome)",
+      "shortName": "Atrofia Almohadilla Grasa",
+      "description": "Pérdida del cojinete amortiguador adiposo del talón con dolor central en el calcáneo al impacto.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Cuándo es más intenso el dolor en el talón?»",
+      "explanation": "El 'dolor del primer paso' al poner el pie en el suelo al salir de la cama o tras estar sentado largo rato es el síntoma patognomónico de la fascitis plantar.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Al dar los primeros pasos por la mañana al levantarme de la cama ('Dolor del primer paso')",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-fat-pad-atrophy", "effect": "decrease", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Empeora de forma continua a lo largo del día conforme más tiempo paso de pie o caminando",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-fat-pad-atrophy", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Siento ardor, quemazón y hormigueo que aumentan por la noche en reposo",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-tarsal-tunnel", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-plantar-fasciitis", "effect": "decrease", "weight": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Dónde señala con un dedo el punto exacto donde más le pincha?»",
+      "explanation": "La fascitis plantar duele exactamente en la tuberosidad medial anterior del calcáneo. La atrofia grasa duele en el centro del talón y el túnel del tarso detrás del maléolo medial.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "En la parte delantera e interna del talón (cara plantar medial)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "En el centro exacto del talón donde se apoya el peso",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-fat-pad-atrophy", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "Detrás del tobillo interno que baja hacia la planta y los dedos",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-tarsal-tunnel", "effect": "increase", "weight": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Cuál es su meta funcional prioritaria a recuperar?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder levantarme de la cama por la mañana y apoyar el pie sin cojear", "hypothesisEffects": [] },
+        { "label": "Poder estar de pie en mi jornada laboral o caminar distancias normales", "hypothesisEffects": [] },
+        { "label": "Volver a correr, practicar senderismo o deporte sin dolor plantar", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Fascitis Plantar",
+    "steps": [
+      {
+        "id": "exam-palpation-tubercle",
+        "order": 1,
+        "name": "Palpación del Tubérculo Medial del Calcáneo",
+        "category": "palpacion",
+        "essential": true,
+        "instruction": "Paciente en supino o prono. Dorsiflexionar los dedos para tensar la fascia y palpar con el pulgar la tuberosidad calcánea anteromedial.",
+        "whatToLookFor": "Dolor exquisito agudo y punzante en la inserción proximal de la fascia plantar (Sensibilidad >90%).",
+        "mentorTip": "Es el hallazgo clínico más consistente y constante en la fascitis plantar.",
+        "results": [
+          {
+            "label": "Dolor agudo exquisito a la presión en el tubérculo medial",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-tarsal-tunnel", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Tubérculo medial indoloro a la palpación",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-plantar-fasciitis", "effect": "decrease", "weight": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-tobillo-windlass",
+        "order": 2,
+        "name": "Test de Windlass (Mecanismo de Polea del Primer Dedo)",
+        "catalogTestId": "tobillo-windlass",
+        "category": "fascia",
+        "essential": true,
+        "instruction": "Paciente en bipedestación con apoyo de peso. El examinador realiza una dorsiflexión pasiva forzada máxima de la primera articulación metatarsofalángica.",
+        "whatToLookFor": "Reproducción del dolor en la inserción calcánea de la fascia al tensar la cuerda del arco plantar (Especificidad 99%, LR+ 45.0).",
+        "mentorTip": "El test de Windlass es casi patognomónico: si es positivo, confirma de forma prácticamente indiscutible la fascitis plantar.",
+        "results": [
+          {
+            "label": "Positivo (reproduce dolor punzante en el talón al hiperextender el 1er dedo)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 7 }
+            ]
+          },
+          {
+            "label": "Negativo (dorsiflexión indolora)",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-tarsal-tunnel-tinel",
+        "order": 3,
+        "name": "Signo de Tinel Retromaleolar Medial (Túnel del Tarso)",
+        "category": "neuropatia",
+        "essential": false,
+        "instruction": "Percutir con el dedo o martillo de reflejos justo detrás y debajo del maléolo interno sobre el nervio tibial posterior.",
+        "whatToLookFor": "Disparo de parestesias u hormigueo eléctrico hacia la planta y los dedos del pie.",
+        "results": [
+          {
+            "label": "Positivo (descargas eléctricas hacia la planta del pie)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-tarsal-tunnel", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-plantar-fasciitis", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-plantar-fascia",
+      "name": "Tríada Diagnóstica de Fascitis Plantar",
+      "description": "1. Dolor del primer paso matutino + 2. Palpación del tubérculo medial (+) + 3. Test de Windlass (+)",
+      "requiredTests": ["exam-palpation-tubercle", "exam-tobillo-windlass"],
+      "threshold": 2,
+      "concordanceText": "Tríada clínica clásica de Fascitis Plantar confirmada (Especificidad >95%).",
+      "evidenceNote": "El test de Windlass en bipedestación tiene una especificidad del 99% (De Garceau et al., 2003)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe engrosamiento de la fascia plantar en su inserción calcánea proximal (>4.0-4.5 mm), pérdida de patrón fibrilar o edema perifascial?",
+    "structures": [
+      {
+        "id": "us-plantar-fascia",
+        "name": "Fascia Plantar Proximal (Corte Longitudinal en Calcáneo)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-fascia-normal", "label": "Fascia fina y regular (<3.8 mm de espesor)", "concordanceEffect": "neutral" },
+          { "id": "us-fascia-thickened", "label": "Engrosamiento hipoecoico patológico (espesor >4.5-5.5 mm) con desestructuración", "concordanceEffect": "concordant" },
+          { "id": "us-fascia-tear", "label": "Rotura parcial intrasubstancia / pérdida de continuidad fibrilar", "concordanceEffect": "concordant" },
+          { "id": "us-fascia-spur", "label": "Espolón calcáneo óseo entesofítico asociado", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Fascia plantar proximal: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Dolor del primer paso matutino, Windlass positivo y fascia engrosada >4.5 mm en ecografía.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor clínico con fascia de grosor limítrofe (3.8-4.2 mm); valorar sobrecarga mecánica.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Fascia fina normal. Descartar atrofia de la almohadilla grasa o túnel del tarso.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-tarsal-tunnel",
+      "name": "Síndrome del Túnel del Tarso",
+      "whatWouldReconsider": "Dolor con quemazón nocturna, Tinel retromaleolar positivo, ecografía de fascia plantar normal.",
+      "keyDiscriminatingTest": "Signo de Tinel retromaleolar medial"
+    },
+    {
+      "id": "dd-fat-pad",
+      "name": "Atrofia de la Almohadilla Grasa del Talón",
+      "whatWouldReconsider": "Dolor en el centro del talón que empeora caminando en suelo duro, sin dolor selectivo matutino.",
+      "keyDiscriminatingTest": "Palpación en centro del talón vs Windlass"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-plantar-fascia",
+      "structuralDiagnosis": "Fasciosis / Entesopatía Proximal de la Fascia Plantar",
+      "painGenerator": "Fascitis Plantar Mecánica",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo / Fascial",
+      "supportingFindings": [
+        "Dolor del primer paso matutino",
+        "Palpación dolorosa del tubérculo medial",
+        "Test de Windlass positivo",
+        "Ecografía con fascia >4.5 mm"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor en el talón se debe a una sobrecarga de la fascia plantar en su unión con el hueso. La presencia de un 'espolón calcáneo' en una radiografía es simplemente una reacción ósea natural a la tracción y no es la causa del dolor. No camine descalzo por casa y utilice calzado con un poco de drop o suela amortiguada.",
+      "mentorNote": "Desmitificar el espolón calcáneo: la evidencia demuestra que el espolón es asintomático en más del 20% de la población sana."
+    },
+    "exercise": {
+      "objective": "Aumentar la tolerancia a la tracción de la fascia plantar y el tendón de Aquiles mediante estiramientos específicos y carga de fuerza.",
+      "phases": [
+        {
+          "name": "Fase 1: Estiramiento Específico de la Fascia Plantar",
+          "description": "Estiramiento específico de la fascia con dorsiflexión manual de los dedos antes de levantarse de la cama (Protocolo de DiGiovanni) y masaje con botella helada.",
+          "duration": "1-4 semanas"
+        },
+        {
+          "name": "Fase 2: Carga de Alta Tensión (Protocolo de Rathleff)",
+          "description": "Elevaciones de talón sobre un escalón con una toalla enrollada bajo los dedos (fase concéntrica 3s, isométrica 2s, excéntrica 3s) a días alternos.",
+          "duration": "4-12 semanas"
+        },
+        {
+          "name": "Fase 3: Mantenimiento y Soporte Plantar",
+          "description": "Uso de taloneras de silicona o plantillas con soporte del arco medial y readaptación al impacto.",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar caminar descalzo en superficies duras durante las primeras 6 semanas."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs tópicos o pauta corta oral",
+          "indication": "Dolor agudo severo inicial.",
+          "example": "Gel de diclofenaco 3 veces/día o Ibuprofeno 600mg/8h durante 7-10 días",
+          "duration": "10 días",
+          "guardrails": ["Excelente seguridad con formulación tópica"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Fascitis plantar crónica (>3-6 meses) refractaria a protocolo de estiramiento y taloneras.",
+      "objective": "Reducir la inflamación y estimular la remodelación del colágeno mediante ondas de choque o infiltración ecoguiada.",
+      "targets": [
+        {
+          "name": "Ondas de Choque Focales / Radiales (ESWT)",
+          "indication": "Tratamiento de primera línea intervencionista no invasivo.",
+          "options": [
+            { "name": "3-5 sesiones semanales de ondas de choque focales (ESWT)", "evidence": "Alta / Nivel I (Gollwitzer 2015)" },
+            { "name": "Infiltración ecoguiada perilesional de corticoide (Metilprednisolona 20mg) o Plasma Rico en Plaquetas (PRP)", "evidence": "Alta a corto plazo / Moderada" }
+          ],
+          "contraindications": [
+            "Infiltración intratendinosa directa (riesgo de rotura de fascia o atrofia de la almohadilla grasa si no se guía por ecografía)"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 6-8 semanas",
+    "parameters": [
+      { "name": "Dolor del primer paso matutino", "icon": "🦶" },
+      { "name": "Distancia caminada sin dolor", "icon": "🚶" },
+      { "name": "Espesor ecográfico de la fascia plantar", "icon": "📐" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría franca del dolor matutino",
+        "action": "Mantener ejercicios de carga de Rathleff y calzado amortiguado.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial",
+        "action": "Indicar ciclo de ondas de choque extracorpóreas (ESWT).",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Dolor crónico incapacitante tras 12 meses",
+        "action": "Valorar fasciotomía plantar parcial ecoguiada / quirúrgica.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "El protocolo de carga de Rathleff y los estiramientos específicos de DiGiovanni curan más del 80% de las fascitis plantares sin cirugía."
+  },
+  "evidence": [
+    {
+      "citation": "Rathleff MS et al. High-load strength training improves outcome in patients with plantar fasciitis: A randomized controlled trial with 12-month follow-up. Scand J Med Sci Sports. 2015;25(3):e292-300.",
+      "topic": "Evidencia del entrenamiento de fuerza con carga alta en fascitis plantar",
+      "year": 2015
+    },
+    {
+      "citation": "DiGiovanni BF et al. Tissue-specific plantar fascia-stretching exercise enhances outcomes in patients with chronic heel pain. A prospective, randomized study. J Bone Joint Surg Am. 2003;85(7):1270-1277.",
+      "topic": "Estiramiento específico de la fascia plantar vs estiramiento de Aquiles",
+      "year": 2003
+    }
+  ]
+}

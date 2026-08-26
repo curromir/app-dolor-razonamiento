@@ -1,0 +1,785 @@
+{
+  "id": "shoulder-lateral-pain",
+  "region": "hombro",
+  "regionLabel": "Hombro y Cintura Escapular",
+  "regionIcon": "🦴",
+  "presentation": "Dolor lateral",
+  "presentationDesc": "Dolor predominante en cara lateral del hombro, región deltoidea",
+  
+  "redFlags": [
+    {
+      "id": "rf-trauma",
+      "text": "Traumatismo agudo reciente con deformidad o incapacidad total para mover el brazo.",
+      "severity": "critical",
+      "action": "Derivar a urgencias para descartar fractura o luxación (Radiografía urgente)."
+    },
+    {
+      "id": "rf-infection",
+      "text": "Fiebre, enrojecimiento, calor y aumento de volumen súbito en la articulación.",
+      "severity": "critical",
+      "action": "Derivar a urgencias para descartar artritis séptica (Artocentesis)."
+    },
+    {
+      "id": "rf-tumor",
+      "text": "Antecedentes de cáncer, dolor nocturno severo que no cede al reposo, pérdida de peso inexplicable.",
+      "severity": "high",
+      "action": "Solicitar pruebas de imagen (RM) y derivar a especialista para descartar malignidad o metástasis."
+    },
+    {
+      "id": "rf-neuro",
+      "text": "Debilidad motora progresiva o pérdida de sensibilidad en brazo/mano, alteración de reflejos.",
+      "severity": "high",
+      "action": "Evaluación neurológica urgente, RM cervical para descartar mielopatía o radiculopatía severa."
+    },
+    {
+      "id": "rf-vascular",
+      "text": "Frialdad, palidez o ausencia de pulso en la extremidad superior.",
+      "severity": "critical",
+      "action": "Derivación urgente a urgencias/cirugía vascular."
+    },
+    {
+      "id": "rf-visceral-cardiac",
+      "text": "Dolor de hombro izquierdo asociado a esfuerzo físico (no movimiento del brazo), sudoración o dolor torácico.",
+      "severity": "critical",
+      "action": "Derivación inmediata a urgencias médicas (descartar infarto agudo de miocardio)."
+    },
+    {
+      "id": "rf-visceral-diaphragm",
+      "text": "Dolor de hombro derecho inexplicable asociado a síntomas abdominales (náuseas, ictericia).",
+      "severity": "high",
+      "action": "Evaluación médica general para descartar patología hepatobiliar (dolor referido frénico)."
+    },
+    {
+      "id": "rf-necrosis",
+      "text": "Dolor intenso en paciente con uso crónico de corticoides sistémicos, alcoholismo o drepanocitosis.",
+      "severity": "high",
+      "action": "Sospecha de necrosis avascular. Solicitar RM y derivar a traumatología."
+    }
+  ],
+  
+  "hypotheses": [
+    {
+      "id": "hyp-subacromial",
+      "name": "Síndrome de dolor subacromial",
+      "shortName": "Dolor Subacromial",
+      "description": "Dolor mecánico en la región anterolateral del hombro, agravado por elevación del brazo.",
+      "initialLevel": "compatible",
+      "score": 0
+    },
+    {
+      "id": "hyp-supraespinoso",
+      "name": "Tendinopatía o rotura del supraespinoso",
+      "shortName": "Patología Supraespinoso",
+      "description": "Afectación estructural del tendón del supraespinoso (tendinopatía, rotura parcial o total).",
+      "initialLevel": "compatible",
+      "score": 0
+    },
+    {
+      "id": "hyp-bursa-sasd",
+      "name": "Bursitis subacromial-subdeltoidea",
+      "shortName": "Bursitis SASD",
+      "description": "Inflamación reactiva de la bursa, frecuentemente asociada a dolor nocturno intenso y dolor agudo a la elevación.",
+      "initialLevel": "compatible",
+      "score": 0
+    },
+    {
+      "id": "hyp-biceps",
+      "name": "Tendinopatía del bíceps (porción larga)",
+      "shortName": "Patología Bicipital",
+      "description": "Dolor predominantemente anterior, frecuentemente irradiado hacia el vientre muscular del bíceps.",
+      "initialLevel": "less_compatible",
+      "score": 0
+    },
+    {
+      "id": "hyp-ac",
+      "name": "Artropatía acromioclavicular",
+      "shortName": "Patología AC",
+      "description": "Dolor muy localizado en la región superior (articulación AC), empeora con movimientos cruzados.",
+      "initialLevel": "less_compatible",
+      "score": 0
+    },
+    {
+      "id": "hyp-cervical",
+      "name": "Dolor referido de origen cervical (Radiculopatía)",
+      "shortName": "Radiculopatía Cervical",
+      "description": "Dolor irradiado desde el cuello hacia el brazo, frecuentemente acompañado de síntomas neurológicos (parestesias, debilidad).",
+      "initialLevel": "less_compatible",
+      "score": 0
+    }
+  ],
+  
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿Dónde señala con un dedo el lugar exacto de mayor dolor?",
+      "explanation": "La localización con un dedo (signo del dedo) es muy útil para orientar el generador anatómico.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Lateral (por debajo del hueso, como una charretera)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
+            { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 2 },
+            { "hypothesisId": "hyp-bursa-sasd", "effect": "increase", "weight": 2 }
+          ],
+          "nextQuestionId": "q2"
+        },
+        {
+          "label": "Anterior (en la parte frontal del hombro)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-biceps", "effect": "increase", "weight": 3 }
+          ],
+          "nextQuestionId": "q2"
+        },
+        {
+          "label": "Superior (justo arriba, en la unión con la clavícula)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-ac", "effect": "increase", "weight": 3 }
+          ],
+          "nextQuestionId": "q2"
+        },
+        {
+          "label": "Posterior (detrás del hombro)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 1 }
+          ],
+          "nextQuestionId": "q2"
+        },
+        {
+          "label": "Dolor difuso, me duele todo el hombro y brazo",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 2 }
+          ],
+          "nextQuestionId": "q2"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "¿Le duele al levantar lateralmente el brazo?",
+      "explanation": "La elevación activa lateral (abducción) carga el supraespinoso e irrita el espacio subacromial.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, sobre todo a mitad del camino",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
+            { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 2 }
+          ],
+          "nextQuestionId": "q3"
+        },
+        {
+          "label": "No, o muy poco",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 },
+            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 1 }
+          ],
+          "nextQuestionId": "q3"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "¿El dolor le despierta al dormir sobre ese hombro?",
+      "explanation": "El dolor nocturno al decúbito lateral es un síntoma clásico de bursitis subacromial o rotura del manguito.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me despierta frecuentemente",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-bursa-sasd", "effect": "increase", "weight": 2 },
+            { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 }
+          ],
+          "nextQuestionId": "q4"
+        },
+        {
+          "label": "No",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-bursa-sasd", "effect": "decrease", "weight": 1 }
+          ],
+          "nextQuestionId": "q4"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "¿Tiene dificultad para moverlo incluso cuando otra persona le intenta mover el brazo relajado?",
+      "explanation": "Diferencia entre rigidez verdadera (capsulitis adhesiva/artrosis) y dolor subacromial donde el movimiento pasivo suele estar conservado.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí, está como bloqueado o rígido",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 },
+            { "hypothesisId": "hyp-supraespinoso", "effect": "decrease", "weight": 1 }
+          ],
+          "nextQuestionId": "q5"
+        },
+        {
+          "label": "No, si me lo mueven se mueve bien (aunque duela un poco)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 1 }
+          ],
+          "nextQuestionId": "q5"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "¿El dolor baja por debajo del codo y se acompaña de hormigueo en la mano?",
+      "explanation": "Síntoma clásico de dolor neuropático irradiado por radiculopatía cervical.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, claramente",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 3 },
+            { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 }
+          ],
+          "nextQuestionId": "q6"
+        },
+        {
+          "label": "A veces, o solo un poco",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 1 }
+          ],
+          "nextQuestionId": "q6"
+        },
+        {
+          "label": "No, nunca baja del codo",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-cervical", "effect": "decrease", "weight": 2 }
+          ],
+          "nextQuestionId": "q6"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "text": "¿Le duele en la parte superior al cruzar el brazo hacia el lado contrario (como para tocarse el otro hombro)?",
+      "explanation": "El movimiento de aducción horizontal (cross-body) comprime la articulación acromioclavicular.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí, es cuando más me duele",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-ac", "effect": "increase", "weight": 2 }
+          ],
+          "nextQuestionId": "q7"
+        },
+        {
+          "label": "No",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-ac", "effect": "decrease", "weight": 1 }
+          ],
+          "nextQuestionId": "q7"
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "text": "¿Ha tenido algún traumatismo reciente (caída, tirón fuerte)?",
+      "explanation": "Descarta patología traumática aguda frente a degenerativa/sobreuso.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 },
+            { "hypothesisId": "hyp-ac", "effect": "increase", "weight": 1 }
+          ],
+          "nextQuestionId": "q8"
+        },
+        {
+          "label": "No, empezó poco a poco",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 1 }
+          ],
+          "nextQuestionId": "q8"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "text": "¿Qué actividad u objetivo principal quiere volver a hacer sin dolor?",
+      "explanation": "Identificar las expectativas del paciente es clave para ajustar la fase de readaptación funcional.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Dormir bien",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Trabajar (esfuerzo físico)",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Deporte (padel, tenis, natación)",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Actividades diarias simples (peinarse, vestirse)",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        }
+      ]
+    }
+  ],
+  
+  "examination": {
+    "title": "Exploración Express 90 segundos — Hombro Lateral",
+    "steps": [
+      {
+        "id": "exam-arc",
+        "order": 1,
+        "name": "Elevación activa / Arco doloroso",
+        "catalogTestId": null,
+        "category": "movimiento_activo",
+        "instruction": "Pedir al paciente que eleve los brazos lateralmente (abducción) lentamente hasta arriba y los vuelva a bajar.",
+        "whatToLookFor": "Observar si hay dolor específico entre los 60º y 120º, o si el dolor aparece solo al final del rango.",
+        "essential": true,
+        "mentorTip": "El arco doloroso clásico ocurre cuando las estructuras subacromiales rozan bajo el arco coracoacromial en grados medios.",
+        "results": [
+          {
+            "label": "Arco doloroso presente (60°-120°)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
+              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 }
+            ]
+          },
+          {
+            "label": "Dolor al final del rango (160°-180°)",
+            "value": "pain_end_range",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-ac", "effect": "increase", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Sin dolor",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-jobe",
+        "order": 2,
+        "name": "Test de Jobe (Empty Can)",
+        "catalogTestId": "hombro-jobe",
+        "category": "fuerza",
+        "instruction": "Brazos en elevación de 90º en plano escapular, rotación interna máxima (pulgares abajo). Aplicar resistencia hacia abajo.",
+        "whatToLookFor": "DIFERENCIAR: dolor solo (tendinopatía/bursitis) vs dolor+debilidad (rotura parcial) vs debilidad franca sin dolor (rotura completa o neuropatía).",
+        "essential": true,
+        "mentorTip": "Aísla relativamente el supraespinoso. La debilidad franca es muy sugestiva de rotura masiva.",
+        "results": [
+          { 
+            "label": "Negativo", 
+            "value": "negative", 
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-supraespinoso", "effect": "decrease", "weight": 2 }
+            ] 
+          },
+          { 
+            "label": "Dolor, fuerza conservada", 
+            "value": "pain", 
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
+              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 }
+            ] 
+          },
+          { 
+            "label": "Dolor + debilidad", 
+            "value": "pain_and_weakness", 
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 3 }
+            ] 
+          },
+          { 
+            "label": "Debilidad franca sin dolor", 
+            "value": "weakness", 
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 3 },
+              { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 1 }
+            ] 
+          },
+          { 
+            "label": "No valorable", 
+            "value": "not_assessable", 
+            "hypothesisEffects": [] 
+          }
+        ]
+      },
+      {
+        "id": "exam-hawkins",
+        "order": 3,
+        "name": "Test de Hawkins-Kennedy",
+        "catalogTestId": "hombro-hawkins",
+        "category": "provocacion",
+        "instruction": "Hombro y codo flexionados 90º. Aplicar rotación interna pasiva y forzada.",
+        "whatToLookFor": "Dolor en la región anterolateral del hombro.",
+        "essential": true,
+        "mentorTip": "Test muy sensible pero poco específico para pinzamiento subacromial.",
+        "results": [
+          {
+            "label": "Positivo (reproduce su dolor)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
+              { "hypothesisId": "hyp-bursa-sasd", "effect": "increase", "weight": 1 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 1 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-patte",
+        "order": 4,
+        "name": "Rotación externa resistida (Patte / Infraspinatus test)",
+        "catalogTestId": "hombro-patte",
+        "category": "fuerza",
+        "instruction": "Codos pegados al cuerpo flexionados 90º. Pedir rotación externa contra resistencia.",
+        "whatToLookFor": "Evaluar debilidad o dolor. La debilidad indica afectación del infraespinoso.",
+        "essential": true,
+        "mentorTip": "Diferencia afectación aislada de supraespinoso vs extensión posterosuperior (infraespinoso).",
+        "results": [
+          {
+            "label": "Fuerza normal, sin dolor",
+            "value": "negative",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Dolor con fuerza conservada",
+            "value": "pain",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 1 }
+            ]
+          },
+          {
+            "label": "Debilidad franca",
+            "value": "weakness",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-passive-rom",
+        "order": 5,
+        "name": "Movilidad pasiva glenohumeral",
+        "catalogTestId": null,
+        "category": "movimiento_pasivo",
+        "instruction": "Con paciente relajado (tumbado idealmente), evaluar rotación externa e interna y elevación pasiva.",
+        "whatToLookFor": "Restricción verdadera del rango de movimiento (tope capsular/firme) comparado con lado sano.",
+        "essential": false,
+        "mentorTip": "Clave para descartar capsulitis adhesiva. Si la pasiva está libre, orienta a dolor subacromial o rotura.",
+        "results": [
+          {
+            "label": "Completa y libre (o similar al contralateral)",
+            "value": "normal",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 1 }
+            ]
+          },
+          {
+            "label": "Limitada marcadamente (>50% en rotación externa)",
+            "value": "limited",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 3 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-cervical-screening",
+        "order": 6,
+        "name": "Screening cervical rápido",
+        "catalogTestId": null,
+        "category": "despistaje",
+        "instruction": "Pedir extensión cervical y rotación ipsilateral, con sobrepresión (Test de Spurling modificado).",
+        "whatToLookFor": "Reproducción del dolor en el hombro o irradiación por el brazo.",
+        "essential": false,
+        "mentorTip": "Imprescindible si el dolor baja del codo o es difuso.",
+        "results": [
+          {
+            "label": "Negativo (no cambia síntomas del hombro)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cervical", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Positivo (reproduce síntomas en hombro/brazo)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 3 },
+              { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  
+  "clusters": [
+    {
+      "id": "cluster-impingement",
+      "name": "Batería de Pinzamiento Subacromial",
+      "description": "Neer + Hawkins + Arco Doloroso + Jobe",
+      "requiredTests": ["exam-arc", "exam-jobe", "exam-hawkins"],
+      "threshold": 2,
+      "concordanceText": "Los hallazgos aumentan considerablemente la probabilidad de dolor relacionado con el espacio subacromial.",
+      "evidenceNote": "Sensibilidad combinada >90% cuando ≥2 de 3 positivos (Arco doloroso, Hawkins, Debilidad/Dolor rotadores)."
+    }
+  ],
+  
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe patología del supraespinoso o de la bursa subacromial-subdeltoidea que explique el patrón clínico?",
+    "structures": [
+      {
+        "id": "us-supra",
+        "name": "Tendón del Supraespinoso",
+        "priority": 1,
+        "findings": [
+          { "id": "us-supra-normal", "label": "Normal", "concordanceEffect": "neutral" },
+          { "id": "us-supra-tendinopathy", "label": "Tendinopatía (engrosamiento, hipoecogenicidad)", "concordanceEffect": "concordant" },
+          { "id": "us-supra-calcification", "label": "Calcificación", "concordanceEffect": "concordant" },
+          { "id": "us-supra-partial", "label": "Rotura parcial", "concordanceEffect": "concordant" },
+          { "id": "us-supra-complete", "label": "Rotura completa", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Tendón del supraespinoso: {finding}."
+      },
+      {
+        "id": "us-bursa",
+        "name": "Bursa Subacromial-Subdeltoidea (SASD)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-bursa-normal", "label": "Normal", "concordanceEffect": "neutral" },
+          { "id": "us-bursa-thickened", "label": "Engrosada (>2mm)", "concordanceEffect": "concordant" },
+          { "id": "us-bursa-distended", "label": "Distendida con líquido", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Bursa SASD: {finding}."
+      },
+      {
+        "id": "us-biceps",
+        "name": "Tendón Largo del Bíceps",
+        "priority": 2,
+        "condition": "Explorar si la anamnesis o exploración sugieren afectación bicipital",
+        "findings": [
+          { "id": "us-bic-normal", "label": "Normal en corredera", "concordanceEffect": "neutral" },
+          { "id": "us-bic-fluid", "label": "Líquido peritendinoso", "concordanceEffect": "possible" },
+          { "id": "us-bic-tendinopathy", "label": "Tendinopatía", "concordanceEffect": "concordant" },
+          { "id": "us-bic-sublux", "label": "Subluxación/luxación", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Tendón largo del bíceps: {finding}."
+      },
+      {
+        "id": "us-ac",
+        "name": "Articulación Acromioclavicular",
+        "priority": 3,
+        "condition": "Explorar si dolor en zona superior del hombro o cross-body test positivo",
+        "findings": [
+          { "id": "us-ac-normal", "label": "Normal", "concordanceEffect": "neutral" },
+          { "id": "us-ac-oa", "label": "Signos degenerativos/artrosis", "concordanceEffect": "concordant" },
+          { "id": "us-ac-effusion", "label": "Derrame articular", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Articulación AC: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "La localización, exploración y ecografía apuntan al mismo generador.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Existe patología estructural, pero no explica completamente los síntomas.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "El hallazgo ecográfico puede ser incidental. Reconsiderar diagnóstico diferencial antes de tratar la imagen.",
+        "icon": "🔴"
+      }
+    }
+  },
+  
+  "differentialDiagnosis": [
+    {
+      "id": "dd-cervical",
+      "name": "Dolor referido cervical (C5-C6)",
+      "whatWouldReconsider": "Dolor que se reproduce con movimientos cervicales, irradiación por debajo del codo, parestesias en mano, reflejos alterados.",
+      "keyDiscriminatingTest": "Screening cervical (Spurling, movilidad cervical), exploración neurológica."
+    },
+    {
+      "id": "dd-capsulitis",
+      "name": "Capsulitis Adhesiva (Hombro congelado)",
+      "whatWouldReconsider": "Pérdida significativa e insidiosa de la movilidad pasiva (especialmente rotación externa).",
+      "keyDiscriminatingTest": "Movilidad pasiva glenohumeral."
+    },
+    {
+      "id": "dd-glenohumeral-oa",
+      "name": "Artrosis Glenohumeral",
+      "whatWouldReconsider": "Dolor difuso crónico, crepitación severa, edad >60 años, pérdida de movilidad en todos los planos.",
+      "keyDiscriminatingTest": "Radiografía simple AP y Axilar."
+    },
+    {
+      "id": "dd-calcific",
+      "name": "Tendinitis Calcificante Aguda",
+      "whatWouldReconsider": "Dolor agudo insoportable, de aparición brusca, que impide cualquier movimiento (hombro seudoparalítico).",
+      "keyDiscriminatingTest": "Ecografía o Radiografía simple (calcificación visible)."
+    },
+    {
+      "id": "dd-instability",
+      "name": "Inestabilidad Glenohumeral",
+      "whatWouldReconsider": "Antecedente de luxación, sensación de que el hombro 'se sale', más frecuente en pacientes jóvenes e hiperlaxos.",
+      "keyDiscriminatingTest": "Test de aprensión y relocalización."
+    },
+    {
+      "id": "dd-polymyalgia",
+      "name": "Polimialgia Reumática",
+      "whatWouldReconsider": "Mujer >50 años, dolor y rigidez matutina severa en ambos hombros (y a veces caderas), reactantes de fase aguda elevados.",
+      "keyDiscriminatingTest": "Analítica sanguínea (VSG/PCR elevadas)."
+    }
+  ],
+  
+  "generators": [
+    {
+      "id": "gen-rotator-cuff",
+      "structuralDiagnosis": "Patología del Manguito Rotador / Espacio Subacromial",
+      "painGenerator": "Dolor relacionado con manguito rotador / región subacromial",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio nociceptivo mecánico",
+      "supportingFindings": ["Dolor lateral", "Arco doloroso", "Hawkins positivo", "Jobe doloroso", "Movilidad pasiva conservada"],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-ac-joint",
+      "structuralDiagnosis": "Artropatía Acromioclavicular",
+      "painGenerator": "Dolor articular acromioclavicular",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio nociceptivo mecánico",
+      "supportingFindings": ["Dolor superior", "Test cruzado (cross-body) positivo", "Dolor al final de rango pasivo", "Ecografía con derrame AC"],
+      "requiredHypothesisLevel": "compatible"
+    },
+    {
+      "id": "gen-biceps",
+      "structuralDiagnosis": "Tendinopatía de la porción larga del bíceps",
+      "painGenerator": "Dolor tendinoso bicipital",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio nociceptivo mecánico",
+      "supportingFindings": ["Dolor anterior puro", "Dolor a la palpación de la corredera", "Ecografía con tenosinovitis bicipital"],
+      "requiredHypothesisLevel": "compatible"
+    }
+  ],
+  
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor proviene de los tendones que ayudan a levantar el brazo. Esto ocurre comúnmente por sobrecarga o envejecimiento natural del tendón. Es importante que sepa que la mayoría de estos dolores mejoran sin cirugía, mediante un proceso gradual para fortalecer los tendones y recuperar su función. Mover el hombro dentro de un límite de dolor tolerable es seguro y beneficioso para su recuperación.",
+      "mentorNote": "La educación es esencial. Evitar términos catastróficos como 'tendón roto' (si es degenerativo) o 'desgaste'. Enfocarse en la capacidad del tendón para adaptarse y fortalecerse con carga progresiva."
+    },
+    "exercise": {
+      "objective": "Recuperar rango de movimiento y fuerza del manguito rotador de forma progresiva.",
+      "phases": [
+        { "name": "Fase 1: Analgésica", "description": "Ejercicios pendulares de Codman, isométricos suaves en posiciones no dolorosas. Crioterapia post-ejercicio.", "duration": "1-2 semanas" },
+        { "name": "Fase 2: Isométrica y Rango", "description": "Activación isométrica en rotación externa e interna en posición neutra. Trabajo de movilidad escapular.", "duration": "2-4 semanas" },
+        { "name": "Fase 3: Carga progresiva", "description": "Fortalecimiento con banda elástica: rotación externa, abducción en plano escapular bajo el nivel de los hombros.", "duration": "4-8 semanas" },
+        { "name": "Fase 4: Funcional", "description": "Ejercicios de cadena cinética abierta y cerrada. Reintegración a actividad laboral/deportiva según objetivo.", "duration": "8-12 semanas" }
+      ],
+      "loadGuidance": "El dolor durante el ejercicio debe ser tolerable (≤4/10) y no empeorar más de 24h después. Si el dolor aumenta, reducir la carga pero no parar el ejercicio."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs tópicos",
+          "indication": "Dolor leve-moderado, preferir si posible vía tópica.",
+          "example": "Diclofenaco gel 1% / 3-4 aplicaciones diarias",
+          "duration": "2-4 semanas",
+          "guardrails": ["Verificar alergias", "Precaución con piel dañada"]
+        },
+        {
+          "name": "AINEs orales (ciclo corto)",
+          "indication": "Dolor moderado-intenso que limita la rehabilitación o afecta seriamente el descanso nocturno.",
+          "example": "Ibuprofeno 400-600mg / 8h o Naproxeno 500mg / 12h",
+          "duration": "7-14 días máximo",
+          "guardrails": ["Función renal", "Función hepática", "Riesgo GI (considerar IBP)", "Anticoagulación", "Edad >65"]
+        },
+        {
+          "name": "Paracetamol",
+          "indication": "Alternativa si AINEs contraindicados (dolor de intensidad leve).",
+          "example": "Paracetamol 1g / 8h",
+          "duration": "Según necesidad",
+          "guardrails": ["Función hepática", "Dosis máxima 3-4g/día"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si concordancia clínico-ecográfica ≥ parcial Y dolor significativo que limita rehabilitación o sueño Y sin contraindicaciones.",
+      "objective": "Reducir temporalmente el dolor para facilitar recuperación funcional.",
+      "targets": [
+        {
+          "name": "Bursa Subacromial-Subdeltoidea (SASD)",
+          "indication": "Bursitis clínica (dolor nocturno, dolor a elevación) y ecográfica concordante.",
+          "options": [
+            { "name": "Anestésico local (diagnóstico/terapéutico)", "evidence": "Alta (confirmación diagnóstica)" },
+            { "name": "Corticoide (betametasona/triamcinolona)", "evidence": "Moderada a corto plazo (alivio sintomático)" }
+          ],
+          "contraindications": ["Infección local/sistémica", "Alergia a componentes", "Anticoagulación no controlada", "Diabetes mal controlada (precaución)"],
+          "postProcedure": "Ventana de oportunidad: Iniciar/intensificar rehabilitación en las 2-4 semanas post-infiltración para aprovechar la ventana analgésica."
+        }
+      ],
+      "safetyNote": "La infiltración no es un punto final. El objetivo posterior es recuperar movimiento, fuerza y tolerancia a la carga. Evitar múltiples infiltraciones con corticoides (>3/año)."
+    }
+  },
+  
+  "followUp": {
+    "timing": "Revisión en 4-6 semanas",
+    "parameters": [
+      { "name": "Dolor (EVA/NRS)", "icon": "📊" },
+      { "name": "Función (actividades diarias)", "icon": "🏃" },
+      { "name": "Sueño", "icon": "😴" },
+      { "name": "Tolerancia al ejercicio", "icon": "💪" },
+      { "name": "Consumo de analgésicos", "icon": "💊" },
+      { "name": "Objetivo funcional del paciente", "icon": "🎯" }
+    ],
+    "outcomes": [
+      { "result": "improvement", "label": "Mejoría clara", "action": "Continuar rehabilitación, progresar carga hacia readaptación funcional.", "icon": "🟢" },
+      { "result": "partial", "label": "Mejoría parcial", "action": "Revisar adherencia al ejercicio, optimizar pauta y confirmar diagnóstico generador.", "icon": "🟡" },
+      { "result": "no_improvement", "label": "Sin mejoría", "action": "Reconsiderar hipótesis diagnóstica. ¿Es realmente el generador identificado? Valorar derivación o infiltración si no se hizo.", "icon": "🔴" },
+      { "result": "worsening", "label": "Empeoramiento", "action": "Reevaluar diagnóstico y banderas rojas (ej: capsulitis en evolución, rotura). Considerar RM u opinión especializada.", "icon": "🔴" }
+    ],
+    "keyPrinciple": "Si el tratamiento dirigido falla tras 6-12 semanas de buena adherencia, revisar el diagnóstico estructural y funcional."
+  },
+  
+  "evidence": [
+    {
+      "citation": "Hegedus EJ et al. Physical examination tests of the shoulder: a systematic review. Br J Sports Med. 2008;42(2):80-92.",
+      "topic": "Accuracy of shoulder examination tests",
+      "year": 2008
+    },
+    {
+      "citation": "Lewis J. Rotator cuff related shoulder pain: Assessment, management and uncertainties. Man Ther. 2016;23:57-68.",
+      "topic": "Management of rotator cuff related pain and progressive loading",
+      "year": 2016
+    },
+    {
+      "citation": "Steuri R et al. Effectiveness of conservative interventions including exercise, manual therapy and medical management in adults with shoulder impingement: a systematic review and meta-analysis of RCTs. Br J Sports Med. 2017;51(18):1340-1347.",
+      "topic": "Effectiveness of exercise vs corticosteroid injection",
+      "year": 2017
+    }
+  ]
+}

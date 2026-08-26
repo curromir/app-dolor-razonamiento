@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Test de Exploración Física en Dolor | Dr. Curro Mir</title>
+  
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Exploración Dolor">
+  <meta name="theme-color" content="#f1f5f9">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=21.0">
+  <link rel="stylesheet" href="clinical/reasoning-styles.css?v=1.0">
+</head>
+<body class="light-theme">
+  <div class="app-wrapper">
+    
+    <!-- DUAL HOME SCREEN (Modo Consulta vs Modo Biblioteca) -->
+    <section id="home-screen" class="home-screen-container active">
+      <!-- Rendered dynamically by reasoning-ui.js -->
+    </section>
+
+    <!-- CLINICAL REASONING WORKSPACE CONTAINER -->
+    <section id="clinical-reasoning-container" class="clinical-container">
+      <!-- Rendered dynamically by reasoning-ui.js -->
+    </section>
+
+    <!-- Top Header (Library Mode) -->
+    <header class="main-header" style="display: none;">
+      <div class="header-inner container">
+        <div class="brand-section">
+          <div class="brand-icon-wrapper" onclick="window.ClinicalUI.switchAppMode('home')" style="cursor: pointer;" title="Volver al Inicio">
+            <span class="brand-emoji">🩺</span>
+          </div>
+          <div class="brand-titles">
+            <h1 onclick="window.ClinicalUI.switchAppMode('home')" style="cursor: pointer;" title="Volver al Inicio">Test de Exploración Física en Dolor</h1>
+            <p class="brand-sub">Guía Clínica por Áreas & Vídeos Didácticos (Physiotutors & Educom™)</p>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <div class="search-input-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Buscar test, síntoma, nervio o área (ej: Spurling, Lasègue, ciática, menisco, Laslett)..." autocomplete="off" spellcheck="false">
+            <button id="clearSearchBtn" class="clear-btn" title="Limpiar búsqueda" style="display:none;">&times;</button>
+            <kbd class="search-kbd">/</kbd>
+          </div>
+        </div>
+
+        <!-- Quick Controls -->
+        <div class="header-controls">
+          <button id="btnNavToClinical" class="ctrl-btn primary-highlight" title="Ir al Modo Razonamiento Clínico" onclick="window.ClinicalUI.switchAppMode('clinical')">
+            <span>🩺</span> <span class="btn-label">Modo Consulta</span>
+          </button>
+          <button id="btnNavToHome" class="ctrl-btn" title="Ir al Inicio" onclick="window.ClinicalUI.switchAppMode('home')">
+            <span>🏠</span> <span class="btn-label">Inicio</span>
+          </button>
+          <button id="btnToggleAtlas" class="ctrl-btn" title="Mostrar/ocultar mapa corporal interactivo">
+            <span>🧍</span> <span class="btn-label">Atlas</span>
+          </button>
+          <button id="btnThemeToggle" class="ctrl-btn" title="Cambiar modo claro / oscuro">
+            <span id="themeIcon">🌙</span> <span class="btn-label" id="themeLabel">Oscuro</span>
+          </button>
+          <div class="progress-pill" title="Progreso de estudio">
+            <span class="progress-icon">✅</span>
+            <span id="progressCount">0</span>/<span id="totalTestsCount">43</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Anatomical Body Map Section -->
+    <section id="atlasSection" class="atlas-section container">
+      <div class="atlas-card glass-panel">
+        <div class="atlas-header">
+          <div class="atlas-title-group">
+            <h3>🧍 Atlas Anatómico Interactivo</h3>
+            <p>Selecciona una región corporal o articulación para filtrar instantáneamente todas sus pruebas clínicas.</p>
+          </div>
+          <button id="btnCloseAtlas" class="btn-close-atlas" title="Cerrar atlas">&times;</button>
+        </div>
+
+        <div class="atlas-body-container">
+          <div class="body-svg-wrapper">
+            <svg viewBox="0 0 320 540" class="interactive-body-svg">
+              <path class="body-silhouette" d="
+                M 160 30 C 172 30 180 42 180 56 C 180 68 172 78 160 78 C 148 78 140 68 140 56 C 140 42 148 30 160 30 Z
+                M 152 78 L 168 78 L 175 92 L 205 105 L 225 140 L 235 190 L 225 240 L 218 250 L 210 210 L 200 170 L 195 150 L 195 240 L 202 330 L 210 420 L 215 480 L 205 500 L 195 500 L 190 440 L 175 350 L 168 250 L 160 250 L 152 250 L 145 350 L 130 440 L 125 500 L 115 500 L 105 480 L 110 420 L 118 330 L 125 240 L 125 150 L 120 170 L 110 210 L 102 250 L 95 240 L 85 190 L 95 140 L 115 105 L 145 92 Z
+              " />
+
+              <!-- Hotspot: Cervical -->
+              <g class="joint-hotspot" data-region="cervical">
+                <circle cx="160" cy="85" r="16" class="hotspot-pulse" />
+                <circle cx="160" cy="85" r="12" class="hotspot-circle" />
+                <text x="160" y="89" class="hotspot-emoji">🧠</text>
+                <text x="195" y="88" class="hotspot-text-label">CERVICAL</text>
+              </g>
+
+              <!-- Hotspot: Hombro -->
+              <g class="joint-hotspot" data-region="hombro">
+                <circle cx="115" cy="115" r="16" class="hotspot-pulse" />
+                <circle cx="115" cy="115" r="12" class="hotspot-circle" />
+                <circle cx="205" cy="115" r="16" class="hotspot-pulse" />
+                <circle cx="205" cy="115" r="12" class="hotspot-circle" />
+                <text x="115" y="119" class="hotspot-emoji">🦴</text>
+                <text x="205" y="119" class="hotspot-emoji">🦴</text>
+                <text x="235" y="118" class="hotspot-text-label">HOMBRO</text>
+              </g>
+
+              <!-- Hotspot: Codo -->
+              <g class="joint-hotspot" data-region="codo">
+                <circle cx="95" cy="180" r="15" class="hotspot-pulse" />
+                <circle cx="95" cy="180" r="11" class="hotspot-circle" />
+                <circle cx="225" cy="180" r="15" class="hotspot-pulse" />
+                <circle cx="225" cy="180" r="11" class="hotspot-circle" />
+                <text x="95" y="184" class="hotspot-emoji">🦾</text>
+                <text x="225" y="184" class="hotspot-emoji">🦾</text>
+                <text x="250" y="183" class="hotspot-text-label">CODO</text>
+              </g>
+
+              <!-- Hotspot: Muñeca y Mano -->
+              <g class="joint-hotspot" data-region="muneca_mano">
+                <circle cx="82" cy="245" r="14" class="hotspot-pulse" />
+                <circle cx="82" cy="245" r="10" class="hotspot-circle" />
+                <circle cx="238" cy="245" r="14" class="hotspot-pulse" />
+                <circle cx="238" cy="245" r="10" class="hotspot-circle" />
+                <text x="82" y="249" class="hotspot-emoji">🤲</text>
+                <text x="238" y="249" class="hotspot-emoji">🤲</text>
+                <text x="260" y="248" class="hotspot-text-label">MUÑECA / MANO</text>
+              </g>
+
+              <!-- Hotspot: Columna Lumbar -->
+              <g class="joint-hotspot" data-region="lumbar">
+                <circle cx="160" cy="215" r="16" class="hotspot-pulse" />
+                <circle cx="160" cy="215" r="12" class="hotspot-circle" />
+                <text x="160" y="219" class="hotspot-emoji">⚡</text>
+                <text x="195" y="218" class="hotspot-text-label">LUMBAR / TORÁCICA</text>
+              </g>
+
+              <!-- Hotspot: Sacroilíaca -->
+              <g class="joint-hotspot" data-region="sacroiliaca">
+                <circle cx="160" cy="265" r="16" class="hotspot-pulse" />
+                <circle cx="160" cy="265" r="12" class="hotspot-circle" />
+                <text x="160" y="269" class="hotspot-emoji">🎯</text>
+                <text x="195" y="268" class="hotspot-text-label">PELVIS / SACROILÍACA</text>
+              </g>
+
+              <!-- Hotspot: Cadera -->
+              <g class="joint-hotspot" data-region="cadera">
+                <circle cx="135" cy="300" r="15" class="hotspot-pulse" />
+                <circle cx="135" cy="300" r="11" class="hotspot-circle" />
+                <circle cx="185" cy="300" r="15" class="hotspot-pulse" />
+                <circle cx="185" cy="300" r="11" class="hotspot-circle" />
+                <text x="135" y="304" class="hotspot-emoji">🦿</text>
+                <text x="185" y="304" class="hotspot-emoji">🦿</text>
+                <text x="215" y="305" class="hotspot-text-label">CADERA</text>
+              </g>
+
+              <!-- Hotspot: Rodilla -->
+              <g class="joint-hotspot" data-region="rodilla">
+                <circle cx="135" cy="395" r="16" class="hotspot-pulse" />
+                <circle cx="135" cy="395" r="12" class="hotspot-circle" />
+                <circle cx="185" cy="395" r="16" class="hotspot-pulse" />
+                <circle cx="185" cy="395" r="12" class="hotspot-circle" />
+                <text x="135" y="399" class="hotspot-emoji">🦵</text>
+                <text x="185" y="399" class="hotspot-emoji">🦵</text>
+                <text x="215" y="398" class="hotspot-text-label">RODILLA</text>
+              </g>
+
+              <!-- Hotspot: Tobillo y Pie -->
+              <g class="joint-hotspot" data-region="tobillo_pie">
+                <circle cx="130" cy="490" r="14" class="hotspot-pulse" />
+                <circle cx="130" cy="490" r="10" class="hotspot-circle" />
+                <circle cx="190" cy="490" r="14" class="hotspot-pulse" />
+                <circle cx="190" cy="490" r="10" class="hotspot-circle" />
+                <text x="130" y="494" class="hotspot-emoji">🦶</text>
+                <text x="190" y="494" class="hotspot-emoji">🦶</text>
+                <text x="215" y="492" class="hotspot-text-label">TOBILLO / PIE</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Region Quick Selector Cards -->
+          <div class="atlas-region-cards" id="atlasRegionCards">
+            <!-- Rendered by app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Navigation Bar -->
+    <nav class="nav-tabs-wrapper container">
+      <div class="nav-tabs" role="tablist">
+        <button class="nav-tab active" data-tab="tab-tests">
+          <span class="tab-icon">📋</span>
+          <span class="tab-text">Exploración por Áreas</span>
+        </button>
+        <button class="nav-tab" data-tab="tab-videos">
+          <span class="tab-icon">🎬</span>
+          <span class="tab-text">Videoteca Didáctica</span>
+          <span class="tab-badge-highlight">Physio & Educom</span>
+        </button>
+        <button class="nav-tab" data-tab="tab-comparativa">
+          <span class="tab-icon">📊</span>
+          <span class="tab-text">Comparativa & Clústeres</span>
+        </button>
+        <button class="nav-tab" data-tab="tab-notion">
+          <span class="tab-icon">📑</span>
+          <span class="tab-text">Test de Exploración por Áreas</span>
+          <span class="tab-badge-highlight" style="background: rgba(37, 99, 235, 0.15); color: var(--accent-blue);">Notion 3.0</span>
+        </button>
+        <button class="nav-tab" data-tab="tab-fichas">
+          <span class="tab-icon">🗂️</span>
+          <span class="tab-text">Fichas de Consulta</span>
+          <span class="tab-badge-highlight" style="background: rgba(16, 185, 129, 0.15); color: #059669;">v2.3</span>
+        </button>
+        <button class="nav-tab" data-tab="tab-quiz">
+          <span class="tab-icon">📝</span>
+          <span class="tab-text">Modo Estudio & Casos</span>
+        </button>
+        <button class="nav-tab" data-tab="tab-favoritos">
+          <span class="tab-icon">⭐</span>
+          <span class="tab-text">Mis Favoritos</span>
+          <span id="favTabBadge" class="tab-badge">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Filter Chips Bar -->
+    <section class="filters-section container">
+      <div class="filters-scroll">
+        <button class="filter-chip active" data-filter="all">🌐 Todos (<span id="countAll">24</span>)</button>
+        <button class="filter-chip" data-filter="hombro">🦴 Hombro (<span id="countHombro">6</span>)</button>
+        <button class="filter-chip" data-filter="codo">🦾 Codo (<span id="countCodo">3</span>)</button>
+        <button class="filter-chip" data-filter="muneca_mano">🤲 Muñeca/Mano (<span id="countMano">3</span>)</button>
+        <button class="filter-chip" data-filter="cervical">🧠 Cervical (<span id="countCervical">2</span>)</button>
+        <button class="filter-chip" data-filter="lumbar">⚡ Lumbar/Torácica (<span id="countLumbar">2</span>)</button>
+        <button class="filter-chip" data-filter="sacroiliaca">🎯 Sacroilíaca (<span id="countSI">2</span>)</button>
+        <button class="filter-chip" data-filter="cadera">🦿 Cadera (<span id="countCadera">2</span>)</button>
+        <button class="filter-chip" data-filter="rodilla">🦵 Rodilla (<span id="countRodilla">2</span>)</button>
+        <button class="filter-chip" data-filter="tobillo_pie">🦶 Tobillo/Pie (<span id="countTobillo">2</span>)</button>
+        <button class="filter-chip filter-video" data-filter="has_video">🎬 Con Vídeo HD (<span id="countVideo">24</span>)</button>
+      </div>
+    </section>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main class="main-content container">
+      
+      <!-- TAB 1: Tests Grid View -->
+      <section id="tab-tests" class="tab-pane active">
+        <div class="section-meta-header">
+          <div class="active-filter-title">
+            <h2 id="activeFilterHeading">Todos los Tests de Exploración</h2>
+            <span id="activeFilterCount" class="results-badge">Mostrando 24 pruebas</span>
+          </div>
+          <div class="view-options">
+            <label for="sortSelect" class="sort-label">Ordenar por:</label>
+            <select id="sortSelect" class="sort-dropdown">
+              <option value="default">Relevancia Clínica</option>
+              <option value="sens">Mayor Sensibilidad (SnNOut)</option>
+              <option value="spec">Mayor Especificidad (SpPin)</option>
+              <option value="name">Nombre Alfabético</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="testsGrid" class="tests-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+
+        <div id="noResults" class="no-results glass-panel" style="display:none;">
+          <div class="no-results-icon">🔍</div>
+          <h3>No se encontraron tests clínicos</h3>
+          <p>Prueba con otros términos de búsqueda como <em>Spurling, Lachman, ciática, tendinopatía, menisco</em> o selecciona otra área anatómica.</p>
+          <button id="btnResetFilters" class="btn-primary">Ver todos los tests</button>
+        </div>
+      </section>
+
+      <!-- TAB 2: Dedicated Video Library Tab -->
+      <section id="tab-videos" class="tab-pane">
+        <div class="videoteca-header glass-panel">
+          <div class="videoteca-intro">
+            <h2>🎬 Videoteca Didáctica Especializada</h2>
+            <p>Accede directamente a las demostraciones prácticas de exploración física en dolor de <strong>Physiotutors</strong> y <strong>Educom Continuing Education™</strong> sincronizadas con tu cuenta de YouTube.</p>
+            <div class="channel-quick-links" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.65rem;">
+              <a href="https://www.youtube.com/@Physiotutors?sub_confirmation=1" target="_blank" rel="noopener" class="channel-external-link physio-link">
+                <span>🔵 Abrir Canal @Physiotutors</span> <span>↗</span>
+              </a>
+              <a href="https://www.youtube.com/@EducomContinuingEducation?sub_confirmation=1" target="_blank" rel="noopener" class="channel-external-link educom-link">
+                <span>🔴 Abrir Canal @EducomContinuingEducation</span> <span>↗</span>
+              </a>
+            </div>
+          </div>
+          <div class="channel-filter-group">
+            <button class="channel-btn active" data-channel="all">Todos los Canales</button>
+            <button class="channel-btn" data-channel="physiotutors">🔵 Physiotutors</button>
+            <button class="channel-btn" data-channel="educom">🔴 Educom Education™</button>
+          </div>
+        </div>
+
+        <div id="videotecaGrid" class="videoteca-grid">
+          <!-- Rendered by app.js -->
+        </div>
+      </section>
+
+      <!-- TAB 3: Comparison & Diagnostic Clusters -->
+      <section id="tab-comparativa" class="tab-pane">
+        <div class="table-section-intro glass-panel">
+          <h2>📊 Comparativa Psicométrica & Clústeres Validados</h2>
+          <p>Usa la regla clínica: <strong>Alta Sensibilidad</strong> para <em>descartar</em> patología (SnNOut) y <strong>Alta Especificidad</strong> para <em>confirmar</em> diagnóstico (SpPin).</p>
+        </div>
+
+        <!-- Featured Clinical Clusters Cards -->
+        <div class="clusters-grid">
+          <div class="cluster-card glass-panel">
+            <div class="cluster-badge">🎯 Gold Standard</div>
+            <h3>Clúster de Laslett (Disfunción Sacroilíaca)</h3>
+            <p class="cluster-desc">Combinación de 5 pruebas de provocación. Requiere <strong>≥3 de 5 positivas</strong>.</p>
+            <ul class="cluster-tests-list">
+              <li>1. <strong>Thigh Thrust</strong> (Sens 88% / Espec 75%) - Test individual ancla</li>
+              <li>2. <strong>Distraction Test</strong> (Sens 60% / Espec 89%)</li>
+              <li>3. <strong>Sacral Thrust</strong> (Sens 63% / Espec 79%)</li>
+              <li>4. <strong>Compression Test</strong> (Sens 69% / Espec 69%)</li>
+              <li>5. <strong>Gaenslen Test</strong> (Sens 71% / Espec 79%)</li>
+            </ul>
+            <div class="cluster-stat">Probabilidad post-test: <strong>91%</strong> (LR+ 4.16)</div>
+          </div>
+
+          <div class="cluster-card glass-panel">
+            <div class="cluster-badge">🧠 Radiculopatía</div>
+            <h3>Clúster de Wainner (Radiculopatía Cervical)</h3>
+            <p class="cluster-desc">Diagnóstico de alta certeza para compromiso de raíz cervical.</p>
+            <ul class="cluster-tests-list">
+              <li>1. <strong>Test de Spurling</strong> positivo (SpPin)</li>
+              <li>2. <strong>Test de Distracción</strong> positivo (alivio)</li>
+              <li>3. <strong>ULTT 1 (Mediano)</strong> positivo (SnNOut)</li>
+              <li>4. <strong>Rotación cervical ipsilateral &lt;60°</strong></li>
+            </ul>
+            <div class="cluster-stat">4/4 positivas = LR+ <strong>30.3</strong> (Probabilidad >90%)</div>
+          </div>
+
+          <div class="cluster-card glass-panel">
+            <div class="cluster-badge">🦵 Rodilla Aguda</div>
+            <h3>Tríada Diagnóstica del LCA (Rodilla)</h3>
+            <p class="cluster-desc">Evaluación combinada para desgarro completo del ligamento cruzado anterior.</p>
+            <ul class="cluster-tests-list">
+              <li>1. <strong>Test de Lachman</strong> (Sens 89% / Espec 96%) - El más sensible</li>
+              <li>2. <strong>Pivot Shift Test</strong> (Espec 99%) - El más específico</li>
+              <li>3. <strong>Lever Sign (Lelli)</strong> (Sens ~100% / Espec ~100%)</li>
+            </ul>
+            <div class="cluster-stat">Tríada positiva = Diagnóstico en urgencias sin RM en >95%</div>
+          </div>
+        </div>
+
+        <div class="table-card glass-panel">
+          <div class="table-responsive">
+            <table class="clinical-table">
+              <thead>
+                <tr>
+                  <th>Test Ortopédico</th>
+                  <th>Área Anatómica</th>
+                  <th>Estructura Diana</th>
+                  <th>Sensibilidad</th>
+                  <th>Especificidad</th>
+                  <th>LR (+)</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="comparativeTableBody">
+                <!-- Rendered by app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+            <!-- TAB 4: Official Notion TEST DE EXPLORACION POR AREAS (Continuous Running Text) -->
+      <section id="tab-notion" class="tab-pane">
+        <div class="notion-document-header glass-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                <span style="font-size: 1.6rem;">📑</span>
+                <h2 style="margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--text-primary);">TEST DE EXPLORACIÓN POR AREAS (Notion Oficial)</h2>
+              </div>
+              <p style="margin: 0; font-size: 0.86rem; color: var(--text-secondary);">Documento íntegro a texto corrido de tu página oficial de Notion, con sus 9 áreas anatómicas, rutinas express de 90s, formatos maestros y vídeos incrustados de Educom™ y Physiotutors.</p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <span class="tab-badge-highlight" style="background: rgba(37, 99, 235, 0.12); color: var(--accent-blue); font-size: 0.8rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: var(--radius-full);">📖 Notion Live Reader</span>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Bar for the 9 Official Areas -->
+          <div class="notion-toc-bar">
+            <span style="font-size: 0.76rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Áreas:</span>
+            <button class="notion-toc-btn active" data-target="all">🌐 Todas (9)</button>
+            <button class="notion-toc-btn" data-target="notion-hombro">🦴 Hombro</button>
+            <button class="notion-toc-btn" data-target="notion-rodilla">🦵 Rodilla</button>
+            <button class="notion-toc-btn" data-target="notion-codo">🦾 Codo</button>
+            <button class="notion-toc-btn" data-target="notion-cadera">🦿 Cadera</button>
+            <button class="notion-toc-btn" data-target="notion-lumbar">⚡ Lumbar</button>
+            <button class="notion-toc-btn" data-target="notion-cervical">🎯 Cervical</button>
+            <button class="notion-toc-btn" data-target="notion-sacroiliaca">🎯 Sacroilíaca</button>
+            <button class="notion-toc-btn" data-target="notion-tobillo-pie">🦶 Tobillo/Pie</button>
+            <button class="notion-toc-btn" data-target="notion-mano-muneca">🤲 Mano/Muñeca</button>
+          </div>
+        </div>
+
+        <div id="notionGuideContainer" class="notion-document-container">
+          <!-- Rendered dynamically by app.js as authentic continuous running text -->
+        </div>
+      </section>
+
+      <!-- TAB 6: Fichas de Consulta de Dolor (Paquete v2.3) -->
+      <section id="tab-fichas" class="tab-pane">
+        <div class="fichas-header glass-panel">
+          <div class="fichas-header-content">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span style="font-size: 1.5rem;">🗂️</span>
+              <h2>Fichas de Consulta Rápida en Dolor (Paquete v2.3)</h2>
+            </div>
+            <p>Guías clínicas de alta eficiencia en consulta: Anamnesis dirigida (pregunta literal al paciente $\rightarrow$ orientación diagnóstica $\rightarrow$ qué explorar después), algoritmos en 90 segundos, criterios de imagen, prescripción con guardarraíles y seguimiento.</p>
+          </div>
+        </div>
+
+        <!-- Fichas Filter Chips -->
+        <div class="fichas-filters-bar">
+          <button class="fichas-filter-chip active" data-ficha-filter="all">🌐 Todas (15)</button>
+          <button class="fichas-filter-chip" data-ficha-filter="universal">⚖️ 00. Algoritmo Universal</button>
+          <button class="fichas-filter-chip" data-ficha-filter="cervical">🧠 Cuello & Cervical</button>
+          <button class="fichas-filter-chip" data-ficha-filter="lumbar">⚡ Lumbar & Radicular</button>
+          <button class="fichas-filter-chip" data-ficha-filter="hombro">🦴 Hombro</button>
+          <button class="fichas-filter-chip" data-ficha-filter="rodilla">🦵 Rodilla</button>
+          <button class="fichas-filter-chip" data-ficha-filter="cadera">🦿 Cadera</button>
+          <button class="fichas-filter-chip" data-ficha-filter="codo">🦾 Codo</button>
+          <button class="fichas-filter-chip" data-ficha-filter="muneca_mano">🤲 Mano/Muñeca</button>
+          <button class="fichas-filter-chip" data-ficha-filter="tobillo_pie">🦶 Tobillo/Pie</button>
+          <button class="fichas-filter-chip" data-ficha-filter="sacroiliaca">🎯 Sacroilíaco</button>
+          <button class="fichas-filter-chip" data-ficha-filter="nociplastico">🌪️ Nociplástico</button>
+          <button class="fichas-filter-chip" data-ficha-filter="farmacos">💊 Fármacos & Terapia</button>
+          <button class="fichas-filter-chip" data-ficha-filter="seguimiento">📈 Seguimiento</button>
+          <button class="fichas-filter-chip" data-ficha-filter="reglas">🛡️ Reglas de Seguridad</button>
+        </div>
+
+        <div class="fichas-container" id="fichasContainer">
+          <!-- Rendered by app.js -->
+        </div>
+      </section>
+
+      <!-- TAB 5: Study Mode / Quiz & Clinical Cases -->
+      <section id="tab-quiz" class="tab-pane">
+        <div class="quiz-hero glass-panel">
+          <div class="quiz-hero-content">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span style="font-size: 1.5rem;">📝</span>
+              <h2>Simulador Clínico & Casos de Pensamiento Experto</h2>
+            </div>
+            <p>Entrena tu razonamiento diagnóstico resolviendo casos reales del <strong>Manual de Dolor Crónico (Pensamiento Experto)</strong> y las simulaciones de <strong>Notion ALICIA-ABCDE</strong> con retroalimentación formativa y desglose paso a paso.</p>
+          </div>
+          <div class="quiz-score-box">
+            <div class="score-number" id="quizScoreDisplay">0/0</div>
+            <div class="score-label">Aciertos Clínicos</div>
+          </div>
+        </div>
+
+        <!-- Case Filter Chips -->
+        <div class="case-filters-bar">
+          <button class="case-filter-chip active" data-case-filter="all">🌐 Todos los Casos</button>
+          <button class="case-filter-chip" data-case-filter="notion">🧠 Simulación Notion (ALICIA-ABCDE)</button>
+          <button class="case-filter-chip" data-case-filter="manual_pdf">📚 Manual de Pensamiento Experto</button>
+          <button class="case-filter-chip" data-case-filter="lumbar">⚡ Columna Lumbar & Radicular</button>
+          <button class="case-filter-chip" data-case-filter="hombro">🦴 Hombro & Miembro Superior</button>
+          <button class="case-filter-chip" data-case-filter="sacroiliaca">🎯 Pelvis & Sacroilíaco</button>
+          <button class="case-filter-chip" data-case-filter="cadera">🦿 Cadera & Rodilla</button>
+        </div>
+
+        <div class="cases-container" id="casesContainer">
+          <!-- Rendered by app.js -->
+        </div>
+      </section>
+
+      <!-- TAB 6: Favorites -->
+      <section id="tab-favoritos" class="tab-pane">
+        <div class="section-meta-header">
+          <div class="active-filter-title">
+            <h2>⭐ Tus Tests Favoritos de Consulta Rápida</h2>
+            <span id="favCountHeading" class="results-badge">0 pruebas guardadas</span>
+          </div>
+        </div>
+
+        <div id="favGrid" class="tests-grid">
+          <!-- Rendered by app.js -->
+        </div>
+
+        <div id="noFavsNotice" class="no-results glass-panel">
+          <div class="no-results-icon">⭐</div>
+          <h3>Aún no has añadido tests favoritos</h3>
+          <p>Pulsa en la estrella de cualquier tarjeta de test para guardarla aquí y tener un acceso ultra-rápido en tu consulta médica.</p>
+          <button class="btn-primary" onclick="switchTab('tab-tests')">Explorar catálogo completo</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar for Mobile Safari / iPhone -->
+    <nav class="mobile-bottom-bar">
+      <button class="mobile-nav-item active" data-tab="tab-home" onclick="window.ClinicalUI.switchAppMode('home')">
+        <span class="mob-icon">🏠</span>
+        <span class="mob-label">Inicio</span>
+      </button>
+      <button class="mobile-nav-item" data-tab="tab-clinical" onclick="window.ClinicalUI.switchAppMode('clinical')">
+        <span class="mob-icon">🩺</span>
+        <span class="mob-label">Consulta</span>
+      </button>
+      <button class="mobile-nav-item" data-tab="tab-tests" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-tests');">
+        <span class="mob-icon">📚</span>
+        <span class="mob-label">Biblioteca</span>
+      </button>
+      <button class="mobile-nav-item" data-tab="tab-fichas" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-fichas');">
+        <span class="mob-icon">🗂️</span>
+        <span class="mob-label">Fichas</span>
+      </button>
+      <button class="mobile-nav-item" data-tab="tab-quiz" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-quiz');">
+        <span class="mob-icon">📝</span>
+        <span class="mob-label">Quiz</span>
+      </button>
+      <button class="mobile-nav-item" data-tab="tab-favoritos" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-favoritos');">
+        <span class="mob-icon">⭐</span>
+        <span class="mob-label">Favoritos</span>
+      </button>
+    </nav>
+
+    <!-- MODAL: Full Clinical Detail & Video Player -->
+    <div id="testModal" class="modal-overlay" style="display:none;">
+      <div class="modal-card glass-modal">
+        <button id="modalCloseBtn" class="modal-close-btn" title="Cerrar modal">&times;</button>
+        
+        <div class="modal-scrollable-body" id="modalContent">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: Dedicated HD Video Player Modal -->
+    <div id="videoModal" class="modal-overlay" style="display:none;">
+      <div class="video-modal-card glass-modal">
+        <div class="video-modal-header">
+          <div class="video-titles">
+            <span class="video-channel-pill" id="videoModalChannel">Canal</span>
+            <h3 id="videoModalTitle">Vídeo de Exploración</h3>
+          </div>
+          <button id="videoModalCloseBtn" class="modal-close-btn" title="Cerrar reproductor">&times;</button>
+        </div>
+
+        <div class="video-player-container">
+          <iframe id="videoIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-modal-footer" id="videoModalFooter">
+          <!-- Action buttons & channel switcher -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="container footer-inner">
+        <p><strong>TEST DE EXPLORACIÓN FÍSICA EN DOLOR & RAZONAMIENTO CLÍNICO</strong> — Diseñado para iPhone y Mac con PWA.</p>
+        <p class="footer-credits">Vídeos didácticos por cortesía de <a href="https://www.youtube.com/@Physiotutors" target="_blank" rel="noopener">Physiotutors</a> y <a href="https://www.youtube.com/@EducomContinuingEducation" target="_blank" rel="noopener">Educom Continuing Education™</a>.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="clinical/reasoning-engine.js?v=1.0"></script>
+  <script src="clinical/reasoning-ui.js?v=1.0"></script>
+  <script src="app.js?v=22.0"></script>
+</body>
+</html>

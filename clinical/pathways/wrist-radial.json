@@ -1,0 +1,378 @@
+{
+  "id": "wrist-radial",
+  "region": "muneca_mano",
+  "regionLabel": "Muñeca y Mano",
+  "regionIcon": "🤲",
+  "presentation": "Dolor radial (Tenosinovitis de De Quervain)",
+  "presentationDesc": "Dolor en el borde radial de la muñeca al mover el pulgar o agarrar objetos (De Quervain vs Rizartrosis)",
+  "redFlags": [
+    {
+      "id": "rf-scaphoid-fracture",
+      "text": "Dolor exquisito en el fondo de la tabaquera anatómica tras caída sobre la palma de la mano (sospecha de fractura de escafoides con riesgo de necrosis avascular)",
+      "severity": "critical",
+      "action": "Inmovilización con espica de pulgar y radiografías específicas de escafoides / TC"
+    },
+    {
+      "id": "rf-septic-wrist",
+      "text": "Tumefacción eritematosa aguda con calor local intenso, fiebre y dolor intolerable a cualquier movimiento pasivo del carpo",
+      "severity": "critical",
+      "action": "Artrocentesis urgente y cobertura antibiótica"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-de-quervain",
+      "name": "Tenosinovitis Estenosante de De Quervain (1er Compartimento Extensor)",
+      "shortName": "Tenosinovitis de De Quervain",
+      "description": "Inflamación y engrosamiento retinacular sobre los tendones Abductor Largo (APL) y Extensor Corto del Pulgar (EPB) en la estiloides radial.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-rhizarthrosis-radial",
+      "name": "Rizartrosis (Artrosis Trapeciometacarpiana)",
+      "shortName": "Rizartrosis del Pulgar",
+      "description": "Degeneración articular en la base del pulgar con dolor en pinza y crepitación ósea.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-intersection-syndrome",
+      "name": "Síndrome de Intersección (Cruce del 1º y 2º compartimento)",
+      "shortName": "Síndrome de Intersección",
+      "description": "Fricción y crepitación palpable a 4-5 cm proximal de la muñeca en el cruce de los extensores radiales del carpo.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-scaphoid-pain",
+      "name": "Patología del Escafoides / Articulación Escafotrapezoidea",
+      "shortName": "Patología del Escafoides",
+      "description": "Dolor focal en tabaquera anatómica por fractura de estrés, pseudoartrosis o artrosis STT.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿En qué gestos específicos siente el pinchazo más intenso en la muñeca?»",
+      "explanation": "Coger peso con la muñeca desviada hacia el meñique y el pulgar extendido (coger a un bebé en brazos, levantar una sartén, usar tijeras, escribir en móvil con el pulgar) tensa al máximo el 1er compartimento extensor.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Al levantar objetos con el pulgar abierto (coger un bebé, verter una jarra, teclear con el móvil)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "increase", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Al hacer fuerza de pinza o girar una llave / abrir un tarro con el pulgar",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 2 }
+          ]
+        },
+        {
+          "label": "Siento un crujido 'como cuero seco' unos 4 cm por encima de la muñeca al doblarla",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-intersection-syndrome", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-de-quervain", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Dónde señala con un dedo el punto de mayor dolor?»",
+      "explanation": "De Quervain duele sobre la estiloides radial; la rizartrosis en la articulación trapeciometacarpiana más distal; el escafoides en la tabaquera anatómica.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Directamente sobre el hueso prominente lateral de la muñeca (Estiloides radial)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "En la base misma del pulgar en la articulación móvil",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "En el hueco blando entre los tendones dorsales (Tabaquera anatómica)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-scaphoid-pain", "effect": "increase", "weight": 6 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Cuál es su meta funcional prioritaria?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder coger a mi hijo/bebé o cargar objetos sin dolor agudo en la muñeca", "hypothesisEffects": [] },
+        { "label": "Trabajar en ordenador / manualidades sin limitación del pulgar", "hypothesisEffects": [] },
+        { "label": "Realizar deportes de raqueta o gimnasio con agarre indoloro", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Tenosinovitis de De Quervain",
+    "steps": [
+      {
+        "id": "exam-mano-finkelstein",
+        "order": 1,
+        "name": "Test de Finkelstein (Tracción y Desviación Cubital)",
+        "catalogTestId": "mano-finkelstein",
+        "category": "tendones",
+        "essential": true,
+        "instruction": "El examinador sujeta el pulgar del paciente y aplica una tracción longitudinal suave mientras desvía pasivamente la muñeca hacia el lado cubital.",
+        "whatToLookFor": "Reproducción del dolor agudo y exquisito sobre la estiloides radial (Sensibilidad 88%, Especificidad 90%).",
+        "mentorTip": "Finkelstein clásico (tracción pasiva) genera muchos menos falsos positivos que la maniobra de Eichhoff con puño cerrado forzado.",
+        "results": [
+          {
+            "label": "Positivo (dolor agudo exquisito sobre estiloides radial)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Negativo (desviación cubital con tracción indolora)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-de-quervain", "effect": "decrease", "weight": 5 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-what-test",
+        "order": 2,
+        "name": "Test WHAT (Wrist Hyperflexion and Abduction of Thumb)",
+        "category": "tendones",
+        "essential": true,
+        "instruction": "Paciente flexiona activamente la muñeca al máximo y realiza una abducción resistida del pulgar contra la resistencia del examinador.",
+        "whatToLookFor": "Dolor severo en el 1er compartimento extensor (Sensibilidad 99%, Especificidad 95%).",
+        "mentorTip": "El test WHAT es la prueba de mayor sensibilidad diagnóstica para De Quervain en fase precoz (Goubau et al., 2014).",
+        "results": [
+          {
+            "label": "Positivo (dolor agudo en hiperflexión y abducción del pulgar)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-grind-rhizarthrosis",
+        "order": 3,
+        "name": "Grind Test Trapeciometacarpiano (Descarte de Rizartrosis)",
+        "category": "articular",
+        "essential": true,
+        "instruction": "Comprimir axialmente el primer metacarpiano contra el trapecio mientras se realizan rotaciones suaves de la base del pulgar.",
+        "whatToLookFor": "Crepitación dolorosa y reproducción del dolor en la articulación trapeciometacarpiana.",
+        "mentorTip": "Un Grind test positivo confirma rizartrosis asociada frente a tenosinovitis pura.",
+        "results": [
+          {
+            "label": "Positivo con crepitación en la base del pulgar (Rizartrosis)",
+            "value": "positive_rhizarthrosis",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Negativo (rotación articular trapeciometacarpiana indolora)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "decrease", "weight": 4 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-de-quervain",
+      "name": "Criterios Diagnósticos de Tenosinovitis de De Quervain",
+      "description": "1. Dolor a la palpación de estiloides radial + 2. Test de Finkelstein (+) + 3. Test WHAT (+)",
+      "requiredTests": ["exam-mano-finkelstein", "exam-what-test", "exam-grind-rhizarthrosis"],
+      "threshold": 2,
+      "concordanceText": "Tríada clásica de Tenosinovitis de De Quervain confirmada clínicamente (Especificidad >95%).",
+      "evidenceNote": "La combinación de Finkelstein + WHAT test tiene una sensibilidad superior al 98% (Goubau et al., 2014)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe engrosamiento del retináculo extensor (>1.5 mm) sobre el 1er compartimento dorsal, líquido sinovial anecoico alrededor de APL/EPB o tabique septal intertendinoso?",
+    "structures": [
+      {
+        "id": "us-first-extensor-compartment",
+        "name": "Primer Compartimento Dorsal (APL y EPB)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-dorsal-normal", "label": "Retináculo fino (<0.8 mm) con tendones APL y EPB normales", "concordanceEffect": "neutral" },
+          { "id": "us-dorsal-tenosynovitis", "label": "Engrosamiento del retináculo extensor (>1.5-2.0 mm) con halo de tenosinovitis anecoica / hipervascularización Doppler", "concordanceEffect": "concordant" },
+          { "id": "us-dorsal-septum", "label": "Presencia de tabique osteofibroso intertendinoso (subcompartimento independiente para EPB)", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Primer compartimento dorsal de la muñeca: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Finkelstein positivo y ecografía con engrosamiento retinacular y tenosinovitis del 1er compartimento.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor clínico con cambios ecográficos sutiles; pautar inmovilización con espica.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Tendones normales; sospechar rizartrosis o fractura de escafoides.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-rhizarthrosis-diff",
+      "name": "Rizartrosis del Pulgar",
+      "whatWouldReconsider": "Dolor en la base trapeciometacarpiana con Grind test positivo y osteofitos en radiografía.",
+      "keyDiscriminatingTest": "Grind test trapeciometacarpiano vs Finkelstein"
+    },
+    {
+      "id": "dd-intersection-diff",
+      "name": "Síndrome de Intersección",
+      "whatWouldReconsider": "Crepitación palpable a 4-5 cm proximal de la muñeca al extenderla.",
+      "keyDiscriminatingTest": "Palpación en antebrazo distal a 4 cm"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-de-quervain",
+      "structuralDiagnosis": "Tenosinovitis Estenosante del Primer Compartimento Dorsal de la Muñeca",
+      "painGenerator": "Tenosinovitis de De Quervain",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Tendinoso / Retinacular",
+      "supportingFindings": [
+        "Dolor sobre estiloides radial",
+        "Test de Finkelstein positivo",
+        "Test WHAT positivo",
+        "Ecografía con engrosamiento retinacular"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor se debe a la fricción de los dos tendones del pulgar al pasar por un túnel estrecho en la muñeca. Es fundamental adaptar la forma en que coge las cargas: al coger a un bebé o un objeto, use el antebrazo y la palma completa en vez de hacer pinza con el pulgar abierto.",
+      "mentorNote": "La inmovilización precoz con espica de pulgar evita la cronicidad en madres lactantes y trabajadores manuales."
+    },
+    "exercise": {
+      "objective": "Disminuir la fricción mecánica sobre el 1er compartimento dorsal y recuperar la movilidad indolora del pulgar.",
+      "phases": [
+        {
+          "name": "Fase 1: Inmovilización con Férula de Espica de Pulgar",
+          "description": "Uso continuo de férula termoplástica que inmovilice la muñeca y la articulación trapeciometacarpiana dejando la interfalángica libre.",
+          "duration": "2-4 semanas"
+        },
+        {
+          "name": "Fase 2: Movilidad Activa y Deslizamiento Tendinoso",
+          "description": "Ejercicios suaves de oposición del pulgar a cada dedo, flexoextensión activa dentro de rango confortable.",
+          "duration": "3-6 semanas"
+        },
+        {
+          "name": "Fase 3: Fortalecimiento y Carga Progresiva",
+          "description": "Ejercicios excéntricos suaves de abducción y pinza con masilla terapéutica.",
+          "duration": "6-10 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar movimientos repetitivos de flexión con desviación cubital forzada de muñeca."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs tópicos o pauta oral breve",
+          "indication": "Dolor agudo moderado.",
+          "example": "Gel de diclofenaco 3 veces/día o Naproxeno 500mg/12h durante 7-10 días",
+          "duration": "10 días",
+          "guardrails": ["Excelente perfil de seguridad en formulación tópica"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Dolor refractario tras 3-4 semanas de férula de espica bien cumplida.",
+      "objective": "Depósito ecoguiado de corticoide dentro de la vaina sinovial del 1er compartimento asegurando tratar ambos tendones (APL y EPB).",
+      "targets": [
+        {
+          "name": "Infiltración Peritendinosa Ecoguiada del Primer Compartimento Dorsal",
+          "indication": "Tenosinovitis de De Quervain confirmada.",
+          "options": [
+            { "name": "Infiltración ecoguiada en plano de 0.5-1 ml de corticoide (Triamcinolona o Metilprednisolona) + 1 ml anestésico local dentro de la vaina", "evidence": "Alta / Nivel I (>85% de curación con 1 sola inyección ecoguiada)" }
+          ],
+          "contraindications": [
+            "Infiltración intratendinosa directa (la ecografía evita la necrosis o rotura del tendón)",
+            "Infección local"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 4 semanas",
+    "parameters": [
+      { "name": "Dolor con el Test de Finkelstein", "icon": "✋" },
+      { "name": "Capacidad de prensión y agarre", "icon": "✊" },
+      { "name": "Grosor ecográfico del retináculo", "icon": "📐" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Remisión completa del dolor",
+        "action": "Retirar progresivamente la férula y reanudar actividad.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Mejoría parcial",
+        "action": "Considerar infiltración ecoguiada selectiva si existe tabique intertendinoso no bañado previamente.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Dolor persistente refractario tras infiltración ecoguiada",
+        "action": "Derivación a Cirugía de Mano para liberación quirúrgica del primer compartimento.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "La ecografía permite identificar la presencia de un tabique óseo intertendinoso (presente en >30% de casos), que es la causa principal de fracaso de las infiltraciones a ciegas."
+  },
+  "evidence": [
+    {
+      "citation": "Goubau JF et al. The wrist hyperflexion and abduction of the thumb (WHAT) test: a more specific and sensitive test to diagnose de Quervain tenosynovitis than the Finkelstein's test. J Hand Surg Eur Vol. 2014;39(3):286-292.",
+      "topic": "Validación del Test WHAT frente a Finkelstein en tenosinovitis de De Quervain",
+      "year": 2014
+    },
+    {
+      "citation": "Rowland P et al. The Effectiveness of Corticosteroid Injection for De Quervain's Stenosing Tenosynovitis: A Systematic Review and Meta-Analysis. J Hand Surg Am. 2015;40(12):2446-2457.",
+      "topic": "Eficacia de las infiltraciones ecoguiadas en De Quervain",
+      "year": 2015
+    }
+  ]
+}

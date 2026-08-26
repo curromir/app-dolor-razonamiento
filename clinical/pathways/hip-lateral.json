@@ -1,0 +1,466 @@
+{
+  "id": "hip-lateral",
+  "region": "cadera",
+  "regionLabel": "Cadera y Pelvis",
+  "regionIcon": "🦿",
+  "presentation": "Dolor lateral",
+  "presentationDesc": "Dolor sobre el relieve del trocánter mayor (Síndrome de Dolor Trocantérico Mayor / GTPS / Glúteo medio vs Coxartrosis)",
+  "redFlags": [
+    {
+      "id": "rf-femoral-fracture",
+      "text": "Imposibilidad para la carga y bipedestación tras caída o antecedente de osteoporosis severa (sospecha de fractura de cuello femoral / pertrocantérea)",
+      "severity": "critical",
+      "action": "Radiografía de pelvis y cadera AP urgente"
+    },
+    {
+      "id": "rf-avascular-necrosis",
+      "text": "Dolor inguinal y de cadera progresivo severo en paciente con tratamiento corticoideo crónico o consumo elevado de alcohol (sospecha de osteonecrosis de cabeza femoral)",
+      "severity": "critical",
+      "action": "RM de caderas bilateral urgente"
+    },
+    {
+      "id": "rf-septic-hip",
+      "text": "Fiebre, impotencia funcional absoluta, dolor intolerable a cualquier mínima rotación pasiva de cadera",
+      "severity": "critical",
+      "action": "Artrocentesis ecoguiada urgente y analítica con reactantes de fase aguda"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-gtps",
+      "name": "Síndrome de Dolor Trocantérico Mayor (GTPS / Tendinopatía Glúteo Medio y Menor / Bursitis)",
+      "shortName": "GTPS / Glúteo Medio",
+      "description": "Patología del 'manguito rotador de la cadera': tendinopatía insercional del glúteo medio/menor y bursitis trocantérea subglútea.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-coxarthrosis",
+      "name": "Coxartrosis (Artrosis de Cadera Intraarticular)",
+      "shortName": "Coxartrosis",
+      "description": "Degeneración del cartílago coxofemoral. Típicamente da dolor inguinal que puede referirse a cara lateral o rodilla con pérdida de rotación interna.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-snapping-hip",
+      "name": "Cadera en Resorte Externa (Fricción de la Cintilla Iliotibial)",
+      "shortName": "Cadera en Resorte",
+      "description": "Chasquido visible o palpable de la banda iliotibial al deslizarse sobre el trocánter mayor durante la marcha.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-l2-l3-radic",
+      "name": "Dolor Referido Lumbar Alto (Radiculopatía L2-L3 / Nervio Femorocutáneo)",
+      "shortName": "Dolor Referido L2-L3",
+      "description": "Afectación de raíces lumbares altas o atrapamiento del nervio cutáneo femoral lateral (meralgia parestésica).",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Dónde señala con un dedo el punto exacto de mayor dolor?»",
+      "explanation": "El dolor del GTPS se localiza con gran precisión sobre el trocánter mayor en la cara lateral externa. El dolor de la articulación coxofemoral (coxartrosis) se localiza típicamente en la ingle ('signo de la C').",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Directamente en el hueso lateral de la cadera (Trocánter mayor)",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-coxarthrosis", "effect": "decrease", "weight": 3 }
+          ]
+        },
+        {
+          "label": "En la ingle anterior profunda que a veces baja hacia el muslo anterior y rodilla",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-coxarthrosis", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 4 }
+          ]
+        },
+        {
+          "label": "En la cara lateral con chasquido palpable al caminar o subir escaleras",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-snapping-hip", "effect": "increase", "weight": 5 },
+            { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Le despierta el dolor al tumbarse de lado sobre esa cadera por la noche?»",
+      "explanation": "El dolor al decúbito ipsilateral por compresión mecánica de los tendones glúteos y la bursa contra el trocánter es el síntoma cardinal del GTPS (sensibilidad >80%).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me resulta imposible dormir sobre ese lado del dolor",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 4 }
+          ]
+        },
+        {
+          "label": "No me molesta al apoyarme de lado",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Le duele al cruzar las piernas al sentarse o al subir escaleras / cuestas?»",
+      "explanation": "Cruzar las piernas coloca la cadera en aducción forzada, comprimiendo el tendón del glúteo medio contra el relieve óseo del trocánter.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí, cruzar las piernas me produce un dolor punzante en la cadera",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "No me afecta cruzar las piernas",
+          "hypothesisEffects": []
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Cuál es su meta funcional más importante a recuperar?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder dormir toda la noche de lado sin dolor", "hypothesisEffects": [] },
+        { "label": "Caminar distancias largas y subir escaleras sin cojera", "hypothesisEffects": [] },
+        { "label": "Volver a correr o practicar deporte sin molestias", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Dolor Lateral de Cadera (GTPS)",
+    "steps": [
+      {
+        "id": "exam-trochanter-palpation",
+        "order": 1,
+        "name": "Palpación Directa del Trocánter Mayor (Signo del Salto)",
+        "category": "palpacion",
+        "essential": true,
+        "instruction": "Paciente en decúbito lateral sobre el lado sano con flexión de cadera a 45°. Palpar la faceta lateral y posterosuperior del trocánter mayor.",
+        "whatToLookFor": "Dolor agudo exquisito a la presión directa digital sobre el trocánter (Sensibilidad 83%, Especificidad 70%).",
+        "mentorTip": "Si la palpación del trocánter mayor es completamente indolora, el diagnóstico de GTPS es sumamente improbable.",
+        "results": [
+          {
+            "label": "Dolor exquisito a la palpación sobre faceta lateral del trocánter mayor",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 5 },
+              { "hypothesisId": "hyp-coxarthrosis", "effect": "decrease", "weight": 2 }
+            ]
+          },
+          {
+            "label": "Indoloro a la palpación trocantérea",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 5 },
+              { "hypothesisId": "hyp-coxarthrosis", "effect": "increase", "weight": 3 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-single-leg-stance",
+        "order": 2,
+        "name": "Test de Apoyo Monopodal durante 30 Segundos (Single Leg Stance)",
+        "category": "carga_glutea",
+        "essential": true,
+        "instruction": "Pedir al paciente que se mantenga en apoyo sobre una sola pierna durante 30 segundos sin tocar la pared.",
+        "whatToLookFor": "Aparición de dolor lateral de cadera en los primeros 30 segundos debido a la contracción isométrica sostenida del glúteo medio.",
+        "mentorTip": "Tiene una especificidad >97% para tendinopatía glútea confirmada por RM (Lequesne 2008).",
+        "results": [
+          {
+            "label": "Dolor lateral antes de 30 segundos (SLS Positivo)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Negativo (tolera 30 segundos sin dolor)",
+            "value": "negative",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 3 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-cadera-trendelenburg",
+        "order": 3,
+        "name": "Test de Trendelenburg (Insuficiencia de Glúteo Medio)",
+        "catalogTestId": "cadera-trendelenburg",
+        "category": "muscular",
+        "essential": true,
+        "instruction": "Observar la estabilidad pélvica en apoyo monopodal desde atrás.",
+        "whatToLookFor": "Caída de la hemipelvis contralateral por debilidad o rotura del tendón del glúteo medio.",
+        "mentorTip": "Un Trendelenburg positivo franco con debilidad no dolorosa orienta a rotura de espesor completo del tendón glúteo.",
+        "results": [
+          {
+            "label": "Positivo (caída de hemipelvis contralateral con debilidad)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 4 }
+            ]
+          },
+          {
+            "label": "Negativo (pelvis estable horizontal)",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-cadera-faber",
+        "order": 4,
+        "name": "Test FABER / Patrick (Descarte de Coxartrosis)",
+        "catalogTestId": "cadera-faber",
+        "category": "articular",
+        "essential": true,
+        "instruction": "Paciente en supino. Colocar el talón sobre la rodilla contralateral (Flexión, Abducción, Rotación Externa). Presionar suavemente la rodilla hacia la camilla.",
+        "whatToLookFor": "Diferenciar si el dolor se produce en la ingle (Coxartrosis / Patología articular) o en la cara lateral externa (GTPS por estiramiento).",
+        "mentorTip": "Dolor inguinal profundo en FABER con restricción de rotación interna <20° confirma afectación articular frente a trocantérea.",
+        "results": [
+          {
+            "label": "Dolor en cara lateral externa del trocánter por compresión",
+            "value": "lateral_pain",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Dolor inguinal anterior profundo con rango limitado (Articular)",
+            "value": "groin_pain",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-coxarthrosis", "effect": "increase", "weight": 6 },
+              { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 3 }
+            ]
+          },
+          {
+            "label": "Negativo (rango simétrico indoloro)",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-gtps",
+      "name": "Clúster Diagnóstico de Tendinopatía Glútea (GTPS)",
+      "description": "1. Palpación trocantérea (+) + 2. Apoyo monopodal 30s (+) + 3. Dolor al decúbito lateral + 4. FABER con dolor lateral",
+      "requiredTests": ["exam-trochanter-palpation", "exam-single-leg-stance", "exam-cadera-faber"],
+      "threshold": 2,
+      "concordanceText": "Cumple criterios clínicos de Síndrome de Dolor Trocantérico Mayor (Tendinopatía de glúteo medio/menor con/sin bursitis).",
+      "evidenceNote": "La combinación de palpación dolorosa + apoyo monopodal de 30s tiene una sensibilidad del 98% y especificidad del 90% (Lequesne et al., 2008)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe tendinopatía o rotura de los tendones glúteo medio/menor, distensión de la bursa trocantérea o signos de coxartrosis?",
+    "structures": [
+      {
+        "id": "us-gluteus-medius",
+        "name": "Tendón del Glúteo Medio (Faceta Lateral y Superoposterior)",
+        "priority": 1,
+        "findings": [
+          { "id": "us-gm-normal", "label": "Patrón fibrilar normal y regular", "concordanceEffect": "neutral" },
+          { "id": "us-gm-tendinopathy", "label": "Tendinosis (engrosamiento hipoecoico y pérdida de patrón fibrilar)", "concordanceEffect": "concordant" },
+          { "id": "us-gm-partial-tear", "label": "Rotura parcial o entesofito por avulsión", "concordanceEffect": "concordant" },
+          { "id": "us-gm-full-tear", "label": "Rotura de espesor completo con retracción muscular", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Tendón del glúteo medio: {finding}."
+      },
+      {
+        "id": "us-trochanteric-bursa",
+        "name": "Bursa Trocantérea Subglútea Mayor / Media",
+        "priority": 1,
+        "findings": [
+          { "id": "us-bursa-normal", "label": "Bursa colapsada normal (<1.5 mm)", "concordanceEffect": "neutral" },
+          { "id": "us-bursa-effusion", "label": "Distensión líquida bursal anecoica / engrosamiento sinovial", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Bursa trocantérea: {finding}."
+      },
+      {
+        "id": "us-hip-joint-recess",
+        "name": "Receso Anterior Coxofemoral (Descarte de Coxartrosis)",
+        "priority": 2,
+        "findings": [
+          { "id": "us-joint-normal", "label": "Margen óseo liso sin derrame anterior", "concordanceEffect": "neutral" },
+          { "id": "us-joint-arthrosis", "label": "Osteofitosis en cuello femoral anterior y derrame articular (Coxartrosis)", "concordanceEffect": "concordant" }
+        ],
+        "reportTemplate": "Receso anterior articular coxofemoral: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "La clínica de dolor lateral y la ecografía de tendinopatía glútea/bursitis trocantérea son completamente concordantes.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Existe líquido bursal leve pero el tendón está sano; correlacionar con sobrecarga biomecánica o columna lumbar.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "La ecografía muestra coxartrosis severa con tendones glúteos sanos. El generador principal es intraarticular.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-hip-oa",
+      "name": "Coxartrosis Intraarticular",
+      "whatWouldReconsider": "Dolor inguinal a la rotación interna pasiva de cadera en flexión (<15°), FABER con dolor inguinal anterior.",
+      "keyDiscriminatingTest": "Test FABER y Rotación Interna pasiva de cadera"
+    },
+    {
+      "id": "dd-lumbar-referred",
+      "name": "Radiculopatía L2-L3 / Meralgia Parestésica",
+      "whatWouldReconsider": "Hipoestesia en cara anterolateral del muslo, dolor que no se reproduce a la palpación del trocánter.",
+      "keyDiscriminatingTest": "Exploración neurológica sensitiva del muslo"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-gtps",
+      "structuralDiagnosis": "Tendinopatía de Glúteo Medio y Menor con Bursitis Trocantérea",
+      "painGenerator": "Síndrome de Dolor Trocantérico Mayor (GTPS)",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Tendinoso",
+      "supportingFindings": [
+        "Dolor selectivo a la palpación del trocánter mayor",
+        "Dolor en apoyo monopodal de 30 segundos",
+        "Dolor nocturno al decúbito sobre ese lado",
+        "Ecografía concordante"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-coxarthrosis",
+      "structuralDiagnosis": "Artrosis Coxofemoral (Coxartrosis)",
+      "painGenerator": "Dolor Intraarticular de Cadera",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Predominio Nociceptivo Articular",
+      "supportingFindings": [
+        "Dolor inguinal anterior",
+        "FABER positivo con dolor inguinal",
+        "Pérdida de rotación interna pasiva"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor se debe a una sobrecarga del tendón del glúteo medio y la bursa en el relieve de la cadera (GTPS). Es muy importante evitar posturas que compriman el tendón: no cruce las piernas al sentarse, y para dormir de lado coloque una almohada entre las rodillas para mantener la pierna recta.",
+      "mentorNote": "La modificación biomecánica (evitar aducción forzada) es tan importante como los ejercicios de carga."
+    },
+    "exercise": {
+      "objective": "Fortalecer el glúteo medio mediante ejercicios en posición neutra y carga isométrica progresiva sin provocar compresión excesiva.",
+      "phases": [
+        {
+          "name": "Fase 1: Isométricos en Posición Neutra",
+          "description": "Contracción isométrica del glúteo medio en supino o bipedestación (apoyo monopodal corto) sin aducción de cadera.",
+          "duration": "1-4 semanas"
+        },
+        {
+          "name": "Fase 2: Fortalecimiento y Carga Progresiva",
+          "description": "Puentes de glúteo bipodales y unipodales, clam modificado con cadera neutra, subidas a escalón con control de pelvis.",
+          "duration": "4-8 semanas"
+        },
+        {
+          "name": "Fase 3: Ejercicios Funcionales y Readaptación",
+          "description": "Sentadillas unipodales, marcha lateral con banda elástica a nivel de rodillas.",
+          "duration": "8-16 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar estiramientos agresivos de la cintilla iliotibial en aducción (comprimen el tendón contra el hueso y empeoran la tendinopatía)."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "AINEs tópicos o ciclo oral corto",
+          "indication": "Fase aguda inflamatoria con dolor severo nocturno.",
+          "example": "Diclofenaco tópico 2-3 veces/día o Naproxeno 500mg/12h (máximo 10-14 días)",
+          "duration": "2 semanas",
+          "guardrails": ["Función renal", "Riesgo digestivo", "Edad avanzada"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si dolor refractario limitante con confirmación ecográfica de bursitis o tendinosis.",
+      "objective": "Aliviar el dolor para permitir el programa de carga y fortalecimiento de glúteo medio.",
+      "targets": [
+        {
+          "name": "Infiltración Ecoguiada de la Bursa Trocantérea Subglútea",
+          "indication": "Bursitis trocantérea con distensión líquida visible en ecografía.",
+          "options": [
+            { "name": "Anestésico local + Corticoide de depósito (Triamcinolona 40mg) en espacio subglúteo ecoguiado", "evidence": "Alta a corto plazo" },
+            { "name": "Ondas de choque focales (ESWT) / Plasma Rico en Plaquetas (PRP) en tendinopatía crónica de glúteo medio", "evidence": "Moderada a medio-largo plazo" }
+          ],
+          "contraindications": [
+            "Infección local o sistémica",
+            "Rotura completa de espesor total del tendón glúteo (indicación de valoración quirúrgica)"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 4-6 semanas",
+    "parameters": [
+      { "name": "Dolor a la palpación del trocánter", "icon": "👆" },
+      { "name": "Capacidad de dormir sobre ese lado", "icon": "😴" },
+      { "name": "Tolerancia a caminar distancias", "icon": "🚶" },
+      { "name": "Test de apoyo monopodal 30s", "icon": "⏱️" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría franca (>50% de dolor)",
+        "action": "Progresar en ejercicios de fuerza de glúteo medio y marcha.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Alivio parcial",
+        "action": "Considerar ondas de choque extracorpóreas (ESWT) o infiltración ecoguiada.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Dolor severo persistente con cojera de Trendelenburg",
+        "action": "Solicitar RM de cadera para descartar desgarro completo del tendón del glúteo medio.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "No realizar estiramientos en aducción forzada de la cintilla iliotibial; la clave del tratamiento es el fortalecimiento progresivo del glúteo medio sin compresión."
+  },
+  "evidence": [
+    {
+      "citation": "Mellor R et al. Education plus exercise versus corticosteroid injection use versus a wait and see approach on global outcome and pain from gluteal tendinopathy: prospective, single blinded, randomised clinical trial. BMJ. 2018;361:k1662.",
+      "topic": "Evidencia de educación + ejercicio vs infiltración en tendinopatía glútea (Estudio LEAP)",
+      "year": 2018
+    },
+    {
+      "citation": "Lequesne M et al. Increased tension and focal degeneration of the gluteus medius/minimus tendon: the trochanteric syndrome. Joint Bone Spine. 2008;75(6):644-649.",
+      "topic": "Validación de pruebas clínicas para síndrome trocantérico",
+      "year": 2008
+    }
+  ]
+}

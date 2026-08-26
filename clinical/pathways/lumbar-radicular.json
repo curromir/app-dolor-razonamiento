@@ -1,0 +1,1031 @@
+{
+  "id": "lumbar-radicular-pain",
+  "region": "lumbar",
+  "regionLabel": "Columna Lumbar / Torácica",
+  "regionIcon": "⚡",
+  "presentation": "Lumbar + irradiación a pierna",
+  "redFlags": [
+    {
+      "id": "trauma",
+      "label": "Traumatismo significativo",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "fever",
+      "label": "Fiebre / sospecha de infección",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "cancer",
+      "label": "Cáncer conocido / antecedente oncológico",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "weight_loss",
+      "label": "Pérdida ponderal inexplicada",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "immunosuppression",
+      "label": "Inmunosupresión",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "constant_pain",
+      "label": "Dolor desproporcionado / constante / nocturno sin alivio posicional",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "progressive_neuro",
+      "label": "Déficit neurológico progresivo",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "sphincter",
+      "label": "Alteración esfinteriana (vejiga/intestino)",
+      "severity": "critical",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "saddle_anesthesia",
+      "label": "Anestesia en silla de montar",
+      "severity": "critical",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "fracture_suspect",
+      "label": "Sospecha de fractura vertebral",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "vascular",
+      "label": "Síntomas vasculares en miembros inferiores",
+      "severity": "major",
+      "action": "Derivación / estudio urgente"
+    },
+    {
+      "id": "age_extremes",
+      "label": "Edad <20 o >55 con primer episodio",
+      "severity": "minor",
+      "action": "Derivación / estudio urgente"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-l5",
+      "label": "Radiculopatía L5 (dorso del pie, extensor hallucis, marcha de talones)",
+      "description": "Compresión de la raíz L5",
+      "name": "Radiculopatía L5 (dorso del pie, extensor hallucis, marcha de talones)",
+      "shortName": "Radiculopatía L5",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-s1",
+      "label": "Radiculopatía S1 (planta/lateral del pie, flexión plantar, aquíleo)",
+      "description": "Compresión de la raíz S1",
+      "name": "Radiculopatía S1 (planta/lateral del pie, flexión plantar, aquíleo)",
+      "shortName": "Radiculopatía S1",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-l4",
+      "label": "Radiculopatía L4 (cara anterior muslo/rodilla, cuádriceps, rotuliano)",
+      "description": "Compresión de la raíz L4",
+      "name": "Radiculopatía L4 (cara anterior muslo/rodilla, cuádriceps, rotuliano)",
+      "shortName": "Radiculopatía L4",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-stenosis",
+      "label": "Estenosis de canal lumbar (claudicación neurógena)",
+      "description": "Estrechamiento del canal espinal",
+      "name": "Estenosis de canal lumbar (claudicación neurógena)",
+      "shortName": "Estenosis de canal lumbar",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-referred",
+      "label": "Dolor lumbar referido / facetario (sin distribución radicular clara)",
+      "description": "Dolor somático referido",
+      "name": "Dolor lumbar referido / facetario (sin distribución radicular clara)",
+      "shortName": "Dolor lumbar referido / facetario",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "¿El dolor le baja por la pierna? ¿Hasta dónde llega?",
+      "essential": true,
+      "answers": [
+        {
+          "label": "No baja de la rodilla (solo lumbar/glúteo)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-referred",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-l5",
+              "effect": "decrease",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-s1",
+              "effect": "decrease",
+              "weight": 2
+            }
+          ],
+          "nextQuestionId": "q2"
+        },
+        {
+          "label": "Llega hasta la rodilla (cara anterior/muslo)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-l4",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-referred",
+              "effect": "increase",
+              "weight": 1
+            }
+          ],
+          "nextQuestionId": "q2"
+        },
+        {
+          "label": "Cara lateral del muslo y cara anterior de rodilla (L4)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-l4",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-l5",
+              "effect": "decrease",
+              "weight": 1
+            }
+          ],
+          "nextQuestionId": "q2"
+        },
+        {
+          "label": "Cara lateral de pierna hasta el dorso del pie y primer dedo (L5)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-l5",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-s1",
+              "effect": "decrease",
+              "weight": 2
+            }
+          ],
+          "nextQuestionId": "q2"
+        },
+        {
+          "label": "Cara posterior de pierna, talón y planta/borde lateral del pie (S1)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-s1",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-l5",
+              "effect": "decrease",
+              "weight": 2
+            }
+          ],
+          "nextQuestionId": "q2"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "¿Nota hormigueo, adormecimiento o sensación de descarga eléctrica?",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, quemazón, hormigueo constante o pinchazos eléctricos",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-l5",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-s1",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-l4",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-referred",
+              "effect": "decrease",
+              "weight": 2
+            }
+          ],
+          "nextQuestionId": "q3"
+        },
+        {
+          "label": "No, es un dolor sordo y muscular",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-referred",
+              "effect": "increase",
+              "weight": 2
+            }
+          ],
+          "nextQuestionId": "q3"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "¿Ha notado debilidad en pie o pierna? ¿Se le cae el pie? ¿Le falla la pierna?",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, dificultad para caminar de talones o levantar el pie (L5)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-l5",
+              "effect": "increase",
+              "weight": 3
+            }
+          ],
+          "nextQuestionId": "q4"
+        },
+        {
+          "label": "Sí, dificultad para ponerse de puntillas o propulsión (S1)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-s1",
+              "effect": "increase",
+              "weight": 3
+            }
+          ],
+          "nextQuestionId": "q4"
+        },
+        {
+          "label": "No he notado pérdida de fuerza",
+          "hypothesisEffects": [],
+          "nextQuestionId": "q4"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "¿Empeora con la tos, estornudo o esfuerzo abdominal?",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, la tos o el esfuerzo disparan el dolor hacia la pierna",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-l5",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-s1",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-l4",
+              "effect": "increase",
+              "weight": 2
+            }
+          ],
+          "nextQuestionId": "q5"
+        },
+        {
+          "label": "No cambia con la tos ni esfuerzos",
+          "hypothesisEffects": [],
+          "nextQuestionId": "q5"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "¿Qué le duele más: la espalda o la pierna?",
+      "answers": [
+        {
+          "label": "Espalda",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Pierna",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Igual",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "text": "¿El dolor es continuo o aparece y desaparece?",
+      "answers": [
+        {
+          "label": "Continuo",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Intermitente",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "text": "¿Empeora al estar sentado mucho rato?",
+      "answers": [
+        {
+          "label": "Sí",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "No",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "text": "¿Mejora o empeora al caminar?",
+      "answers": [
+        {
+          "label": "Empeora",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Mejora",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Variable",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "text": "¿Ha tenido problemas de control de vejiga o intestino?",
+      "answers": [
+        {
+          "label": "Sí",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "No",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "text": "¿Qué quiere volver a hacer?",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Actividades diarias",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        },
+        {
+          "label": "Deporte",
+          "hypothesisEffects": [],
+          "nextQuestionId": null
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Neurológica Dirigida — Radiculopatía Lumbar",
+    "steps": [
+      {
+        "id": "exam-motor-l4",
+        "order": 1,
+        "name": "Fuerza cuádriceps (extensión rodilla)",
+        "catalogTestId": null,
+        "essential": true,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "neurologia",
+        "results": [
+          {
+            "label": "Normal (fuerza 5/5)",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Paresia cuádriceps (fuerza ≤4/5)",
+            "value": "disminuida",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l4",
+                "effect": "increase",
+                "weight": 4
+              }
+            ]
+          },
+          {
+            "label": "Plejía / Déficit severo",
+            "value": "severa",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l4",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-motor-l5",
+        "order": 2,
+        "name": "Fuerza extensor hallucis longus (dorsiflexión primer dedo)",
+        "catalogTestId": null,
+        "essential": true,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "neurologia",
+        "results": [
+          {
+            "label": "Normal (marcha de talones firme)",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Paresia extensor hallucis / marcha talones débil",
+            "value": "disminuida",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l5",
+                "effect": "increase",
+                "weight": 4
+              }
+            ]
+          },
+          {
+            "label": "Pie caído franco",
+            "value": "severa",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l5",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-motor-s1",
+        "order": 3,
+        "name": "Fuerza flexión plantar (ponerse de puntillas)",
+        "catalogTestId": null,
+        "essential": true,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "neurologia",
+        "results": [
+          {
+            "label": "Normal (marcha de puntillas firme)",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Dificultad para sostenerse de puntillas unipodal",
+            "value": "disminuida",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-s1",
+                "effect": "increase",
+                "weight": 4
+              }
+            ]
+          },
+          {
+            "label": "Imposibilidad total flexión plantar",
+            "value": "severa",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-s1",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-reflex-l4",
+        "order": 4,
+        "name": "Reflejo rotuliano",
+        "catalogTestId": null,
+        "essential": false,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "reflejos",
+        "results": [
+          {
+            "label": "Rotuliano normal bilateral",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Rotuliano hipoactivo / abolido unilateral",
+            "value": "disminuido",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l4",
+                "effect": "increase",
+                "weight": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-reflex-s1",
+        "order": 5,
+        "name": "Reflejo aquíleo",
+        "catalogTestId": null,
+        "essential": true,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "reflejos",
+        "results": [
+          {
+            "label": "Aquíleo normal bilateral",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Aquíleo hipoactivo / abolido unilateral",
+            "value": "disminuido",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-s1",
+                "effect": "increase",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-sensory",
+        "order": 6,
+        "name": "Sensibilidad dermatomas L4/L5/S1",
+        "catalogTestId": null,
+        "essential": false,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "neurologia",
+        "results": [
+          {
+            "label": "Sensibilidad conservada bilateral",
+            "value": "normal",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Hipoestesia en cara anterior muslo/rodilla (L4)",
+            "value": "hipoestesia_l4",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l4",
+                "effect": "increase",
+                "weight": 3
+              }
+            ]
+          },
+          {
+            "label": "Hipoestesia en cara lateral pierna y dorso pie (L5)",
+            "value": "hipoestesia_l5",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l5",
+                "effect": "increase",
+                "weight": 4
+              }
+            ]
+          },
+          {
+            "label": "Hipoestesia en planta y borde lateral pie (S1)",
+            "value": "hipoestesia_s1",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-s1",
+                "effect": "increase",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-lasegue",
+        "order": 7,
+        "name": "Test de Lasègue (SLR)",
+        "catalogTestId": "lumbar-lasegue",
+        "essential": true,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "neurodinamica",
+        "results": [
+          {
+            "label": "Negativo (>70° sin dolor irradiado)",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-referred",
+                "effect": "increase",
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "label": "Positivo franco (30°-60° con reproducción distal)",
+            "value": "positive-30-60",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l5",
+                "effect": "increase",
+                "weight": 3
+              },
+              {
+                "hypothesisId": "hyp-s1",
+                "effect": "increase",
+                "weight": 3
+              }
+            ]
+          },
+          {
+            "label": "Positivo tardío (60°-70°)",
+            "value": "positive-60-70",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l5",
+                "effect": "increase",
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "label": "Solo dolor lumbar o tirantez isquiotibial",
+            "value": "pain_back_only",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-referred",
+                "effect": "increase",
+                "weight": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-slump",
+        "order": 8,
+        "name": "Slump Test",
+        "catalogTestId": "lumbar-slump",
+        "essential": true,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "neurodinamica",
+        "results": [
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Positivo con dolor radicular irradiado",
+            "value": "positive-with-radiation",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-l5",
+                "effect": "increase",
+                "weight": 3
+              },
+              {
+                "hypothesisId": "hyp-s1",
+                "effect": "increase",
+                "weight": 3
+              }
+            ]
+          },
+          {
+            "label": "Solo tirantez dorsal/isquiotibial",
+            "value": "negative-tightness",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-lasegue-cruzado",
+        "order": 9,
+        "name": "Lasègue Cruzado",
+        "catalogTestId": "lumbar-lasegue-cruzado",
+        "essential": false,
+        "instruction": "",
+        "whatToLookFor": "",
+        "mentorTip": "",
+        "category": "neurodinamica",
+        "results": [
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": []
+          },
+          {
+            "label": "Positivo",
+            "value": "positive",
+            "hypothesisEffects": []
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "radicular-syndrome",
+      "label": "Síndrome radicular lumbar",
+      "condition": "exam-lasegue:positive-30-60 AND exam-slump:positive-radiation",
+      "concordanceText": "Los hallazgos aumentan considerablemente la probabilidad de afectación radicular en un contexto clínico compatible."
+    }
+  ],
+  "imaging": {
+    "type": "MRI",
+    "clinicalQuestion": "¿Existe una lesión disco-radicular que explique la distribución neurológica observada?",
+    "levelToEvaluate": "Determinado por la distribución dermatómica: L3-L4 (L4), L4-L5 (L5), L5-S1 (S1)",
+    "findings": [
+      {
+        "id": "img-normal",
+        "label": "Sin hallazgos relevantes",
+        "concordanceEffect": "discordant"
+      },
+      {
+        "id": "img-protrusion",
+        "label": "Protrusión discal",
+        "concordanceEffect": "possible"
+      },
+      {
+        "id": "img-extrusion",
+        "label": "Hernia discal extruida",
+        "concordanceEffect": "concordant"
+      },
+      {
+        "id": "img-contact",
+        "label": "Contacto/compresión radicular concordante",
+        "concordanceEffect": "concordant"
+      },
+      {
+        "id": "img-foraminal",
+        "label": "Estenosis foraminal",
+        "concordanceEffect": "concordant"
+      },
+      {
+        "id": "img-central-stenosis",
+        "label": "Estenosis central",
+        "concordanceEffect": "concordant"
+      },
+      {
+        "id": "img-other",
+        "label": "Otro hallazgo",
+        "concordanceEffect": "neutral"
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "La distribución neurológica, los hallazgos exploratorios y la imagen convergen en la misma raíz y nivel.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Existe patología discal pero el nivel o la lateralidad no coinciden completamente con la clínica.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Los hallazgos de imagen no explican el cuadro clínico. El hallazgo puede ser incidental. Reconsiderar diagnóstico.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-stenosis",
+      "label": "Estenosis de canal lumbar"
+    },
+    {
+      "id": "dd-facet",
+      "label": "Dolor referido facetario"
+    },
+    {
+      "id": "dd-piriformis",
+      "label": "Síndrome del piriforme"
+    },
+    {
+      "id": "dd-hip-oa",
+      "label": "Coxartrosis (dolor referido a muslo)"
+    },
+    {
+      "id": "dd-neuropathy",
+      "label": "Neuropatía periférica"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-l5",
+      "structuralDiagnosis": "Conflicto disco-radicular L4-L5 con afectación de raíz L5",
+      "painGenerator": "Dolor radicular L5 (Neuropático)",
+      "mechanism": "neuropathic",
+      "mechanismLabel": "Predominio Neuropático Radicular",
+      "supportingFindings": [
+        "Dolor irradiado por cara lateral de pierna y dorso del pie",
+        "Parestesias / quemazón",
+        "Debilidad extensor hallucis",
+        "Lasègue / Slump positivo",
+        "RM concordante L4-L5"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-s1",
+      "structuralDiagnosis": "Conflicto disco-radicular L5-S1 con afectación de raíz S1",
+      "painGenerator": "Dolor radicular S1 (Neuropático)",
+      "mechanism": "neuropathic",
+      "mechanismLabel": "Predominio Neuropático Radicular",
+      "supportingFindings": [
+        "Dolor irradiado a cara posterior y planta/borde lateral del pie",
+        "Reflejo aquíleo disminuido",
+        "Debilidad flexión plantar",
+        "Lasègue positivo",
+        "RM concordante L5-S1"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    },
+    {
+      "id": "gen-l4",
+      "structuralDiagnosis": "Conflicto disco-radicular L3-L4 con afectación de raíz L4",
+      "painGenerator": "Dolor radicular L4 (Neuropático)",
+      "mechanism": "neuropathic",
+      "mechanismLabel": "Predominio Neuropático Radicular",
+      "supportingFindings": [
+        "Dolor en cara anterior del muslo y rodilla",
+        "Reflejo rotuliano disminuido",
+        "Debilidad de cuádriceps",
+        "RM concordante L3-L4"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": [
+      {
+        "id": "ed-nerve-pain",
+        "label": "Explicación del dolor neuropático y mecanismo de compresión/inflamación radicular"
+      },
+      {
+        "id": "ed-prognosis",
+        "label": "Pronóstico favorable: la mayoría mejoran con tiempo y tratamiento conservador"
+      },
+      {
+        "id": "ed-reassurance",
+        "label": "Tranquilización sobre la naturaleza del dolor y señales de alarma"
+      }
+    ],
+    "exercise": [
+      {
+        "id": "ex-activity",
+        "label": "Mantener actividad dentro del límite del dolor"
+      },
+      {
+        "id": "ex-no-bedrest",
+        "label": "Evitar reposo en cama prolongado"
+      },
+      {
+        "id": "ex-directional",
+        "label": "Preferencia direccional (ej. extensión) si aplica y alivia la irradiación"
+      }
+    ],
+    "pharmacology": [
+      {
+        "id": "rx-neuromodulators",
+        "label": "Neuromoduladores (Pregabalina, Duloxetina, Amitriptilina) para el dolor neuropático"
+      },
+      {
+        "id": "rx-nsaids",
+        "label": "AINEs en curso corto para componente inflamatorio asociado"
+      }
+    ],
+    "interventionism": [
+      {
+        "id": "int-tfesi",
+        "label": "Inyección epidural transforaminal si hay dolor severo que limita la rehabilitación (requiere concordancia clínica-imagen)"
+      }
+    ],
+    "guardrails": [
+      {
+        "id": "guard-opioids",
+        "label": "Evitar opioides de forma crónica"
+      }
+    ]
+  },
+  "evidence": [
+    "Van der Windt DA, et al. Physical examination for lumbar radiculopathy due to disc herniation in patients with low-back pain. Cochrane Database Syst Rev. 2010.",
+    "Pinto RZ, et al. Epidural corticosteroid injections in the management of sciatica: a systematic review and meta-analysis. Ann Intern Med. 2012.",
+    "NICE guidelines [NG59]. Low back pain and sciatica in over 16s: assessment and management. 2016."
+  ],
+  "followUp": {
+    "parameters": [
+      "Intensidad del dolor radicular vs dolor lumbar",
+      "Función motora (déficit)",
+      "Cambios sensitivos",
+      "Reflejos osteotendinosos",
+      "Capacidad funcional (caminar, estar de pie)",
+      "Reevaluación de red flags (signos de alarma)"
+    ],
+    "principles": [
+      "Si el déficit neurológico es progresivo, se requiere reevaluación urgente y posible derivación quirúrgica."
+    ],
+    "timing": "Revisión en 4-6 semanas",
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría clara",
+        "action": "Continuar rehabilitación, progresar.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Mejoría parcial",
+        "action": "Revisar adherencia y diagnóstico.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Sin mejoría",
+        "action": "Reconsiderar hipótesis. ¿Es el generador correcto?",
+        "icon": "🔴"
+      },
+      {
+        "result": "worsening",
+        "label": "Empeoramiento",
+        "action": "Reevaluar diagnóstico, banderas rojas y déficit neurológico progresivo.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "Si el tratamiento dirigido falla, revisar el diagnóstico. El déficit neurológico progresivo requiere reevaluación urgente."
+  }
+}

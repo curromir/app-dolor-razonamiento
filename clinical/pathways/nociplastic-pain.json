@@ -1,0 +1,390 @@
+{
+  "id": "nociplastic-pain",
+  "region": "nociplastico",
+  "regionLabel": "Dolor Nociplástico / Generalizado",
+  "regionIcon": "🌪️",
+  "presentation": "Dolor Nociplástico / Sensibilización Central",
+  "presentationDesc": "Dolor crónico generalizado o desproporcionado acompañado de fatiga, alteraciones del sueño, niebla mental e hipersensibilidad multisensorial",
+  "redFlags": [
+    {
+      "id": "rf-polymyalgia",
+      "text": "Rigidez dolorosa severa de instauración aguda en hombros y caderas en paciente >50 años con reactantes de fase aguda muy elevados (VSG >50 mm/h) (sospecha de Polimialgia Reumática)",
+      "severity": "critical",
+      "action": "Analítica urgente con VSG/PCR y valorar respuesta rápida a corticoides orales"
+    },
+    {
+      "id": "rf-autoimmune-systemic",
+      "text": "Lesiones cutáneas tipo lupus (rash malar), úlceras orales, fenómeno de Raynaud severo o fiebre de origen desconocido (sospecha de conectivopatía autoinmune)",
+      "severity": "critical",
+      "action": "Estudio inmunológico completo (ANA, ENA, complemento) y derivación a Reumatología"
+    },
+    {
+      "id": "rf-myopathy",
+      "text": "Debilidad muscular proximal franca (dificultad para levantarse de la silla o peinarse) con dolor muscular y CPK elevada (sospecha de miopatía inflamatoria / miositis)",
+      "severity": "critical",
+      "action": "Analítica urgente con CPK, aldolasa y EMG de cuatro extremidades"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-nociplastic-primary",
+      "name": "Dolor Nociplástico Primario / Síndrome de Sensibilización Central (Fibromialgia)",
+      "shortName": "Sensibilización Central / Nociplástico",
+      "description": "Alteración del procesamiento nociceptivo en el SNC con amplificación de señales y déficit en las vías inhibitorias descendentes del dolor.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-mixed-pain-secondary",
+      "name": "Dolor Mixto (Nociceptivo / Neuropático crónico con Sensibilización Central secundaria)",
+      "shortName": "Dolor Mixto Secundario",
+      "description": "Patología periférica crónica previa (p. ej. artrosis, lumbalgia) que ha cronificado amplificando el sistema de alarma central.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-systemic-rheumatic",
+      "name": "Enfermedad Reumática Inflamatoria / Polimialgia Reumática",
+      "shortName": "Enfermedad Reumática Inflamatoria",
+      "description": "Dolor osteomuscular inflamatorio por artropatía o conectivopatía subyacente.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor está extendido por varias partes del cuerpo (cuello, espalda, brazos y piernas) desde hace más de 3 meses?»",
+      "explanation": "El dolor multifocal en al menos 4 de 5 regiones corporales (Criterios ACR 2016 de Índice de Dolor Generalizado - WPI) es el requisito topográfico fundamental del dolor nociplástico.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me duele prácticamente todo el cuerpo de forma continua y cambiante desde hace meses",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 6 },
+            { "hypothesisId": "hyp-mixed-pain-secondary", "effect": "increase", "weight": 3 }
+          ]
+        },
+        {
+          "label": "No, el dolor se concentra en una sola zona anatómica principal aunque a veces se irradia",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-mixed-pain-secondary", "effect": "increase", "weight": 4 },
+            { "hypothesisId": "hyp-nociplastic-primary", "effect": "decrease", "weight": 4 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Presenta fatiga constante no reparadora, alteraciones del sueño y dificultad para concentrarse ('niebla mental')?»",
+      "explanation": "La tríada de síntomas somáticos (Sueño no reparador + Fatiga crónica + Niebla cognitiva) evalúa la Escala de Severidad de Síntomas (SSS) de la IASP/ACR.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me levanto tan cansado como si no hubiera dormido, tengo lagunas de memoria y fatiga extrema",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 6 }
+          ]
+        },
+        {
+          "label": "Duermo bien y no tengo fatiga ni problemas de memoria",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-nociplastic-primary", "effect": "decrease", "weight": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Nota hipersensibilidad al tacto suave de la ropa, a los ruidos fuertes, a la luz intensa o a los cambios de temperatura?»",
+      "explanation": "La hiperalgesia multisensorial y la alodinia al roce confirman una hiperexcitabilidad global del sistema nervioso central.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí, el roce de la ropa ajustada, el frío o los ruidos fuertes me resultan dolorosos o insoportables",
+          "hypothesisEffects": [
+            { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 5 }
+          ]
+        },
+        {
+          "label": "No noto hipersensibilidad a estímulos externos",
+          "hypothesisEffects": []
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "«¿Cuál es su objetivo funcional principal?»",
+      "essential": true,
+      "isFunctionalGoal": true,
+      "answers": [
+        { "label": "Poder tener energía durante el día y mejorar la calidad de mi sueño", "hypothesisEffects": [] },
+        { "label": "Aprender a gestionar los brotes de dolor sin depender de fármacos analgésicos fuertes", "hypothesisEffects": [] },
+        { "label": "Retomar mi vida familiar, social y laboral con mayor independencia", "hypothesisEffects": [] }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Sensibilización Central",
+    "steps": [
+      {
+        "id": "exam-allodynia-tactile",
+        "order": 1,
+        "name": "Evaluación de Alodinia Mecánica Dinámica (Pincel / Torunda de Algodón)",
+        "category": "sensibilidad",
+        "essential": true,
+        "instruction": "Rozar suavemente la piel del antebrazo o del trapecio superior con una torunda de algodón o gasa.",
+        "whatToLookFor": "Percepción de dolor punzante, quemazón o desagrado intenso ante un estímulo táctil no doloroso (Alodinia).",
+        "mentorTip": "La alodinia mecánica dinámica es un marcador biológico de sensibilización espinal y cortical central.",
+        "results": [
+          {
+            "label": "Alodinia presente (el roce suave del algodón provoca dolor)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Sensibilidad táctil normal (roce percibido como tacto suave indoloro)",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-temporal-summation",
+        "order": 2,
+        "name": "Test de Sumación Temporal del Dolor (Wind-Up Clínico)",
+        "category": "neurofisiologia",
+        "essential": true,
+        "instruction": "Aplicar 10 toques suaves repetidos con un palillo o clip a un ritmo de 1 estímulo por segundo sobre el mismo punto de la piel.",
+        "whatToLookFor": "Aumento progresivo y desproporcionado del dolor percibido entre el 1º y el 10º toque (Fenómeno de Wind-Up).",
+        "mentorTip": "La sumación temporal anormal demuestra una facilitación heterosináptica en el asta dorsal de la médula.",
+        "results": [
+          {
+            "label": "Sumación temporal exagerada (el dolor se multiplica con los toques repetidos)",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 6 }
+            ]
+          },
+          {
+            "label": "Respuesta normal y estable sin aumento del dolor",
+            "value": "negative",
+            "hypothesisEffects": []
+          }
+        ]
+      },
+      {
+        "id": "exam-tender-points-pressure",
+        "order": 3,
+        "name": "Evaluación de Hiperalgesia por Presión Generalizada",
+        "category": "palpacion",
+        "essential": true,
+        "instruction": "Aplicar presión digital moderada (~4 kg/cm², suficiente para blanquear el lecho ungueal del examinador) sobre trapecios, epicóndilos, glúteos e interlínea de rodillas.",
+        "whatToLookFor": "Hiperalgesia difusa y simétrica en múltiples cuadrantes corporales.",
+        "results": [
+          {
+            "label": "Hiperalgesia generalizada en más de 6-8 puntos bilaterales",
+            "value": "positive",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 5 }
+            ]
+          },
+          {
+            "label": "Dolor localizado únicamente en 1 punto articular",
+            "value": "focal",
+            "hypothesisEffects": [
+              { "hypothesisId": "hyp-mixed-pain-secondary", "effect": "increase", "weight": 4 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-nociplastic-iasp",
+      "name": "Criterios Clínicos IASP para Dolor Nociplástico",
+      "description": "1. Dolor crónico generalizado >3 meses + 2. Presencia de alodinia o hiperalgesia en exploración + 3. Síntomas centrales (fatiga, sueño, niebla mental) + 4. Ausencia de daño tisular periférico proporcional",
+      "requiredTests": ["exam-allodynia-tactile", "exam-temporal-summation", "exam-tender-points-pressure"],
+      "threshold": 2,
+      "concordanceText": "Cumple los criterios diagnósticos internacionales de Dolor Nociplástico / Sensibilización Central (Clasificación IASP / ICD-11).",
+      "evidenceNote": "Los criterios de la IASP establecen el dolor nociplástico como el tercer gran mecanismo de dolor junto al nociceptivo y al neuropático (Kosek et al., Pain 2021)."
+    }
+  ],
+  "imaging": {
+    "type": "Analítica General & Pruebas de Imagen de Descarte",
+    "clinicalQuestion": "¿Existen marcadores inflamatorios analíticos elevados (VSG/PCR) o alteraciones estructurales que justifiquen la totalidad del cuadro clínico?",
+    "structures": [
+      {
+        "id": "lab-inflammatory-panel",
+        "name": "Panel Analítico General y Reactantes de Fase Aguda",
+        "priority": 1,
+        "findings": [
+          { "id": "lab-normal", "label": "Hemograma, VSG, PCR, TSH, CPK y función renal completamente normales (Sin inflamación sistémica)", "concordanceEffect": "concordant" },
+          { "id": "lab-high-crp-esr", "label": "VSG y PCR marcadamente elevadas (orienta a patología inflamatoria / reumatológica)", "concordanceEffect": "discordant" }
+        ]
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta con Dolor Nociplástico",
+        "description": "Dolor generalizado, alodinia demostrada y analítica con reactantes normales: confirman alteración central del procesamiento del dolor sin daño tisular inflamatorio activo.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial / Dolor Mixto",
+        "description": "Existe patología periférica localizada (artrosis/tendinosis) con fenómenos de sensibilización central secundaria sobreañadida.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Reactantes de fase aguda muy altos o debilidad motora objetiva: sospechar polimialgia o miopatía inflamatoria.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-polymyalgia-diff",
+      "name": "Polimialgia Reumática",
+      "whatWouldReconsider": "Paciente >50 años con rigidez matutina severa en hombros y caderas, VSG >50 mm/h.",
+      "keyDiscriminatingTest": "VSG/PCR y respuesta a corticoides"
+    },
+    {
+      "id": "dd-hypothyroidism",
+      "name": "Hipotiroidismo no diagnosticado",
+      "whatWouldReconsider": "Astenia, aumento de peso, piel seca, estreñimiento y TSH muy elevada.",
+      "keyDiscriminatingTest": "Perfil tiroideo (TSH y T4 libre)"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-nociplastic",
+      "structuralDiagnosis": "Síndrome de Sensibilización Central Primaria (Dolor Nociplástico / Fibromialgia)",
+      "painGenerator": "Amplificación Central del Dolor y Déficit de Modulación Descendente",
+      "mechanism": "nociplastic",
+      "mechanismLabel": "Predominio Nociplástico (Sensibilización Central)",
+      "supportingFindings": [
+        "Dolor generalizado en >4 cuadrantes",
+        "Alodinia táctil y sumación temporal positiva",
+        "Sueño no reparador y fatiga crónica",
+        "Analítica inflamatoria estrictamente normal"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Su dolor es real, pero no se debe a que sus músculos o articulaciones se estén destruyendo. Su sistema nervioso central funciona como un detector de humo con la sensibilidad demasiado alta que salta ante cualquier estímulo normal. El tratamiento consiste en recalibrar este sistema de alarma mediante ejercicio suave progresivo, regular el sueño y fármacos que estabilicen las señales neuronales.",
+      "mentorNote": "La Neurociencia del Dolor (Pain Neuroscience Education) es el pilar terapéutico con mayor tamaño de efecto (Moseley & Butler)."
+    },
+    "exercise": {
+      "objective": "Estimular la analgesia endógena inducida por el ejercicio sin provocar hiperalgesia post-esfuerzo.",
+      "phases": [
+        {
+          "name": "Fase 1: Movimiento de Bajo Impacto y Relajación",
+          "description": "Caminatas de 15-20 minutos a paso suave, hidroterapia en agua caliente (32°-34°C) o Tai-Chi.",
+          "duration": "1-4 semanas"
+        },
+        {
+          "name": "Fase 2: Ejercicio Aeróbico Gradual",
+          "description": "Bicicleta estática suave y ejercicios de fuerza isométrica ligera aumentando la duración muy poco a poco (regla del 10%).",
+          "duration": "4-12 semanas"
+        },
+        {
+          "name": "Fase 3: Mantenimiento y Resiliencia",
+          "description": "Actividad física regular 3-4 días por semana y técnicas de respiración / mindfulness.",
+          "duration": "Continuo"
+        }
+      ],
+      "loadGuidance": "Evitar picos de ejercicio intenso que desencadenen brotes de fatiga ('boom and bust cycle')."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "Inhibidores Duales de la Recaptación (Duloxetina / Milnaciprán)",
+          "indication": "Tratamiento de primera línea para potenciar las vías inhibitorias descendentes de serotonina y noradrenalina.",
+          "example": "Duloxetina 30 mg/día inicial, titular a 60 mg/día tras 1-2 semanas",
+          "duration": "Mantenimiento 6-12 meses",
+          "guardrails": ["Náuseas transitorias iniciales", "Evitar retirada brusca"]
+        },
+        {
+          "name": "Amitriptilina en dosis bajas nocturnas",
+          "indication": "Mejora de la arquitectura del sueño y analgesia central.",
+          "example": "Amitriptilina 10-25 mg antes de dormir (2 horas antes de acostarse)",
+          "duration": "Mantenimiento nocturno",
+          "guardrails": ["Boca seca", "Glaucoma de ángulo cerrado", "Somnolencia matutina"]
+        },
+        {
+          "name": "Gabapentinoides (Pregabalina)",
+          "indication": "Disminución de la hiperexcitabilidad glutamatérgica central.",
+          "example": "Pregabalina 25-75 mg/noche (titular hasta 150-300 mg/día)",
+          "duration": "Según respuesta",
+          "guardrails": ["Aumento de peso", "Edemas", "Evitar opioides mayores concomitantes"]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Fármacos opioides contraindicados en dolor nociplástico (riesgo de hiperalgesia inducida por opioides).",
+      "objective": "Terapias de neuromodulación no invasiva y psicoterapia de reprocesamiento del dolor.",
+      "targets": [
+        {
+          "name": "Terapia Cognitivo-Conductual (TCC) / Terapia de Reprocesamiento del Dolor (PRT)",
+          "indication": "Pilar no farmacológico obligatorio en dolor nociplástico.",
+          "options": [
+            { "name": "Psicoterapia cognitivo-conductual centrada en dolor crónico", "evidence": "Alta / Nivel I" },
+            { "name": "Estimulación Eléctrica Transcraneal de Corriente Directa (tDCS) / Estimulación Magnética Transcraneal (TMS)", "evidence": "Moderada" }
+          ],
+          "contraindications": [
+            "Uso de opioides potentes crónicos (Fentanilo, Oxicodona, Morfina): empeoran la sensibilización central y están desaconsejados por todas las guías internacionales"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión a las 6-8 semanas",
+    "parameters": [
+      { "name": "Calidad del descanso y sueño", "icon": "😴" },
+      { "name": "Nivel de energía y fatiga", "icon": "🔋" },
+      { "name": "Cumplimiento del ejercicio aeróbico suave", "icon": "🚶" },
+      { "name": "Escala de impacto funcional de fibromialgia (FIQ)", "icon": "📊" }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría en calidad del sueño y energía",
+        "action": "Mantener programa activo y dosis estable de neuromodulador.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Mejoría parcial",
+        "action": "Asociar Terapia Cognitivo-Conductual o ajustar dosis de duloxetina/pregabalina.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Brotes severos incapacitantes",
+        "action": "Revisar comorbilidades (apnea del sueño, déficit de vitamina D) y derivación a Unidad Multidisciplinar de Dolor.",
+        "icon": "🔴"
+      }
+    ],
+    "keyPrinciple": "Los opioides están formalmente desaconsejados en el dolor nociplástico porque agravan la sensibilización central a través de la activación glial."
+  },
+  "evidence": [
+    {
+      "citation": "Kosek E et al. Chronic nociplastic pain affecting the musculoskeletal system: clinical criteria and grading system. Pain. 2021;162(11):2629-2634.",
+      "topic": "Criterios diagnósticos y de gradación de la IASP para dolor nociplástico",
+      "year": 2021
+    },
+    {
+      "citation": "Moseley GL, Butler DS. Fifteen Years of Explaining Pain: The Past, Present, and Future. J Pain. 2015;16(9):807-813.",
+      "topic": "Evidencia de la educación en neurobiología del dolor en sensibilización central",
+      "year": 2015
+    }
+  ]
+}
