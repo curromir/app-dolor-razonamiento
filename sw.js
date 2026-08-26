@@ -1,5 +1,5 @@
-// Service Worker v27.0 - Test de Exploración Física & Fichas de Consulta de Dolor Notion v2.6
-const CACHE_NAME = 'dolor-tests-v27';
+// Service Worker v28.0 - Test de Exploración Física, Fichas v2.6 & Vademécum de Dolor
+const CACHE_NAME = 'dolor-tests-v28';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

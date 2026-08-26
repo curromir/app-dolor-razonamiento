@@ -1,0 +1,2716 @@
+{
+  "metadata": {
+    "title": "Vademécum de Dolor",
+    "subtitle": "Dosis · Indicaciones · Precauciones · Interacciones",
+    "version": "1.0.0",
+    "lastClinicalReview": "Agosto 2026",
+    "disclaimer": "Herramienta de referencia clínica para profesionales sanitarios. Las dosis son orientativas y requieren individualización según diagnóstico, edad, función renal/hepática, comorbilidades, interacciones y ficha técnica."
+  },
+  "five_key_doses": [
+    {
+      "id": "med-duloxetine",
+      "drugName": "Duloxetina",
+      "initial": "30 mg / 24 h (1–2 sem)",
+      "target": "60 mg / 24 h",
+      "max": "120 mg / 24 h",
+      "mainUse": "Neuropático · Nociplástico / Fibromialgia · Dolor + Ansiedad/Depresión",
+      "warning": "Vigilar TA, náuseas, hígado. Retirada progresiva.",
+      "badge": "🟢 1ª Línea Nociplástico & Neuropático"
+    },
+    {
+      "id": "med-amitriptyline",
+      "drugName": "Amitriptilina",
+      "initial": "10–25 mg por la noche (10 mg en ancianos)",
+      "target": "25–75 mg noche",
+      "max": "75–100 mg noche",
+      "mainUse": "Dolor Neuropático · Nociplástico + Insomnio / Sueño alterado",
+      "warning": "Anticolinérgico, sedación, caídas, ortostatismo, QT.",
+      "badge": "🟢/🟡 Elección si Dolor + Insomnio"
+    },
+    {
+      "id": "med-pregabalin",
+      "drugName": "Pregabalina",
+      "initial": "25–75 mg noche o 75 mg / 12 h",
+      "target": "150–600 mg / día (en 2–3 tomas)",
+      "max": "600 mg / día",
+      "mainUse": "Dolor Neuropático Periférico Focal / Central",
+      "warning": "Ajuste renal obligatorio. Sedación, mareo, caídas.",
+      "sciaticaOverride": "🚫 CIÁTICA: NO USO RUTINARIO (NICE NG59 / ACP)",
+      "badge": "🟢 1ª Línea Neuropatía Focal"
+    },
+    {
+      "id": "med-gabapentin",
+      "drugName": "Gabapentina",
+      "initial": "100–300 mg noche (titular progresivo)",
+      "target": "1.200–3.600 mg / día (en 3 tomas)",
+      "max": "3.600 mg / día",
+      "mainUse": "Dolor Neuropático Periférico",
+      "warning": "Ajuste renal obligatorio. Sedación, mareo, edema.",
+      "sciaticaOverride": "🚫 CIÁTICA: NO USO RUTINARIO (NICE NG59)",
+      "badge": "🟢 1ª Línea Neuropatía"
+    },
+    {
+      "id": "med-venlafaxine-xr",
+      "drugName": "Venlafaxina XR",
+      "initial": "37,5–75 mg / 24 h matutino",
+      "target": "150–225 mg / 24 h (dosis analgésica)",
+      "max": "225 mg / 24 h",
+      "mainUse": "Dolor Neuropático seleccionado · Neuropático + Depresión/Ansiedad",
+      "warning": "Control TA, retirada gradual. No equivalente de rutina en fibromialgia (NICE).",
+      "badge": "🟡 Alternativa Individualizada"
+    }
+  ],
+  "high_yield_interactions": [
+    {
+      "id": "int-tramadol-serotonin",
+      "title": "Tramadol + Antidepresivos (Duloxetina / Venlafaxina / Tricíclicos)",
+      "risk": "Síndrome Serotoninérgico y reducción del umbral convulsivo.",
+      "severity": "critical",
+      "action": "Evitar combinación o vigilar estrechamente signos de hiperreflexia, clonus, diaforesis, temblor, confusión y crisis."
+    },
+    {
+      "id": "int-opioid-bzd",
+      "title": "Opioides + Benzodiacepinas / Sedantes",
+      "risk": "Sedación profunda, depresión respiratoria, coma y muerte.",
+      "severity": "critical",
+      "action": "Evitar co-prescripción sistemática. Si imprescindible, usar mínimas dosis y monitorizar ventilación."
+    },
+    {
+      "id": "int-opioid-gabapentinoid",
+      "title": "Opioides + Gabapentinoides (Pregabalina / Gabapentina)",
+      "risk": "Potenciación de sedación, mareo, ataxia, caídas y depresión respiratoria.",
+      "severity": "warning",
+      "action": "Iniciar a dosis mínimas, titular muy lentamente y advertir sobre conducción y caídas."
+    },
+    {
+      "id": "int-triple-whammy",
+      "title": "Triple Whammy: IECA / ARA-II + Diurético + AINE",
+      "risk": "Fracaso Renal Agudo hemodinámico severo (pérdida de autorregulación glomerular).",
+      "severity": "critical",
+      "action": "Evitar AINEs en pacientes con IECA/ARA-II y diuréticos; preferir paracetamol o AINE tópico."
+    },
+    {
+      "id": "int-nsaid-anticoag",
+      "title": "AINE + Anticoagulantes orales (AVK / ACOD) o Antiagregantes",
+      "risk": "Hemorragia digestiva grave y sangrado sistémico.",
+      "severity": "critical",
+      "action": "Contraindicación relativa alta. Si imprescindible, curso ultracorto con gastroprotección obligatoria (IBP)."
+    },
+    {
+      "id": "int-nsaid-steroid",
+      "title": "AINE + Corticoide Oral Sistémico",
+      "risk": "Efecto sinérgico ulcerogénico con riesgo muy elevado de sangrado gastrointestinal.",
+      "severity": "warning",
+      "action": "No asociar de rutina. Proteger mucosa gástrica con IBP y limitar duración a <5 días."
+    },
+    {
+      "id": "int-paracetamol-duplicate",
+      "title": "Múltiples preparados con Paracetamol (Duplicidad)",
+      "risk": "Hepatotoxicidad aguda por sobredosis acumulativa inadvertida (>3-4 g/día).",
+      "severity": "warning",
+      "action": "Sumar todo el paracetamol recibido (Tramadol/Paracetamol + Paracetamol solo + antigripales)."
+    }
+  ],
+  "clinical_overrides": [
+    {
+      "conditionId": "lumbar-radiculopathy",
+      "conditionName": "Ciática / Radiculopatía Lumbar",
+      "drugs": [
+        "med-pregabalin",
+        "med-gabapentin"
+      ],
+      "recommendation": "not-routine",
+      "badge": "🔴 NO USO RUTINARIO EN CIÁTICA (NICE NG59 / ACP)",
+      "message": "Aunque son primera línea en dolor neuropático periférico focal, múltiples ensayos y guías NICE desaconsejan gabapentinoides de rutina en ciática por balance beneficio/riesgo desbalanceado."
+    },
+    {
+      "conditionId": "lumbar-radiculopathy-steroid",
+      "conditionName": "Ciática / Radiculopatía Lumbar",
+      "drugs": [
+        "med-prednisone"
+      ],
+      "recommendation": "selected",
+      "badge": "🟡 USO SELECCIONADO / NO RUTINARIO",
+      "message": "El ensayo clásico de Goldberg (JAMA) con prednisona 60mg→40mg→20mg (total 600mg) demostró modesta mejoría funcional sin reducción del dolor y más efectos adversos. Si se usa pauta pragmática (40mg x5d), etiquetarla como práctica clínica y no repetir ciclos."
+    },
+    {
+      "conditionId": "nociplastic-pain",
+      "conditionName": "Dolor Nociplástico / Fibromialgia",
+      "drugs": [
+        "med-duloxetine"
+      ],
+      "recommendation": "preferred",
+      "badge": "🟢 OPCIÓN PREFERENTE / RESPALDADA (NICE)",
+      "message": "Duloxetina (30 mg → 60 mg/d) cuenta con el mayor respaldo de evidencia entre las opciones farmacológicas para dolor nociplástico / chronic primary pain."
+    },
+    {
+      "conditionId": "nociplastic-pain-venla",
+      "conditionName": "Dolor Nociplástico / Fibromialgia",
+      "drugs": [
+        "med-venlafaxine-xr"
+      ],
+      "recommendation": "selected",
+      "badge": "🟡 ALTERNATIVA INDIVIDUALIZADA",
+      "message": "NICE no recomienda venlafaxina de rutina para chronic primary pain. Reservar como alternativa individualizada en comorbilidad ansioso-depresiva o intolerancia a duloxetina."
+    }
+  ],
+  "express_conditions": [
+    {
+      "id": "exp-msq-agudo",
+      "title": "Dolor Musculoesquelético Agudo",
+      "icon": "⚡",
+      "category": "nociceptivo",
+      "categoryLabel": "Nociceptivo",
+      "firstOption": "Actividad tolerada + Paracetamol o AINE oral ciclo corto",
+      "firstDose": "Ibuprofeno 400 mg / 8 h o Naproxeno 250–500 mg / 12 h (3–7 días)",
+      "secondOption": "Paracetamol 500–1.000 mg / 8 h si AINE contraindicado",
+      "secondDose": "Máximo 3 g/día (menor en ancianos o hepatopatía)",
+      "avoid": "Opioides de rutina · Reposo en cama prolongado · Polifarmacia innecesaria",
+      "avoidBadge": "🚫 Evitar reposo y opioides",
+      "review": "1–2 semanas si persiste limitación",
+      "whyThis": "El dolor musculoesquelético agudo responde a la carga adaptada precoz. La analgesia busca facilitar el movimiento, no el dolor cero.",
+      "relatedPathwayId": "cervical-axial-pain"
+    },
+    {
+      "id": "exp-artrosis",
+      "title": "Artrosis / Gonartrosis / Coxartrosis",
+      "icon": "🦵",
+      "category": "artrosis",
+      "categoryLabel": "Artrosis",
+      "firstOption": "Ejercicio terapéutico + Educación + AINE tópico (rodilla/mano)",
+      "firstDose": "Diclofenaco gel 1% (3–4 aplicaciones/día en capa fina)",
+      "secondOption": "AINE oral en ciclos cortos para reagudizaciones",
+      "secondDose": "Ibuprofeno 400 mg / 8 h o Naproxeno 250–500 mg / 12 h (3–7 días)",
+      "avoid": "Opioides fuertes continuos de rutina · Paracetamol como tratamiento único crónico · Infiltraciones repetidas de corticoide sin objetivo funcional",
+      "avoidBadge": "🚫 Opioides NO rutinarios",
+      "review": "4–8 semanas (evaluar función, marcha y sueño)",
+      "whyThis": "La piedra angular de la artrosis es la mejora biomecánica y la musculatura de soporte. El AINE tópico aporta alivio con mínima toxicidad sistémica.",
+      "relatedPathwayId": "knee-oa-anterior"
+    },
+    {
+      "id": "exp-brote-artrosico",
+      "title": "Brote Artrósico / Sinovitis con Derrame",
+      "icon": "🔥",
+      "category": "artrosis",
+      "categoryLabel": "Artrosis",
+      "firstOption": "AINE oral programado (ciclo corto 5–7 días) + Crioterapia + Descarga temporal",
+      "firstDose": "Ibuprofeno 400–600 mg / 8 h o Naproxeno 500 mg / 12 h con alimentos",
+      "secondOption": "Infiltración intraarticular de corticoide + AL si fracaso o contraindicación a AINE",
+      "secondDose": "Triamcinolona 20–40 mg en articulación (máx 2–3 al año)",
+      "avoid": "Uso continuado indefinido de AINEs · Infiltraciones múltiples frecuentes · Reposo absoluto",
+      "avoidBadge": "🚫 No cronificar AINEs",
+      "review": "1–2 semanas tras brote agudo",
+      "whyThis": "El brote sinovial requiere control rápido del proceso inflamatorio agudo para retomar la fisioterapia activa.",
+      "relatedPathwayId": "knee-oa-anterior"
+    },
+    {
+      "id": "exp-tendinopatia",
+      "title": "Tendinopatía (Manguito, Rotuliano, Aquílea, Epicóndilo)",
+      "icon": "🦴",
+      "category": "tendinopatia",
+      "categoryLabel": "Tendinopatía",
+      "firstOption": "Manejo de cargas + Ejercicio isométrico analgésico → excéntrico/progresivo",
+      "firstDose": "Pauta de carga adaptada (dolor tolerable ≤3-4/10 durante y <24h post-ejercicio)",
+      "secondOption": "AINE tópico en zona superficial o ciclo muy corto oral si dolor agudo limita ejercicio",
+      "secondDose": "AINE oral máx 3–5 días como coadyuvante puntual",
+      "avoid": "Infiltraciones de corticoides intratendinosas (riesgo de rotura) · Reposo absoluto que descondicione el tendón",
+      "avoidBadge": "🚫 Corticoide intratendinoso PROHIBIDO",
+      "review": "4–8 semanas (el remodelado del tendón requiere semanas)",
+      "whyThis": "El tendón necesita carga mecánica controlada para sintetizar colágeno. Los antiinflamatorios no curan la tendinopatía pero ayudan en fases hiperálgicas.",
+      "relatedPathwayId": "shoulder-lateral-pain"
+    },
+    {
+      "id": "exp-radiculopatia-aguda",
+      "title": "Radiculopatía Lumbar Aguda (<6 semanas / Ciática)",
+      "icon": "⚡",
+      "category": "radicular",
+      "categoryLabel": "Radicular",
+      "firstOption": "Mantener actividad tolerada (evitar cama) ± AINE oral seleccionado",
+      "firstDose": "Ibuprofeno 400 mg / 8 h o Naproxeno 500 mg / 12 h (mínima dosis eficaz)",
+      "secondOption": "Corticoide oral sólo seleccionado si dolor severo refractario (Goldberg disclaimer) o Epidural precoz si incapacidad severa",
+      "secondDose": "Prednisona 40 mg matutina x 5 días (pauta pragmática clínica, no repetir)",
+      "avoid": "Gabapentina o Pregabalina rutinarias (NICE NG59) · Reposo prolongado en cama · Ciclos repetidos de corticoides",
+      "avoidBadge": "🔴 Gabapentinoides NO de rutina",
+      "review": "1–3 semanas (vigilar fuerza motora L4/L5/S1 y banderas rojas)",
+      "whyThis": "La mayoría de hernias discales tienen evolución natural favorable con reabsorción espontánea. La analgesia busca abrir ventana de tolerancia al movimiento.",
+      "relatedPathwayId": "lumbar-radicular-pain"
+    },
+    {
+      "id": "exp-radiculopatia-subaguda",
+      "title": "Radiculopatía Lumbar Subaguda (6–12 semanas)",
+      "icon": "⏱️",
+      "category": "radicular",
+      "categoryLabel": "Radicular",
+      "firstOption": "Reexploración neurológica + RM si candidato + Inyección Epidural Dirigida",
+      "firstDose": "Epidural Transforaminal (TFESI) unilateral focal o Interlaminar (ILESI) si multiradicular",
+      "secondOption": "Rehabilitación activa focalizada y neuromodulación seleccionada si urente/parestésico continuo",
+      "secondDose": "Duloxetina 30→60 mg/d o pregabalina individualizada por especialista",
+      "avoid": "Repetir RM si no cambia conducta · Infiltraciones a ciegas · Polifarmacia",
+      "avoidBadge": "🚫 No repetir técnicas ineficaces",
+      "review": "2–4 semanas post-intervención",
+      "whyThis": "A partir de las 6 semanas con dolor incapacitante y concordancia clínico-RM, la inyección epidural ofrece una ventana analgésica óptima (AAN 2025).",
+      "relatedPathwayId": "lumbar-radicular-pain"
+    },
+    {
+      "id": "exp-radiculopatia-cronica",
+      "title": "Radiculopatía Lumbar Crónica (>12 semanas)",
+      "icon": "⏳",
+      "category": "radicular",
+      "categoryLabel": "Radicular",
+      "firstOption": "Pausa diagnóstica (¿sigue siendo radicular?) + Reevaluar respuesta previa",
+      "firstDose": "Si epidural previa alivió >50% transitorio: considerar repetir. Si falló: NO repetir.",
+      "secondOption": "Opciones avanzadas: PRF del ganglio dorsal (DRG) o valoración quirúrgica",
+      "secondDose": "Radiofrecuencia Pulsada del DRG (evidencia limitada de baja certeza)",
+      "avoid": "RF térmica de ramos mediales (❌ PROHIBIDA en radiculopatía) · Opioides a dosis altas de mantenimiento",
+      "avoidBadge": "❌ RF ramos mediales PROHIBIDA",
+      "review": "4–8 semanas",
+      "whyThis": "En cronicidad es obligatorio descartar dolor lumbar axial superpuesto o centralización.",
+      "relatedPathwayId": "lumbar-radicular-pain"
+    },
+    {
+      "id": "exp-neuropatico-periferico",
+      "title": "Dolor Neuropático Periférico General",
+      "icon": "🧠",
+      "category": "neuropatico",
+      "categoryLabel": "Neuropático",
+      "firstOption": "Duloxetina 30→60 mg/d o Pregabalina / Gabapentina (NeuPSIG 2025)",
+      "firstDose": "Duloxetina 30 mg matutina (1-2 sem) → 60 mg/24 h; o Pregabalina 75 mg/12 h (25-75 noche en frágil)",
+      "secondOption": "Amitriptilina 10–25 mg noche (titular a 25–75 mg) o Venlafaxina XR 150–225 mg/d",
+      "secondDose": "Amitriptilina 10 mg en mayores / 25 mg en adultos al acostarse",
+      "avoid": "Escalada rápida de dosis · Retirada brusca · AINEs (ineficaces en neuropático puro)",
+      "avoidBadge": "🚫 No usar AINEs",
+      "review": "4–8 semanas (titular despacio buscando tolerabilidad)",
+      "whyThis": "La dosis objetivo es la mínima que aporta mejoría funcional con tolerabilidad aceptable (NeuPSIG 2025).",
+      "relatedPathwayId": "nociplastic-pain"
+    },
+    {
+      "id": "exp-neuropatico-ansiedad",
+      "title": "Dolor Neuropático + Ansiedad / Depresión",
+      "icon": "🟣",
+      "category": "neuropatico",
+      "categoryLabel": "Neuropático",
+      "firstOption": "Duloxetina (doble diana analgésica y antidepresiva)",
+      "firstDose": "30 mg/24 h durante 1–2 semanas → 60 mg/24 h (máx 120 mg/d)",
+      "secondOption": "Venlafaxina XR (si neuropatía periférica con trastorno de ansiedad)",
+      "secondDose": "37,5–75 mg/24 h → titular cada 1–2 sem a 150–225 mg/24 h (dosis analgésica)",
+      "avoid": "Combinar con tramadol sin monitorizar síndrome serotoninérgico · Suspender sin pauta decreciente",
+      "avoidBadge": "⚠️ Alerta Serotoninérgica",
+      "review": "4–6 semanas",
+      "whyThis": "La inhibición dual de recaptación de serotonina y noradrenalina potencia las vías descendentes inhibitorias del dolor y mejora el estado de ánimo.",
+      "relatedPathwayId": "nociplastic-pain"
+    },
+    {
+      "id": "exp-neuropatico-localizado",
+      "title": "Dolor Neuropático Localizado / Alodinia Circunscrita",
+      "icon": "🩹",
+      "category": "neuropatico",
+      "categoryLabel": "Neuropático",
+      "firstOption": "Parches de Lidocaína 5% (hasta 3 apósitos sobre piel intacta durante 12h/día)",
+      "firstDose": "12 horas con apósito / 12 horas de descanso libre",
+      "secondOption": "Capsaicina crema 0,075% (3-4 veces/día) o Parche de Capsaicina 8% en clínica",
+      "secondDose": "Aplicación tópica con guantes; lavar manos tras uso",
+      "avoid": "Piel abierta o mucosas · Dosis altas de fármacos orales sistémicos si el dolor es muy localizado",
+      "avoidBadge": "🟢 Prioridad Tópica",
+      "review": "4–8 semanas",
+      "whyThis": "El tratamiento tópico actúa directamente en los canales de sodio y nociceptores cutáneos sin toxicidad sistémica ni sedación.",
+      "relatedPathwayId": "nociplastic-pain"
+    },
+    {
+      "id": "exp-nociplastico",
+      "title": "Dolor Nociplástico / Fibromialgia / Dolor Crónico Primario",
+      "icon": "🌀",
+      "category": "nociplastico",
+      "categoryLabel": "Nociplástico",
+      "firstOption": "Educación en neurociencia del dolor + Ejercicio graduado + Sueño + Duloxetina",
+      "firstDose": "Duloxetina 30 mg/24 h por la mañana → 60 mg/24 h (NICE: 4–6 sem evaluación)",
+      "secondOption": "Amitriptilina 10–25 mg por la noche si predomina alteración del sueño",
+      "secondDose": "10 mg en ancianos / 25 mg en jóvenes 2 horas antes de dormir",
+      "avoid": "Opioides (contraproducentes, hiperalgesia) · AINEs crónicos · Reposo o dependencia pasiva",
+      "avoidBadge": "🚫 OPIOIDES CONTRAINDICADOS",
+      "review": "4–8 semanas",
+      "whyThis": "El dolor nociplástico es una alteración en el procesamiento y amplificación del dolor central. La base es activa (ejercicio, sueño) y la farmacología solo un coadyuvante modulador.",
+      "relatedPathwayId": "nociplastic-pain"
+    },
+    {
+      "id": "exp-nociplastico-sueno",
+      "title": "Nociplástico + Insomnio / Alteración del Sueño",
+      "icon": "😴",
+      "category": "nociplastico",
+      "categoryLabel": "Nociplástico",
+      "firstOption": "Higiene del sueño + Amitriptilina a dosis bajas nocturnas",
+      "firstDose": "10–25 mg por la noche (tomar 2 horas antes de acostarse para reducir resaca matutina)",
+      "secondOption": "Pregabalina a dosis bajas nocturnas si intolerancia anticolinérgica",
+      "secondDose": "25–50 mg por la noche al acostarse",
+      "avoid": "Benzodiacepinas / hipnóticos Z crónicos (deterioran arquitectura del sueño) · Polifarmacia sedante",
+      "avoidBadge": "🚫 No cronificar BZD",
+      "review": "3–4 semanas",
+      "whyThis": "El sueño no reparador perpetúa la sensibilización central. Mejorar la fase de ondas lentas rompe el círculo vicioso dolor-insomnio.",
+      "relatedPathwayId": "nociplastic-pain"
+    },
+    {
+      "id": "exp-tunel-carpiano",
+      "title": "Síndrome del Túnel Carpiano / Neuropatía por Atrapamiento",
+      "icon": "🤲",
+      "category": "neuropatico",
+      "categoryLabel": "Neuropático",
+      "firstOption": "Férula nocturna en posición neutra + Modificación ergonómica",
+      "firstDose": "Uso nocturno diario durante 4 a 6 semanas",
+      "secondOption": "Infiltración perineural ecoguiada de corticoide + AL si síntomas moderados",
+      "secondDose": "Triamcinolona 10–20 mg o Betametasona en canal carpiano",
+      "avoid": "Prescripción rutinaria de gabapentinoides · Retrasar descompresión quirúrgica si hay atrofia tenar o déficit motor grave",
+      "avoidBadge": "⚠️ Quirúrgico si déficit",
+      "review": "4–6 semanas (EMG y seguimiento clínico)",
+      "whyThis": "La compresión mecánica se trata mecánicamente (ortesis/descompresión) o desinflamando el perineuro; los fármacos orales aportan escaso beneficio.",
+      "relatedPathwayId": "wrist-cts"
+    },
+    {
+      "id": "exp-trigemino",
+      "title": "Neuralgia del Trigémino",
+      "icon": "⚡",
+      "category": "neuropatico",
+      "categoryLabel": "Neuropático",
+      "firstOption": "Carbamazepina (fármaco de primera elección indiscutible)",
+      "firstDose": "Inicio 100 mg / 12 h (o 100 mg/día en ancianos) → titular gradualmente a 200 mg / 8–12 h (usual 600–800 mg/d)",
+      "secondOption": "Oxcarbazepina (mejor perfil de tolerabilidad) o Baclofeno como adyuvante",
+      "secondDose": "Oxcarbazepina 150–300 mg / 12 h → titular a 600–1.200 mg/día",
+      "avoid": "AINEs y analgésicos comunes (completamente ineficaces) · Omitir control de sodio/hemograma",
+      "avoidBadge": "⚠️ Monitorizar Na y hemograma",
+      "review": "1–2 semanas tras inicio (revisar sodio, transaminasas y toxicodermia)",
+      "whyThis": "La descarga paroxística en descargas eléctricas requiere bloqueo de canales de sodio dependientes de voltaje.",
+      "relatedPathwayId": "nociplastic-pain"
+    },
+    {
+      "id": "exp-dolor-moderado-intenso",
+      "title": "Dolor Moderado-Intenso Seleccionado (Segundo Escalón)",
+      "icon": "🟠",
+      "category": "nociceptivo",
+      "categoryLabel": "Moderado-Intenso",
+      "firstOption": "AINE programado corto + Paracetamol o Tramadol/Paracetamol en dosis ajustada",
+      "firstDose": "Tramadol/Paracetamol 37,5/325 mg: inicio 2 comp, intervalo ≥6 h (máx 8 comp/día = 300mg Tramadol + 2.600mg Paracetamol)",
+      "secondOption": "Tramadol liberación prolongada 50–100 mg / 12 h si dolor continuo no controlado",
+      "secondDose": "Inicio 50 mg / 12 h con antiemético y laxante profiláctico si procede",
+      "avoid": "Superar 8 comp/día de combinados · Duplicar paracetamol por otras vías · Uso prolongado sin objetivo funcional",
+      "avoidBadge": "⚠️ Máx 8 comp/d Tramadol/Parac",
+      "review": "1–2 semanas",
+      "whyThis": "Combinar mecanismos (sinergia analgésica) permite reducir la dosis individual de opioide minimizando efectos adversos.",
+      "relatedPathwayId": "cervical-axial-pain"
+    },
+    {
+      "id": "exp-dolor-intenso-opioide",
+      "title": "Dolor Intenso que Requiere Opioide Fuerte (Tercer Escalón)",
+      "icon": "🔴",
+      "category": "nociceptivo",
+      "categoryLabel": "Opioide Fuerte",
+      "firstOption": "Oxicodona / Morfina a menor dosis eficaz con plan de titulación y fecha de reevaluación",
+      "firstDose": "Oxicodona IR 5 mg cada 4–6 h en naive / Oxicodona Retard 5–10 mg / 12 h",
+      "secondOption": "Oxicodona/Naloxona (Targin) para reducir estreñimiento o Tapentadol Retard",
+      "secondDose": "Oxicodona/Naloxona 10/5 mg cada 12 h (5/2,5 mg en frágiles)",
+      "avoid": "Iniciar de rutina en artrosis o lumbalgia crónica · Omitir prevención de estreñimiento · Mantener sin mejoría funcional demostrada",
+      "avoidBadge": "🔴 NO rutinario en no-oncológico",
+      "review": "3–7 días tras inicio o cambio de dosis",
+      "whyThis": "Los opioides fuertes solo se justifican cuando el dolor severo incapacita, otras opciones han fracasado, y existe un objetivo funcional claro medible.",
+      "relatedPathwayId": "cervical-axial-pain"
+    },
+    {
+      "id": "exp-dolor-oncologico",
+      "title": "Dolor Oncológico / Cuidados Paliativos",
+      "icon": "🎗️",
+      "category": "oncologico",
+      "categoryLabel": "Oncológico",
+      "firstOption": "Escalera OMS individualizada: Opioide fuerte regular (Morfina, Oxicodona, Fentanilo) + Rescates de liberación rápida",
+      "firstDose": "Morfina oral o equivalente con pauta fija cada 4h (IR) o cada 12h (Retard) + dosis de rescate (10–16% de dosis diaria total)",
+      "secondOption": "Rotación de opioides si toxicidad/tolerancia + Coadyuvantes según dolor neuropático/óseo",
+      "secondDose": "Fentanilo transdérmico / Buprenorfina / Metadona con ajuste por especialista",
+      "avoid": "Tratamiento solo a demanda (debe ser pautado con rescates) · Omitir profilaxis de estreñimiento desde el día 1",
+      "avoidBadge": "🟢 Pauta fija + Rescates",
+      "review": "Estrecho (24–72 h en ajuste inicial)",
+      "whyThis": "En dolor oncológico se prioriza el alivio del sufrimiento y la calidad de vida con titulación rápida y manejo integral de síntomas.",
+      "relatedPathwayId": "nociplastic-pain"
+    }
+  ],
+  "drugs": [
+    {
+      "id": "med-paracetamol",
+      "genericName": "Paracetamol (Acetaminofén)",
+      "brandNames": [
+        "Gelocatil",
+        "Efferalgan",
+        "Termalgin",
+        "Xumadol",
+        "Perfalgan"
+      ],
+      "drugClass": "analgesic_non_opioid",
+      "drugClassLabel": "Analgésico no opioide / Antipirético",
+      "classIcon": "🔵",
+      "safetyTrafficLight": "green",
+      "categoryBadge": "🟢 Analgésico Base",
+      "quickSummary": {
+        "initialDose": "500–1.000 mg / 8 h",
+        "targetDose": "500–1.000 mg cada 8 horas según necesidad",
+        "maxDose": "3 g/día (máx 4 g/día en adultos seleccionados)",
+        "keyIndications": [
+          "Dolor nociceptivo leve-moderado",
+          "Coadyuvante / Rescate",
+          "Alternativa segura a AINEs"
+        ],
+        "mainWarnings": [
+          "Hepatopatía",
+          "Alcoholismo crónico",
+          "Duplicidad en combinados"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "msq-acute",
+          "conditionName": "Dolor musculoesquelético leve-moderado",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea / Base",
+          "rationale": "Perfil de seguridad gastrointestinal y renal superior a AINEs."
+        },
+        {
+          "conditionId": "oa",
+          "conditionName": "Artrosis (coadyuvante)",
+          "recommendation": "consider",
+          "badge": "🟡 Rescate / Coadyuvante",
+          "rationale": "Eficacia modesta aislada; no debe convertirse en tratamiento crónico automático sin ejercicio."
+        },
+        {
+          "conditionId": "ciatica",
+          "conditionName": "Ciática / Radiculopatía (fase aguda)",
+          "recommendation": "consider",
+          "badge": "🟡 Coadyuvante",
+          "rationale": "Alivio del dolor nociceptivo lumbar asociado."
+        }
+      ],
+      "dosing": {
+        "initial": "500–650 mg cada 8 horas (o 1 g/8h en dolor más intenso)",
+        "usual": "500–1.000 mg cada 8 horas según dolor",
+        "maximum": "3.000 mg/día (máx. 4.000 mg/día en ficha técnica; reducir a 2.000 mg/día si fragilidad)",
+        "titration": [
+          "Ajustar según necesidad sintomática",
+          "Evitar pautas fijas prolongadas si el dolor es episódico"
+        ],
+        "timing": "Con o sin alimentos. Cada 8 horas (mínimo 6 horas entre tomas).",
+        "onset": "30–60 minutos",
+        "reviewInterval": "Reevaluar a las 1–2 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Hipersensibilidad conocida",
+          "Insuficiencia hepatocelular grave o hepatitis aguda activa"
+        ],
+        "precautions": [
+          "Hepatopatía crónica, cirrosis",
+          "Consumo excesivo de alcohol",
+          "Bajo peso (<50 kg) y malnutrición",
+          "Deshidratación"
+        ],
+        "renalAdjustment": "Filtrado <10 ml/min: espaciar intervalo a cada 8 horas (máx 2 g/día).",
+        "hepaticAdjustment": "Reducir dosis a 2 g/día o evitar en fallo hepático severo.",
+        "adverseEffects": [
+          "Raras: elevación transitoria de transaminasas, reacciones alérgicas cutáneas."
+        ],
+        "withdrawal": "No requiere pauta de retirada; suspender cuando ceda el dolor."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Combinados analgésicos / Antigripales",
+          "risk": "Sobredosis inadvertida de paracetamol",
+          "severity": "warning",
+          "action": "Sumar todo el paracetamol de todas las fuentes prescritas y OTC."
+        },
+        {
+          "drugGroup": "Alcohol crónico",
+          "risk": "Potenciación de hepatotoxicidad",
+          "severity": "warning",
+          "action": "Limitar dosis máxima a 2 g/día."
+        }
+      ],
+      "clinicalPearls": [
+        "Revisar siempre la medicación total: el paracetamol oculto en Tramadol/Paracetamol u otros preparados es la causa más frecuente de sobredosificación accidental.",
+        "El techo analgésico de paracetamol se sitúa en 1.000 mg por toma; dosis superiores no aumentan analgesia y multiplican el riesgo hepático."
+      ],
+      "prescriptionTemplate": "Paracetamol 1 g vía oral cada 8 horas según necesidad por dolor (máximo 3 g al día). Suspender al ceder los síntomas.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-metamizole",
+      "genericName": "Metamizol Magnésico / Sódico (Dipirona)",
+      "brandNames": [
+        "Nolotil",
+        "Algi-Mabo",
+        "Metalgial"
+      ],
+      "drugClass": "analgesic_non_opioid",
+      "drugClassLabel": "Analgésico / Antipirético / Espasmolítico",
+      "classIcon": "🔵",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟡 Dolor Agudo / Cólico",
+      "quickSummary": {
+        "initialDose": "575 mg cada 6–8 h",
+        "targetDose": "575 mg cada 8 horas (máx 3.450 mg/d)",
+        "maxDose": "3.450 mg/día (cápsulas de 575 mg)",
+        "keyIndications": [
+          "Dolor agudo moderado-intenso",
+          "Postoperatorio / Postraumático",
+          "Dolor visceral / Cólico"
+        ],
+        "mainWarnings": [
+          "Agranulocitosis",
+          "Hipotensión tras IV rápida",
+          "Evitar uso prolongado indiscriminado"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "acute-moderate",
+          "conditionName": "Dolor agudo moderado-intenso postraumático",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea Agudo",
+          "rationale": "Gran potencia analgésica y efecto espasmolítico sin toxicidad GI/renal de AINEs."
+        },
+        {
+          "conditionId": "visceral",
+          "conditionName": "Dolor de tipo cólico / espasmo lumbopélvico",
+          "recommendation": "preferred",
+          "badge": "🟢 Indicación Específica",
+          "rationale": "Efecto relajante sobre musculatura lisa."
+        }
+      ],
+      "dosing": {
+        "initial": "575 mg cada 8 horas con agua",
+        "usual": "575 mg cada 6 a 8 horas según necesidad",
+        "maximum": "3.450 mg/día (máx. 6 cápsulas de 575 mg al día)",
+        "titration": [
+          "Ajustar por intensidad de dolor",
+          "Limitar duración a cursos cortos (<7–14 días)"
+        ],
+        "timing": "Con o después de comidas. Intervalo mínimo 6 horas.",
+        "onset": "20–45 minutos",
+        "reviewInterval": "Reevaluar a los 7 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Historial de agranulocitosis por pirazolonas",
+          "Porfiria hepática",
+          "Déficit congénito de G6PD",
+          "Hipotensión o inestabilidad hemodinámica"
+        ],
+        "precautions": [
+          "Población del norte de Europa / anglosajona (mayor susceptibilidad genética a agranulocitosis)",
+          "Insuficiencia renal o hepática avanzada"
+        ],
+        "renalAdjustment": "FG <30 ml/min: evitar dosis elevadas o espaciar tomas.",
+        "hepaticAdjustment": "Reducir dosis a la mitad en insuficiencia hepática moderada-severa.",
+        "adverseEffects": [
+          "Agranulocitosis (rara pero potencialmente mortal)",
+          "Hipotensión arterial",
+          "Reacciones cutáneas alérgicas."
+        ],
+        "withdrawal": "No requiere pauta de desescalada."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Ciclosporina / Metotrexato",
+          "risk": "Disminución de niveles de ciclosporina / aumento de toxicidad hematológica",
+          "severity": "warning",
+          "action": "Monitorizar niveles y hemograma."
+        }
+      ],
+      "clinicalPearls": [
+        "Alerta de seguridad al paciente: si presenta fiebre súbita, dolor de garganta (odinofagia), llagas en la boca o malestar general infeccioso, debe suspender inmediatamente el fármaco y acudir a urgencias para un hemograma.",
+        "Evitar prescribir en turistas o pacientes del norte de Europa/Reino Unido por mayor riesgo genético de agranulocitosis."
+      ],
+      "prescriptionTemplate": "Metamizol 575 mg vía oral cada 8 horas si precisa por dolor intenso (máximo 7 días). Suspender si fiebre o dolor de garganta.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-ibuprofen",
+      "genericName": "Ibuprofeno",
+      "brandNames": [
+        "Espidifen",
+        "Neobrufen",
+        "Nurofen",
+        "Saetil"
+      ],
+      "drugClass": "nsaid_oral",
+      "drugClassLabel": "AINE no selectivo (Derivado del ácido propiónico)",
+      "classIcon": "🟠",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟠 AINE 1ª Elección",
+      "quickSummary": {
+        "initialDose": "400 mg cada 8 h",
+        "targetDose": "400 mg cada 8 horas (1.200 mg/día)",
+        "maxDose": "1.200 mg/d analgésico habitual (máx 2.400 mg/d con prescripción)",
+        "keyIndications": [
+          "Dolor inflamatorio musculoesquelético agudo",
+          "Brote articular",
+          "Dismenorrea"
+        ],
+        "mainWarnings": [
+          "Checklist 5s: Riñón, GI/úlcera, CV/HTA, anticoagulantes, Triple Whammy"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "msq-acute",
+          "conditionName": "Dolor inflamatorio agudo",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea Inflamatorio",
+          "rationale": "Mejor balance de seguridad GI global a dosis ≤1.200 mg/día."
+        },
+        {
+          "conditionId": "ciatica",
+          "conditionName": "Ciática / Radiculopatía aguda (<6 sem)",
+          "recommendation": "selected",
+          "badge": "🟡 Uso Seleccionado",
+          "rationale": "Alivio sintomático del componente inflamatorio periherniario en ciclos cortos."
+        },
+        {
+          "conditionId": "oa-flare",
+          "conditionName": "Brote de artrosis con sinovitis",
+          "recommendation": "selected",
+          "badge": "🟡 Brote Agudo",
+          "rationale": "Control rápido de la inflamación durante 5–7 días."
+        }
+      ],
+      "dosing": {
+        "initial": "400 mg cada 8 horas con comida",
+        "usual": "400 mg cada 8 horas (dosis habitual más recomendada)",
+        "maximum": "1.200 mg/día en uso ambulatorio (máx prescrito 2.400 mg/día)",
+        "titration": [
+          "Usar la menor dosis eficaz durante el menor tiempo posible (3–7 días)"
+        ],
+        "timing": "Siempre con las comidas para reducir molestias gástricas.",
+        "onset": "30–60 minutos",
+        "reviewInterval": "Reevaluar a los 5–7 días; no prescribir indefinidamente"
+      },
+      "safety": {
+        "contraindications": [
+          "Úlcera gastroduodenal activa o hemorragia GI previa por AINE",
+          "Insuficiencia cardiaca grave (NYHA III-IV)",
+          "Insuficiencia renal grave (FG <30 ml/min)",
+          "Insuficiencia hepática grave",
+          "Tercer trimestre de embarazo"
+        ],
+        "precautions": [
+          "Hipertensión arterial (puede elevar 5-10 mmHg la TA)",
+          "Edad >65 años (asociar IBP)",
+          "Cardiopatía isquémica",
+          "Tratamiento con anticoagulantes"
+        ],
+        "renalAdjustment": "Evitar si FG <30 ml/min. Precaución si FG 30–59 ml/min.",
+        "hepaticAdjustment": "Precaución en hepatopatía leve-moderada; contraindicado en severa.",
+        "adverseEffects": [
+          "Dispepsia, pirosis, úlcera péptica",
+          "Deterioro de función renal / retención hidrosalina",
+          "Aumento de tensión arterial."
+        ],
+        "withdrawal": "Suspender directamente tras finalizar el ciclo corto."
+      },
+      "interactions": [
+        {
+          "drugGroup": "IECA / ARA-II + Diuréticos (Triple Whammy)",
+          "risk": "Fracaso Renal Agudo severo",
+          "severity": "critical",
+          "action": "Evitar AINEs en esta triple combinación."
+        },
+        {
+          "drugGroup": "Anticoagulantes orales (Sintrom / Eliquis / Xarelto)",
+          "risk": "Hemorragia digestiva masiva",
+          "severity": "critical",
+          "action": "Evitar co-prescripción o usar IBP con extrema vigilancia."
+        },
+        {
+          "drugGroup": "Corticoides orales",
+          "risk": "Multiplicación del riesgo ulcerogénico",
+          "severity": "warning",
+          "action": "Gastroprotección estricta."
+        }
+      ],
+      "clinicalPearls": [
+        "Checklist AINE de 5 segundos antes de recetar: 🫘 Riñón | 🩸 GI/Úlcera | ❤️ CV/HTA | 💉 Anticoagulación | 💊 Triple Whammy.",
+        "Dosis de 400 mg cada 8h proporcionan casi el 90% del efecto analgésico de 600 mg con una fracción de la toxicidad gástrica y renal."
+      ],
+      "prescriptionTemplate": "Ibuprofeno 400 mg vía oral cada 8 horas con las comidas durante 5 días. Suspender si dolor cede o molestias gástricas.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-naproxen",
+      "genericName": "Naproxeno",
+      "brandNames": [
+        "Antalgin",
+        "Naprosyn",
+        "Momen"
+      ],
+      "drugClass": "nsaid_oral",
+      "drugClassLabel": "AINE no selectivo con vida media prolongada",
+      "classIcon": "🟠",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟠 AINE Menor Riesgo CV",
+      "quickSummary": {
+        "initialDose": "250–500 mg cada 12 h",
+        "targetDose": "500 mg cada 12 horas con comidas",
+        "maxDose": "1.000 mg/día (máx 1.250 mg en crisis agudas)",
+        "keyIndications": [
+          "Dolor articular inflamatorio",
+          "Lumbalgia mecánica con brote",
+          "Pacientes con riesgo CV moderado que requieren AINE"
+        ],
+        "mainWarnings": [
+          "Checklist AINE",
+          "Riesgo GI superior a ibuprofeno (asociar IBP si >65 años)"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "articular-flare",
+          "conditionName": "Dolor articular inflamatorio / Tendinitis aguda",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea Articular",
+          "rationale": "Perfil cardiovascular más neutro entre los AINEs tradicionales."
+        },
+        {
+          "conditionId": "ciatica",
+          "conditionName": "Ciática / Radiculopatía aguda",
+          "recommendation": "selected",
+          "badge": "🟡 Ciclo Corto",
+          "rationale": "Pauta cómoda cada 12 horas."
+        }
+      ],
+      "dosing": {
+        "initial": "250–500 mg cada 12 horas con desayuno y cena",
+        "usual": "500 mg cada 12 horas con las comidas",
+        "maximum": "1.000 mg/día",
+        "titration": [
+          "Ciclos cortos de 5 a 7 días"
+        ],
+        "timing": "Con desayuno y cena.",
+        "onset": "60 minutos (efecto prolongado 12 horas)",
+        "reviewInterval": "Reevaluar a los 7 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Úlcera péptica activa",
+          "Insuficiencia renal grave (FG <30 ml/min)",
+          "Insuficiencia cardiaca grave"
+        ],
+        "precautions": [
+          "Edad avanzada (mayor toxicidad gástrica que ibuprofeno)",
+          "Insuficiencia renal leve-moderada"
+        ],
+        "renalAdjustment": "Evitar si FG <30 ml/min. Reducir dosis si FG 30–50 ml/min.",
+        "hepaticAdjustment": "Usar dosis mínima en hepatopatía leve; evitar en severa.",
+        "adverseEffects": [
+          "Dispepsia, riesgo de úlcera péptica, retención de líquidos."
+        ],
+        "withdrawal": "Suspender directamente al finalizar el tratamiento."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Antihipertensivos (IECA/ARA-II/Diuréticos)",
+          "risk": "Reducción de eficacia antihipertensiva y riesgo renal",
+          "severity": "warning",
+          "action": "Vigilar TA y función renal."
+        }
+      ],
+      "clinicalPearls": [
+        "Si es imprescindible recetar un AINE oral a un paciente con antecedentes de riesgo cardiovascular, Naproxeno es el AINE de elección según los metaanálisis de seguridad CV (asociando siempre IBP)."
+      ],
+      "prescriptionTemplate": "Naproxeno 500 mg vía oral cada 12 horas con comidas durante 5–7 días (+ Omeprazol 20 mg si >65 años).",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-dexketoprofen",
+      "genericName": "Dexketoprofeno",
+      "brandNames": [
+        "Enantyum",
+        "Ketesse",
+        "Quiralam"
+      ],
+      "drugClass": "nsaid_oral",
+      "drugClassLabel": "AINE enantiómero puro (Acción rápida)",
+      "classIcon": "🟠",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟠 Dolor Agudo Rápido",
+      "quickSummary": {
+        "initialDose": "25 mg cada 8 h",
+        "targetDose": "25 mg cada 8 horas (máx 75 mg/d)",
+        "maxDose": "75 mg/día en adultos (50 mg/día en ancianos)",
+        "keyIndications": [
+          "Dolor agudo moderado-intenso",
+          "Cólico nefrítico",
+          "Odontalgia / Traumatismo agudo"
+        ],
+        "mainWarnings": [
+          "Máximo 4 a 7 días de duración",
+          "No usar para dolor crónico continuo"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "acute-severe",
+          "conditionName": "Dolor agudo de intensidad moderada a severa",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea Agudo Rápido",
+          "rationale": "Inicio analgésico ultrarrápido (15–30 minutos)."
+        }
+      ],
+      "dosing": {
+        "initial": "25 mg cada 8 horas (o 12,5 mg en ancianos)",
+        "usual": "25 mg cada 8 horas según dolor",
+        "maximum": "75 mg/día en adultos jóvenes / 50 mg/día en ancianos",
+        "titration": [
+          "Uso exclusivamente en pauta corta aguda (<4–7 días)"
+        ],
+        "timing": "30 minutos antes de las comidas para absorción rápida, o con comidas si molestias.",
+        "onset": "15–30 minutos",
+        "reviewInterval": "Reevaluar a los 4–5 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Úlcera péptica activa",
+          "Insuficiencia renal o hepática moderada-grave",
+          "Insuficiencia cardiaca grave"
+        ],
+        "precautions": [
+          "Ancianos (techo de 50 mg/día)",
+          "Riesgo GI"
+        ],
+        "renalAdjustment": "FG 30–59 ml/min: máx 50 mg/día. FG <30: contraindicado.",
+        "hepaticAdjustment": "Hepatopatía leve-moderada: máx 50 mg/día.",
+        "adverseEffects": [
+          "Gastralgia, náuseas, mareo, cefalea."
+        ],
+        "withdrawal": "Suspender directamente."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Anticoagulantes / Otros AINEs",
+          "risk": "Hemorragia digestiva",
+          "severity": "critical",
+          "action": "Evitar duplicidad."
+        }
+      ],
+      "clinicalPearls": [
+        "Excelente para dolor agudo punzante por su rapidez, pero NUNCA debe mantenerse como analgesia continua crónica."
+      ],
+      "prescriptionTemplate": "Dexketoprofeno 25 mg vía oral cada 8 horas si precisa por dolor agudo (máximo 4–5 días).",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-diclofenac-topical",
+      "genericName": "Diclofenaco Tópico 1% / 2% Gel",
+      "brandNames": [
+        "Voltadol",
+        "Voltadol Forte",
+        "Voltaren Emulgel"
+      ],
+      "drugClass": "nsaid_topical",
+      "drugClassLabel": "AINE tópico periférico",
+      "classIcon": "🩹",
+      "safetyTrafficLight": "green",
+      "categoryBadge": "🟢 1ª Elección Artrosis Periférica",
+      "quickSummary": {
+        "initialDose": "Capa fina 3–4 veces al día",
+        "targetDose": "2–4 g en la articulación afectada cada 8–12 h",
+        "maxDose": "Según prospecto (absorción sistémica <5% de la vía oral)",
+        "keyIndications": [
+          "Gonartrosis (rodilla)",
+          "Artrosis de manos / rizartrosis",
+          "Tendinitis y esguinces superficiales"
+        ],
+        "mainWarnings": [
+          "Piel íntegra",
+          "Evitar duplicidad innecesaria con AINE oral"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "gonartrosis",
+          "conditionName": "Artrosis de rodilla y manos (NICE / OARSI / AAOS)",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea Recomendada",
+          "rationale": "Misma eficacia analgésica que AINE oral con <5% de exposición sistémica y mínimo riesgo GI/renal."
+        }
+      ],
+      "dosing": {
+        "initial": "Aplicar cantidad del tamaño de una cereza o nuez sobre la articulación limpia",
+        "usual": "Friccionar suavemente 2 a 4 veces al día",
+        "maximum": "Uso tópico localizado en articulaciones superficiales",
+        "titration": [
+          "Mantener durante 2 a 4 semanas; reevaluar eficacia"
+        ],
+        "timing": "Mañana, tarde y noche sobre piel sana.",
+        "onset": "1–2 días de uso continuado",
+        "reviewInterval": "Reevaluar a las 2–4 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Piel lesionada, heridas abiertas, eccema o quemaduras",
+          "Alergia conocida a AINEs"
+        ],
+        "precautions": [
+          "Evitar exposición solar directa en la zona tratada (fotosensibilidad)"
+        ],
+        "renalAdjustment": "Seguro en insuficiencia renal leve-moderada por mínima absorción sistémica.",
+        "hepaticAdjustment": "No requiere ajuste.",
+        "adverseEffects": [
+          "Dermatitis de contacto, eritema local, prurito."
+        ],
+        "withdrawal": "Suspender directamente."
+      },
+      "interactions": [
+        {
+          "drugGroup": "AINEs orales concomitantes",
+          "risk": "Suma innecesaria de exposición a AINE",
+          "severity": "caution",
+          "action": "Si se usa AINE oral, suspender el gel tópico."
+        }
+      ],
+      "clinicalPearls": [
+        "Primera recomendación de las guías NICE para artrosis de rodilla y mano: probar siempre AINE tópico antes de iniciar AINE oral sistémico, especialmente en mayores de 65 años o polimedicados."
+      ],
+      "prescriptionTemplate": "Diclofenaco dietilamina 1,16% gel: aplicar una capa fina sobre la articulación 3 veces al día con suave masaje.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-celecoxib",
+      "genericName": "Celecoxib",
+      "brandNames": [
+        "Celebrex",
+        "Artilog",
+        "Onsenal"
+      ],
+      "drugClass": "nsaid_oral",
+      "drugClassLabel": "AINE inhibidor selectivo de la COX-2 (Coxib)",
+      "classIcon": "🟠",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟠 Menor Toxicidad GI",
+      "quickSummary": {
+        "initialDose": "100–200 mg / día",
+        "targetDose": "200 mg/día (en 1 toma de 200 mg o 100 mg/12 h)",
+        "maxDose": "400 mg/día en situaciones seleccionadas",
+        "keyIndications": [
+          "Artrosis en pacientes con alto riesgo gastrointestinal",
+          "Espondiloartritis"
+        ],
+        "mainWarnings": [
+          "NO es cardioprotector",
+          "Precaución en HTA y cardiopatía isquémica",
+          "Alergia a sulfamidas"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "oa-gi-risk",
+          "conditionName": "Artrosis / Artritis en paciente con riesgo gastrointestinal",
+          "recommendation": "selected",
+          "badge": "🟡 Elección Riesgo GI",
+          "rationale": "Menor tasa de úlceras gástricas y sangrado digestivo alto que AINEs no selectivos."
+        }
+      ],
+      "dosing": {
+        "initial": "100 mg cada 12 horas o 200 mg en toma única matutina",
+        "usual": "200 mg al día",
+        "maximum": "400 mg al día",
+        "titration": [
+          "Mantener la menor dosis eficaz"
+        ],
+        "timing": "Con o sin alimentos.",
+        "onset": "45–60 minutos",
+        "reviewInterval": "Reevaluar a las 2–4 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Cardiopatía isquémica establecida, ictus o insuficiencia cardiaca (NYHA II-IV)",
+          "Alergia a sulfamidas",
+          "Úlcera péptica activa"
+        ],
+        "precautions": [
+          "Hipertensión arterial mal controlada",
+          "Insuficiencia renal moderada"
+        ],
+        "renalAdjustment": "Evitar si FG <30 ml/min. Los Coxibs retienen sodio y agua igual que los AINEs clásicos.",
+        "hepaticAdjustment": "Reducir dosis al 50% en insuficiencia hepática moderada.",
+        "adverseEffects": [
+          "Edema periférico, aumento de TA, dispepsia leve."
+        ],
+        "withdrawal": "Suspender directamente."
+      },
+      "interactions": [
+        {
+          "drugGroup": "IECA / ARA-II / Diuréticos",
+          "risk": "Riesgo de Fracaso Renal Agudo (igual que AINE clásico)",
+          "severity": "critical",
+          "action": "Evitar combinación."
+        }
+      ],
+      "clinicalPearls": [
+        "Los Coxibs reducen el daño gastrointestinal, pero comparten exactamente la misma toxicidad renal y vascular que los AINEs clásicos; nunca deben considerarse inocuos para el riñón ni para la tensión arterial."
+      ],
+      "prescriptionTemplate": "Celecoxib 200 mg vía oral cada 24 horas por la mañana con el desayuno durante 10–14 días.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-etoricoxib",
+      "genericName": "Etoricoxib",
+      "brandNames": [
+        "Arcoxia",
+        "Acoxxel",
+        "Exxiv"
+      ],
+      "drugClass": "nsaid_oral",
+      "drugClassLabel": "AINE inhibidor altamente selectivo de la COX-2",
+      "classIcon": "🟠",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟠 Pauta 1 vez/día",
+      "quickSummary": {
+        "initialDose": "30–60 mg / 24 h",
+        "targetDose": "30 mg/día en artrosis (puede subirse a 60 mg/día si es necesario)",
+        "maxDose": "60 mg/d en artrosis (90 mg/d en artritis reumatoide, 120 mg/d en gota aguda máx 8 días)",
+        "keyIndications": [
+          "Artrosis con necesidad de pauta única diaria",
+          "Gota aguda (120 mg máx 8d)",
+          "Espondilitis anquilosante"
+        ],
+        "mainWarnings": [
+          "Control estricto de tensión arterial (contraindicado si TA >140/90 no controlada)"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "oa-once-daily",
+          "conditionName": "Artrosis / Brote articular",
+          "recommendation": "selected",
+          "badge": "🟡 Toma Única",
+          "rationale": "Cómoda toma única matutina."
+        }
+      ],
+      "dosing": {
+        "initial": "30 mg una vez al día con desayuno",
+        "usual": "30 mg a 60 mg una vez al día",
+        "maximum": "60 mg/día en artrosis",
+        "titration": [
+          "Iniciar siempre con 30 mg en artrosis; usar periodos cortos"
+        ],
+        "timing": "Una toma al día con desayuno.",
+        "onset": "30–60 minutos",
+        "reviewInterval": "Reevaluar a las 2 semanas + control de TA"
+      },
+      "safety": {
+        "contraindications": [
+          "HTA no controlada (cifras persistentemente >140/90 mmHg)",
+          "Cardiopatía isquémica, arteriopatía periférica, ictus"
+        ],
+        "precautions": [
+          "Monitorizar la TA en las primeras 2 semanas de tratamiento"
+        ],
+        "renalAdjustment": "Contraindicado en FG <30 ml/min.",
+        "hepaticAdjustment": "Máx 60 mg/día en Child-Pugh leve; máx 30 mg/día en moderado.",
+        "adverseEffects": [
+          "Hipertensión arterial, edemas, mareo."
+        ],
+        "withdrawal": "Suspender directamente."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Antihipertensivos",
+          "risk": "Pérdida de control tensional",
+          "severity": "warning",
+          "action": "Revisar TA."
+        }
+      ],
+      "clinicalPearls": [
+        "Etoricoxib es uno de los AINEs con mayor tendencia a descompensar la tensión arterial: comprobar siempre la TA del paciente antes de recetarlo y a las 2 semanas."
+      ],
+      "prescriptionTemplate": "Etoricoxib 30 mg vía oral cada 24 horas por la mañana con el desayuno durante 7–10 días.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-duloxetine",
+      "genericName": "Duloxetina",
+      "brandNames": [
+        "Cymbalta",
+        "Xeristar",
+        "Dulotex",
+        "Duxetin"
+      ],
+      "drugClass": "antidepressant_neuromodulator",
+      "drugClassLabel": "Inhibidor de la recaptación de Serotonina y Noradrenalina (IRSN)",
+      "classIcon": "🟣",
+      "safetyTrafficLight": "green",
+      "categoryBadge": "🟢 1ª Línea Nociplástico & Neuropático",
+      "quickSummary": {
+        "initialDose": "30 mg / 24 h matutino (1–2 sem)",
+        "targetDose": "60 mg / 24 h por la mañana",
+        "maxDose": "120 mg / 24 h en dolor neuropático seleccionado",
+        "keyIndications": [
+          "Dolor Nociplástico / Fibromialgia / Dolor Crónico Primario",
+          "Dolor Neuropático Periférico Diabético",
+          "Dolor + Trastorno Ansioso-Depresivo"
+        ],
+        "mainWarnings": [
+          "Náuseas iniciales (evitar tomando con desayuno)",
+          "Monitorizar TA",
+          "Retirada progresiva obligatoria"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "nociplastic",
+          "conditionName": "Dolor Nociplástico / Fibromialgia (NICE)",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea Preferente",
+          "rationale": "Fármaco con mayor respaldo de evidencia para modulación central del dolor."
+        },
+        {
+          "conditionId": "neuropathic",
+          "conditionName": "Dolor Neuropático Periférico (NeuPSIG 2025)",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea NeuPSIG",
+          "rationale": "Potencia las vías descendentes inhibitorias del dolor."
+        },
+        {
+          "conditionId": "oa-knee-refractory",
+          "conditionName": "Artrosis de rodilla con dolor persistente / sensibilización",
+          "recommendation": "selected",
+          "badge": "🟡 Opción Seleccionada",
+          "rationale": "Aprobado por FDA para dolor musculoesquelético crónico."
+        }
+      ],
+      "dosing": {
+        "initial": "30 mg una vez al día por la mañana con el desayuno durante 1 a 2 semanas",
+        "usual": "60 mg una vez al día por la mañana (dosis objetivo analgésica habitual)",
+        "maximum": "120 mg al día (en 1 toma de 120 mg o 60 mg cada 12 horas)",
+        "titration": [
+          "Iniciar siempre con 30 mg/día para minimizar náuseas y mareos",
+          "Aumentar a 60 mg/día tras 7–14 días si buena tolerancia",
+          "Reevaluar a las 4–6 semanas para valorar respuesta"
+        ],
+        "timing": "Una toma matutina fija con el desayuno.",
+        "onset": "2 a 4 semanas para efecto analgésico consolidado",
+        "reviewInterval": "4 a 6 semanas para valorar respuesta y tolerabilidad"
+      },
+      "safety": {
+        "contraindications": [
+          "Insuficiencia renal grave (ClCr <30 ml/min)",
+          "Hepatopatía con insuficiencia hepática",
+          "Uso concomitante con IMAOs o inhibidores potentes de CYP1A2 (ej. fluvoxamina, ciprofloxacino)",
+          "Hipertensión arterial no controlada"
+        ],
+        "precautions": [
+          "Aumento de tensión arterial y frecuencia cardiaca",
+          "Historial de manía / trastorno bipolar",
+          "Riesgo de sangrado si se asocia a AINEs o anticoagulantes"
+        ],
+        "renalAdjustment": "Contraindicada si ClCr <30 ml/min. No requiere ajuste si ClCr ≥30 ml/min.",
+        "hepaticAdjustment": "Contraindicada en cualquier hepatopatía que cause deterioro hepático.",
+        "adverseEffects": [
+          "Náuseas (las más frecuentes al inicio, transitorias)",
+          "Boca seca, estreñimiento, somnolencia o insomnio",
+          "Sudoración, mareo, disfunción sexual."
+        ],
+        "withdrawal": "NUNCA suspender bruscamente: pauta de reducción progresiva durante al menos 2–4 semanas (ej. 60 mg → 30 mg x 2 sem → 30 mg a días alternos x 1 sem) para evitar síndrome de discontinuación (mareos, parestesias en descargas eléctricas, irritabilidad)."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Tramadol / Triptanes / Otros serotoninérgicos",
+          "risk": "Síndrome Serotoninérgico",
+          "severity": "critical",
+          "action": "Evitar o vigilar estrechamente clonus, temblor y diaforesis."
+        },
+        {
+          "drugGroup": "Inhibidores CYP1A2 (Ciprofloxacino, Fluvoxamina)",
+          "risk": "Elevación masiva de niveles de duloxetina",
+          "severity": "critical",
+          "action": "Contraindicado uso conjunto."
+        }
+      ],
+      "clinicalPearls": [
+        "Consejo clínico práctico para evitar abandono por náuseas: empezar siempre con 30 mg con un desayuno consistente durante 10–14 días antes de subir a 60 mg.",
+        "Mensaje clave: «La dosis objetivo no es la dosis máxima. Es la menor dosis que proporciona una mejoría clínicamente útil con tolerabilidad aceptable»."
+      ],
+      "prescriptionTemplate": "Duloxetina 30 mg vía oral cada 24 horas por la mañana con el desayuno durante 14 días. Si buena tolerancia, aumentar a 60 mg cada 24 horas. Revisión en consulta en 6 semanas.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-venlafaxine-xr",
+      "genericName": "Venlafaxina XR (Liberación Prolongada)",
+      "brandNames": [
+        "Vandral Retard",
+        "Dobupal Retard",
+        "Zarelis"
+      ],
+      "drugClass": "antidepressant_neuromodulator",
+      "drugClassLabel": "Inhibidor de la recaptación de Serotonina y Noradrenalina (IRSN)",
+      "classIcon": "🟣",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟡 1ª Línea Neuropatía / Alternativa Nociplástico",
+      "quickSummary": {
+        "initialDose": "37,5–75 mg / 24 h matutino",
+        "targetDose": "150–225 mg / 24 h (dosis analgésica noradrenérgica)",
+        "maxDose": "225 mg / 24 h (máx 375 mg en depresión mayor especializada)",
+        "keyIndications": [
+          "Dolor Neuropático Periférico (NeuPSIG 2025)",
+          "Neuropatía con Trastorno de Pánico / Ansiedad / Depresión",
+          "Alternativa individualizada si intolerancia a duloxetina"
+        ],
+        "mainWarnings": [
+          "Dosis <150 mg es puramente serotoninérgica (poco efecto analgésico)",
+          "Control TA estricto",
+          "Síndrome de retirada intenso"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "neuropathic",
+          "conditionName": "Dolor Neuropático Periférico (NeuPSIG 2025)",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea NeuPSIG",
+          "rationale": "Eficaz a dosis ≥150 mg/día donde se activa el bloqueo noradrenérgico."
+        },
+        {
+          "conditionId": "nociplastic-alt",
+          "conditionName": "Dolor Nociplástico (alternativa individualizada)",
+          "recommendation": "selected",
+          "badge": "🟡 Alternativa Individualizada",
+          "rationale": "NICE no la incluye de rutina para chronic primary pain; útil si comorbilidad ansiosa marcada o fracaso de duloxetina."
+        }
+      ],
+      "dosing": {
+        "initial": "37,5 mg a 75 mg una vez al día por la mañana con comida",
+        "usual": "150 mg a 225 mg una vez al día (rango de eficacia analgésica demostrada)",
+        "maximum": "225 mg al día en dolor neuropático",
+        "titration": [
+          "Iniciar 37,5–75 mg x 1–2 semanas",
+          "Incrementar 75 mg cada 1–2 semanas hasta alcanzar 150–225 mg/día"
+        ],
+        "timing": "Una toma fija con el desayuno.",
+        "onset": "2 a 4 semanas tras alcanzar dosis ≥150 mg",
+        "reviewInterval": "Reevaluar a las 4–6 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Uso simultáneo con IMAOs",
+          "Cardiopatía inestable / HTA grave no controlada"
+        ],
+        "precautions": [
+          "Aumento dosis-dependiente de la tensión arterial sistólica y diastólica",
+          "Glaucoma de ángulo cerrado"
+        ],
+        "renalAdjustment": "Reducir dosis al 50% en insuficiencia renal moderada-severa.",
+        "hepaticAdjustment": "Reducir dosis al 50% en insuficiencia hepática moderada.",
+        "adverseEffects": [
+          "Náuseas, sudoración profusa, sequedad de boca, cefalea, hipertensión."
+        ],
+        "withdrawal": "Retirada muy lenta y gradual: el síndrome de discontinuación de venlafaxina es especialmente intenso si se suspende bruscamente."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Tramadol / Triptanes",
+          "risk": "Síndrome serotoninérgico",
+          "severity": "critical",
+          "action": "Evitar asociación."
+        }
+      ],
+      "clinicalPearls": [
+        "Perla farmacológica clave: A dosis bajas (75 mg/día) venlafaxina actúa casi exclusivamente sobre serotonina; el bloqueo noradrenérgico necesario para modular el dolor requiere habitualmente alcanzar 150–225 mg/día."
+      ],
+      "prescriptionTemplate": "Venlafaxina Retard 75 mg vía oral cada 24 horas por la mañana con comida durante 14 días. Posteriormente subir a 150 mg cada 24 horas. Revisión en 6 semanas con control de TA.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-amitriptyline",
+      "genericName": "Amitriptilina",
+      "brandNames": [
+        "Tryptizol",
+        "Deprelio"
+      ],
+      "drugClass": "antidepressant_neuromodulator",
+      "drugClassLabel": "Antidepresivo Tricíclico (ADT)",
+      "classIcon": "🟣",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟢/🟡 Elección Dolor + Insomnio",
+      "quickSummary": {
+        "initialDose": "10–25 mg por la noche (10 mg en ancianos)",
+        "targetDose": "25–75 mg al acostarse (tomar 2h antes de dormir)",
+        "maxDose": "75–100 mg por la noche en dolor crónico",
+        "keyIndications": [
+          "Dolor Neuropático Periférico y Central",
+          "Dolor Nociplástico / Fibromialgia con Insomnio Severo",
+          "Prevención de Migraña / Cefalea Tensional"
+        ],
+        "mainWarnings": [
+          "Efectos anticolinérgicos (boca seca, estreñimiento, retención urinaria)",
+          "Sedación matutina y riesgo de caídas en ancianos",
+          "Cardiotoxicidad / prolongación QT"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "neuropathic",
+          "conditionName": "Dolor Neuropático Periférico (NeuPSIG 2025)",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea NeuPSIG",
+          "rationale": "Uno de los NNT más bajos en dolor neuropático (NNT ~3.6)."
+        },
+        {
+          "conditionId": "nociplastic-sleep",
+          "conditionName": "Dolor Nociplástico con alteración del sueño (NICE)",
+          "recommendation": "preferred",
+          "badge": "🟢 Elección Insomnio",
+          "rationale": "Restaura la fase profunda del sueño no REM a dosis bajas."
+        },
+        {
+          "conditionId": "migraine-prevention",
+          "conditionName": "Profilaxis de migraña y cefalea tensional",
+          "recommendation": "preferred",
+          "badge": "🟢 Profilaxis Cefalea",
+          "rationale": "Eficacia preventiva consolidada."
+        }
+      ],
+      "dosing": {
+        "initial": "10 mg en mayores de 65 años o frágiles / 25 mg en adultos jóvenes al acostarse",
+        "usual": "25 mg a 50 mg una vez al día por la noche (rango habitual analgésico)",
+        "maximum": "75 mg a 100 mg por la noche",
+        "titration": [
+          "Iniciar con 10 o 25 mg",
+          "Aumentar 10 a 25 mg cada 1–2 semanas según tolerancia y respuesta"
+        ],
+        "timing": "Tomar de 2 a 3 horas antes de acostarse (reduce la somnolencia y pesadez al despertar).",
+        "onset": "Efecto hipnótico desde el primer día; efecto analgésico en 2 a 4 semanas",
+        "reviewInterval": "Reevaluar a las 3–4 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Infarto de miocardio reciente, arritmias cardiacas, bloqueo AV",
+          "Glaucoma de ángulo cerrado no tratado",
+          "Hiperplasia benigna de próstata con retención urinaria grave",
+          "Fase maníaca"
+        ],
+        "precautions": [
+          "Edad >65 años (alta sensibilidad a efectos anticolinérgicos, confusión y caídas)",
+          "Cardiopatía isquémica, prolongación del intervalo QT",
+          "Estreñimiento crónico"
+        ],
+        "renalAdjustment": "No requiere ajuste específico; precaución si deterioro grave.",
+        "hepaticAdjustment": "Usar dosis mínimas en hepatopatía.",
+        "adverseEffects": [
+          "Boca seca (muy frecuente), somnolencia matutina, estreñimiento",
+          "Visión borrosa, mareo ortostático, aumento de peso, retención urinaria."
+        ],
+        "withdrawal": "Retirada progresiva a lo largo de varias semanas para evitar efecto rebote colinérgico (insomnio, sudoración, náuseas)."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Fármacos que prolongan el QT (Antiarrítmicos, Macrólidos, Antipsicóticos)",
+          "risk": "Arritmias ventriculares graves (Torsades de pointes)",
+          "severity": "critical",
+          "action": "Evitar combinación y monitorizar ECG si procede."
+        },
+        {
+          "drugGroup": "Tramadol / Otros serotoninérgicos",
+          "risk": "Síndrome serotoninérgico y convulsiones",
+          "severity": "warning",
+          "action": "Usar con cautela a dosis bajas."
+        }
+      ],
+      "clinicalPearls": [
+        "Perla para evitar la «resaca matutina»: advertir al paciente que no lo tome justo antes de meterse en la cama, sino a las 20:00-21:00 horas (2 a 3 horas antes de dormir).",
+        "En personas mayores (>65 años), empezar SIEMPRE con 10 mg/noche para evitar caídas nocturnas por hipotensión o confusión."
+      ],
+      "prescriptionTemplate": "Amitriptilina 25 mg vía oral por la noche (tomar 2 horas antes de dormir). Revisión en consulta en 4 semanas.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-pregabalin",
+      "genericName": "Pregabalina",
+      "brandNames": [
+        "Lyrica",
+        "Pragiola",
+        "Apreval",
+        "Acirax"
+      ],
+      "drugClass": "gabapentinoid",
+      "drugClassLabel": "Ligando de la subunidad alfa-2-delta de los canales de calcio",
+      "classIcon": "🧠",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟢 1ª Línea Neuropatía Focal / 🔴 NO Ciática",
+      "quickSummary": {
+        "initialDose": "25–75 mg noche o 75 mg / 12 h",
+        "targetDose": "150–300 mg / día (en 2 tomas)",
+        "maxDose": "600 mg / día (dividido en 2–3 tomas)",
+        "keyIndications": [
+          "Dolor Neuropático Periférico Focal (Neuralgia Posherpética, Neuropatía Diabética)",
+          "Dolor Neuropático Central",
+          "Trastorno de Ansiedad Generalizada"
+        ],
+        "mainWarnings": [
+          "🚫 CIÁTICA / RADICULOPATÍA: NO USO RUTINARIO (NICE NG59 / ACP)",
+          "⚠️ AJUSTE RENAL OBLIGATORIO (eliminación 100% renal)",
+          "Sedación, mareo, caídas, aumento de peso, potencial de abuso"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "neuropathic-focal",
+          "conditionName": "Dolor Neuropático Periférico Focal (NeuPSIG 2025)",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea NeuPSIG",
+          "rationale": "Reduce la liberación presináptica de glutamato y sustancia P."
+        },
+        {
+          "conditionId": "ciatica",
+          "conditionName": "Ciática / Radiculopatía Lumbar",
+          "recommendation": "not-routine",
+          "badge": "🔴 NO USO RUTINARIO (NICE NG59)",
+          "rationale": "Múltiples RCTs y guías NICE desaconsejan su uso rutinario por falta de eficacia frente a placebo y alta tasa de efectos adversos."
+        }
+      ],
+      "dosing": {
+        "initial": "25 a 75 mg por la noche en ancianos/frágiles; o 75 mg cada 12 horas en adultos jóvenes",
+        "usual": "150 mg a 300 mg al día (repartidos en 2 tomas de 75 mg o 150 mg)",
+        "maximum": "600 mg al día",
+        "titration": [
+          "Iniciar 75 mg noche o 75 mg/12h",
+          "Subir a 150 mg/12h a los 7 días según respuesta y tolerancia",
+          "Máximo 300 mg/12h tras 2–4 semanas"
+        ],
+        "timing": "Cada 12 horas con o sin alimentos.",
+        "onset": "1 a 2 semanas",
+        "reviewInterval": "Reevaluar a las 2–4 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Hipersensibilidad al principio activo"
+        ],
+        "precautions": [
+          "⚠️ AJUSTE RENAL OBLIGATORIO: se elimina inalterada por orina. Sin ajuste hay toxicidad grave (mioclonías, coma)",
+          "Riesgo de caídas y fracturas en ancianos por somnolencia y ataxia",
+          "Edemas periféricos y aumento de peso",
+          "Potencial de dependencia y abuso"
+        ],
+        "renalAdjustment": "ClCr ≥60: 150–600 mg/d | ClCr 30–59: 75–300 mg/d | ClCr 15–29: 25–150 mg/d | ClCr <15: 25–75 mg/d en dosis única diaria.",
+        "hepaticAdjustment": "No requiere ajuste hepático (no se metaboliza en hígado).",
+        "adverseEffects": [
+          "Somnolencia (muy frecuente), mareo / inestabilidad, edema periférico",
+          "Aumento de apetito y peso, visión borrosa, euforia/dependencia."
+        ],
+        "withdrawal": "Retirar gradualmente durante al menos 1–2 semanas para evitar insomnio, náuseas, cefalea, ansiedad y crisis convulsivas de rebote."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Opioides / Benzodiacepinas / Alcohol",
+          "risk": "Potenciación de depresión respiratoria y coma",
+          "severity": "critical",
+          "action": "Extrema precaución al combinar."
+        }
+      ],
+      "clinicalPearls": [
+        "Override fundamental: No asumir «dolor que baja por la pierna = pregabalina». En ciática lumbar aguda o subaguda sin dolor urente continuo intratable, NICE desaconseja gabapentinoides.",
+        "En pacientes con insuficiencia renal o mayores de 75 años, empezar siempre con 25 mg por la noche para evitar intoxicación por acumulación."
+      ],
+      "prescriptionTemplate": "Pregabalina 75 mg vía oral cada 12 horas durante 14 días. Reevaluar eficacia analgésica y tolerancia en consulta.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-gabapentin",
+      "genericName": "Gabapentina",
+      "brandNames": [
+        "Neurontin",
+        "Gabatur",
+        "Fanatrex"
+      ],
+      "drugClass": "gabapentinoid",
+      "drugClassLabel": "Ligando alfa-2-delta de canales de calcio",
+      "classIcon": "🧠",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟢 1ª Línea Neuropatía / 🔴 NO Ciática",
+      "quickSummary": {
+        "initialDose": "100–300 mg noche (titular)",
+        "targetDose": "1.200–2.400 mg / día (en 3 tomas)",
+        "maxDose": "3.600 mg / día (en 3 tomas)",
+        "keyIndications": [
+          "Dolor Neuropático Periférico",
+          "Neuralgia Posherpética"
+        ],
+        "mainWarnings": [
+          "🚫 CIÁTICA: NO USO RUTINARIO (NICE)",
+          "⚠️ AJUSTE RENAL OBLIGATORIO",
+          "Requiere administración estricta cada 8 horas (3 tomas/día)"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "neuropathic",
+          "conditionName": "Dolor Neuropático Periférico (NeuPSIG 2025)",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea NeuPSIG",
+          "rationale": "Fármaco de referencia en dolor neuropático periférico."
+        },
+        {
+          "conditionId": "ciatica",
+          "conditionName": "Ciática / Radiculopatía Lumbar",
+          "recommendation": "not-routine",
+          "badge": "🔴 NO USO RUTINARIO (NICE)",
+          "rationale": "Desaconsejado de rutina en radiculopatía lumbar."
+        }
+      ],
+      "dosing": {
+        "initial": "Día 1: 300 mg noche | Día 2: 300 mg / 12 h | Día 3: 300 mg / 8 h (en ancianos iniciar 100 mg noche)",
+        "usual": "1.200 mg a 2.400 mg al día repartidos en 3 tomas (ej. 400–800 mg cada 8 horas)",
+        "maximum": "3.600 mg al día (en 3 tomas)",
+        "titration": [
+          "Titular progresivamente cada 3–5 días aumentando 300 mg/día hasta dosis eficaz"
+        ],
+        "timing": "Cada 8 horas con o sin alimentos (vida media corta).",
+        "onset": "1 a 2 semanas",
+        "reviewInterval": "Reevaluar a las 2–4 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Hipersensibilidad a gabapentina"
+        ],
+        "precautions": [
+          "⚠️ AJUSTE RENAL OBLIGATORIO según aclaramiento de creatinina",
+          "Sedación, ataxia, mareo"
+        ],
+        "renalAdjustment": "ClCr ≥80: 900–3.600 mg/d | ClCr 50–79: 600–1.800 mg/d | ClCr 30–49: 300–900 mg/d | ClCr 15–29: 150–600 mg/d | ClCr <15: 100–300 mg/d.",
+        "hepaticAdjustment": "No requiere ajuste.",
+        "adverseEffects": [
+          "Somnolencia, mareo, ataxia, fatiga, edema periférico."
+        ],
+        "withdrawal": "Retirada progresiva durante al menos 1 semana."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Opioides / Depresores del SNC",
+          "risk": "Depresión respiratoria y sedación profunda",
+          "severity": "warning",
+          "action": "Vigilar estrechamente."
+        }
+      ],
+      "clinicalPearls": [
+        "Gabapentina debe administrarse siempre en 3 tomas al día (cada 8 horas) debido a su farmacocinética y transporte saturable; pautas cada 12 o 24h son ineficaces."
+      ],
+      "prescriptionTemplate": "Gabapentina 300 mg vía oral: Día 1 (0-0-1), Día 2 (1-0-1), Día 3 en adelante (1-1-1 cada 8 horas). Revisión en 3 semanas.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-carbamazepine",
+      "genericName": "Carbamazepina",
+      "brandNames": [
+        "Tegretol"
+      ],
+      "drugClass": "gabapentinoid",
+      "drugClassLabel": "Antiepiléptico bloqueador de canales de sodio",
+      "classIcon": "🧠",
+      "safetyTrafficLight": "orange",
+      "categoryBadge": "🟢 1ª Elección Neuralgia Trigémino",
+      "quickSummary": {
+        "initialDose": "100–200 mg / 12 h (100 mg/d ancianos)",
+        "targetDose": "200 mg cada 8–12 horas (600–800 mg/día)",
+        "maxDose": "1.200 mg/día",
+        "keyIndications": [
+          "Neuralgia Clásica del Trigémino (Fármaco de Elección)"
+        ],
+        "mainWarnings": [
+          "Monitorización obligatoria: Hemograma, Sodio (hiponatremia), Perfil Hepático",
+          "Reacciones cutáneas graves (Stevens-Johnson)",
+          "Autoinducción enzimática potente"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "trigeminal-neuralgia",
+          "conditionName": "Neuralgia del Trigémino",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea Indiscutible",
+          "rationale": "Bloqueo eficaz de descargas paroxísticas ectópicas en el nervio trigémino."
+        }
+      ],
+      "dosing": {
+        "initial": "100 mg cada 12 horas en adultos (o 100 mg/día en ancianos)",
+        "usual": "600 mg a 800 mg al día repartidos en 2 a 3 tomas",
+        "maximum": "1.200 mg al día",
+        "titration": [
+          "Aumentar 100–200 mg cada 2–3 días hasta control del dolor paroxístico"
+        ],
+        "timing": "Con las comidas para minimizar náuseas.",
+        "onset": "Rápido (24–48 horas para dolor trigeminal)",
+        "reviewInterval": "Revisión precoz a las 1–2 semanas con analítica"
+      },
+      "safety": {
+        "contraindications": [
+          "Bloqueo auriculoventricular",
+          "Antecedentes de depresión medular ósea",
+          "Porfiria hepática"
+        ],
+        "precautions": [
+          "Hiponatremia por SIADH (comprobar electrolitos)",
+          "Aplasia medular / agranulocitosis",
+          "Riesgo de rash grave en pacientes con alelo HLA-B*1502"
+        ],
+        "renalAdjustment": "Usar con precaución en insuficiencia renal.",
+        "hepaticAdjustment": "Suspender si disfunción hepática agravada.",
+        "adverseEffects": [
+          "Mareo, ataxia, somnolencia, náuseas, hiponatremia, leucopenia."
+        ],
+        "withdrawal": "Retirada muy gradual para evitar rebote de crisis paroxísticas."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Inductor CYP3A4 potente (múltiples interacciones)",
+          "risk": "Reduce niveles de anticoagulantes orales, anticonceptivos, etc.",
+          "severity": "critical",
+          "action": "Revisar interacciones."
+        }
+      ],
+      "clinicalPearls": [
+        "Si un paciente con sospecha de neuralgia del trigémino no experimenta ningún alivio con carbamazepina a dosis adecuadas, revalúa el diagnóstico: probablemente no sea una neuralgia trigeminal clásica."
+      ],
+      "prescriptionTemplate": "Carbamazepina 200 mg: Iniciar 100 mg cada 12 horas con comida durante 3 días. Subir a 200 mg cada 12 horas. Analítica de control con Na y hemograma en 2 semanas.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-lidocaine-patch",
+      "genericName": "Lidocaína 5% Apósito Adhesivo Medicamentoso",
+      "brandNames": [
+        "Versatis",
+        "Ralivia"
+      ],
+      "drugClass": "topical",
+      "drugClassLabel": "Anestésico local tópico",
+      "classIcon": "🩹",
+      "safetyTrafficLight": "green",
+      "categoryBadge": "🟢 1ª Elección Dolor Neuropático Localizado",
+      "quickSummary": {
+        "initialDose": "Hasta 3 parches al día durante 12 horas",
+        "targetDose": "1 a 3 parches sobre el área dolorosa alodínica (12h ON / 12h OFF)",
+        "maxDose": "Máximo 3 apósitos simultáneos durante 12 horas al día",
+        "keyIndications": [
+          "Neuralgia Posherpética",
+          "Dolor Neuropático Localizado con Alodinia Cutánea",
+          "Dolor cicatricial postquirúrgico circunscrito"
+        ],
+        "mainWarnings": [
+          "Aplicar solo sobre piel intacta sin heridas",
+          "Respetar el intervalo libre de 12 horas"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "postherpetic-allodynia",
+          "conditionName": "Dolor Neuropático Localizado / Neuralgia Posherpética",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Línea Tópica",
+          "rationale": "Bloquea canales de sodio cutáneos y actúa como barrera mecánica contra el roce alodínico."
+        }
+      ],
+      "dosing": {
+        "initial": "Aplicar 1 a 3 parches recortados a la medida de la zona dolorosa",
+        "usual": "12 horas puesto y 12 horas de descanso al día",
+        "maximum": "3 apósitos al día",
+        "titration": [
+          "Los apósitos se pueden recortar con tijeras antes de retirar la lámina protectora"
+        ],
+        "timing": "Poner por la mañana o por la noche durante 12 horas consecutivas.",
+        "onset": "1 a 2 horas (efecto consolidado a las 2–4 semanas)",
+        "reviewInterval": "Reevaluar a las 4 semanas; si no hay respuesta en 4 sem, suspender"
+      },
+      "safety": {
+        "contraindications": [
+          "Piel lesionada, dermatitis activa o heridas abiertas"
+        ],
+        "precautions": [
+          "Insuficiencia hepática grave (mínima absorción pero precaución si uso masivo)"
+        ],
+        "renalAdjustment": "No requiere ajuste.",
+        "hepaticAdjustment": "No requiere ajuste a dosis recomendadas.",
+        "adverseEffects": [
+          "Reacción local cutánea (eritema leve, prurito en la zona de aplicación)."
+        ],
+        "withdrawal": "Suspender directamente."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Antiarrítmicos clase I",
+          "risk": "Efecto acumulativo con lidocaína sistémica",
+          "severity": "caution",
+          "action": "Precaución."
+        }
+      ],
+      "clinicalPearls": [
+        "Doble mecanismo: el parche actúa farmacológicamente bloqueando canales Na+ y físicamente protegiendo la piel hiperalgésica del roce de la ropa."
+      ],
+      "prescriptionTemplate": "Lidocaína 5% apósitos medicamentosos: aplicar 1–2 apósitos en la zona dolorosa durante 12 horas al día (12h con parche / 12h de descanso).",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-capsaicin",
+      "genericName": "Capsaicina Tópica (Crema 0,075% / Parche 8%)",
+      "brandNames": [
+        "Capsicin crema",
+        "Qutenza parche 8%"
+      ],
+      "drugClass": "topical",
+      "drugClassLabel": "Agonista del receptor vaniloide TRPV1",
+      "classIcon": "🩹",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟡 Desensibilización Nociceptiva",
+      "quickSummary": {
+        "initialDose": "Crema 0,075%: 3–4 veces/día en capa fina | Parche 8%: aplicación única en clínica",
+        "targetDose": "Uso diario regular en crema o aplicación médica de Qutenza cada 3 meses",
+        "maxDose": "Según ficha técnica",
+        "keyIndications": [
+          "Dolor Neuropático Periférico no diabético",
+          "Neuralgia Posherpética",
+          "Artrosis como coadyuvante"
+        ],
+        "mainWarnings": [
+          "Sensación intensa de quemazón inicial (transitoria)",
+          "Lavar manos escrupulosamente; no tocar ojos ni mucosas"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "neuropathic-local",
+          "conditionName": "Dolor Neuropático Periférico Localizado",
+          "recommendation": "selected",
+          "badge": "🟡 Coadyuvante Tópico",
+          "rationale": "Produce deflexión y vaciamiento de Sustancia P y desensibilización de terminales TRPV1."
+        }
+      ],
+      "dosing": {
+        "initial": "Crema: aplicar pequeña cantidad 3 a 4 veces al día con guantes",
+        "usual": "Aplicación continuada durante 4 a 6 semanas",
+        "maximum": "4 aplicaciones diarias",
+        "titration": [
+          "Advertir que el ardor inicial disminuye tras varios días de uso continuado"
+        ],
+        "timing": "Cada 6–8 horas sobre piel intacta.",
+        "onset": "1 a 2 semanas para notar alivio analgésico",
+        "reviewInterval": "Reevaluar a las 4 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Piel erosionada o inflamada",
+          "Mucosas y ojos"
+        ],
+        "precautions": [
+          "Evitar baños calientes inmediatamente antes o después de la aplicación"
+        ],
+        "renalAdjustment": "No requiere ajuste.",
+        "hepaticAdjustment": "No requiere ajuste.",
+        "adverseEffects": [
+          "Sensación de ardor, quemazón y eritema local transitorio."
+        ],
+        "withdrawal": "Suspender directamente."
+      },
+      "interactions": [],
+      "clinicalPearls": [
+        "Explicar al paciente que los primeros días «pica y quema»: ese ardor es el mecanismo de acción que agota los neurotransmisores del dolor en las terminaciones cutáneas."
+      ],
+      "prescriptionTemplate": "Capsaicina 0,075% crema: aplicar una pequeña cantidad sobre la zona afectada 3 veces al día con guantes. Lavar manos tras su uso.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-tizanidine",
+      "genericName": "Tizanidina",
+      "brandNames": [
+        "Sirdalud"
+      ],
+      "drugClass": "muscle_relaxant",
+      "drugClassLabel": "Agonista alfa-2 adrenérgico de acción central",
+      "classIcon": "💪",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟡 Espasmo Agudo Seleccionado",
+      "quickSummary": {
+        "initialDose": "2 mg cada 8 h (o 2 mg noche)",
+        "targetDose": "2–4 mg cada 8 horas (máx 24–36 mg/d en espasticidad)",
+        "maxDose": "12–16 mg/día en dolor musculoesquelético agudo",
+        "keyIndications": [
+          "Espasmo muscular doloroso agudo asociado a patología vertebral"
+        ],
+        "mainWarnings": [
+          "Sedación, hipotensión, bradicardia",
+          "CONTRAINDICADO con inhibidores potentes de CYP1A2 (Ciprofloxacino, Fluvoxamina)"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "muscle-spasm",
+          "conditionName": "Espasmo muscular doloroso vertebral agudo",
+          "recommendation": "selected",
+          "badge": "🟡 Cursos Cortos",
+          "rationale": "Reduce el tono muscular reflejo mediado por interneuronas polisinápticas."
+        }
+      ],
+      "dosing": {
+        "initial": "2 mg por la noche o 2 mg cada 8 horas",
+        "usual": "2 mg a 4 mg cada 8 horas en periodos cortos",
+        "maximum": "12 mg/día en uso ambulatorio agudo",
+        "titration": [
+          "Limitar a periodos cortos (<5–10 días)"
+        ],
+        "timing": "Con o sin alimentos.",
+        "onset": "30–60 minutos",
+        "reviewInterval": "Reevaluar a los 5–7 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Uso simultáneo con ciprofloxacino o fluvoxamina (inhibición masiva de CYP1A2 con shock hipotensivo)",
+          "Insuficiencia hepática grave"
+        ],
+        "precautions": [
+          "Hipotensión arterial y bradicardia",
+          "Somnolencia intensa"
+        ],
+        "renalAdjustment": "FG <25 ml/min: iniciar 2 mg una vez al día.",
+        "hepaticAdjustment": "Contraindicada en insuficiencia hepática grave.",
+        "adverseEffects": [
+          "Somnolencia, mareo, boca seca, hipotensión, debilidad."
+        ],
+        "withdrawal": "Retirar gradualmente si se ha usado más de 2 semanas para evitar hipertensión de rebote."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Ciprofloxacino / Fluvoxamina (Inhibidores CYP1A2)",
+          "risk": "Aumento de 10 a 30 veces los niveles de tizanidina con hipotensión severa y sedación profunda",
+          "severity": "critical",
+          "action": "CONTRAINDICACIÓN ABSOLUTA."
+        }
+      ],
+      "clinicalPearls": [
+        "Interacción letal de examen y consulta: NUNCA prescribir tizanidina si el paciente toma ciprofloxacino (quinolona) o fluvoxamina."
+      ],
+      "prescriptionTemplate": "Tizanidina 2 mg vía oral cada 8 horas si precisa por espasmo muscular agudo durante 5 días.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-cyclobenzaprine",
+      "genericName": "Ciclobenzaprina",
+      "brandNames": [
+        "Yurelax"
+      ],
+      "drugClass": "muscle_relaxant",
+      "drugClassLabel": "Relajante muscular central relacionado con antidepresivos tricíclicos",
+      "classIcon": "💪",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟡 Contractura Aguda Corta",
+      "quickSummary": {
+        "initialDose": "5–10 mg por la noche o cada 8 h",
+        "targetDose": "10 mg cada 8–12 horas (máx 30 mg/d)",
+        "maxDose": "30 mg / día durante un máximo de 7–14 días",
+        "keyIndications": [
+          "Espasmo muscular agudo lumbocervical"
+        ],
+        "mainWarnings": [
+          "Efectos anticolinérgicos tipo amitriptilina (sedación, sequedad, arritmias)",
+          "No usar más de 2 semanas"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "cervical-spasm",
+          "conditionName": "Contractura musculoesquelética aguda",
+          "recommendation": "selected",
+          "badge": "🟡 Curso Corto (<7d)",
+          "rationale": "Alivio del espasmo muscular agudo facilitando el descanso nocturno."
+        }
+      ],
+      "dosing": {
+        "initial": "5 mg a 10 mg por la noche al acostarse",
+        "usual": "10 mg cada 8 a 12 horas",
+        "maximum": "30 mg al día",
+        "titration": [
+          "Limitar estrictamente a 1 o 2 semanas"
+        ],
+        "timing": "Preferente toma nocturna por su efecto sedante.",
+        "onset": "60 minutos",
+        "reviewInterval": "Reevaluar a los 7 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Arritmias cardiacas, bloqueo AV, insuficiencia cardiaca, infarto reciente",
+          "Hipertiroidismo",
+          "Uso concomitante con IMAOs"
+        ],
+        "precautions": [
+          "Ancianos (sedación marcada y caídas)",
+          "Glaucoma, retención urinaria"
+        ],
+        "renalAdjustment": "Usar con precaución.",
+        "hepaticAdjustment": "Insuficiencia hepática leve: iniciar 5 mg; evitar en moderada-severa.",
+        "adverseEffects": [
+          "Somnolencia intensa, boca seca, mareo, fatiga."
+        ],
+        "withdrawal": "Suspender directamente tras ciclo corto."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Antidepresivos serotoninérgicos / Tramadol",
+          "risk": "Síndrome serotoninérgico",
+          "severity": "warning",
+          "action": "Precaución."
+        }
+      ],
+      "clinicalPearls": [
+        "Químicamente es casi idéntica a la amitriptilina: comparte sus propiedades sedantes y anticolinérgicas. Usar solo en contracturas muy dolorosas durante pocos días."
+      ],
+      "prescriptionTemplate": "Ciclobenzaprina 10 mg vía oral por la noche antes de dormir durante 5 días.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-prednisone",
+      "genericName": "Prednisona / Metilprednisolona Oral",
+      "brandNames": [
+        "Dacortin",
+        "Prednisona",
+        "Urbason"
+      ],
+      "drugClass": "corticosteroid",
+      "drugClassLabel": "Glucocorticoide sistémico",
+      "classIcon": "🔥",
+      "safetyTrafficLight": "orange",
+      "categoryBadge": "🟡 Uso Seleccionado / NO Rutinario en Ciática",
+      "quickSummary": {
+        "initialDose": "Pauta Pragmática: 40 mg matutina x 5d | Pauta RCT: 60mg x5d → 40mg x5d → 20mg x5d",
+        "targetDose": "Pauta corta matutina con desayuno",
+        "maxDose": "60 mg/día (total 600 mg en RCT Goldberg)",
+        "keyIndications": [
+          "Radiculopatía lumbar aguda severa incapacitante seleccionada",
+          "Artritis inflamatoria / Polimialgia reumática"
+        ],
+        "mainWarnings": [
+          "Ensayo Goldberg (JAMA): mejoría funcional modesta sin reducción del dolor y más efectos adversos",
+          "Hiperglucemia en diabéticos",
+          "Insomnio, HTA, labilidad emocional",
+          "No repetir ciclos automáticamente"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "ciatica-severe",
+          "conditionName": "Ciática aguda severa incapacitante seleccionada",
+          "recommendation": "selected",
+          "badge": "🟡 Uso Seleccionado",
+          "rationale": "Potente antiinflamatorio para el edema intraneural agudo; no es de uso rutinario por guías NICE."
+        }
+      ],
+      "dosing": {
+        "initial": "Pauta clínica pragmática: 40 mg/día en toma única matutina con desayuno durante 5 días y suspender",
+        "usual": "Pauta del ensayo clínico RCT de Goldberg: 60 mg/d (días 1–5) → 40 mg/d (días 6–10) → 20 mg/d (días 11–15) [total 600 mg]",
+        "maximum": "60 mg/día en ciclo corto descendente",
+        "titration": [
+          "Etiquetar explícitamente la pauta pragmática como práctica clínica y NO del RCT principal",
+          "NO repetir ciclos sucesivamente"
+        ],
+        "timing": "Toma única matutina con el desayuno (para mimetizar el pico fisiológico de cortisol y evitar insomnio).",
+        "onset": "1 a 2 días",
+        "reviewInterval": "Reevaluar a los 7–14 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Infección bacteriana o fúngica sistémica activa",
+          "Úlcera péptica activa no tratada",
+          "Vacunas con virus vivos atenuados"
+        ],
+        "precautions": [
+          "Diabetes mellitus (descompensación glucémica acusada)",
+          "Hipertensión arterial",
+          "Osteoporosis",
+          "Glaucoma"
+        ],
+        "renalAdjustment": "No requiere ajuste.",
+        "hepaticAdjustment": "En insuficiencia hepática grave preferir prednisolona (prednisona requiere activación hepática).",
+        "adverseEffects": [
+          "Hiperglucemia, insomnio, irritabilidad, aumento de apetito",
+          "Retención hídrica, hipertensión, pirosis."
+        ],
+        "withdrawal": "Ciclos de ≤5 días no requieren pauta descendente; ciclos >14 días requieren descenso progresivo."
+      },
+      "interactions": [
+        {
+          "drugGroup": "AINEs",
+          "risk": "Riesgo sinérgico de úlcera y sangrado gastrointestinal",
+          "severity": "warning",
+          "action": "Asociar IBP de forma obligatoria."
+        },
+        {
+          "drugGroup": "Antidiabéticos orales / Insulina",
+          "risk": "Hiperglucemia marcada",
+          "severity": "warning",
+          "action": "Ajustar dosis de insulina/antidiabéticos."
+        }
+      ],
+      "clinicalPearls": [
+        "Evidencia del Ensayo de Goldberg (JAMA 2015): La prednisona oral en hernia discal aguda produjo una modesta mejoría funcional a corto plazo sin mejoría estadísticamente significativa en el dolor y con mayor tasa de efectos adversos. Reservar solo para casos seleccionados.",
+        "Tomar SIEMPRE por la mañana con el desayuno para evitar insomnio nocturno y supresión del eje suprarrenal."
+      ],
+      "prescriptionTemplate": "Prednisona 40 mg: Tomar 1 comprimido por la mañana con el desayuno durante 5 días y después suspender (+ Omeprazol 20 mg/día). No repetir.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-tramadol-paracetamol",
+      "genericName": "Tramadol / Paracetamol (37,5 mg / 325 mg)",
+      "brandNames": [
+        "Zaldiar",
+        "Pontalsic",
+        "Pazital",
+        "Diliban"
+      ],
+      "drugClass": "opioid_weak",
+      "drugClassLabel": "Combinación de Opioide débil (agonista mu + inhibidor de recaptación) + Analgésico no opioide",
+      "classIcon": "🔴",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟡 2º Escalón / Máx 8 comp/día",
+      "quickSummary": {
+        "initialDose": "2 comprimidos (75 mg Tramadol + 650 mg Paracetamol)",
+        "targetDose": "1–2 comprimidos cada 6 a 8 horas según dolor",
+        "maxDose": "8 comprimidos / día (= 300 mg Tramadol + 2.600 mg Paracetamol)",
+        "keyIndications": [
+          "Dolor agudo o subagudo moderado a intenso cuando AINEs o paracetamol son insuficientes"
+        ],
+        "mainWarnings": [
+          "⚠️ SUMAR TODO EL PARACETAMOL DIARIO (no superar 3-4 g/d total)",
+          "⚠️ ALERTA SEROTONINÉRGICA con Duloxetina/Venlafaxina/Tricíclicos",
+          "Náuseas, mareo, estreñimiento"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "moderate-pain",
+          "conditionName": "Dolor moderado-intenso refractario a primer escalón",
+          "recommendation": "selected",
+          "badge": "🟡 2º Escalón OMS",
+          "rationale": "Sinergia analgésica con menor dosis individual de cada principio activo."
+        }
+      ],
+      "dosing": {
+        "initial": "Inicio habitual: 2 comprimidos juntos vía oral",
+        "usual": "1 a 2 comprimidos cada 6 a 8 horas según necesidad de dolor",
+        "maximum": "8 comprimidos al día (equivalente a 300 mg de Tramadol y 2.600 mg de Paracetamol)",
+        "titration": [
+          "Intervalo mínimo de 6 horas entre tomas",
+          "No superar 8 comprimidos en 24 horas bajo ninguna circunstancia"
+        ],
+        "timing": "Con o sin alimentos. Intervalo mínimo 6 horas.",
+        "onset": "30–45 minutos",
+        "reviewInterval": "Reevaluar a los 7–14 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Intoxicación aguda por alcohol, hipnóticos o psicofármacos",
+          "Epilepsia no controlada",
+          "Tratamiento simultáneo con IMAOs"
+        ],
+        "precautions": [
+          "Riesgo de síndrome serotoninérgico al asociar a duloxetina, venlafaxina o amitriptilina",
+          "Disminución del umbral convulsivo",
+          "Estreñimiento, mareo y náuseas en ancianos"
+        ],
+        "renalAdjustment": "FG 10–30 ml/min: espaciar a cada 12 horas (máx 4 comp/día). FG <10: evitar.",
+        "hepaticAdjustment": "Insuficiencia hepática moderada: espaciar a cada 12 horas. Severa: contraindicado.",
+        "adverseEffects": [
+          "Náuseas y vómitos (frecuentes al inicio)",
+          "Mareo, somnolencia, estreñimiento, sudoración."
+        ],
+        "withdrawal": "Retirar progresivamente si se ha usado de forma continua para evitar síndrome de abstinencia opioide y rebote de dolor."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Duloxetina / Venlafaxina / Tricíclicos (ISRS/IRSN/ADT)",
+          "risk": "Síndrome serotoninérgico y convulsiones",
+          "severity": "critical",
+          "action": "Vigilar estrechamente signos serotoninérgicos o preferir analgesia alternativa."
+        },
+        {
+          "drugGroup": "Paracetamol solo prescrito adicionalmente",
+          "risk": "Sobredosis acumulativa inadvertida de paracetamol",
+          "severity": "warning",
+          "action": "Calcular la suma total: 8 comp de Zaldiar ya aportan 2.600 mg de paracetamol."
+        }
+      ],
+      "clinicalPearls": [
+        "Alerta de seguridad matemática: 8 comprimidos de Zaldiar ya contienen 2.600 mg de paracetamol. Si el paciente toma además 1 gramo de paracetamol por su cuenta, entra en rango de toxicidad hepática (>3.600 mg).",
+        "Efecto dual del tramadol: además de agonista opioide mu débil, inhibe la recaptación de serotonina y noradrenalina, lo que explica su interacción con antidepresivos."
+      ],
+      "prescriptionTemplate": "Tramadol/Paracetamol 37,5/325 mg: Tomar 1–2 comprimidos vía oral cada 8 horas si precisa por dolor intenso (intervalo mínimo 6h, máximo 6–8 comprimidos al día).",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-tramadol",
+      "genericName": "Tramadol (Monofármaco)",
+      "brandNames": [
+        "Adolonta",
+        "Tradonal",
+        "Tioner",
+        "Zytram"
+      ],
+      "drugClass": "opioid_weak",
+      "drugClassLabel": "Opioide débil agonista mu e inhibidor de recaptación 5-HT/NA",
+      "classIcon": "🔴",
+      "safetyTrafficLight": "yellow",
+      "categoryBadge": "🟡 2º Escalón / Dolor Moderado",
+      "quickSummary": {
+        "initialDose": "50 mg cada 8–12 h (IR) o 50–100 mg / 12 h (Retard)",
+        "targetDose": "50–100 mg cada 8 a 12 horas",
+        "maxDose": "400 mg / día (máx 300 mg en ancianos)",
+        "keyIndications": [
+          "Dolor moderado a severo continuo cuando se requiere pauta sin paracetamol"
+        ],
+        "mainWarnings": [
+          "Alerta Serotoninérgica",
+          "Riesgo de caídas y náuseas",
+          "Asociar laxante preventivo"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "moderate-severe",
+          "conditionName": "Dolor moderado-severo",
+          "recommendation": "selected",
+          "badge": "🟡 2º Escalón",
+          "rationale": "Alternativa cuando no se desea añadir paracetamol a la pauta."
+        }
+      ],
+      "dosing": {
+        "initial": "50 mg cada 8 a 12 horas",
+        "usual": "50 mg a 100 mg cada 8–12 horas (formulación Retard para dolor continuo)",
+        "maximum": "400 mg al día en adultos (300 mg en ancianos >75 años)",
+        "titration": [
+          "Iniciar con 50 mg/12h para reducir náuseas y mareos"
+        ],
+        "timing": "Con comidas y abundante agua.",
+        "onset": "30–60 minutos (IR) / 2–3 horas (Retard)",
+        "reviewInterval": "Reevaluar a las 2 semanas"
+      },
+      "safety": {
+        "contraindications": [
+          "Epilepsia no controlada",
+          "Insuficiencia respiratoria grave"
+        ],
+        "precautions": [
+          "Interacciones serotoninérgicas",
+          "Riesgo de adicción"
+        ],
+        "renalAdjustment": "FG <30 ml/min: espaciar a cada 12 horas (máx 200 mg/d).",
+        "hepaticAdjustment": "Cirrosis: espaciar a cada 12 horas (máx 100 mg/d).",
+        "adverseEffects": [
+          "Náuseas, mareo, estreñimiento, somnolencia."
+        ],
+        "withdrawal": "Reducción progresiva."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Antidepresivos (Duloxetina, Venlafaxina, ISRS, Tricíclicos)",
+          "risk": "Síndrome serotoninérgico y convulsiones",
+          "severity": "critical",
+          "action": "Vigilar estrechamente."
+        }
+      ],
+      "clinicalPearls": [
+        "Prescribir siempre con un laxante osmótico suave (ej. polietilenglicol o lactulosa) si se va a mantener más de 5 días."
+      ],
+      "prescriptionTemplate": "Tramadol Retard 50 mg vía oral cada 12 horas durante 7–10 días. Reevaluar.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-oxycodone-ir",
+      "genericName": "Oxicodona de Liberación Inmediata (IR)",
+      "brandNames": [
+        "Oxinorm",
+        "OxyContin rápida"
+      ],
+      "drugClass": "opioid_strong",
+      "drugClassLabel": "Opioide fuerte agonista mu y kappa (Liberación rápida)",
+      "classIcon": "🔴",
+      "safetyTrafficLight": "red",
+      "categoryBadge": "🔴 Opioide Mayor / Rescate",
+      "quickSummary": {
+        "initialDose": "5 mg cada 4–6 h en paciente naive seleccionado",
+        "targetDose": "5–10 mg como dosis de rescate para dolor irruptivo",
+        "maxDose": "Individualizada según tolerancia y pauta de base",
+        "keyIndications": [
+          "Dolor agudo severo postoperatorio/oncológico",
+          "Dosis de rescate en dolor oncológico/paliativo"
+        ],
+        "mainWarnings": [
+          "🔴 NO ES TRATAMIENTO RUTINARIO DE ARTROSIS O LUMBALGIA CRÓNICA",
+          "Depresión respiratoria",
+          "Estreñimiento obligado (pautar laxante)",
+          "Alto potencial de adicción"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "severe-acute-cancer",
+          "conditionName": "Dolor severo agudo o dolor irruptivo oncológico",
+          "recommendation": "specialist",
+          "badge": "🔴 3er Escalón OMS",
+          "rationale": "Inicio rápido para picos de dolor incapacitante no controlable con otros escalones."
+        },
+        {
+          "conditionId": "chronic-non-cancer",
+          "conditionName": "Dolor crónico no oncológico (Artrosis / Lumbalgia)",
+          "recommendation": "not-routine",
+          "badge": "🔴 NO RUTINARIO",
+          "rationale": "Desaconsejado de rutina por falta de mejoría funcional a largo plazo y riesgo elevado de hiperalgesia y dependencia."
+        }
+      ],
+      "dosing": {
+        "initial": "5 mg vía oral cada 4 a 6 horas en paciente que nunca ha tomado opioides fuertes (opioid-naïve)",
+        "usual": "5 mg a 10 mg cada 4 a 6 horas según necesidad para picos de dolor",
+        "maximum": "Titulada individualmente",
+        "titration": [
+          "Iniciar siempre con dosis mínima (5 mg)",
+          "Si se requieren >3–4 rescates al día, ajustar el opioide de liberación prolongada de base"
+        ],
+        "timing": "Cada 4 a 6 horas según dolor con alimentos.",
+        "onset": "15 a 30 minutos",
+        "reviewInterval": "Reevaluación estrecha en 3 a 7 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Depresión respiratoria grave / EPOC descompensada",
+          "Íleo paralítico / abdomen agudo no filiado",
+          "Traumatismo craneoencefálico con hipertensión intracraneal"
+        ],
+        "precautions": [
+          "Pacientes ancianos o debilitados (iniciar 2,5 a 5 mg)",
+          "Apnea del sueño",
+          "Riesgo de abuso y desvío"
+        ],
+        "renalAdjustment": "Reducir dosis inicial al 50% y espaciar tomas si FG <60 ml/min.",
+        "hepaticAdjustment": "Reducir dosis inicial a 2,5–5 mg en insuficiencia hepática.",
+        "adverseEffects": [
+          "Estreñimiento (100% de pacientes, requiere laxante)",
+          "Sedación, náuseas, mareo, depresión respiratoria."
+        ],
+        "withdrawal": "Desescalada gradual muy estricta (reducir 10-25% de la dosis cada 3-7 días)."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Benzodiacepinas / Sedantes",
+          "risk": "Depresión respiratoria mortal y coma",
+          "severity": "critical",
+          "action": "Evitar co-prescripción."
+        },
+        {
+          "drugGroup": "Alcohol",
+          "risk": "Liberación masiva de fármaco y parada cardiorrespiratoria",
+          "severity": "critical",
+          "action": "Prohibido el consumo de alcohol."
+        }
+      ],
+      "clinicalPearls": [
+        "Banner de Seguridad Obligatorio antes de recetar: ¿Dolor intenso? + ¿Otras opciones insuficientes? + ¿Objetivo funcional medible? + ¿Beneficio esperado > Riesgo? + ¿Plan de reevaluación y retirada?",
+        "Profilaxis de estreñimiento obligatoria desde el día 1 de tratamiento (ej. Macrogol / Polietilenglicol)."
+      ],
+      "prescriptionTemplate": "Oxicodona 5 mg vía oral: Tomar 1 cápsula cada 6 horas si presenta dolor intenso incapacitante (+ Macrogol sobres diario). Revisión en 5 días.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-oxycodone-retard",
+      "genericName": "Oxicodona de Liberación Prolongada (Retard)",
+      "brandNames": [
+        "OxyContin retard",
+        "Oxypro"
+      ],
+      "drugClass": "opioid_strong",
+      "drugClassLabel": "Opioide fuerte agonista mu (Liberación continuada 12h)",
+      "classIcon": "🔴",
+      "safetyTrafficLight": "red",
+      "categoryBadge": "🔴 Opioide Mayor Continuo",
+      "quickSummary": {
+        "initialDose": "5–10 mg cada 12 h en paciente naive",
+        "targetDose": "10–20 mg cada 12 horas según titulación",
+        "maxDose": "Individualizada según respuesta y función",
+        "keyIndications": [
+          "Dolor severo continuo que requiere opioide mayor de base (Oncológico / Postquirúrgico mayor)"
+        ],
+        "mainWarnings": [
+          "🔴 NO ES TRATAMIENTO DE RUTINA DE ARTROSIS NI LUMBALGIA CRÓNICA",
+          "Tragar entero sin masticar ni partir",
+          "Laxante preventivo obligatorio"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "severe-continuous",
+          "conditionName": "Dolor severo continuo oncológico o postquirúrgico mayor",
+          "recommendation": "specialist",
+          "badge": "🔴 3er Escalón OMS",
+          "rationale": "Control continuo y estable del dolor durante 12 horas."
+        }
+      ],
+      "dosing": {
+        "initial": "5 mg a 10 mg cada 12 horas con las comidas",
+        "usual": "10 mg a 20 mg cada 12 horas",
+        "maximum": "Titulada individualmente",
+        "titration": [
+          "Aumentar un 25–50% de la dosis total diaria cada 2–3 días si procede"
+        ],
+        "timing": "Cada 12 horas fijas (mañana y noche). Tragar entero.",
+        "onset": "1 a 2 horas (duración 12 horas)",
+        "reviewInterval": "Reevaluar a los 3–7 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Íleo paralítico",
+          "Depresión respiratoria"
+        ],
+        "precautions": [
+          "Tragar los comprimidos enteros (si se mastican se libera toda la dosis de golpe provocando sobredosis mortal)"
+        ],
+        "renalAdjustment": "Reducir dosis inicial al 50%.",
+        "hepaticAdjustment": "Reducir dosis inicial.",
+        "adverseEffects": [
+          "Estreñimiento severo, sedación, náuseas, boca seca."
+        ],
+        "withdrawal": "Retirada progresiva estricta."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Depresores del SNC / Benzodiacepinas",
+          "risk": "Depresión respiratoria",
+          "severity": "critical",
+          "action": "Evitar."
+        }
+      ],
+      "clinicalPearls": [
+        "NUNCA triturar ni partir los comprimidos de oxicodona retard: perderían el mecanismo de liberación prolongada liberando 12 horas de opioide en minutos."
+      ],
+      "prescriptionTemplate": "Oxicodona Retard 10 mg vía oral cada 12 horas (tragar entero sin masticar). Pautar laxante diario. Revisión en 1 semana.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-oxycodone-naloxone",
+      "genericName": "Oxicodona / Naloxona (Targin)",
+      "brandNames": [
+        "Targin",
+        "Oxicodona/Naloxona"
+      ],
+      "drugClass": "opioid_strong",
+      "drugClassLabel": "Opioide fuerte + Antagonista opioide local entérico (2:1)",
+      "classIcon": "🔴",
+      "safetyTrafficLight": "red",
+      "categoryBadge": "🔴 Opioide con Menor Estreñimiento",
+      "quickSummary": {
+        "initialDose": "10/5 mg cada 12 h (5/2,5 mg en frágiles)",
+        "targetDose": "10/5 mg a 20/10 mg cada 12 horas",
+        "maxDose": "160/80 mg al día (límite por dosis de naloxona)",
+        "keyIndications": [
+          "Dolor severo continuo con estreñimiento inducido por opioides"
+        ],
+        "mainWarnings": [
+          "Naloxona bloquea receptores intestinales pero no cruza a SNC por alto primer paso hepático",
+          "Contraindicado en fallo hepático"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "severe-constipation-risk",
+          "conditionName": "Dolor severo continuo con alto riesgo de estreñimiento",
+          "recommendation": "specialist",
+          "badge": "🔴 3er Escalón + Protección Intestinal",
+          "rationale": "La naloxona bloquea los receptores opioides en el plexo mientérico intestinal pero se inactiva en el hígado, manteniendo la analgesia central."
+        }
+      ],
+      "dosing": {
+        "initial": "10 mg / 5 mg cada 12 horas (o 5 mg / 2,5 mg en ancianos/frágiles)",
+        "usual": "10/5 mg a 20/10 mg cada 12 horas",
+        "maximum": "160 mg / 80 mg al día (límite máximo diario de 80 mg de naloxona)",
+        "titration": [
+          "Titular cada 2–3 días si el dolor no está controlado"
+        ],
+        "timing": "Cada 12 horas fijas. Tragar entero sin masticar.",
+        "onset": "1 a 2 horas (duración 12 horas)",
+        "reviewInterval": "Reevaluar a los 7 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Insuficiencia hepática moderada o grave (la naloxona no se metaboliza y pasa a SNC revirtiendo la analgesia)",
+          "Depresión respiratoria"
+        ],
+        "precautions": [
+          "Tragar entero"
+        ],
+        "renalAdjustment": "Reducir dosis inicial.",
+        "hepaticAdjustment": "CONTRAINDICADO en insuficiencia hepática moderada o severa.",
+        "adverseEffects": [
+          "Diarrea transitoria inicial al desbloquear el tránsito intestinal, náuseas, somnolencia."
+        ],
+        "withdrawal": "Retirada progresiva."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Benzodiacepinas",
+          "risk": "Depresión respiratoria",
+          "severity": "critical",
+          "action": "Evitar."
+        }
+      ],
+      "clinicalPearls": [
+        "Perla farmacocinética: Si el paciente tiene cirrosis o insuficiencia hepática, el hígado no puede inactivar la naloxona oral; la naloxona llega al cerebro, bloquea la oxicodona y provoca un síndrome de abstinencia instantáneo con dolor incontrolable."
+      ],
+      "prescriptionTemplate": "Oxicodona/Naloxona 10/5 mg vía oral cada 12 horas (tragar entero sin partir). Revisión en consulta en 1 semana.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-morphine",
+      "genericName": "Morfina Oral (IR y Retard)",
+      "brandNames": [
+        "Oramorph (solución)",
+        "Sevredol (IR)",
+        "MST Continus (Retard)",
+        "Zomorph"
+      ],
+      "drugClass": "opioid_strong",
+      "drugClassLabel": "Opioide fuerte agonista puro de referencia",
+      "classIcon": "🔴",
+      "safetyTrafficLight": "red",
+      "categoryBadge": "🔴 Estándar Oro Dolor Oncológico",
+      "quickSummary": {
+        "initialDose": "5–10 mg cada 4 h (IR) o 10–30 mg / 12 h (Retard)",
+        "targetDose": "Titulada según dolor oncológico de base",
+        "maxDose": "Sin techo analgésico (limitada por efectos adversos)",
+        "keyIndications": [
+          "Dolor Oncológico Moderado-Severo",
+          "Disnea en Cuidados Paliativos"
+        ],
+        "mainWarnings": [
+          "Acumulación de metabolitos neurotóxicos (M3G/M6G) en fallo renal",
+          "Laxante diario obligado"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "cancer-pain",
+          "conditionName": "Dolor Oncológico / Cuidados Paliativos",
+          "recommendation": "preferred",
+          "badge": "🟢 1ª Elección Oncológico",
+          "rationale": "Opioide de referencia mundial con décadas de experiencia clínica y versatilidad de vías."
+        }
+      ],
+      "dosing": {
+        "initial": "Morfina solución o Sevredol 5 a 10 mg cada 4 horas vía oral en naive",
+        "usual": "MST Continus 30 mg cada 12 horas + dosis de rescate de 10 mg IR si precisa",
+        "maximum": "Individualizada",
+        "titration": [
+          "Titular con dosis de liberación rápida cada 24-48h; al estabilizar, pasar a formulación Retard cada 12h"
+        ],
+        "timing": "Pauta fija cada 4 horas (IR) o cada 12 horas (Retard).",
+        "onset": "20–30 minutos (IR)",
+        "reviewInterval": "Reevaluación muy estrecha (24–72 horas)"
+      },
+      "safety": {
+        "contraindications": [
+          "Insuficiencia renal severa (acumulación de M3G neurotóxico que produce hiperalgesia, mioclonías y alucinaciones)",
+          "Íleo paralítico"
+        ],
+        "precautions": [
+          "Ajuste estricto en insuficiencia renal"
+        ],
+        "renalAdjustment": "FG <30 ml/min: evitar o reducir drásticamente dosis y espaciar tomas. Preferir Fentanilo o Buprenorfina.",
+        "hepaticAdjustment": "Reducir dosis inicial y espaciar tomas.",
+        "adverseEffects": [
+          "Estreñimiento (universal), náuseas iniciales, somnolencia, boca seca, mioclonías (si sobredosis o acumulación)."
+        ],
+        "withdrawal": "Desescalada progresiva muy cuidada."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Sedantes / Benzodiacepinas",
+          "risk": "Depresión respiratoria severa",
+          "severity": "critical",
+          "action": "Evitar."
+        }
+      ],
+      "clinicalPearls": [
+        "Si un paciente en tratamiento con morfina comienza con sacudidas musculares súbitas (mioclonías), confusión o empeoramiento paradójico del dolor, sospecha acumulación de metabolito M3G por deterioro renal; rota a fentanilo o buprenorfina."
+      ],
+      "prescriptionTemplate": "Morfina Retard 30 mg cada 12 horas fija + Morfina solución oral 10 mg si precisa por dolor de rescate (+ Laxante osmótico diario).",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-tapentadol",
+      "genericName": "Tapentadol Retard",
+      "brandNames": [
+        "Palexia retard",
+        "Yantil retard"
+      ],
+      "drugClass": "opioid_strong",
+      "drugClassLabel": "Opioide de acción dual (Agonista mu + Inhibidor de recaptación de NA)",
+      "classIcon": "🔴",
+      "safetyTrafficLight": "red",
+      "categoryBadge": "🔴 Dolor Mixto / Nociceptivo + Neuropático",
+      "quickSummary": {
+        "initialDose": "50 mg cada 12 h en naive",
+        "targetDose": "100–250 mg cada 12 horas",
+        "maxDose": "500 mg / día (250 mg / 12 h)",
+        "keyIndications": [
+          "Dolor crónico severo con componente mixto nociceptivo-neuropático (ej. estenosis de canal severa, artrosis severa con sensibilización)"
+        ],
+        "mainWarnings": [
+          "Mejor perfil gastrointestinal que oxicodona/morfina",
+          "No produce metabolitos activos renales"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "mixed-pain",
+          "conditionName": "Dolor crónico severo con componente neuropático asociado",
+          "recommendation": "specialist",
+          "badge": "🔴 Opioide Dual",
+          "rationale": "El componente noradrenérgico reduce la necesidad de dosis de agonista mu, mejorando la tolerabilidad GI."
+        }
+      ],
+      "dosing": {
+        "initial": "50 mg cada 12 horas con comida",
+        "usual": "100 mg a 200 mg cada 12 horas",
+        "maximum": "500 mg al día (250 mg cada 12 horas)",
+        "titration": [
+          "Aumentar 50 mg cada 12h cada 3–7 días según respuesta"
+        ],
+        "timing": "Cada 12 horas con las comidas.",
+        "onset": "1 a 2 horas (duración 12 horas)",
+        "reviewInterval": "Reevaluar a los 7–14 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Uso simultáneo con IMAOs",
+          "Insuficiencia respiratoria severa"
+        ],
+        "precautions": [
+          "Epilepsia, riesgo de sedación"
+        ],
+        "renalAdjustment": "No requiere ajuste en insuficiencia renal leve-moderada. No recomendado en FG <30.",
+        "hepaticAdjustment": "Insuficiencia hepática moderada: máx 100 mg/día. Severa: contraindicado.",
+        "adverseEffects": [
+          "Náuseas, estreñimiento (menor tasa que morfina), mareo, somnolencia."
+        ],
+        "withdrawal": "Retirada progresiva."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Serotoninérgicos potentes / IMAOs",
+          "risk": "Síndrome serotoninérgico",
+          "severity": "warning",
+          "action": "Monitorizar."
+        }
+      ],
+      "clinicalPearls": [
+        "Tapentadol NO depende del citocromo CYP2D6 para activarse (a diferencia del tramadol), lo que garantiza una respuesta analgésica más predecible en metabolizadores lentos."
+      ],
+      "prescriptionTemplate": "Tapentadol Retard 50 mg vía oral cada 12 horas con las comidas durante 14 días. Reevaluación funcional.",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    },
+    {
+      "id": "med-buprenorphine",
+      "genericName": "Buprenorfina Parches Transdérmicos",
+      "brandNames": [
+        "Transtec",
+        "Feliben",
+        "Buprex"
+      ],
+      "drugClass": "opioid_strong",
+      "drugClassLabel": "Agonista parcial mu y antagonista kappa (Transdérmico)",
+      "classIcon": "🔴",
+      "safetyTrafficLight": "red",
+      "categoryBadge": "🔴 Elección en Insuficiencia Renal",
+      "quickSummary": {
+        "initialDose": "35 mcg/h (cambio cada 3,5–4 días) o 5–10 mcg/h semanal (Norspan)",
+        "targetDose": "35 a 70 mcg/h",
+        "maxDose": "140 mcg/h (máx 2 parches de 70 mcg/h)",
+        "keyIndications": [
+          "Dolor severo continuo en ancianos o pacientes con Insuficiencia Renal Crónica",
+          "Dolor oncológico estable"
+        ],
+        "mainWarnings": [
+          "Eliminación 100% biliar/fecal (NO se acumula en fallo renal)",
+          "Efecto techo de depresión respiratoria"
+        ]
+      },
+      "indications": [
+        {
+          "conditionId": "renal-failure-pain",
+          "conditionName": "Dolor severo continuo en paciente con Insuficiencia Renal (FG <30 ml/min)",
+          "recommendation": "preferred",
+          "badge": "🟢 Opioide Elección en Fallo Renal",
+          "rationale": "Se excreta por vía biliar y heces (>80%), no requiriendo ajuste de dosis en insuficiencia renal incluso en diálisis."
+        }
+      ],
+      "dosing": {
+        "initial": "Parche de 35 mcg/h (cambio 2 veces por semana) o parches de dosis baja 5–10 mcg/h (cambio cada 7 días)",
+        "usual": "35 mcg/h a 52,5 mcg/h",
+        "maximum": "140 mcg/h",
+        "titration": [
+          "Evaluar efecto a las 24–48h tras colocar el primer parche",
+          "Titular aumentando el tamaño del parche a los 3–7 días"
+        ],
+        "timing": "Colocar sobre piel limpia, seca y sin vello en tórax o brazo. Cambiar según pauta.",
+        "onset": "12 a 24 horas para alcanzar niveles plasmáticos estables",
+        "reviewInterval": "Reevaluar a los 7 días"
+      },
+      "safety": {
+        "contraindications": [
+          "Miastenia gravis",
+          "Delirium tremens",
+          "Embarazo"
+        ],
+        "precautions": [
+          "Evitar aplicar fuentes de calor externas (mantas térmicas, sauna) sobre el parche porque disparan la absorción"
+        ],
+        "renalAdjustment": "NO requiere ajuste de dosis en insuficiencia renal ni en diálisis (Opioide de elección).",
+        "hepaticAdjustment": "Usar con precaución en insuficiencia hepática severa.",
+        "adverseEffects": [
+          "Eritema y picor local en el sitio del parche, somnolencia, mareo, estreñimiento (menor que morfina)."
+        ],
+        "withdrawal": "Retirar el parche; los niveles bajan lentamente a lo largo de 24–36 horas."
+      },
+      "interactions": [
+        {
+          "drugGroup": "Agonistas mu puros a dosis altas",
+          "risk": "Puede desplazar parcialmente a otros opioides",
+          "severity": "caution",
+          "action": "Planificar rotación adecuada."
+        }
+      ],
+      "clinicalPearls": [
+        "Regla de oro de nefrología y dolor: En pacientes con insuficiencia renal avanzada o en hemodiálisis con dolor severo, la buprenorfina transdérmica y el fentanilo son los opioides más seguros por no acumular metabolitos neurotóxicos."
+      ],
+      "prescriptionTemplate": "Buprenorfina 35 mcg/h parches transdérmicos: aplicar 1 parche en el tórax y cambiar cada 3,5 días (ej. lunes mañana y jueves noche).",
+      "clinicalVersion": "v2.6",
+      "lastReviewed": "Agosto 2026"
+    }
+  ]
+}

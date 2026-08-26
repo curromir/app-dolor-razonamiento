@@ -2719,3 +2719,812 @@ body.dark-theme .notion-styled-table tr:hover td {
   color: #c7d2fe;
 }
 
+/* ==========================================================================
+   💊 VADEMÉCUM DE DOLOR - ESTILOS CLÍNICOS
+   ========================================================================== */
+
+.vademecum-wrapper {
+  max-width: 1080px;
+  margin: 0 auto 3rem;
+  padding: 0 0.5rem;
+}
+
+.vade-header-banner {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 27, 75, 0.4));
+  border-radius: var(--radius-lg);
+}
+
+.vade-header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.vade-main-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #f8fafc;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.vade-main-sub {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  margin: 0.2rem 0 0;
+}
+
+.vade-btn-secondary {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all var(--transition-fast);
+}
+
+.vade-btn-secondary:hover {
+  background: rgba(239, 68, 68, 0.25);
+  transform: translateY(-1px);
+}
+
+.vade-search-box {
+  position: relative;
+  margin-bottom: 0.85rem;
+}
+
+.vade-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  opacity: 0.6;
+}
+
+.vade-search-box input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.8rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1.5px solid rgba(139, 92, 246, 0.4);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.vade-search-box input:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.vade-golden-pearl-bar {
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 3px solid #38bdf8;
+  padding: 0.5rem 0.85rem;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #bae6fd;
+}
+
+.vade-view-switcher {
+  display: flex;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.vade-switcher-tab {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.65rem 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transition: all var(--transition-fast);
+}
+
+.vade-switcher-tab.active {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #6366f1;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+
+/* 🧠 5 DOSIS QUE QUIERO RECORDAR */
+.vade-five-doses-section {
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #818cf8;
+}
+
+.vade-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.vade-five-doses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.vade-dose-pill-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vade-dose-pill-card:hover {
+  border-color: #818cf8;
+  background: rgba(99, 102, 241, 0.12);
+  transform: translateY(-2px);
+}
+
+.vade-dose-pill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.4rem;
+}
+
+.vade-dose-pill-name {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.vade-dose-pill-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.15);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.vade-dose-line {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.15rem;
+}
+
+.vade-dose-indication {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-top: 0.35rem;
+}
+
+.vade-dose-override {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  margin-top: 0.35rem;
+}
+
+/* Toolbars */
+.vade-category-toolbar,
+.vade-groups-toolbar {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vade-cat-chip,
+.vade-group-chip {
+  flex-shrink: 0;
+  padding: 0.45rem 0.85rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.vade-cat-chip.active,
+.vade-group-chip.active {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #6366f1;
+}
+
+/* MODO EXPRESS - CARDS VERTICALES */
+.vade-express-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.vade-express-card {
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: all var(--transition-fast);
+}
+
+.vade-express-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.vade-express-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.65rem;
+}
+
+.vade-card-icon {
+  font-size: 1.6rem;
+}
+
+.vade-card-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.vade-card-category {
+  font-size: 0.72rem;
+  color: #818cf8;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.vade-pathway-link-btn {
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  color: #60a5fa;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.vade-pathway-link-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.vade-step-block {
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 0.5rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.vade-step-first {
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 3.5px solid #10b981;
+}
+
+.vade-step-second {
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 3.5px solid #f59e0b;
+}
+
+.vade-step-avoid {
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 3.5px solid #ef4444;
+}
+
+.vade-step-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.vade-step-first .vade-step-label { color: #34d399; }
+.vade-step-second .vade-step-label { color: #fbbf24; }
+.vade-step-avoid .vade-step-label { color: #f87171; }
+
+.vade-step-dose {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.vade-step-avoid-text {
+  font-size: 0.8rem;
+  color: #fca5a5;
+}
+
+.vade-step-footer {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.vade-pearl-text {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* DRUG CARDS (MODO COMPLETO) */
+.vade-drugs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.vade-drug-card {
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+}
+
+.vade-drug-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vade-drug-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.vade-drug-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.vade-drug-brands {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.vade-drug-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.vade-fav-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.vade-fav-btn.active {
+  color: #fbbf24;
+  border-color: #fbbf24;
+  background: rgba(245, 158, 11, 0.15);
+}
+
+.vade-action-btn {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #818cf8;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.vade-action-btn:hover {
+  background: #4f46e5;
+  color: #fff;
+}
+
+.vade-link-btn-mini {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #c084fc;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.vade-link-btn-mini:hover {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.vade-ultraexpress-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+}
+
+.vade-ultra-dose-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.5rem;
+}
+
+.vade-ultra-dose-item {
+  font-size: 0.84rem;
+}
+
+.vade-ultra-lbl {
+  color: var(--text-muted);
+  margin-right: 0.35rem;
+}
+
+.vade-ultra-val {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.vade-ultra-val.highlight {
+  color: #38bdf8;
+}
+
+.vade-ultra-tags-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.vade-expand-toggle-btn {
+  width: 100%;
+  padding: 0.55rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: #818cf8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.vade-expand-toggle-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: #a5b4fc;
+}
+
+/* CUERPO DETALLADO */
+.vade-drug-expanded-body {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.25rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.vade-box-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.03em;
+}
+
+.vade-nsaid-checklist-box {
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+}
+
+.vade-checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-primary);
+}
+
+.vade-opioid-banner-box {
+  background: rgba(239, 68, 68, 0.09);
+  border-left: 4px solid #ef4444;
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+}
+
+.vade-sciatica-override-box {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  font-size: 0.82rem;
+  color: #fca5a5;
+  line-height: 1.5;
+}
+
+.vade-nociplastic-override-box {
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  font-size: 0.82rem;
+  color: #c7d2fe;
+  line-height: 1.5;
+}
+
+.vade-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.vade-section-subtitle {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  margin: 0;
+}
+
+.vade-indications-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.vade-indication-row {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.82rem;
+}
+
+.vade-ind-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  margin-right: 0.4rem;
+}
+
+.vade-ind-badge.preferred { background: rgba(16, 185, 129, 0.18); color: #34d399; }
+.vade-ind-badge.consider { background: rgba(56, 189, 248, 0.18); color: #38bdf8; }
+.vade-ind-badge.selected { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+.vade-ind-badge.specialist { background: rgba(168, 85, 247, 0.18); color: #c084fc; }
+.vade-ind-badge.not-routine { background: rgba(239, 68, 68, 0.18); color: #f87171; }
+.vade-ind-badge.avoid { background: rgba(239, 68, 68, 0.25); color: #ef4444; }
+
+.vade-ind-rationale {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.vade-dosing-grid,
+.vade-safety-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  font-size: 0.82rem;
+}
+
+.vade-safety-grid ul,
+.vade-titration-steps ul,
+.vade-pearls-box ul {
+  margin: 0.25rem 0 0 1.1rem;
+  padding: 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.vade-interactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.vade-interaction-card {
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+}
+
+.vade-interaction-card.critical {
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 3.5px solid #ef4444;
+}
+
+.vade-interaction-card.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-left: 3.5px solid #f59e0b;
+}
+
+.vade-interaction-card.caution {
+  background: rgba(56, 189, 248, 0.1);
+  border-left: 3.5px solid #38bdf8;
+}
+
+.vade-pearls-box {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  font-size: 0.82rem;
+}
+
+.vade-prescription-copy-box {
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+}
+
+.vade-prescription-text {
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: #e0f2fe;
+  line-height: 1.5;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+/* MODAL DE INTERACCIONES */
+.vade-interactions-modal-card {
+  max-width: 650px;
+}
+
+.vade-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vade-interactions-modal-grid {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.vade-modal-interaction-card {
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+}
+
+.vade-modal-interaction-card.critical {
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 4px solid #ef4444;
+}
+
+.vade-modal-interaction-card.warning {
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 4px solid #f59e0b;
+}
+
+.vade-modal-inter-title {
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.vade-modal-inter-risk {
+  color: var(--text-secondary);
+  margin-bottom: 0.2rem;
+}
+
+.vade-modal-inter-action {
+  color: #38bdf8;
+}
+
+/* Toast */
+.vade-toast-notification {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1e1b4b;
+  border: 1px solid #6366f1;
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10000;
+}
+
+.vade-toast-notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.highlight-pulse {
+  animation: vadePulse 2s ease-in-out;
+}
+
+@keyframes vadePulse {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+  50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+

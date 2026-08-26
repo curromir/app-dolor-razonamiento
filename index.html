@@ -221,7 +221,12 @@
         <button class="nav-tab" data-tab="tab-fichas">
           <span class="tab-icon">🗂️</span>
           <span class="tab-text">Fichas de Consulta</span>
-          <span class="tab-badge-highlight" style="background: rgba(16, 185, 129, 0.15); color: #059669;">v2.3</span>
+          <span class="tab-badge-highlight" style="background: rgba(16, 185, 129, 0.15); color: #059669;">v2.6</span>
+        </button>
+        <button class="nav-tab" data-tab="tab-vademecum">
+          <span class="tab-icon">💊</span>
+          <span class="tab-text">Vademécum</span>
+          <span class="tab-badge-highlight" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;">Express & Fichas</span>
         </button>
         <button class="nav-tab" data-tab="tab-quiz">
           <span class="tab-icon">📝</span>
@@ -458,6 +463,59 @@
         </div>
       </section>
 
+      <!-- TAB: VADEMÉCUM DE DOLOR -->
+      <section id="tab-vademecum" class="tab-pane">
+        <div class="vademecum-wrapper">
+          <!-- Vademecum Header Banner -->
+          <div class="vade-header-banner glass-panel">
+            <div class="vade-header-top-row">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 2.2rem;">💊</span>
+                <div>
+                  <h2 class="vade-main-title">VADEMÉCUM DE DOLOR</h2>
+                  <p class="vade-main-sub">Dosis · Indicaciones · Precauciones · Interacciones (Notion Oficial v2.6)</p>
+                </div>
+              </div>
+              <div class="vade-quick-action-buttons">
+                <button class="vade-btn-secondary" onclick="window.Vademecum.openInteractionsModal()">
+                  <span>⚠️</span> <span>Interacciones Críticas</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Big Search Bar -->
+            <div class="vade-search-box">
+              <span class="vade-search-icon">🔎</span>
+              <input type="text" id="vademecum-search-input" placeholder="Buscar fármaco (ej. duloxetina, tramadol, pregabalina), dolor (ej. ciática, fibromialgia, artrosis) o síntoma..." autocomplete="off">
+            </div>
+
+            <!-- Perla Central -->
+            <div class="vade-golden-pearl-bar">
+              <span style="font-weight: 800; color: #38bdf8;">GENERADOR → MECANISMO → FÁRMACO</span>
+              <span style="font-size: 0.78rem; opacity: 0.85;">No elegir el fármaco antes de saber qué tipo de dolor estamos tratando.</span>
+            </div>
+
+            <!-- Mode Switcher Tabs -->
+            <div class="vade-view-switcher">
+              <button id="vade-tab-btn-express" class="vade-switcher-tab active" onclick="window.Vademecum.setMode('express')">
+                <span>⚡</span> <span>MODO EXPRESS (5–10s)</span>
+              </button>
+              <button id="vade-tab-btn-full" class="vade-switcher-tab" onclick="window.Vademecum.setMode('full')">
+                <span>📖</span> <span>FICHAS COMPLETAS</span>
+              </button>
+              <button id="vade-tab-btn-favs" class="vade-switcher-tab" onclick="window.Vademecum.setMode('favs')">
+                <span>⭐</span> <span>MIS FÁRMACOS</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Container -->
+          <div id="vademecum-content" class="vademecum-dynamic-content">
+            <!-- Rendered by js/vademecum.js -->
+          </div>
+        </div>
+      </section>
+
       <!-- TAB 5: Study Mode / Quiz & Clinical Cases -->
       <section id="tab-quiz" class="tab-pane">
         <div class="quiz-hero glass-panel">
@@ -523,6 +581,10 @@
         <span class="mob-icon">🩺</span>
         <span class="mob-label">Consulta</span>
       </button>
+      <button class="mobile-nav-item" data-tab="tab-vademecum" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-vademecum');">
+        <span class="mob-icon">💊</span>
+        <span class="mob-label">Vademécum</span>
+      </button>
       <button class="mobile-nav-item" data-tab="tab-tests" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-tests');">
         <span class="mob-icon">📚</span>
         <span class="mob-label">Biblioteca</span>
@@ -530,10 +592,6 @@
       <button class="mobile-nav-item" data-tab="tab-fichas" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-fichas');">
         <span class="mob-icon">🗂️</span>
         <span class="mob-label">Fichas</span>
-      </button>
-      <button class="mobile-nav-item" data-tab="tab-quiz" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-quiz');">
-        <span class="mob-icon">📝</span>
-        <span class="mob-label">Quiz</span>
       </button>
       <button class="mobile-nav-item" data-tab="tab-favoritos" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-favoritos');">
         <span class="mob-icon">⭐</span>
@@ -573,6 +631,25 @@
       </div>
     </div>
 
+    <!-- MODAL: High-Yield Drug Interactions -->
+    <div id="vade-interactions-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-card glass-modal vade-interactions-modal-card">
+        <div class="vade-modal-header">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span style="font-size: 1.5rem;">⚠️</span>
+            <div>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #ef4444;">Interacciones Farmacológicas de Alto Riesgo</h3>
+              <p style="margin: 0.15rem 0 0; font-size: 0.78rem; color: var(--text-secondary);">Combinaciones críticas que debes evitar o vigilar en consulta</p>
+            </div>
+          </div>
+          <button class="modal-close-btn" onclick="window.Vademecum.closeInteractionsModal()">&times;</button>
+        </div>
+        <div class="modal-scrollable-body" id="vade-interactions-modal-body">
+          <!-- Rendered by js/vademecum.js -->
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="app-footer">
       <div class="container footer-inner">
@@ -585,6 +662,7 @@
 
   <script src="clinical/reasoning-engine.js?v=1.0"></script>
   <script src="clinical/reasoning-ui.js?v=1.0"></script>
+  <script src="js/vademecum.js?v=1.0"></script>
   <script src="app.js?v=22.0"></script>
 </body>
 </html>
