@@ -1,5 +1,5 @@
-// Service Worker v28.0 - Test de Exploración Física, Fichas v2.6 & Vademécum de Dolor
-const CACHE_NAME = 'dolor-tests-v28';
+// Service Worker v29.0 - Test de Exploración Física, Fichas v2.6 & Vademécum de Dolor (Alto Contraste)
+const CACHE_NAME = 'dolor-tests-v29';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

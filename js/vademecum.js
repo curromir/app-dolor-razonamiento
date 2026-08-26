@@ -214,12 +214,12 @@
 
       container.innerHTML = `
         <!-- 🧠 CINCO DOSIS QUE QUIERO RECORDAR -->
-        <section class="vade-five-doses-section glass-panel">
+        <section class="vade-five-doses-section">
           <div class="vade-section-header">
             <span style="font-size: 1.3rem;">🧠</span>
             <div>
-              <h3 style="font-size: 0.95rem; font-weight: 800; color: #818cf8; margin: 0;">5 DOSIS QUE QUIERO RECORDAR (Neuromoduladores)</h3>
-              <p style="font-size: 0.76rem; color: var(--text-secondary); margin: 0.15rem 0 0;">Acceso ultrarrápido para consulta en menos de 5 segundos</p>
+              <h3 style="font-size: 1rem; font-weight: 900; color: var(--accent-blue); margin: 0;">5 DOSIS QUE QUIERO RECORDAR (Neuromoduladores)</h3>
+              <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0.15rem 0 0;">Acceso ultrarrápido para consulta en menos de 5 segundos</p>
             </div>
           </div>
 
@@ -232,7 +232,7 @@
                 </div>
                 <div class="vade-dose-pill-body">
                   <div class="vade-dose-line"><strong>Inicio:</strong> ${d.initial}</div>
-                  <div class="vade-dose-line"><strong>Objetivo:</strong> <span style="color: #38bdf8; font-weight: 700;">${d.target}</span></div>
+                  <div class="vade-dose-line"><strong>Objetivo:</strong> <span>${d.target}</span></div>
                   <div class="vade-dose-indication">${d.mainUse}</div>
                   ${d.sciaticaOverride ? `<div class="vade-dose-override">${d.sciaticaOverride}</div>` : ''}
                 </div>
@@ -256,7 +256,7 @@
         <!-- Cards Verticales Modo Express -->
         <div class="vade-express-grid">
           ${conditions.map(c => `
-            <article class="vade-express-card glass-panel" id="cond-${c.id}">
+            <article class="vade-express-card" id="cond-${c.id}">
               <div class="vade-express-card-header">
                 <div style="display: flex; align-items: center; gap: 0.6rem;">
                   <span class="vade-card-icon">${c.icon}</span>
@@ -341,7 +341,7 @@
       const isSciaticaWarning = drug.id === 'med-pregabalin' || drug.id === 'med-gabapentin';
 
       return `
-        <article class="vade-drug-card glass-panel" id="drug-${drug.id}">
+        <article class="vade-drug-card" id="drug-${drug.id}">
           <!-- ULTRAEXPRESS HEADER (5 segundos) -->
           <div class="vade-drug-card-header">
             <div class="vade-drug-header-top">
@@ -625,10 +625,10 @@
 
         ${matchingConditions.length ? `
           <div style="margin-bottom: 2rem;">
-            <h4 style="font-size: 0.95rem; color: #38bdf8; margin-bottom: 0.75rem;">📋 Cuadros Clínicos Relacionados</h4>
+            <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--accent-blue); margin-bottom: 0.75rem;">📋 Cuadros Clínicos Relacionados</h4>
             <div class="vade-express-grid">
               ${matchingConditions.map(c => `
-                <article class="vade-express-card glass-panel" id="cond-${c.id}">
+                <article class="vade-express-card" id="cond-${c.id}">
                   <div class="vade-express-card-header">
                     <div style="display: flex; align-items: center; gap: 0.6rem;">
                       <span class="vade-card-icon">${c.icon}</span>
@@ -657,7 +657,7 @@
 
         ${matchingDrugs.length ? `
           <div>
-            <h4 style="font-size: 0.95rem; color: #818cf8; margin-bottom: 0.75rem;">💊 Fármacos Coincidentes</h4>
+            <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--accent-blue); margin-bottom: 0.75rem;">💊 Fármacos Coincidentes</h4>
             <div class="vade-drugs-list">
               ${matchingDrugs.map(drug => this.renderDrugCard(drug)).join('')}
             </div>
