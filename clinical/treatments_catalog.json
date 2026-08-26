@@ -1,0 +1,791 @@
+{
+  "medications": {
+    "paracetamol": {
+      "id": "med-paracetamol",
+      "genericName": "Paracetamol (Acetaminofén)",
+      "category": "Analgésico no opioide",
+      "indication": "Dolor nociceptivo leve a moderado / dolor musculoesquelético de primera línea.",
+      "initialDose": "500 - 650 mg",
+      "usualDose": "500 - 1.000 mg",
+      "frequency": "Cada 8 horas según necesidad (máx. 3 tomas/día)",
+      "maximumDose": "3 g / 24 h en adultos sanos (2 g/día en ancianos, hepatopatía leve o bajo peso <50 kg)",
+      "duration": "Ciclos cortos a demanda durante episodios agudos / reagudizaciones.",
+      "rescueDose": "No requiere dosis de rescate independiente.",
+      "renalAdjustment": "Filtrado glomerular 10-50 ml/min: espaciar cada 6 horas; <10 ml/min: espaciar cada 8 horas.",
+      "hepaticAdjustment": "Contraindicado en insuficiencia hepática grave. En hepatopatía leve-moderada dosis máxima 2 g/día.",
+      "giRisk": "Muy bajo. De elección en pacientes con antecedentes de úlcera o hemorragia digestiva.",
+      "cvRisk": "Bajo a dosis habituales.",
+      "anticoagulation": "Compatible. Seguro en pacientes anticoagulados o antiagregados.",
+      "agePrecautions": "En >65 años limitar a 2-3 g/día para prevenir acumulación y sobrecarga.",
+      "pregnancy": "Categoría B (analgésico de elección durante el embarazo a la menor dosis eficaz).",
+      "contraindications": [
+        "Hipersensibilidad al paracetamol",
+        "Insuficiencia hepatocelular grave o hepatitis vírica aguda",
+        "Alcoholismo crónico activo descompensado"
+      ],
+      "precautions": [
+        "Evitar duplicidad con antigripales o combinaciones comerciales con opioides",
+        "Desnutrición crónica y déficit de glucosa-6-fosfato deshidrogenasa"
+      ],
+      "interactions": [
+        "Alcohol (potenciación de hepatotoxicidad)",
+        "Warfarina/Acenocumarol a dosis de paracetamol >2g/día durante más de 7 días (monitorizar INR)"
+      ],
+      "monitoring": [
+        "Función hepática en tratamientos prolongados (>4 semanas)",
+        "Control de automedicación"
+      ],
+      "whyThisTreatment": "Fármaco analgésico de base con el mejor perfil de seguridad gastrointestinal, renal y cardiovascular para dolor musculoesquelético.",
+      "whenToAvoid": "Evitar en pacientes con consumo excesivo de alcohol, cirrosis o cuando el dolor sea puramente neuropático con alodinia donde su eficacia es nula.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / RECOMENDADO",
+        "note": "Recomendado como analgésico basal seguro en todas las guías de dolor musculoesquelético."
+      }
+    },
+    "nsaid_topical": {
+      "id": "med-nsaid-topical",
+      "genericName": "AINE Tópico (Diclofenaco gel 1-2% / Etofenamato)",
+      "category": "Antiinflamatorio no esteroideo tópico",
+      "indication": "Dolor localizado articular superficial (rodilla, manos) o tendinopatías agudas/subagudas.",
+      "initialDose": "2 - 4 g de gel (tamaño de una cereza o nuez)",
+      "usualDose": "Aplicar sobre la zona dolorosa realizando un suave masaje",
+      "frequency": "Cada 8 - 12 horas",
+      "maximumDose": "4 aplicaciones al día (máx. 16 g/día)",
+      "duration": "2 a 4 semanas",
+      "rescueDose": "No aplicable.",
+      "renalAdjustment": "Absorción sistémica <5-10% respecto a vía oral; muy seguro en insuficiencia renal leve-moderada.",
+      "hepaticAdjustment": "Muy bajo paso hepático. Seguro.",
+      "giRisk": "Excelente tolerancia digestiva, no incrementa significativamente el riesgo de sangrado GI.",
+      "cvRisk": "Mínimo impacto cardiovascular.",
+      "anticoagulation": "De elección antes de plantear AINEs orales en pacientes con anticoagulación.",
+      "agePrecautions": "Primera línea recomendada en mayores de 65 años con artrosis de rodilla o manos.",
+      "pregnancy": "Evitar en tercer trimestre.",
+      "contraindications": [
+        "Alergia a AINEs o ácido acetilsalicílico",
+        "Piel con heridas abiertas, eccema, infecciones o quemaduras",
+        "Exposición solar directa intensa en la zona (fotosensibilidad)"
+      ],
+      "precautions": [
+        "Lavarse las manos tras la aplicación",
+        "No aplicar vendajes oclusivos herméticos"
+      ],
+      "interactions": [
+        "Muy raras debido a la mínima concentración plasmática sistémica"
+      ],
+      "monitoring": [
+        "Inspección cutánea local"
+      ],
+      "whyThisTreatment": "Consigue concentraciones terapéuticas locales elevadas en articulaciones superficiales sin la toxicidad sistémica GI, renal ni CV de los AINEs orales.",
+      "whenToAvoid": "Evitar en articulaciones profundas (cadera, columna axial profunda) donde la penetración dérmica es insuficiente, o sobre piel no íntegra.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / PRIMERA LÍNEA",
+        "note": "Recomendado como primera línea en Gonartrosis por guías OARSI, EULAR y NICE."
+      }
+    },
+    "ibuprofen": {
+      "id": "med-ibuprofen",
+      "genericName": "Ibuprofeno",
+      "category": "AINE oral no selectivo",
+      "indication": "Dolor nociceptivo inflamatorio o reagudización mecánica que limita la rehabilitación.",
+      "initialDose": "400 mg",
+      "usualDose": "400 mg",
+      "frequency": "Cada 8 horas junto con las comidas",
+      "maximumDose": "1.200 mg / día a nivel analgésico ambulatorio (máx. estricto 1.800 mg/día sólo bajo supervisión médica)",
+      "duration": "Ciclo corto de 5 a 10 días máximo; suspender al remitir el dolor agudo.",
+      "rescueDose": "Alternar con Paracetamol 500-1000 mg si precisa analgesia adicional.",
+      "renalAdjustment": "Evitar si ClCr <30 ml/min. Precaución con ClCr 30-59 ml/min (usar dosis mínima y monitorizar).",
+      "hepaticAdjustment": "Evitar en insuficiencia hepática grave o cirrosis descompensada.",
+      "giRisk": "Riesgo de toxicidad gastrointestinal y úlcera péptica. Asociar siempre IBP (Omeprazol 20 mg) en >65 años o con factores de riesgo.",
+      "cvRisk": "Precaución en HTA, insuficiencia cardíaca y cardiopatía isquémica. Puede retener sodio y elevar PA.",
+      "anticoagulation": "CONTRAINDICADO o de alto riesgo con anticoagulantes orales (Sintrom, DOACs) por riesgo hemorrágico sinérgico.",
+      "agePrecautions": "Evitar uso continuado en >65 años. Preferir AINE tópico o Paracetamol.",
+      "pregnancy": "Contraindicado en el tercer trimestre (cierre prematuro del ductus arterioso). Evitar en 1º y 2º trimestre salvo indicación estricta.",
+      "contraindications": [
+        "Úlcera péptica activa o antecedente de hemorragia digestiva por AINE",
+        "Insuficiencia cardíaca severa (NYHA III-IV)",
+        "Insuficiencia renal moderada-severa (FG <30 ml/min)",
+        "Antecedente de asma inducida por aspirina/AINEs",
+        "Anticoagulación oral completa sin estricta justificación médica"
+      ],
+      "precautions": [
+        "Usar la dosis mínima eficaz durante el menor tiempo posible",
+        "Vigilar tensión arterial y edemas periféricos",
+        "Suspender ante pirosis, melenas o disnea súbita"
+      ],
+      "interactions": [
+        "Inhibidores de la ECA / ARA-II / Diuréticos ('Triple Whammy' de fallo renal agudo)",
+        "Aspirina a dosis antiagregante (tomar aspirina 30 min antes o usar Naproxeno)",
+        "Litio y Metotrexato (aumenta sus niveles tóxicos)",
+        "Corticoides orales (multiplica por 4 el riesgo de sangrado digestivo)"
+      ],
+      "monitoring": [
+        "Tensión arterial en hipertensos",
+        "Creatinina y filtrado glomerular si se usa >7 días en ancianos"
+      ],
+      "whyThisTreatment": "Potente antiinflamatorio y analgésico de acción rápida para romper el círculo de dolor agudo y permitir el inicio del ejercicio activo.",
+      "whenToAvoid": "Evitar en pacientes ancianos con HTA mal controlada, insuficiencia renal, antecedentes de úlcera o bajo tratamiento anticoagulante.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA / CICLOS CORTOS",
+        "note": "Eficaz a corto plazo (≤7-14 días); no recomendado para uso continuado crónico."
+      }
+    },
+    "naproxen": {
+      "id": "med-naproxen",
+      "genericName": "Naproxeno",
+      "category": "AINE oral no selectivo (Menor riesgo CV relativo)",
+      "indication": "Dolor articular o axial inflamatorio en pacientes con requerimiento de pauta de 12 horas.",
+      "initialDose": "250 - 500 mg",
+      "usualDose": "500 mg cada 12 horas (o 250 mg cada 12 horas)",
+      "frequency": "Cada 12 horas con las comidas",
+      "maximumDose": "1.000 mg / día",
+      "duration": "7 a 14 días máximo",
+      "rescueDose": "Paracetamol 500-1000 mg intermedio.",
+      "renalAdjustment": "Evitar en FG <30 ml/min.",
+      "hepaticAdjustment": "Dosis reducida en hepatopatía leve; evitar en grave.",
+      "giRisk": "Riesgo gastrointestinal moderado-alto. Asociar siempre protección con IBP.",
+      "cvRisk": "Es el AINE con perfil cardiovascular más neutro entre los no selectivos.",
+      "anticoagulation": "Evitar en pacientes anticoagulados.",
+      "agePrecautions": "Uso restrictivo en ancianos con monitorización de función renal.",
+      "pregnancy": "Contraindicado en el 3º trimestre.",
+      "contraindications": [
+        "Úlcera gastroduodenal activa",
+        "Insuficiencia renal o hepática grave",
+        "Hipersensibilidad conocida a AINEs"
+      ],
+      "precautions": [
+        "Mantener buena hidratación",
+        "Añadir IBP en pacientes con cualquier factor de riesgo digestivo"
+      ],
+      "interactions": [
+        "Anticoagulantes, corticoides, IECA/ARA-II, litio"
+      ],
+      "monitoring": [
+        "Función renal y hemograma en ciclos >2 semanas"
+      ],
+      "whyThisTreatment": "AINE de vida media más larga (cómoda toma cada 12h) y de elección cuando es imprescindible un AINE oral en pacientes con riesgo cardiovascular no elevado.",
+      "whenToAvoid": "Evitar en insuficiencia renal crónica y en pacientes con riesgo hemorrágico digestivo alto sin gastroprotección.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA",
+        "note": "Perfil de seguridad cardiovascular favorable comparado con otros AINEs orales."
+      }
+    },
+    "duloxetine": {
+      "id": "med-duloxetine",
+      "genericName": "Duloxetina",
+      "category": "ISRN (Inhibidor de la Recaptación de Serotonina y Noradrenalina)",
+      "indication": "Dolor nociplástico / sensibilización central, fibromialgia, dolor crónico musculoesquelético generalizado o componente neuropático periférico.",
+      "initialDose": "30 mg una vez al día por la mañana o noche durante 7-14 días",
+      "usualDose": "60 mg una vez al día",
+      "frequency": "Una vez al día (mañana preferentemente para evitar insomnio, o noche si da somnolencia)",
+      "maximumDose": "120 mg / día (aunque dosis >60 mg rara vez aportan mayor analgesia y aumentan efectos secundarios)",
+      "duration": "Mínimo 3 a 6 meses si es eficaz; evaluar respuesta a las 4-6 semanas.",
+      "rescueDose": "No aplicable. No es un fármaco de rescate agudo.",
+      "renalAdjustment": "Evitar si ClCr <30 ml/min (o enfermedad renal terminal).",
+      "hepaticAdjustment": "Contraindicada en cualquier hepatopatía que cause deterioro hepático.",
+      "giRisk": "Náuseas y sequedad de boca frecuentes en las dos primeras semanas de inicio.",
+      "cvRisk": "Puede elevar ligeramente la tensión arterial y la frecuencia cardíaca.",
+      "anticoagulation": "Precaución con antiagregantes/anticoagulantes por leve aumento de riesgo de sangrado plaquetario.",
+      "agePrecautions": "Iniciar a 30 mg en ancianos por riesgo de hiponatremia (SIADH) o mareo.",
+      "pregnancy": "Valorar riesgo/beneficio (Categoría C).",
+      "contraindications": [
+        "Uso concomitante con IMAO o inhibidores potentes de CYP1A2 (Fluvoxamina, Ciprofloxacino)",
+        "Hepatopatía con insuficiencia hepática",
+        "Glaucoma de ángulo cerrado no controlado",
+        "Insuficiencia renal grave (FG <30 ml/min)"
+      ],
+      "precautions": [
+        "Explicar al paciente que el efecto analgésico tarda 2-4 semanas en consolidarse",
+        "Advertir de náuseas transitorias de inicio (tomar con alimentos)",
+        "No suspender de forma brusca (retirada gradual para evitar síndrome de discontinuación)"
+      ],
+      "interactions": [
+        "Tramadol u otros serotoninérgicos (riesgo de Síndrome Serotoninérgico)",
+        "Fármacos metabolizados por CYP2D6"
+      ],
+      "monitoring": [
+        "Tensión arterial basal y a las 4 semanas",
+        "Sodio plasmático en ancianos si aparece confusión o letargia"
+      ],
+      "whyThisTreatment": "Aumenta la noradrenalina y serotonina en las vías inhibitorias descendentes del dolor del asta dorsal medular, modulando el dolor central y nociplástico.",
+      "whenToAvoid": "Evitar en dolor puramente mecánico agudo, en hepatopatías o cuando se requiera alivio inmediato en 24 horas.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / RECOMENDADO EN DOLOR NOCIPLÁSTICO",
+        "note": "Recomendación Grado A en guías EULAR de Fibromialgia y artrosis crónica con sensibilización."
+      }
+    },
+    "pregabalin": {
+      "id": "med-pregabalin",
+      "genericName": "Pregabalina",
+      "category": "Gabapentinoide (Ligando de la subunidad alfa-2-delta del canal de calcio)",
+      "indication": "Dolor neuropático periférico confirmado (radiculopatía con dolor urente/parestesias refractario, neuralgia postherpética, neuropatía periférica).",
+      "initialDose": "25 - 50 mg una vez al día por la noche",
+      "usualDose": "75 - 150 mg cada 12 horas (titulación lenta semanal: 25mg → 50mg → 75mg)",
+      "frequency": "Cada 12 horas (o toma nocturna si dosis baja)",
+      "maximumDose": "300 - 600 mg / día (en práctica clínica en dolor 150-300 mg/día suele ser el techo de tolerancia)",
+      "duration": "Reevaluar a las 4-6 semanas. Si no hay mejoría de ≥30% en dolor, desescalar y retirar gradualmente.",
+      "rescueDose": "No es analgésico de rescate.",
+      "renalAdjustment": "OBLIGATORIO AJUSTE POR FILTRADO GLOMERULAR: FG 30-60: máx 150mg/d; FG 15-30: máx 75mg/d; FG <15: máx 25-50mg/d.",
+      "hepaticAdjustment": "No sufre metabolismo hepático (eliminación 98% renal inalterada). Seguro en hepatopatía pura.",
+      "giRisk": "Muy bajo.",
+      "cvRisk": "Riesgo de edemas periféricos maleolares y descompensación de insuficiencia cardíaca congestiva.",
+      "anticoagulation": "Sin interacción directa con la coagulación.",
+      "agePrecautions": "En ancianos >65 años alto riesgo de sedación matutina, mareo, caídas, ataxia y confusión. Iniciar siempre a 25 mg/noche.",
+      "pregnancy": "Evitar (Categoría C).",
+      "contraindications": [
+        "Hipersensibilidad al principio activo",
+        "Antecedente de abuso o adicción a sustancias (riesgo de mal uso/dependencia)",
+        "Insuficiencia cardíaca descompensada con edemas severos"
+      ],
+      "precautions": [
+        "ADVERTENCIA DE EVIDENCIA: Las guías actuales (NICE NG59, ACP 2020) desaconsejan el uso rutinario automático de pregabalina en ciática/radiculopatía lumbar aguda.",
+        "Titular muy lentamente para evitar abandono por mareo o somnolencia",
+        "Advertir sobre afectación de la capacidad de conducción",
+        "Retirada gradual durante 1-2 semanas para evitar insomnio o ansiedad de rebote"
+      ],
+      "interactions": [
+        "Opioides y benzodiacepinas (sinergia de depresión del SNC y depresión respiratoria potencialmente mortal)",
+        "Alcohol"
+      ],
+      "monitoring": [
+        "Aparición de edemas maleolares, ganancia ponderal, somnolencia diurna",
+        "Función renal periódica"
+      ],
+      "whyThisTreatment": "Bloquea la entrada presináptica de calcio dependiente de voltaje en neuronas hiperexcitadas del asta posterior medular, reduciendo la liberación de glutamato y sustancia P.",
+      "whenToAvoid": "NO USAR DE RUTINA EN DOLOR AXIAL MECÁNICO NI EN CIÁTICA AGUDA NO SELECCIONADA. Evitar en ancianos con alto riesgo de caídas o conductores profesionales sin adaptación.",
+      "evidence": {
+        "level": "limited",
+        "badge": "🟡 USO INDIVIDUALIZADO / EVIDENCIA LIMITADA EN CIÁTICA",
+        "note": "Eficacia demostrada en neuralgia postherpética y dolor neuropático periférico focal; evidencia desfavorable/incierta para ciática lumbar común (NICE)."
+      }
+    }
+  },
+  "physiotherapy_protocols": {
+    "shoulder_rotator_cuff": {
+      "id": "physio-shoulder-cuff",
+      "name": "Plan de Carga Progresiva del Manguito Rotador y Control Escapular",
+      "indication": "Dolor relacionado con el manguito rotador / tendinopatía de supraespinoso / síndrome subacromial.",
+      "goals": [
+        "Restaurar la tolerancia a la carga mecánica y fuerza del manguito en rotación externa y abducción",
+        "Optimizar la cinemática escapulotorácica para evitar sobrecarga del tendón",
+        "Reintegrar al paciente a su actividad laboral o deportiva específica sin dolor residual persistente"
+      ],
+      "supervisedSessions": {
+        "number": "Programa individualizado de 6 a 12 semanas (habitualmente 1 sesión semanal o quincenal de supervisión/progresión)",
+        "frequency": "1 sesión/semana inicialmente, espaciando a quincenal a medida que el paciente domina el programa",
+        "durationWeeks": "8 - 12 semanas"
+      },
+      "homeExercise": {
+        "frequency": "3 a 5 días por semana (20-30 minutos/sesión)",
+        "exercises": [
+          "Fase 1 (Isométrica analgésica): Rotación externa isométrica a 0° de abducción contra la pared (5 repeticiones de 30-45 s, 70% MVC)",
+          "Fase 2 (Isotónica concéntrica-excéntrica): Rotación externa con goma elástica o mancuerna ligera en decúbito lateral (3 series de 10-15 repeticiones)",
+          "Fase 3 (Control escapular): Retracción escapular, 'W' y 'Y' tumbado boca abajo, serrato anterior en pared",
+          "Fase 4 (Carga funcional y pliometría según demanda): Elevación en plano escapular con carga progresiva y lanzamientos controlados"
+        ]
+      },
+      "progressionCriteria": [
+        "Dolor durante el ejercicio tolerable (EVA ≤3-4/10) que se normaliza en <24 horas",
+        "Capacidad de completar 3 series de 15 repeticiones con buena técnica sin compensación del trapecio superior",
+        "Ausencia de dolor nocturno al apoyar el hombro"
+      ],
+      "loadManagement": [
+        "Evitar temporalmente cargas repetidas por encima de la cabeza y movimientos balísticos bruscos en fase inicial",
+        "Mantener actividad general y cardio sin dolor de hombro"
+      ],
+      "reassessment": "Reevaluar fuerza con dinamometría/Jobe y escala funcional (QuickDASH / Constant) a las 6 semanas.",
+      "whyThisTreatment": "El ejercicio activo es el único estímulo mecano-biológico que induce síntesis de colágeno y aumento de la capacidad de carga del tendón a largo plazo.",
+      "whenToAvoid": "Evitar ejercicios resistidos intensos ante sospecha de rotura traumática masiva aguda en paciente joven con seudoparálisis (indicación quirúrgica urgente).",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / PRIMERA LÍNEA",
+        "note": "Múltiples ensayos clínicos aleatorizados y revisiones sistemáticas demuestran que el ejercicio activo es equivalente a la descompresión quirúrgica subacromial a medio y largo plazo."
+      }
+    },
+    "lumbar_motor_control": {
+      "id": "physio-lumbar-control",
+      "name": "Programa de Control Motor Lumbar, Dirección Preferencial y Capacidad Funcional",
+      "indication": "Dolor lumbar axial inespecífico, síndrome facetario o radiculopatía subaguda/crónica estable.",
+      "goals": [
+        "Restaurar la confianza del paciente en el movimiento lumbar y erradicar conductas de miedo-evitación",
+        "Identificar dirección de preferencia de movimiento (McKenzie) para reducir dolor irradiado",
+        "Fortalecimiento progresivo de extensores lumbares, glúteos y musculatura de tronco"
+      ],
+      "supervisedSessions": {
+        "number": "6 a 8 semanas con sesiones de supervisión técnica",
+        "frequency": "1 sesión/semana de ajuste de carga + práctica domiciliaria",
+        "durationWeeks": "6 - 12 semanas"
+      },
+      "homeExercise": {
+        "frequency": "Diario o 4-5 días/semana (15-25 min)",
+        "exercises": [
+          "Movilidad en descarga: Gato-camello en cuadrupedia (2 series de 10)",
+          "Dirección preferencial: Extensiones en prono o flexiones según respuesta clínica",
+          "Estabilidad activa: Puente de glúteo bipodal → monopodal, Bird-Dog y plancha lateral modificada",
+          "Carga funcional: Hip-hinge y sentadilla asistida con progresión de peso"
+        ]
+      },
+      "progressionCriteria": [
+        "Centralización del dolor (los síntomas retroceden de la pierna hacia la línea media lumbar)",
+        "Mejora en la tolerancia a la bipedestación o sedestación continua >45 min"
+      ],
+      "loadManagement": [
+        "Evitar reposo en cama >24 horas (el reposo prolongado retrasa la recuperación y empeora el pronóstico)",
+        "Fraccionar períodos de sedestación en bloques de 30-45 minutos"
+      ],
+      "reassessment": "Reevaluar escala funcional de Oswestry (ODI) y test de flexión anterior a las 4-6 semanas.",
+      "whyThisTreatment": "Desensibiliza el sistema nervioso central, reduce la inhibición muscular refleja y restaura la función mecánica vertebral.",
+      "whenToAvoid": "Evitar si existen banderas rojas (síndrome de cauda equina, déficit neurológico motor progresivo rápido o sospecha de fractura).",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / PILAR ESENCIAL",
+        "note": "Recomendado como intervención de primera línea por las guías internacionales (NICE, ACP, Lancet Low Back Pain Series)."
+      }
+    },
+    "plantar_fascia_load": {
+      "id": "physio-plantar-fascia",
+      "name": "Protocolo de Carga de Alta Intensidad (Rathleff) y Estiramiento Específico de Fascia",
+      "indication": "Fasciopatía plantar mecánica crónica / talalgia insercional.",
+      "goals": [
+        "Aumentar la resistencia a la tracción de la fascia plantar mediante el mecanismo de Windlass",
+        "Mejorar la flexibilidad del complejo gastrocnemio-sóleo",
+        "Erradicar el dolor incapacitante del primer paso matutino"
+      ],
+      "supervisedSessions": {
+        "number": "Programa de 12 semanas",
+        "frequency": "Supervisión inicial y control mensual",
+        "durationWeeks": "12 semanas"
+      },
+      "homeExercise": {
+        "frequency": "Días alternos (3 días a la semana)",
+        "exercises": [
+          "Protocolo de Rathleff: Elevación de talones sobre un escalón con una toalla enrollada bajo los dedos (para forzar extensión de primera MTF / Windlass). Fase concéntrica 3s, isométrica 2s, excéntrica 3s. Progresión: de 3 series de 12 repeticiones a 4 series de 8 con mochila con peso.",
+          "Estiramiento específico de fascia: Cruzar la pierna y traccionar de los dedos hacia la espinilla manteniendo 30s antes de levantarse de la cama (3 repeticiones)."
+        ]
+      },
+      "progressionCriteria": [
+        "Tolerancia de carga en elevación monopodal con 5-10 kg de sobrecarga",
+        "Disminución progresiva de la rigidez al primer apoyo matutino"
+      ],
+      "loadManagement": [
+        "Calzado con suela con drop moderado (evitar calzado plano rígido o descalzo en superficies duras durante la fase aguda)",
+        "Taping de bajo perfil (Low-Dye taping) durante las primeras semanas para soporte del arco"
+      ],
+      "reassessment": "Reevaluación del dolor matutino (EVA) y Foot Function Index a las 6 y 12 semanas.",
+      "whyThisTreatment": "El protocolo de carga de alta intensidad (Heavy Slow Resistance) estimula el remodelado de colágeno y normaliza el grosor fascial ecográfico.",
+      "whenToAvoid": "Evitar en sospecha de fractura por estrés de calcáneo (dolor agudo a la compresión bimanual del calcáneo) o rotura fascial aguda.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / PROTOCOLO VALIDADO",
+        "note": "El ensayo de Rathleff et al. (2015) demostró superioridad del entrenamiento de fuerza sobre el escalón frente a los estiramientos aislados a los 3 meses."
+      }
+    }
+  },
+  "eswt_protocols": {
+    "calcific_shoulder": {
+      "id": "eswt-calcific-shoulder",
+      "name": "Ondas de Choque Focales (fESWT) para Tendinopatía Calcificante de Hombro",
+      "category": "eswt",
+      "indication": "Tendinopatía calcificante del manguito rotador (depósito >5 mm en fase formativa/reabsortiva sintomática refractaria a medidas conservadoras).",
+      "type": "Focal (fESWT)",
+      "target": "Depósito cálcico ecodirigido / radioscópico",
+      "sessions": "3 a 4 sesiones",
+      "interval": "1 sesión cada 7 - 10 días",
+      "parameters": {
+        "energyDensity": "0.25 - 0.45 mJ/mm² (energía media a alta según tolerancia)",
+        "impulses": "2.000 - 3.000 impulsos por sesión",
+        "frequency": "4 - 8 Hz",
+        "localAnesthesia": "NO RECOMENDADA (la anestesia local perilesional puede reducir la eficacia mecano-biológica de la onda de choque)."
+      },
+      "alternativeOption": "Lavado / Barbotaje percutáneo ecoguiado con doble aguja si la calcificación es líquida/pastosa (fase reabsortiva) o dolor hiperagudo.",
+      "contraindications": [
+        "Coagulopatía severa o anticoagulación no controlada",
+        "Infección local activa o flemón",
+        "Embarazo (si la zona diana se orienta a cavidad torácica/abdominal)",
+        "Tumor óseo maligno en el área diana",
+        "Presencia de cartílago de crecimiento en pacientes pediátricos"
+      ],
+      "precautions": [
+        "Puede producirse una reacción inflamatoria dolorosa transitoria en las 24-48h posteriores (controlar con crioterapia y paracetamol, evitar AINEs si es posible)",
+        "Suspender temporalmente cargas deportivas intensas de hombro durante el tratamiento"
+      ],
+      "reassessment": "Control clínico y radiológico/ecográfico a las 6 y 12 semanas para verificar reabsorción o fragmentación de la calcificación.",
+      "whyThisTreatment": "Produce fragmentación mecánica del depósito cálcico, estimula la hipervascularización y promueve la reabsorción fagocítica mediada por macrófagos.",
+      "whenToAvoid": "NO INDICADO DE RUTINA EN TENDINOPATÍA DEL MANGUITO NO CALCIFICANTE (evidencia inconsistente). No aplicar en roturas completas masivas del manguito.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / NIVEL I EN CALCIFICACIONES",
+        "note": "Respaldado con grado A por guías de la ISMST y múltiples revisiones Cochrane para tendinopatía calcificante sintomática."
+      }
+    },
+    "plantar_fasciopathy": {
+      "id": "eswt-plantar-fascia",
+      "name": "Ondas de Choque Focales / Radiales en Fasciopatía Plantar Crónica",
+      "category": "eswt",
+      "indication": "Fasciopatía plantar de >3-6 meses de evolución refractaria a fisioterapia y carga activa.",
+      "type": "Focal (fESWT) preferente, o Radial (rESWT)",
+      "target": "Inserción fascial en el tubérculo medial del calcáneo",
+      "sessions": "3 a 5 sesiones",
+      "interval": "1 sesión semanal",
+      "parameters": {
+        "energyDensity": "0.15 - 0.25 mJ/mm² en focal (o 2.0 - 3.5 bar en radial)",
+        "impulses": "2.000 impulsos por sesión",
+        "frequency": "6 - 10 Hz",
+        "localAnesthesia": "No recomendada"
+      },
+      "contraindications": [
+        "Infección en el pie",
+        "Trastornos graves de la coagulación",
+        "Embarazo",
+        "Infiltración reciente con corticoide en la fascia en las últimas 6 semanas (riesgo de rotura)"
+      ],
+      "precautions": [
+        "Evitar antiinflamatorios (AINEs) durante el ciclo de ondas de choque para no atenuar la respuesta biológica regenerativa"
+      ],
+      "reassessment": "Reevaluación clínica a las 6-8 semanas post-última sesión.",
+      "whyThisTreatment": "Estimula la expresión de VEGF, PCNA y eNOS, favoreciendo la neovascularización y desensibilización nociceptiva del periostio calcáneo.",
+      "whenToAvoid": "Evitar en casos agudos (<4-6 semanas) donde las medidas biomecánicas y de carga son suficientes.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / RECOMENDADO EN CASOS CRÓNICOS",
+        "note": "Aprobado por FDA y recomendado en guías de ortopedia y podología para fascitis plantar crónica refractaria."
+      }
+    }
+  },
+  "emtt_protocols": {
+    "knee_oa_emtt": {
+      "id": "emtt-knee-oa",
+      "name": "EMTT — Extracorporeal Magnetotransduction Therapy (Magnetolith®) en Gonartrosis",
+      "category": "emtt",
+      "indication": "Gonartrosis sintomática leve-moderada (Kellgren-Lawrence II-III) como terapia no invasiva complementaria.",
+      "technologyNote": "EMTT utiliza campos electromagnéticos de alta oscilación (100–300 kHz) con penetración tisular de hasta 18 cm. NO confundir con ondas de choque acústicas (ESWT) ni con magnetoterapia domiciliaria convencional de baja frecuencia.",
+      "evidenceLevel": "emergent",
+      "evidenceBadge": "🟠 OPCIÓN COMPLEMENTARIA / EVIDENCIA EMERGENTE",
+      "trialProtocol": {
+        "frequency": "1 sesión semanal",
+        "sessions": "8 sesiones consecutivas",
+        "duration": "20 minutos por sesión",
+        "parameters": "Intensidad de campo 80 mT, Frecuencia de pulsos 8 Hz, 10.000 pulsos por sesión (Protocolo validado en ensayo clínico aleatorizado)",
+        "protocolNote": "Protocolo derivado de ensayos clínicos aleatorizados recientes; no constituye una dosis universal obligatoria pero es la pauta con respaldo publicado."
+      },
+      "contraindications": [
+        "Marcapasos cardíaco, desfibrilador implantable u otros dispositivos electrónicos activos",
+        "Implantes ferromagnéticos directos en el campo de aplicación inmediato",
+        "Embarazo",
+        "Neoplasia activa en la zona de tratamiento"
+      ],
+      "precautions": [
+        "Informar claramente al paciente que se trata de una terapia complementaria emergente y que no sustituye el ejercicio activo ni el control ponderal"
+      ],
+      "reassessment": "Control del dolor en reposo y marcha (EVA) y función (escala WOMAC) a las 4 y 12 semanas.",
+      "whyThisTreatment": "Estimula la permeabilidad de membrana celular y modula citoquinas proinflamatorias articulares mediante inducción electromagnética pulsada profunda.",
+      "whenToAvoid": "NO utilizar como tratamiento sustitutivo del programa de ejercicio y fortalecimiento muscular. No aplicar en artrosis terminal con indicación de prótesis y colapso óseo.",
+      "evidence": {
+        "level": "emergent",
+        "badge": "🟠 EVIDENCIA EMERGENTE",
+        "note": "Ensayos clínicos aleatorizados recientes (Klüter et al., 2018; Gerdesmeyer et al., 2021) muestran mejoría significativa en dolor y funcionalidad frente a placebo a las 12 semanas."
+      }
+    },
+    "cuff_emtt": {
+      "id": "emtt-rotator-cuff",
+      "name": "EMTT (Magnetolith®) en Entesopatía y Dolor del Manguito Rotador",
+      "category": "emtt",
+      "indication": "Tendinopatía crónica o entesopatía del supraespinoso que no tolera cargas altas inmediatas.",
+      "technologyNote": "Terapia electromagnética no invasiva de alta energía transducida.",
+      "evidenceLevel": "emergent",
+      "evidenceBadge": "🟠 EVIDENCIA EMERGENTE",
+      "trialProtocol": {
+        "frequency": "1 sesión semanal",
+        "sessions": "6 a 8 sesiones",
+        "duration": "20 minutos por sesión",
+        "parameters": "80 mT, 8 Hz, 10.000 pulsos por sesión",
+        "protocolNote": "Protocolo publicado de ensayo clínico."
+      },
+      "contraindications": [
+        "Marcapasos o neuroestimuladores",
+        "Implantes metálicos en el hombro",
+        "Embarazo"
+      ],
+      "precautions": [
+        "Complementar siempre con el programa de ejercicios domiciliarios"
+      ],
+      "reassessment": "Revisión a las 6 semanas.",
+      "whyThisTreatment": "Acelera la recuperación tisular y reduce la hiperalgesia local facilitando la progresión de ejercicios activos.",
+      "whenToAvoid": "Evitar como monoterapia pasiva aislada sin rehabilitación.",
+      "evidence": {
+        "level": "emergent",
+        "badge": "🟠 EVIDENCIA EMERGENTE",
+        "note": "Evidencia prometedora en cohortes aleatorizadas pero cuerpo global de literatura aún en consolidación."
+      }
+    }
+  },
+  "hyaluronic_acid_protocols": {
+    "knee_oa_ha": {
+      "id": "ha-knee-oa",
+      "name": "Viscosuplementación con Ácido Hialurónico Intraarticular en Gonartrosis",
+      "category": "hyaluronic-acid",
+      "indication": "Gonartrosis leve a moderada (Kellgren-Lawrence II-III) sintomática refractaria a medidas no farmacológicas y AINEs, en pacientes que buscan alternativa a corticoides.",
+      "clinicalRole": "OPCIÓN INDIVIDUALIZADA en pacientes seleccionados. No constituye primera línea rutinaria ni repara el cartílago desgastado.",
+      "productCategories": [
+        {
+          "type": "Monodosis / Alto peso molecular reticulado",
+          "example": "Hylan G-F 20 / Ácido hialurónico reticulado (6 ml o 2-4 ml)",
+          "injections": "1 sola infiltración",
+          "interval": "Dosis única (repetible a los 6-12 meses según respuesta)",
+          "expectedOnset": "2 a 4 semanas (efecto pico a las 6-8 semanas)",
+          "expectedDuration": "6 a 9 meses de alivio sintomático medio"
+        },
+        {
+          "type": "Multidosis / Medio-bajo peso molecular lineal",
+          "example": "Hialuronato sódico 20-25 mg / 2 ml",
+          "injections": "3 a 5 infiltraciones",
+          "interval": "1 infiltración semanal durante 3-5 semanas consecutivas",
+          "expectedOnset": "Tras la 2ª o 3ª infiltración",
+          "expectedDuration": "4 a 6 meses"
+        }
+      ],
+      "contraindications": [
+        "Infección articular activa o sospecha de artritis séptica",
+        "Infección o lesiones cutáneas graves en el punto de punción",
+        "Alergia conocida al hialuronato sódico o a proteínas aviares (en productos de origen biológico aviar)"
+      ],
+      "precautions": [
+        "Evitar ejercicio de impacto intenso en las primeras 48 horas tras la infiltración",
+        "Riesgo de reacción seudoseptica o 'flare' inflamatorio local transitorio (1-3% de casos)"
+      ],
+      "reassessment": "Evaluar a las 6 semanas de la infiltración (o finalizado el ciclo multidosis).",
+      "whyThisTreatment": "Mejora las propiedades reológicas del líquido sinovial (viscosidad y elasticidad), estimula la producción endógena de hialuronano y ejerce un efecto antiinflamatorio articular modesto.",
+      "whenToAvoid": "NO RECOMENDADO EN GONARTROSIS SEVERA / TERMINAL (Kellgren-Lawrence IV con contacto óseo directo 'hueso con hueso'), ya que la tasa de fracaso supera el 85%. No presentar como 'reparador de cartílago'.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🟡 OPCIÓN INDIVIDUALIZADA / PACIENTES SELECCIONADOS",
+        "note": "Recomendaciones heterogéneas: OARSI (Condicionalmente favorable en rodilla), AAOS (Evidencia no concluyente/no recomienda de rutina). Beneficio clínico medio modesto pero clínicamente relevante en subgrupos específicos."
+      }
+    }
+  },
+  "prp_protocols": {
+    "knee_oa_prp": {
+      "id": "prp-knee-oa",
+      "name": "Infiltración Intraarticular de Plasma Rico en Plaquetas (PRP) en Gonartrosis",
+      "category": "prp",
+      "indication": "Gonartrosis sintomática leve a moderada (KL I-III) en pacientes que buscan alivio sintomático prolongado.",
+      "preparationClassification": "Leucocito-pobre (LP-PRP) preferente para articulaciones sinoviales para minimizar la respuesta inflamatoria post-infiltración.",
+      "plateletConcentration": "2 a 5 veces la concentración basal plaquetaria (aprox. 600.000 - 1.200.000 plaquetas/µL).",
+      "volume": "4 a 6 mL intraarticular estricto ecoguiado",
+      "sessions": "1 a 3 infiltraciones",
+      "interval": "Cada 2 a 3 semanas",
+      "preProcedure": "Suspender AINEs 7-10 días antes para no inhibir la función plaquetaria.",
+      "postProcedureLoad": "Reposo relativo articular 48h, crioterapia; reiniciar carga progresiva a las 72h. Evitar AINEs 2 semanas post-infiltración (usar Paracetamol si hay dolor).",
+      "contraindications": [
+        "Trombocitopenia (<100.000 plaquetas/µL) o disfunción plaquetaria",
+        "Infección sistémica o articular activa",
+        "Enfermedad neoplásica activa no controlada",
+        "Anemia severa (Hb <9 g/dL)"
+      ],
+      "precautions": [
+        "Informar de la variabilidad biológica del preparado autólogo"
+      ],
+      "reassessment": "Evaluación funcional a los 2, 6 y 12 meses.",
+      "whyThisTreatment": "Libera factores de crecimiento autólogos (PDGF, TGF-β, VEGF, FGF) que modulan el ambiente inflamatorio sinovial y reducen la degradación del cartílago.",
+      "whenToAvoid": "NO indicado en artrosis severa terminal (KL IV) con colapso articular. No es primera línea frente al ejercicio activo.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA / GRUPO SELECCIONADO",
+        "note": "Revisiones sistemáticas y metaanálisis (ej. Dai et al., 2017; Hohmann et al., 2020) muestran que el LP-PRP proporciona alivio sintomático superior y más prolongado (hasta 12 meses) comparado con ácido hialurónico y corticoides en artrosis leve-moderada."
+      }
+    },
+    "chronic_tendinopathy_prp": {
+      "id": "prp-chronic-tendinopathy",
+      "name": "PRP Intratendinoso Ecoguiado en Tendinopatías Crónicas Refractarias (Fascia, Epicóndilo)",
+      "category": "prp",
+      "indication": "Fasciopatía plantar o epicondilalgia lateral recalcitrante (>6 meses) refractaria a programas de carga y ondas de choque.",
+      "preparationClassification": "Leucocito-rico (LR-PRP) o Leucocito-pobre según protocolo específico de tendón.",
+      "volume": "2 a 3 mL intratendinoso con aguja fina bajo control ecográfico estricto",
+      "sessions": "1 a 2 infiltraciones",
+      "interval": "Espaciadas 4 semanas",
+      "postProcedureLoad": "Fase analgésica 1-2 semanas, seguida de reinicio obligatorio de carga progresiva controlada.",
+      "contraindications": [
+        "Rotura tendinosa completa que requiere cirugía",
+        "Infección local",
+        "Trastornos plaquetarios"
+      ],
+      "precautions": [
+        "Dolor local significativo en los primeros 3-5 días tras la inyección intratendinosa"
+      ],
+      "reassessment": "A las 8 y 16 semanas.",
+      "whyThisTreatment": "Estimula la proliferación de tenocitos y la síntesis de matriz extracelular en zonas de degeneración tendinosa crónica (tendinosis).",
+      "whenToAvoid": "Evitar en tendinopatías agudas reactivas (<3 meses) y como primera línea de tratamiento.",
+      "evidence": {
+        "level": "limited",
+        "badge": "🟡 EVIDENCIA HETEROGÉNEA / CASOS REFRACTARIOS",
+        "note": "Evidencia variable según el tendón diana: favorable en epicondilalgia lateral y fascia plantar refractaria; resultados inconsistentes en manguito no calcificante y tendón de Aquiles."
+      }
+    }
+  },
+  "corticosteroid_injections": {
+    "subacromial_bursa": {
+      "id": "inj-corticoid-subacromial",
+      "name": "Infiltración Ecoguiada de la Bursa Subacromial-Subdeltoidea (SASD)",
+      "category": "injection",
+      "indication": "Bursitis subacromial severa / dolor agudo que impide activamente la realización de la fisioterapia y el sueño.",
+      "target": "Espacio bursal SASD ecoguiado (evitar infiltrar el espesor del tendón supraespinoso)",
+      "drugOptions": [
+        {
+          "drug": "Trifosfato de Betametasona / Acetato (6 mg) o Triamcinolona Acatónido (20 - 40 mg)",
+          "volume": "1 mL de corticoide + 3-4 mL de Anestésico Local (Mepivacaína 1% o Ropivacaína 0.2%)",
+          "totalVolume": "4 - 5 mL"
+        }
+      ],
+      "maxFrequency": "Máximo 2 a 3 infiltraciones al año, espaciadas al menos 6-8 semanas entre sí.",
+      "diabeticPrecautions": "Advertir al paciente diabético sobre elevaciones glucémicas reactivas en las primeras 48-72h. Monitorizar glucemias capilares.",
+      "tendonWarning": "¡PROHIBIDO INFILTRAR EN EL ESPESOR INTRATENDINOSO! (Riesgo elevado de necrosis focal y rotura tendinosa espontánea).",
+      "contraindications": [
+        "Infección sistémica o articular sospechada",
+        "Rotura masiva sintomática subsidiaria de reparación quirúrgica precoz en paciente joven",
+        "Diabetes mellitus descompensada (HbA1c >8.5-9% sin control)",
+        "Anticoagulación no controlada (INR >3.0)"
+      ],
+      "precautions": [
+        "Explicar que la infiltración busca una 'ventana de oportunidad' para trabajar con el fisioterapeuta, no es una cura definitiva"
+      ],
+      "reassessment": "A las 2-3 semanas para valorar ventana de mejoría e iniciar fisioterapia activa.",
+      "whyThisTreatment": "Potente inhibición de fosfolipasa A2 y citoquinas inflamatorias en la bursa para un alivio sintomático rápido a corto plazo.",
+      "whenToAvoid": "Evitar infiltraciones repetidas sin respuesta funcional. Evitar si no existe limitación dolorosa para el ejercicio activo.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA ALTA A CORTO PLAZO (ALIVIO DE RESCATE)",
+        "note": "Eficaz para reducción rápida del dolor a 4-8 semanas; sin diferencias a 6-12 meses frente a fisioterapia activa sola."
+      }
+    },
+    "knee_intraarticular": {
+      "id": "inj-corticoid-knee",
+      "name": "Infiltración Intraarticular de Corticoide en Rodilla",
+      "category": "injection",
+      "indication": "Brote inflamatorio agudo de gonartrosis con derrame articular a tensión.",
+      "target": "Receso suprapatelar o lateral ecoguiado",
+      "drugOptions": [
+        {
+          "drug": "Triamcinolona Acatónido 40 mg o Parametasona 20 mg",
+          "volume": "1 mL corticoide + 2-3 mL anestésico local (Mepivacaína 1%)",
+          "totalVolume": "3 - 4 mL"
+        }
+      ],
+      "maxFrequency": "Máximo 3 infiltraciones/año (las inyecciones frecuentes repetidas pueden acelerar la pérdida de volumen de cartílago articular a largo plazo).",
+      "diabeticPrecautions": "Control de glucemias durante 72h.",
+      "contraindications": [
+        "Sospecha de artritis séptica (artrocentesis obligatoria previa si hay fiebre o sospecha)",
+        "Infección cutánea activa",
+        "Prótesis articular prevista en los próximos 3 meses (riesgo de infección periprotésica)"
+      ],
+      "precautions": [
+        "Reposo relativo de la articulación durante 24-48h"
+      ],
+      "reassessment": "A las 3 semanas.",
+      "whyThisTreatment": "Resolución rápida de la sinovitis exudativa aguda en brotes artrósicos.",
+      "whenToAvoid": "Evitar como tratamiento crónico pautado a intervalos fijos sin derrame ni signos inflamatorios.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA EN BROTE INFLAMATORIO",
+        "note": "Alivio sintomático demostrado de 2 a 6 semanas; no recomendado en inyecciones continuadas trimestrales."
+      }
+    }
+  },
+  "spinal_interventions": {
+    "lumbar_epidural": {
+      "id": "sp-lumbar-epidural",
+      "name": "Infiltración Epidural Lumbar (Interlaminar / Transforaminal)",
+      "category": "interventional",
+      "indication": "Radiculopatía lumbar lumbociática compresiva severa con dolor radicular invalidante que no responde a manejo médico y limita la marcha.",
+      "requiredDiagnosis": "Concordancia estricta clínico-radiológica (la raíz sintomática explorada debe coincidir con el nivel de hernia/estenosis en RM).",
+      "target": "Espacio epidural transforaminal ecoguiado/fluoroscópico o interlaminar",
+      "drugs": "Corticoide no particulado (Dexametasona 4-8 mg) de elección transforaminal lumbar, o corticoide particulado en interlaminar baja + anestésico local (Ropivacaína 0.1-0.2% o Bupivacaína 0.125%)",
+      "volume": "2 a 3 mL transforaminal; 4 a 6 mL interlaminar",
+      "contraindications": [
+        "Síndrome de cauda equina o déficit motor progresivo rápido (indicación quirúrgica urgente)",
+        "Infección espinal (espondilodiscitis, absceso epidural) o bacteriemia sistémica",
+        "Trastorno severo de la coagulación o tratamiento anticoagulante no suspendido según guías ASRA/ESRA",
+        "Alergia a medios de contraste (si se usa fluoroscopia)"
+      ],
+      "precautions": [
+        "Requiere entorno aséptico y control de imagen (fluoroscopia o ecografía según abordaje)",
+        "Tiempos de suspensión de anticoagulantes y antiagregantes según guías oficiales"
+      ],
+      "reassessment": "A las 3 a 6 semanas. Si hay mejoría funcional >50%, continuar rehabilitación activa.",
+      "whyThisTreatment": "Disminuye el edema intraneural, la isquemia radicular y el baño de citoquinas inflamatorias en la raíz nerviosa comprimida.",
+      "whenToAvoid": "NUNCA realizar únicamente porque haya una hernia en la RM si el paciente no tiene clínica ni examen neurológico concordante.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN CIÁTICA CONCORDANTE",
+        "note": "Eficaz para reducir el dolor radicular y evitar o demorar la necesidad de cirugía a corto y medio plazo."
+      }
+    },
+    "facet_radiofrequency": {
+      "id": "sp-facet-rf",
+      "name": "Bloqueo Diagnóstico y Radiofrecuencia de Ramos Mediales Facetarios",
+      "category": "radiofrequency",
+      "indication": "Dolor lumbar axial o cervical facetario crónico (>3-6 meses) con hiperextensión dolorosa y test de Kemp positivo.",
+      "requiredDiagnosis": "Respuesta positiva (>50-80% de alivio transitorio) a 1 o 2 bloqueos diagnósticos ecoguiados/fluoroscópicos de ramos mediales con anestésico local.",
+      "target": "Ramos mediales dorsales vertebrales (ej. L3, L4, L5 para articulaciones L4-L5 y L5-S1)",
+      "technique": "Radiofrecuencia térmica convencional (80°C durante 90 segundos) o radiofrecuencia pulsada",
+      "contraindications": [
+        "Infección local o sistémica",
+        "Falta de respuesta al bloqueo diagnóstico previo",
+        "Marcapasos / desfibrilador (requiere precauciones con el bisturí/RF)"
+      ],
+      "precautions": [
+        "Puede existir molestia miofascial tipo quemazón durante 7-10 días tras el procedimiento térmico"
+      ],
+      "reassessment": "A las 6-8 semanas y seguimiento a 6-12 meses.",
+      "whyThisTreatment": "Desnervación térmica de las fibras sensoriales articulares que transmiten el dolor nociceptivo facetario.",
+      "whenToAvoid": "Evitar realizar radiofrecuencia directa sin bloqueo diagnóstico previo confirmatorio.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA TRAS BLOQUEO POSITIVO",
+        "note": "Nivel I de evidencia según guías de la SIS (Spine Intervention Society) cuando se seleccionan pacientes con bloqueo previo concordante."
+      }
+    }
+  },
+  "comparison_tables": {
+    "joint_injectables": {
+      "title": "Tabla Comparativa: Corticoide vs Ácido Hialurónico vs Plasma Rico en Plaquetas (PRP)",
+      "columns": [
+        "Tratamiento",
+        "Objetivo Principal",
+        "Inicio de Respuesta",
+        "Duración Típica",
+        "Nivel de Evidencia",
+        "Perfil Óptimo de Paciente"
+      ],
+      "rows": [
+        {
+          "treatment": "💉 Corticoide Intraarticular",
+          "objective": "Rápido control sintomático y resolución de sinovitis exudativa aguda",
+          "onset": "Rápido (24 a 72 horas)",
+          "duration": "Corta (2 a 6 semanas)",
+          "evidence": "🔵 Moderada / Alta para brotes agudos",
+          "profile": "Brote inflamatorio con derrame articular a tensión o dolor severo que bloquea la rehabilitación."
+        },
+        {
+          "treatment": "💧 Ácido Hialurónico (HA)",
+          "objective": "Mejora de la viscosuplementación y alivio mecánico-sintomático",
+          "onset": "Gradual (2 a 4 semanas)",
+          "duration": "Media (4 a 9 meses)",
+          "evidence": "🟡 Pacientes seleccionados / Heterogénea",
+          "profile": "Artrosis leve-moderada (KL II-III) sin derrame agudo, en pacientes con contraindicación o fallo de AINEs."
+        },
+        {
+          "treatment": "🩸 Plasma Rico en Plaquetas (LP-PRP)",
+          "objective": "Modulación del entorno biológico intraarticular y liberación de factores de crecimiento",
+          "onset": "Lento (3 a 6 semanas)",
+          "duration": "Larga (6 a 12 meses)",
+          "evidence": "🔵 Moderada en KL I-III",
+          "profile": "Artrosis leve a moderada en pacientes activos que buscan efecto analgésico duradero."
+        }
+      ]
+    }
+  }
+}

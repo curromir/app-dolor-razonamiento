@@ -29,10 +29,22 @@
   };
 
   // Initialize UI Controller
-  function initClinicalUI() {
+  async function initClinicalUI() {
     containers.home = document.getElementById('home-screen');
     containers.clinical = document.getElementById('clinical-reasoning-container');
     containers.library = document.getElementById('library-container');
+
+    // Preload treatments catalog if not already in window
+    if (!window.TREATMENTS_CATALOG) {
+      try {
+        const tRes = await fetch('clinical/treatments_catalog.json?v=' + Date.now());
+        if (tRes.ok) {
+          window.TREATMENTS_CATALOG = await tRes.json();
+        }
+      } catch (e) {
+        console.warn('Error loading treatments catalog:', e);
+      }
+    }
 
     if (!containers.clinical) return;
 
@@ -326,7 +338,7 @@
 
     // Instantiate Engine
     const catalog = window.state ? window.state.catalog : null;
-    uiState.engine = new window.ClinicalReasoningEngine(pathwayData, catalog);
+    uiState.engine = new window.ClinicalReasoningEngine(pathwayData, catalog, window.TREATMENTS_CATALOG);
     uiState.engine.setMentorMode(uiState.mentorMode);
     uiState.engine.setExpressMode(uiState.expressMode);
 
@@ -1147,133 +1159,503 @@
   }
 
   // ─────────────────────────────────────────────
-  // 10. STEP 6 — TREATMENT ESCALATION FLOW (4 TIERS)
+  // ─────────────────────────────────────────────
+  // 10. STEP 6 — ADVANCED THERAPEUTIC MODULE 2.0 (8 ESCALONES)
   // ─────────────────────────────────────────────
 
   function renderTreatmentView(container) {
-    const plan = uiState.engine.getTreatmentPlan();
+    if (!uiState.patientProfile) {
+      uiState.patientProfile = {
+        renal: false,
+        hepatic: false,
+        cv: false,
+        hta: false,
+        gi_ulcer: false,
+        diabetes: false,
+        anticoagulated: false,
+        age_over_65: false,
+        pregnant: false
+      };
+    }
+
+    const plan = uiState.engine.getTreatmentPlan(uiState.patientProfile);
     if (!plan) return;
+
+    const prescriptionText = uiState.engine.generateStructuredPrescriptionText(uiState.patientProfile);
 
     container.innerHTML = `
       <div class="treatment-tiers-stack">
-        <div class="home-hero-badge" style="align-self: flex-start;">
-          💊 Escalones Terapéuticos Basados en el Problema
+        <!-- Header Badge -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="home-hero-badge" style="background: rgba(34, 197, 94, 0.15); color: #22c55e; border-color: rgba(34, 197, 94, 0.35);">
+            💊 Plan Terapéutico Clínico Estructurado (8 Escalones)
+          </div>
+          <button class="exam-tool-btn" onclick="window.ClinicalUI.openInjectablesComparisonModal()">
+            <span>⚖️</span> <span>Comparar: Corticoide vs PRP vs Ácido Hialurónico</span>
+          </button>
         </div>
 
-        <!-- TIER 1: EDUCATION -->
+        <!-- COMORBIDITY SCREENING TOOLBAR -->
+        <div class="comorbidity-toolbar-card">
+          <div class="comorbidity-toolbar-header">
+            <div>
+              <strong style="font-size: 0.88rem; color: var(--text-primary);">🛡️ Comorbilidades y Factores del Paciente</strong>
+              <p style="margin: 0.15rem 0 0; font-size: 0.74rem; color: var(--text-muted);">Haz clic para activar comorbilidades y ajustar en tiempo real dosis, precauciones y contraindicaciones farmacológicas e intervencionistas.</p>
+            </div>
+            <span style="font-size: 0.72rem; color: #f59e0b; font-weight: 700;">Ajuste en Tiempo Real ⚡</span>
+          </div>
+
+          <div class="comorbidity-chips-grid">
+            <div class="comorbidity-chip ${uiState.patientProfile.renal ? 'active' : ''}" onclick="window.ClinicalUI.toggleComorbidity('renal')">
+              <span class="chip-status-dot"></span>
+              <span>🩺 Insuficiencia Renal (FG <60)</span>
+            </div>
+            <div class="comorbidity-chip ${uiState.patientProfile.gi_ulcer ? 'active' : ''}" onclick="window.ClinicalUI.toggleComorbidity('gi_ulcer')">
+              <span class="chip-status-dot"></span>
+              <span>🩸 Úlcera / Sangrado GI</span>
+            </div>
+            <div class="comorbidity-chip ${uiState.patientProfile.anticoagulated ? 'active' : ''}" onclick="window.ClinicalUI.toggleComorbidity('anticoagulated')">
+              <span class="chip-status-dot"></span>
+              <span>💊 Anticoagulación / DOAC</span>
+            </div>
+            <div class="comorbidity-chip ${uiState.patientProfile.cv ? 'active' : ''}" onclick="window.ClinicalUI.toggleComorbidity('cv')">
+              <span class="chip-status-dot"></span>
+              <span>🫀 Cardiopatía / HTA severa</span>
+            </div>
+            <div class="comorbidity-chip ${uiState.patientProfile.diabetes ? 'active' : ''}" onclick="window.ClinicalUI.toggleComorbidity('diabetes')">
+              <span class="chip-status-dot"></span>
+              <span>🍬 Diabetes Mellitus</span>
+            </div>
+            <div class="comorbidity-chip ${uiState.patientProfile.hepatic ? 'active' : ''}" onclick="window.ClinicalUI.toggleComorbidity('hepatic')">
+              <span class="chip-status-dot"></span>
+              <span>🧪 Hepatopatía / Cirrosis</span>
+            </div>
+            <div class="comorbidity-chip ${uiState.patientProfile.age_over_65 ? 'active' : ''}" onclick="window.ClinicalUI.toggleComorbidity('age_over_65')">
+              <span class="chip-status-dot"></span>
+              <span>👴 Edad > 65 años</span>
+            </div>
+            <div class="comorbidity-chip ${uiState.patientProfile.pregnant ? 'active' : ''}" onclick="window.ClinicalUI.toggleComorbidity('pregnant')">
+              <span class="chip-status-dot"></span>
+              <span>🤰 Embarazo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCALÓN 1: EDUCACIÓN -->
         <div class="treatment-tier-card glass-panel">
           <div class="tier-header">
             <div class="tier-title-group">
               <span class="tier-num-badge">1</span>
-              <h3 class="tier-title">Educación Terapéutica al Paciente</h3>
+              <h3 class="tier-title">${plan.tiers[0].title}</h3>
             </div>
-            <span class="pres-badge-status available">Pilar Fundamental</span>
+            <span class="treatment-badge-pill green">${plan.tiers[0].badge}</span>
           </div>
           <div class="tier-body">
             <p style="font-size: 0.88rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 0.5rem;">
-              «${plan.education.patientText}»
+              «${plan.tiers[0].patientText}»
             </p>
-            ${uiState.mentorMode && plan.education.mentorNote ? `
-              <div class="question-mentor-tip" style="margin: 0;">
-                <span>🧠</span> <span>${plan.education.mentorNote}</span>
+            ${uiState.mentorMode && plan.tiers[0].mentorNote ? `
+              <div class="question-mentor-tip" style="margin-bottom: 0.5rem;">
+                <span>🧠</span> <span><strong>Clave del Experto:</strong> ${plan.tiers[0].mentorNote}</span>
+              </div>
+            ` : ''}
+            <div class="treatment-why-card">
+              <strong>¿Por qué este tratamiento?</strong> ${plan.tiers[0].whyThisTreatment}
+            </div>
+            <div class="treatment-when-not-card">
+              <strong>🚫 Cuándo NO lo utilizaría:</strong> ${plan.tiers[0].whenToAvoid}
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCALÓN 2: ACTIVIDAD Y MANEJO DE CARGA -->
+        <div class="treatment-tier-card glass-panel">
+          <div class="tier-header">
+            <div class="tier-title-group">
+              <span class="tier-num-badge">2</span>
+              <h3 class="tier-title">${plan.tiers[1].title}</h3>
+            </div>
+            <span class="treatment-badge-pill green">${plan.tiers[1].badge}</span>
+          </div>
+          <div class="tier-body">
+            <ul style="margin: 0 0 0.5rem 1.25rem; padding: 0; font-size: 0.84rem; color: var(--text-primary); line-height: 1.5;">
+              ${plan.tiers[1].principles.map(p => `<li>${p}</li>`).join('')}
+            </ul>
+            <div class="treatment-why-card">
+              <strong>¿Por qué este tratamiento?</strong> ${plan.tiers[1].whyThisTreatment}
+            </div>
+            <div class="treatment-when-not-card">
+              <strong>🚫 Cuándo NO lo utilizaría:</strong> ${plan.tiers[1].whenToAvoid}
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCALÓN 3: EJERCICIO TERAPÉUTICO (DOSIS DE CARGA) -->
+        <div class="treatment-tier-card glass-panel">
+          <div class="tier-header">
+            <div class="tier-title-group">
+              <span class="tier-num-badge">3</span>
+              <h3 class="tier-title">${plan.tiers[2].title}</h3>
+            </div>
+            <span class="treatment-badge-pill green">${plan.tiers[2].badge}</span>
+          </div>
+          <div class="tier-body">
+            <p style="font-size: 0.86rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem;">
+              Objetivo Biomecánico: ${plan.tiers[2].objective}
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.6rem; margin-bottom: 0.75rem;">
+              ${(plan.tiers[2].phases || []).map(ph => `
+                <div class="generator-triad-box">
+                  <div class="triad-label">${ph.name} (${ph.duration || ''})</div>
+                  <div class="triad-val" style="font-size: 0.78rem; font-weight: 600; line-height: 1.35;">${ph.description}</div>
+                </div>
+              `).join('')}
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">
+              💡 <strong>Regla de Dosis de Carga:</strong> ${plan.tiers[2].loadGuidance}
+            </p>
+            <div class="treatment-why-card">
+              <strong>¿Por qué este tratamiento?</strong> ${plan.tiers[2].whyThisTreatment}
+            </div>
+            <div class="treatment-when-not-card">
+              <strong>🚫 Cuándo NO lo utilizaría:</strong> ${plan.tiers[2].whenToAvoid}
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCALÓN 4: PLAN DE FISIOTERAPIA SUPERVISADA Y DOMICILIARIA -->
+        <div class="treatment-tier-card glass-panel">
+          <div class="tier-header">
+            <div class="tier-title-group">
+              <span class="tier-num-badge">4</span>
+              <h3 class="tier-title">${plan.tiers[3].title}</h3>
+            </div>
+            <span class="treatment-badge-pill green">${plan.tiers[3].badge}</span>
+          </div>
+          <div class="tier-body">
+            <h4 style="margin: 0 0 0.5rem; font-size: 0.92rem; color: var(--text-primary);">${plan.tiers[3].protocolName}</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.6rem; margin-bottom: 0.75rem;">
+              <div class="structure-box">
+                <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase;">Sesiones Supervisadas</div>
+                <p style="margin: 0.25rem 0 0; font-size: 0.8rem; color: var(--text-primary);">${plan.tiers[3].supervisedSessions?.number || 'Individualizado'} (${plan.tiers[3].supervisedSessions?.frequency || '1 ses/sem'})</p>
+              </div>
+              <div class="structure-box">
+                <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase;">Pauta Domiciliaria Activa</div>
+                <p style="margin: 0.25rem 0 0; font-size: 0.8rem; color: var(--text-primary);">${plan.tiers[3].homeExercise?.frequency || '3-5 días/semana'}</p>
+              </div>
+              <div class="structure-box">
+                <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase;">Reevaluación de Función</div>
+                <p style="margin: 0.25rem 0 0; font-size: 0.8rem; color: var(--text-primary);">${plan.tiers[3].reassessment || 'A las 6 semanas'}</p>
+              </div>
+            </div>
+            <div class="treatment-why-card">
+              <strong>¿Por qué este tratamiento?</strong> ${plan.tiers[3].whyThisTreatment}
+            </div>
+            <div class="treatment-when-not-card">
+              <strong>🚫 Cuándo NO lo utilizaría:</strong> ${plan.tiers[3].whenToAvoid}
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCALÓN 5: FARMACOLOGÍA CON DOSIFICACIÓN CONTEXTUALIZADA -->
+        <div class="treatment-tier-card glass-panel">
+          <div class="tier-header">
+            <div class="tier-title-group">
+              <span class="tier-num-badge">5</span>
+              <h3 class="tier-title">${plan.tiers[4].title}</h3>
+            </div>
+            <span class="treatment-badge-pill blue">${plan.tiers[4].badge}</span>
+          </div>
+          <div class="tier-body">
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;">${plan.tiers[4].generalAdvice}</p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              ${(plan.tiers[4].options || []).map(opt => `
+                <div class="structure-box" style="${opt.isContraindicated ? 'border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.06);' : ''}">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.3rem;">
+                    <div>
+                      <strong style="font-size: 0.92rem; color: ${opt.isContraindicated ? '#ef4444' : 'var(--text-primary)'};">${opt.genericName}</strong>
+                      <span style="font-size: 0.74rem; color: var(--text-muted); margin-left: 0.4rem;">(${opt.category})</span>
+                    </div>
+                    <span class="pres-badge-status ${opt.isContraindicated ? 'upcoming' : 'available'}" style="font-size: 0.68rem;">
+                      ${opt.isContraindicated ? '🚫 Desaconsejado' : 'Opción Activa'}
+                    </span>
+                  </div>
+
+                  <div class="pharma-spec-grid">
+                    <div class="pharma-spec-item">
+                      <strong>Dosis Habitual</strong>
+                      <span>${opt.usualDose} (${opt.frequency})</span>
+                    </div>
+                    <div class="pharma-spec-item">
+                      <strong>Dosis Máxima</strong>
+                      <span>${opt.maximumDose || 'Ver ficha'}</span>
+                    </div>
+                    <div class="pharma-spec-item">
+                      <strong>Duración Recomendada</strong>
+                      <span>${opt.duration || 'Ciclo corto'}</span>
+                    </div>
+                    <div class="pharma-spec-item">
+                      <strong>Ajuste Renal / Hepático</strong>
+                      <span>${opt.renalAdjustment ? opt.renalAdjustment.substring(0, 45) + '...' : 'Estándar'}</span>
+                    </div>
+                  </div>
+
+                  ${(opt.activeWarnings || []).map(w => `
+                    <div class="pharma-warning-pill">${w}</div>
+                  `).join('')}
+
+                  <div class="treatment-why-card" style="margin-top: 0.4rem;">
+                    <strong>¿Por qué?:</strong> ${opt.whyThisTreatment || opt.indication}
+                  </div>
+                  <div class="treatment-when-not-card" style="margin-top: 0.3rem;">
+                    <strong>🚫 Cuándo evitarlo:</strong> ${opt.whenToAvoid || 'Ver contraindicaciones'}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <!-- ESCALÓN 6: TERAPIAS FÍSICAS ESPECÍFICAS (ESWT & EMTT) -->
+        <div class="treatment-tier-card glass-panel">
+          <div class="tier-header">
+            <div class="tier-title-group">
+              <span class="tier-num-badge">6</span>
+              <h3 class="tier-title">${plan.tiers[5].title}</h3>
+            </div>
+            <span class="treatment-badge-pill orange">${plan.tiers[5].badge}</span>
+          </div>
+          <div class="tier-body">
+            <div class="tech-distinction-banner">
+              <span style="font-size: 1.3rem;">💡</span>
+              <div>
+                <strong>Diferenciación Tecnológica Estricta:</strong> ${plan.tiers[5].technologyDistinction}
+              </div>
+            </div>
+
+            <!-- ESWT SECTION -->
+            ${plan.tiers[5].eswt ? `
+              <div class="structure-box" style="margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap;">
+                  <h4 style="margin: 0; font-size: 0.92rem; color: var(--text-primary);">⚡ Ondas de Choque Extracorpóreas: ${plan.tiers[5].eswt.name}</h4>
+                  <span class="treatment-badge-pill ${plan.tiers[5].eswt.badge?.includes('ALTA') ? 'green' : plan.tiers[5].eswt.badge?.includes('EMERGENTE') ? 'orange' : 'red'}" style="font-size: 0.68rem;">
+                    ${plan.tiers[5].eswt.badge || 'Evaluada'}
+                  </span>
+                </div>
+                ${plan.tiers[5].eswt.statusNote ? `<p style="font-size: 0.8rem; color: #ef4444; font-weight: 700; margin: 0.25rem 0;">${plan.tiers[5].eswt.statusNote}</p>` : ''}
+                ${plan.tiers[5].eswt.parameters ? `
+                  <div class="pharma-spec-grid">
+                    <div class="pharma-spec-item">
+                      <strong>Tipo y Sesiones</strong>
+                      <span>${plan.tiers[5].eswt.type} · ${plan.tiers[5].eswt.sessions} (${plan.tiers[5].eswt.interval})</span>
+                    </div>
+                    <div class="pharma-spec-item">
+                      <strong>Densidad de Energía</strong>
+                      <span>${plan.tiers[5].eswt.parameters.energyDensity}</span>
+                    </div>
+                    <div class="pharma-spec-item">
+                      <strong>Impulsos y Frecuencia</strong>
+                      <span>${plan.tiers[5].eswt.parameters.impulses} · ${plan.tiers[5].eswt.parameters.frequency}</span>
+                    </div>
+                    <div class="pharma-spec-item">
+                      <strong>Anestesia Local</strong>
+                      <span>${plan.tiers[5].eswt.parameters.localAnesthesia || 'No recomendada'}</span>
+                    </div>
+                  </div>
+                  ${plan.tiers[5].eswt.alternativeOption ? `<p style="font-size: 0.78rem; color: var(--accent-blue); margin: 0.25rem 0;"><strong>Alternativa:</strong> ${plan.tiers[5].eswt.alternativeOption}</p>` : ''}
+                ` : ''}
+                <div class="treatment-why-card">
+                  <strong>¿Por qué?:</strong> ${plan.tiers[5].eswt.whyThisTreatment}
+                </div>
+                <div class="treatment-when-not-card">
+                  <strong>🚫 Cuándo NO:</strong> ${plan.tiers[5].eswt.whenToAvoid}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- EMTT MAGNETOLITH SECTION -->
+            ${plan.tiers[5].emtt ? `
+              <div class="structure-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap;">
+                  <h4 style="margin: 0; font-size: 0.92rem; color: #a78bfa;">🧲 EMTT — Magnetolith®: ${plan.tiers[5].emtt.name}</h4>
+                  <span class="treatment-badge-pill orange" style="font-size: 0.68rem;">${plan.tiers[5].emtt.evidenceBadge}</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.25rem 0;">${plan.tiers[5].emtt.technologyNote}</p>
+                <div class="pharma-spec-grid">
+                  <div class="pharma-spec-item">
+                    <strong>Protocolo de Ensayo</strong>
+                    <span>${plan.tiers[5].emtt.trialProtocol.sessions} (${plan.tiers[5].emtt.trialProtocol.frequency})</span>
+                  </div>
+                  <div class="pharma-spec-item">
+                    <strong>Intensidad y Pulsos</strong>
+                    <span>${plan.tiers[5].emtt.trialProtocol.parameters}</span>
+                  </div>
+                  <div class="pharma-spec-item">
+                    <strong>Duración Sesión</strong>
+                    <span>${plan.tiers[5].emtt.trialProtocol.duration}</span>
+                  </div>
+                  <div class="pharma-spec-item">
+                    <strong>Estatus de Evidencia</strong>
+                    <span>Emergente / Terapia complementaria</span>
+                  </div>
+                </div>
+                <div class="treatment-why-card">
+                  <strong>¿Por qué?:</strong> ${plan.tiers[5].emtt.whyThisTreatment}
+                </div>
+                <div class="treatment-when-not-card">
+                  <strong>🚫 Cuándo NO:</strong> ${plan.tiers[5].emtt.whenToAvoid}
+                </div>
               </div>
             ` : ''}
           </div>
         </div>
 
-        <!-- TIER 2: EXERCISE / MOVEMENT -->
-        <div class="treatment-tier-card glass-panel">
+        <!-- ESCALÓN 7: INFILTRACIÓN / INTERVENCIONISMO -->
+        <div class="treatment-tier-card glass-panel" style="${plan.tiers[6].isBlocked ? 'opacity: 0.7;' : ''}">
           <div class="tier-header">
             <div class="tier-title-group">
-              <span class="tier-num-badge">2</span>
-              <h3 class="tier-title">Movimiento y Ejercicio Progresivo</h3>
+              <span class="tier-num-badge">7</span>
+              <h3 class="tier-title">${plan.tiers[6].title}</h3>
             </div>
-            <span class="pres-badge-status available">Recuperación Funcional</span>
+            <span class="treatment-badge-pill ${plan.tiers[6].isBlocked ? 'red' : 'green'}">${plan.tiers[6].badge}</span>
           </div>
           <div class="tier-body">
-            <p style="font-size: 0.86rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem;">
-              Objetivo: ${plan.exercise.objective}
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.6rem; margin-bottom: 0.75rem;">
-              ${(plan.exercise.phases || []).map(ph => `
-                <div class="generator-triad-box">
-                  <div class="triad-label">${ph.name} (${ph.duration || ''})</div>
-                  <div class="triad-val" style="font-size: 0.8rem; font-weight: 600;">${ph.description}</div>
-                </div>
-              `).join('')}
-            </div>
-            <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0;">
-              💡 <strong>Regla de carga:</strong> ${plan.exercise.loadGuidance || 'Dolor tolerable ≤4/10 durante el ejercicio sin empeoramiento a las 24h.'}
-            </p>
-          </div>
-        </div>
-
-        <!-- TIER 3: PHARMACOLOGY -->
-        <div class="treatment-tier-card glass-panel">
-          <div class="tier-header">
-            <div class="tier-title-group">
-              <span class="tier-num-badge">3</span>
-              <h3 class="tier-title">Farmacología & Analgesia</h3>
-            </div>
-            <button class="exam-tool-btn" onclick="window.switchTab('tab-fichas')">
-              <span>🗂️</span> <span>Ver Ficha 11 Farmacología</span>
-            </button>
-          </div>
-          <div class="tier-body">
-            <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-              ${(plan.pharmacology.options || []).map(opt => `
-                <div class="structure-box">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-                    <strong style="font-size: 0.88rem; color: var(--text-primary);">${opt.name}</strong>
-                    <span style="font-size: 0.72rem; color: var(--accent-blue); font-weight: 700;">${opt.duration || ''}</span>
-                  </div>
-                  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.35rem;">${opt.example || opt.indication}</p>
-                  <div class="treatment-guardrails-box">
-                    <strong>🛡️ Guardarraíles de seguridad:</strong> ${(opt.guardrails || []).join(' • ')}
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-
-        <!-- TIER 4: INTERVENTIONISM (OPPORTUNITY WINDOW) -->
-        <div class="treatment-tier-card glass-panel" style="${plan.interventionismBlocked ? 'opacity: 0.65;' : ''}">
-          <div class="tier-header">
-            <div class="tier-title-group">
-              <span class="tier-num-badge">4</span>
-              <h3 class="tier-title">Tratamiento Intervencionista</h3>
-            </div>
-            <span class="pres-badge-status ${plan.interventionismBlocked ? 'upcoming' : 'available'}">
-              ${plan.interventionismBlocked ? '🔒 Requiere Concordancia' : '🎯 Indicado'}
-            </span>
-          </div>
-          <div class="tier-body">
-            ${plan.interventionismBlocked ? `
-              <p style="font-size: 0.84rem; color: var(--color-alarm); font-weight: 700;">
-                ⚠️ ${plan.blockReason || 'Intervencionismo bloqueado temporalmente hasta confirmar concordancia clínico-imagen.'}
+            ${plan.tiers[6].isBlocked ? `
+              <p style="font-size: 0.84rem; color: var(--color-alarm); font-weight: 700; margin-bottom: 0.5rem;">
+                ${plan.tiers[6].blockReason}
               </p>
             ` : `
-              <p style="font-size: 0.86rem; color: var(--text-primary); margin-bottom: 0.75rem;">
-                <strong>Objetivo:</strong> ${plan.interventionism.objective}
-              </p>
-              ${(plan.interventionism.targets || []).map(tgt => `
-                <div class="structure-box" style="margin-bottom: 0.65rem;">
-                  <h4 style="margin: 0 0 0.25rem; font-size: 0.9rem; color: var(--text-primary);">Diana: ${tgt.name}</h4>
-                  <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">${tgt.indication}</p>
-                  <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.4rem;">
-                    ${(tgt.options || []).map(o => `<span class="mode-feature-pill">${o.name} (Evidencia: ${o.evidence || 'Moderada'})</span>`).join('')}
-                  </div>
-                  <div class="treatment-guardrails-box" style="margin: 0.35rem 0;">
-                    <strong>Contraindicaciones:</strong> ${(tgt.contraindications || []).join(' • ')}
-                  </div>
-                </div>
-              `).join('')}
-              <div class="intervention-window-banner">
-                <span>🪟</span> <span><strong>Filosofía de Ventana de Oportunidad:</strong> Bajar Dolor → Iniciar Inmediatamente Rehabilitación (Movilidad → Fuerza → Carga → Función). La infiltración nunca es el punto final.</span>
+              <div class="intervention-window-banner" style="margin-bottom: 0.75rem;">
+                <span>🪟</span> <span><strong>${plan.tiers[6].philosophy}</strong></span>
               </div>
             `}
+
+            <!-- CORTICOSTEROID INJECTION -->
+            ${plan.tiers[6].corticosteroid ? `
+              <div class="structure-box" style="margin-bottom: 0.65rem;">
+                <h4 style="margin: 0 0 0.25rem; font-size: 0.9rem; color: var(--text-primary);">💉 Infiltración con Corticoides: ${plan.tiers[6].corticosteroid.name}</h4>
+                <div class="pharma-spec-grid">
+                  <div class="pharma-spec-item">
+                    <strong>Fármaco y Dosis</strong>
+                    <span>${plan.tiers[6].corticosteroid.drugOptions ? plan.tiers[6].corticosteroid.drugOptions[0].drug : 'Triamcinolona 20-40mg / Betametasona 6mg'}</span>
+                  </div>
+                  <div class="pharma-spec-item">
+                    <strong>Volumen y Anestésico</strong>
+                    <span>${plan.tiers[6].corticosteroid.drugOptions ? plan.tiers[6].corticosteroid.drugOptions[0].totalVolume : '3-5 ml'} con AL</span>
+                  </div>
+                  <div class="pharma-spec-item">
+                    <strong>Frecuencia Máxima</strong>
+                    <span>${plan.tiers[6].corticosteroid.maxFrequency || 'Máx 2-3 al año'}</span>
+                  </div>
+                </div>
+                ${plan.tiers[6].corticosteroid.tendonWarning ? `<p style="font-size: 0.76rem; color: #ef4444; font-weight: 700; margin: 0.25rem 0;">⚠️ ${plan.tiers[6].corticosteroid.tendonWarning}</p>` : ''}
+              </div>
+            ` : ''}
+
+            <!-- HYALURONIC ACID (HA) -->
+            ${plan.tiers[6].hyaluronicAcid ? `
+              <div class="structure-box" style="margin-bottom: 0.65rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; flex-wrap: wrap;">
+                  <h4 style="margin: 0; font-size: 0.9rem; color: #60a5fa;">💧 Ácido Hialurónico: ${plan.tiers[6].hyaluronicAcid.name}</h4>
+                  <span class="treatment-badge-pill yellow" style="font-size: 0.68rem;">${plan.tiers[6].hyaluronicAcid.evidence?.badge || 'Pacientes seleccionados'}</span>
+                </div>
+                <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0.25rem 0;">${plan.tiers[6].hyaluronicAcid.clinicalRole}</p>
+                <div class="pharma-spec-grid">
+                  ${(plan.tiers[6].hyaluronicAcid.productCategories || []).map(pc => `
+                    <div class="pharma-spec-item">
+                      <strong>${pc.type}</strong>
+                      <span>${pc.injections} (${pc.interval}) · Duración: ${pc.expectedDuration}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- PRP -->
+            ${plan.tiers[6].prp ? `
+              <div class="structure-box" style="margin-bottom: 0.65rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; flex-wrap: wrap;">
+                  <h4 style="margin: 0; font-size: 0.9rem; color: #f87171;">🩸 Plasma Rico en Plaquetas (PRP): ${plan.tiers[6].prp.name}</h4>
+                  <span class="treatment-badge-pill blue" style="font-size: 0.68rem;">${plan.tiers[6].prp.evidence?.badge || 'Evidencia Moderada'}</span>
+                </div>
+                <div class="pharma-spec-grid">
+                  <div class="pharma-spec-item">
+                    <strong>Tipo de Preparación</strong>
+                    <span>${plan.tiers[6].prp.preparationClassification}</span>
+                  </div>
+                  <div class="pharma-spec-item">
+                    <strong>Volumen y Sesiones</strong>
+                    <span>${plan.tiers[6].prp.volume} · ${plan.tiers[6].prp.sessions} (${plan.tiers[6].prp.interval})</span>
+                  </div>
+                  <div class="pharma-spec-item">
+                    <strong>Pauta Post-Infiltración</strong>
+                    <span>${plan.tiers[6].prp.postProcedureLoad ? plan.tiers[6].prp.postProcedureLoad.substring(0, 50) + '...' : 'Carga progresiva'}</span>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- SPINAL INTERVENTIONS -->
+            ${plan.tiers[6].spinal ? `
+              <div class="structure-box" style="margin-bottom: 0.65rem;">
+                <h4 style="margin: 0 0 0.25rem; font-size: 0.9rem; color: var(--text-primary);">🎯 Intervencionismo Espinal: ${plan.tiers[6].spinal.name}</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.25rem 0;"><strong>Requisito diagnóstico:</strong> ${plan.tiers[6].spinal.requiredDiagnosis}</p>
+                <div class="pharma-spec-grid">
+                  <div class="pharma-spec-item">
+                    <strong>Fármaco / Diana</strong>
+                    <span>${plan.tiers[6].spinal.drugs || plan.tiers[6].spinal.target}</span>
+                  </div>
+                  <div class="pharma-spec-item">
+                    <strong>Evidencia</strong>
+                    <span>${plan.tiers[6].spinal.evidence?.badge || 'Alta en concordancia'}</span>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+
+            <div class="treatment-why-card">
+              <strong>¿Por qué?:</strong> ${plan.tiers[6].whyThisTreatment}
+            </div>
+            <div class="treatment-when-not-card">
+              <strong>🚫 Cuándo NO:</strong> ${plan.tiers[6].whenToAvoid}
+            </div>
           </div>
+        </div>
+
+        <!-- ESCALÓN 8: CIRUGÍA Y CRITERIOS DE ALARMA -->
+        <div class="treatment-tier-card glass-panel">
+          <div class="tier-header">
+            <div class="tier-title-group">
+              <span class="tier-num-badge">8</span>
+              <h3 class="tier-title">${plan.tiers[7].title}</h3>
+            </div>
+            <span class="treatment-badge-pill red">${plan.tiers[7].badge}</span>
+          </div>
+          <div class="tier-body">
+            <ul style="margin: 0 0 0.5rem 1.25rem; padding: 0; font-size: 0.84rem; color: var(--text-primary); line-height: 1.5;">
+              ${plan.tiers[7].indications.map(ind => `<li>${ind}</li>`).join('')}
+            </ul>
+            <div class="treatment-why-card">
+              <strong>¿Por qué?:</strong> ${plan.tiers[7].whyThisTreatment}
+            </div>
+            <div class="treatment-when-not-card">
+              <strong>🚫 Cuándo NO:</strong> ${plan.tiers[7].whenToAvoid}
+            </div>
+          </div>
+        </div>
+
+        <!-- PRESCRIPTION PROPOSAL & COPY TO EMR -->
+        <div class="prescription-card glass-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h3 style="margin: 0 0 0.15rem; font-size: 1rem; color: var(--text-primary);">📋 Propuesta de Prescripción para Historia Clínica</h3>
+              <p style="margin: 0; font-size: 0.76rem; color: var(--text-muted);">Texto editable estructurado según los escalones y comorbilidades seleccionadas.</p>
+            </div>
+            <button class="btn-primary" id="btnCopyPrescriptionText" style="padding: 0.5rem 1.2rem; font-size: 0.82rem;" onclick="window.ClinicalUI.copyPrescriptionText()">
+              <span id="copyPrescriptionLabel">Copiar Plan a HC 📋</span>
+            </button>
+          </div>
+          <textarea class="prescription-textarea" id="prescriptionProposalText">${prescriptionText}</textarea>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 0.75rem;">
@@ -1287,6 +1669,78 @@
         </div>
       </div>
     `;
+  }
+
+  function toggleComorbidity(comorbidityKey) {
+    if (!uiState.patientProfile) uiState.patientProfile = {};
+    uiState.patientProfile[comorbidityKey] = !uiState.patientProfile[comorbidityKey];
+    renderCurrentStep();
+  }
+
+  function copyPrescriptionText() {
+    const textarea = document.getElementById('prescriptionProposalText');
+    if (!textarea) return;
+    navigator.clipboard.writeText(textarea.value).then(() => {
+      const lbl = document.getElementById('copyPrescriptionLabel');
+      if (lbl) {
+        lbl.textContent = '¡Plan Copiado al Portapapeles! ✅';
+        setTimeout(() => { lbl.textContent = 'Copiar Plan a HC 📋'; }, 2500);
+      }
+    }).catch(err => {
+      textarea.select();
+      document.execCommand('copy');
+      alert('Plan copiado.');
+    });
+  }
+
+  function openInjectablesComparisonModal() {
+    showAuxModal(`
+      <div class="aux-modal-header" style="border-bottom: 2px solid #6366f1;">
+        <h3><span>⚖️</span> <span>Comparativa: Corticoide vs Ácido Hialurónico vs PRP</span></h3>
+      </div>
+      <div class="aux-items-list">
+        <div style="overflow-x: auto;">
+          <table class="injectables-table">
+            <thead>
+              <tr>
+                <th>Tratamiento</th>
+                <th>Objetivo Biomecánico</th>
+                <th>Inicio</th>
+                <th>Duración</th>
+                <th>Evidencia</th>
+                <th>Perfil Óptimo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color: #ef4444;">💉 Corticoide</strong></td>
+                <td>Rápido control de la sinovitis exudativa y dolor agudo</td>
+                <td>24 - 72 h</td>
+                <td>2 - 6 semanas</td>
+                <td><span class="treatment-badge-pill blue" style="font-size: 0.65rem;">Moderada / Brote</span></td>
+                <td>Brote agudo con derrame a tensión que bloquea la fisioterapia.</td>
+              </tr>
+              <tr>
+                <td><strong style="color: #60a5fa;">💧 Ácido Hialurónico</strong></td>
+                <td>Viscosuplementación y alivio mecánico articular</td>
+                <td>2 - 4 sem</td>
+                <td>4 - 9 meses</td>
+                <td><span class="treatment-badge-pill yellow" style="font-size: 0.65rem;">Pacientes selecc.</span></td>
+                <td>Artrosis leve-moderada (KL II-III) sin derrame activo ni respuesta a AINEs.</td>
+              </tr>
+              <tr>
+                <td><strong style="color: #f87171;">🩸 Plasma Rico en Plaquetas (LP-PRP)</strong></td>
+                <td>Modulación del microambiente inflamatorio articular</td>
+                <td>3 - 6 sem</td>
+                <td>6 - 12 meses</td>
+                <td><span class="treatment-badge-pill blue" style="font-size: 0.65rem;">Moderada KL I-III</span></td>
+                <td>Artrosis leve-moderada en pacientes activos que buscan alivio más duradero.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `);
   }
 
   function proceedToFollowUp() {
@@ -1785,7 +2239,10 @@
     openMissingInfoModal: openMissingInfoModal,
     openWhatIDoBelieveModal: openWhatIDoBelieveModal,
     renderCaseSelector: renderCaseSelector,
-    startTrainingCase: startTrainingCase
+    startTrainingCase: startTrainingCase,
+    toggleComorbidity: toggleComorbidity,
+    copyPrescriptionText: copyPrescriptionText,
+    openInjectablesComparisonModal: openInjectablesComparisonModal
   };
 
 })();

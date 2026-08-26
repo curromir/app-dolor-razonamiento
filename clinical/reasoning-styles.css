@@ -1504,3 +1504,231 @@
     transform: translateY(0);
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   14. ADVANCED THERAPEUTIC MODULE 2.0 STYLES
+   ───────────────────────────────────────────────────────────── */
+
+.comorbidity-toolbar-card {
+  padding: 1.15rem 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: linear-gradient(145deg, rgba(99, 102, 241, 0.08) 0%, rgba(30, 41, 59, 0.5) 100%);
+  margin-bottom: 1.5rem;
+}
+
+.comorbidity-toolbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.comorbidity-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.5rem;
+}
+
+.comorbidity-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.comorbidity-chip:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.comorbidity-chip.active {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.comorbidity-chip.active .chip-status-dot {
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+}
+
+.chip-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.treatment-badge-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.treatment-badge-pill.green {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.treatment-badge-pill.blue {
+  background: rgba(37, 99, 235, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(37, 99, 235, 0.35);
+}
+
+.treatment-badge-pill.yellow {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.treatment-badge-pill.orange {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.35);
+}
+
+.treatment-badge-pill.red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.treatment-why-card {
+  padding: 0.75rem 0.95rem;
+  border-radius: var(--radius-md);
+  background: rgba(34, 197, 94, 0.06);
+  border-left: 3px solid #22c55e;
+  margin-top: 0.65rem;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.treatment-when-not-card {
+  padding: 0.75rem 0.95rem;
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 3px solid #ef4444;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.pharma-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.5rem;
+  margin: 0.65rem 0;
+}
+
+.pharma-spec-item {
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  font-size: 0.76rem;
+}
+
+.pharma-spec-item strong {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+
+.pharma-warning-pill {
+  display: block;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 0.4rem;
+}
+
+.tech-distinction-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 0.85rem;
+}
+
+.injectables-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+}
+
+.injectables-table th {
+  background: rgba(30, 41, 59, 0.8);
+  color: var(--text-primary);
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 800;
+}
+
+.injectables-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.prescription-card {
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  margin-top: 1.5rem;
+}
+
+.prescription-textarea {
+  width: 100%;
+  min-height: 220px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: rgba(15, 23, 42, 0.8);
+  color: #e2e8f0;
+  resize: vertical;
+  margin-top: 0.75rem;
+}
+

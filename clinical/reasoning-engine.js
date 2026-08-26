@@ -23,10 +23,12 @@ class ClinicalReasoningEngine {
   /**
    * @param {Object} pathway - Clinical pathway JSON data
    * @param {Object} testsCatalog - Full tests_catalog.json data (state.catalog)
+   * @param {Object} treatmentsCatalog - Full treatments_catalog.json data
    */
-  constructor(pathway, testsCatalog) {
+  constructor(pathway, testsCatalog, treatmentsCatalog) {
     this.pathway = pathway;
     this.catalog = testsCatalog;
+    this.treatmentsCatalog = treatmentsCatalog || (typeof window !== 'undefined' ? window.TREATMENTS_CATALOG : null);
 
     // Session state
     this.session = {
@@ -699,30 +701,407 @@ class ClinicalReasoningEngine {
   }
 
   // ─────────────────────────────────────────────
-  // STEP 6 — TREATMENT
+  // STEP 6 — ADVANCED THERAPEUTIC MODULE 2.0
   // ─────────────────────────────────────────────
 
-  getTreatmentPlan() {
-    const treatment = this.pathway.treatment;
-    if (!treatment) return null;
+  /**
+   * Generates a comprehensive, personalized 8-step therapeutic plan
+   * based on the identified generator, concordance level, and patient comorbidities.
+   * 
+   * @param {Object} patientProfile - Optional comorbidity flags:
+   *   { renal: bool, hepatic: bool, cv: bool, hta: bool, gi_ulcer: bool, diabetes: bool, anticoagulated: bool, age_over_65: bool, pregnant: bool, prior_injections: int }
+   */
+  getTreatmentPlan(patientProfile = {}) {
+    const treatment = this.pathway.treatment || {};
+    const pathwayId = this.pathway.id;
+    const ranked = this.getHypothesesRanked();
+    const topHyp = ranked[0] || {};
+    const concordance = this.session.concordanceLevel || 'neutral';
+    const isInterventionSafe = (concordance === 'high' || concordance === 'partial') && !this.session.hasActiveRedFlag;
 
-    // Check if interventionism should be shown
-    const showInterventionism = treatment.interventionism &&
-      (this.session.concordanceLevel === 'high' || this.session.concordanceLevel === 'partial') &&
-      !this.session.hasActiveRedFlag;
+    // Load master treatments catalog if available
+    const catalog = this.treatmentsCatalog || (typeof window !== 'undefined' ? window.TREATMENTS_CATALOG : null) || {};
+
+    // ─────────────────────────────────────────
+    // 1. EDUCACIÓN TERAPÉUTICA
+    // ─────────────────────────────────────────
+    const education = {
+      id: 'step-1-education',
+      title: '1. Educación Terapéutica al Paciente',
+      badge: '🟢 EVIDENCIA ALTA / PILAR ESENCIAL',
+      patientText: treatment.education?.patientText || 'Explicar el origen mecano-biológico del dolor, desmitificar falsas creencias de "desgaste irreversible", asegurar que el movimiento adaptado es seguro y promover la autoeficacia.',
+      mentorNote: treatment.education?.mentorNote || 'La educación reduce el catastrofismo y la kinesiofobia, optimizando la respuesta a la rehabilitación activa.',
+      whyThisTreatment: 'Aumenta la comprensión del proceso, reduce la hipervigilancia nociceptiva y mejora la adherencia al tratamiento activo.',
+      whenToAvoid: 'Nunca omitir. Es el pilar inicial innegociable en todo paciente con dolor.'
+    };
+
+    // ─────────────────────────────────────────
+    // 2. ACTIVIDAD Y MODIFICACIÓN DE CARGA
+    // ─────────────────────────────────────────
+    const loadManagement = {
+      id: 'step-2-load-management',
+      title: '2. Actividad y Modificación de Carga',
+      badge: '🟢 PRIMERA LÍNEA',
+      principles: [
+        'Evitar el reposo absoluto en cama (>24-48h desaconsejado: acelera atrofia muscular y cronifica el dolor)',
+        'Principio de carga relativa: Reducir temporalmente picos de sobrecarga deportiva o laboral manteniendo actividad submáxima tolerable',
+        'Regla del dolor tolerable: El dolor durante la actividad debe ser ≤3-4/10 y regresar al estado basal en menos de 24 horas'
+      ],
+      whyThisTreatment: 'La sobrecarga lesiona el tejido, pero el desuso lo debilita. La modulación de carga mantiene la homeostasis tisular.',
+      whenToAvoid: 'Evitar inmovilizaciones rígidas prolongadas salvo fracturas agudas o roturas tendinosas quirúrgicas recientes.'
+    };
+
+    // ─────────────────────────────────────────
+    // 3. EJERCICIO TERAPÉUTICO (DOSIS DE CARGA)
+    // ─────────────────────────────────────────
+    const exercise = {
+      id: 'step-3-exercise',
+      title: '3. Ejercicio Terapéutico Activo (Dosis de Carga)',
+      badge: '🟢 EVIDENCIA ALTA / RECUPERACIÓN FUNCIONAL',
+      objective: treatment.exercise?.objective || 'Aumentar la capacidad de carga del tejido, restaurar fuerza, control motor y movilidad funcional.',
+      phases: treatment.exercise?.phases || [
+        { name: 'Fase 1: Isometría / Analgesia', description: 'Contracciones isométricas submáximas en posiciones sin dolor (5 reps de 30-45s) para inhibición cortical del dolor.', duration: '1-2 semanas' },
+        { name: 'Fase 2: Isotónicos Conc-Excéntricos', description: 'Carga progresiva con rangos completos de movimiento y control excéntrico lento.', duration: '2-6 semanas' },
+        { name: 'Fase 3: Carga Funcional y Retorno', description: 'Reintegración a demandas laborales y deportivas específicas con ejercicios de cadena cinética.', duration: '6-12 semanas' }
+      ],
+      loadGuidance: treatment.exercise?.loadGuidance || 'La dosis importante es la dosis de carga. Monitorizar respuesta a las 24 horas.',
+      whyThisTreatment: 'El ejercicio activo es el único estímulo mecano-transductor capaz de regenerar y remodelar la matriz extracelular a largo plazo.',
+      whenToAvoid: 'No realizar ejercicios resistidos de alta intensidad ante sospecha de rotura aguda completa o fractura por estrés.'
+    };
+
+    // ─────────────────────────────────────────
+    // 4. PLAN DE FISIOTERAPIA SUPERVISADA
+    // ─────────────────────────────────────────
+    let physioProtocol = null;
+    if (pathwayId.includes('shoulder')) physioProtocol = catalog.physiotherapy_protocols?.shoulder_rotator_cuff;
+    else if (pathwayId.includes('lumbar') || pathwayId.includes('cervical')) physioProtocol = catalog.physiotherapy_protocols?.lumbar_motor_control;
+    else if (pathwayId.includes('plantar')) physioProtocol = catalog.physiotherapy_protocols?.plantar_fascia_load;
+
+    const physiotherapy = {
+      id: 'step-4-physiotherapy',
+      title: '4. Plan de Fisioterapia Supervisada y Domiciliaria',
+      badge: '🟢 EVIDENCIA ALTA / PROGRAMA ESTRUCTURADO',
+      protocolName: physioProtocol ? physioProtocol.name : 'Programa de Fisioterapia Activa y Ejercicio Guiado',
+      supervisedSessions: physioProtocol ? physioProtocol.supervisedSessions : {
+        number: 'Programa individualizado de 6 a 12 semanas (habitualmente 1 sesión semanal o quincenal de supervisión/progresión)',
+        frequency: '1 sesión/semana inicialmente, espaciando a quincenal según autonomía',
+        durationWeeks: '6 - 12 semanas'
+      },
+      homeExercise: physioProtocol ? physioProtocol.homeExercise : {
+        frequency: '3 a 5 días por semana (20-30 min/sesión)',
+        exercises: ['Movilidad activa', 'Fortalecimiento específico', 'Control postural']
+      },
+      progressionCriteria: physioProtocol ? physioProtocol.progressionCriteria : [
+        'Dolor durante la sesión ≤3-4/10 que cede en <24 horas',
+        'Mejora demostrable en fuerza o rango articular sin compensaciones'
+      ],
+      loadManagement: physioProtocol ? physioProtocol.loadManagement : ['Evitar sobrecargas lesivas; mantener actividad general'],
+      reassessment: physioProtocol ? physioProtocol.reassessment : 'Reevaluar a las 6 semanas con escala funcional.',
+      whyThisTreatment: 'El fisioterapeuta educa, prescribe, corrige, progresa y monitoriza la dosis de carga. El paciente debe realizar actividad activa entre sesiones.',
+      whenToAvoid: 'El número de sesiones pasivas NO es el tratamiento. Evitar terapias puramente pasivas (electroterapia, masaje aislado) como única intervención.'
+    };
+
+    // ─────────────────────────────────────────
+    // 5. FARMACOLOGÍA CON DOSIFICACIÓN CONTEXTUALIZADA
+    // ─────────────────────────────────────────
+    const pharmaOptions = [];
+    const meds = catalog.medications || {};
+
+    // Check Paracetamol
+    if (meds.paracetamol) {
+      const pMed = { ...meds.paracetamol };
+      const warnings = [];
+      if (patientProfile.hepatic) {
+        warnings.push('⚠️ Hepatopatía: Dosis máxima reducida a 2 g/día (contraindicado en insuficiencia grave).');
+        pMed.maximumDose = '2 g / 24 h';
+      }
+      if (patientProfile.age_over_65) {
+        warnings.push('👴 Paciente >65 años: Limitar a 2-3 g/día para prevenir acumulación.');
+      }
+      pMed.activeWarnings = warnings;
+      pharmaOptions.push(pMed);
+    }
+
+    // Check Topical NSAID
+    if (meds.nsaid_topical && (pathwayId.includes('knee') || pathwayId.includes('wrist') || pathwayId.includes('ankle') || pathwayId.includes('elbow'))) {
+      const topMed = { ...meds.nsaid_topical };
+      pharmaOptions.push(topMed);
+    }
+
+    // Check Oral NSAIDs (Ibuprofen / Naproxen)
+    const nsaidOral = meds.ibuprofen ? { ...meds.ibuprofen } : null;
+    if (nsaidOral) {
+      const nsaidWarnings = [];
+      let isNsaidContraindicated = false;
+
+      if (patientProfile.renal) {
+        nsaidWarnings.push('🚫 INSUFICIENCIA RENAL: Los AINEs orales están contraindicados o desaconsejados (riesgo de fallo renal agudo e hiperpotasemia).');
+        isNsaidContraindicated = true;
+      }
+      if (patientProfile.gi_ulcer) {
+        nsaidWarnings.push('🚫 ANTECEDENTE DE ÚLCERA / SANGRADO DIGESTIVO: Evitar AINEs orales; si imprescindibles asociar siempre IBP a dosis plenas.');
+        isNsaidContraindicated = true;
+      }
+      if (patientProfile.anticoagulated) {
+        nsaidWarnings.push('🚫 ANTICOAGULACIÓN (Sintrom / DOACs): Riesgo hemorrágico severo. Evitar AINEs orales y preferir Paracetamol o AINE tópico.');
+        isNsaidContraindicated = true;
+      }
+      if (patientProfile.cv || patientProfile.hta) {
+        nsaidWarnings.push('⚠️ RIESGO CARDIOVASCULAR / HTA: Precaución con AINEs orales por retención hidrosalina y elevación de PA (preferir Naproxeno si imprescindible).');
+      }
+      if (patientProfile.age_over_65) {
+        nsaidWarnings.push('👴 >65 años: Asociar obligatoriamente IBP y limitar duración a ≤5-7 días.');
+      }
+
+      nsaidOral.isContraindicated = isNsaidContraindicated;
+      nsaidOral.activeWarnings = nsaidWarnings;
+      pharmaOptions.push(nsaidOral);
+    }
+
+    // Check Neuromodulators for neuropathic / nociplastic / central components
+    const isNociplastic = pathwayId.includes('nociplastic');
+    const isRadicular = pathwayId.includes('radicular');
+
+    if (isNociplastic && meds.duloxetine) {
+      const dulo = { ...meds.duloxetine };
+      const duloWarnings = [];
+      if (patientProfile.hepatic) duloWarnings.push('🚫 Contraindicada en hepatopatía con deterioro hepático.');
+      if (patientProfile.renal) duloWarnings.push('🚫 Contraindicada en ClCr <30 ml/min.');
+      dulo.activeWarnings = duloWarnings;
+      pharmaOptions.push(dulo);
+    }
+
+    if (isRadicular) {
+      // Evidence guardrail: Do NOT routinely prescribe pregabalin in acute sciatica
+      if (meds.pregabalin) {
+        const preg = { ...meds.pregabalin };
+        const pregWarnings = [
+          '⚠️ ADVERTENCIA DE GUÍAS CLÍNICAS (NICE NG59 / ACP): La evidencia para pregabalina en ciática/radiculopatía lumbar es limitada/desfavorable. No utilizar de forma rutinaria automática; reservar para dolor urente/parestésico refractario.'
+        ];
+        if (patientProfile.renal) pregWarnings.push('⚠️ Insuficiencia renal: Requiere ajuste obligatorio de dosis por filtrado glomerular.');
+        if (patientProfile.age_over_65) pregWarnings.push('👴 >65 años: Iniciar a 25 mg/noche por alto riesgo de sedación matutina y caídas.');
+        preg.activeWarnings = pregWarnings;
+        pharmaOptions.push(preg);
+      }
+    }
+
+    const pharmacology = {
+      id: 'step-5-pharmacology',
+      title: '5. Farmacología Contextualizada y Dosificación',
+      badge: '💊 DOSIFICACIÓN ADULTA ORIENTATIVA',
+      generalAdvice: 'La selección farmacológica depende de las comorbilidades del paciente. Usar la menor dosis eficaz durante el menor tiempo posible. No existen recetas universales.',
+      options: pharmaOptions,
+      whyThisTreatment: 'Control sintomático del dolor para posibilitar el descanso y la adherencia al programa de rehabilitación activa.',
+      whenToAvoid: 'No prescribir AINEs orales de forma continuada en ancianos o en insuficiencia renal. No pautar gabapentinoides por automatismo en dolor puramente axial.'
+    };
+
+    // ─────────────────────────────────────────
+    // 6. TERAPIAS FÍSICAS ESPECÍFICAS (ESWT / EMTT)
+    // ─────────────────────────────────────────
+    let eswtOption = null;
+    let emttOption = null;
+
+    // Check ESWT indication
+    if (pathwayId.includes('shoulder')) {
+      const isCalcific = topHyp.id?.includes('calcific') || JSON.stringify(this.session.imagingFindings).includes('calcification');
+      if (isCalcific && catalog.eswt_protocols?.calcific_shoulder) {
+        eswtOption = {
+          ...catalog.eswt_protocols.calcific_shoulder,
+          badge: '🟢 EVIDENCIA ALTA / NIVEL I EN CALCIFICACIONES'
+        };
+      } else {
+        eswtOption = {
+          name: 'Ondas de Choque en Manguito No Calcificante',
+          type: 'No recomendada de rutina',
+          statusNote: '🔴 NO RECOMENDADA DE RUTINA: En tendinopatía no calcificante del supraespinoso la evidencia actual no respalda el uso rutinario de ondas de choque.',
+          whyThisTreatment: 'Solo indicada cuando existe depósito cálcico visible en fase formativa/reabsortiva sintomática.',
+          whenToAvoid: 'Evitar en tendinopatías puramente mecánicas no calcificantes donde la carga progresiva es el tratamiento de elección.'
+        };
+      }
+    } else if (pathwayId.includes('plantar') && catalog.eswt_protocols?.plantar_fasciopathy) {
+      eswtOption = {
+        ...catalog.eswt_protocols.plantar_fasciopathy,
+        badge: '🟢 EVIDENCIA ALTA / RECOMENDADO EN CASOS CRÓNICOS (>3 MESES)'
+      };
+    }
+
+    // Check EMTT (Magnetolith®) indication
+    if (pathwayId.includes('knee') && catalog.emtt_protocols?.knee_oa_emtt) {
+      emttOption = {
+        ...catalog.emtt_protocols.knee_oa_emtt,
+        badge: '🟠 OPCIÓN COMPLEMENTARIA / EVIDENCIA EMERGENTE'
+      };
+    } else if (pathwayId.includes('shoulder') && catalog.emtt_protocols?.cuff_emtt) {
+      emttOption = {
+        ...catalog.emtt_protocols.cuff_emtt,
+        badge: '🟠 OPCIÓN COMPLEMENTARIA / EVIDENCIA EMERGENTE'
+      };
+    }
+
+    const physicalTherapies = {
+      id: 'step-6-physical-therapies',
+      title: '6. Terapias Físicas Específicas (ESWT & EMTT)',
+      badge: '⚡ TECNOLOGÍAS FÍSICAS DIFERENCIADAS',
+      technologyDistinction: 'ESWT (Ondas de Choque mecánicas/acústicas focales o radiales) ≠ EMTT Magnetolith® (Terapia electromagnética transducida no invasiva). Son tecnologías diferentes con indicaciones y niveles de evidencia independientes.',
+      eswt: eswtOption,
+      emtt: emttOption
+    };
+
+    // ─────────────────────────────────────────
+    // 7. INFILTRACIÓN / INTERVENCIONISMO
+    // ─────────────────────────────────────────
+    let corticoidInj = null;
+    let haInj = null;
+    let prpInj = null;
+    let spinalInt = null;
+
+    if (pathwayId.includes('shoulder') && catalog.corticosteroid_injections?.subacromial_bursa) {
+      corticoidInj = { ...catalog.corticosteroid_injections.subacromial_bursa };
+    } else if (pathwayId.includes('knee') && catalog.corticosteroid_injections?.knee_intraarticular) {
+      corticoidInj = { ...catalog.corticosteroid_injections.knee_intraarticular };
+    }
+
+    if (pathwayId.includes('knee')) {
+      if (catalog.hyaluronic_acid_protocols?.knee_oa_ha) {
+        haInj = { ...catalog.hyaluronic_acid_protocols.knee_oa_ha };
+      }
+      if (catalog.prp_protocols?.knee_oa_prp) {
+        prpInj = { ...catalog.prp_protocols.knee_oa_prp };
+      }
+    } else if (pathwayId.includes('plantar') || pathwayId.includes('elbow')) {
+      if (catalog.prp_protocols?.chronic_tendinopathy_prp) {
+        prpInj = { ...catalog.prp_protocols.chronic_tendinopathy_prp };
+      }
+    }
+
+    if (pathwayId.includes('lumbar-radicular') && catalog.spinal_interventions?.lumbar_epidural) {
+      spinalInt = { ...catalog.spinal_interventions.lumbar_epidural };
+    } else if (pathwayId.includes('lumbar-axial') || pathwayId.includes('cervical-axial')) {
+      if (catalog.spinal_interventions?.facet_radiofrequency) {
+        spinalInt = { ...catalog.spinal_interventions.facet_radiofrequency };
+      }
+    }
+
+    const comparisonTable = catalog.comparison_tables?.joint_injectables || null;
+
+    const interventionism = {
+      id: 'step-7-interventionism',
+      title: '7. Infiltración / Intervencionismo Ecoguiado',
+      badge: isInterventionSafe ? '🎯 VENTANA DE OPORTUNIDAD' : '🔒 REQUIERE CONCORDANCIA',
+      isBlocked: !isInterventionSafe,
+      blockReason: this.session.hasActiveRedFlag
+        ? '🚨 Intervencionismo bloqueado por presencia de Banderas Rojas activas que requieren derivación urgente.'
+        : (!concordance || concordance === 'discordant')
+          ? '⚠️ La concordancia clínico-imagen no apoya una intervención invasiva dirigida sobre este hallazgo.'
+          : null,
+      philosophy: 'La infiltración no es el punto final del tratamiento; es una "ventana de oportunidad" para reducir el dolor agudo e iniciar de inmediato la rehabilitación activa.',
+      corticosteroid: corticoidInj,
+      hyaluronicAcid: haInj,
+      prp: prpInj,
+      spinal: spinalInt,
+      comparisonTable: comparisonTable,
+      whyThisTreatment: 'Alivio rápido de la inflamación nociceptiva o modulación biológica para romper barreras dolorosas al movimiento.',
+      whenToAvoid: 'Prohibido infiltrar corticoides intratendinosos por riesgo de rotura. No realizar infiltraciones repetidas a intervalos fijos sin objetivo funcional.'
+    };
+
+    // ─────────────────────────────────────────
+    // 8. CIRUGÍA / CRITERIOS DE DERIVACIÓN Y ALARMA
+    // ─────────────────────────────────────────
+    const surgery = {
+      id: 'step-8-surgery',
+      title: '8. Cirugía y Criterios de Derivación',
+      badge: '⚠️ CRITERIOS DE ALARMA / SELECCIÓN',
+      indications: [
+        'Fracaso estructurado del tratamiento conservador activo bien ejecutado durante un mínimo de 3 a 6 meses con dolor o discapacidad severa persistente',
+        'Roturas agudas traumáticas completas del manguito en pacientes jóvenes y activos con seudoparálisis',
+        'Déficit motor neurológico progresivo rápido (fuerza <3/5, pie caído, síndrome de cauda equina)',
+        'Artrosis avanzada terminal con colapso articular que imposibilita la marcha autónoma'
+      ],
+      whyThisTreatment: 'La cirugía se reserva para anomalías mecánicas estructurales graves o refractarias donde el manejo conservador ha alcanzado su techo terapéutico.',
+      whenToAvoid: 'Evitar cirugía precoz en dolor inespecífico sin generador estructural concordante claro.'
+    };
 
     return {
-      education: treatment.education,
-      exercise: treatment.exercise,
-      pharmacology: treatment.pharmacology,
-      interventionism: showInterventionism ? treatment.interventionism : null,
-      interventionismBlocked: !showInterventionism,
-      blockReason: this.session.hasActiveRedFlag
-        ? 'No se recomienda intervención con banderas rojas activas.'
-        : (this.session.concordanceLevel === 'discordant' || !this.session.concordanceLevel)
-          ? 'La concordancia clínico-imagen no apoya una intervención dirigida.'
-          : null
+      pathwayId,
+      pathwayTitle: `${this.pathway.regionLabel} — ${this.pathway.presentation}`,
+      patientProfile,
+      tiers: [
+        education,
+        loadManagement,
+        exercise,
+        physiotherapy,
+        pharmacology,
+        physicalTherapies,
+        interventionism,
+        surgery
+      ],
+      education,
+      exercise,
+      pharmacology,
+      interventionism,
+      interventionismBlocked: !isInterventionSafe,
+      blockReason: interventionism.blockReason
     };
+  }
+
+  /**
+   * Generates a clean structured text proposal of the treatment plan
+   * formatted for direct inclusion into the Electronic Medical Record (EMR / HC).
+   */
+  generateStructuredPrescriptionText(patientProfile = {}) {
+    const plan = this.getTreatmentPlan(patientProfile);
+    if (!plan) return '';
+
+    const lines = [];
+    lines.push(`PLAN TERAPÉUTICO CLÍNICO ESTRUCTURADO`);
+    lines.push(`Diagnóstico / Presentación: ${plan.pathwayTitle}`);
+    lines.push(`────────────────────────────────────────────────────`);
+    lines.push(`1. OBJETIVO TERAPÉUTICO:`);
+    lines.push(`   - Reducir dolor, restaurar tolerancia a la carga y recuperar función activa.`);
+    if (this.session.functionalGoal) {
+      lines.push(`   - Meta funcional prioritaria del paciente: «${this.session.functionalGoal}»`);
+    }
+    lines.push(``);
+    lines.push(`2. EDUCACIÓN Y MANEJO DE CARGA:`);
+    lines.push(`   - Modificación temporal de sobrecargas. Evitar reposo prolongado.`);
+    lines.push(`   - Criterio de dolor tolerable (≤3-4/10) durante las actividades.`);
+    lines.push(``);
+    lines.push(`3. FISIOTERAPIA Y EJERCICIO ACTIVO:`);
+    lines.push(`   - Programa activo supervisado: ${plan.tiers[3].supervisedSessions?.number || '6-12 semanas'}.`);
+    lines.push(`   - Pauta domiciliaria: ${plan.tiers[3].homeExercise?.frequency || '3-5 días/semana'}.`);
+    lines.push(`   - Criterio de progresión por tolerancia a la carga.`);
+    lines.push(``);
+    lines.push(`4. PAUTA FARMACOLÓGICA ORIENTATIVA:`);
+    const pharma = plan.tiers[4].options || [];
+    if (pharma.length > 0) {
+      pharma.forEach(m => {
+        if (!m.isContraindicated) {
+          lines.push(`   • ${m.genericName}: ${m.usualDose} (${m.frequency}). Duración: ${m.duration || 'Ciclo corto'}.`);
+          if (m.activeWarnings && m.activeWarnings.length > 0) {
+            lines.push(`     ${m.activeWarnings.join(' ')}`);
+          }
+        }
+      });
+    } else {
+      lines.push(`   - Analgesia a demanda según comorbilidades.`);
+    }
+    lines.push(``);
+    if (plan.tiers[5].eswt && plan.tiers[5].eswt.type && !plan.tiers[5].eswt.statusNote?.includes('NO RECOMENDADA')) {
+      lines.push(`5. TERAPIAS FÍSICAS (ESWT / EMTT):`);
+      lines.push(`   • ${plan.tiers[5].eswt.name}: ${plan.tiers[5].eswt.sessions} (${plan.tiers[5].eswt.interval}).`);
+      lines.push(``);
+    }
+    if (!plan.tiers[6].isBlocked && plan.tiers[6].corticosteroid) {
+      lines.push(`6. PROCEDIMIENTO INTERVENCIONISTA (Ventana de oportunidad):`);
+      lines.push(`   • ${plan.tiers[6].corticosteroid.name} ecoguiada.`);
+      lines.push(`   - Reevaluar en 2-3 semanas para inicio de rehabilitación activa.`);
+      lines.push(``);
+    }
+    lines.push(`7. REEVALUACIÓN CLÍNICA:`);
+    lines.push(`   - Cita de seguimiento en 4-6 semanas para medir dolor (EVA), función y tolerancia.`);
+    lines.push(`────────────────────────────────────────────────────`);
+
+    return lines.join('\n');
   }
 
   proceedToFollowUp() {
