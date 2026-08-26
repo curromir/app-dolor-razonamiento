@@ -226,8 +226,10 @@
       "label": "Dolor Radicular / Ciática",
       "icon": "⚡",
       "phrases": [
+        "La epidural no elimina la hernia. Intentamos reducir temporalmente el dolor y la inflamación alrededor de la raíz para mejorar sueño, movimiento y función mientras evoluciona el proceso.",
         "La irritación del nervio suele tener una evolución favorable en la mayoría de los casos con tiempo y manejo de carga. El tratamiento busca calmar esa irritación para que pueda descansar y moverse.",
-        "Vigilaremos la fuerza y los reflejos en cada revisión. Si nota pérdida brusca de fuerza en el pie o dificultad para orinar, nos avisará de inmediato."
+        "Vigilaremos la fuerza y los reflejos en cada revisión. Si nota pérdida brusca de fuerza en el pie o dificultad para orinar, nos avisará de inmediato.",
+        "La dosis objetivo de los fármacos no es la dosis máxima, sino la menor dosis que proporciona una mejoría clínicamente útil con buena tolerancia."
       ]
     },
     "nociplastico": {
@@ -235,7 +237,8 @@
       "icon": "🌪️",
       "phrases": [
         "En su caso no parece existir una única estructura rota que explique todo el dolor. El sistema nervioso que procesa las alarmas se ha vuelto hipersensible.",
-        "El dolor es 100% real. Nuestro objetivo será 'bajar el volumen' de ese amplificador mediante ejercicio gradual, descanso adecuado y reducción del miedo al movimiento."
+        "El dolor es 100% real. Nuestro objetivo será 'bajar el volumen' de ese amplificador mediante ejercicio gradual, descanso adecuado y reducción del miedo al movimiento.",
+        "Comprender cómo funciona el dolor persistente es el primer paso terapéutico para recalibrar su sistema de protección."
       ]
     }
   },

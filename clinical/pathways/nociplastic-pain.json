@@ -61,15 +61,31 @@
         {
           "label": "Sí, me duele prácticamente todo el cuerpo de forma continua y cambiante desde hace meses",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-mixed-pain-secondary", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-nociplastic-primary",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-mixed-pain-secondary",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "No, el dolor se concentra en una sola zona anatómica principal aunque a veces se irradia",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-mixed-pain-secondary", "effect": "increase", "weight": 4 },
-            { "hypothesisId": "hyp-nociplastic-primary", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-mixed-pain-secondary",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-nociplastic-primary",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         }
       ]
@@ -83,13 +99,21 @@
         {
           "label": "Sí, me levanto tan cansado como si no hubiera dormido, tengo lagunas de memoria y fatiga extrema",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 6 }
+            {
+              "hypothesisId": "hyp-nociplastic-primary",
+              "effect": "increase",
+              "weight": 6
+            }
           ]
         },
         {
           "label": "Duermo bien y no tengo fatiga ni problemas de memoria",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-nociplastic-primary", "effect": "decrease", "weight": 5 }
+            {
+              "hypothesisId": "hyp-nociplastic-primary",
+              "effect": "decrease",
+              "weight": 5
+            }
           ]
         }
       ]
@@ -103,7 +127,11 @@
         {
           "label": "Sí, el roce de la ropa ajustada, el frío o los ruidos fuertes me resultan dolorosos o insoportables",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-nociplastic-primary",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
@@ -118,9 +146,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder tener energía durante el día y mejorar la calidad de mi sueño", "hypothesisEffects": [] },
-        { "label": "Aprender a gestionar los brotes de dolor sin depender de fármacos analgésicos fuertes", "hypothesisEffects": [] },
-        { "label": "Retomar mi vida familiar, social y laboral con mayor independencia", "hypothesisEffects": [] }
+        {
+          "label": "Poder tener energía durante el día y mejorar la calidad de mi sueño",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Aprender a gestionar los brotes de dolor sin depender de fármacos analgésicos fuertes",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Retomar mi vida familiar, social y laboral con mayor independencia",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -141,7 +178,11 @@
             "label": "Alodinia presente (el roce suave del algodón provoca dolor)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-nociplastic-primary",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
@@ -165,7 +206,11 @@
             "label": "Sumación temporal exagerada (el dolor se multiplica con los toques repetidos)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-nociplastic-primary",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
@@ -188,14 +233,22 @@
             "label": "Hiperalgesia generalizada en más de 6-8 puntos bilaterales",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-nociplastic-primary", "effect": "increase", "weight": 5 }
+              {
+                "hypothesisId": "hyp-nociplastic-primary",
+                "effect": "increase",
+                "weight": 5
+              }
             ]
           },
           {
             "label": "Dolor localizado únicamente en 1 punto articular",
             "value": "focal",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-mixed-pain-secondary", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-mixed-pain-secondary",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -207,7 +260,11 @@
       "id": "cluster-nociplastic-iasp",
       "name": "Criterios Clínicos IASP para Dolor Nociplástico",
       "description": "1. Dolor crónico generalizado >3 meses + 2. Presencia de alodinia o hiperalgesia en exploración + 3. Síntomas centrales (fatiga, sueño, niebla mental) + 4. Ausencia de daño tisular periférico proporcional",
-      "requiredTests": ["exam-allodynia-tactile", "exam-temporal-summation", "exam-tender-points-pressure"],
+      "requiredTests": [
+        "exam-allodynia-tactile",
+        "exam-temporal-summation",
+        "exam-tender-points-pressure"
+      ],
       "threshold": 2,
       "concordanceText": "Cumple los criterios diagnósticos internacionales de Dolor Nociplástico / Sensibilización Central (Clasificación IASP / ICD-11).",
       "evidenceNote": "Los criterios de la IASP establecen el dolor nociplástico como el tercer gran mecanismo de dolor junto al nociceptivo y al neuropático (Kosek et al., Pain 2021)."
@@ -222,8 +279,16 @@
         "name": "Panel Analítico General y Reactantes de Fase Aguda",
         "priority": 1,
         "findings": [
-          { "id": "lab-normal", "label": "Hemograma, VSG, PCR, TSH, CPK y función renal completamente normales (Sin inflamación sistémica)", "concordanceEffect": "concordant" },
-          { "id": "lab-high-crp-esr", "label": "VSG y PCR marcadamente elevadas (orienta a patología inflamatoria / reumatológica)", "concordanceEffect": "discordant" }
+          {
+            "id": "lab-normal",
+            "label": "Hemograma, VSG, PCR, TSH, CPK y función renal completamente normales (Sin inflamación sistémica)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "lab-high-crp-esr",
+            "label": "VSG y PCR marcadamente elevadas (orienta a patología inflamatoria / reumatológica)",
+            "concordanceEffect": "discordant"
+          }
         ]
       }
     ],
@@ -277,70 +342,90 @@
   ],
   "treatment": {
     "education": {
-      "patientText": "Su dolor es real, pero no se debe a que sus músculos o articulaciones se estén destruyendo. Su sistema nervioso central funciona como un detector de humo con la sensibilidad demasiado alta que salta ante cualquier estímulo normal. El tratamiento consiste en recalibrar este sistema de alarma mediante ejercicio suave progresivo, regular el sueño y fármacos que estabilicen las señales neuronales.",
-      "mentorNote": "La Neurociencia del Dolor (Pain Neuroscience Education) es el pilar terapéutico con mayor tamaño de efecto (Moseley & Butler)."
+      "patientText": "Su dolor es real, pero no se debe a que sus músculos o articulaciones se estén destruyendo. Su sistema nervioso central funciona como un detector de humo con la sensibilidad demasiado alta que salta ante cualquier estímulo normal. El tratamiento consiste en recalibrar este sistema de alarma mediante ejercicio suave progresivo, regular el sueño, actividad dosificada y fármacos que refuercen las vías analgésicas naturales del cuerpo.",
+      "mentorNote": "La Educación en Neurociencia del Dolor (PNE) y el abordaje biopsicosocial (ACT / CBT) son los pilares con mayor tamaño de efecto según NICE y EULAR."
     },
     "exercise": {
       "objective": "Estimular la analgesia endógena inducida por el ejercicio sin provocar hiperalgesia post-esfuerzo.",
       "phases": [
         {
-          "name": "Fase 1: Movimiento de Bajo Impacto y Relajación",
-          "description": "Caminatas de 15-20 minutos a paso suave, hidroterapia en agua caliente (32°-34°C) o Tai-Chi.",
+          "name": "Fase 1: Movimiento Suave y Regulación del Sueño",
+          "description": "Caminatas de 15-20 minutos, higiene del sueño estricta y técnicas de relajación.",
           "duration": "1-4 semanas"
         },
         {
           "name": "Fase 2: Ejercicio Aeróbico Gradual",
-          "description": "Bicicleta estática suave y ejercicios de fuerza isométrica ligera aumentando la duración muy poco a poco (regla del 10%).",
+          "description": "Bicicleta estática suave y ejercicios de fuerza isométrica aumentando muy gradualmente la carga.",
           "duration": "4-12 semanas"
         },
         {
           "name": "Fase 3: Mantenimiento y Resiliencia",
-          "description": "Actividad física regular 3-4 días por semana y técnicas de respiración / mindfulness.",
+          "description": "Actividad física regular 3-4 días por semana y técnicas de reprocesamiento del dolor.",
           "duration": "Continuo"
         }
       ],
-      "loadGuidance": "Evitar picos de ejercicio intenso que desencadenen brotes de fatiga ('boom and bust cycle')."
+      "loadGuidance": "Evitar el ciclo de sobreesfuerzo en días buenos seguido de crisis de dolor y reposo (boom and bust)."
     },
     "pharmacology": {
-      "fichaRef": "ficha-11",
       "options": [
         {
-          "name": "Inhibidores Duales de la Recaptación (Duloxetina / Milnaciprán)",
-          "indication": "Tratamiento de primera línea para potenciar las vías inhibitorias descendentes de serotonina y noradrenalina.",
-          "example": "Duloxetina 30 mg/día inicial, titular a 60 mg/día tras 1-2 semanas",
-          "duration": "Mantenimiento 6-12 meses",
-          "guardrails": ["Náuseas transitorias iniciales", "Evitar retirada brusca"]
+          "name": "Duloxetina (🟢 Opción Preferente / Respaldada)",
+          "indication": "Fármaco de primera línea recomendado por NICE para chronic primary pain / fibromialgia.",
+          "example": "30 mg VO por la mañana durante 1-2 semanas → titular a 60 mg/24h (dosis objetivo habitual). Reevaluar a las 4-6 semanas.",
+          "duration": "Mantenimiento mínimo 6 meses si es eficaz",
+          "guardrails": [
+            "Náuseas transitorias de inicio (tomar con comida)",
+            "Monitorizar TA",
+            "Retirada lenta"
+          ]
         },
         {
-          "name": "Amitriptilina en dosis bajas nocturnas",
-          "indication": "Mejora de la arquitectura del sueño y analgesia central.",
-          "example": "Amitriptilina 10-25 mg antes de dormir (2 horas antes de acostarse)",
+          "name": "Amitriptilina (🟢/🟡 Alternativa de Elección si Insomnio)",
+          "indication": "Mejora de la arquitectura del sueño profundo y analgesia central.",
+          "example": "10 a 25 mg por la noche (tomar 2 horas antes de acostarse; 10 mg en ancianos)",
           "duration": "Mantenimiento nocturno",
-          "guardrails": ["Boca seca", "Glaucoma de ángulo cerrado", "Somnolencia matutina"]
+          "guardrails": [
+            "Efectos anticolinérgicos (boca seca, estreñimiento)",
+            "Riesgo de caídas y sedación en ancianos",
+            "Evitar en arritmias"
+          ]
         },
         {
-          "name": "Gabapentinoides (Pregabalina)",
-          "indication": "Disminución de la hiperexcitabilidad glutamatérgica central.",
-          "example": "Pregabalina 25-75 mg/noche (titular hasta 150-300 mg/día)",
-          "duration": "Según respuesta",
-          "guardrails": ["Aumento de peso", "Edemas", "Evitar opioides mayores concomitantes"]
+          "name": "Venlafaxina XR (🟡 Alternativa Individualizada)",
+          "indication": "No equivalente automático a duloxetina para fibromialgia (NICE no la incluye de rutina para chronic primary pain). Útil si existe comorbilidad ansioso-depresiva o dolor neuropático concurrente.",
+          "example": "37,5 - 75 mg/día matutino, titular a 150 mg/día si precisa",
+          "duration": "Según respuesta individual",
+          "guardrails": [
+            "Control de HTA",
+            "Retirada extraordinariamente lenta"
+          ]
+        },
+        {
+          "name": "Pregabalina (Segunda línea)",
+          "indication": "Reducción de la hiperexcitabilidad glutamatérgica central.",
+          "example": "25-75 mg noche, titular lentamente a 150-300 mg/día",
+          "duration": "Reevaluar a las 4-6 semanas",
+          "guardrails": [
+            "Ajuste renal",
+            "Ganancia ponderal y edemas",
+            "Sedación"
+          ]
         }
-      ]
+      ],
+      "strictWarning": "❌ OPIOIDES CONTRAINDICADOS: El uso de opioides en dolor nociplástico empeora la sensibilización central por hiperalgesia inducida por opioides (HIO) y está unánimemente desaconsejado."
     },
     "interventionism": {
-      "condition": "Fármacos opioides contraindicados en dolor nociplástico (riesgo de hiperalgesia inducida por opioides).",
-      "objective": "Terapias de neuromodulación no invasiva y psicoterapia de reprocesamiento del dolor.",
+      "condition": "Terapia no invasiva de neuromodulación y abordaje cognitivo-conductual.",
       "targets": [
         {
-          "name": "Terapia Cognitivo-Conductual (TCC) / Terapia de Reprocesamiento del Dolor (PRT)",
-          "indication": "Pilar no farmacológico obligatorio en dolor nociplástico.",
-          "options": [
-            { "name": "Psicoterapia cognitivo-conductual centrada en dolor crónico", "evidence": "Alta / Nivel I" },
-            { "name": "Estimulación Eléctrica Transcraneal de Corriente Directa (tDCS) / Estimulación Magnética Transcraneal (TMS)", "evidence": "Moderada" }
-          ],
-          "contraindications": [
-            "Uso de opioides potentes crónicos (Fentanilo, Oxicodona, Morfina): empeoran la sensibilización central y están desaconsejados por todas las guías internacionales"
-          ]
+          "name": "Terapia Cognitivo-Conductual (TCC) / Terapia de Aceptación y Compromiso (ACT)",
+          "indication": "Pilar no farmacológico esencial para manejo de dolor persistente.",
+          "evidence": "Alta / Grado A"
+        },
+        {
+          "name": "Neuromodulación No Invasiva (tDCS / TMS)",
+          "indication": "Modulación de la excitabilidad de la corteza motora primaria (M1) o córtex prefrontal dorsolateral.",
+          "evidence": "Moderada"
         }
       ]
     }
@@ -348,10 +433,22 @@
   "followUp": {
     "timing": "Revisión a las 6-8 semanas",
     "parameters": [
-      { "name": "Calidad del descanso y sueño", "icon": "😴" },
-      { "name": "Nivel de energía y fatiga", "icon": "🔋" },
-      { "name": "Cumplimiento del ejercicio aeróbico suave", "icon": "🚶" },
-      { "name": "Escala de impacto funcional de fibromialgia (FIQ)", "icon": "📊" }
+      {
+        "name": "Calidad del descanso y sueño",
+        "icon": "😴"
+      },
+      {
+        "name": "Nivel de energía y fatiga",
+        "icon": "🔋"
+      },
+      {
+        "name": "Cumplimiento del ejercicio aeróbico suave",
+        "icon": "🚶"
+      },
+      {
+        "name": "Escala de impacto funcional de fibromialgia (FIQ)",
+        "icon": "📊"
+      }
     ],
     "outcomes": [
       {

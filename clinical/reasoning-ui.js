@@ -1256,6 +1256,45 @@
           </div>
         </div>
 
+        <!-- RADICULAR CLINICAL PHASE STRATIFICATION (IF APPLICABLE) -->
+        ${uiState.engine.pathway.clinicalPhases ? `
+          <div class="comorbidity-toolbar-card" style="border-color: rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.06);">
+            <div class="comorbidity-toolbar-header">
+              <div>
+                <strong style="font-size: 0.88rem; color: #818cf8;">⚡ Estratificación Clínica de la Radiculopatía (¿En qué fase estamos?)</strong>
+                <p style="margin: 0.15rem 0 0; font-size: 0.74rem; color: var(--text-muted);">
+                  La decisión terapéutica y la indicación de RM/Infiltración dependen de la gravedad, el déficit neurológico y la fase evolutiva, NO de calendarios rígidos.
+                </p>
+              </div>
+            </div>
+
+            <!-- Phase Selector Tabs -->
+            <div class="coach-version-selector-bar" style="margin-top: 0.6rem;">
+              <button class="coach-version-pill ${(uiState.radicularPhase || 'acute') === 'acute' ? 'active' : ''}" onclick="window.ClinicalUI.setRadicularPhase('acute')">
+                <span>⚡</span> <span>Fase Aguda (&lt;6 semanas)</span>
+              </button>
+              <button class="coach-version-pill ${(uiState.radicularPhase || 'acute') === 'subacute' ? 'active' : ''}" onclick="window.ClinicalUI.setRadicularPhase('subacute')">
+                <span>⏱️</span> <span>Fase Subaguda (6-12 semanas)</span>
+              </button>
+              <button class="coach-version-pill ${(uiState.radicularPhase || 'acute') === 'chronic' ? 'active' : ''}" onclick="window.ClinicalUI.setRadicularPhase('chronic')">
+                <span>⏳</span> <span>Fase Crónica (&gt;12 semanas)</span>
+              </button>
+            </div>
+
+            <!-- Phase Principles Box -->
+            <div class="structure-box" style="margin-top: 0.75rem; background: rgba(15, 23, 42, 0.7);">
+              <div style="font-size: 0.82rem; font-weight: 800; color: #fbbf24; margin-bottom: 0.4rem;">
+                📌 Hoja de Ruta para ${(uiState.engine.pathway.clinicalPhases[uiState.radicularPhase || 'acute'] || {}).label}:
+              </div>
+              <ul style="margin: 0 0 0 1.2rem; padding: 0; font-size: 0.8rem; color: var(--text-primary); line-height: 1.5;">
+                ${((uiState.engine.pathway.clinicalPhases[uiState.radicularPhase || 'acute'] || {}).principles || []).map(pr => `
+                  <li style="margin-bottom: 0.25rem;">${pr}</li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+        ` : ''}
+
         <!-- ESCALÓN 1: EDUCACIÓN -->
         <div class="treatment-tier-card glass-panel">
           <div class="tier-header">
@@ -1383,7 +1422,9 @@
           </div>
           <div class="tier-body">
             <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;">${plan.tiers[4].generalAdvice}</p>
-            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            
+            <!-- Analgesics & Anti-inflammatories Grid -->
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
               ${(plan.tiers[4].options || []).map(opt => `
                 <div class="structure-box" style="${opt.isContraindicated ? 'border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.06);' : ''}">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.3rem;">
@@ -1419,6 +1460,12 @@
                     <div class="pharma-warning-pill">${w}</div>
                   `).join('')}
 
+                  ${opt.evidenceNote ? `
+                    <div style="font-size: 0.76rem; color: #fbbf24; background: rgba(245, 158, 11, 0.1); padding: 0.4rem 0.6rem; border-radius: var(--radius-sm); margin-top: 0.35rem;">
+                      <strong>Evidencia Ensayo Clínico:</strong> ${opt.evidenceNote}
+                    </div>
+                  ` : ''}
+
                   <div class="treatment-why-card" style="margin-top: 0.4rem;">
                     <strong>¿Por qué?:</strong> ${opt.whyThisTreatment || opt.indication}
                   </div>
@@ -1428,6 +1475,75 @@
                 </div>
               `).join('')}
             </div>
+
+            <!-- 🧠 NEUROMODULACIÓN FARMACOLÓGICA ESTRUCTURADA -->
+            ${plan.tiers[4].neuromodulation ? `
+              <div class="structure-box" style="border: 1px solid rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.05); padding: 1rem; border-radius: var(--radius-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.4rem;">
+                  <h4 style="margin: 0; font-size: 0.98rem; font-weight: 800; color: #818cf8;">${plan.tiers[4].neuromodulation.title}</h4>
+                  <span class="treatment-badge-pill blue" style="font-size: 0.7rem;">NeuPSIG 2025 / NICE</span>
+                </div>
+
+                <!-- Golden Principle Banner -->
+                <div class="safety-header-banner safe" style="margin-bottom: 0.75rem; padding: 0.6rem 0.85rem;">
+                  <span class="safety-banner-icon">💡</span>
+                  <div class="safety-banner-text">
+                    <strong style="font-size: 0.82rem; color: #e0e7ff;">Mensaje Clínico Fundamental:</strong>
+                    <p style="font-size: 0.8rem; margin: 0.1rem 0 0; color: #c7d2fe;">«${plan.tiers[4].neuromodulation.principle}»</p>
+                  </div>
+                </div>
+
+                <!-- Safety Pre-Checklist -->
+                <div style="margin-bottom: 0.85rem;">
+                  <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.35rem;">
+                    Comprobaciones Previas Obligatorias:
+                  </div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                    ${plan.tiers[4].neuromodulation.safetyChecklist.map(chk => `
+                      <span style="font-size: 0.72rem; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 0.15rem 0.45rem; border-radius: var(--radius-sm);">
+                        ✓ ${chk}
+                      </span>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <!-- Neuromodulators List -->
+                <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                  ${(plan.tiers[4].neuromodulation.drugs || []).map(drug => `
+                    <div class="structure-box" style="background: rgba(15, 23, 42, 0.6); ${!drug.isRoutinelyRecommended ? 'border-color: rgba(239, 68, 68, 0.4);' : ''}">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.3rem;">
+                        <strong style="font-size: 0.88rem; color: ${!drug.isRoutinelyRecommended ? '#ef4444' : '#818cf8'};">${drug.genericName}</strong>
+                        <span class="treatment-badge-pill ${drug.overrideBadge?.includes('🔴') ? 'red' : drug.overrideBadge?.includes('🟢') ? 'green' : 'yellow'}" style="font-size: 0.68rem;">
+                          ${drug.overrideBadge || 'Indicado'}
+                        </span>
+                      </div>
+                      <div class="pharma-spec-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+                        <div class="pharma-spec-item">
+                          <strong>Inicio Práctico</strong>
+                          <span>${drug.initialDose}</span>
+                        </div>
+                        <div class="pharma-spec-item">
+                          <strong>Rango Analgésico Habitual</strong>
+                          <span>${drug.usualDose}</span>
+                        </div>
+                        <div class="pharma-spec-item">
+                          <strong>Dosis Máxima</strong>
+                          <span>${drug.maximumDose}</span>
+                        </div>
+                      </div>
+                      ${drug.overrideReason ? `
+                        <div style="font-size: 0.76rem; color: #ef4444; background: rgba(239, 68, 68, 0.08); padding: 0.35rem 0.5rem; border-radius: var(--radius-sm); margin-top: 0.3rem;">
+                          ${drug.overrideReason}
+                        </div>
+                      ` : ''}
+                      ${(drug.activeWarnings || []).map(w => `
+                        <div class="pharma-warning-pill">${w}</div>
+                      `).join('')}
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
           </div>
         </div>
 
@@ -1610,21 +1726,46 @@
               </div>
             ` : ''}
 
-            <!-- SPINAL INTERVENTIONS -->
-            ${plan.tiers[6].spinal ? `
-              <div class="structure-box" style="margin-bottom: 0.65rem;">
-                <h4 style="margin: 0 0 0.25rem; font-size: 0.9rem; color: var(--text-primary);">🎯 Intervencionismo Espinal: ${plan.tiers[6].spinal.name}</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.25rem 0;"><strong>Requisito diagnóstico:</strong> ${plan.tiers[6].spinal.requiredDiagnosis}</p>
-                <div class="pharma-spec-grid">
-                  <div class="pharma-spec-item">
-                    <strong>Fármaco / Diana</strong>
-                    <span>${plan.tiers[6].spinal.drugs || plan.tiers[6].spinal.target}</span>
-                  </div>
-                  <div class="pharma-spec-item">
-                    <strong>Evidencia</strong>
-                    <span>${plan.tiers[6].spinal.evidence?.badge || 'Alta en concordancia'}</span>
-                  </div>
+            <!-- SPINAL INTERVENTIONS: EPIDURAL SELECTOR & RADIOFREQUENCY -->
+            ${plan.tiers[6].spinal?.approaches ? `
+              <div class="structure-box" style="margin-bottom: 0.65rem; border-color: rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.05);">
+                <h4 style="margin: 0 0 0.35rem; font-size: 0.94rem; color: #818cf8;">🎯 Selección de Técnica Epidural Lumbar (Por Anatomía y Objetivo):</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.65rem;">${plan.tiers[6].spinal.expectedBenefit}</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.65rem; margin-bottom: 0.75rem;">
+                  ${plan.tiers[6].spinal.approaches.map(ap => `
+                    <div class="structure-box" style="background: rgba(15, 23, 42, 0.7);">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                        <strong style="font-size: 0.85rem; color: var(--text-primary);">${ap.name}</strong>
+                      </div>
+                      <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>Indicación:</strong> ${ap.indication}</p>
+                      <p style="font-size: 0.76rem; color: #818cf8; margin: 0 0 0.25rem;"><strong>Ventaja:</strong> ${ap.advantage || ap.concept}</p>
+                      <span class="treatment-badge-pill ${ap.evidence?.badge?.includes('ALTA') ? 'green' : 'blue'}" style="font-size: 0.65rem;">${ap.evidence?.badge || 'Reconocida'}</span>
+                    </div>
+                  `).join('')}
                 </div>
+
+                <!-- Radiofrequency Distinction -->
+                <div style="border-top: 1px solid var(--border-color); padding-top: 0.65rem; margin-top: 0.5rem;">
+                  <div style="font-size: 0.78rem; color: #ef4444; font-weight: 700; margin-bottom: 0.4rem;">
+                    ${plan.tiers[6].spinal.facetRfWarning}
+                  </div>
+                  ${plan.tiers[6].spinal.drgPrf ? `
+                    <div class="structure-box" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.3);">
+                      <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <strong style="font-size: 0.82rem; color: #f59e0b;">⚡ ${plan.tiers[6].spinal.drgPrf.name}</strong>
+                        <span class="treatment-badge-pill orange" style="font-size: 0.65rem;">Opción Avanzada / Evidencia Limitada</span>
+                      </div>
+                      <p style="font-size: 0.76rem; color: var(--text-secondary); margin: 0.25rem 0 0;">${plan.tiers[6].spinal.drgPrf.indication} (Revisiones 2024-2025: posible alivio analgésico a 3 meses con baja certeza global).</p>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+            ` : plan.tiers[6].spinal?.facetRf ? `
+              <div class="structure-box" style="margin-bottom: 0.65rem;">
+                <h4 style="margin: 0 0 0.25rem; font-size: 0.9rem; color: var(--text-primary);">🔥 ${plan.tiers[6].spinal.facetRf.name}</h4>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.25rem 0;">${plan.tiers[6].spinal.indication}</p>
+                <span class="treatment-badge-pill green" style="font-size: 0.68rem;">🟢 Evidencia Alta tras Bloqueo Positivo</span>
               </div>
             ` : ''}
 
@@ -2430,6 +2571,11 @@
     // Keep quick chips updated
   }
 
+  function setRadicularPhase(phase) {
+    uiState.radicularPhase = phase;
+    renderCurrentStep();
+  }
+
   function switchAppMode(mode) {
     const homeEl = document.getElementById('home-screen');
     const clinicalEl = document.getElementById('clinical-reasoning-container');
@@ -2516,6 +2662,7 @@
     renderCaseSelector: renderCaseSelector,
     startTrainingCase: startTrainingCase,
     toggleComorbidity: toggleComorbidity,
+    setRadicularPhase: setRadicularPhase,
     copyPrescriptionText: copyPrescriptionText,
     openInjectablesComparisonModal: openInjectablesComparisonModal,
     proceedToCoach: proceedToCoach,

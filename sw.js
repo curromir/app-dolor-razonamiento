@@ -1,5 +1,5 @@
-// Service Worker v25.0 - Test de Exploración Física & Razonamiento Clínico en Dolor 2.0 (Paso 9 Cierre Coach)
-const CACHE_NAME = 'dolor-tests-v25';
+// Service Worker v26.0 - Test de Exploración Física & Razonamiento Clínico en Dolor 2.0 (Neuromodulación NeuPSIG 2025 & Radiculopatía Estratificada)
+const CACHE_NAME = 'dolor-tests-v26';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

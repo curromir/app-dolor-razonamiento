@@ -931,56 +931,91 @@
     }
   ],
   "treatment": {
-    "education": [
-      {
-        "id": "ed-nerve-pain",
-        "label": "Explicación del dolor neuropático y mecanismo de compresión/inflamación radicular"
-      },
-      {
-        "id": "ed-prognosis",
-        "label": "Pronóstico favorable: la mayoría mejoran con tiempo y tratamiento conservador"
-      },
-      {
-        "id": "ed-reassurance",
-        "label": "Tranquilización sobre la naturaleza del dolor y señales de alarma"
-      }
-    ],
-    "exercise": [
-      {
-        "id": "ex-activity",
-        "label": "Mantener actividad dentro del límite del dolor"
-      },
-      {
-        "id": "ex-no-bedrest",
-        "label": "Evitar reposo en cama prolongado"
-      },
-      {
-        "id": "ex-directional",
-        "label": "Preferencia direccional (ej. extensión) si aplica y alivia la irradiación"
-      }
-    ],
-    "pharmacology": [
-      {
-        "id": "rx-neuromodulators",
-        "label": "Neuromoduladores (Pregabalina, Duloxetina, Amitriptilina) para el dolor neuropático"
-      },
-      {
-        "id": "rx-nsaids",
-        "label": "AINEs en curso corto para componente inflamatorio asociado"
-      }
-    ],
-    "interventionism": [
-      {
-        "id": "int-tfesi",
-        "label": "Inyección epidural transforaminal si hay dolor severo que limita la rehabilitación (requiere concordancia clínica-imagen)"
-      }
-    ],
-    "guardrails": [
-      {
-        "id": "guard-opioids",
-        "label": "Evitar opioides de forma crónica"
-      }
-    ]
+    "education": {
+      "patientText": "El dolor que baja por su pierna se debe a que una raíz nerviosa de la columna lumbar está comprimida o inflamada. En la gran mayoría de las personas, el cuerpo reabsorbe o adapta la hernia con el paso de las semanas. El objetivo del tratamiento no es hacer reposo en cama ni esperar inmóvil, sino calmar la inflamación para que pueda mantenerse activo y recuperar su función.",
+      "mentorNote": "La educación y la tranquilización reducen la catastrofización. Explicar claramente que la hernia tiende a la reabsorción espontánea y que el reposo en cama prolongado empeora el pronóstico."
+    },
+    "activityAndLoad": {
+      "objective": "Mantener actividad diaria tolerada y evitar el descondicionamiento.",
+      "protocol": "REPOSO RELATIVO MUY CORTO SI LO NECESITA (<24-48h) → ACTIVIDAD TOLERADA PRECOZ",
+      "guidance": "Caminar a intervalos frecuentes, alternar posturas, evitar cargas pesadas iniciales y aplicar preferencia direccional (ej. ejercicios de extensión tipo McKenzie) si centralizan el dolor hacia la espalda."
+    },
+    "pharmacology": {
+      "options": [
+        {
+          "name": "AINEs orales (ciclo corto)",
+          "indication": "Control de la fase inflamatoria aguda en pacientes con bajo riesgo GI/CV/Renal.",
+          "example": "Naproxeno 500 mg / 12 h con IBP o Ibuprofeno 400 mg / 8 h durante 5 a 10 días",
+          "duration": "5 a 10 días máximo",
+          "guardrails": [
+            "Función renal",
+            "Riesgo cardiovascular",
+            "Protección gástrica",
+            "Edad >65 años"
+          ]
+        },
+        {
+          "name": "Corticoide Oral (Uso Seleccionado / No Rutinario)",
+          "indication": "Radiculopatía aguda severa con intenso dolor e inflamación perineural.",
+          "example": "Prednisona 40 mg / 24 h por la mañana durante 5 días y suspender",
+          "duration": "5 días (NO repetir ciclos)",
+          "evidenceNote": "El RCT principal (Goldberg JAMA 2015) demostró modesta mejoría funcional sin mejoría del dolor frente a placebo. La pauta de 40 mg/d x5d es una práctica clínica pragmática seleccionada, NO la pauta validada del RCT. NICE no lo recomienda de rutina.",
+          "guardrails": [
+            "Diabetes mellitus (monitorizar glucemia)",
+            "HTA",
+            "Insomnio",
+            "Úlcera péptica"
+          ]
+        },
+        {
+          "name": "Neuromoduladores (Condition-Specific Override)",
+          "indication": "🔴 NO DE USO RUTINARIO EN CIÁTICA (NICE NG59 / ACP).",
+          "example": "Pregabalina / Gabapentina desaconsejadas de rutina en radiculopatía lumbar común por balance beneficio/riesgo desfavorable. Reservar exclusivamente como opción excepcional de especialista para dolor urente continuo refractario.",
+          "duration": "Reevaluar a las 4 semanas",
+          "guardrails": [
+            "Ajuste renal estricto",
+            "Sedación",
+            "Riesgo de caídas",
+            "Conducción"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Dolor radicular severo que limita la rehabilitación y la función, con concordancia clínico-radiológica estricta.",
+      "imagingPrinciple": "LA RM NO LA PIDE EL CALENDARIO. LA PIDE UNA PREGUNTA CLÍNICA (urgente si déficit progresivo/cauda equina; electiva en síntomas persistentes candidatos a intervención).",
+      "approaches": [
+        {
+          "id": "tfesi",
+          "name": "Inyección Epidural Transforaminal (TFESI)",
+          "target": "Foramen intervertebral concordante",
+          "indication": "Radiculopatía unilateral con nivel y raíz bien definidos y lesión focal concordante en RM.",
+          "advantage": "Tratamiento selectivo directo a la raíz afectada (NASS)."
+        },
+        {
+          "id": "ilesi",
+          "name": "Inyección Epidural Interlaminar (ILESI)",
+          "target": "Espacio interlaminar lumbar",
+          "indication": "Afectación bilateral, varios territorios o estenosis de canal central.",
+          "advantage": "Más amplia, menos selectiva."
+        },
+        {
+          "id": "caudal",
+          "name": "Inyección Epidural Caudal",
+          "target": "Hiato sacro",
+          "indication": "Niveles lumbares bajos (L5-S1), postquirúrgico con fibrosis o acceso interlaminar difícil.",
+          "advantage": "Difusión amplia ascendente desde sacro."
+        },
+        {
+          "id": "drg_prf",
+          "name": "Radiofrecuencia Pulsada del Ganglio de la Raíz Dorsal (PRF-DRG)",
+          "target": "Ganglio de la raíz dorsal (DRG)",
+          "indication": "Dolor radicular crónico refractario (>3-6 meses) tras fracaso de epidural.",
+          "evidenceBadge": "🟠 Opción avanzada / Evidencia limitada (baja certeza)."
+        }
+      ],
+      "strictWarning": "❌ PROHIBIDO OFRECER Radiofrecuencia convencional de ramos mediales para radiculopatía (inerva exclusivamente articulaciones facetarias posteriores, no raíces nerviosas)."
+    }
   },
   "evidence": [
     "Van der Windt DA, et al. Physical examination for lumbar radiculopathy due to disc herniation in patients with low-back pain. Cochrane Database Syst Rev. 2010.",
@@ -988,44 +1023,109 @@
     "NICE guidelines [NG59]. Low back pain and sciatica in over 16s: assessment and management. 2016."
   ],
   "followUp": {
+    "timing": "Revisión en 4-6 semanas (o antes si dolor severo o cambios motores)",
     "parameters": [
-      "Intensidad del dolor radicular vs dolor lumbar",
-      "Función motora (déficit)",
-      "Cambios sensitivos",
-      "Reflejos osteotendinosos",
-      "Capacidad funcional (caminar, estar de pie)",
-      "Reevaluación de red flags (signos de alarma)"
+      {
+        "name": "Dolor en la pierna (EVA/NRS)",
+        "icon": "⚡"
+      },
+      {
+        "name": "Distribución dermatómica (centralización vs periferización)",
+        "icon": "🗺️"
+      },
+      {
+        "name": "Fuerza motora (L4 cuádriceps, L5 extensor dedo, S1 flexión plantar)",
+        "icon": "💪"
+      },
+      {
+        "name": "Marcha de talones y puntillas",
+        "icon": "🚶"
+      },
+      {
+        "name": "Reflejos osteotendinosos (rotuliano L4, aquíleo S1)",
+        "icon": "🔨"
+      },
+      {
+        "name": "Sensibilidad táctil y alodinia",
+        "icon": "🪶"
+      },
+      {
+        "name": "Maniobras de tensión neural (Lasègue / Slump)",
+        "icon": "📐"
+      },
+      {
+        "name": "Función y Objetivo del paciente",
+        "icon": "🎯"
+      },
+      {
+        "name": "Descarte activo de banderas rojas (esfínteres, debilidad progresiva)",
+        "icon": "🛡️"
+      }
     ],
-    "principles": [
-      "Si el déficit neurológico es progresivo, se requiere reevaluación urgente y posible derivación quirúrgica."
-    ],
-    "timing": "Revisión en 4-6 semanas",
     "outcomes": [
       {
         "result": "improvement",
-        "label": "Mejoría clara",
-        "action": "Continuar rehabilitación, progresar.",
+        "label": "Mejoría clara (>50%)",
+        "action": "Continuar rehabilitación activa, progresar fuerza y desescalar fármacos.",
         "icon": "🟢"
       },
       {
         "result": "partial",
         "label": "Mejoría parcial",
-        "action": "Revisar adherencia y diagnóstico.",
+        "action": "Revisar adherencia al ejercicio, considerar epidural dirigida si no se realizó, o ajustar dosis.",
         "icon": "🟡"
       },
       {
         "result": "no_improvement",
-        "label": "Sin mejoría",
-        "action": "Reconsiderar hipótesis. ¿Es el generador correcto?",
+        "label": "Sin mejoría tras tratamiento adecuado",
+        "action": "Pausa diagnóstica: Reevaluar si sigue siendo radicular, revisar RM y valorar interconsulta quirúrgica.",
         "icon": "🔴"
       },
       {
         "result": "worsening",
-        "label": "Empeoramiento",
-        "action": "Reevaluar diagnóstico, banderas rojas y déficit neurológico progresivo.",
-        "icon": "🔴"
+        "label": "Déficit motor progresivo o sospecha de cauda equina",
+        "action": "DERIVACIÓN URGENTE A CIRUGÍA DE COLUMNA / URGENCIAS HOSPITALARIAS.",
+        "icon": "🚨"
       }
     ],
-    "keyPrinciple": "Si el tratamiento dirigido falla, revisar el diagnóstico. El déficit neurológico progresivo requiere reevaluación urgente."
+    "keyPrinciple": "El déficit neurológico progresivo exige derivación urgente. Si la epidural no funcionó, NO repetir indefinidamente sin replantear el diagnóstico."
+  },
+  "clinicalPhases": {
+    "acute": {
+      "id": "acute",
+      "label": "Fase Aguda (<6 semanas)",
+      "definition": "Inicio reciente del dolor radicular (menos de 6 semanas de evolución).",
+      "principles": [
+        "Priorizar educación sobre el mecanismo del dolor radicular y tranquilización (pronóstico favorable en la mayoría).",
+        "REPOSO RELATIVO MUY CORTO SI LO PRECISA (<24-48h) → ACTIVIDAD TOLERADA PRECOZ. Prohibido el reposo en cama prolongado.",
+        "Analgesia individualizada: AINE a la menor dosis y tiempo posible si el perfil renal/GI/CV lo permite.",
+        "Corticoide oral: USO SELECCIONADO / NO RUTINARIO. El ensayo de Goldberg (JAMA 2015) mostró modesta mejoría funcional sin reducción del dolor y más efectos adversos. Si se usa, pauta pragmática de 40 mg/d x5 días y NO repetir ciclos.",
+        "Gabapentinoides (Pregabalina/Gabapentina): NO RECOMENDADOS DE RUTINA (NICE NG59).",
+        "¿Severa / Incapacitante?: No esperar arbitrariamente semanas para actuar; si hay dolor intolerable refractario sin déficit progresivo, considerar RM y valorar Epidural precoz con AL + corticoide (NICE)."
+      ]
+    },
+    "subacute": {
+      "id": "subacute",
+      "label": "Fase Subaguda (6 a 12 semanas)",
+      "definition": "Persistencia del dolor radicular tras 6 semanas de manejo conservador activo.",
+      "principles": [
+        "Reexploración neurológica obligatoria: Fuerza (L4/L5/S1), reflejos, sensibilidad, marcha de talones y puntillas.",
+        "Solicitar RM lumbar si el paciente es candidato a intervención / infiltración epidural (correlacionar clínica + neurología + imagen).",
+        "Si hay ALTA CONCORDANCIA clínico-radiológica (ej. dolor S1 + déficit S1 + hernia discal L5-S1 subarticular concordante), plantear INYECCIÓN EPIDURAL DIRIGIDA.",
+        "Selección de técnica epidural por anatomía y objetivo: Transforaminal (focal unilateral), Interlaminar (multisegmentaria/bilateral) o Caudal (niveles bajos/postquirúrgico)."
+      ]
+    },
+    "chronic": {
+      "id": "chronic",
+      "label": "Fase Crónica (>12 semanas)",
+      "definition": "Dolor persistente de más de 3 meses de duración.",
+      "principles": [
+        "PAUSA DIAGNÓSTICA: ¿Sigue siendo verdaderamente radicular? ¿Misma raíz? ¿Ha centralizado el dolor hacia dolor lumbar axial mecánico/facetario?",
+        "Si persiste radiculopatía concordante refractaria a epidural previa: evaluar si hubo respuesta clínicamente relevante. NO repetir epidurales indefinidamente si no hubo alivio.",
+        "Considerar Radiofrecuencia Pulsada del Ganglio de la Raíz Dorsal (PRF-DRG) como OPCIÓN AVANZADA DE EVIDENCIA LIMITADA (baja certeza) en pacientes seleccionados.",
+        "❌ PROHIBIDO ofrecer Radiofrecuencia convencional de ramos mediales para dolor radicular (solo válida si el problema resultó ser dolor facetario axial).",
+        "Valorar interconsulta con Cirugía de Columna si existe compromiso neurológico o discapacidad severa persistente."
+      ]
+    }
   }
 }

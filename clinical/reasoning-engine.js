@@ -860,32 +860,91 @@ class ClinicalReasoningEngine {
       pharmaOptions.push(nsaidOral);
     }
 
-    // Check Neuromodulators for neuropathic / nociplastic / central components
-    const isNociplastic = pathwayId.includes('nociplastic');
+    // Check Oral Corticosteroid for Radicular Sciatica (Goldberg Trial Evidence)
     const isRadicular = pathwayId.includes('radicular');
+    const isNociplastic = pathwayId.includes('nociplastic');
 
-    if (isNociplastic && meds.duloxetine) {
-      const dulo = { ...meds.duloxetine };
-      const duloWarnings = [];
-      if (patientProfile.hepatic) duloWarnings.push('🚫 Contraindicada en hepatopatía con deterioro hepático.');
-      if (patientProfile.renal) duloWarnings.push('🚫 Contraindicada en ClCr <30 ml/min.');
-      dulo.activeWarnings = duloWarnings;
-      pharmaOptions.push(dulo);
+    if (isRadicular && meds.prednisone_oral) {
+      const pred = { ...meds.prednisone_oral };
+      const predWarnings = [];
+      if (patientProfile.diabetes) predWarnings.push('⚠️ Diabetes: Riesgo de picos hiperglucémicos agudos severos; monitorizar glucemia capilar.');
+      if (patientProfile.hta) predWarnings.push('⚠️ HTA: Riesgo de descompensación tensional por retención hidrosalina.');
+      if (patientProfile.gi_ulcer) predWarnings.push('🚫 Antecedente de úlcera digestiva: Asociar obligatoriamente IBP a dosis plenas.');
+      pred.activeWarnings = predWarnings;
+      pharmaOptions.push(pred);
     }
 
-    if (isRadicular) {
-      // Evidence guardrail: Do NOT routinely prescribe pregabalin in acute sciatica
-      if (meds.pregabalin) {
-        const preg = { ...meds.pregabalin };
-        const pregWarnings = [
-          '⚠️ ADVERTENCIA DE GUÍAS CLÍNICAS (NICE NG59 / ACP): La evidencia para pregabalina en ciática/radiculopatía lumbar es limitada/desfavorable. No utilizar de forma rutinaria automática; reservar para dolor urente/parestésico refractario.'
-        ];
-        if (patientProfile.renal) pregWarnings.push('⚠️ Insuficiencia renal: Requiere ajuste obligatorio de dosis por filtrado glomerular.');
-        if (patientProfile.age_over_65) pregWarnings.push('👴 >65 años: Iniciar a 25 mg/noche por alto riesgo de sedación matutina y caídas.');
-        preg.activeWarnings = pregWarnings;
-        pharmaOptions.push(preg);
+    // ─────────────────────────────────────────
+    // 🧠 NEUROMODULACIÓN FARMACOLÓGICA ESTRUCTURADA
+    // ─────────────────────────────────────────
+    const neuromodulationDrugs = [];
+    const neuroKeys = ['duloxetine', 'venlafaxine_xr', 'amitriptyline', 'pregabalin', 'gabapentin'];
+
+    neuroKeys.forEach(k => {
+      if (meds[k]) {
+        const drug = { ...meds[k] };
+        const drugWarnings = [];
+
+        // Apply Comorbidity Rules
+        if (drug.id === 'med-duloxetine') {
+          if (patientProfile.hepatic) drugWarnings.push('🚫 Contraindicada en hepatopatía activa o insuficiencia hepática.');
+          if (patientProfile.renal) drugWarnings.push('🚫 Contraindicada en insuficiencia renal severa (ClCr <30 ml/min).');
+          if (patientProfile.hta || patientProfile.cv) drugWarnings.push('⚠️ Monitorizar TA por efecto noradrenérgico.');
+        } else if (drug.id === 'med-venlafaxine-xr') {
+          if (patientProfile.hta || patientProfile.cv) drugWarnings.push('⚠️ Control estricto de TA (elevación tensional dosis-dependiente).');
+          if (patientProfile.renal) drugWarnings.push('⚠️ Ajustar dosis (reducir 25-50% si FG <60).');
+        } else if (drug.id === 'med-amitriptyline') {
+          if (patientProfile.age_over_65) drugWarnings.push('👴 >65 años: Iniciar a 10 mg/noche; alto riesgo anticolinérgico (sedación, caídas, estreñimiento, retención urinaria).');
+          if (patientProfile.cv) drugWarnings.push('⚠️ Precaución en cardiopatía (riesgo de hipotensión ortostática y arritmias/QT).');
+        } else if (drug.id === 'med-pregabalin' || drug.id === 'med-gabapentin') {
+          if (patientProfile.renal) drugWarnings.push('⚠️ AJUSTE RENAL OBLIGATORIO: Eliminación 100% renal inalterada; reducir dosis según FG.');
+          if (patientProfile.age_over_65) drugWarnings.push('👴 >65 años: Alto riesgo de sedación matutina, ataxia y caídas; iniciar a dosis mínimas.');
+        }
+
+        // Apply CONDITION-SPECIFIC OVERRIDE ENGINE
+        if (isRadicular) {
+          if (drug.id === 'med-pregabalin' || drug.id === 'med-gabapentin') {
+            drug.isRoutinelyRecommended = false;
+            drug.overrideBadge = '🔴 NO USO RUTINARIO EN CIÁTICA (NICE NG59 / ACP)';
+            drug.overrideReason = 'NICE y guías internacionales desaconsejan gabapentinoides de rutina en ciática común por balance beneficio/riesgo desfavorable. Reservar como opción excepcional para dolor urente continuo refractario.';
+          } else {
+            drug.isRoutinelyRecommended = true;
+            drug.overrideBadge = '🔵 MODULACIÓN EN DOLOR REFRACTARIO';
+          }
+        } else if (isNociplastic) {
+          if (drug.id === 'med-duloxetine') {
+            drug.isRoutinelyRecommended = true;
+            drug.overrideBadge = '🟢 OPCIÓN PREFERENTE / RESPALDADA (NICE: 30mg → 60mg/d)';
+          } else if (drug.id === 'med-amitriptyline') {
+            drug.isRoutinelyRecommended = true;
+            drug.overrideBadge = '🟢/🟡 ALTERNATIVA DE ELECCIÓN SI INSOMNIO (10-25mg noche)';
+          } else if (drug.id === 'med-venlafaxine-xr') {
+            drug.isRoutinelyRecommended = true;
+            drug.overrideBadge = '🟡 ALTERNATIVA INDIVIDUALIZADA (No equivalente de rutina a duloxetina en fibromialgia)';
+          } else {
+            drug.isRoutinelyRecommended = true;
+            drug.overrideBadge = '🟡 SEGUNDA LÍNEA';
+          }
+        } else {
+          // General Neuropathic Pain
+          drug.isRoutinelyRecommended = true;
+          drug.overrideBadge = '🟢 PRIMERA LÍNEA EN DOLOR NEUROPÁTICO (NeuPSIG 2025)';
+        }
+
+        drug.activeWarnings = drugWarnings;
+        neuromodulationDrugs.push(drug);
       }
-    }
+    });
+
+    const neuromodulationCard = {
+      id: 'pharma-neuromodulation-card',
+      title: '🧠 Neuromodulación Farmacológica (NeuPSIG 2025 / NICE)',
+      principle: catalog.neuromodulation_principle || 'La dosis objetivo no es la dosis máxima. Es la menor dosis que proporciona una mejoría clínicamente útil con tolerabilidad aceptable.',
+      safetyChecklist: catalog.neuromodulation_safety_checklist || [
+        'Función renal', 'Función hepática', 'Edad/Fragilidad', 'Riesgo de caídas', 'Somnolencia', 'Conducción', 'HTA', 'Interacciones serotoninérgicas', 'Antecedentes psiquiátricos', 'Retirada progresiva'
+      ],
+      drugs: neuromodulationDrugs
+    };
 
     const pharmacology = {
       id: 'step-5-pharmacology',
@@ -893,8 +952,9 @@ class ClinicalReasoningEngine {
       badge: '💊 DOSIFICACIÓN ADULTA ORIENTATIVA',
       generalAdvice: 'La selección farmacológica depende de las comorbilidades del paciente. Usar la menor dosis eficaz durante el menor tiempo posible. No existen recetas universales.',
       options: pharmaOptions,
+      neuromodulation: neuromodulationCard,
       whyThisTreatment: 'Control sintomático del dolor para posibilitar el descanso y la adherencia al programa de rehabilitación activa.',
-      whenToAvoid: 'No prescribir AINEs orales de forma continuada en ancianos o en insuficiencia renal. No pautar gabapentinoides por automatismo en dolor puramente axial.'
+      whenToAvoid: 'No prescribir AINEs orales de forma continuada en ancianos o en insuficiencia renal. No pautar gabapentinoides por automatismo en ciática o dolor puramente axial.'
     };
 
     // ─────────────────────────────────────────
@@ -976,11 +1036,23 @@ class ClinicalReasoningEngine {
       }
     }
 
-    if (pathwayId.includes('lumbar-radicular') && catalog.spinal_interventions?.lumbar_epidural) {
-      spinalInt = { ...catalog.spinal_interventions.lumbar_epidural };
+    if (isRadicular) {
+      spinalInt = {
+        approaches: [
+          catalog.spinal_interventions?.transforaminal_epidural,
+          catalog.spinal_interventions?.interlaminar_epidural,
+          catalog.spinal_interventions?.caudal_epidural
+        ].filter(Boolean),
+        drgPrf: catalog.spinal_interventions?.drg_pulsed_radiofrequency,
+        facetRfWarning: '❌ PROHIBIDO OFRECER Radiofrecuencia de ramos mediales para radiculopatía / ciática (inerva articulaciones facetarias posteriores, no raíces nerviosas).',
+        expectedBenefit: 'La epidural no elimina mecánicamente la hernia. Busca reducir temporalmente el dolor y la inflamación radicular (beneficio concentrado en los primeros 3 meses según AAN 2025) para recuperar sueño, movimiento y función mientras el cuerpo reabsorbe el tejido.'
+      };
     } else if (pathwayId.includes('lumbar-axial') || pathwayId.includes('cervical-axial')) {
       if (catalog.spinal_interventions?.facet_radiofrequency) {
-        spinalInt = { ...catalog.spinal_interventions.facet_radiofrequency };
+        spinalInt = {
+          facetRf: catalog.spinal_interventions.facet_radiofrequency,
+          indication: 'Dolor axial facetario crónico tras bloqueo diagnóstico previo positivo (>50-80% alivio).'
+        };
       }
     }
 
@@ -988,7 +1060,7 @@ class ClinicalReasoningEngine {
 
     const interventionism = {
       id: 'step-7-interventionism',
-      title: '7. Infiltración / Intervencionismo Ecoguiado',
+      title: '7. Infiltración / Intervencionismo Ecoguiado / Fluoroguiado',
       badge: isInterventionSafe ? '🎯 VENTANA DE OPORTUNIDAD' : '🔒 REQUIERE CONCORDANCIA',
       isBlocked: !isInterventionSafe,
       blockReason: this.session.hasActiveRedFlag
@@ -1073,7 +1145,7 @@ class ClinicalReasoningEngine {
     lines.push(`   - Pauta domiciliaria: ${plan.tiers[3].homeExercise?.frequency || '3-5 días/semana'}.`);
     lines.push(`   - Criterio de progresión por tolerancia a la carga.`);
     lines.push(``);
-    lines.push(`4. PAUTA FARMACOLÓGICA ORIENTATIVA:`);
+    lines.push(`4. PAUTA FARMACOLÓGICA Y NEUROMODULACIÓN:`);
     const pharma = plan.tiers[4].options || [];
     if (pharma.length > 0) {
       pharma.forEach(m => {
@@ -1084,8 +1156,17 @@ class ClinicalReasoningEngine {
           }
         }
       });
-    } else {
-      lines.push(`   - Analgesia a demanda según comorbilidades.`);
+    }
+
+    const neuro = plan.tiers[4].neuromodulation?.drugs || [];
+    if (neuro.length > 0) {
+      const activeNeuro = neuro.filter(d => d.isRoutinelyRecommended && !d.isContraindicated);
+      if (activeNeuro.length > 0) {
+        lines.push(`   [Neuromodulación / Modulación Central]:`);
+        activeNeuro.forEach(d => {
+          lines.push(`   • ${d.genericName}: Inicio ${d.initialDose} → Titular a ${d.usualDose}. (${d.overrideBadge || 'Indicada'})`);
+        });
+      }
     }
     lines.push(``);
     if (plan.tiers[5].eswt && plan.tiers[5].eswt.type && !plan.tiers[5].eswt.statusNote?.includes('NO RECOMENDADA')) {
@@ -1097,6 +1178,11 @@ class ClinicalReasoningEngine {
       lines.push(`6. PROCEDIMIENTO INTERVENCIONISTA (Ventana de oportunidad):`);
       lines.push(`   • ${plan.tiers[6].corticosteroid.name} ecoguiada.`);
       lines.push(`   - Reevaluar en 2-3 semanas para inicio de rehabilitación activa.`);
+      lines.push(``);
+    } else if (!plan.tiers[6].isBlocked && plan.tiers[6].spinal?.approaches) {
+      lines.push(`6. INTERVENCIONISMO ESPINAL (Según anatomía y objetivo):`);
+      lines.push(`   • Opción preferente: Inyección Epidural Transforaminal / Interlaminar / Caudal.`);
+      lines.push(`   - Beneficio esperado: Reducción sintomática de la inflamación radicular para facilitar la rehabilitación.`);
       lines.push(``);
     }
     lines.push(`7. REEVALUACIÓN CLÍNICA:`);

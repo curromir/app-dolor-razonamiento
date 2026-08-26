@@ -176,20 +176,20 @@
     "duloxetine": {
       "id": "med-duloxetine",
       "genericName": "Duloxetina",
-      "category": "ISRN (Inhibidor de la Recaptación de Serotonina y Noradrenalina)",
-      "indication": "Dolor nociplástico / sensibilización central, fibromialgia, dolor crónico musculoesquelético generalizado o componente neuropático periférico.",
-      "initialDose": "30 mg una vez al día por la mañana o noche durante 7-14 días",
-      "usualDose": "60 mg una vez al día",
-      "frequency": "Una vez al día (mañana preferentemente para evitar insomnio, o noche si da somnolencia)",
-      "maximumDose": "120 mg / día (aunque dosis >60 mg rara vez aportan mayor analgesia y aumentan efectos secundarios)",
-      "duration": "Mínimo 3 a 6 meses si es eficaz; evaluar respuesta a las 4-6 semanas.",
-      "rescueDose": "No aplicable. No es un fármaco de rescate agudo.",
-      "renalAdjustment": "Evitar si ClCr <30 ml/min (o enfermedad renal terminal).",
-      "hepaticAdjustment": "Contraindicada en cualquier hepatopatía que cause deterioro hepático.",
-      "giRisk": "Náuseas y sequedad de boca frecuentes en las dos primeras semanas de inicio.",
-      "cvRisk": "Puede elevar ligeramente la tensión arterial y la frecuencia cardíaca.",
-      "anticoagulation": "Precaución con antiagregantes/anticoagulantes por leve aumento de riesgo de sangrado plaquetario.",
-      "agePrecautions": "Iniciar a 30 mg en ancianos por riesgo de hiponatremia (SIADH) o mareo.",
+      "category": "ISRN (Inhibidor Dual de la Recaptación de Serotonina y Noradrenalina)",
+      "indication": "Dolor crónico primario / nociplástico (Fibromialgia), dolor neuropático periférico general y artrosis crónica con sensibilización central.",
+      "initialDose": "30 mg / 24 h por la mañana durante 1 a 2 semanas",
+      "usualDose": "60 mg / 24 h (dosis objetivo habitual)",
+      "frequency": "Una vez al día por la mañana (tomar con alimentos para reducir náuseas)",
+      "maximumDose": "120 mg / 24 h (en situaciones seleccionadas; la dosis habitual recomendada es 60 mg/d)",
+      "duration": "Mantenimiento mínimo 3-6 meses si es eficaz; reevaluar respuesta a las 4–6 semanas.",
+      "rescueDose": "No aplicable. No es analgésico de rescate agudo.",
+      "renalAdjustment": "Contraindicada si ClCr <30 ml/min o enfermedad renal terminal.",
+      "hepaticAdjustment": "Contraindicada en cualquier hepatopatía con deterioro hepático.",
+      "giRisk": "Náuseas frecuentes en las 2 primeras semanas (autolimitadas).",
+      "cvRisk": "Monitorizar tensión arterial (puede elevar PA y FC por tono noradrenérgico).",
+      "anticoagulation": "Precaución con antiagregantes/anticoagulantes (leve alteración de agregación plaquetaria).",
+      "agePrecautions": "Iniciar a 30 mg en ancianos; vigilar hiponatremia (SIADH) y mareo.",
       "pregnancy": "Valorar riesgo/beneficio (Categoría C).",
       "contraindications": [
         "Uso concomitante con IMAO o inhibidores potentes de CYP1A2 (Fluvoxamina, Ciprofloxacino)",
@@ -198,69 +198,245 @@
         "Insuficiencia renal grave (FG <30 ml/min)"
       ],
       "precautions": [
-        "Explicar al paciente que el efecto analgésico tarda 2-4 semanas en consolidarse",
-        "Advertir de náuseas transitorias de inicio (tomar con alimentos)",
-        "No suspender de forma brusca (retirada gradual para evitar síndrome de discontinuación)"
+        "NICE considera específicamente a la duloxetina entre los antidepresivos de elección en dolor crónico primario (chronic primary pain), incluso sin depresión",
+        "Explicar al paciente que el efecto analgésico y sobre el sueño/función tarda 2-4 semanas",
+        "Retirada muy lenta y gradual para evitar síndrome de discontinuación"
       ],
       "interactions": [
         "Tramadol u otros serotoninérgicos (riesgo de Síndrome Serotoninérgico)",
         "Fármacos metabolizados por CYP2D6"
       ],
       "monitoring": [
-        "Tensión arterial basal y a las 4 semanas",
-        "Sodio plasmático en ancianos si aparece confusión o letargia"
+        "Tensión arterial",
+        "Sodio en ancianos si confusión"
       ],
-      "whyThisTreatment": "Aumenta la noradrenalina y serotonina en las vías inhibitorias descendentes del dolor del asta dorsal medular, modulando el dolor central y nociplástico.",
-      "whenToAvoid": "Evitar en dolor puramente mecánico agudo, en hepatopatías o cuando se requiera alivio inmediato en 24 horas.",
+      "whyThisTreatment": "Potencia las vías inhibitorias descendentes de dolor en el asta dorsal medular mediante el bloqueo de recaptación de serotonina y noradrenalina.",
+      "whenToAvoid": "Evitar en dolor puramente mecánico agudo, en insuficiencia hepática o renal severa, o si se busca analgesia instantánea.",
       "evidence": {
         "level": "high",
-        "badge": "🟢 EVIDENCIA ALTA / RECOMENDADO EN DOLOR NOCIPLÁSTICO",
-        "note": "Recomendación Grado A en guías EULAR de Fibromialgia y artrosis crónica con sensibilización."
+        "badge": "🟢 EVIDENCIA ALTA / PRIMERA LÍNEA (NICE / NeuPSIG 2025)",
+        "note": "Opción preferente y respaldada en dolor nociplástico / fibromialgia (NICE) y neuropatía periférica (NeuPSIG)."
       }
     },
     "pregabalin": {
       "id": "med-pregabalin",
       "genericName": "Pregabalina",
-      "category": "Gabapentinoide (Ligando de la subunidad alfa-2-delta del canal de calcio)",
-      "indication": "Dolor neuropático periférico confirmado (radiculopatía con dolor urente/parestesias refractario, neuralgia postherpética, neuropatía periférica).",
-      "initialDose": "25 - 50 mg una vez al día por la noche",
-      "usualDose": "75 - 150 mg cada 12 horas (titulación lenta semanal: 25mg → 50mg → 75mg)",
-      "frequency": "Cada 12 horas (o toma nocturna si dosis baja)",
-      "maximumDose": "300 - 600 mg / día (en práctica clínica en dolor 150-300 mg/día suele ser el techo de tolerancia)",
-      "duration": "Reevaluar a las 4-6 semanas. Si no hay mejoría de ≥30% en dolor, desescalar y retirar gradualmente.",
+      "category": "Gabapentinoide (Ligando de la subunidad alfa-2-delta de canales de calcio presinápticos)",
+      "indication": "Dolor neuropático periférico focal (neuralgia postherpética, neuropatía diabética, dolor radicular crónico refractario seleccionado).",
+      "initialDose": "25 - 75 mg por la noche o 75 mg cada 12 horas (en >65 años iniciar siempre a 25 mg/noche)",
+      "usualDose": "150 - 300 mg / día repartido en 2 tomas (titular lentamente: 25-75mg → 150mg → 300mg)",
+      "frequency": "Cada 12 horas o toma única nocturna si dosis baja",
+      "maximumDose": "600 mg / día (rango NeuPSIG: 150-600 mg/d; en clínica 150-300 mg/d suele ser el techo de tolerancia)",
+      "duration": "Evaluar respuesta a las 4-6 semanas; si no hay mejoría funcional o analgesia ≥30%, desescalar y retirar gradualmente.",
       "rescueDose": "No es analgésico de rescate.",
-      "renalAdjustment": "OBLIGATORIO AJUSTE POR FILTRADO GLOMERULAR: FG 30-60: máx 150mg/d; FG 15-30: máx 75mg/d; FG <15: máx 25-50mg/d.",
-      "hepaticAdjustment": "No sufre metabolismo hepático (eliminación 98% renal inalterada). Seguro en hepatopatía pura.",
+      "renalAdjustment": "OBLIGATORIO AJUSTE POR FG: FG 30-60: máx 150-300 mg/d; FG 15-30: máx 75-150 mg/d; FG <15: máx 25-75 mg/d.",
+      "hepaticAdjustment": "No tiene metabolismo hepático (eliminación 98% renal inalterada). Seguro en hepatopatía pura.",
       "giRisk": "Muy bajo.",
-      "cvRisk": "Riesgo de edemas periféricos maleolares y descompensación de insuficiencia cardíaca congestiva.",
-      "anticoagulation": "Sin interacción directa con la coagulación.",
-      "agePrecautions": "En ancianos >65 años alto riesgo de sedación matutina, mareo, caídas, ataxia y confusión. Iniciar siempre a 25 mg/noche.",
-      "pregnancy": "Evitar (Categoría C).",
+      "cvRisk": "Riesgo de edemas periféricos maleolares y descompensación de insuficiencia cardíaca.",
+      "anticoagulation": "Compatible.",
+      "agePrecautions": "Alto riesgo de sedación matutina, mareo, caídas, ataxia y confusión en ancianos.",
+      "pregnancy": "Evitar.",
       "contraindications": [
         "Hipersensibilidad al principio activo",
-        "Antecedente de abuso o adicción a sustancias (riesgo de mal uso/dependencia)",
-        "Insuficiencia cardíaca descompensada con edemas severos"
+        "Antecedentes de adicción o abuso de sustancias (riesgo de mal uso)",
+        "Insuficiencia cardíaca congestiva descompensada clase III-IV"
       ],
       "precautions": [
-        "ADVERTENCIA DE EVIDENCIA: Las guías actuales (NICE NG59, ACP 2020) desaconsejan el uso rutinario automático de pregabalina en ciática/radiculopatía lumbar aguda.",
-        "Titular muy lentamente para evitar abandono por mareo o somnolencia",
-        "Advertir sobre afectación de la capacidad de conducción",
-        "Retirada gradual durante 1-2 semanas para evitar insomnio o ansiedad de rebote"
+        "MOTOR DE EVIDENCIA (NICE NG59 / ACP): NO se recomienda el uso rutinario de gabapentinoides en ciática / radiculopatía lumbar común por balance beneficio/riesgo desfavorable. Reservar como opción excepcional para dolor urente refractario",
+        "Titular lentamente para evitar abandono precoz por mareo o somnolencia",
+        "Advertir sobre afectación en la conducción de vehículos",
+        "Retirada gradual durante 1-2 semanas para evitar ansiedad o insomnio de rebote"
       ],
       "interactions": [
-        "Opioides y benzodiacepinas (sinergia de depresión del SNC y depresión respiratoria potencialmente mortal)",
+        "Opioides y benzodiacepinas (sinergia de depresión respiratoria severa)",
         "Alcohol"
       ],
       "monitoring": [
-        "Aparición de edemas maleolares, ganancia ponderal, somnolencia diurna",
+        "Edemas maleolares",
         "Función renal periódica"
       ],
-      "whyThisTreatment": "Bloquea la entrada presináptica de calcio dependiente de voltaje en neuronas hiperexcitadas del asta posterior medular, reduciendo la liberación de glutamato y sustancia P.",
-      "whenToAvoid": "NO USAR DE RUTINA EN DOLOR AXIAL MECÁNICO NI EN CIÁTICA AGUDA NO SELECCIONADA. Evitar en ancianos con alto riesgo de caídas o conductores profesionales sin adaptación.",
+      "whyThisTreatment": "Reduce la entrada de calcio presináptico en neuronas hiperexcitadas del asta posterior medular, disminuyendo la liberación de neurotransmisores excitatorios.",
+      "whenToAvoid": "NO USAR DE RUTINA EN CIÁTICA AGUDA NI EN DOLOR LUMBAR AXIAL MECÁNICO. Evitar en ancianos con marcha inestable o conductores profesionales.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🟢 1ª LÍNEA EN NEUROPATÍA FOCAL / 🔴 NO RUTINA EN CIÁTICA",
+        "note": "Respaldada en dolor neuropático periférico (NeuPSIG 2025); desaconsejada de rutina en ciática lumbar (NICE NG59)."
+      }
+    },
+    "venlafaxine_xr": {
+      "id": "med-venlafaxine-xr",
+      "genericName": "Venlafaxina XR (Liberación Prolongada)",
+      "category": "ISRN (Inhibidor Dual de la Recaptación de Serotonina y Noradrenalina)",
+      "indication": "Dolor neuropático periférico general. Alternativa individualizada en dolor nociplástico si comorbilidad ansioso-depresiva o intolerancia a duloxetina.",
+      "initialDose": "37,5 - 75 mg / 24 h por la mañana",
+      "usualDose": "150 - 225 mg / 24 h (titulación progresiva cada 1-2 semanas)",
+      "frequency": "Una vez al día por la mañana con comida",
+      "maximumDose": "225 mg / 24 h para indicación analgésica",
+      "duration": "Mantenimiento si hay respuesta; evaluar a las 4-6 semanas.",
+      "rescueDose": "No aplicable.",
+      "renalAdjustment": "Reducir dosis un 25-50% en insuficiencia renal moderada (FG 30-59 ml/min).",
+      "hepaticAdjustment": "Reducir dosis un 50% en hepatopatía moderada.",
+      "giRisk": "Náuseas y sequedad de boca frecuentes de inicio.",
+      "cvRisk": "Control estricto de tensión arterial (mayor elevación tensional dosis-dependiente que duloxetina).",
+      "anticoagulation": "Precaución similar a otros ISRN.",
+      "agePrecautions": "Titular lentamente en ancianos; vigilar hipotensión ortostática y caídas.",
+      "pregnancy": "Evitar salvo necesidad estricta.",
+      "contraindications": [
+        "Uso concomitante con IMAO",
+        "Hipertensión arterial no controlada severa",
+        "Cardiopatía isquémica inestable"
+      ],
+      "precautions": [
+        "DISTINCIÓN CLÍNICA CLAVE: Respaldada por NeuPSIG 2025 como primera línea en dolor neuropático general; sin embargo, NICE NO la incluye entre los antidepresivos con recomendación específica en chronic primary pain/fibromialgia",
+        "Retirada extraordinariamente lenta para evitar síndrome de discontinuación severo (mareos, descargas eléctricas, náuseas)"
+      ],
+      "interactions": [
+        "Fármacos serotoninérgicos (Tramadol, Triptanes)",
+        "Antihipertensivos"
+      ],
+      "monitoring": [
+        "Tensión arterial y frecuencia cardíaca en cada revisión"
+      ],
+      "whyThisTreatment": "Inhibe la recaptación de serotonina y, a dosis ≥150 mg/día, de noradrenalina, reforzando la modulación descendente del dolor.",
+      "whenToAvoid": "Evitar como primera línea automática en dolor nociplástico puro sin comorbilidad afectiva (preferir duloxetina). Evitar en HTA no controlada.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🟢 1ª LÍNEA EN NEUROPATÍA / 🟡 ALTERNATIVA EN NOCIPLÁSTICO",
+        "note": "Evidencia sólida en dolor neuropático periférico (NeuPSIG); alternativa individualizada de 2ª línea en fibromialgia."
+      }
+    },
+    "amitriptyline": {
+      "id": "med-amitriptyline",
+      "genericName": "Amitriptilina",
+      "category": "Antidepresivo Tricíclico (TCA)",
+      "indication": "Dolor neuropático periférico, dolor nociplástico / fibromialgia, cefalea tensional y dolor crónico con insomnio / alteración del sueño asociada.",
+      "initialDose": "10 - 25 mg por la noche (en ancianos o frágiles iniciar siempre a 10 mg, 2 horas antes de dormir)",
+      "usualDose": "25 - 75 mg por la noche (titular 10-25 mg cada 1-2 semanas según tolerancia)",
+      "frequency": "Una toma nocturna antes de acostarse",
+      "maximumDose": "75 - 100 mg / noche a nivel analgésico ambulatorio",
+      "duration": "Mantenimiento mientras persista el beneficio; reevaluar tolerancia periódicamente.",
+      "rescueDose": "No aplicable.",
+      "renalAdjustment": "No suele requerir ajuste específico, pero monitorizar sedación.",
+      "hepaticAdjustment": "Precaución en hepatopatía por metabolismo hepático extenso.",
+      "giRisk": "Estreñimiento frecuente por efecto anticolinérgico.",
+      "cvRisk": "Riesgo de hipotensión ortostática, taquicardia y prolongación del intervalo QTc. Precaución en cardiopatía.",
+      "anticoagulation": "Compatible.",
+      "agePrecautions": "CAUTELA EN ANCIANOS: Alto riesgo de efectos anticolinérgicos (sedación diurna, confusión, caídas, sequedad de boca, retención urinaria y glaucoma).",
+      "pregnancy": "Evitar en embarazo.",
+      "contraindications": [
+        "Infarto agudo de miocardio reciente o arritmias cardíacas graves (bloqueo cardíaco)",
+        "Glaucoma de ángulo cerrado",
+        "Retención urinaria / hiperplasia prostática sintomática severa",
+        "Uso concomitante con IMAO"
+      ],
+      "precautions": [
+        "Especialmente atractiva cuando el dolor se asocia a insomnio o sueño no reparador",
+        "Tomar 2-3 horas antes de acostarse para reducir la somnolencia matutina residual",
+        "Realizar ECG basal si antecedentes de cardiopatía o dosis >50 mg/día"
+      ],
+      "interactions": [
+        "Fármacos que prolongan el intervalo QT",
+        "Depresores del SNC / alcohol",
+        "Anticolinérgicos"
+      ],
+      "monitoring": [
+        "ECG en pacientes con riesgo cardiovascular",
+        "Control de tensión ortostática y estreñimiento"
+      ],
+      "whyThisTreatment": "Bloquea la recaptación de serotonina y noradrenalina y bloquea canales de sodio voltaje-dependientes, promoviendo analgesia central y sueño profundo de ondas lentas.",
+      "whenToAvoid": "Evitar en ancianos con deterioro cognitivo, antecedentes de caídas, arritmias cardíacas o problemas prostáticos obstructivos.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / PRIMERA LÍNEA (NeuPSIG / NICE)",
+        "note": "Eficacia analgésica y sobre el sueño ampliamente contrastada a dosis bajas (10-50 mg/noche)."
+      }
+    },
+    "gabapentin": {
+      "id": "med-gabapentin",
+      "genericName": "Gabapentina",
+      "category": "Gabapentinoide (Ligando alfa-2-delta)",
+      "indication": "Dolor neuropático periférico general (neuralgia postherpética, neuropatía periférica diabética).",
+      "initialDose": "100 - 300 mg por la noche (titular sumando 300 mg cada 3-5 días: día 1: 300mg noche; día 2: 300mg/12h; día 3: 300mg/8h)",
+      "usualDose": "1.200 - 2.400 mg / día repartido estrictamente en 3 tomas",
+      "frequency": "Cada 8 horas (tres veces al día debido a su farmacocinética saturable)",
+      "maximumDose": "3.600 mg / día (rango NeuPSIG: 1.200 - 3.600 mg/d)",
+      "duration": "Evaluar respuesta a las 4-8 semanas de alcanzar dosis terapéutica.",
+      "rescueDose": "No aplicable.",
+      "renalAdjustment": "OBLIGATORIO AJUSTE POR FG: FG 50-79: máx 1.800 mg/d; FG 30-49: máx 900 mg/d; FG 15-29: máx 600 mg/d; FG <15: máx 300 mg/d.",
+      "hepaticAdjustment": "No sufre metabolismo hepático (eliminación 100% renal).",
+      "giRisk": "Bajo.",
+      "cvRisk": "Edemas periféricos.",
+      "anticoagulation": "Compatible.",
+      "agePrecautions": "Alto riesgo de sedación, mareo y caídas en mayores de 65 años.",
+      "pregnancy": "Evitar.",
+      "contraindications": [
+        "Hipersensibilidad a gabapentina",
+        "Antecedente de adicción"
+      ],
+      "precautions": [
+        "MOTOR DE EVIDENCIA (NICE NG59): Desaconsejada de uso rutinario en ciática/radiculopatía lumbar común",
+        "Requiere 3 tomas al día por transporte intestinal saturable L-aminoácido",
+        "Retirada lenta y gradual"
+      ],
+      "interactions": [
+        "Antiácidos con magnesio/aluminio (reducen absorción 20%)",
+        "Opioides y depresores del SNC"
+      ],
+      "monitoring": [
+        "Función renal",
+        "Sedación y marcha"
+      ],
+      "whyThisTreatment": "Modula la hiperexcitabilidad neuronal espinal mediante la fijación a la subunidad alfa-2-delta de los canales de calcio voltaje-dependientes.",
+      "whenToAvoid": "NO USAR DE RUTINA EN CIÁTICA AGUDA NI EN DOLOR LUMBAR AXIAL. Evitar en ancianos con caídas previas.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🟢 1ª LÍNEA EN NEUROPATÍA FOCAL / 🔴 NO RUTINA EN CIÁTICA",
+        "note": "Eficacia en dolor neuropático periférico (NeuPSIG 2025); desaconsejada de rutina en ciática por guías NICE."
+      }
+    },
+    "prednisone_oral": {
+      "id": "med-prednisone-oral",
+      "genericName": "Prednisona Oral (Uso Seleccionado en Ciática)",
+      "category": "Corticoide sistémico oral",
+      "indication": "Uso seleccionado y NO rutinario en radiculopatía lumbar aguda severa hiperálgica con sospecha de edema perineural agudo.",
+      "initialDose": "40 mg / 24 h por la mañana durante 5 días y suspender (pauta pragmática clínica)",
+      "usualDose": "40 mg / 24 h en toma única matutina con desayuno",
+      "frequency": "Una toma matutina (para respetar el ritmo circadiano de cortisol)",
+      "maximumDose": "60 mg / día en pauta de ensayo de Goldberg (60mg x5d → 40mg x5d → 20mg x5d; total 600 mg)",
+      "duration": "Ciclo corto máximo de 5 a 15 días; NO repetir ciclos automáticamente.",
+      "rescueDose": "No aplicable.",
+      "renalAdjustment": "No requiere ajuste específico.",
+      "hepaticAdjustment": "La prednisona requiere conversión hepática a prednisolona; precaución en hepatopatía grave.",
+      "giRisk": "Riesgo de epigastralgia y úlcera péptica. Asociar siempre IBP.",
+      "cvRisk": "Retención hidrosalina, elevación de tensión arterial.",
+      "anticoagulation": "Aumenta riesgo de sangrado digestivo en combinación con anticoagulantes.",
+      "agePrecautions": "Riesgo de desorientación, insomnio, pico hipertensivo y descompensación glucémica en ancianos.",
+      "pregnancy": "Valorar riesgo/beneficio.",
+      "contraindications": [
+        "Infección bacteriana o fúngica sistémica no controlada",
+        "Diabetes mellitus severamente descompensada",
+        "Úlcera péptica activa",
+        "Psicosis activa"
+      ],
+      "precautions": [
+        "EVIDENCIA DEL ENSAYO CLÍNICO (RCT Goldberg et al. JAMA 2015): La pauta de 60mg x5d → 40mg x5d → 20mg x5d demostró una modesta mejoría funcional a las 3 semanas, pero NINGUNA mejoría estadísticamente significativa en el dolor de pierna frente a placebo, con mayor tasa de eventos adversos. Por ello, NICE desaconseja los corticoides orales de rutina en ciática",
+        "NOTA SOBRE PAUTA PRAGMÁTICA: La pauta de 40 mg/día x5 días corresponde a una práctica clínica pragmática seleccionada de rescate, NO al régimen validado del RCT principal",
+        "NO programar ni repetir un segundo ciclo de corticoides orales si el primero no aportó mejoría sustancial"
+      ],
+      "interactions": [
+        "AINEs orales (multiplica por 4 el riesgo de úlcera digestiva)",
+        "Antidiabéticos (resistencia a la insulina)"
+      ],
+      "monitoring": [
+        "Glucemia capilar en diabéticos durante todo el ciclo",
+        "Tensión arterial"
+      ],
+      "whyThisTreatment": "Potente efecto antiinflamatorio sistémico que busca reducir el edema perineural y la liberación de citoquinas inflamatorias en la raíz comprimida.",
+      "whenToAvoid": "NO USAR DE FORMA RUTINARIA EN TODA CIÁTICA. Evitar en diabéticos mal controlados, hipertensos severos, úlcera activa o si el dolor es moderado y tolera actividad.",
       "evidence": {
         "level": "limited",
-        "badge": "🟡 USO INDIVIDUALIZADO / EVIDENCIA LIMITADA EN CIÁTICA",
-        "note": "Eficacia demostrada en neuralgia postherpética y dolor neuropático periférico focal; evidencia desfavorable/incierta para ciática lumbar común (NICE)."
+        "badge": "🟡 USO SELECCIONADO / NO RUTINARIO EN CIÁTICA",
+        "note": "Desaconsejado de rutina por NICE NG59 debido a modesto beneficio funcional sin reducción del dolor y más efectos adversos (RCT Goldberg JAMA)."
       }
     }
   },
@@ -695,57 +871,120 @@
     }
   },
   "spinal_interventions": {
-    "lumbar_epidural": {
-      "id": "sp-lumbar-epidural",
-      "name": "Infiltración Epidural Lumbar (Interlaminar / Transforaminal)",
-      "category": "interventional",
-      "indication": "Radiculopatía lumbar lumbociática compresiva severa con dolor radicular invalidante que no responde a manejo médico y limita la marcha.",
-      "requiredDiagnosis": "Concordancia estricta clínico-radiológica (la raíz sintomática explorada debe coincidir con el nivel de hernia/estenosis en RM).",
-      "target": "Espacio epidural transforaminal ecoguiado/fluoroscópico o interlaminar",
-      "drugs": "Corticoide no particulado (Dexametasona 4-8 mg) de elección transforaminal lumbar, o corticoide particulado en interlaminar baja + anestésico local (Ropivacaína 0.1-0.2% o Bupivacaína 0.125%)",
-      "volume": "2 a 3 mL transforaminal; 4 a 6 mL interlaminar",
+    "transforaminal_epidural": {
+      "id": "sp-tfesi",
+      "name": "Inyección Epidural Transforaminal Lumbar (TFESI)",
+      "category": "epidural_approach",
+      "indication": "Radiculopatía lumbar unilateral compresiva con nivel y raíz bien definidos y lesión focal concordante en RM (ej. hernia discal posterolateral o subarticular L5-S1 comprimiendo S1).",
+      "concept": "Tratamiento selectivo directo a la raíz afectada y al espacio epidural anterior.",
+      "advantage": "Concentra el volumen del fármaco en el foramen y cara ventral del saco dural, justo donde se produce el conflicto disco-radicular (NASS).",
+      "target": "Foramen intervertebral bajo control fluoroscópico / ecográfico con contraste radiológico obligatorio",
+      "drugs": "Corticoide no particulado (Dexametasona 4 a 8 mg) + Anestésico local (Ropivacaína 0.1-0.2% o Bupivacaína 0.125% 1-2 mL)",
+      "volume": "2 a 3 mL máximo (inyección lenta tras comprobar ausencia de inyección intravascular o intratecal)",
+      "expectedBenefit": "La epidural no elimina mecánicamente la hernia. Busca reducir temporalmente el dolor y la inflamación radicular (beneficio concentrado en los primeros 3 meses según revisión AAN 2025) para mejorar sueño, movimiento y función mientras progresa la reabsorción tisular.",
       "contraindications": [
-        "Síndrome de cauda equina o déficit motor progresivo rápido (indicación quirúrgica urgente)",
-        "Infección espinal (espondilodiscitis, absceso epidural) o bacteriemia sistémica",
-        "Trastorno severo de la coagulación o tratamiento anticoagulante no suspendido según guías ASRA/ESRA",
-        "Alergia a medios de contraste (si se usa fluoroscopia)"
+        "Infección espinal o sistémica",
+        "Anticoagulación no retirada según guías ASRA",
+        "Déficit motor progresivo rápido / Cauda equina (cirugía urgente)",
+        "Alergia a contraste yodado"
       ],
-      "precautions": [
-        "Requiere entorno aséptico y control de imagen (fluoroscopia o ecografía según abordaje)",
-        "Tiempos de suspensión de anticoagulantes y antiagregantes según guías oficiales"
-      ],
-      "reassessment": "A las 3 a 6 semanas. Si hay mejoría funcional >50%, continuar rehabilitación activa.",
-      "whyThisTreatment": "Disminuye el edema intraneural, la isquemia radicular y el baño de citoquinas inflamatorias en la raíz nerviosa comprimida.",
-      "whenToAvoid": "NUNCA realizar únicamente porque haya una hernia en la RM si el paciente no tiene clínica ni examen neurológico concordante.",
+      "reassessment": "Revisión obligatoria a las 3-6 semanas evaluando dolor de pierna, fuerza, reflejos, Lasègue y función.",
       "evidence": {
         "level": "high",
-        "badge": "🟢 EVIDENCIA ALTA EN CIÁTICA CONCORDANTE",
-        "note": "Eficaz para reducir el dolor radicular y evitar o demorar la necesidad de cirugía a corto y medio plazo."
+        "badge": "🟢 EVIDENCIA ALTA EN RADICULOPATÍA FOCAL CONCORDANTE",
+        "note": "Recomendada por NASS y guías internacionales para alivio sintomático a corto y medio plazo en hernia discal concordante."
+      }
+    },
+    "interlaminar_epidural": {
+      "id": "sp-ilesi",
+      "name": "Inyección Epidural Interlaminar Lumbar (ILESI)",
+      "category": "epidural_approach",
+      "indication": "Radiculopatía bilateral, afectación de varios territorios radiculares, estenosis de canal central o cuando se busca una dispersión epidural más amplia.",
+      "concept": "Más amplia, menos selectiva.",
+      "advantage": "Permite distribuir un volumen mayor en el espacio epidural posterior y bañar múltiples segmentos vertebrales simultáneamente.",
+      "target": "Espacio interlaminar lumbar (L3-L4 o L4-L5) con técnica de pérdida de resistencia",
+      "drugs": "Corticoide (Dexametasona 8 mg o particulado en niveles bajos) + Anestésico local (Mepivacaína 1% o Ropivacaína 0.2%)",
+      "volume": "4 a 6 mL",
+      "expectedBenefit": "Alivio sintomático y reducción de la inflamación multiradicular para facilitar la movilización activa.",
+      "contraindications": [
+        "Infección",
+        "Coagulopatía / Anticoagulación",
+        "Cirugía previa con pérdida de referencias interlaminares"
+      ],
+      "reassessment": "A las 3-6 semanas.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA EN AFECTACIÓN BILATERAL / MULTISEGMENTARIA",
+        "note": "Reconocida por ASIPP y consensos internacionales para dolor radicular difuso o estenosis central."
+      }
+    },
+    "caudal_epidural": {
+      "id": "sp-caudal-epidural",
+      "name": "Inyección Epidural Caudal",
+      "category": "epidural_approach",
+      "indication": "Niveles lumbares bajos (L5-S1), afectación multisegmentaria sacrolumbar, acceso interlaminar difícil, o determinadas situaciones postquirúrgicas (fibrosis epidural / síndrome postlaminectomía).",
+      "concept": "Difusión amplia ascendente desde el hiato sacro.",
+      "advantage": "Acceso seguro y relativamente sencillo a través del hiato sacro, evitando el canal lumbar instrumentado.",
+      "target": "Hiato sacro ecoguiado o fluoroscópico",
+      "drugs": "Corticoide + Anestésico local diluido en suero fisiológico",
+      "volume": "8 a 15 mL (mayor volumen para permitir ascenso del fármaco hasta L4-L5 y L5-S1)",
+      "expectedBenefit": "Alivio analgésico regional para niveles lumbosacros bajos.",
+      "contraindications": [
+        "Infección en zona sacrococcígea / quiste pilonidal",
+        "Anticoagulación no controlada"
+      ],
+      "reassessment": "A las 4-6 semanas.",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA EN NIVELES BAJOS Y POSTQUIRÚRGICOS",
+        "note": "Útil y segura en estenosis lumbar distal y síndrome de cirugía de espalda fallida (FBSS)."
+      }
+    },
+    "drg_pulsed_radiofrequency": {
+      "id": "sp-drg-prf",
+      "name": "Radiofrecuencia Pulsada del Ganglio de la Raíz Dorsal (PRF-DRG)",
+      "category": "radiofrequency",
+      "indication": "Dolor radicular lumbosacro crónico refractario (>3-6 meses) tras fracaso del manejo conservador estructurado e infiltración epidural, con raíz bien identificada.",
+      "target": "Polo superior del foramen intervertebral adyacente al ganglio de la raíz dorsal (control fluoroscópico estricto)",
+      "technique": "Radiofrecuencia pulsada (42°C, 2 Hz, ancho de pulso 20 ms durante 120-240 segundos)",
+      "concept": "Neuromodulación biológica no ablativa que altera la expresión de citoquinas y canales iónicos sin provocar lesión térmica destructiva del nervio.",
+      "contraindications": [
+        "Infección local/sistémica",
+        "Déficit motor agudo",
+        "Falta de correlación anatómica"
+      ],
+      "reassessment": "A las 6-12 semanas.",
+      "whyThisTreatment": "Opción intervencionista avanzada en dolor radicular neuropático crónico cuando se desea evitar la cirugía o la radiofrecuencia térmica destructiva.",
+      "whenToAvoid": "NO es tratamiento estándar de primera línea. Evitar en radiculopatía aguda <6-12 semanas donde la evolución natural y la epidural son de elección.",
+      "evidence": {
+        "level": "limited",
+        "badge": "🟠 OPCIÓN AVANZADA / EVIDENCIA LIMITADA (Baja certeza)",
+        "note": "Revisiones sistemáticas (2024-2025) describen posible beneficio analgésico a 3 meses pero con baja certeza global y sin mejoría funcional contundente demostrada."
       }
     },
     "facet_radiofrequency": {
       "id": "sp-facet-rf",
-      "name": "Bloqueo Diagnóstico y Radiofrecuencia de Ramos Mediales Facetarios",
+      "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales Facetarios (80°C / 90s)",
       "category": "radiofrequency",
-      "indication": "Dolor lumbar axial o cervical facetario crónico (>3-6 meses) con hiperextensión dolorosa y test de Kemp positivo.",
-      "requiredDiagnosis": "Respuesta positiva (>50-80% de alivio transitorio) a 1 o 2 bloqueos diagnósticos ecoguiados/fluoroscópicos de ramos mediales con anestésico local.",
-      "target": "Ramos mediales dorsales vertebrales (ej. L3, L4, L5 para articulaciones L4-L5 y L5-S1)",
-      "technique": "Radiofrecuencia térmica convencional (80°C durante 90 segundos) o radiofrecuencia pulsada",
+      "indication": "Dolor LUMBAR AXIAL o CERVICAL FACETARIO crónico tras bloqueo diagnóstico previo confirmatorio (>50-80% de alivio transitorio).",
+      "requiredDiagnosis": "Respuesta positiva a bloqueos diagnósticos de ramos mediales. ¡ESTRICTAMENTE INDICADO PARA DOLOR FACETARIO AXIAL!",
+      "target": "Ramos mediales dorsales vertebrales (inervación exclusiva de las articulaciones facetarias)",
+      "technique": "Radiofrecuencia térmica convencional continua (80°C durante 90 segundos)",
       "contraindications": [
         "Infección local o sistémica",
         "Falta de respuesta al bloqueo diagnóstico previo",
-        "Marcapasos / desfibrilador (requiere precauciones con el bisturí/RF)"
+        "Presencia de marcapasos no protegido"
       ],
       "precautions": [
-        "Puede existir molestia miofascial tipo quemazón durante 7-10 días tras el procedimiento térmico"
+        "¡PROHIBIDO OFRECER PARA RADICULOPATÍA / CIÁTICA!: La RF de ramos mediales inerva exclusivamente las articulaciones facetarias posteriores; NO trata la compresión ni la inflamación de la raíz nerviosa espinal."
       ],
-      "reassessment": "A las 6-8 semanas y seguimiento a 6-12 meses.",
-      "whyThisTreatment": "Desnervación térmica de las fibras sensoriales articulares que transmiten el dolor nociceptivo facetario.",
-      "whenToAvoid": "Evitar realizar radiofrecuencia directa sin bloqueo diagnóstico previo confirmatorio.",
+      "reassessment": "A las 6-8 semanas.",
+      "whyThisTreatment": "Desnervación térmica de las fibras nociceptivas articulares facetarias para dolor lumbar axial mecánico.",
+      "whenToAvoid": "NUNCA realizar en dolor radicular irradiado a pierna ni sin bloqueo diagnóstico previo positivo.",
       "evidence": {
         "level": "high",
-        "badge": "🟢 EVIDENCIA ALTA TRAS BLOQUEO POSITIVO",
-        "note": "Nivel I de evidencia según guías de la SIS (Spine Intervention Society) cuando se seleccionan pacientes con bloqueo previo concordante."
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR FACETARIO AXIAL (SIS / NICE)",
+        "note": "Recomendada en dolor lumbar axial crónico tras bloqueo diagnóstico positivo; NULA indicación en radiculopatía."
       }
     }
   },
@@ -787,5 +1026,18 @@
         }
       ]
     }
-  }
+  },
+  "neuromodulation_principle": "La dosis objetivo no es la dosis máxima. Es la menor dosis que proporciona una mejoría clínicamente útil con tolerabilidad aceptable.",
+  "neuromodulation_safety_checklist": [
+    "Función renal (aclaramiento de creatinina)",
+    "Función hepática",
+    "Edad y fragilidad",
+    "Riesgo de caídas y ataxia",
+    "Somnolencia diurna y mareo",
+    "Capacidad de conducción de vehículos / manejo de maquinaria",
+    "Tensión arterial (HTA)",
+    "Interacciones serotoninérgicas (riesgo de Síndrome Serotoninérgico)",
+    "Antecedentes psiquiátricos (viraje maníaco, ideación)",
+    "Pauta de retirada lenta y progresiva"
+  ]
 }
