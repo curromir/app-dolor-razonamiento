@@ -24,11 +24,13 @@ class ClinicalReasoningEngine {
    * @param {Object} pathway - Clinical pathway JSON data
    * @param {Object} testsCatalog - Full tests_catalog.json data (state.catalog)
    * @param {Object} treatmentsCatalog - Full treatments_catalog.json data
+   * @param {Object} coachCatalog - Full coach_catalog.json data
    */
-  constructor(pathway, testsCatalog, treatmentsCatalog) {
+  constructor(pathway, testsCatalog, treatmentsCatalog, coachCatalog) {
     this.pathway = pathway;
     this.catalog = testsCatalog;
     this.treatmentsCatalog = treatmentsCatalog || (typeof window !== 'undefined' ? window.TREATMENTS_CATALOG : null);
+    this.coachCatalog = coachCatalog || (typeof window !== 'undefined' ? window.COACH_CATALOG : null);
 
     // Session state
     this.session = {
@@ -1117,9 +1119,128 @@ class ClinicalReasoningEngine {
     return this.pathway.followUp || null;
   }
 
+  proceedToCoach() {
+    this.session.currentStep = 'coach';
+    this._addCompletedStep('follow_up');
+  }
+
+  // ─────────────────────────────────────────────
+  // STEP 9 — CIERRE COACH DE LA CONSULTA
+  // ─────────────────────────────────────────────
+
+  /**
+   * Generates a patient-centered communication closing script
+   * tailored to the identified generator, selected treatment, and patient's functional goal.
+   * 
+   * @param {string} version - 'express' (10s) | 'standard' (30s) | 'extended' (60s)
+   * @param {number} altIndex - Alternative wording index (for "Otra forma de explicarlo")
+   */
+  getCoachClosing(version = 'standard', altIndex = 0) {
+    const pathwayId = this.pathway.id || '';
+    const region = this.pathway.region || '';
+    const catalog = this.coachCatalog || (typeof window !== 'undefined' ? window.COACH_CATALOG : null) || {};
+    const templates = catalog.closingTemplates || {};
+    const mantras = catalog.takeHomeMantras || {};
+
+    // 1. Resolve Patient Functional Goal
+    const functionalGoal = (this.session.functionalGoal && this.session.functionalGoal.trim().length > 0)
+      ? this.session.functionalGoal.trim()
+      : this._getDefaultFunctionalGoal();
+
+    // 2. Determine Best Matching Template
+    let template = null;
+    const isInterventionSafe = (this.session.concordanceLevel === 'high' || this.session.concordanceLevel === 'partial') && !this.session.hasActiveRedFlag;
+
+    if (region === 'hombro') {
+      template = isInterventionSafe ? templates.shoulder_infiltrated : templates.shoulder_conservative;
+    } else if (region === 'rodilla' || region === 'cadera') {
+      template = templates.knee_oa || templates.generic_default;
+    } else if (pathwayId.includes('radicular')) {
+      template = templates.lumbar_radicular || templates.generic_default;
+    } else if (pathwayId.includes('plantar') || pathwayId.includes('pie') || region === 'tobillo_pie') {
+      template = templates.plantar_fascia || templates.generic_default;
+    } else if (pathwayId.includes('nociplastic') || region === 'nociplastico') {
+      template = templates.nociplastic || templates.generic_default;
+    } else {
+      template = templates.generic_default || {};
+    }
+
+    if (!template) {
+      template = templates.generic_default || {
+        express: 'Hemos identificado el generador principal de su dolor. Adaptaremos la carga y pautaremos ejercicio activo para que pueda volver a {FUNCTIONAL_GOAL}.',
+        standard: 'Por los hallazgos de la anamnesis, la exploración física y las pruebas de imagen, hemos identificado el generador que con mayor probabilidad explica su dolor. Nuestro objetivo no es solo bajar los síntomas, sino que pueda volver a {FUNCTIONAL_GOAL}.',
+        extended: 'Hemos realizado una correlación clínica rigurosa entre sus síntomas, las maniobras exploratorias y las pruebas complementarias para localizar el origen del problema. Trabajaremos juntos con ejercicio progresivo para que recupere su meta de {FUNCTIONAL_GOAL}.',
+        alternatives: ['Creemos que este es el principal generador. Reduciremos el dolor para recuperar progresivamente la función y que vuelva a {FUNCTIONAL_GOAL}.'],
+        takeHomeKey: 'general'
+      };
+    }
+
+    // 3. Resolve Raw Script Text by Version or Alternative
+    let rawText = '';
+    const alternatives = template.alternatives || [];
+    
+    if (altIndex > 0 && alternatives.length > 0) {
+      const idx = (altIndex - 1) % alternatives.length;
+      rawText = alternatives[idx];
+    } else {
+      if (version === 'express') rawText = template.express || template.standard || '';
+      else if (version === 'extended') rawText = template.extended || template.standard || '';
+      else rawText = template.standard || '';
+    }
+
+    // 4. Interpolate {FUNCTIONAL_GOAL}
+    const text = rawText.replace(/{FUNCTIONAL_GOAL}/g, `«${functionalGoal}»`);
+
+    // 5. Resolve Take-Home Mantra
+    const takeHomeKey = template.takeHomeKey || 'general';
+    const takeHomeMantra = mantras[takeHomeKey] || mantras.general || {
+      text: 'MENOS DOLOR PARA MOVERSE MÁS. MOVERSE MÁS PARA HACERSE MÁS FUERTE. HACERSE MÁS FUERTE PARA RECUPERAR SU VIDA.',
+      flow: 'COMPRENDER EL DOLOR → MODULAR CARGA → ENTRENAR FUERZA → RECUPERAR VIDA'
+    };
+
+    // 6. Gather Contextual Coach Phrases
+    const allPhrases = catalog.coachPhrases || {};
+    const relevantCategories = [];
+
+    if (isInterventionSafe && allPhrases.infiltracion) relevantCategories.push(allPhrases.infiltracion);
+    if (allPhrases.ejercicio) relevantCategories.push(allPhrases.ejercicio);
+    if (allPhrases.filosofia) relevantCategories.push(allPhrases.filosofia);
+    if (!this.session.hasActiveRedFlag && allPhrases.dolor_y_dano) relevantCategories.push(allPhrases.dolor_y_dano);
+    if (allPhrases.responsabilidad) relevantCategories.push(allPhrases.responsabilidad);
+    if (allPhrases.expectativas) relevantCategories.push(allPhrases.expectativas);
+
+    return {
+      version,
+      altIndex,
+      text,
+      functionalGoal,
+      takeHomeMantra,
+      visualFlow: takeHomeMantra.flow,
+      templateId: template.id,
+      alternativesCount: alternatives.length,
+      relevantCategories,
+      initialFavorites: catalog.initialFavorites || []
+    };
+  }
+
+  /**
+   * Helper to provide an intuitive default functional goal if none entered
+   */
+  _getDefaultFunctionalGoal() {
+    const region = this.pathway.region || '';
+    const pathwayId = this.pathway.id || '';
+    if (region === 'hombro') return 'levantar el brazo sin dolor para vestirse y dormir de ese lado';
+    if (region === 'rodilla') return 'caminar 30 minutos seguidos y subir escaleras';
+    if (region === 'cadera') return 'caminar con agilidad y calzarse sin limitación';
+    if (pathwayId.includes('radicular')) return 'dormir sin dolor en la pierna y caminar con normalidad';
+    if (pathwayId.includes('plantar')) return 'apoyar el pie por la mañana sin dolor punzante y pasear';
+    if (region === 'cervical') return 'mover el cuello con libertad al conducir y trabajar frente a la pantalla';
+    return 'realizar sus actividades diarias habituales con autonomía y sin dolor';
+  }
+
   proceedToSummary() {
     this.session.currentStep = 'summary';
-    this._addCompletedStep('follow_up');
+    this._addCompletedStep('coach');
   }
 
   // ─────────────────────────────────────────────
@@ -1131,6 +1252,7 @@ class ClinicalReasoningEngine {
     const treatment = this.getTreatmentPlan();
     const followUp = this.getFollowUpPlan();
     const imagingReport = this.generateImagingReport();
+    const coach = this.getCoachClosing('standard');
 
     // Build structured summary text
     const sections = [];
@@ -1222,6 +1344,11 @@ class ClinicalReasoningEngine {
     // Seguimiento
     if (followUp) {
       sections.push(`SEGUIMIENTO\n${followUp.timing}\nParámetros: ${followUp.parameters.map(p => p.name).join(', ')}`);
+    }
+
+    // Cierre Coach al Paciente
+    if (coach && coach.text) {
+      sections.push(`CIERRE COACH AL PACIENTE (30s)\n«${coach.text}»\n\nMANTRA PARA RECORDAR:\n${coach.takeHomeMantra?.text || ''}`);
     }
 
     const fullText = sections.join('\n\n');
@@ -1384,6 +1511,7 @@ class ClinicalReasoningEngine {
       { id: 'generator', label: 'Generador', icon: '🎯' },
       { id: 'treatment', label: 'Tratamiento', icon: '💊' },
       { id: 'follow_up', label: 'Seguimiento', icon: '📅' },
+      { id: 'coach', label: 'Cierre Coach', icon: '🗣️' },
       { id: 'summary', label: 'Resumen HC', icon: '📋' }
     ];
 

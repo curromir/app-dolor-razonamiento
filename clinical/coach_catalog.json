@@ -1,0 +1,328 @@
+{
+  "version": "1.0.0",
+  "title": "Catálogo Maestro de Comunicación Clínica y Cierre Coach en Dolor",
+  "author": "Dr. Curro Mir / Antigravity",
+  "initialFavorites": [
+    {
+      "id": "fav-1",
+      "category": "infiltracion",
+      "categoryLabel": "Ventana de Oportunidad",
+      "text": "La infiltración abre una ventana de oportunidad; ahora tenemos que aprovecharla para recuperar movimiento, fuerza y función."
+    },
+    {
+      "id": "fav-2",
+      "category": "filosofia",
+      "categoryLabel": "Filosofía General",
+      "text": "Nuestro objetivo no es solamente que le duela menos: es que pueda volver a hacer las cosas que el dolor le ha quitado."
+    },
+    {
+      "id": "fav-3",
+      "category": "ejercicio",
+      "categoryLabel": "Dosis de Carga",
+      "text": "No necesitamos empezar fuerte. Necesitamos empezar por algo que pueda tolerar, repetir y progresar."
+    },
+    {
+      "id": "fav-4",
+      "category": "responsabilidad",
+      "categoryLabel": "Alianza Terapéutica",
+      "text": "Yo puedo ayudarle a reducir el dolor, pero la recuperación la construimos entre los dos."
+    },
+    {
+      "id": "fav-5",
+      "category": "expectativas",
+      "categoryLabel": "Expectativas Realistas",
+      "text": "No buscamos dolor cero para empezar a vivir; buscamos recuperar progresivamente su capacidad aunque todavía exista algo de dolor."
+    }
+  ],
+  "takeHomeMantras": {
+    "infiltration": {
+      "text": "LA INFILTRACIÓN ABRE LA VENTANA. EL MOVIMIENTO APROVECHA LA OPORTUNIDAD.",
+      "flow": "INFILTRAR → BAJAR DOLOR → MOVER → FORTALECER → RECUPERAR FUNCIÓN"
+    },
+    "exercise": {
+      "text": "TOLERAR → REPETIR → PROGRESAR.",
+      "flow": "TOLERAR CARGA → REPETIR CON CONSTANCIA → PROGRESAR CAPACIDAD"
+    },
+    "general": {
+      "text": "MENOS DOLOR PARA MOVERSE MÁS. MOVERSE MÁS PARA HACERSE MÁS FUERTE. HACERSE MÁS FUERTE PARA RECUPERAR SU VIDA.",
+      "flow": "COMPRENDER EL DOLOR → MODULAR CARGA → ENTRENAR FUERZA → RECUPERAR VIDA"
+    },
+    "arthrosis": {
+      "text": "LA IMAGEN MUESTRA LA ESTRUCTURA; EL ENTRENAMIENTO MEJORA SU FUNCIÓN.",
+      "flow": "IMAGEN ≠ FUNCIÓN → GANAR FUERZA ARTICULAR → ACTIVIDAD SIN MIEDO"
+    },
+    "tendon": {
+      "text": "EL TENDÓN SE CURA CON CARGA INTELIGENTE Y CONSTANCIA, NO CON REPOSO ABSOLUTO.",
+      "flow": "ISOMETRÍA INICIAL → CARGA PROGRESIVA → REMODELACIÓN TISULAR"
+    },
+    "radicular": {
+      "text": "DESCOMPRIMIR LA RAÍZ Y VIGILAR LA FUERZA PARA RETOMAR SU ACTIVIDAD.",
+      "flow": "CALMAR EL NERVIO → ACTIVIDAD TOLERABLE → CONTROL NEUROLÓGICO"
+    },
+    "nociplastic": {
+      "text": "DESENSIBILIZAR EL SISTEMA A TRAVÉS DEL MOVIMIENTO SEGURO Y EL BUEN DESCANSO.",
+      "flow": "EDUCACIÓN EN NEUROCIENCIA → MEJORAR SUEÑO → EXPOSICIÓN GRADUAL"
+    }
+  },
+  "coachPhrases": {
+    "filosofia": {
+      "label": "A. Filosofía General",
+      "icon": "🧭",
+      "phrases": [
+        "Nuestro objetivo no es solamente que le duela menos. Es que el dolor interfiera cada vez menos en su vida.",
+        "No tratamos una resonancia ni una ecografía: tratamos a una persona que quiere volver a hacer cosas.",
+        "La pregunta más importante no es solamente cuánto le duele, sino qué le impide hacer ese dolor."
+      ]
+    },
+    "infiltracion": {
+      "label": "B. Después de una Infiltración",
+      "icon": "🎯",
+      "visualFlow": "INFILTRAR → BAJAR DOLOR → MOVER → FORTALECER → RECUPERAR FUNCIÓN",
+      "phrases": [
+        "La infiltración no es el final del tratamiento. Es el comienzo de una oportunidad para recuperar función.",
+        "La infiltración abre una ventana de oportunidad; ahora tenemos que aprovecharla para mover, fortalecer y recuperar capacidad.",
+        "La infiltración abre la puerta; el ejercicio es lo que le permite atravesarla.",
+        "Yo puedo ayudar a bajar el dolor; después tenemos que enseñarle al cuerpo a funcionar mejor.",
+        "Si conseguimos que el dolor baje, no quiero que utilicemos esa mejoría solamente para descansar. Quiero que la utilicemos para recuperar movimiento.",
+        "Que le duela menos no significa que tenga que hacerlo todo de golpe; significa que podemos empezar a progresar.",
+        "El tratamiento no es infiltrar y esperar. Es infiltrar, mover, fortalecer y progresar."
+      ]
+    },
+    "ejercicio": {
+      "label": "C. Ejercicio y Dosis de Carga",
+      "icon": "💪",
+      "visualFlow": "TOLERAR → REPETIR → PROGRESAR",
+      "phrases": [
+        "El ejercicio no es simplemente una recomendación: forma parte del tratamiento.",
+        "El cuerpo se adapta a aquello que hacemos repetidamente. Tenemos que volver a enseñarle progresivamente lo que queremos que sea capaz de hacer.",
+        "No necesitamos empezar fuerte. Necesitamos empezar por algo que pueda mantener.",
+        "La mejor dosis de ejercicio no es necesariamente la más intensa: es la que puede repetir con regularidad y progresar poco a poco.",
+        "No buscamos que entrene mucho de golpe; buscamos que entrene de forma constante.",
+        "Primero tolerar. Después repetir. Finalmente progresar."
+      ]
+    },
+    "metafora_pastilla": {
+      "label": "D. Metáfora de la Pastilla",
+      "icon": "💊",
+      "phrases": [
+        "Imagine que existiera una pastilla capaz de mejorar fuerza, movilidad, equilibrio, sueño, estado de ánimo y salud cardiovascular. Probablemente la tomaría. Esa medicina existe, pero no se traga: se llama movimiento y ejercicio.",
+        "El ejercicio es uno de los tratamientos con mayor número de beneficios distintos, pero necesita una cosa para funcionar: constancia."
+      ]
+    },
+    "dolor_y_dano": {
+      "label": "E. Dolor y Daño (Educación en Neurociencia)",
+      "icon": "🧠",
+      "contraindicatedInRedFlags": true,
+      "phrases": [
+        "Que una actividad moleste un poco no significa automáticamente que esté dañando la estructura.",
+        "No necesitamos conseguir dolor cero para empezar a movernos. Necesitamos encontrar una cantidad de actividad que su cuerpo pueda tolerar.",
+        "El objetivo no es proteger indefinidamente la zona, sino recuperar progresivamente su tolerancia.",
+        "Un poco de molestia durante la recuperación puede ser aceptable; lo importante es cómo responde su cuerpo durante las horas posteriores.",
+        "Vamos a utilizar el dolor como información, no como una orden automática de parar."
+      ]
+    },
+    "miedo_movimiento": {
+      "label": "F. Miedo al Movimiento (Kinesiofobia)",
+      "icon": "🛡️",
+      "phrases": [
+        "No quiero que luche contra su cuerpo; quiero que vuelva a confiar en él poco a poco.",
+        "La recuperación no consiste en demostrar hoy todo lo que puede hacer. Consiste en conseguir que dentro de unas semanas pueda hacer más que ahora.",
+        "No hay que pasar de cero a cien. Hay que empezar por una cantidad tolerable, repetirla y después avanzar.",
+        "Su cuerpo necesita exposición progresiva, no heroicidades."
+      ]
+    },
+    "artrosis": {
+      "label": "G. Artrosis y Cambios Degenerativos",
+      "icon": "🦴",
+      "phrases": [
+        "La imagen nos dice cómo está la estructura; no determina por sí sola cuánto puede funcionar usted.",
+        "No necesitamos una articulación perfecta para conseguir una articulación mucho más funcional.",
+        "Puede que no podamos cambiar completamente lo que aparece en la radiografía, pero sí podemos cambiar fuerza, movilidad, tolerancia y capacidad.",
+        "Nuestro objetivo no es rejuvenecer la radiografía. Es mejorar a la persona que está delante de nosotros."
+      ]
+    },
+    "funcion": {
+      "label": "H. Función y Metas Personales",
+      "icon": "🎯",
+      "phrases": [
+        "Nuestra meta principal no será únicamente un número en una escala de dolor, sino que pueda volver a hacer lo que hoy le cuesta.",
+        "El éxito de este tratamiento se medirá por cada actividad concreta que logremos reconquistar.",
+        "Utilizaremos la mejoría analgésica para avanzar paso a paso hacia su objetivo personal."
+      ]
+    },
+    "responsabilidad": {
+      "label": "I. Responsabilidad Compartida / Alianza",
+      "icon": "🤝",
+      "phrases": [
+        "Yo puedo poner las herramientas médicas; usted va a construir gran parte de la recuperación con lo que haga entre consulta y consulta.",
+        "Yo le ayudo a reducir las barreras. Usted recupera progresivamente la capacidad.",
+        "Esto no es algo que yo le hago a usted: es un tratamiento que construimos entre los dos.",
+        "Mi trabajo es ayudarle a que pueda empezar. El suyo será mantener el proceso."
+      ]
+    },
+    "expectativas": {
+      "label": "J. Expectativas Realistas",
+      "icon": "⏳",
+      "phrases": [
+        "No buscamos una solución mágica de un día para otro; buscamos una mejoría que podamos mantener.",
+        "Prefiero una mejoría progresiva y mantenida a una mejoría enorme que dure solamente unos días.",
+        "No me interesa únicamente cómo estará mañana. Me interesa cómo estará dentro de varios meses.",
+        "Nuestro objetivo es una recuperación sostenible, no simplemente un alivio momentáneo."
+      ]
+    },
+    "reposo": {
+      "label": "K. Reposo Relativo vs Actividad",
+      "icon": "🚶",
+      "phrases": [
+        "El reposo puede ser útil durante un periodo corto, pero la capacidad se recupera utilizándola progresivamente.",
+        "Descansar puede bajar temporalmente los síntomas; entrenar progresivamente aumenta lo que su cuerpo puede tolerar.",
+        "Queremos descubrir cuánto puede hacer sin provocar una reacción excesiva y construir desde ahí."
+      ]
+    },
+    "motivacion": {
+      "label": "L. Motivación y Resiliencia",
+      "icon": "🔥",
+      "phrases": [
+        "No tiene que recuperar toda su vida esta semana. Sólo necesitamos empezar a recuperarla.",
+        "Pequeños avances repetidos terminan produciendo grandes cambios.",
+        "No busque hacerlo perfecto. Busque hacerlo suficientemente bien y repetirlo.",
+        "La constancia suele ser más importante que la intensidad.",
+        "Menos miedo, más movimiento y progresión inteligente."
+      ]
+    },
+    "prp": {
+      "label": "Terapias Biológicas — PRP",
+      "icon": "🩸",
+      "phrases": [
+        "El PRP intenta favorecer un entorno biológico que facilite la recuperación, pero sigue siendo fundamental progresar adecuadamente la carga y la función. La mejoría, cuando aparece, suele ser progresiva.",
+        "No es una inyección mágica que actúe de inmediato: modula la biología del tejido para que responda mejor a la carga."
+      ]
+    },
+    "acido_hialuronico": {
+      "label": "Viscosuplementación — Ácido Hialurónico",
+      "icon": "💧",
+      "phrases": [
+        "Este tratamiento busca reducir los síntomas articulares durante un periodo de tiempo. Si conseguimos que la articulación moleste menos, utilizaremos esa mejoría para aumentar actividad, fuerza y función.",
+        "No es un lubricante que repare el cartílago al 100%, sino una ayuda mecánica temporal para entrenar mejor la musculatura que protege la articulación."
+      ]
+    },
+    "eswt": {
+      "label": "Ondas de Choque — ESWT",
+      "icon": "⚡",
+      "phrases": [
+        "Las ondas de choque forman parte del tratamiento, pero no sustituyen la recuperación activa. Su papel es intentar facilitar una evolución favorable del tejido mientras progresamos la carga.",
+        "La estimulación mecánica ayuda a reactivar el tejido, pero la ganancia funcional definitiva vendrá de los ejercicios diarios."
+      ]
+    },
+    "emtt": {
+      "label": "Terapia Electromagnética — EMTT Magnetolith",
+      "icon": "🧲",
+      "phrases": [
+        "Esta terapia se utiliza como complemento para intentar reducir síntomas y facilitar la recuperación funcional. No sustituye el ejercicio ni la progresión de carga.",
+        "Es un estímulo electromagnético no invasivo que busca aliviar el dolor para que pueda realizar la fisioterapia activa con mayor confort."
+      ]
+    },
+    "radiculopatia": {
+      "label": "Dolor Radicular / Ciática",
+      "icon": "⚡",
+      "phrases": [
+        "La irritación del nervio suele tener una evolución favorable en la mayoría de los casos con tiempo y manejo de carga. El tratamiento busca calmar esa irritación para que pueda descansar y moverse.",
+        "Vigilaremos la fuerza y los reflejos en cada revisión. Si nota pérdida brusca de fuerza en el pie o dificultad para orinar, nos avisará de inmediato."
+      ]
+    },
+    "nociplastico": {
+      "label": "Sensibilización Central / Nociplástico",
+      "icon": "🌪️",
+      "phrases": [
+        "En su caso no parece existir una única estructura rota que explique todo el dolor. El sistema nervioso que procesa las alarmas se ha vuelto hipersensible.",
+        "El dolor es 100% real. Nuestro objetivo será 'bajar el volumen' de ese amplificador mediante ejercicio gradual, descanso adecuado y reducción del miedo al movimiento."
+      ]
+    }
+  },
+  "closingTemplates": {
+    "shoulder_infiltrated": {
+      "id": "tpl-shoulder-inf",
+      "appliesTo": { "regions": ["hombro"], "hasInfiltration": true },
+      "express": "Por la exploración y la ecografía, el manguito y la bursa están irritados. La infiltración busca reducir el dolor para que podamos empezar de inmediato los ejercicios y que vuelva a {FUNCTIONAL_GOAL}.",
+      "standard": "Por la forma en que aparece el dolor, la exploración y la ecografía, creemos que la zona que más está contribuyendo al problema es el manguito rotador y la bursa subacromial. La infiltración que planteamos no es el final del tratamiento, sino una ventana de oportunidad: si logramos bajar el dolor, aprovecharemos esa mejoría para mover, fortalecer y recuperar tolerancia progresiva. Nuestro objetivo no es solo aliviar el hombro, sino que pueda volver a {FUNCTIONAL_GOAL}.",
+      "extended": "Hemos correlacionado sus síntomas con los test de exploración física y la ecografía en consulta, concluyendo que el generador principal de su dolor es la inflamación subacromial y la sobrecarga del manguito rotador. El tratamiento que hemos pautado tiene una lógica clara: la infiltración ecoguiada actúa como un cortafuegos para calmar la irritación aguda. Sin embargo, la infiltración solo abre la puerta; es el programa de ejercicio progresivo el que le permitirá atravesarla y consolidar la recuperación. Entre los dos construiremos el proceso: yo le ayudo a reducir las barreras de dolor, y usted trabajará la fuerza y el control motor para reconquistar su meta de {FUNCTIONAL_GOAL}. Revisaremos su evolución en 4 a 6 semanas evaluando no solo el dolor, sino su capacidad funcional.",
+      "alternatives": [
+        "Creemos que el manguito rotador es el principal generador. La infiltración calma la zona para abrir una ventana de oportunidad que debemos aprovechar con ejercicio activo hacia su meta de {FUNCTIONAL_GOAL}.",
+        "No tratamos solo una ecografía, sino su capacidad de movimiento. Al bajar el dolor del hombro con la técnica ecoguiada, iniciaremos el fortalecimiento progresivo para que vuelva a {FUNCTIONAL_GOAL}."
+      ],
+      "takeHomeKey": "infiltration"
+    },
+    "shoulder_conservative": {
+      "id": "tpl-shoulder-cons",
+      "appliesTo": { "regions": ["hombro"], "hasInfiltration": false },
+      "express": "El manguito rotador está sobrecargado pero intacto. La clave es dosificar la carga y realizar ejercicio progresivo para que vuelva a {FUNCTIONAL_GOAL}.",
+      "standard": "Por la exploración y la ecografía, el manguito rotador presenta una tendinopatía sin roturas quirúrgicas. El tendón necesita recuperar capacidad para tolerar esfuerzo. No buscamos reposo absoluto ni forzar de golpe: aplicaremos ejercicios progresivos que pueda tolerar, repetir y avanzar hasta recuperar su actividad de {FUNCTIONAL_GOAL}.",
+      "extended": "El cuadro clínico que presenta corresponde a un dolor relacionado con el manguito rotador en fase mecánica. La ecografía confirma que no hay roturas que precisen cirugía. Por tanto, el tratamiento de elección es la mecano-terapia activa: adaptar temporalmente las actividades por encima de la cabeza y realizar contracciones progresivas para enseñarle al tendón a soportar carga de nuevo. Si una molestia ligera aparece durante los ejercicios pero cede al día siguiente, significa que estamos en la dosis correcta. Nuestra meta compartida es que vuelva a realizar {FUNCTIONAL_GOAL} con total seguridad.",
+      "alternatives": [
+        "El tendón necesita estímulo, no reposo indefinido. Con una pauta de carga bien tolerada y constante conseguiremos que retome {FUNCTIONAL_GOAL}.",
+        "El objetivo no es proteger el hombro para siempre, sino devolverle la fuerza necesaria para su vida diaria y para {FUNCTIONAL_GOAL}."
+      ],
+      "takeHomeKey": "tendon"
+    },
+    "knee_oa": {
+      "id": "tpl-knee-oa",
+      "appliesTo": { "regions": ["rodilla"], "hasInfiltration": true },
+      "express": "La radiografía muestra desgaste, pero la imagen no determina cuánto puede funcionar. Usaremos el tratamiento para calmar la rodilla y ganar fuerza para {FUNCTIONAL_GOAL}.",
+      "standard": "La rodilla tiene cambios de artrosis, pero la radiografía no determina por sí sola cuánto podrá caminar o funcionar usted. Nuestro objetivo no es modificar la radiografía, sino conseguir que vuelva progresivamente a {FUNCTIONAL_GOAL}. Vamos a trabajar fuerza de cuádriceps y tolerancia articular, utilizando el tratamiento para facilitar ese proceso. En la revisión mediremos no solo el dolor, sino lo que es capaz de hacer.",
+      "extended": "Es muy importante entender que los hallazgos degenerativos que vemos en la imagen son habituales y no significan que su rodilla esté condenada a empeorar. No necesitamos una articulación perfecta en la radiografía para tener una articulación mucho más fuerte, estable y funcional. El tratamiento médico que aplicamos busca reducir la inflamación y el dolor para permitirle realizar ejercicio terapéutico sin sobrecarga. El músculo es el verdadero amortiguador de la rodilla: cuanto más fuerte y activo esté, menos sufrirá la articulación. Trabajaremos juntos para que vuelva a {FUNCTIONAL_GOAL} de forma sostenible.",
+      "alternatives": [
+        "No tratamos una radiografía, tratamos a una persona que quiere moverse mejor. Ganando fuerza y dosificando la actividad conseguiremos que vuelva a {FUNCTIONAL_GOAL}.",
+        "El tratamiento reduce los síntomas para que la rodilla tolere mejor el movimiento. La constancia en el ejercicio será el pilar para recuperar {FUNCTIONAL_GOAL}."
+      ],
+      "takeHomeKey": "arthrosis"
+    },
+    "lumbar_radicular": {
+      "id": "tpl-lumbar-rad",
+      "appliesTo": { "regions": ["lumbar"], "hasRadiculopathy": true },
+      "express": "El dolor se debe a la irritación de una raíz nerviosa lumbar. El tratamiento busca calmar el nervio para que duerma, camine y vuelva a {FUNCTIONAL_GOAL}.",
+      "standard": "La clínica y la resonancia son concordantes con irritación de una raíz nerviosa lumbar. El objetivo del tratamiento no es eliminar mecánicamente la hernia de un día para otro, sino reducir la inflamación del nervio para que descanse mejor, camine con más soltura y progrese hacia {FUNCTIONAL_GOAL}. Vigilaremos su fuerza y reflejos en la revisión.",
+      "extended": "El dolor que baja por la pierna se debe a que una raíz nerviosa lumbar está inflamada y sensible al estiramiento. En la gran mayoría de los casos, este proceso evoluciona favorablemente con el paso de las semanas a medida que baja la inflamación biológica. El tratamiento farmacológico y los procedimientos van dirigidos a cortar el dolor agudo para que pueda mantener una vida activa y evitar el reposo en cama. Es fundamental mantener actividad suave dentro de lo tolerable. Vigilaremos la fuerza en cada consulta; si en algún momento nota que el pie se le cae o pierde control de esfínteres, sabe que debe consultar de inmediato. Nuestro objetivo final es que recupere su autonomía y regrese a {FUNCTIONAL_GOAL}.",
+      "alternatives": [
+        "El nervio está irritado pero tiene capacidad de recuperación. Calmar el dolor nos permitirá mantener la actividad necesaria para volver a {FUNCTIONAL_GOAL}.",
+        "Tratamos la inflamación del nervio para devolverle el descanso y la movilidad, vigilando siempre la fuerza para alcanzar su meta de {FUNCTIONAL_GOAL}."
+      ],
+      "takeHomeKey": "radicular"
+    },
+    "plantar_fascia": {
+      "id": "tpl-plantar-fascia",
+      "appliesTo": { "regions": ["tobillo_pie", "pie"], "hasPlantar": true },
+      "express": "La fascia plantar necesita recuperar tolerancia a la carga matutina y al impacto. Con ejercicio específico de carga conseguiremos que vuelva a {FUNCTIONAL_GOAL}.",
+      "standard": "El dolor en el talón se debe a una pérdida de tolerancia a la carga en la fascia plantar. No se trata de un espolón óseo peligroso, sino de un tejido que necesita adaptarse de nuevo al impacto. Con estiramientos activos, carga progresiva en dorsiflexión y calzado adecuado conseguiremos que vuelva a {FUNCTIONAL_GOAL}.",
+      "extended": "La fasciopatía plantar es un proceso mecano-biológico donde la inserción de la fascia en el calcáneo ha sobrepasado su umbral de carga. Las terapias físicas y las ondas de choque ayudan a estimular la regeneración, pero el estímulo principal es el ejercicio de alta carga isométrica y excéntrica del tendón y la fascia (protocolo con toalla bajo los dedos). No buscamos reposo absoluto, sino modular los primeros pasos de la mañana y dosificar las caminatas para permitir que el tejido se regenere. Con paciencia y constancia conseguiremos que vuelva a {FUNCTIONAL_GOAL}.",
+      "alternatives": [
+        "El talón necesita adaptarse de nuevo al apoyo. Con ejercicios de carga controlada y constancia lograremos que retome {FUNCTIONAL_GOAL}.",
+        "No es una inflamación pasajera sino una cuestión de capacidad de carga. Entrenaremos la fascia para que vuelva a soportar {FUNCTIONAL_GOAL}."
+      ],
+      "takeHomeKey": "tendon"
+    },
+    "nociplastic": {
+      "id": "tpl-nociplastic",
+      "appliesTo": { "regions": ["nociplastico"], "isNociplastic": true },
+      "express": "El dolor es real y se debe a una hipersensibilidad del sistema nervioso. Trabajaremos sueño, movimiento suave y autorregulación para {FUNCTIONAL_GOAL}.",
+      "standard": "En su caso no existe una única estructura rota o dañada que justifique todo el dolor. El sistema nervioso central que procesa las señales se ha vuelto más sensible, como una alarma calibrada demasiado alta. El dolor es 100% real. Nuestro objetivo será desensibilizar ese sistema poco a poco mejorando el descanso, la actividad física gradual y la confianza en el movimiento para que vuelva a {FUNCTIONAL_GOAL}.",
+      "extended": "Comprender qué está pasando es el primer tratamiento y el más potente. Cuando el dolor persiste en el tiempo, el sistema nervioso aprende a proteger la zona de forma desmedida, generando dolor incluso ante estímulos normales. Esto se conoce como dolor nociplástico o sensibilización central. No significa que 'esté en su cabeza', sino en los circuitos de procesamiento neurobiológico. La buena noticia es que el cerebro y los nervios tienen neuroplasticidad y pueden reeducarse. Con ejercicio suave y regular, higiene del sueño, reducción del estrés y una relación de confianza con su cuerpo, conseguiremos regular ese volumen de alarma y acercarnos a su meta de {FUNCTIONAL_GOAL}.",
+      "alternatives": [
+        "El sistema de alarma de su cuerpo está hiperactivo. Reeducándolo con movimiento seguro y buen descanso lograremos recuperar {FUNCTIONAL_GOAL}.",
+        "Desensibilizar el sistema nervioso requiere paciencia, exposición gradual y constancia para reconquistar su vida y volver a {FUNCTIONAL_GOAL}."
+      ],
+      "takeHomeKey": "nociplastic"
+    },
+    "generic_default": {
+      "id": "tpl-generic",
+      "appliesTo": {},
+      "express": "Hemos identificado el generador principal de su dolor. Adaptaremos la carga y pautaremos ejercicio activo para que pueda volver a {FUNCTIONAL_GOAL}.",
+      "standard": "Por los hallazgos de la anamnesis, la exploración física y las pruebas de imagen, hemos identificado el generador que con mayor probabilidad explica su dolor. Nuestro objetivo no es solo bajar los síntomas, sino que el dolor interfiera cada vez menos en su día a día y pueda volver a {FUNCTIONAL_GOAL}. Combinaremos el tratamiento médico con un plan activo de recuperación funcional.",
+      "extended": "Hemos realizado una correlación clínica rigurosa entre sus síntomas, las maniobras exploratorias y las pruebas complementarias para localizar el origen del problema. El plan de tratamiento tiene una hoja de ruta estructurada: aliviar el dolor inicial para romper el círculo de limitación y poner en marcha un programa de ejercicio terapéutico adaptado. La recuperación se construye sesión a sesión entre la ayuda médica y su compromiso activo con las pautas domiciliarias. Mediremos el éxito del tratamiento por la recuperación progresiva de su autonomía y de su meta personal de {FUNCTIONAL_GOAL}.",
+      "alternatives": [
+        "Creemos que este es el principal generador. Reduciremos el dolor para recuperar progresivamente la función y que vuelva a {FUNCTIONAL_GOAL}.",
+        "El tratamiento médico abre la puerta para que con el movimiento activo y la constancia pueda recuperar {FUNCTIONAL_GOAL}."
+      ],
+      "takeHomeKey": "general"
+    }
+  }
+}

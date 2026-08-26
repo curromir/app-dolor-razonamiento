@@ -1,5 +1,5 @@
-// Service Worker v24.0 - Test de Exploración Física & Razonamiento Clínico en Dolor 2.0 (Módulo Terapéutico Avanzado)
-const CACHE_NAME = 'dolor-tests-v24';
+// Service Worker v25.0 - Test de Exploración Física & Razonamiento Clínico en Dolor 2.0 (Paso 9 Cierre Coach)
+const CACHE_NAME = 'dolor-tests-v25';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

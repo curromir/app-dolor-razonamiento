@@ -46,6 +46,18 @@
       }
     }
 
+    // Preload coach closing catalog if not already in window
+    if (!window.COACH_CATALOG) {
+      try {
+        const cRes = await fetch('clinical/coach_catalog.json?v=' + Date.now());
+        if (cRes.ok) {
+          window.COACH_CATALOG = await cRes.json();
+        }
+      } catch (e) {
+        console.warn('Error loading coach catalog:', e);
+      }
+    }
+
     if (!containers.clinical) return;
 
     // Check for saved session in localStorage
@@ -338,7 +350,7 @@
 
     // Instantiate Engine
     const catalog = window.state ? window.state.catalog : null;
-    uiState.engine = new window.ClinicalReasoningEngine(pathwayData, catalog, window.TREATMENTS_CATALOG);
+    uiState.engine = new window.ClinicalReasoningEngine(pathwayData, catalog, window.TREATMENTS_CATALOG, window.COACH_CATALOG);
     uiState.engine.setMentorMode(uiState.mentorMode);
     uiState.engine.setExpressMode(uiState.expressMode);
 
@@ -486,6 +498,9 @@
         break;
       case 'follow_up':
         renderFollowUpView(host);
+        break;
+      case 'coach':
+        renderCoachView(host);
         break;
       case 'summary':
         renderClinicalSummaryView(host);
@@ -1807,12 +1822,272 @@
             <span>← Modificar Tratamiento</span>
           </button>
           
-          <button class="btn-primary" style="padding: 0.75rem 1.6rem;" onclick="window.ClinicalUI.proceedToSummary()">
-            <span>Generar Resumen de Historia Clínica 📋 →</span>
+          <button class="btn-primary" style="padding: 0.75rem 1.6rem;" onclick="window.ClinicalUI.proceedToCoach()">
+            <span>🗣️ Cierre Coach de la Consulta →</span>
           </button>
         </div>
       </div>
     `;
+  }
+
+  function proceedToCoach() {
+    if (!uiState.engine) return;
+    uiState.engine.proceedToCoach();
+    renderCurrentStep();
+  }
+
+  // ─────────────────────────────────────────────
+  // 12. STEP 9 — COACH CLOSING VIEW
+  // ─────────────────────────────────────────────
+
+  function renderCoachView(container) {
+    if (!uiState.coachVersion) uiState.coachVersion = 'standard';
+    if (uiState.coachAltIndex === undefined) uiState.coachAltIndex = 0;
+
+    const coach = uiState.engine.getCoachClosing(uiState.coachVersion, uiState.coachAltIndex);
+    if (!coach) return;
+
+    // Load favorites from localStorage or initial
+    let favorites = [];
+    try {
+      const stored = localStorage.getItem('dolor_coach_favorites');
+      favorites = stored ? JSON.parse(stored) : (coach.initialFavorites || []);
+    } catch (e) {
+      favorites = coach.initialFavorites || [];
+    }
+
+    container.innerHTML = `
+      <div class="coach-view-stack">
+        <!-- Header Badge -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="home-hero-badge" style="background: rgba(99, 102, 241, 0.15); color: #818cf8; border-color: rgba(99, 102, 241, 0.35);">
+            🗣️ Paso 9 · Cierre Coach de la Consulta
+          </div>
+          <button class="exam-tool-btn" onclick="window.ClinicalUI.openCoachLibraryModal()">
+            <span>📚</span> <span>Explorar Biblioteca Completa de Frases Coach</span>
+          </button>
+        </div>
+
+        <!-- VERSION SELECTOR TABS -->
+        <div class="coach-version-selector-bar">
+          <button class="coach-version-pill ${uiState.coachVersion === 'express' ? 'active' : ''}" onclick="window.ClinicalUI.setCoachVersion('express')">
+            <span>⚡</span> <span>Cierre Express (10s)</span>
+          </button>
+          <button class="coach-version-pill ${uiState.coachVersion === 'standard' ? 'active' : ''}" onclick="window.ClinicalUI.setCoachVersion('standard')">
+            <span>🗣️</span> <span>Cierre Habitual (30s)</span>
+          </button>
+          <button class="coach-version-pill ${uiState.coachVersion === 'extended' ? 'active' : ''}" onclick="window.ClinicalUI.setCoachVersion('extended')">
+            <span>🧠</span> <span>Cierre Explicativo (60s)</span>
+          </button>
+        </div>
+
+        <!-- MAIN COACH SCRIPT CARD -->
+        <div class="coach-script-card glass-panel">
+          <div class="coach-script-header">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="font-size: 1.25rem;">🗣️</span>
+              <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: var(--text-primary);">
+                ¿Cómo se lo explicaría al paciente?
+              </h3>
+            </div>
+            <div style="display: flex; gap: 0.4rem; align-items: center;">
+              <span class="treatment-badge-pill blue" style="font-size: 0.7rem;">
+                ${uiState.coachVersion === 'express' ? '1-2 frases' : uiState.coachVersion === 'extended' ? 'Explicación Completa' : '4-6 frases'}
+              </span>
+            </div>
+          </div>
+
+          <div class="coach-script-body">
+            <p class="coach-speech-bubble" id="coachScriptText">
+              ${coach.text}
+            </p>
+          </div>
+
+          <div class="coach-script-actions">
+            <button class="clinical-action-btn" onclick="window.ClinicalUI.nextCoachAlternative()">
+              <span>🔄</span> <span>Otra forma de explicarlo</span>
+            </button>
+            <button class="btn-primary" id="btnCopyCoachScript" style="padding: 0.55rem 1.25rem;" onclick="window.ClinicalUI.copyCoachScript()">
+              <span id="copyCoachLabel">Copiar Cierre Coach 📋</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- VISUAL FLOW DIAGRAM BANNER -->
+        ${coach.visualFlow ? `
+          <div class="coach-visual-flow-banner">
+            <span style="font-size: 1.2rem;">🧭</span>
+            <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+              <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: #818cf8;">Ruta de Recuperación Activa:</strong>
+              <div class="coach-flow-steps-text">${coach.visualFlow}</div>
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- TAKE-HOME MANTRA CARD -->
+        <div class="coach-take-home-card glass-panel">
+          <div class="take-home-badge">💡 PARA RECORDAR — FRASE PARA LLEVARSE A CASA</div>
+          <blockquote class="take-home-mantra-text">
+            «${coach.takeHomeMantra.text}»
+          </blockquote>
+        </div>
+
+        <!-- FAVORITES / MY COACH PHRASES -->
+        <div class="coach-favorites-section glass-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h4 style="margin: 0 0 0.15rem; font-size: 0.95rem; font-weight: 800; color: var(--text-primary);">
+                ⭐ Mis Frases Coach Favoritas
+              </h4>
+              <p style="margin: 0; font-size: 0.75rem; color: var(--text-muted);">
+                Frases de impacto listas para usar durante la consulta.
+              </p>
+            </div>
+            <button class="exam-tool-btn" onclick="window.ClinicalUI.openCoachLibraryModal()">
+              <span>+</span> <span>Añadir Frase</span>
+            </button>
+          </div>
+
+          <div class="coach-favorites-grid">
+            ${favorites.map((fav, fIdx) => `
+              <div class="coach-fav-chip">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <span class="coach-cat-tag">${fav.categoryLabel || fav.category || 'Coach'}</span>
+                  <button class="coach-star-btn active" title="Quitar de favoritos" onclick="window.ClinicalUI.toggleCoachFavorite('${fav.text.replace(/'/g, "\\'")}', '${fav.categoryLabel || ''}')">★</button>
+                </div>
+                <p style="margin: 0; font-size: 0.8rem; color: var(--text-primary); line-height: 1.4;">
+                  «${fav.text}»
+                </p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 0.75rem;">
+          <button class="clinical-action-btn" onclick="window.ClinicalUI.goToStep('follow_up')">
+            <span>← Volver a Seguimiento</span>
+          </button>
+          
+          <button class="btn-primary" style="padding: 0.75rem 1.6rem;" onclick="window.ClinicalUI.proceedToSummary()">
+            <span>Finalizar y Ver Resumen de Historia Clínica 📋 →</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function setCoachVersion(version) {
+    uiState.coachVersion = version;
+    uiState.coachAltIndex = 0;
+    renderCurrentStep();
+  }
+
+  function nextCoachAlternative() {
+    uiState.coachAltIndex = (uiState.coachAltIndex || 0) + 1;
+    renderCurrentStep();
+  }
+
+  function copyCoachScript() {
+    const speechEl = document.getElementById('coachScriptText');
+    if (!speechEl) return;
+    navigator.clipboard.writeText(speechEl.innerText.trim()).then(() => {
+      const lbl = document.getElementById('copyCoachLabel');
+      if (lbl) {
+        lbl.textContent = '¡Cierre Copiado! ✅';
+        setTimeout(() => { lbl.textContent = 'Copiar Cierre Coach 📋'; }, 2500);
+      }
+    }).catch(() => {
+      alert('Cierre copiado.');
+    });
+  }
+
+  function toggleCoachFavorite(phraseText, categoryLabel) {
+    let favorites = [];
+    try {
+      const stored = localStorage.getItem('dolor_coach_favorites');
+      favorites = stored ? JSON.parse(stored) : (window.COACH_CATALOG?.initialFavorites || []);
+    } catch (e) {
+      favorites = window.COACH_CATALOG?.initialFavorites || [];
+    }
+
+    const idx = favorites.findIndex(f => f.text === phraseText);
+    if (idx >= 0) {
+      favorites.splice(idx, 1);
+    } else {
+      favorites.push({
+        id: 'fav-' + Date.now(),
+        category: 'custom',
+        categoryLabel: categoryLabel || 'Personalizada',
+        text: phraseText
+      });
+    }
+
+    localStorage.setItem('dolor_coach_favorites', JSON.stringify(favorites));
+    renderCurrentStep();
+  }
+
+  function openCoachLibraryModal() {
+    const catalog = window.COACH_CATALOG || {};
+    const categories = catalog.coachPhrases || {};
+
+    let favorites = [];
+    try {
+      const stored = localStorage.getItem('dolor_coach_favorites');
+      favorites = stored ? JSON.parse(stored) : (catalog.initialFavorites || []);
+    } catch (e) {
+      favorites = catalog.initialFavorites || [];
+    }
+
+    const catKeys = Object.keys(categories);
+
+    showAuxModal(`
+      <div class="aux-modal-header" style="border-bottom: 2px solid #6366f1;">
+        <h3><span>📚</span> <span>Biblioteca de Frases y Metáforas Coach</span></h3>
+      </div>
+      <div class="aux-items-list" style="max-height: 70vh; overflow-y: auto;">
+        <!-- Add custom phrase box -->
+        <div class="structure-box" style="margin-bottom: 1rem; background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.3);">
+          <strong style="font-size: 0.86rem; color: #818cf8;">➕ Crear Nueva Frase Personalizada</strong>
+          <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem;">
+            <input type="text" id="newCoachPhraseInput" placeholder="Escribe aquí tu frase o metáfora clínica..." style="flex: 1; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-primary); font-size: 0.82rem;" />
+            <button class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="
+              const inp = document.getElementById('newCoachPhraseInput');
+              if (inp && inp.value.trim().length > 5) {
+                window.ClinicalUI.toggleCoachFavorite(inp.value.trim(), 'Mi Frase');
+                document.getElementById('auxDecisionModal')?.remove();
+              }
+            ">Guardar</button>
+          </div>
+        </div>
+
+        ${catKeys.map(k => {
+          const cat = categories[k];
+          return `
+            <div class="structure-box" style="margin-bottom: 0.85rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+                <h4 style="margin: 0; font-size: 0.92rem; color: var(--text-primary);">${cat.icon || '💬'} ${cat.label}</h4>
+              </div>
+              ${cat.visualFlow ? `<div style="font-size: 0.74rem; color: #818cf8; font-weight: 700; margin-bottom: 0.45rem;">${cat.visualFlow}</div>` : ''}
+              <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+                ${(cat.phrases || []).map(p => {
+                  const isFav = favorites.some(f => f.text === p);
+                  return `
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; padding: 0.4rem 0.6rem; border-radius: var(--radius-sm); background: var(--bg-surface); border: 1px solid var(--border-color);">
+                      <p style="margin: 0; font-size: 0.8rem; color: var(--text-primary); line-height: 1.4; flex: 1;">«${p}»</p>
+                      <button class="coach-star-btn ${isFav ? 'active' : ''}" style="cursor: pointer; background: transparent; border: none; font-size: 1rem; color: ${isFav ? '#f59e0b' : 'var(--text-muted)'};" onclick="
+                        window.ClinicalUI.toggleCoachFavorite('${p.replace(/'/g, "\\'")}', '${cat.label.replace(/'/g, "\\'")}');
+                        document.getElementById('auxDecisionModal')?.remove();
+                      ">${isFav ? '★' : '☆'}</button>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `);
   }
 
   function proceedToSummary() {
@@ -1822,7 +2097,7 @@
   }
 
   // ─────────────────────────────────────────────
-  // 12. STEP 8 — CLINICAL REPORT SUMMARY (EMR COPY)
+  // 13. STEP 10 — CLINICAL REPORT SUMMARY (EMR COPY)
   // ─────────────────────────────────────────────
 
   function renderClinicalSummaryView(container) {
@@ -2242,7 +2517,13 @@
     startTrainingCase: startTrainingCase,
     toggleComorbidity: toggleComorbidity,
     copyPrescriptionText: copyPrescriptionText,
-    openInjectablesComparisonModal: openInjectablesComparisonModal
+    openInjectablesComparisonModal: openInjectablesComparisonModal,
+    proceedToCoach: proceedToCoach,
+    setCoachVersion: setCoachVersion,
+    nextCoachAlternative: nextCoachAlternative,
+    copyCoachScript: copyCoachScript,
+    toggleCoachFavorite: toggleCoachFavorite,
+    openCoachLibraryModal: openCoachLibraryModal
   };
 
 })();
