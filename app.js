@@ -668,12 +668,22 @@ function renderFichas() {
   DOM.fichasContainer.innerHTML = displayFichas.map(f => `
     <article class="ficha-notion-card glass-panel" id="${f.id}">
       <div class="ficha-notion-header">
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
-          <span style="font-size: 2rem;">${f.icon}</span>
-          <div>
-            <h2 class="ficha-notion-title">${f.title}</h2>
-            <span class="region-tag" style="margin-top: 0.25rem; display: inline-block;">${f.region}</span>
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 2rem;">${f.icon}</span>
+            <div>
+              <h2 class="ficha-notion-title">${f.title}</h2>
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
+                <span class="region-tag">${f.region}</span>
+                <span style="font-size: 0.72rem; font-weight: 700; background: rgba(99, 102, 241, 0.15); color: #818cf8; padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid rgba(99, 102, 241, 0.3);">
+                  Notion Oficial v2.6
+                </span>
+              </div>
+            </div>
           </div>
+          <button class="coach-copy-btn" onclick="window.copyFichaText('${f.id}')" style="align-self: flex-start;">
+            <span>📋</span> <span>Copiar Ficha</span>
+          </button>
         </div>
       </div>
 
@@ -685,6 +695,26 @@ function renderFichas() {
 
   attachFichasFilterEvents();
 }
+
+window.copyFichaText = function(fichaId) {
+  if (!state.catalog) return;
+  const fichasList = state.catalog.fichas_notion_official || state.catalog.fichas_consulta || [];
+  const ficha = fichasList.find(f => f.id === fichaId);
+  if (!ficha) return;
+
+  const textToCopy = ficha.full_text || ficha.title;
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    alert(`✅ Ficha "${ficha.title}" copiada al portapapeles con éxito.`);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = textToCopy;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert(`✅ Ficha "${ficha.title}" copiada al portapapeles.`);
+  });
+};
 
 function attachFichasFilterEvents() {
   document.querySelectorAll('.fichas-filter-chip').forEach(chip => {

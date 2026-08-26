@@ -1,5 +1,5 @@
-// Service Worker v26.0 - Test de Exploración Física & Razonamiento Clínico en Dolor 2.0 (Neuromodulación NeuPSIG 2025 & Radiculopatía Estratificada)
-const CACHE_NAME = 'dolor-tests-v26';
+// Service Worker v27.0 - Test de Exploración Física & Fichas de Consulta de Dolor Notion v2.6
+const CACHE_NAME = 'dolor-tests-v27';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

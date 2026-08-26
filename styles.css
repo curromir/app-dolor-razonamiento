@@ -2630,3 +2630,92 @@ body.dark-theme .notion-styled-table td {
 body.dark-theme .notion-styled-table tr:hover td {
   background-color: rgba(255, 255, 255, 0.02);
 }
+
+/* Notion v2.6 Components & Typography */
+.notion-h1 {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 1.5rem 0 0.6rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.notion-h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.notion-h3 {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 1rem 0 0.4rem;
+}
+
+.notion-p {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 0.65rem;
+}
+
+.notion-li, .notion-oli {
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+  margin-bottom: 0.35rem;
+}
+
+.notion-toggle {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin: 0.85rem 0;
+  padding: 0.65rem 0.9rem;
+  transition: all var(--transition-fast);
+}
+
+.notion-toggle summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #818cf8;
+  user-select: none;
+}
+
+.notion-toggle summary:hover {
+  color: #a5b4fc;
+}
+
+.notion-toggle-body {
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 0.5rem;
+}
+
+.notion-callout-red {
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 4px solid #ef4444;
+}
+
+.notion-todo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+  margin: 0.35rem 0;
+  color: var(--text-primary);
+}
+
+.notion-subpage-link {
+  background: rgba(99, 102, 241, 0.07);
+  border: 1px dashed rgba(99, 102, 241, 0.3);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  margin: 0.5rem 0;
+  font-size: 0.84rem;
+  color: #c7d2fe;
+}
+
