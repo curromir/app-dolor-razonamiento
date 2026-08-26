@@ -1294,7 +1294,7 @@
           <div class="comorbidity-toolbar-card" style="border-color: rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.06);">
             <div class="comorbidity-toolbar-header">
               <div>
-                <strong style="font-size: 0.88rem; color: #818cf8;">⚡ Estratificación Clínica de la Radiculopatía (¿En qué fase estamos?)</strong>
+                <strong style="font-size: 0.92rem; color: var(--accent-blue);">⚡ Estratificación Clínica de la Radiculopatía (¿En qué fase estamos?)</strong>
                 <p style="margin: 0.15rem 0 0; font-size: 0.74rem; color: var(--text-muted);">
                   La decisión terapéutica y la indicación de RM/Infiltración dependen de la gravedad, el déficit neurológico y la fase evolutiva, NO de calendarios rígidos.
                 </p>
@@ -1315,8 +1315,8 @@
             </div>
 
             <!-- Phase Principles Box -->
-            <div class="structure-box" style="margin-top: 0.75rem; background: rgba(15, 23, 42, 0.7);">
-              <div style="font-size: 0.82rem; font-weight: 800; color: #fbbf24; margin-bottom: 0.4rem;">
+            <div class="structure-box" style="margin-top: 0.75rem; border-left: 4px solid #f59e0b;">
+              <div style="font-size: 0.86rem; font-weight: 800; color: #b45309; margin-bottom: 0.4rem;">
                 📌 Hoja de Ruta para ${(uiState.engine.pathway.clinicalPhases[uiState.radicularPhase || 'acute'] || {}).label}:
               </div>
               <ul style="margin: 0 0 0 1.2rem; padding: 0; font-size: 0.8rem; color: var(--text-primary); line-height: 1.5;">
@@ -1516,29 +1516,29 @@
 
             <!-- 🧠 NEUROMODULACIÓN FARMACOLÓGICA ESTRUCTURADA -->
             ${plan.tiers[4].neuromodulation ? `
-              <div class="structure-box" style="border: 1px solid rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.05); padding: 1rem; border-radius: var(--radius-md);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.4rem;">
-                  <h4 style="margin: 0; font-size: 0.98rem; font-weight: 800; color: #818cf8;">${plan.tiers[4].neuromodulation.title}</h4>
+              <div class="structure-box" style="margin-top: 1rem; border-color: rgba(99, 102, 241, 0.35); padding: 1.15rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.4rem;">
+                  <h4 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: var(--accent-blue);">🧠 ${plan.tiers[4].neuromodulation.title}</h4>
                   <span class="treatment-badge-pill blue" style="font-size: 0.7rem;">NeuPSIG 2025 / NICE</span>
                 </div>
 
                 <!-- Golden Principle Banner -->
-                <div class="safety-header-banner safe" style="margin-bottom: 0.75rem; padding: 0.6rem 0.85rem;">
-                  <span class="safety-banner-icon">💡</span>
+                <div class="safety-header-banner safe" style="margin-bottom: 0.85rem; padding: 0.75rem 1rem;">
+                  <span class="safety-banner-icon" style="font-size: 1.75rem;">💡</span>
                   <div class="safety-banner-text">
-                    <strong style="font-size: 0.82rem; color: #e0e7ff;">Mensaje Clínico Fundamental:</strong>
-                    <p style="font-size: 0.8rem; margin: 0.1rem 0 0; color: #c7d2fe;">«${plan.tiers[4].neuromodulation.principle}»</p>
+                    <strong>Mensaje Clínico Fundamental:</strong>
+                    <p>«${plan.tiers[4].neuromodulation.principle}»</p>
                   </div>
                 </div>
 
                 <!-- Safety Pre-Checklist -->
-                <div style="margin-bottom: 0.85rem;">
-                  <div style="font-size: 0.72rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.35rem;">
+                <div style="margin-bottom: 1rem;">
+                  <div style="font-size: 0.76rem; font-weight: 800; color: var(--text-primary); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.03em;">
                     Comprobaciones Previas Obligatorias:
                   </div>
-                  <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                  <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
                     ${plan.tiers[4].neuromodulation.safetyChecklist.map(chk => `
-                      <span style="font-size: 0.72rem; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 0.15rem 0.45rem; border-radius: var(--radius-sm);">
+                      <span class="checklist-safety-pill">
                         ✓ ${chk}
                       </span>
                     `).join('')}
@@ -1546,11 +1546,11 @@
                 </div>
 
                 <!-- Neuromodulators List -->
-                <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                   ${(plan.tiers[4].neuromodulation.drugs || []).map(drug => `
-                    <div class="structure-box" style="background: rgba(15, 23, 42, 0.6); ${!drug.isRoutinelyRecommended ? 'border-color: rgba(239, 68, 68, 0.4);' : ''}">
-                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.3rem;">
-                        <strong style="font-size: 0.88rem; color: ${!drug.isRoutinelyRecommended ? '#ef4444' : '#818cf8'};">${drug.genericName}</strong>
+                    <div class="neuromod-drug-card ${!drug.isRoutinelyRecommended ? 'not-recommended' : ''}">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem; flex-wrap: wrap; gap: 0.4rem;">
+                        <strong style="font-size: 0.95rem; font-weight: 800; color: ${!drug.isRoutinelyRecommended ? '#dc2626' : 'var(--text-primary)'};">${drug.genericName}</strong>
                         <div style="display: flex; align-items: center; gap: 0.35rem;">
                           <button class="vade-link-btn-mini" onclick="window.Vademecum.openDrug('${drug.id?.startsWith('med-') ? drug.id : 'med-' + drug.id.replace(/_/g, '-')}', true)" title="Ver ficha en Vademécum">
                             💊 Vademécum
@@ -1560,7 +1560,7 @@
                           </span>
                         </div>
                       </div>
-                      <div class="pharma-spec-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+                      <div class="pharma-spec-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
                         <div class="pharma-spec-item">
                           <strong>Inicio Práctico</strong>
                           <span>${drug.initialDose}</span>
@@ -1575,7 +1575,7 @@
                         </div>
                       </div>
                       ${drug.overrideReason ? `
-                        <div style="font-size: 0.76rem; color: #ef4444; background: rgba(239, 68, 68, 0.08); padding: 0.35rem 0.5rem; border-radius: var(--radius-sm); margin-top: 0.3rem;">
+                        <div style="font-size: 0.78rem; font-weight: 600; color: #b91c1c; background: #fef2f2; border: 1px solid #fca5a5; padding: 0.45rem 0.65rem; border-radius: var(--radius-sm); margin-top: 0.45rem;">
                           ${drug.overrideReason}
                         </div>
                       ` : ''}
@@ -1772,17 +1772,17 @@
             <!-- SPINAL INTERVENTIONS: EPIDURAL SELECTOR & RADIOFREQUENCY -->
             ${plan.tiers[6].spinal?.approaches ? `
               <div class="structure-box" style="margin-bottom: 0.65rem; border-color: rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.05);">
-                <h4 style="margin: 0 0 0.35rem; font-size: 0.94rem; color: #818cf8;">🎯 Selección de Técnica Epidural Lumbar (Por Anatomía y Objetivo):</h4>
+                <h4 style="margin: 0 0 0.35rem; font-size: 0.98rem; font-weight: 800; color: var(--accent-blue);">🎯 Selección de Técnica Epidural Lumbar (Por Anatomía y Objetivo):</h4>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.65rem;">${plan.tiers[6].spinal.expectedBenefit}</p>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.65rem; margin-bottom: 0.75rem;">
                   ${plan.tiers[6].spinal.approaches.map(ap => `
-                    <div class="structure-box" style="background: rgba(15, 23, 42, 0.7);">
+                    <div class="structure-box">
                       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-                        <strong style="font-size: 0.85rem; color: var(--text-primary);">${ap.name}</strong>
+                        <strong style="font-size: 0.88rem; color: var(--text-primary);">${ap.name}</strong>
                       </div>
                       <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>Indicación:</strong> ${ap.indication}</p>
-                      <p style="font-size: 0.76rem; color: #818cf8; margin: 0 0 0.25rem;"><strong>Ventaja:</strong> ${ap.advantage || ap.concept}</p>
+                      <p style="font-size: 0.76rem; color: var(--accent-blue); font-weight: 600; margin: 0 0 0.25rem;"><strong>Ventaja:</strong> ${ap.advantage || ap.concept}</p>
                       <span class="treatment-badge-pill ${ap.evidence?.badge?.includes('ALTA') ? 'green' : 'blue'}" style="font-size: 0.65rem;">${ap.evidence?.badge || 'Reconocida'}</span>
                     </div>
                   `).join('')}

@@ -1,5 +1,5 @@
-// Service Worker v34.0 - Enlaces Interactivos Fichas Express v2.6
-const CACHE_NAME = 'dolor-tests-v34';
+// Service Worker v35.0 - Alto Contraste Neuromodulación & Banners de Seguridad
+const CACHE_NAME = 'dolor-tests-v35';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
