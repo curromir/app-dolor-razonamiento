@@ -1064,8 +1064,15 @@
 
     container.innerHTML = `
       <div class="imaging-protocol-card glass-panel">
-        <div class="home-hero-badge">
-          ${uiState.engine.pathway.ultrasound ? '🔊 Ecografía Musculoesquelética Dirigida' : '🏥 Correlación de Imagen por RM'}
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="home-hero-badge">
+            ${uiState.engine.pathway.ultrasound ? '🔊 Ecografía Musculoesquelética Dirigida' : '🏥 Correlación de Imagen por RM'}
+          </div>
+          ${uiState.engine.pathway.ultrasound ? `
+            <button class="vade-primary-btn" onclick="window.Ultrasound.openFromClinicalPathway({ pathwayId: '${uiState.engine.pathway.id}', region: '${uiState.engine.pathway.region || 'hombro'}', laterality: 'derecho' })" style="font-size: 0.8rem; padding: 0.35rem 0.85rem;">
+              🩻 Abrir Generador Ecográfico POCUS
+            </button>
+          ` : ''}
         </div>
 
         <div class="imaging-question-banner">
@@ -2713,7 +2720,17 @@
     nextCoachAlternative: nextCoachAlternative,
     copyCoachScript: copyCoachScript,
     toggleCoachFavorite: toggleCoachFavorite,
-    openCoachLibraryModal: openCoachLibraryModal
+    openCoachLibraryModal: openCoachLibraryModal,
+    injectUltrasoundReport: function(echoData) {
+      if (!uiState.engine) return;
+      if (echoData.concordance) {
+        uiState.engine.session.concordanceLevel = echoData.concordance === 'concordant' ? 'high' : echoData.concordance === 'possibly_related' ? 'partial' : 'discordant';
+      }
+      if (echoData.report) {
+        uiState.engine.session.customUltrasoundReport = echoData.report;
+      }
+      renderCurrentStep();
+    }
   };
 
 })();

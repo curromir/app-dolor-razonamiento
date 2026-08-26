@@ -1,0 +1,1421 @@
+{
+  "version": "1.0",
+  "editorialSource": "Notion Fichas & Plantillas de Ecografía en Dolor v2.6",
+  "lastUpdated": "2026-08-26",
+  "regions": [
+    {
+      "id": "hombro",
+      "name": "Hombro",
+      "icon": "🦴",
+      "color": "#3b82f6",
+      "clinicalQuestion": "¿Existe patología del supraespinoso, bursa SASD o tendón bicipital concordante con el patrón de dolor?",
+      "locations": [
+        {
+          "id": "lateral",
+          "name": "Lateral / Deltoideo",
+          "priorityStructures": [
+            "supraespinoso",
+            "bursa_sasd",
+            "infraespinoso",
+            "dinamica_subacromial"
+          ]
+        },
+        {
+          "id": "anterior",
+          "name": "Anterior / Corredera",
+          "priorityStructures": [
+            "plb",
+            "subescapular",
+            "bursa_sasd"
+          ]
+        },
+        {
+          "id": "superior",
+          "name": "Superior / Clavicular",
+          "priorityStructures": [
+            "ac",
+            "supraespinoso"
+          ]
+        },
+        {
+          "id": "posterior",
+          "name": "Posterior / Escapular",
+          "priorityStructures": [
+            "infraespinoso",
+            "redondo_menor",
+            "labrum_posterior"
+          ]
+        },
+        {
+          "id": "rigidez",
+          "name": "Rigidez Global (Capsulitis)",
+          "priorityStructures": [
+            "intervalo_rotador",
+            "bursa_sasd",
+            "receso_axilar"
+          ]
+        },
+        {
+          "id": "difuso",
+          "name": "Difuso / Sin foco claro",
+          "priorityStructures": [
+            "supraespinoso",
+            "bursa_sasd",
+            "plb",
+            "ac"
+          ]
+        }
+      ],
+      "normalBaseline": "Tendones del manguito rotador (supraespinoso, infraespinoso y subescapular) de grosor, ecogenicidad y patrón fibrilar conservados, sin soluciones de continuidad ni calcificaciones. Porción larga del bíceps normoposicionada en la corredera bicipital, sin tenosinovitis. Bursa subacromial-subdeltoidea no distendida. Articulación acromioclavicular sin alteraciones significativas.",
+      "structures": [
+        {
+          "id": "supraespinoso",
+          "name": "Tendón del Supraespinoso",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Conservado",
+              "text": "Tendón del supraespinoso de morfología, grosor y ecoestructura normales, sin signos de rotura."
+            },
+            {
+              "id": "tendinopatia_leve",
+              "label": "Tendinopatía Leve/Moderada",
+              "text": "Tendón del supraespinoso discretamente engrosado y heterogéneo, con hipoecogenicidad focal y alteración del patrón fibrilar, sin rotura evidente."
+            },
+            {
+              "id": "tendinopatia_marcada",
+              "label": "Tendinopatía Marcada / Angiofibroblástica",
+              "text": "Tendón del supraespinoso francamente engrosado, marcadamente hipoecogénico y desestructurado."
+            },
+            {
+              "id": "rotura_parcial_articular",
+              "label": "Rotura Parcial (Cara Articular)",
+              "text": "Defecto hipo/anecoico focal en la vertiente articular del tendón supraespinoso, compatible con rotura parcial de cara articular."
+            },
+            {
+              "id": "rotura_parcial_bursal",
+              "label": "Rotura Parcial (Cara Bursal)",
+              "text": "Defecto focal con pérdida de convexidad en la vertiente bursal del tendón supraespinoso, compatible con rotura parcial bursal."
+            },
+            {
+              "id": "rotura_parcial_intratendinosa",
+              "label": "Rotura Parcial (Intratendinosa)",
+              "text": "Fisura lineal intratendinosa hipoecoica en el espesor del supraespinoso sin afectación de superficies libres."
+            },
+            {
+              "id": "rotura_completa",
+              "label": "Rotura Completa Transfixiante",
+              "text": "Solución de continuidad completa del tendón del supraespinoso con pérdida del espesor tendinoso y aposición de la bursa sobre el cartílago humeral."
+            },
+            {
+              "id": "calcificacion",
+              "label": "Tendinopatía Calcificante",
+              "text": "Foco hiperecogénico intra/peritendinoso en supraespinoso compatible con calcificación tendinosa."
+            }
+          ]
+        },
+        {
+          "id": "bursa_sasd",
+          "name": "Bursa Subacromial-Subdeltoidea (SASD)",
+          "category": "bursa",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / No distendida",
+              "text": "Bursa subacromial-subdeltoidea de grosor fino (<1.5 mm), sin distensión líquida."
+            },
+            {
+              "id": "distension_leve",
+              "label": "Distensión Líquida Leve",
+              "text": "Discreta distensión líquida anecoica de la bursa subacromial-subdeltoidea."
+            },
+            {
+              "id": "bursitis_engrosada",
+              "label": "Bursitis con Engrosamiento Sinovial",
+              "text": "Bursitis SASD con engrosamiento parietal ecogénico y moderada distensión líquida."
+            }
+          ]
+        },
+        {
+          "id": "plb",
+          "name": "Porción Larga del Bíceps (PLB)",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal en corredera",
+              "text": "Tendón de la porción larga del bíceps centrado en corredera, de calibre y patrón fibrilar normales."
+            },
+            {
+              "id": "tenosinovitis",
+              "label": "Tenosinovitis / Líquido en vaina",
+              "text": "Líquido anecoico en la vaina sinovial del tendón de la PLB en corredera bicipital, compatible con tenosinovitis."
+            },
+            {
+              "id": "tendinosis",
+              "label": "Tendinopatía / Engrosamiento",
+              "text": "Tendón del bíceps engrosado, heterogéneo y redondeado en corte transversal."
+            },
+            {
+              "id": "subluxacion",
+              "label": "Subluxación / Inestabilidad medial",
+              "text": "Desplazamiento medial del tendón bicipital fuera de la corredera bicipital (subluxación)."
+            }
+          ]
+        },
+        {
+          "id": "subescapular",
+          "name": "Tendón Subescapular",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Conservado",
+              "text": "Tendón subescapular íntegro, de grosor y ecogenicidad adecuados."
+            },
+            {
+              "id": "tendinopatia",
+              "label": "Tendinopatía",
+              "text": "Tendón subescapular engrosado y heterogéneo en inserción troquiniana."
+            },
+            {
+              "id": "rotura_parcial",
+              "label": "Rotura parcial superior",
+              "text": "Solución de continuidad focal en las fibras craneales del tendón subescapular."
+            }
+          ]
+        },
+        {
+          "id": "infraespinoso",
+          "name": "Tendón Infraespinoso",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Conservado",
+              "text": "Tendón infraespinoso con espesor y orientación fibrilar fisiológicos."
+            },
+            {
+              "id": "tendinopatia",
+              "label": "Tendinopatía",
+              "text": "Engrosamiento hipoecoico del tendón infraespinoso en carilla media troquiteriana."
+            }
+          ]
+        },
+        {
+          "id": "ac",
+          "name": "Articulación Acromioclavicular (AC)",
+          "category": "joint",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Articulación acromioclavicular sin osteofitos marginales ni ensanchamiento cápsulo-ligamentoso."
+            },
+            {
+              "id": "artrosis",
+              "label": "Cambios degenerativos / Artrosis AC",
+              "text": "Hipertrofia articular acromioclavicular con osteofitos marginales e irregularidad cortical."
+            },
+            {
+              "id": "derrame",
+              "label": "Derrame / Quiste sinovial AC",
+              "text": "Distensión líquida de la cápsula articular AC (signo del géiser/derrame)."
+            }
+          ]
+        },
+        {
+          "id": "dinamica",
+          "name": "Maniobra Dinámica de Pinzamiento",
+          "category": "dynamic",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Deslizamiento libre subacromial",
+              "text": "En abducción activa se observa deslizamiento libre del supraespinoso bajo el arco coracoacromial."
+            },
+            {
+              "id": "conflicto_positivo",
+              "label": "Conflicto / Choque subacromial evidente",
+              "text": "En abducción activa se objetiva atrapamiento mecánico con resalte del tendón/bursa bajo el arco coracoacromial."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "La ecografía no valora adecuadamente el labrum glenoideo profundo ni el edema óseo subcondral.",
+        "En hombro congelado (capsulitis adhesiva), el engrosamiento del ligamento coracohumeral orienta pero el diagnóstico es prioritariamente clínico.",
+        "Las calcificaciones pueden proyectar sombra acústica posterior que oculta el espesor tendinoso subyacente."
+      ]
+    },
+    {
+      "id": "codo",
+      "name": "Codo",
+      "icon": "🟧",
+      "color": "#f97316",
+      "clinicalQuestion": "¿Existe entesopatía extensora/flexora, bursitis o atrapamiento del nervio cubital?",
+      "locations": [
+        {
+          "id": "lateral",
+          "name": "Lateral / Epicóndilo",
+          "priorityStructures": [
+            "tendon_comun_extensor",
+            "articulacion_radiocapitellar"
+          ]
+        },
+        {
+          "id": "medial",
+          "name": "Medial / Epitróclea / Cubital",
+          "priorityStructures": [
+            "tendon_comun_flexor",
+            "nervio_cubital_codo"
+          ]
+        },
+        {
+          "id": "posterior",
+          "name": "Posterior / Olécranon",
+          "priorityStructures": [
+            "bursa_olecraniana",
+            "tendon_tricipital"
+          ]
+        },
+        {
+          "id": "anterior",
+          "name": "Anterior / Fosa",
+          "priorityStructures": [
+            "biceps_distal",
+            "nervio_mediano_codo"
+          ]
+        }
+      ],
+      "normalBaseline": "Tendón común extensor y flexor de grosor, ecogenicidad e inserción perióstica conservados. Articulación radiocapitellar y húmero-cubital sin derrame ni cuerpos libres. Nervio cubital normoposicionado en el surco epitrocleo-olecraniano sin engrosamiento ni luxación dinámica. Bursa olecraniana no distendida.",
+      "structures": [
+        {
+          "id": "tendon_comun_extensor",
+          "name": "Tendón Común Extensor (Epicóndilo)",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Conservado",
+              "text": "Tendón común extensor con espesor normal y patrón fibrilar íntegro en su inserción epicondílea."
+            },
+            {
+              "id": "epicondilalgia_leve",
+              "label": "Epicondilalgia / Tendinopatía Extensora",
+              "text": "Engrosamiento hipoecoico del tendón común extensor en inserción perióstica, con pérdida de patrón fibrilar (epicondilalgia lateral)."
+            },
+            {
+              "id": "rotura_parcial_entesis",
+              "label": "Fisura / Rotura Parcial de Entesis",
+              "text": "Hipoecogenicidad marcada con hendidura anecoica en la entesis del extensor radial corto del carpo."
+            },
+            {
+              "id": "calcificacion",
+              "label": "Entesopatía calcificante",
+              "text": "Foco cálcico milimétrico adyacente a la cortical del epicóndilo lateral."
+            }
+          ]
+        },
+        {
+          "id": "tendon_comun_flexor",
+          "name": "Tendón Común Flexor (Epitróclea)",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Tendón común flexor de características ecográficas normales en epitróclea."
+            },
+            {
+              "id": "epitroclealgia",
+              "label": "Epitroclealgia / Codo de Golfista",
+              "text": "Tendón común flexor engrosado e hipoecoico en su inserción epitroclear (epitroclealgia)."
+            }
+          ]
+        },
+        {
+          "id": "nervio_cubital_codo",
+          "name": "Nervio Cubital en Codo",
+          "category": "nerve",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal en surco",
+              "text": "Nervio cubital en canal epitrocleo-olecraniano con calibre homogéneo y área de sección transversal (CSA) <9 mm²."
+            },
+            {
+              "id": "atrapamiento_cubital",
+              "label": "Neuropatía Cubital / Engrosamiento",
+              "text": "Nervio cubital marcadamente engrosado e hipoecoico en el codo (CSA >10 mm²), con pérdida del patrón fascicular."
+            },
+            {
+              "id": "subluxacion_dinamica",
+              "label": "Subluxación dinámica en flexión",
+              "text": "Durante la maniobra de flexión máxima del codo, el nervio cubital se luxa anteriormente sobre el vértice epitroclear."
+            }
+          ]
+        },
+        {
+          "id": "bursa_olecraniana",
+          "name": "Bursa Olecraniana",
+          "category": "bursa",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Bursa olecraniana colapsada, sin derrame ni engrosamiento parietal."
+            },
+            {
+              "id": "bursitis",
+              "label": "Bursitis Olecraniana",
+              "text": "Distensión líquida anecoica/hipoecoica de la bursa olecraniana con engrosamiento de la pared sinovial."
+            }
+          ]
+        },
+        {
+          "id": "biceps_distal",
+          "name": "Tendón Distal del Bíceps",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal en tuberosidad radial",
+              "text": "Tendón distal del bíceps continuo hasta su inserción en la tuberosidad bicipital del radio."
+            },
+            {
+              "id": "bursitis_bicipitoradial",
+              "label": "Bursitis Bicipitoradial",
+              "text": "Distensión líquida de la bursa bicipitoradial adyacente a la inserción tendinosa."
+            },
+            {
+              "id": "rotura_distal",
+              "label": "Rotura / Avulsión distal",
+              "text": "Discontinuidad tendinosa con retracción del cabo del bíceps distal."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "El ligamento colateral cubital requiere maniobras de estrés en valgo para evaluar inestabilidad sutil.",
+        "Las neuropatías cubitales leves pueden tener CSA normal en fases iniciales."
+      ]
+    },
+    {
+      "id": "muneca_mano",
+      "name": "Muñeca y Mano",
+      "icon": "🟨",
+      "color": "#eab308",
+      "clinicalQuestion": "¿Existe síndrome del túnel carpiano, tenosinovitis de De Quervain, dedo en resorte o rizartrosis?",
+      "locations": [
+        {
+          "id": "palmar_tunel",
+          "name": "Palmar / Túnel Carpiano",
+          "priorityStructures": [
+            "nervio_mediano_carpo",
+            "tendones_flexores_carpo"
+          ]
+        },
+        {
+          "id": "radial_dequervain",
+          "name": "Radial / Estiloides (De Quervain)",
+          "priorityStructures": [
+            "primer_compartimento_extensor",
+            "articulacion_tcm"
+          ]
+        },
+        {
+          "id": "dedos_palmar",
+          "name": "Palmar Dedos / Poleas",
+          "priorityStructures": [
+            "poleas_dedo",
+            "tendones_flexores_dedo"
+          ]
+        },
+        {
+          "id": "dorsal",
+          "name": "Dorsal / Carpo",
+          "priorityStructures": [
+            "compartimentos_extensores",
+            "ganglion_dorsal"
+          ]
+        },
+        {
+          "id": "cubital",
+          "name": "Cubital / Guyon",
+          "priorityStructures": [
+            "canal_guyon",
+            "ecu"
+          ]
+        }
+      ],
+      "normalBaseline": "Nervio mediano en túnel carpiano con área de sección transversal homogénea (<10 mm²) y retináculo flexor normoposicionado. Primer compartimento extensor con tendones abductor largo y extensor corto del pulgar íntegros sin tenosinovitis. Poleas flexoras A1 y tendones flexores de los dedos conservados sin atrapamiento dinámico. Articulación trapeciometacarpiana sin osteofitosis significativa.",
+      "structures": [
+        {
+          "id": "nervio_mediano_carpo",
+          "name": "Nervio Mediano (Túnel Carpiano)",
+          "category": "nerve",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal (CSA <10 mm²)",
+              "text": "Nervio mediano a la entrada del túnel carpiano con CSA normal (<10 mm²), patrón fascicular conservado y aplanamiento distal fisiológico."
+            },
+            {
+              "id": "cts_moderado",
+              "label": "Síndrome Túnel Carpiano (CSA 11-14 mm²)",
+              "text": "Nervio mediano engrosado e hipoecoico a nivel del pisiforme (CSA entre 11 y 14 mm²), con abombamiento del retináculo flexor y pérdida de fascículos."
+            },
+            {
+              "id": "cts_severo",
+              "label": "Síndrome Túnel Carpiano Severo (CSA >15 mm²)",
+              "text": "Marcado engrosamiento e hipoecogenicidad del nervio mediano proximal (CSA >15 mm²) con muesca compresiva marcada y atenuación distal."
+            },
+            {
+              "id": "mediano_bifido",
+              "label": "Nervio Mediano Bífido",
+              "text": "Variante anatómica de nervio mediano bífido con arteria mediana persistente."
+            }
+          ]
+        },
+        {
+          "id": "primer_compartimento_extensor",
+          "name": "1er Compartimento Extensor (De Quervain)",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Sin tenosinovitis",
+              "text": "Tendones APL y EPB en 1er compartimento dorsal de calibre y vaina sinovial normales sobre la estiloides radial."
+            },
+            {
+              "id": "de_quervain",
+              "label": "Tenosinovitis de De Quervain",
+              "text": "Marcado engrosamiento e hipoecogenicidad del retináculo extensor en 1er compartimento dorsal, con líquido en la vaina peritendinosa (Tenosinovitis de De Quervain)."
+            },
+            {
+              "id": "subcompartimento",
+              "label": "Presencia de tabique / subcompartimento",
+              "text": "Tabique osteofibroso intertendinoso que subdivide el primer compartimento dorsal."
+            }
+          ]
+        },
+        {
+          "id": "poleas_dedo",
+          "name": "Polea A1 y Tendones Flexores (Dedo en Resorte)",
+          "category": "dynamic",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Polea A1 fina y tendones flexores superficial y profundo con libre excursión longitudinal."
+            },
+            {
+              "id": "dedo_resorte",
+              "label": "Dedo en Resorte (Engrosamiento A1)",
+              "text": "Engrosamiento hipoecoico de la polea A1 con dificultad y resalte dinámico del tendón flexor durante la extensión del dedo (Dedo en resorte)."
+            }
+          ]
+        },
+        {
+          "id": "articulacion_tcm",
+          "name": "Articulación Trapeciometacarpiana (Rizartrosis)",
+          "category": "joint",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Interlínea trapeciometacarpiana conservada sin osteofitos ni sinovitis."
+            },
+            {
+              "id": "rizartrosis",
+              "label": "Rizartrosis / Osteofitos",
+              "text": "Estrechamiento de la interlínea trapeciometacarpiana con prominentes osteofitos marginales y subluxación dorsal de la base metacarpiana."
+            }
+          ]
+        },
+        {
+          "id": "ganglion_dorsal",
+          "name": "Ganglión Dorsal / Volar",
+          "category": "cyst",
+          "options": [
+            {
+              "id": "ganglion",
+              "label": "Ganglión Sinovial",
+              "text": "Lesión quística anecoica, bien delimitada y con refuerzo acústico posterior dependiente de la cápsula articular."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "El fibrocartílago triangular (TFCC) tiene una ventana ecográfica limitada; la RM o artro-RM es de elección si hay sospecha de rotura central.",
+        "Las tenosinovitis muy incipientes pueden cursar con edema peritendinoso sin abundante líquido visible."
+      ]
+    },
+    {
+      "id": "cadera",
+      "name": "Cadera y Glúteo",
+      "icon": "🟥",
+      "color": "#ef4444",
+      "clinicalQuestion": "¿Existe tendinopatía glútea (GTPS), bursitis trocantérica, sinovitis de cadera o bursitis iliopsoas?",
+      "locations": [
+        {
+          "id": "lateral_trocanter",
+          "name": "Lateral / Trocánter (GTPS)",
+          "priorityStructures": [
+            "gluteo_medio",
+            "gluteo_menor",
+            "bursa_trocanterica",
+            "cintilla_iliotibial_proximal"
+          ]
+        },
+        {
+          "id": "anterior_ingle",
+          "name": "Anterior / Ingle",
+          "priorityStructures": [
+            "receso_anterior_cadera",
+            "tendon_iliopsoas",
+            "bursa_iliopsoas"
+          ]
+        },
+        {
+          "id": "posterior_isquion",
+          "name": "Posterior / Isquion",
+          "priorityStructures": [
+            "isquiotibiales_proximales",
+            "nervio_ciatico_proximal"
+          ]
+        },
+        {
+          "id": "medial_adductor",
+          "name": "Medial / Aductores",
+          "priorityStructures": [
+            "adductor_longus",
+            "pubis"
+          ]
+        }
+      ],
+      "normalBaseline": "Tendones glúteo medio y menor íntegros en sus inserciones trocantéricas lateral y anterior, sin signos de rotura. Bursa trocantérica no distendida. Receso articular anterior coxofemoral sin derrame ni engrosamiento capsular (distancia cápsulo-cefálica <7 mm). Tendón del iliopsoas normoposicionado.",
+      "structures": [
+        {
+          "id": "gluteo_medio",
+          "name": "Tendón Glúteo Medio",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Conservado",
+              "text": "Tendón del glúteo medio continuo, de espesor y ecogenicidad fisiológicos en su inserción trocantérica posterolateral."
+            },
+            {
+              "id": "tendinopatia_gtps",
+              "label": "Tendinopatía Glútea (GTPS)",
+              "text": "Engrosamiento hipoecoico y pérdida fibrilar en la entesis del glúteo medio sobre el trocánter mayor, compatible con tendinopatía glútea (GTPS)."
+            },
+            {
+              "id": "rotura_parcial_glutea",
+              "label": "Rotura Parcial de Entesis",
+              "text": "Defecto hipo/anecoico focal con discontinuidad parcial de fibras en la inserción trocantérica del glúteo medio."
+            },
+            {
+              "id": "calcificacion_trocanter",
+              "label": "Entesopatía calcificante",
+              "text": "Focos cálcicos peritrocantéricos en la entesis glútea."
+            }
+          ]
+        },
+        {
+          "id": "bursa_trocanterica",
+          "name": "Bursa Trocantérica (Subglútea)",
+          "category": "bursa",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / No distendida",
+              "text": "Bursa trocantérica virtual, sin colecciones líquidas."
+            },
+            {
+              "id": "bursitis_trocanterica",
+              "label": "Bursitis Trocantérica",
+              "text": "Distensión líquida anecoica de la bursa subglútea mayor sobre la faceta trocantérica lateral."
+            }
+          ]
+        },
+        {
+          "id": "receso_anterior_cadera",
+          "name": "Receso Anterior Coxofemoral",
+          "category": "joint",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal (distancia <7 mm)",
+              "text": "Receso anterior de cadera sin derrame; distancia cápsulo-femoral simétrica y menor de 7 mm."
+            },
+            {
+              "id": "derrame_cadera",
+              "label": "Derrame Articular de Cadera",
+              "text": "Distensión capsular anterior con colección anecoica >8 mm o asimetría >2 mm respecto al lado contralateral, compatible con derrame articular de cadera."
+            },
+            {
+              "id": "coxartrosis",
+              "label": "Cambios degenerativos / Coxartrosis",
+              "text": "Irregularidad del contorno óseo femoroacetabular con prominente osteofitosis marginal anterior."
+            }
+          ]
+        },
+        {
+          "id": "tendon_iliopsoas",
+          "name": "Tendón y Bursa del Iliopsoas",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Tendón del iliopsoas continuo sobre la eminencia iliopúbica, con bursa no distendida."
+            },
+            {
+              "id": "bursitis_iliopsoas",
+              "label": "Bursitis del Iliopsoas",
+              "text": "Colección líquida anecoica en la bursa del iliopsoas adyacente a la articulación coxofemoral."
+            },
+            {
+              "id": "snapping_iliopsoas",
+              "label": "Snapping dinámico de psoas",
+              "text": "En maniobra dinámica de flexión-rotación externa a extensión se objetiva resalte brusco del tendón del psoas."
+            }
+          ]
+        },
+        {
+          "id": "isquiotibiales_proximales",
+          "name": "Tendón Isquiotibial Proximal",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal en tuberosidad isquiática",
+              "text": "Tendón común isquiotibial de grosor y ecogenicidad normales en tuberosidad isquiática."
+            },
+            {
+              "id": "tendinopatia_isquiotibial",
+              "label": "Tendinopatía Isquiática Proximal",
+              "text": "Engrosamiento hipoecoico y desestructuración fibrilar del tendón isquiotibial proximal en la tuberosidad isquiática."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "El labrum acetabular y el choque femoroacetabular (FAI) requieren resonancia magnética para una caracterización precisa.",
+        "El término clásico 'trocanteritis' corresponde en la inmensa mayoría a tendinopatía glútea con o sin bursitis acompañante (GTPS)."
+      ]
+    },
+    {
+      "id": "rodilla",
+      "name": "Rodilla",
+      "icon": "🟩",
+      "color": "#10b981",
+      "clinicalQuestion": "¿Existe derrame articular, gonartrosis, tendinopatía rotuliana/cuadricipital, bursitis anserina, quiste de Baker o extrusión meniscal?",
+      "locations": [
+        {
+          "id": "anterior_supra",
+          "name": "Anterior / Suprapatelar",
+          "priorityStructures": [
+            "receso_suprapatelar",
+            "tendon_cuadricipital"
+          ]
+        },
+        {
+          "id": "anterior_infra",
+          "name": "Anterior / Infrapatelar",
+          "priorityStructures": [
+            "tendon_rotuliano",
+            "grasa_hoffa",
+            "bursa_infrapatelar"
+          ]
+        },
+        {
+          "id": "medial",
+          "name": "Medial / Pata de Ganso",
+          "priorityStructures": [
+            "margen_menisco_medial",
+            "bursa_anserina",
+            "ligamento_colateral_medial",
+            "gonartrosis_medial"
+          ]
+        },
+        {
+          "id": "lateral",
+          "name": "Lateral / Cintilla",
+          "priorityStructures": [
+            "cintilla_iliotibial_distal",
+            "margen_menisco_lateral",
+            "biceps_femoral_distal"
+          ]
+        },
+        {
+          "id": "posterior_hueco",
+          "name": "Posterior / Hueco Poplíteo",
+          "priorityStructures": [
+            "quiste_baker",
+            "vasos_popliteos"
+          ]
+        }
+      ],
+      "normalBaseline": "Receso suprapatelar y fondos de saco laterales sin derrame articular ni proliferación sinovial. Tendones cuadricipital y rotuliano de calibre, ecogenicidad y patrón fibrilar íntegros, sin entesopatía. Cartílago troclear de grosor homogéneo y márgenes regulares. Margen accesible de ambos meniscos sin extrusión patológica. Bolsa de la pata de ganso no distendida. Hueco poplíteo libre sin quiste de Baker.",
+      "structures": [
+        {
+          "id": "receso_suprapatelar",
+          "name": "Derrame Articular y Sinovitis",
+          "category": "joint",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Sin derrame articular",
+              "text": "Receso suprapatelar colapsado, sin presencia de líquido articular patológico."
+            },
+            {
+              "id": "derrame_leve",
+              "label": "Derrame Articular Leve (<4 mm)",
+              "text": "Discreta distensión líquida anecoica en receso suprapatelar (<4 mm de espesor)."
+            },
+            {
+              "id": "derrame_moderado",
+              "label": "Derrame Moderado (4-10 mm)",
+              "text": "Derrame articular suprapatelar moderado (4-10 mm) con ocupación de fondos de saco laterales."
+            },
+            {
+              "id": "derrame_abundante",
+              "label": "Derrame Abundante / Sinovitis Marcada",
+              "text": "Abundante derrame articular suprapatelar (>10 mm) asociado a proliferación y engrosamiento de la membrana sinovial."
+            }
+          ]
+        },
+        {
+          "id": "gonartrosis_medial",
+          "name": "Cambios Degenerativos Femorotibiales (Gonartrosis)",
+          "category": "joint",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Sin signos degenerativos relevantes",
+              "text": "Interlínea articular femorotibial conservada sin osteofitos marginales."
+            },
+            {
+              "id": "gonartrosis_moderada",
+              "label": "Gonartrosis Femorotibial",
+              "text": "Cambios degenerativos femorotibiales con osteofitosis marginal, adelgazamiento del cartílago hialino e irregularidad cortical."
+            }
+          ]
+        },
+        {
+          "id": "tendon_rotuliano",
+          "name": "Tendón Rotuliano",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Conservado",
+              "text": "Tendón rotuliano con calibre, ecogenicidad y patrón fibrilar conservados de polo inferior a TAT."
+            },
+            {
+              "id": "jumper_knee",
+              "label": "Tendinopatía Rotuliana Proximal (Jumper's Knee)",
+              "text": "Engrosamiento hipoecoico del tercio proximal del tendón rotuliano en su inserción en polo inferior rotuliano, con pérdida de la estructura fibrilar."
+            },
+            {
+              "id": "tendinopatia_distal",
+              "label": "Tendinopatía Distal / Osgood-Schlatter",
+              "text": "Engrosamiento e irregularidad cortical en la tuberosidad tibial anterior."
+            }
+          ]
+        },
+        {
+          "id": "tendon_cuadricipital",
+          "name": "Tendón Cuadricipital",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Conservado",
+              "text": "Tendón cuadricipital de inserción y ecoestructura trilaminar conservadas."
+            },
+            {
+              "id": "tendinopatia_cuadricipital",
+              "label": "Tendinopatía Cuadricipital",
+              "text": "Engrosamiento hipoecoico del tendón cuadricipital en entesis rotuliana proximal."
+            }
+          ]
+        },
+        {
+          "id": "bursa_anserina",
+          "name": "Bursa y Tendones de la Pata de Ganso",
+          "category": "bursa",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Inserción anserina en cara medial tibial de aspecto normal, sin distensión de la bursa."
+            },
+            {
+              "id": "bursitis_anserina",
+              "label": "Bursitis Anserina (Pata de Ganso)",
+              "text": "Distensión líquida de la bursa anserina profunda a los tendones de la pata de ganso en cara medial de tibia proximal."
+            }
+          ]
+        },
+        {
+          "id": "margen_menisco_medial",
+          "name": "Menisco Medial Periférico",
+          "category": "meniscus",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Sin extrusión",
+              "text": "Morfología triangular del muro meniscal medial accesible, sin extrusión respecto al margen tibial."
+            },
+            {
+              "id": "extrusion_meniscal",
+              "label": "Meniscopatía Degenerativa / Extrusión (>3 mm)",
+              "text": "Cambios degenerativos del margen accesible del menisco medial con extrusión patológica (>3 mm) respecto al borde óseo tibial."
+            },
+            {
+              "id": "quiste_parameniscal",
+              "label": "Quiste Parameniscal",
+              "text": "Lesión quística multiloculada anecoica en contacto directo con el margen periférico del menisco medial."
+            }
+          ]
+        },
+        {
+          "id": "quiste_baker",
+          "name": "Quiste de Baker (Hueco Poplíteo)",
+          "category": "cyst",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Sin quiste de Baker",
+              "text": "Espacio intersemimembranoso-gemelar medial libre, sin colecciones líquidas."
+            },
+            {
+              "id": "baker_simple",
+              "label": "Quiste de Baker Simple",
+              "text": "Colección quística anecoica con cuello de comunicación entre tendón semimembranoso y gemelo interno (Quiste de Baker)."
+            },
+            {
+              "id": "baker_complicado",
+              "label": "Quiste de Baker Complicado / Tabicado",
+              "text": "Quiste de Baker de gran tamaño, multitabicado con ecos internos y engrosamiento de pared."
+            }
+          ]
+        },
+        {
+          "id": "cintilla_iliotibial_distal",
+          "name": "Cintilla Iliotibial Distal",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal en tubérculo de Gerdy",
+              "text": "Banda iliotibial de grosor normal cruzando el cóndilo femoral lateral hasta el tubérculo de Gerdy."
+            },
+            {
+              "id": "friccion_iliotibial",
+              "label": "Síndrome de Fricción de Cintilla",
+              "text": "Engrosamiento hipoecoico de la cintilla iliotibial con colección líquida subyacente sobre el epicóndilo femoral lateral."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "La ecografía solo evalúa el tercio periférico del menisco; las roturas del cuerno posterior o cuerpo profundo requieren RM.",
+        "Los ligamentos cruzados (LCA / LCP) y las lesiones osteocondrales profundas no son evaluables con ultrasonidos de rutina."
+      ]
+    },
+    {
+      "id": "tobillo_pie",
+      "name": "Tobillo y Pie",
+      "icon": "🟪",
+      "color": "#a855f7",
+      "clinicalQuestion": "¿Existe fasciopatía plantar, tendinopatía de Aquiles, rotura, neuroma de Morton o tenosinovitis del tibial posterior?",
+      "locations": [
+        {
+          "id": "talon_plantar",
+          "name": "Talón Plantar (Fascia)",
+          "priorityStructures": [
+            "fascia_plantar_proximal",
+            "espolon_calcaneo"
+          ]
+        },
+        {
+          "id": "posterior_aquiles",
+          "name": "Posterior / Aquiles",
+          "priorityStructures": [
+            "tendon_aquiles_medio",
+            "tendon_aquiles_insercional",
+            "bursa_retrocalcanea"
+          ]
+        },
+        {
+          "id": "medial_tobillo",
+          "name": "Medial / Tibial Posterior / Túnel Tarsiano",
+          "priorityStructures": [
+            "tibial_posterior",
+            "nervio_tibial_tunel_tarsiano",
+            "deltoideo"
+          ]
+        },
+        {
+          "id": "lateral_peroneos",
+          "name": "Lateral / Peroneos / LPAA",
+          "priorityStructures": [
+            "tendones_peroneos",
+            "lpaa_tobillo",
+            "retinaculo_peroneo"
+          ]
+        },
+        {
+          "id": "antepié_morton",
+          "name": "Antepié / Espacio Intermetatarsal",
+          "priorityStructures": [
+            "neuroma_morton",
+            "bursitis_intermetatarsal",
+            "placa_plantar"
+          ]
+        }
+      ],
+      "normalBaseline": "Fascia plantar proximal de grosor normal (<4 mm), ecogénica y sin roturas en entesis calcánea. Tendón de Aquiles de calibre, ecogenicidad y patrón fibrilar conservados, sin engrosamiento fusiforme ni roturas; bursa retrocalcánea no distendida. Tendón tibial posterior y tendones peroneos normoposicionados en sus correderas maleolares sin tenosinovitis. Articulación tibiotalar sin derrame.",
+      "structures": [
+        {
+          "id": "fascia_plantar_proximal",
+          "name": "Fascia Plantar Proximal",
+          "category": "fascia",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal (espesor <4.0 mm)",
+              "text": "Fascia plantar proximal con espesor normal (<4 mm), ecogenicidad fibrilar homogénea e inserción calcánea íntegra."
+            },
+            {
+              "id": "fasciopatia_plantar",
+              "label": "Fasciopatía Plantar (>4.2 mm)",
+              "text": "Marcado engrosamiento hipoecoico de la fascia plantar proximal en su inserción calcánea (>4.5 mm), con pérdida del patrón fibrilar y edema perifascicular (Fasciopatía plantar)."
+            },
+            {
+              "id": "rotura_fascia",
+              "label": "Rotura Parcial de Fascia Plantar",
+              "text": "Solución de continuidad focal con hendidura anecoica en las fibras de la fascia plantar proximal."
+            }
+          ]
+        },
+        {
+          "id": "tendon_aquiles_medio",
+          "name": "Tendón de Aquiles (Porción Media)",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Conservado",
+              "text": "Tendón de Aquiles con calibre homogéneo (<6 mm) y patrón fibrilar íntegro en su porción media."
+            },
+            {
+              "id": "tendinopatia_aquilea_media",
+              "label": "Tendinopatía Aquilea No Insercional",
+              "text": "Engrosamiento fusiforme hipoecoico del tendón de Aquiles en su porción media (2-6 cm proximal al calcáneo) con pérdida de ecotextura fibrilar."
+            },
+            {
+              "id": "rotura_parcial_aquiles",
+              "label": "Rotura Parcial Aquilea",
+              "text": "Defecto hipo/anecoico focal con discontinuidad de fibras en el espesor del tendón de Aquiles."
+            },
+            {
+              "id": "rotura_completa_aquiles",
+              "label": "Rotura Completa Transfixiante",
+              "text": "Discontinuidad completa del tendón de Aquiles con retracción de cabos, brecha anecoica ocupada por hematoma y signo de Thompson ecográfico positivo."
+            }
+          ]
+        },
+        {
+          "id": "tendon_aquiles_insercional",
+          "name": "Aquiles Insercional y Bursa Retrocalcánea",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Entesis calcánea del tendón de Aquiles y bursa retrocalcánea normales."
+            },
+            {
+              "id": "entesopatia_aquilea",
+              "label": "Entesopatía Insercional + Bursitis",
+              "text": "Engrosamiento de la entesis aquilea con espolón óseo posterior y distensión líquida de la bursa retrocalcánea."
+            }
+          ]
+        },
+        {
+          "id": "tibial_posterior",
+          "name": "Tendón Tibial Posterior",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal en maléolo medial",
+              "text": "Tendón tibial posterior normoposicionado tras el maléolo medial, de calibre homogéneo y vaina libre."
+            },
+            {
+              "id": "tenosinovitis_tp",
+              "label": "Tenosinovitis del Tibial Posterior",
+              "text": "Líquido anecoico abundante en la vaina sinovial del tendón tibial posterior con engrosamiento peritendinoso."
+            },
+            {
+              "id": "tendinosis_avanzada_tp",
+              "label": "Tendinopatía / Degeneración del TP",
+              "text": "Marcado engrosamiento heterogéneo y pérdida de tono del tibial posterior (Insuficiencia del TP)."
+            }
+          ]
+        },
+        {
+          "id": "tendones_peroneos",
+          "name": "Tendones Peroneos (Corto y Largo)",
+          "category": "tendon",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normales retromaleolares",
+              "text": "Tendones peroneo corto y largo centrados en el surco retromaleolar lateral sin líquido patológico."
+            },
+            {
+              "id": "tenosinovitis_peronea",
+              "label": "Tenosinovitis de Peroneos",
+              "text": "Distensión líquida de la vaina común de los tendones peroneos tras el maléolo lateral."
+            },
+            {
+              "id": "split_peroneo_corto",
+              "label": "Rotura Longitudinal (Split) Peroneo Corto",
+              "text": "Fisura longitudinal en el tendón peroneo corto que adopta morfología en C abrazando al peroneo largo."
+            },
+            {
+              "id": "subluxacion_peroneos",
+              "label": "Subluxación dinámica de peroneos",
+              "text": "En dorsiflexión y eversión contra resistencia se objetiva luxación anterior de los tendones sobre el maléolo lateral por incompetencia del retináculo."
+            }
+          ]
+        },
+        {
+          "id": "neuroma_morton",
+          "name": "Espacio Interdigital (Neuroma de Morton)",
+          "category": "nerve",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal / Sin neuroma",
+              "text": "Espacios intermetatarsianos libres sin masas sólidas ni bursitis intermetatarsiana."
+            },
+            {
+              "id": "morton_3_4",
+              "label": "Neuroma de Morton (3er espacio)",
+              "text": "Nódulo hipoecoico bien delimitado en el 3er espacio intermetatarsiano (>5 mm de diámetro) que se comprime y luxa plantarmente con el signo de Mulder ecográfico."
+            },
+            {
+              "id": "bursitis_intermetatarsal",
+              "label": "Bursitis Intermetatarsiana",
+              "text": "Distensión líquida en la bursa intermetatarsiana dorsal al ligamento intermetatarsiano profundo."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "Si la ecografía de fascia plantar es estrictamente normal en un paciente con dolor de talón matutino, sospechar etiología neural (radiculopatía S1 o atrapamiento de la rama de Baxter/túnel tarsiano).",
+        "El edema óseo trabecular por fractura de estrés de calcáneo o metatarsianos no se visualiza en ecografía; requiere RM."
+      ]
+    },
+    {
+      "id": "nervios_perifericos",
+      "name": "Nervios Periféricos",
+      "icon": "🧠",
+      "color": "#6366f1",
+      "clinicalQuestion": "¿Existe neuropatía focal compresiva, engrosamiento fascicular, neuroma o luxación nerviosa?",
+      "locations": [
+        {
+          "id": "mediano",
+          "name": "Nervio Mediano (Carpo / Antebrazo)",
+          "priorityStructures": [
+            "nervio_mediano_carpo"
+          ]
+        },
+        {
+          "id": "cubital",
+          "name": "Nervio Cubital (Codo / Canal Guyon)",
+          "priorityStructures": [
+            "nervio_cubital_codo"
+          ]
+        },
+        {
+          "id": "peroneo",
+          "name": "Nervio Peroneo Común (Cabeza Peroné)",
+          "priorityStructures": [
+            "nervio_peroneo_comun"
+          ]
+        },
+        {
+          "id": "tibial",
+          "name": "Nervio Tibial (Túnel Tarsiano)",
+          "priorityStructures": [
+            "nervio_tibial_tunel_tarsiano"
+          ]
+        },
+        {
+          "id": "femorocutaneo",
+          "name": "Femorocutáneo Lateral (Meralgia)",
+          "priorityStructures": [
+            "femorocutaneo_lateral"
+          ]
+        }
+      ],
+      "normalBaseline": "Troncos nerviosos explorados con morfología elíptica, patrón fascicular en 'panal de abeja' conservado, calibre uniforme y sin signos de compresión focal, neuromas ni hiperemia intraneural.",
+      "structures": [
+        {
+          "id": "nervio_peroneo_comun",
+          "name": "Nervio Peroneo Común (Cabeza del Peroné)",
+          "category": "nerve",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal en cuello del peroné",
+              "text": "Nervio peroneo común de calibre y ecogenicidad normales contorneando el cuello del peroné."
+            },
+            {
+              "id": "atrapamiento_peroneo",
+              "label": "Neuropatía Compresiva / Engrosamiento",
+              "text": "Engrosamiento hipoecoico del nervio peroneo común a su paso por el túnel fibular con pérdida del patrón fascicular."
+            },
+            {
+              "id": "quiste_intraneural",
+              "label": "Quiste Ganglionar Intraneural",
+              "text": "Estructura quística anecoica lobulada en el interior de la vaina del nervio peroneo común con pedículo articular."
+            }
+          ]
+        },
+        {
+          "id": "nervio_tibial_tunel_tarsiano",
+          "name": "Nervio Tibial (Túnel Tarsiano)",
+          "category": "nerve",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal en túnel tarsiano",
+              "text": "Nervio tibial posterior con división de ramas plantar medial y lateral de calibre conservado tras el maléolo medial."
+            },
+            {
+              "id": "sindrome_tunel_tarsiano",
+              "label": "Síndrome del Túnel Tarsiano",
+              "text": "Engrosamiento hipoecoico del nervio tibial en el túnel tarsiano con compresión extrínseca o pérdida fascicular."
+            }
+          ]
+        },
+        {
+          "id": "femorocutaneo_lateral",
+          "name": "Nervio Femorocutáneo Lateral (Meralgia Parestésica)",
+          "category": "nerve",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal bajo ligamento inguinal",
+              "text": "Nervio cutáneo femoral lateral continuo bajo la espina ilíaca anterosuperior sin engrosamiento."
+            },
+            {
+              "id": "meralgia_parestesica",
+              "label": "Meralgia Parestésica (Engrosamiento focal)",
+              "text": "Neuropatía compresiva del nervio femorocutáneo lateral con engrosamiento hipoecoico focal adyacente a la EIAS."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "La ecografía evalúa la morfología y anatomía nerviosa, mientras que la electromiografía (EMG) valora la función y severidad electrofisiológica; ambas pruebas son complementarias.",
+        "Nervios de pequeño calibre requieren transductores de muy alta frecuencia (>18 MHz)."
+      ]
+    },
+    {
+      "id": "musculo_partes_blandas",
+      "name": "Músculo y Partes Blandas",
+      "icon": "💪",
+      "color": "#ec4899",
+      "clinicalQuestion": "¿Existe rotura muscular, hematoma, masa superficial o miositis?",
+      "locations": [
+        {
+          "id": "gemelos_soleo",
+          "name": "Gemelo Medial / Sóleo (Tennis Leg)",
+          "priorityStructures": [
+            "gemelo_medial"
+          ]
+        },
+        {
+          "id": "isquiotibiales_muslo",
+          "name": "Isquiotibiales (Bíceps / Semitendinoso)",
+          "priorityStructures": [
+            "isquiotibial_vientre"
+          ]
+        },
+        {
+          "id": "cuadriceps_recto",
+          "name": "Cuádriceps (Recto Femoral)",
+          "priorityStructures": [
+            "recto_femoral"
+          ]
+        }
+      ],
+      "normalBaseline": "Arquitectura muscular con patrón de plumación penniforme regular, ecogenicidad miofascial conservada y sin discontinuidades aponeuróticas ni colecciones hemáticas intramusculares.",
+      "structures": [
+        {
+          "id": "gemelo_medial",
+          "name": "Músculo Gemelo Medial (Tennis Leg)",
+          "category": "muscle",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Vientre y unión miotendinosa distal del gemelo medial íntegros sobre el sóleo."
+            },
+            {
+              "id": "rotura_tennis_leg",
+              "label": "Rotura Miotendinosa (Tennis Leg)",
+              "text": "Solución de continuidad en la unión miotendinosa distal del gemelo medial con despegamiento aponeurótico respecto al sóleo y colección hemática anecoica interfascial."
+            }
+          ]
+        },
+        {
+          "id": "isquiotibial_vientre",
+          "name": "Músculos Isquiotibiales",
+          "category": "muscle",
+          "options": [
+            {
+              "id": "normal",
+              "label": "Normal",
+              "text": "Patrón fibrilar y grosor de vientres musculares isquiotibiales conservados."
+            },
+            {
+              "id": "rotura_isquiotibial",
+              "label": "Rotura Muscular / Desgarro",
+              "text": "Defecto hipo/anecoico intramuscular con retracción de fibras y hematoma focal compatible con rotura muscular."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "La ecografía dentro de las primeras 12 horas puede infraestimar el hematoma; se recomienda reevaluación a las 48-72 horas si la clínica es severa.",
+        "Las masas profundas o con vascularización atípica requieren estudio complementario con RM y derivación oncológica."
+      ]
+    },
+    {
+      "id": "raquis",
+      "name": "Raquis y Sacroilíaca (LÍMITES)",
+      "icon": "🦴",
+      "color": "#64748b",
+      "clinicalQuestion": "Sonoanatomía y guía intervencionista. (NO es sustituto de RM para excluir hernia discal o estenosis).",
+      "locations": [
+        {
+          "id": "lumbar_guia",
+          "name": "Columna Lumbar (Guía)",
+          "priorityStructures": [
+            "facetas_lumbar",
+            "apofisis_espinosas"
+          ]
+        },
+        {
+          "id": "sacroiliaca_guia",
+          "name": "Articulación Sacroilíaca",
+          "priorityStructures": [
+            "receso_posterior_si"
+          ]
+        }
+      ],
+      "normalBaseline": "Sonoanatomía de referencias óseas (apófisis espinosas, láminas, procesos transversos y espacio interlaminar) adecuadamente delimitada para punción ecoguiada.",
+      "structures": [
+        {
+          "id": "facetas_lumbar",
+          "name": "Articulación Facetaria Lumbar",
+          "category": "joint",
+          "options": [
+            {
+              "id": "guia_facetaria",
+              "label": "Referencia para Infiltración",
+              "text": "Delimitación de la unión entre proceso transverso y articular superior como diana para bloqueo de ramo medial."
+            }
+          ]
+        },
+        {
+          "id": "receso_posterior_si",
+          "name": "Articulación Sacroilíaca Posterior",
+          "category": "joint",
+          "options": [
+            {
+              "id": "guia_si",
+              "label": "Guía Intervencionista SI",
+              "text": "Visualización de la hendidura sacroilíaca posterior a nivel de S2 para infiltración ecoguiada."
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "⚠️ LÍMITE CRÍTICO DE LA ECOGRAFÍA EN RAQUIS: Los ultrasonidos NO pueden penetrar el canal vertebral óseo en el adulto. La ecografía NO descarta hernia discal, estenosis de canal, mielopatía ni compresión radicular intrarraquídea.",
+        "La sospecha de radiculopatía progresiva o banderas rojas exige RM lumbar."
+      ]
+    }
+  ],
+  "dopplerLevels": [
+    {
+      "id": "none",
+      "label": "No realizado / Sin Doppler",
+      "text": ""
+    },
+    {
+      "id": "negative",
+      "label": "Negativo (Grado 0)",
+      "text": "Sin hiperemia al estudio Doppler color/Power Doppler."
+    },
+    {
+      "id": "mild",
+      "label": "Leve (Grado 1)",
+      "text": "Señales aisladas de hiperemia al estudio Power Doppler (Grado 1)."
+    },
+    {
+      "id": "moderate",
+      "label": "Moderado (Grado 2)",
+      "text": "Moderada señal de hiperemia al estudio Power Doppler que ocupa hasta el 50% de la zona patológica (Grado 2)."
+    },
+    {
+      "id": "marked",
+      "label": "Marcado (Grado 3)",
+      "text": "Marcada hiperemia al estudio Power Doppler con flujo vascular exuberante (>50% del área) (Grado 3)."
+    }
+  ],
+  "concordanceOptions": [
+    {
+      "id": "concordant",
+      "icon": "🟢",
+      "label": "Concordante",
+      "text": "Los hallazgos ecográficos son concordantes con la localización y exploración clínica.",
+      "implication": "El hallazgo ecográfico respalda con alta probabilidad el generador de dolor identificado en la exploración física."
+    },
+    {
+      "id": "possibly_related",
+      "icon": "🟡",
+      "label": "Posiblemente Relacionado",
+      "text": "Los hallazgos pueden contribuir al cuadro doloroso y deben correlacionarse con la exploración.",
+      "implication": "Existe alteración estructural, pero puede no explicar por completo todos los síntomas o coexistir con otros factores."
+    },
+    {
+      "id": "incidental",
+      "icon": "⚪",
+      "label": "Incidental",
+      "text": "El hallazgo ecográfico presenta escasa concordancia con la clínica actual y podría ser incidental.",
+      "implication": "Hallazgo estructural frecuente asintomático. Evitar dirigir tratamientos invasivos únicamente por la imagen."
+    },
+    {
+      "id": "not_explanatory",
+      "icon": "🔴",
+      "label": "Eco No Explicativa",
+      "text": "No se identifican alteraciones ecográficas relevantes que expliquen por sí mismas la sintomatología.",
+      "implication": "Ecografía normal. Reconsiderar fuentes no accesibles por ultrasonidos (edema óseo, raíces, dolor referido, nociplástico)."
+    }
+  ]
+}

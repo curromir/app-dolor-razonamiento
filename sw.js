@@ -1,5 +1,5 @@
-// Service Worker v35.0 - Alto Contraste Neuromodulación & Banners de Seguridad
-const CACHE_NAME = 'dolor-tests-v35';
+// Service Worker v36.0 - Pestaña Ecografía & Generador de Informes POCUS
+const CACHE_NAME = 'dolor-tests-v36';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

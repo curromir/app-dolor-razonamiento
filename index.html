@@ -235,6 +235,11 @@
           <span class="tab-text">Fichas de Consulta</span>
           <span class="tab-badge-highlight" style="background: rgba(16, 185, 129, 0.15); color: #059669;">v2.6</span>
         </button>
+        <button class="nav-tab" data-tab="tab-ultrasound">
+          <span class="tab-icon">🩻</span>
+          <span class="tab-text">Ecografía</span>
+          <span class="tab-badge-highlight" style="background: rgba(14, 165, 233, 0.15); color: #0284c7;">POCUS</span>
+        </button>
         <button class="nav-tab" data-tab="tab-vademecum">
           <span class="tab-icon">💊</span>
           <span class="tab-text">Vademécum</span>
@@ -479,6 +484,59 @@
         </div>
       </section>
 
+      <!-- TAB: ECOGRAFÍA EN DOLOR (POCUS) -->
+      <section id="tab-ultrasound" class="tab-pane">
+        <div class="ultrasound-wrapper">
+          <!-- Ultrasound Header & Search Banner -->
+          <div class="echo-hero-banner">
+            <div class="echo-hero-top-row">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 2.2rem;">🩻</span>
+                <div>
+                  <h2 class="echo-main-title">ECOGRAFÍA EN DOLOR</h2>
+                  <p class="echo-main-sub">Exploración dirigida · Hallazgos · Informe POCUS · Concordancia</p>
+                </div>
+              </div>
+              <div class="echo-quick-action-buttons">
+                <button class="vade-btn-secondary" onclick="window.Ultrasound.openNotFittingModal()">
+                  <span>🤔</span> <span>¿No me cuadra?</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Big Search Bar -->
+            <div class="vade-search-box">
+              <span class="vade-search-icon">🔎</span>
+              <input type="text" id="ultrasound-search-input" placeholder="Buscar región (ej. rodilla, hombro), estructura (ej. supraespinoso, menisco) o patología (ej. Baker, Morton, túnel carpiano)..." autocomplete="off">
+            </div>
+
+            <!-- Golden Rule Bar -->
+            <div class="echo-golden-pearl-bar">
+              <span style="font-weight: 800; color: #38bdf8;">NO TRATES LA ECO. TRATA AL PACIENTE.</span>
+              <span style="font-size: 0.78rem; opacity: 0.85;">La presencia de un hallazgo estructural no implica automáticamente que sea el generador del dolor.</span>
+            </div>
+
+            <!-- 3 Internal Mode Switcher Tabs -->
+            <div class="echo-view-switcher">
+              <button id="echo-tab-btn-quick" class="echo-switcher-tab active" onclick="window.Ultrasound.setMode('quick')">
+                <span>⚡</span> <span>CONSULTA ULTRARRÁPIDA</span>
+              </button>
+              <button id="echo-tab-btn-region" class="echo-switcher-tab" onclick="window.Ultrasound.setMode('region')">
+                <span>🩻</span> <span>INFORME POR REGIÓN</span>
+              </button>
+              <button id="echo-tab-btn-atlas" class="echo-switcher-tab" onclick="window.Ultrasound.setMode('atlas')">
+                <span>📚</span> <span>ATLAS ECO & SONOANATOMÍA</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Container -->
+          <div id="ultrasound-content" class="ultrasound-dynamic-content">
+            <!-- Rendered by js/ultrasound.js -->
+          </div>
+        </div>
+      </section>
+
       <!-- TAB: VADEMÉCUM DE DOLOR -->
       <section id="tab-vademecum" class="tab-pane">
         <div class="vademecum-wrapper">
@@ -698,6 +756,7 @@
   <script src="clinical/reasoning-engine.js?v=1.0"></script>
   <script src="clinical/reasoning-ui.js?v=1.0"></script>
   <script src="js/vademecum.js?v=1.0"></script>
+  <script src="js/ultrasound.js?v=1.0"></script>
   <script src="app.js?v=22.0"></script>
 </body>
 </html>

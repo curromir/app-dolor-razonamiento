@@ -1155,6 +1155,10 @@ window.switchTab = function(tabId) {
     window.Vademecum.setMode('express');
   }
 
+  if (tabId === 'tab-ultrasound' && window.Ultrasound) {
+    window.Ultrasound.setMode('quick');
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
