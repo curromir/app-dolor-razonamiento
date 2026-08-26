@@ -716,6 +716,27 @@ window.copyFichaText = function(fichaId) {
   });
 };
 
+window.openFicha = function(fichaId) {
+  if (typeof window.switchTab === 'function') {
+    window.switchTab('tab-fichas');
+  }
+
+  currentFichaFilter = 'all';
+  document.querySelectorAll('.fichas-filter-chip').forEach(c => {
+    c.classList.toggle('active', c.getAttribute('data-ficha-filter') === 'all');
+  });
+  renderFichas();
+
+  setTimeout(() => {
+    const el = document.getElementById(fichaId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.classList.add('highlight-pulse');
+      setTimeout(() => el.classList.remove('highlight-pulse'), 2500);
+    }
+  }, 120);
+};
+
 function attachFichasFilterEvents() {
   document.querySelectorAll('.fichas-filter-chip').forEach(chip => {
     chip.addEventListener('click', () => {

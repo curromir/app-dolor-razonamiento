@@ -1,5 +1,5 @@
-// Service Worker v33.0 - Vademécum Express por Defecto & Fichas Farmacológicas Nivel 2
-const CACHE_NAME = 'dolor-tests-v33';
+// Service Worker v34.0 - Enlaces Interactivos Fichas Express v2.6
+const CACHE_NAME = 'dolor-tests-v34';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
