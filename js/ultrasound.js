@@ -36,6 +36,20 @@
     },
 
     async init() {
+      if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.ultrasound) {
+        this.data = window.EMBEDDED_BUNDLE.ultrasound;
+        try {
+          const favs = localStorage.getItem('pain_app_fav_echo_templates');
+          if (favs) this.favorites = JSON.parse(favs);
+          const recents = localStorage.getItem('pain_app_recent_echo_reports');
+          if (recents) this.recentReports = JSON.parse(recents);
+        } catch(e) {}
+        this.attachGlobalEvents();
+        this.setRegion('hombro', false);
+        this.render();
+        return;
+      }
+
       try {
         const response = await fetch('data/ultrasound_catalog.json');
         if (!response.ok) throw new Error('No se pudo cargar ultrasound_catalog.json');
@@ -53,6 +67,13 @@
         this.setRegion('hombro', false);
         this.render();
       } catch(err) {
+        if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.ultrasound) {
+          this.data = window.EMBEDDED_BUNDLE.ultrasound;
+          this.attachGlobalEvents();
+          this.setRegion('hombro', false);
+          this.render();
+          return;
+        }
         console.error('Error inicializando generador de Ecografía:', err);
         const container = document.getElementById('ultrasound-content');
         if (container) {

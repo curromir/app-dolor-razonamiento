@@ -22,6 +22,20 @@
     returnContext: null, // { fromClinical: true, pathwayId, presentation, step }
 
     async init() {
+      if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.vademecum) {
+        this.data = window.EMBEDDED_BUNDLE.vademecum;
+        const savedFavs = localStorage.getItem('pain_app_fav_drugs');
+        if (savedFavs) {
+          try {
+            this.favorites = new Set(JSON.parse(savedFavs));
+          } catch(e) {}
+        }
+        this.mode = 'express';
+        this.attachGlobalEvents();
+        this.render();
+        return;
+      }
+
       try {
         const response = await fetch('data/vademecum_catalog.json');
         if (!response.ok) throw new Error('No se pudo cargar vademecum_catalog.json');
@@ -39,6 +53,13 @@
         this.attachGlobalEvents();
         this.render();
       } catch (err) {
+        if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.vademecum) {
+          this.data = window.EMBEDDED_BUNDLE.vademecum;
+          this.mode = 'express';
+          this.attachGlobalEvents();
+          this.render();
+          return;
+        }
         console.error('Error inicializando Vademécum:', err);
         const container = document.getElementById('vademecum-content');
         if (container) {

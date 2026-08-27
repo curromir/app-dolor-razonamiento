@@ -82,6 +82,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Load Database
 async function loadCatalog() {
+  if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.tests_catalog) {
+    state.catalog = window.EMBEDDED_BUNDLE.tests_catalog;
+    state.tests = state.catalog.tests || [];
+    state.filtered = [...state.tests];
+
+    updateCounts();
+    renderAtlasRegions();
+    applyFilterAndSort();
+    renderVideoteca('all');
+    renderComparativeTable();
+    renderNotionGuide();
+    renderFichas();
+    renderCases();
+    renderFavorites();
+    return;
+  }
+
   try {
     const res = await fetch('data/tests_catalog.json?v=21.0');
     if (!res.ok) throw new Error('Error al cargar tests_catalog.json');
@@ -95,10 +112,26 @@ async function loadCatalog() {
     renderVideoteca('all');
     renderComparativeTable();
     renderNotionGuide();
-  renderFichas();
+    renderFichas();
     renderCases();
     renderFavorites();
   } catch (err) {
+    if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.tests_catalog) {
+      state.catalog = window.EMBEDDED_BUNDLE.tests_catalog;
+      state.tests = state.catalog.tests || [];
+      state.filtered = [...state.tests];
+
+      updateCounts();
+      renderAtlasRegions();
+      applyFilterAndSort();
+      renderVideoteca('all');
+      renderComparativeTable();
+      renderNotionGuide();
+      renderFichas();
+      renderCases();
+      renderFavorites();
+      return;
+    }
     console.error('Error inicializando catálogo:', err);
     if (DOM.testsGrid) {
       DOM.testsGrid.innerHTML = `
@@ -1073,8 +1106,13 @@ function setupEventListeners() {
     });
   });
 
-  // Mobile Bottom bar items — handled by inline onclick in index.html
-  // (no secondary listener needed; avoids conflict with switchAppMode)
+  // Mobile Bottom bar items
+  document.querySelectorAll('.mobile-nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const tabId = item.getAttribute('data-tab');
+      switchTab(tabId);
+    });
+  });
 
   // Videoteca channel switcher
   document.querySelectorAll('.channel-btn').forEach(btn => {
@@ -1135,14 +1173,8 @@ window.switchTab = function(tabId) {
   if (clinicalEl) clinicalEl.style.display = 'none';
   if (mainHeader) mainHeader.style.display = 'block';
   if (navTabs) navTabs.style.display = 'block';
-  if (filtersSection) filtersSection.style.display = (tabId === 'tab-tests') ? 'block' : 'none';
+  if (filtersSection) filtersSection.style.display = 'block';
   if (mainContent) mainContent.style.display = 'block';
-
-  // Hide main search bar on non-test tabs (Vademecum/POCUS have their own)
-  const mainSearchContainer = document.querySelector('.search-container');
-  if (mainSearchContainer) {
-    mainSearchContainer.style.display = (tabId === 'tab-tests') ? 'block' : 'none';
-  }
 
   // Desktop tabs sync
   document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -1253,7 +1285,7 @@ function setupKeyboardShortcuts() {
 
 // PWA Service Worker
 function registerPWA() {
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js').catch(err => {
         console.log('SW registration note:', err);

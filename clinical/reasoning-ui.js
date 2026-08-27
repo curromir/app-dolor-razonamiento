@@ -462,23 +462,48 @@
         filePath = pathMap[pathwayId] || `clinical/pathways/${pathwayId}.json`;
       }
 
-      try {
-        const res = await fetch(filePath + '?v=' + Date.now());
-        if (!res.ok) throw new Error('Error al cargar pathway: ' + filePath);
-        pathwayData = await res.json();
-        uiState.pathwayDataCache[pathwayId] = pathwayData;
-      } catch (err) {
-        console.error('Error loading pathway:', err);
-        if (containers.clinical) {
-          containers.clinical.innerHTML = `
-            <div class="glass-panel" style="padding: 2.5rem 1.5rem; text-align: center;">
-              <h3 style="color: #ef4444; font-weight: 800;">⚠️ No se pudo cargar el Clinical Pathway</h3>
-              <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.86rem;">${err.message}</p>
-              <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('home')" style="margin-top: 1.25rem;">Volver al Inicio</button>
-            </div>
-          `;
+      // Check embedded bundle first for offline / local file:// execution
+      if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.pathways) {
+        const fileName = filePath ? filePath.split('/').pop() : null;
+        const embedded = window.EMBEDDED_BUNDLE.pathways[pathwayId] ||
+                         window.EMBEDDED_BUNDLE.pathways[`${pathwayId}.json`] ||
+                         (fileName ? window.EMBEDDED_BUNDLE.pathways[fileName] : null);
+        if (embedded) {
+          pathwayData = embedded;
+          uiState.pathwayDataCache[pathwayId] = pathwayData;
         }
-        return;
+      }
+
+      if (!pathwayData) {
+        try {
+          const res = await fetch(filePath + '?v=' + Date.now());
+          if (!res.ok) throw new Error('Error al cargar pathway: ' + filePath);
+          pathwayData = await res.json();
+          uiState.pathwayDataCache[pathwayId] = pathwayData;
+        } catch (err) {
+          if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.pathways) {
+            const fileName = filePath ? filePath.split('/').pop() : null;
+            pathwayData = window.EMBEDDED_BUNDLE.pathways[pathwayId] ||
+                          window.EMBEDDED_BUNDLE.pathways[`${pathwayId}.json`] ||
+                          (fileName ? window.EMBEDDED_BUNDLE.pathways[fileName] : null);
+            if (pathwayData) {
+              uiState.pathwayDataCache[pathwayId] = pathwayData;
+            }
+          }
+          if (!pathwayData) {
+            console.error('Error loading pathway:', err);
+            if (containers.clinical) {
+              containers.clinical.innerHTML = `
+                <div class="glass-panel" style="padding: 2.5rem 1.5rem; text-align: center;">
+                  <h3 style="color: #ef4444; font-weight: 800;">⚠️ No se pudo cargar el Clinical Pathway</h3>
+                  <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.86rem;">${err.message}</p>
+                  <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('home')" style="margin-top: 1.25rem;">Volver al Inicio</button>
+                </div>
+              `;
+            }
+            return;
+          }
+        }
       }
     }
 
@@ -2772,6 +2797,10 @@
     if (!container) return;
 
     let casesCatalog = uiState.casesCatalog;
+    if (!casesCatalog && window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.cases_catalog) {
+      casesCatalog = window.EMBEDDED_BUNDLE.cases_catalog;
+      uiState.casesCatalog = casesCatalog;
+    }
     if (!casesCatalog) {
       try {
         const res = await fetch('clinical/cases/cases_catalog.json?v=' + Date.now());
@@ -2780,7 +2809,10 @@
           uiState.casesCatalog = casesCatalog;
         }
       } catch (err) {
-        console.warn('Error loading cases catalog:', err);
+        if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.cases_catalog) {
+          casesCatalog = window.EMBEDDED_BUNDLE.cases_catalog;
+          uiState.casesCatalog = casesCatalog;
+        }
       }
     }
 

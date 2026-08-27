@@ -1,5 +1,5 @@
-// Service Worker v43.0 - Botones Anterior/Siguiente, Salto de Pestañas & Scroll Suave
-const CACHE_NAME = 'dolor-tests-v43';
+// Service Worker v44.0 - Soporte de Ejecución Local & Embedded Data Bundle
+const CACHE_NAME = 'dolor-tests-v44';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
