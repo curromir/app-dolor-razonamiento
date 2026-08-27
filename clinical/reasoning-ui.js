@@ -150,26 +150,7 @@
           </div>
         </article>
 
-        <!-- CARD 4: ECOGRAFÍA EN DOLOR (POCUS) -->
-        <article class="home-mode-card glass-panel" id="btnLaunchUltrasoundMode" style="border-top: 4px solid #0284c7;">
-          <div class="mode-card-badge" style="background: rgba(14, 165, 233, 0.2); color: #0284c7;">POCUS & Imagen</div>
-          <div>
-            <span class="mode-card-icon">🩻</span>
-            <h2>Ecografía en Dolor</h2>
-            <p><strong>Generador de Informes POCUS en 15–30s:</strong> Exploración por localización, hallazgos combinados sin redundancias, Doppler, juicio de concordancia y copiado a Historia.</p>
-            <div class="mode-card-features">
-              <span class="mode-feature-pill">⚡ Consulta Rápida</span>
-              <span class="mode-feature-pill">🩻 11 Regiones</span>
-              <span class="mode-feature-pill">⚖️ Concordancia</span>
-              <span class="mode-feature-pill">📋 Copiar Informe</span>
-            </div>
-          </div>
-          <div class="mode-card-cta" style="color: #0284c7;">
-            <span>Abrir Ecografía POCUS</span> <span>→</span>
-          </div>
-        </article>
-
-        <!-- CARD 5: VADEMÉCUM DE DOLOR -->
+        <!-- CARD 4: VADEMÉCUM DE DOLOR -->
         <article class="home-mode-card glass-panel" id="btnLaunchVademecumMode" style="border-top: 4px solid #8b5cf6;">
           <div class="mode-card-badge" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">Farmacología</div>
           <div>
@@ -299,12 +280,6 @@
 
     document.getElementById('btnLaunchLibraryMode')?.addEventListener('click', () => {
       window.ClinicalUI.switchAppMode('library');
-    });
-
-    document.getElementById('btnLaunchUltrasoundMode')?.addEventListener('click', () => {
-      if (typeof window.switchTab === 'function') {
-        window.switchTab('tab-ultrasound');
-      }
     });
 
     document.getElementById('btnLaunchVademecumMode')?.addEventListener('click', () => {

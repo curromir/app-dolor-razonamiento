@@ -1,5 +1,5 @@
-// Service Worker v38.0 - Acceso Directo Ecografía POCUS & Vademécum en Inicio
-const CACHE_NAME = 'dolor-tests-v38';
+// Service Worker v39.0 - Barra Herramientas Directas en Consulta
+const CACHE_NAME = 'dolor-tests-v39';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
