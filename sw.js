@@ -1,5 +1,5 @@
-// Service Worker v36.0 - Pestaña Ecografía & Generador de Informes POCUS
-const CACHE_NAME = 'dolor-tests-v36';
+// Service Worker v37.0 - Acceso Directo Clinical Pathways
+const CACHE_NAME = 'dolor-tests-v37';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

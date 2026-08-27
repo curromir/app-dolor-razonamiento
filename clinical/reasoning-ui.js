@@ -349,7 +349,27 @@
   async function startPathway(pathwayId) {
     uiState.currentPathwayId = pathwayId;
 
-    // Load pathway JSON
+    // 1. Immediately switch view mode to clinical (showing #clinical-reasoning-container and hiding #home-screen)
+    switchAppMode('clinical');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 2. Ensure container references are fresh
+    if (!containers.clinical) {
+      containers.clinical = document.getElementById('clinical-reasoning-container');
+    }
+
+    // 3. Show temporary loading indicator in clinical container if needed
+    if (containers.clinical && !uiState.pathwayDataCache[pathwayId]) {
+      containers.clinical.innerHTML = `
+        <div class="glass-panel" style="padding: 3rem 1.5rem; text-align: center;">
+          <div style="font-size: 2.2rem; display: inline-block;">⚙️</div>
+          <h3 style="margin-top: 1rem; color: var(--text-primary); font-weight: 800;">Cargando Clinical Pathway...</h3>
+          <p style="color: var(--text-secondary); font-size: 0.86rem; margin-top: 0.35rem;">Preparando razonamiento clínico estructurado</p>
+        </div>
+      `;
+    }
+
+    // 4. Load pathway JSON
     let pathwayData = uiState.pathwayDataCache[pathwayId];
     if (!pathwayData) {
       let filePath = null;
@@ -362,12 +382,29 @@
         }
       }
       if (!filePath) {
-        if (pathwayId === 'lumbar-axial-pain') filePath = 'clinical/pathways/lumbar-axial.json';
-        else if (pathwayId === 'shoulder-stiffness') filePath = 'clinical/pathways/shoulder-stiffness.json';
-        else if (pathwayId === 'cervical-radicular') filePath = 'clinical/pathways/cervical-radicular.json';
-        else if (pathwayId === 'hip-lateral') filePath = 'clinical/pathways/hip-lateral.json';
-        else if (pathwayId === 'knee-oa-anterior') filePath = 'clinical/pathways/knee-oa-anterior.json';
-        else filePath = `clinical/pathways/${pathwayId}.json`;
+        const pathMap = {
+          'shoulder-lateral-pain': 'clinical/pathways/shoulder-lateral.json',
+          'shoulder-stiffness': 'clinical/pathways/shoulder-stiffness.json',
+          'shoulder-anterior-pain': 'clinical/pathways/shoulder-anterior.json',
+          'lumbar-radicular-pain': 'clinical/pathways/lumbar-radicular.json',
+          'lumbar-axial-pain': 'clinical/pathways/lumbar-axial.json',
+          'lumbar-axial': 'clinical/pathways/lumbar-axial.json',
+          'lumbar-claudication': 'clinical/pathways/lumbar-claudication.json',
+          'cervical-radicular': 'clinical/pathways/cervical-radicular.json',
+          'cervical-axial': 'clinical/pathways/cervical-axial.json',
+          'hip-lateral': 'clinical/pathways/hip-lateral.json',
+          'hip-inguinal': 'clinical/pathways/hip-inguinal.json',
+          'knee-oa-anterior': 'clinical/pathways/knee-oa-anterior.json',
+          'knee-medial': 'clinical/pathways/knee-medial.json',
+          'si-posterior-pelvic': 'clinical/pathways/si-posterior-pelvic.json',
+          'elbow-lateral': 'clinical/pathways/elbow-lateral.json',
+          'wrist-cts': 'clinical/pathways/wrist-cts.json',
+          'wrist-radial': 'clinical/pathways/wrist-radial.json',
+          'ankle-plantar': 'clinical/pathways/ankle-plantar.json',
+          'ankle-medial': 'clinical/pathways/ankle-medial.json',
+          'nociplastic-pain': 'clinical/pathways/nociplastic-pain.json'
+        };
+        filePath = pathMap[pathwayId] || `clinical/pathways/${pathwayId}.json`;
       }
 
       try {
@@ -376,21 +413,30 @@
         pathwayData = await res.json();
         uiState.pathwayDataCache[pathwayId] = pathwayData;
       } catch (err) {
-        alert('Error al cargar el Clinical Pathway: ' + err.message);
+        console.error('Error loading pathway:', err);
+        if (containers.clinical) {
+          containers.clinical.innerHTML = `
+            <div class="glass-panel" style="padding: 2.5rem 1.5rem; text-align: center;">
+              <h3 style="color: #ef4444; font-weight: 800;">⚠️ No se pudo cargar el Clinical Pathway</h3>
+              <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.86rem;">${err.message}</p>
+              <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('home')" style="margin-top: 1.25rem;">Volver al Inicio</button>
+            </div>
+          `;
+        }
         return;
       }
     }
 
-    // Instantiate Engine
+    // 5. Instantiate Engine
     const catalog = window.state ? window.state.catalog : null;
     uiState.engine = new window.ClinicalReasoningEngine(pathwayData, catalog, window.TREATMENTS_CATALOG, window.COACH_CATALOG);
     uiState.engine.setMentorMode(uiState.mentorMode);
     uiState.engine.setExpressMode(uiState.expressMode);
 
-    // Save as recent
+    // 6. Save as recent
     saveRecentSession(pathwayId);
 
-    // Render Master Layout
+    // 7. Render Master Layout
     renderPathwayWorkspace();
   }
 
