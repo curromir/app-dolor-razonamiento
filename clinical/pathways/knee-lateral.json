@@ -13,7 +13,8 @@
       "id": "rf-lateral-mass-peroneal",
       "text": "Masa palpable en cabeza del peroné con pie caído o pérdida de sensibilidad en dorso del pie (Sospecha Quiste Ganglionar / Tumoración con compresión del Nervio Peroneo Común)",
       "severity": "critical",
-      "action": "RM de rodilla urgente y EMG para valorar compresión del nervio peroneo."
+      "action": "RM de rodilla urgente y EMG para valorar compresión del nervio peroneo.",
+      "label": "Masa palpable en cabeza del peroné con pie caído o pérdida de sensibilidad en dorso del pie (Sospecha Quiste Ganglionar / Tumoración con compresión del Nervio Peroneo Común)"
     }
   ],
   "hypotheses": [

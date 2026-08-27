@@ -13,13 +13,15 @@
       "id": "rf-unclear-pancoast-visceral",
       "text": "Dolor en hombro que no varía con movimientos del brazo, acompañado de síndrome de Horner (ptosis, miosis, enoftalmos), tabaquismo o dolor torácico (Sospecha Tumor de Pancoast o Causa Cardíaca/Diafragmática)",
       "severity": "critical",
-      "action": "Radiografía de tórax urgente, ECG y derivación preferente."
+      "action": "Radiografía de tórax urgente, ECG y derivación preferente.",
+      "label": "Dolor en hombro que no varía con movimientos del brazo, acompañado de síndrome de Horner (ptosis, miosis, enoftalmos), tabaquismo o dolor torácico (Sospecha Tumor de Pancoast o Causa Cardíaca/Diafragmática)"
     },
     {
       "id": "rf-unclear-polymyalgia",
       "text": "Dolor y rigidez matutina severa >45 min bilateral en cinturas escapular y pelviana en paciente >50 años con VSG/PCR muy elevadas (Sospecha Polimialgia Reumática)",
       "severity": "critical",
-      "action": "Analítica urgente con reactantes de fase aguda y valoración reumatológica."
+      "action": "Analítica urgente con reactantes de fase aguda y valoración reumatológica.",
+      "label": "Dolor y rigidez matutina severa >45 min bilateral en cinturas escapular y pelviana en paciente >50 años con VSG/PCR muy elevadas (Sospecha Polimialgia Reumática)"
     }
   ],
   "hypotheses": [

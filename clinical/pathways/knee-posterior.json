@@ -13,13 +13,15 @@
       "id": "rf-dvt-safety-override",
       "text": "Edema unilateral doloroso de pantorrilla >3 cm de diferencia de perímetro, empastamiento gemelar, calor local o antecedentes trombóticos recientes (Sospecha Trombosis Venosa Profunda / TVP)",
       "severity": "critical",
-      "action": "SAFETY OVERRIDE: Suspender exploración musculoesquelética. Solicitar Dímero-D y Eco-Doppler venoso de miembros inferiores urgente en Urgencias."
+      "action": "SAFETY OVERRIDE: Suspender exploración musculoesquelética. Solicitar Dímero-D y Eco-Doppler venoso de miembros inferiores urgente en Urgencias.",
+      "label": "Edema unilateral doloroso de pantorrilla >3 cm de diferencia de perímetro, empastamiento gemelar, calor local o antecedentes trombóticos recientes (Sospecha Trombosis Venosa Profunda / TVP)"
     },
     {
       "id": "rf-popliteal-aneurysm",
       "text": "Masa poplítea pulsátil expansiva con soplo auscultatorio (Sospecha Aneurisma de Arteria Poplítea)",
       "severity": "critical",
-      "action": "Eco-Doppler arterial urgente y contraindicación absoluta de punción o aspiración a ciegas."
+      "action": "Eco-Doppler arterial urgente y contraindicación absoluta de punción o aspiración a ciegas.",
+      "label": "Masa poplítea pulsátil expansiva con soplo auscultatorio (Sospecha Aneurisma de Arteria Poplítea)"
     }
   ],
   "hypotheses": [

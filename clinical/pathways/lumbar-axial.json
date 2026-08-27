@@ -10,25 +10,29 @@
       "id": "rf-fracture",
       "text": "Antecedente de caída, esfuerzo con osteoporosis conocida o uso prolongado de corticoides orales (sospecha de fractura vertebral por compresión)",
       "severity": "critical",
-      "action": "Radiografía simple lateral urgente / RM para valorar edema óseo agudo"
+      "action": "Radiografía simple lateral urgente / RM para valorar edema óseo agudo",
+      "label": "Antecedente de caída, esfuerzo con osteoporosis conocida o uso prolongado de corticoides orales (sospecha de fractura vertebral por compresión)"
     },
     {
       "id": "rf-spondylodiscitis",
       "text": "Fiebre, infección urinaria/respiratoria reciente, dolor lumbar inflamatorio nocturno severo y constante en reposo",
       "severity": "critical",
-      "action": "Analítica urgente (PCR/VSG/hemocultivos) y RM contrastada urgente"
+      "action": "Analítica urgente (PCR/VSG/hemocultivos) y RM contrastada urgente",
+      "label": "Fiebre, infección urinaria/respiratoria reciente, dolor lumbar inflamatorio nocturno severo y constante en reposo"
     },
     {
       "id": "rf-oncology",
       "text": "Historia previa de neoplasia con dolor continuo progresivo que empeora al acostarse y no cede en ninguna postura",
       "severity": "high",
-      "action": "RM lumbar completa y estudio de extensión"
+      "action": "RM lumbar completa y estudio de extensión",
+      "label": "Historia previa de neoplasia con dolor continuo progresivo que empeora al acostarse y no cede en ninguna postura"
     },
     {
       "id": "rf-cauda",
       "text": "Alteración aguda del control de esfínteres (retención urinaria o incontinencia) o anestesia perianal en silla de montar",
       "severity": "critical",
-      "action": "Derivación neuroquirúrgica inmediata por sospecha de Síndrome de Cauda Equina"
+      "action": "Derivación neuroquirúrgica inmediata por sospecha de Síndrome de Cauda Equina",
+      "label": "Alteración aguda del control de esfínteres (retención urinaria o incontinencia) o anestesia perianal en silla de montar"
     }
   ],
   "hypotheses": [
@@ -75,21 +79,41 @@
         {
           "label": "Empeora al ponerme de pie derecho, caminar erguido o inclinarme hacia atrás (Extensión)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-discogenic", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-facet-syndrome",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-discogenic",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Empeora al estar sentado mucho rato, al atarme los cordones o al toser/flexionar (Flexión)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-facet-syndrome", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-discogenic",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-facet-syndrome",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Empeora con cualquier esfuerzo postural y fatiga muscular sin un patrón claro",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-myofascial-core", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-myofascial-core",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -103,13 +127,21 @@
         {
           "label": "Sí, me levanto muy rígido y tardo 15-30 minutos en 'engrasar' la espalda",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 4 }
+            {
+              "hypothesisId": "hyp-facet-syndrome",
+              "effect": "increase",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "No tengo rigidez matutina, el dolor aparece al cabo de las horas de actividad",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-myofascial-core", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-myofascial-core",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -123,16 +155,36 @@
         {
           "label": "Se queda en la zona lumbar baja y glúteos/muslo alto (nunca pasa de la rodilla)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 2 },
-            { "hypothesisId": "hyp-si-referred", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-facet-syndrome",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-discogenic",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-si-referred",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Es un dolor exclusivamente central en la línea media lumbar",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 4 },
-            { "hypothesisId": "hyp-facet-syndrome", "effect": "decrease", "weight": 1 }
+            {
+              "hypothesisId": "hyp-discogenic",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-facet-syndrome",
+              "effect": "decrease",
+              "weight": 1
+            }
           ]
         }
       ]
@@ -143,9 +195,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder estar de pie o caminar sin tener que sentarme por dolor", "hypothesisEffects": [] },
-        { "label": "Poder trabajar sentado en la oficina la jornada completa", "hypothesisEffects": [] },
-        { "label": "Realizar tareas domésticas o levantar peso sin miedo a quedarme clavado", "hypothesisEffects": [] }
+        {
+          "label": "Poder estar de pie o caminar sin tener que sentarme por dolor",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Poder trabajar sentado en la oficina la jornada completa",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Realizar tareas domésticas o levantar peso sin miedo a quedarme clavado",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -167,16 +228,32 @@
             "label": "Positivo (reproduce dolor lumbar/glúteo ipsilateral)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-discogenic", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-facet-syndrome",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-discogenic",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Negativo (no reproduce dolor en extensión)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-facet-syndrome", "effect": "decrease", "weight": 4 },
-              { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 2 }
+              {
+                "hypothesisId": "hyp-facet-syndrome",
+                "effect": "decrease",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-discogenic",
+                "effect": "increase",
+                "weight": 2
+              }
             ]
           }
         ]
@@ -195,7 +272,11 @@
             "label": "Dolor selectivo a la palpación en línea facetaria L4-L5 o L5-S1",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-facet-syndrome",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
@@ -219,15 +300,27 @@
             "label": "Dolor marcado en flexión lumbar anterior (Patrón discogénico)",
             "value": "flexion_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 5 },
-              { "hypothesisId": "hyp-facet-syndrome", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-discogenic",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-facet-syndrome",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Flexión libre y confortable; extensión bloqueada",
             "value": "extension_block",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-facet-syndrome",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -246,8 +339,16 @@
             "label": "Negativo (>70° sin dolor radicular)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-facet-syndrome", "effect": "increase", "weight": 2 },
-              { "hypothesisId": "hyp-discogenic", "effect": "increase", "weight": 2 }
+              {
+                "hypothesisId": "hyp-facet-syndrome",
+                "effect": "increase",
+                "weight": 2
+              },
+              {
+                "hypothesisId": "hyp-discogenic",
+                "effect": "increase",
+                "weight": 2
+              }
             ]
           },
           {
@@ -264,7 +365,12 @@
       "id": "cluster-revel-facet",
       "name": "Criterios Clínicos de Revel para Síndrome Facetario Lumbar",
       "description": "1. Edad >65 años + 2. Dolor no empeora en flexión + 3. Empeora en extensión + 4. Empeora con rotación + 5. Kemp (+) + 6. Ausencia de radiculalgia",
-      "requiredTests": ["exam-lumbar-kemp", "exam-facet-palpation", "exam-flexion-provocation", "exam-slr-descarte"],
+      "requiredTests": [
+        "exam-lumbar-kemp",
+        "exam-facet-palpation",
+        "exam-flexion-provocation",
+        "exam-slr-descarte"
+      ],
       "threshold": 3,
       "concordanceText": "Cumple criterios clínicos de sospecha de Síndrome Facetario Lumbar (Criterios de Revel). Candidato a bloqueo diagnóstico de ramos mediales.",
       "evidenceNote": "La combinación de 5/7 criterios de Revel tiene una especificidad del 92% para dolor facetario confirmado por bloqueo (Revel et al., Spine 1998)."
@@ -279,10 +385,26 @@
         "name": "Articulaciones Facetarias L3-S1",
         "priority": 1,
         "findings": [
-          { "id": "facet-normal", "label": "Facetas normales y simétricas", "concordanceEffect": "discordant" },
-          { "id": "facet-arthrosis", "label": "Hipertrofia facetaria con estrechamiento del espacio articular (L4-L5 / L5-S1)", "concordanceEffect": "concordant" },
-          { "id": "facet-effusion", "label": "Derrame intraarticular facetario / quiste sinovial facetario", "concordanceEffect": "concordant" },
-          { "id": "modic-changes", "label": "Cambios Modic tipo I / II en platillos vertebrales y desgarro anular (HIZ) discogénico", "concordanceEffect": "concordant" }
+          {
+            "id": "facet-normal",
+            "label": "Facetas normales y simétricas",
+            "concordanceEffect": "discordant"
+          },
+          {
+            "id": "facet-arthrosis",
+            "label": "Hipertrofia facetaria con estrechamiento del espacio articular (L4-L5 / L5-S1)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "facet-effusion",
+            "label": "Derrame intraarticular facetario / quiste sinovial facetario",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "modic-changes",
+            "label": "Cambios Modic tipo I / II en platillos vertebrales y desgarro anular (HIZ) discogénico",
+            "concordanceEffect": "concordant"
+          }
         ]
       }
     ],
@@ -381,14 +503,21 @@
           "indication": "Agudización de dolor articular facetario o brote discogénico.",
           "example": "Dexketoprofeno 25mg/8h o Naproxeno 500mg/12h",
           "duration": "7-10 días",
-          "guardrails": ["Función renal", "Riesgo GI", "Hipertensión"]
+          "guardrails": [
+            "Función renal",
+            "Riesgo GI",
+            "Hipertensión"
+          ]
         },
         {
           "name": "Paracetamol + Relajante muscular pauta breve",
           "indication": "Contractura refleja paravertebral severa.",
           "example": "Paracetamol 1g/8h + Ciclobenzaprina 5-10mg noche (máximo 5-7 días)",
           "duration": "5-7 días",
-          "guardrails": ["Somnolencia diurna", "Evitar relajantes musculares crónicos"]
+          "guardrails": [
+            "Somnolencia diurna",
+            "Evitar relajantes musculares crónicos"
+          ]
         }
       ]
     },
@@ -400,17 +529,29 @@
           "name": "Bloqueo Diagnóstico de Ramos Mediales Lumbares (MBB)",
           "indication": "Paso 1 OBLIGATORIO: Infiltración de 0.5 ml de anestésico local sobre el ramo medial de la rama dorsal guiado por fluoroscopia o ecografía.",
           "options": [
-            { "name": "Bloqueo diagnóstico con Lidocaína / Bupivacaína (alivio >70-80% en diario de dolor de 6 horas confirma diagnóstico)", "evidence": "Alta / Nivel I" }
+            {
+              "name": "Bloqueo diagnóstico con Lidocaína / Bupivacaína (alivio >70-80% en diario de dolor de 6 horas confirma diagnóstico)",
+              "evidence": "Alta / Nivel I"
+            }
           ],
-          "contraindications": ["Infección activa", "Anticoagulación no controlada"]
+          "contraindications": [
+            "Infección activa",
+            "Anticoagulación no controlada"
+          ]
         },
         {
           "name": "Radiofrecuencia Convencional Térmica de Ramos Mediales (Rizolisis Facetaria)",
           "indication": "Paso 2: Realizar tras confirmación con bloqueo diagnóstico positivo previo.",
           "options": [
-            { "name": "Termolesión a 80°C durante 90 segundos sobre el ramo medial en la unión apófisis transversa-superior", "evidence": "Alta / Nivel I (Manchikanti 2020)" }
+            {
+              "name": "Termolesión a 80°C durante 90 segundos sobre el ramo medial en la unión apófisis transversa-superior",
+              "evidence": "Alta / Nivel I (Manchikanti 2020)"
+            }
           ],
-          "contraindications": ["Portador de marcapasos sin control", "Infección local"]
+          "contraindications": [
+            "Portador de marcapasos sin control",
+            "Infección local"
+          ]
         }
       ]
     }
@@ -418,10 +559,22 @@
   "followUp": {
     "timing": "Revisión a las 4-6 semanas (o post-bloqueo diagnóstico)",
     "parameters": [
-      { "name": "Dolor lumbar en bipedestación (EVA)", "icon": "📊" },
-      { "name": "Tolerancia a caminar y estar de pie", "icon": "🚶" },
-      { "name": "Diario de dolor post-bloqueo diagnóstico", "icon": "📝" },
-      { "name": "Cumplimiento del programa de ejercicios de Core", "icon": "💪" }
+      {
+        "name": "Dolor lumbar en bipedestación (EVA)",
+        "icon": "📊"
+      },
+      {
+        "name": "Tolerancia a caminar y estar de pie",
+        "icon": "🚶"
+      },
+      {
+        "name": "Diario de dolor post-bloqueo diagnóstico",
+        "icon": "📝"
+      },
+      {
+        "name": "Cumplimiento del programa de ejercicios de Core",
+        "icon": "💪"
+      }
     ],
     "outcomes": [
       {

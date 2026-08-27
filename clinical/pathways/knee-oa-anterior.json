@@ -10,19 +10,22 @@
       "id": "rf-septic-knee",
       "text": "Derrame articular a tensión de instauración rápida, calor local intenso, enrojecimiento y fiebre (sospecha de artritis séptica)",
       "severity": "critical",
-      "action": "Artrocentesis diagnóstica urgente con análisis de líquido sinovial y cultivo"
+      "action": "Artrocentesis diagnóstica urgente con análisis de líquido sinovial y cultivo",
+      "label": "Derrame articular a tensión de instauración rápida, calor local intenso, enrojecimiento y fiebre (sospecha de artritis séptica)"
     },
     {
       "id": "rf-extensor-rupture",
       "text": "Incapacidad absoluta para extender activamente la rodilla tras un esfuerzo brusco o caída (sospecha de rotura de tendón rotuliano o cuadricipital)",
       "severity": "critical",
-      "action": "Ecografía urgente y derivación inmediata a Traumatología"
+      "action": "Ecografía urgente y derivación inmediata a Traumatología",
+      "label": "Incapacidad absoluta para extender activamente la rodilla tras un esfuerzo brusco o caída (sospecha de rotura de tendón rotuliano o cuadricipital)"
     },
     {
       "id": "rf-dvt",
       "text": "Edema unilateral severo de pantorrilla con fóvea, empastamiento muscular y signo de Homans positivo (sospecha de Trombosis Venosa Profunda)",
       "severity": "critical",
-      "action": "Eco-Doppler venoso de miembro inferior urgente"
+      "action": "Eco-Doppler venoso de miembro inferior urgente",
+      "label": "Edema unilateral severo de pantorrilla con fóvea, empastamiento muscular y signo de Homans positivo (sospecha de Trombosis Venosa Profunda)"
     }
   ],
   "hypotheses": [
@@ -69,21 +72,41 @@
         {
           "label": "Al bajar escaleras, agacharme en cuclillas o levantarme de una silla baja (Carga patelofemoral)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-pfp", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-pfp",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-knee-osteoarthritis",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Al caminar un rato en llano o estar de pie derecho continuo (Carga femorotibial)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-pfp", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-knee-osteoarthritis",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-pfp",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Al girar o rotar el cuerpo sobre la pierna apoyada",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-degenerative-meniscus",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         }
       ]
@@ -97,7 +120,11 @@
         {
           "label": "Sí, tengo que estirar la pierna enseguida porque siento una molestia sorda profunda ('Signo del cine +')",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-pfp", "effect": "increase", "weight": 4 }
+            {
+              "hypothesisId": "hyp-pfp",
+              "effect": "increase",
+              "weight": 4
+            }
           ]
         },
         {
@@ -115,14 +142,26 @@
         {
           "label": "Sí, crujidos evidentes como si tuviera arenilla o piedras dentro de la rodilla",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-pfp", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-knee-osteoarthritis",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-pfp",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "No noto crujidos ni rigidez matutina",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-knee-osteoarthritis",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -133,9 +172,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Bajar y subir escaleras sin dolor ni sensación de fallo", "hypothesisEffects": [] },
-        { "label": "Poder caminar 30-60 minutos al día de forma cómoda", "hypothesisEffects": [] },
-        { "label": "Volver a practicar deporte, senderismo o carrera", "hypothesisEffects": [] }
+        {
+          "label": "Bajar y subir escaleras sin dolor ni sensación de fallo",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Poder caminar 30-60 minutos al día de forma cómoda",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Volver a practicar deporte, senderismo o carrera",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -156,15 +204,27 @@
             "label": "Dolor o crepitación marcado a la compresión patelar (Positivo)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-pfp", "effect": "increase", "weight": 5 },
-              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 3 }
+              {
+                "hypothesisId": "hyp-pfp",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-knee-osteoarthritis",
+                "effect": "increase",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Deslizamiento patelar indoloro y suave",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-pfp", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-pfp",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -183,23 +243,43 @@
             "label": "Dolor selectivo en la interlínea articular medial",
             "value": "medial_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 4 },
-              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-knee-osteoarthritis",
+                "effect": "increase",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-degenerative-meniscus",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
             "label": "Dolor selectivo en interlínea lateral",
             "value": "lateral_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 3 },
-              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-knee-osteoarthritis",
+                "effect": "increase",
+                "weight": 3
+              },
+              {
+                "hypothesisId": "hyp-degenerative-meniscus",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
             "label": "Interlíneas articulares completamente indoloras",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-degenerative-meniscus",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           }
         ]
@@ -219,15 +299,27 @@
             "label": "Positivo (reproduce dolor o chasquido en interlínea al girar)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 3 }
+              {
+                "hypothesisId": "hyp-degenerative-meniscus",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-knee-osteoarthritis",
+                "effect": "increase",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Negativo (rotaciones completas en carga sin dolor)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-degenerative-meniscus",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -245,8 +337,16 @@
             "label": "Derrame articular evidente (Oleada o choque rotuliano +)",
             "value": "effusion_present",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-knee-osteoarthritis", "effect": "increase", "weight": 4 },
-              { "hypothesisId": "hyp-degenerative-meniscus", "effect": "increase", "weight": 3 }
+              {
+                "hypothesisId": "hyp-knee-osteoarthritis",
+                "effect": "increase",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-degenerative-meniscus",
+                "effect": "increase",
+                "weight": 3
+              }
             ]
           },
           {
@@ -263,7 +363,10 @@
       "id": "cluster-knee-oa-acr",
       "name": "Criterios Clínicos ACR para Artrosis de Rodilla",
       "description": "Dolor de rodilla + al menos 3 de 6: 1. Edad >50 años + 2. Rigidez <30 min + 3. Crepitación + 4. Dolor óseo + 5. Engrosamiento óseo + 6. Sin calor local",
-      "requiredTests": ["exam-clark-grind", "exam-joint-line-tenderness"],
+      "requiredTests": [
+        "exam-clark-grind",
+        "exam-joint-line-tenderness"
+      ],
       "threshold": 2,
       "concordanceText": "Cumple criterios clínicos del Colegio Americano de Reumatología (ACR) para Gonartrosis (Sensibilidad 95%, Especificidad 69%).",
       "evidenceNote": "Los criterios clínicos ACR permiten diagnosticar gonartrosis sin necesidad imperativa de radiografía en atención primaria (Altman et al., 1986)."
@@ -277,9 +380,21 @@
         "name": "Receso Suprarrotuliano (Derrame y Sinovitis)",
         "priority": 1,
         "findings": [
-          { "id": "us-recess-normal", "label": "Sin derrame ni engrosamiento sinovial (<2 mm)", "concordanceEffect": "neutral" },
-          { "id": "us-recess-effusion", "label": "Derrame intraarticular anecoico moderado/severo", "concordanceEffect": "concordant" },
-          { "id": "us-recess-synovitis", "label": "Hipertrofia sinovial con señal Doppler positiva", "concordanceEffect": "concordant" }
+          {
+            "id": "us-recess-normal",
+            "label": "Sin derrame ni engrosamiento sinovial (<2 mm)",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-recess-effusion",
+            "label": "Derrame intraarticular anecoico moderado/severo",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-recess-synovitis",
+            "label": "Hipertrofia sinovial con señal Doppler positiva",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Receso suprarrotuliano: {finding}."
       },
@@ -288,8 +403,16 @@
         "name": "Cartílago de la Tróclea Femoral (en flexión máxima)",
         "priority": 1,
         "findings": [
-          { "id": "us-trochlea-normal", "label": "Banda hipoecoica de cartílago homogénea y regular (>2 mm)", "concordanceEffect": "neutral" },
-          { "id": "us-trochlea-degeneration", "label": "Pérdida de espesor cartilaginoso, irregularidad y osteofitosis troclear", "concordanceEffect": "concordant" }
+          {
+            "id": "us-trochlea-normal",
+            "label": "Banda hipoecoica de cartílago homogénea y regular (>2 mm)",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-trochlea-degeneration",
+            "label": "Pérdida de espesor cartilaginoso, irregularidad y osteofitosis troclear",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Cartílago troclear femoral: {finding}."
       },
@@ -298,8 +421,16 @@
         "name": "Menisco Medial y Lateral (Extrusión en Carga)",
         "priority": 2,
         "findings": [
-          { "id": "us-meniscus-normal", "label": "Morfología triangular regular sin extrusión (<2 mm)", "concordanceEffect": "neutral" },
-          { "id": "us-meniscus-extruded", "label": "Extrusión meniscal medial significativa (>3 mm) y osteofitosis marginal", "concordanceEffect": "concordant" }
+          {
+            "id": "us-meniscus-normal",
+            "label": "Morfología triangular regular sin extrusión (<2 mm)",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-meniscus-extruded",
+            "label": "Extrusión meniscal medial significativa (>3 mm) y osteofitosis marginal",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Menisco medial: {finding}."
       }
@@ -400,14 +531,20 @@
           "indication": "Dolor moderado por gonartrosis con máxima seguridad gastrointestinal y renal.",
           "example": "Diclofenaco gel 1-2% 3 veces al día sobre la rodilla",
           "duration": "4-12 semanas",
-          "guardrails": ["Excelente perfil de seguridad, recomendado por guías OARSI"]
+          "guardrails": [
+            "Excelente perfil de seguridad, recomendado por guías OARSI"
+          ]
         },
         {
           "name": "Paracetamol o AINEs orales en pauta corta para brote",
           "indication": "Brote inflamatorio con dolor que impide el ejercicio.",
           "example": "Paracetamol 1g/8h o Ibuprofeno 400-600mg/8h en ciclo de 7-10 días",
           "duration": "10 días",
-          "guardrails": ["Función renal", "Riesgo cardiovascular", "Edad >65"]
+          "guardrails": [
+            "Función renal",
+            "Riesgo cardiovascular",
+            "Edad >65"
+          ]
         }
       ]
     },
@@ -419,9 +556,18 @@
           "name": "Infiltración Intraarticular de Rodilla Ecoguiada",
           "indication": "Gonartrosis sintomática grado II-III de Kellgren-Lawrence.",
           "options": [
-            { "name": "Ácido Hialurónico de alto peso molecular (Viscosuplementación)", "evidence": "Alta / Recomendación OARSI" },
-            { "name": "Corticoide de depósito (Triamcinolona 40mg) si existe brote con derrame sinovial", "evidence": "Alta a corto plazo" },
-            { "name": "Radiofrecuencia (Neurotomía) de Nervios Geniculados de la rodilla en gonartrosis avanzada no quirúrgica", "evidence": "Alta / Nivel I (Choi 2011)" }
+            {
+              "name": "Ácido Hialurónico de alto peso molecular (Viscosuplementación)",
+              "evidence": "Alta / Recomendación OARSI"
+            },
+            {
+              "name": "Corticoide de depósito (Triamcinolona 40mg) si existe brote con derrame sinovial",
+              "evidence": "Alta a corto plazo"
+            },
+            {
+              "name": "Radiofrecuencia (Neurotomía) de Nervios Geniculados de la rodilla en gonartrosis avanzada no quirúrgica",
+              "evidence": "Alta / Nivel I (Choi 2011)"
+            }
           ],
           "contraindications": [
             "Infección articular activa (artritis séptica)",
@@ -434,10 +580,22 @@
   "followUp": {
     "timing": "Revisión a las 6-8 semanas",
     "parameters": [
-      { "name": "Dolor al bajar escaleras (EVA)", "icon": "📉" },
-      { "name": "Distancia caminada sin dolor", "icon": "🚶" },
-      { "name": "Presencia de derrame articular", "icon": "💧" },
-      { "name": "Fuerza de cuádriceps", "icon": "💪" }
+      {
+        "name": "Dolor al bajar escaleras (EVA)",
+        "icon": "📉"
+      },
+      {
+        "name": "Distancia caminada sin dolor",
+        "icon": "🚶"
+      },
+      {
+        "name": "Presencia de derrame articular",
+        "icon": "💧"
+      },
+      {
+        "name": "Fuerza de cuádriceps",
+        "icon": "💪"
+      }
     ],
     "outcomes": [
       {

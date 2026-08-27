@@ -13,13 +13,15 @@
       "id": "rf-massive-tear-acute",
       "text": "Pseudoparálisis aguda súbita (caída del brazo con elevación activa <60° pero movilidad pasiva completa) tras caída o esfuerzo en paciente activo",
       "severity": "critical",
-      "action": "Ecografía urgente / RM de hombro y derivación precoz a Cirugía de Hombro (<3 semanas) para reparación tendinosa antes de la retracción/infiltración grasa."
+      "action": "Ecografía urgente / RM de hombro y derivación precoz a Cirugía de Hombro (<3 semanas) para reparación tendinosa antes de la retracción/infiltración grasa.",
+      "label": "Pseudoparálisis aguda súbita (caída del brazo con elevación activa <60° pero movilidad pasiva completa) tras caída o esfuerzo en paciente activo"
     },
     {
       "id": "rf-neuro-axillary-c5",
       "text": "Pérdida motora de deltoides + hipoestesia en 'charretera' deltoidea o afectación motora multinivel (Sospecha Lesión Nervio Axilar / Radiculopatía C5 aguda)",
       "severity": "critical",
-      "action": "EMG urgente y RM cervical/hombro según nivel de sospecha."
+      "action": "EMG urgente y RM cervical/hombro según nivel de sospecha.",
+      "label": "Pérdida motora de deltoides + hipoestesia en 'charretera' deltoidea o afectación motora multinivel (Sospecha Lesión Nervio Axilar / Radiculopatía C5 aguda)"
     }
   ],
   "hypotheses": [

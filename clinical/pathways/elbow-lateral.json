@@ -10,13 +10,15 @@
       "id": "rf-radial-head-fracture",
       "text": "Antecedente de caída sobre la palma de la mano con dolor severo, derrame a tensión e incapacidad para la pronosupinación (sospecha de fractura de cabeza de radio)",
       "severity": "critical",
-      "action": "Radiografía simple de codo (proyecciones AP, lateral y oblicua) y cabestrillo"
+      "action": "Radiografía simple de codo (proyecciones AP, lateral y oblicua) y cabestrillo",
+      "label": "Antecedente de caída sobre la palma de la mano con dolor severo, derrame a tensión e incapacidad para la pronosupinación (sospecha de fractura de cabeza de radio)"
     },
     {
       "id": "rf-septic-bursitis",
       "text": "Tumefacción fluctuante en el olécranon o codo con calor local intenso, celulitis y fiebre (sospecha de bursitis olecraniana séptica / artritis)",
       "severity": "critical",
-      "action": "Punción evacuadora con cultivo de líquido y antibioterapia"
+      "action": "Punción evacuadora con cultivo de líquido y antibioterapia",
+      "label": "Tumefacción fluctuante en el olécranon o codo con calor local intenso, celulitis y fiebre (sospecha de bursitis olecraniana séptica / artritis)"
     }
   ],
   "hypotheses": [
@@ -55,21 +57,41 @@
         {
           "label": "Al coger objetos con fuerza, levantar peso con la palma hacia abajo o abrir una puerta",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-radial-tunnel", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-lateral-epicondylalgia",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-radial-tunnel",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Siento un dolor constante y quemazón que baja hacia el antebrazo sin depender del esfuerzo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radial-tunnel", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-radial-tunnel",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-lateral-epicondylalgia",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Al rotar el antebrazo (girar una llave o destornillador) con sensación de fricción ósea",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radiocapitellar-joint", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-radiocapitellar-joint",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         }
       ]
@@ -83,15 +105,31 @@
         {
           "label": "Justo sobre el hueso prominente lateral del codo (Epicóndilo)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-radial-tunnel", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-lateral-epicondylalgia",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-radial-tunnel",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Unos 3-4 centímetros por debajo del hueso, en la masa muscular carnosa del antebrazo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radial-tunnel", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-radial-tunnel",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-lateral-epicondylalgia",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -102,9 +140,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder trabajar en ordenador, usar herramientas o cocinar sin dolor en el brazo", "hypothesisEffects": [] },
-        { "label": "Volver a practicar pádel, tenis, gimnasio o levantamiento de pesas", "hypothesisEffects": [] },
-        { "label": "Cargar bolsas de la compra o coger a mis hijos en brazos sin pinchazo", "hypothesisEffects": [] }
+        {
+          "label": "Poder trabajar en ordenador, usar herramientas o cocinar sin dolor en el brazo",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Volver a practicar pádel, tenis, gimnasio o levantamiento de pesas",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Cargar bolsas de la compra o coger a mis hijos en brazos sin pinchazo",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -126,14 +173,22 @@
             "label": "Positivo (dolor agudo en epicóndilo a la extensión resistida)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "increase", "weight": 5 }
+              {
+                "hypothesisId": "hyp-lateral-epicondylalgia",
+                "effect": "increase",
+                "weight": 5
+              }
             ]
           },
           {
             "label": "Negativo (fuerza potente sin dolor)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-lateral-epicondylalgia",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -152,7 +207,11 @@
             "label": "Positivo (dolor agudo en epicóndilo al resistir el 3er dedo)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "increase", "weight": 5 }
+              {
+                "hypothesisId": "hyp-lateral-epicondylalgia",
+                "effect": "increase",
+                "weight": 5
+              }
             ]
           },
           {
@@ -176,15 +235,27 @@
             "label": "Dolor sobre la inserción ósea del epicóndilo",
             "value": "epicondyle_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-lateral-epicondylalgia",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
             "label": "Dolor localizado a 4 cm distal en vientre del supinador (Túnel Radial)",
             "value": "radial_tunnel_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radial-tunnel", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-lateral-epicondylalgia", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-radial-tunnel",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-lateral-epicondylalgia",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           }
         ]
@@ -196,7 +267,11 @@
       "id": "cluster-lateral-epicondyle",
       "name": "Tríada Diagnóstica de Epicondilalgia Lateral",
       "description": "1. Dolor a la palpación del epicóndilo + 2. Test de Cozen (+) + 3. Test de Maudsley / Prensión manual dolorosa",
-      "requiredTests": ["exam-codo-cozen", "exam-codo-maudsley", "exam-codo-frohse-palpation"],
+      "requiredTests": [
+        "exam-codo-cozen",
+        "exam-codo-maudsley",
+        "exam-codo-frohse-palpation"
+      ],
       "threshold": 2,
       "concordanceText": "Tríada clásica de Epicondilalgia Lateral de codo (Sensibilidad >90%). Diagnóstico clínico de tendinopatía de extensores de muñeca.",
       "evidenceNote": "La combinación de Cozen + palpación tiene una especificidad diagnóstica superior al 88% (Smidt et al., 2002)."
@@ -210,10 +285,26 @@
         "name": "Tendón Extensor Común (CET) y ECRB",
         "priority": 1,
         "findings": [
-          { "id": "us-cet-normal", "label": "Tendón fino (<3.5 mm) con patrón fibrilar regular", "concordanceEffect": "neutral" },
-          { "id": "us-cet-tendinosis", "label": "Tendinosis (engrosamiento >4.2 mm, hipoecogenicidad y desestructuración)", "concordanceEffect": "concordant" },
-          { "id": "us-cet-tear", "label": "Rotura parcial / hendidura intrasubstancia hipoecoica", "concordanceEffect": "concordant" },
-          { "id": "us-cet-doppler", "label": "Neovascularización Doppler color activa peritendinosa", "concordanceEffect": "concordant" }
+          {
+            "id": "us-cet-normal",
+            "label": "Tendón fino (<3.5 mm) con patrón fibrilar regular",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-cet-tendinosis",
+            "label": "Tendinosis (engrosamiento >4.2 mm, hipoecogenicidad y desestructuración)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-cet-tear",
+            "label": "Rotura parcial / hendidura intrasubstancia hipoecoica",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-cet-doppler",
+            "label": "Neovascularización Doppler color activa peritendinosa",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Tendón extensor común del codo: {finding}."
       },
@@ -222,8 +313,16 @@
         "name": "Articulación Radiocapitular",
         "priority": 2,
         "findings": [
-          { "id": "us-rc-normal", "label": "Interlínea articular lisa y regular", "concordanceEffect": "neutral" },
-          { "id": "us-rc-effusion", "label": "Derrame articular o irregularidad ósea en cabeza de radio", "concordanceEffect": "concordant" }
+          {
+            "id": "us-rc-normal",
+            "label": "Interlínea articular lisa y regular",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-rc-effusion",
+            "label": "Derrame articular o irregularidad ósea en cabeza de radio",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Articulación radiocapitular: {finding}."
       }
@@ -309,7 +408,9 @@
           "indication": "Dolor agudo diurno que dificulta la actividad.",
           "example": "Gel de diclofenaco o aceclofenaco 3 veces/día + cincha epicondílea colocada 3 cm distal al codo",
           "duration": "2-4 semanas",
-          "guardrails": ["Excelente perfil de seguridad"]
+          "guardrails": [
+            "Excelente perfil de seguridad"
+          ]
         }
       ]
     },
@@ -321,10 +422,19 @@
           "name": "Ondas de Choque Focales (ESWT) o Plasma Rico en Plaquetas (PRP)",
           "indication": "Tendinosis del ECRB confirmada en ecografía sin rotura masiva.",
           "options": [
-            { "name": "Ondas de choque radiales/focales (3-5 sesiones semanales)", "evidence": "Alta / Nivel I" },
-            { "name": "Infiltración ecoguiada de PRP intratendinoso", "evidence": "Moderada a medio-largo plazo (Mishra 2014)" }
+            {
+              "name": "Ondas de choque radiales/focales (3-5 sesiones semanales)",
+              "evidence": "Alta / Nivel I"
+            },
+            {
+              "name": "Infiltración ecoguiada de PRP intratendinoso",
+              "evidence": "Moderada a medio-largo plazo (Mishra 2014)"
+            }
           ],
-          "contraindications": ["Infiltración reciente con corticoide en los últimos 3 meses", "Infección local"]
+          "contraindications": [
+            "Infiltración reciente con corticoide en los últimos 3 meses",
+            "Infección local"
+          ]
         }
       ]
     }
@@ -332,9 +442,18 @@
   "followUp": {
     "timing": "Revisión a las 6-8 semanas",
     "parameters": [
-      { "name": "Fuerza de prensión sin dolor (Dinamómetro)", "icon": "✊" },
-      { "name": "Dolor con el Test de Cozen", "icon": "📊" },
-      { "name": "Tolerancia a las tareas laborales / deportivas", "icon": "🎾" }
+      {
+        "name": "Fuerza de prensión sin dolor (Dinamómetro)",
+        "icon": "✊"
+      },
+      {
+        "name": "Dolor con el Test de Cozen",
+        "icon": "📊"
+      },
+      {
+        "name": "Tolerancia a las tareas laborales / deportivas",
+        "icon": "🎾"
+      }
     ],
     "outcomes": [
       {

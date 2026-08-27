@@ -10,37 +10,43 @@
       "id": "rf-myelopathy",
       "text": "Signos de mielopatía cervical (marcha atáxica/torpe, pérdida de destreza manual en ambas manos, hiperreflexia, clonus)",
       "severity": "critical",
-      "action": "Derivación urgente a Neurocirugía / RM cervical urgente por sospecha de compresión medular"
+      "action": "Derivación urgente a Neurocirugía / RM cervical urgente por sospecha de compresión medular",
+      "label": "Signos de mielopatía cervical (marcha atáxica/torpe, pérdida de destreza manual en ambas manos, hiperreflexia, clonus)"
     },
     {
       "id": "rf-progressive-motor",
       "text": "Déficit motor franco o rápidamente progresivo (fuerza <3/5 en deltoides, bíceps, tríceps o intrínsecos de la mano)",
       "severity": "critical",
-      "action": "Evaluación neuroquirúrgica prioritaria"
+      "action": "Evaluación neuroquirúrgica prioritaria",
+      "label": "Déficit motor franco o rápidamente progresivo (fuerza <3/5 en deltoides, bíceps, tríceps o intrínsecos de la mano)"
     },
     {
       "id": "rf-trauma",
       "text": "Traumatismo cervical de alta energía (accidente de tráfico, caída) o antecedente de latigazo severo",
       "severity": "high",
-      "action": "Inmovilización y descartar fractura / inestabilidad con TC/RX según reglas de columna cervical"
+      "action": "Inmovilización y descartar fractura / inestabilidad con TC/RX según reglas de columna cervical",
+      "label": "Traumatismo cervical de alta energía (accidente de tráfico, caída) o antecedente de latigazo severo"
     },
     {
       "id": "rf-cancer",
       "text": "Antecedente de cáncer con dolor nocturno no mecánico continuo o pérdida de peso inexplicable",
       "severity": "high",
-      "action": "Estudio urgente de imagen y marcadores tumorales"
+      "action": "Estudio urgente de imagen y marcadores tumorales",
+      "label": "Antecedente de cáncer con dolor nocturno no mecánico continuo o pérdida de peso inexplicable"
     },
     {
       "id": "rf-fever",
       "text": "Fiebre, escalofríos, inmunosupresión o uso de drogas parenterales (sospecha de espondilodiscitis / absceso epidural)",
       "severity": "high",
-      "action": "Analítica urgente con PCR/VSG y RM contrastada"
+      "action": "Analítica urgente con PCR/VSG y RM contrastada",
+      "label": "Fiebre, escalofríos, inmunosupresión o uso de drogas parenterales (sospecha de espondilodiscitis / absceso epidural)"
     },
     {
       "id": "rf-vascular",
       "text": "Síntomas vertebrobasilares (mareo tipo drop attacks, disartria, disfagia, diplopía, nistagmo)",
       "severity": "critical",
-      "action": "Descartar disección arterial vertebral o insuficiencia vertebrobasilar"
+      "action": "Descartar disección arterial vertebral o insuficiencia vertebrobasilar",
+      "label": "Síntomas vertebrobasilares (mareo tipo drop attacks, disartria, disfagia, diplopía, nistagmo)"
     }
   ],
   "hypotheses": [
@@ -95,37 +101,81 @@
         {
           "label": "Baja por cara posterior del brazo hacia el dedo medio (Dermatoma C7)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-radic-c7",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-cervical-referred",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Baja por cara lateral del brazo y antebrazo hacia el pulgar e índice (Dermatoma C6)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-radic-c6",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-cervical-referred",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Baja por cara medial/cubital hacia el 4º y 5º dedo (Dermatoma C8 / T1)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radic-c5-c8", "effect": "increase", "weight": 4 },
-            { "hypothesisId": "hyp-tos", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-radic-c5-c8",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-tos",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Se queda en hombro o cara lateral del brazo sin sobrepasar el codo (Dermatoma C5 o referido)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radic-c5-c8", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-radic-c5-c8",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-cervical-referred",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Solo dolor en cuello, trapecio y escápula (no baja del hombro)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 4 },
-            { "hypothesisId": "hyp-radic-c7", "effect": "decrease", "weight": 2 },
-            { "hypothesisId": "hyp-radic-c6", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-cervical-referred",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-radic-c7",
+              "effect": "decrease",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-radic-c6",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -139,16 +189,36 @@
         {
           "label": "Sí, hormigueo intenso o descargas hacia los dedos de la mano",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-radic-c7",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-radic-c6",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-cervical-referred",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "No, es una pesadez o contractura constante sin hormigueo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-radic-c7", "effect": "decrease", "weight": 1 }
+            {
+              "hypothesisId": "hyp-cervical-referred",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-radic-c7",
+              "effect": "decrease",
+              "weight": 1
+            }
           ]
         }
       ]
@@ -162,8 +232,16 @@
         {
           "label": "Sí, poner la mano en la cabeza me alivia notablemente (Bakody +)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-radic-c6",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-radic-c7",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
@@ -181,15 +259,31 @@
         {
           "label": "Sí, girar la cabeza hacia el lado doloroso dispara el dolor al brazo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-radic-c7",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-radic-c6",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "No se modifica con los movimientos del cuello",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-tos", "effect": "increase", "weight": 2 },
-            { "hypothesisId": "hyp-radic-c7", "effect": "decrease", "weight": 1 }
+            {
+              "hypothesisId": "hyp-tos",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-radic-c7",
+              "effect": "decrease",
+              "weight": 1
+            }
           ]
         }
       ]
@@ -201,10 +295,22 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Dormir sin dolor y descansar por la noche", "hypothesisEffects": [] },
-        { "label": "Trabajar en ordenador / oficina sin quemazón en el brazo", "hypothesisEffects": [] },
-        { "label": "Conducir y mirar por los retrovisores sin dolor", "hypothesisEffects": [] },
-        { "label": "Cargar peso y realizar deporte / vida activa", "hypothesisEffects": [] }
+        {
+          "label": "Dormir sin dolor y descansar por la noche",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Trabajar en ordenador / oficina sin quemazón en el brazo",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Conducir y mirar por los retrovisores sin dolor",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Cargar peso y realizar deporte / vida activa",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -226,16 +332,32 @@
             "label": "Positivo (reproduce dolor/parestesias hacia el brazo)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 5 },
-              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 5 },
-              { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-radic-c7",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-radic-c6",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-cervical-referred",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Negativo (sin irradiación distal)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 1 }
+              {
+                "hypothesisId": "hyp-cervical-referred",
+                "effect": "increase",
+                "weight": 1
+              }
             ]
           }
         ]
@@ -255,8 +377,16 @@
             "label": "Positivo (alivio claro de los síntomas del brazo)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 4 },
-              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-radic-c7",
+                "effect": "increase",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-radic-c6",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
@@ -281,18 +411,42 @@
             "label": "Positivo con sensibilización contralateral",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 4 },
-              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 4 },
-              { "hypothesisId": "hyp-cervical-referred", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-radic-c7",
+                "effect": "increase",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-radic-c6",
+                "effect": "increase",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-cervical-referred",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Negativo (movimiento simétrico sin dolor neural)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c7", "effect": "decrease", "weight": 4 },
-              { "hypothesisId": "hyp-radic-c6", "effect": "decrease", "weight": 4 },
-              { "hypothesisId": "hyp-cervical-referred", "effect": "increase", "weight": 3 }
+              {
+                "hypothesisId": "hyp-radic-c7",
+                "effect": "decrease",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-radic-c6",
+                "effect": "decrease",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-cervical-referred",
+                "effect": "increase",
+                "weight": 3
+              }
             ]
           }
         ]
@@ -311,8 +465,16 @@
             "label": "Rotación limitada (<60° con dolor)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 3 },
-              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 3 }
+              {
+                "hypothesisId": "hyp-radic-c7",
+                "effect": "increase",
+                "weight": 3
+              },
+              {
+                "hypothesisId": "hyp-radic-c6",
+                "effect": "increase",
+                "weight": 3
+              }
             ]
           },
           {
@@ -341,21 +503,33 @@
             "label": "Paresia en Tríceps / Extensores de muñeca (Miotoma C7)",
             "value": "c7_paresis",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-radic-c7",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
             "label": "Paresia en Bíceps / Extensores radiales (Miotoma C6)",
             "value": "c6_paresis",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-radic-c6",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
             "label": "Paresia en Deltoides (C5) o Interóseos (C8/T1)",
             "value": "c5_c8_paresis",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c5-c8", "effect": "increase", "weight": 5 }
+              {
+                "hypothesisId": "hyp-radic-c5-c8",
+                "effect": "increase",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -379,14 +553,22 @@
             "label": "Reflejo Tricipital disminuido o abolido (C7)",
             "value": "c7_reflex_drop",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c7", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-radic-c7",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
             "label": "Reflejo Bicipital / Estilorradial disminuido (C6)",
             "value": "c6_reflex_drop",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-radic-c6", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-radic-c6",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -560,14 +742,22 @@
           "indication": "Dolor neuropático radicular con quemazón, descargas o parestesias.",
           "example": "Pregabalina 25-75mg noche (titular hasta 150mg/12h) o Duloxetina 30-60mg/24h",
           "duration": "4-12 semanas según respuesta",
-          "guardrails": ["Función renal", "Somnolencia/mareo inicial", "Evitar retirada brusca"]
+          "guardrails": [
+            "Función renal",
+            "Somnolencia/mareo inicial",
+            "Evitar retirada brusca"
+          ]
         },
         {
           "name": "AINEs / Corticoides en ciclo corto",
           "indication": "Fase hiperaguda inflamatoria (primeras 1-2 semanas).",
           "example": "Metilprednisolona oral pauta descendente en 6 días o Naproxeno 500mg/12h",
           "duration": "7-10 días máximo",
-          "guardrails": ["Riesgo gastrointestinal", "Hipertensión", "Diabetes (control de glucemias)"]
+          "guardrails": [
+            "Riesgo gastrointestinal",
+            "Hipertensión",
+            "Diabetes (control de glucemias)"
+          ]
         }
       ]
     },
@@ -579,8 +769,14 @@
           "name": "Epidural Cervical Interlaminar (C7-T1) o Bloqueo Foraminal Selectivo",
           "indication": "Radiculopatía cervical C6 o C7 confirmada con dolor limitante.",
           "options": [
-            { "name": "Infiltración epidural interlaminar C7-T1 con corticoide no particulado (Dexametasona)", "evidence": "Alta / Nivel I" },
-            { "name": "Bloqueo radicular selectivo cervical guiado por ecografía/fluroscopia", "evidence": "Moderada" }
+            {
+              "name": "Infiltración epidural interlaminar C7-T1 con corticoide no particulado (Dexametasona)",
+              "evidence": "Alta / Nivel I"
+            },
+            {
+              "name": "Bloqueo radicular selectivo cervical guiado por ecografía/fluroscopia",
+              "evidence": "Moderada"
+            }
           ],
           "contraindications": [
             "Coagulopatía / Anticoagulación activa",
@@ -594,12 +790,30 @@
   "followUp": {
     "timing": "Revisión a las 3-4 semanas",
     "parameters": [
-      { "name": "Dolor radicular en brazo (EVA)", "icon": "📊" },
-      { "name": "Fuerza muscular en miotomas", "icon": "💪" },
-      { "name": "Reflejos osteotendinosos", "icon": "⚡" },
-      { "name": "Sensibilidad y parestesias", "icon": "🤲" },
-      { "name": "Calidad del sueño", "icon": "😴" },
-      { "name": "Objetivo funcional del paciente", "icon": "🎯" }
+      {
+        "name": "Dolor radicular en brazo (EVA)",
+        "icon": "📊"
+      },
+      {
+        "name": "Fuerza muscular en miotomas",
+        "icon": "💪"
+      },
+      {
+        "name": "Reflejos osteotendinosos",
+        "icon": "⚡"
+      },
+      {
+        "name": "Sensibilidad y parestesias",
+        "icon": "🤲"
+      },
+      {
+        "name": "Calidad del sueño",
+        "icon": "😴"
+      },
+      {
+        "name": "Objetivo funcional del paciente",
+        "icon": "🎯"
+      }
     ],
     "outcomes": [
       {

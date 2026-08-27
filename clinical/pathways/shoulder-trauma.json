@@ -13,13 +13,15 @@
       "id": "rf-fracture-dislocation",
       "text": "Deformidad anatómica evidente (hombro en charretera, relieve clavicular desplazado), hematoma en extensión rápida o crepitación ósea a la palpación",
       "severity": "critical",
-      "action": "Inmovilización estricta inmediata, radiografía urgente en 3 proyecciones y derivación a Urgencias de Traumatología."
+      "action": "Inmovilización estricta inmediata, radiografía urgente en 3 proyecciones y derivación a Urgencias de Traumatología.",
+      "label": "Deformidad anatómica evidente (hombro en charretera, relieve clavicular desplazado), hematoma en extensión rápida o crepitación ósea a la palpación"
     },
     {
       "id": "rf-neurovascular-compromise",
       "text": "Ausencia de pulso radial, frialdad/palidez en la mano o pérdida sensitiva completa distal a la lesión",
       "severity": "critical",
-      "action": "Emergencia vascular quirúrgica urgente."
+      "action": "Emergencia vascular quirúrgica urgente.",
+      "label": "Ausencia de pulso radial, frialdad/palidez en la mano o pérdida sensitiva completa distal a la lesión"
     }
   ],
   "hypotheses": [

@@ -10,19 +10,22 @@
       "id": "rf-acute-compartment-hand",
       "text": "Tumefacción a tensión tras traumatismo, dolor desproporcionado al estiramiento pasivo de los dedos y palidez (sospecha de síndrome compartimental de mano)",
       "severity": "critical",
-      "action": "Fasciotomía quirúrgica urgente de descompresión"
+      "action": "Fasciotomía quirúrgica urgente de descompresión",
+      "label": "Tumefacción a tensión tras traumatismo, dolor desproporcionado al estiramiento pasivo de los dedos y palidez (sospecha de síndrome compartimental de mano)"
     },
     {
       "id": "rf-severe-thenar-atrophy",
       "text": "Atrofia tenar franca y rápida con pérdida completa de la oposición del pulgar (fuerza <3/5 en abductor corto del pulgar)",
       "severity": "critical",
-      "action": "Derivación urgente para electromiografía y valoración de liberación quirúrgica"
+      "action": "Derivación urgente para electromiografía y valoración de liberación quirúrgica",
+      "label": "Atrofia tenar franca y rápida con pérdida completa de la oposición del pulgar (fuerza <3/5 en abductor corto del pulgar)"
     },
     {
       "id": "rf-kanavel-tenosynovitis",
       "text": "Dedo en flexión rígida ('en salchicha'), dolor exquisito a lo largo de toda la vaina flexora y calor local (Signos de Kanavel de tenosinovitis infecciosa)",
       "severity": "critical",
-      "action": "Drenaje quirúrgico urgente y antibioterapia intravenosa"
+      "action": "Drenaje quirúrgico urgente y antibioterapia intravenosa",
+      "label": "Dedo en flexión rígida ('en salchicha'), dolor exquisito a lo largo de toda la vaina flexora y calor local (Signos de Kanavel de tenosinovitis infecciosa)"
     }
   ],
   "hypotheses": [
@@ -61,22 +64,46 @@
         {
           "label": "Pulgar, índice, dedo medio y mitad del anular (el meñique NO está afectado)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-rhizarthrosis", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-cts-idiopathic",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-rhizarthrosis",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Toda la mano completa incluidos el meñique y el dorso de la mano",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-c6-c7-radiculopathy", "effect": "increase", "weight": 4 },
-            { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-c6-c7-radiculopathy",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-cts-idiopathic",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Solo dolor en la base del pulgar al hacer fuerza de pinza (sin hormigueo)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-rhizarthrosis", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-rhizarthrosis",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-cts-idiopathic",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         }
       ]
@@ -90,13 +117,21 @@
         {
           "label": "Sí, me despierto con la mano dormida y tengo que agitarla o sacudirla para que despierte (Flick sign +)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-cts-idiopathic",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
           "label": "No me despierta por la noche",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-cts-idiopathic",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -110,7 +145,11 @@
         {
           "label": "Sí, se me caen tazas o vasos y me cuesta abotonarme la camisa",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-cts-idiopathic",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
@@ -125,9 +164,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Dormir toda la noche de un tirón sin que se me duerma la mano", "hypothesisEffects": [] },
-        { "label": "Trabajar en teclado/ratón o tareas manuales sin dolor ni entumecimiento", "hypothesisEffects": [] },
-        { "label": "Recuperar la fuerza y precisión para coger objetos sin que se me caigan", "hypothesisEffects": [] }
+        {
+          "label": "Dormir toda la noche de un tirón sin que se me duerma la mano",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Trabajar en teclado/ratón o tareas manuales sin dolor ni entumecimiento",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Recuperar la fuerza y precisión para coger objetos sin que se me caigan",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -149,15 +197,27 @@
             "label": "Positivo (reproduce parestesias en dedos 1º a 3º en <30 segundos)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-rhizarthrosis", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-cts-idiopathic",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-rhizarthrosis",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Negativo (tolera 30 segundos de compresión sin síntomas)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-cts-idiopathic",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -177,14 +237,22 @@
             "label": "Positivo (parestesias en <60 segundos)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 5 }
+              {
+                "hypothesisId": "hyp-cts-idiopathic",
+                "effect": "increase",
+                "weight": 5
+              }
             ]
           },
           {
             "label": "Negativo",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-cts-idiopathic", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-cts-idiopathic",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           }
         ]
@@ -208,7 +276,11 @@
             "label": "Paresia del abductor corto o atrofia tenar incipiente",
             "value": "weakness_atrophy",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-cts-idiopathic", "effect": "increase", "weight": 5 }
+              {
+                "hypothesisId": "hyp-cts-idiopathic",
+                "effect": "increase",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -220,7 +292,11 @@
       "id": "cluster-cts-kuhlman",
       "name": "Clúster Diagnóstico de Síndrome del Túnel Carpiano",
       "description": "1. Test de Durkan (+) + 2. Test de Phalen (+) + 3. Signo del sacudido (Flick +) + 4. Distribución en dedos 1º-3º",
-      "requiredTests": ["exam-mano-durkan", "exam-mano-phalen", "exam-thenar-motor"],
+      "requiredTests": [
+        "exam-mano-durkan",
+        "exam-mano-phalen",
+        "exam-thenar-motor"
+      ],
       "threshold": 2,
       "concordanceText": "Cumple criterios clínicos de Síndrome del Túnel Carpiano (Sensibilidad >92%). Indicación de ecografía o EMG para graduación.",
       "evidenceNote": "La combinación de Durkan + Phalen + distribución nocturna tiene una especificidad diagnóstica del 95% (MacDermid et al., 2004)."
@@ -234,10 +310,26 @@
         "name": "Nervio Mediano a nivel del Pisiforme (Entrada al Túnel)",
         "priority": 1,
         "findings": [
-          { "id": "us-median-normal", "label": "Área de sección transversal normal (<9 mm²)", "concordanceEffect": "neutral" },
-          { "id": "us-median-mild", "label": "Engrosamiento leve del nervio mediano (CSA 10-12 mm²)", "concordanceEffect": "concordant" },
-          { "id": "us-median-severe", "label": "Engrosamiento severo / neuroma pseudotumoral (CSA >13-15 mm²) y aplanamiento distal", "concordanceEffect": "concordant" },
-          { "id": "us-median-doppler", "label": "Hipervascularización Doppler intraneural activa (hiperemia inflamatoria)", "concordanceEffect": "concordant" }
+          {
+            "id": "us-median-normal",
+            "label": "Área de sección transversal normal (<9 mm²)",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-median-mild",
+            "label": "Engrosamiento leve del nervio mediano (CSA 10-12 mm²)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-median-severe",
+            "label": "Engrosamiento severo / neuroma pseudotumoral (CSA >13-15 mm²) y aplanamiento distal",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-median-doppler",
+            "label": "Hipervascularización Doppler intraneural activa (hiperemia inflamatoria)",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Nervio mediano en túnel carpiano: {finding}."
       }
@@ -319,7 +411,10 @@
           "indication": "Parestesias nocturnas intensas que alteran el descanso.",
           "example": "Pregabalina 25-50mg antes de dormir",
           "duration": "4-8 semanas",
-          "guardrails": ["Somnolencia matutina", "Función renal"]
+          "guardrails": [
+            "Somnolencia matutina",
+            "Función renal"
+          ]
         }
       ]
     },
@@ -331,10 +426,19 @@
           "name": "Infiltración Perineural Ecoguiada del Túnel Carpiano / Hidrodisección",
           "indication": "STC moderado sin atrofia tenar severa.",
           "options": [
-            { "name": "Infiltración ecoguiada ulnar con aguja en plano: 1 ml corticoide de depósito (Metilprednisolona o Triamcinolona) + 2-3 ml anestésico local/suero", "evidence": "Alta / Nivel I (Chesterton 2018)" },
-            { "name": "Hidrodisección ecoguiada del nervio mediano con suero salino o dextrosa 5%", "evidence": "Moderada" }
+            {
+              "name": "Infiltración ecoguiada ulnar con aguja en plano: 1 ml corticoide de depósito (Metilprednisolona o Triamcinolona) + 2-3 ml anestésico local/suero",
+              "evidence": "Alta / Nivel I (Chesterton 2018)"
+            },
+            {
+              "name": "Hidrodisección ecoguiada del nervio mediano con suero salino o dextrosa 5%",
+              "evidence": "Moderada"
+            }
           ],
-          "contraindications": ["Atrofia tenar severa o denervación axonal completa (indicación de cirugía descompresiva)", "Infección local"]
+          "contraindications": [
+            "Atrofia tenar severa o denervación axonal completa (indicación de cirugía descompresiva)",
+            "Infección local"
+          ]
         }
       ]
     }
@@ -342,10 +446,22 @@
   "followUp": {
     "timing": "Revisión a las 6-8 semanas",
     "parameters": [
-      { "name": "Parestesias nocturnas (frecuencia)", "icon": "😴" },
-      { "name": "Test de Durkan y sensibilidad en dedos", "icon": "✋" },
-      { "name": "Fuerza de abductor corto del pulgar", "icon": "💪" },
-      { "name": "Área ecográfica del nervio mediano (CSA)", "icon": "📐" }
+      {
+        "name": "Parestesias nocturnas (frecuencia)",
+        "icon": "😴"
+      },
+      {
+        "name": "Test de Durkan y sensibilidad en dedos",
+        "icon": "✋"
+      },
+      {
+        "name": "Fuerza de abductor corto del pulgar",
+        "icon": "💪"
+      },
+      {
+        "name": "Área ecográfica del nervio mediano (CSA)",
+        "icon": "📐"
+      }
     ],
     "outcomes": [
       {

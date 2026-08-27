@@ -32,7 +32,7 @@
   async function initClinicalUI() {
     containers.home = document.getElementById('home-screen');
     containers.clinical = document.getElementById('clinical-reasoning-container');
-    containers.library = document.querySelector('.main-content');
+    containers.library = document.getElementById('library-container');
 
     // Preload treatments catalog if not already in window
     if (!window.TREATMENTS_CATALOG) {
@@ -524,6 +524,31 @@
         </div>
       </header>
 
+      ${uiState.simulation ? `
+        <!-- Sticky Active Patient Case Simulation Banner -->
+        <div class="simulation-active-banner">
+          <div class="sim-banner-top">
+            <div class="sim-banner-title">
+              <span class="sim-badge ${uiState.simulation.caseData.difficulty || 'canonico'}">
+                ${uiState.simulation.caseData.difficultyIcon || '🎓'} CASO SIMULADO: ${uiState.simulation.caseData.title}
+              </span>
+              <span class="sim-patient-info">
+                👤 <strong>${uiState.simulation.caseData.patient.gender}</strong>, ${uiState.simulation.caseData.patient.age} años ${uiState.simulation.caseData.patient.profession ? `· ${uiState.simulation.caseData.patient.profession}` : ''}
+              </span>
+            </div>
+            <button class="sim-history-btn" onclick="window.ClinicalUI.openPatientHistoryModal()">
+              📋 Ver Historia Clínica
+            </button>
+          </div>
+          <div class="sim-banner-complaint">
+            <span class="sim-quote-icon">💬</span>
+            <div class="sim-quote-content">
+              <strong>Motivo de Consulta:</strong> «${uiState.simulation.caseData.patient.chiefComplaint}»
+            </div>
+          </div>
+        </div>
+      ` : ''}
+
       <!-- Auxiliary Decision Support Action Floating Bar -->
       <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-bottom: 1rem; flex-wrap: wrap;">
         <button class="clinical-action-btn" onclick="window.ClinicalUI.openDifferentialModal()" title="Ver principales imitadores">
@@ -672,14 +697,14 @@
         <div class="red-flags-checklist">
           ${flags.map(f => {
             const isChecked = !!currentResults[f.id];
-            const flagText = f.text || f.label || f.description || '(sin texto)';
-            const isCritical = f.severity === 'critical' || f.severity === 'major';
+            const flagTitle = f.text || f.label || f.name || 'Signo de alarma clínica';
+            const flagAction = f.action || 'Derivación / estudio urgente';
             return `
               <label class="flag-checkbox-item ${isChecked ? 'checked' : ''}" id="flag_label_${f.id}">
                 <input type="checkbox" class="flag-checkbox-input" data-flag-id="${f.id}" ${isChecked ? 'checked' : ''}>
                 <div class="flag-item-content">
-                  <span class="flag-item-title">${flagText}</span>
-                  ${isCritical ? `<span class="flag-item-action">⚠️ Severidad Crítica: ${f.action}</span>` : ''}
+                  <span class="flag-item-title">${flagTitle}</span>
+                  ${(f.severity === 'critical' || f.severity === 'major') ? `<span class="flag-item-action">⚠️ Severidad ${f.severity === 'critical' ? 'Crítica' : 'Mayor'}: ${flagAction}</span>` : ''}
                 </div>
               </label>
             `;
@@ -2398,6 +2423,44 @@
     const summary = uiState.engine.generateClinicalSummary();
 
     container.innerHTML = `
+      ${uiState.simulation ? `
+        <!-- Simulation Debriefing & Bias Audit Card -->
+        <div class="simulation-debriefing-card glass-panel" style="margin-bottom: 1.5rem; border: 2px solid #8b5cf6; background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(99, 102, 241, 0.05) 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+            <span class="pres-tier-badge safety" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6; font-size: 0.76rem; border-color: rgba(139, 92, 246, 0.4);">
+              🎓 AUDITORÍA CLÍNICA: ${uiState.simulation.caseData.title}
+            </span>
+            <span style="font-weight: 800; font-size: 0.85rem; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 0.25rem 0.65rem; border-radius: var(--radius-full);">
+              Puntuación: ${uiState.simulation.getOverallScore()}/100 · ${uiState.simulation.getDebriefingReport().grade}
+            </span>
+          </div>
+          
+          <div style="background: var(--bg-surface); padding: 0.85rem; border-radius: var(--radius-md); border-left: 4px solid #8b5cf6; margin-bottom: 1rem;">
+            <h4 style="margin: 0 0 0.35rem; color: var(--text-primary); font-size: 0.95rem;">💡 Perla Docente y Clave Diagnóstica:</h4>
+            <p style="margin: 0; font-size: 0.86rem; color: var(--text-secondary); line-height: 1.45;">
+              ${uiState.simulation.caseData.expectedFlow?.discriminatorNote || 'La clave del caso radica en correlacionar siempre la anamnesis y la exploración física con la imagen.'}
+            </p>
+          </div>
+
+          ${(uiState.simulation.caseData.trapsToAvoid || []).length > 0 ? `
+            <div style="margin-bottom: 1rem;">
+              <h5 style="margin: 0 0 0.35rem; font-size: 0.82rem; text-transform: uppercase; color: #f59e0b; font-weight: 800;">⚠️ Sesgos Cognitivos a Vigilar:</h5>
+              ${uiState.simulation.caseData.trapsToAvoid.map(t => `
+                <div style="font-size: 0.82rem; color: var(--text-primary); background: rgba(245, 158, 11, 0.08); padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); margin-bottom: 0.35rem; border: 1px solid rgba(245, 158, 11, 0.2);">
+                  <strong>Sesgo de ${t.bias}:</strong> ${t.description}
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+
+          <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1rem;">
+            <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('clinical'); window.ClinicalUI.renderCaseSelector();" style="font-size: 0.84rem; padding: 0.5rem 1.1rem; background: #8b5cf6;">
+              🎓 Evaluar Otro Caso Simulado
+            </button>
+          </div>
+        </div>
+      ` : ''}
+
       <div class="clinical-summary-box glass-panel">
         <div class="home-hero-badge" style="margin-bottom: 0.75rem;">
           📋 Informe de Consulta — Listo para Copiar a Historia Clínica
@@ -2629,20 +2692,70 @@
     const casesCatalog = uiState.casesCatalog || [];
     const c = casesCatalog.find(item => item.id === caseId);
     if (!c) {
-      alert('Caso no encontrado');
+      console.warn('Caso no encontrado:', caseId);
       return;
+    }
+
+    // Instantiate simulation engine first
+    if (window.SimulationEngine) {
+      uiState.simulation = new window.SimulationEngine(c, window.state ? window.state.catalog : null);
     }
 
     // Launch pathway associated with case
     await startPathway(c.pathwayId);
 
-    // Instantiate simulation engine
-    if (window.SimulationEngine) {
-      uiState.simulation = new window.SimulationEngine(c, window.state ? window.state.catalog : null);
-    }
+    // Open introductory patient history modal
+    openPatientHistoryModal(true);
+  }
 
-    // Pre-populate patient chief complaint in clinical view banner
-    alert(`🎓 INICIANDO CASO: ${c.title}\n\nMotivo de consulta:\n«${c.patient.chiefComplaint}»\n\nProcederás a ciegas a través del algoritmo clínico.`);
+  function openPatientHistoryModal(isIntro = false) {
+    if (!uiState.simulation) return;
+    const c = uiState.simulation.caseData;
+    
+    showAuxModal(`
+      <div class="aux-modal-header" style="border-bottom: 2px solid rgba(139, 92, 246, 0.3); padding-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <span style="font-size: 1.6rem;">🎓</span>
+          <div>
+            <h3 style="margin: 0; font-size: 1.05rem; color: var(--text-primary);">${c.title}</h3>
+            <span style="font-size: 0.76rem; font-weight: 700; color: #8b5cf6;">${c.difficultyIcon || '🟢'} ${c.difficultyLabel || 'Caso Clínico'} · Modo Evaluación a Ciegas</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="patient-modal-card" style="padding: 1.15rem 0.25rem 0.25rem;">
+        <div style="background: rgba(99, 102, 241, 0.08); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.5rem;">
+            <strong style="color: var(--accent-blue); font-size: 0.92rem;">👤 Perfil del Paciente</strong>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">${c.patient.gender}, ${c.patient.age} años</span>
+          </div>
+          ${c.patient.profession ? `<div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">💼 Profesión / Actividad: <strong>${c.patient.profession}</strong></div>` : ''}
+          <div style="font-size: 0.88rem; color: var(--text-primary); line-height: 1.45; margin-top: 0.5rem; background: var(--bg-surface); padding: 0.75rem; border-radius: var(--radius-sm); border-left: 3.5px solid var(--accent-blue);">
+            <strong>Motivo de Consulta:</strong><br>
+            «${c.patient.chiefComplaint}»
+          </div>
+        </div>
+
+        ${c.patient.history ? `
+          <div style="margin-bottom: 1rem;">
+            <h4 style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.4rem;">📖 Historia de la Enfermedad Actual</h4>
+            <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.45; background: var(--bg-card); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin: 0;">
+              ${c.patient.history}
+            </p>
+          </div>
+        ` : ''}
+
+        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: var(--radius-md); padding: 0.75rem 0.95rem; font-size: 0.82rem; color: var(--text-primary); margin-bottom: 1.25rem; line-height: 1.4;">
+          <strong>🎯 Objetivo Clínico:</strong> Procede a ciegas a través del algoritmo. Toma decisiones en banderas rojas, anamnesis, exploración e imagen. Al finalizar recibirás el informe de auditoría con la detección de sesgos y la perla diagnóstica.
+        </div>
+
+        <div style="text-align: center;">
+          <button class="vade-primary-btn" onclick="document.getElementById('clinicalAuxModal')?.remove()" style="padding: 0.7rem 1.8rem; font-size: 0.92rem; font-weight: 800; background: #8b5cf6;">
+            ${isIntro ? '▶ Comenzar Evaluación a Ciegas' : '← Continuar con el Caso'}
+          </button>
+        </div>
+      </div>
+    `);
   }
 
   function openMissingInfoModal() {
@@ -2789,7 +2902,11 @@
     renderHomeScreen: renderHomeScreen,
     renderRegionSelector: renderRegionSelector,
     selectRegion: renderPresentationSelector,
-    startPathwayDirect: startPathway,
+    startPathwayDirect: function(pathwayId) {
+      uiState.simulation = null;
+      return startPathway(pathwayId);
+    },
+    openPatientHistoryModal: openPatientHistoryModal,
     goToStep: function (stepId) {
       if (uiState.engine) {
         uiState.engine.goToStep(stepId);

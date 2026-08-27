@@ -10,13 +10,15 @@
       "id": "rf-medial-malleolus-fracture",
       "text": "Incapacidad para dar 4 pasos seguidos inmediatamente tras torcedura de tobillo con dolor óseo en maléolo medial (Criterios de Ottawa positivos para fractura)",
       "severity": "critical",
-      "action": "Radiografía de tobillo serie completa (AP, lateral y mortaja) y descarga"
+      "action": "Radiografía de tobillo serie completa (AP, lateral y mortaja) y descarga",
+      "label": "Incapacidad para dar 4 pasos seguidos inmediatamente tras torcedura de tobillo con dolor óseo en maléolo medial (Criterios de Ottawa positivos para fractura)"
     },
     {
       "id": "rf-diabetic-medial-ulcer",
       "text": "Celulitis eritematosa ascendente o herida no dolorosa en paciente con neuropatía diabética",
       "severity": "critical",
-      "action": "Derivación urgente a Unidad de Pie Diabético"
+      "action": "Derivación urgente a Unidad de Pie Diabético",
+      "label": "Celulitis eritematosa ascendente o herida no dolorosa en paciente con neuropatía diabética"
     }
   ],
   "hypotheses": [
@@ -55,14 +57,26 @@
         {
           "label": "Sí, el pie se me ha vuelto más plano y el talón se me va hacia afuera (Disfunción TTP)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "increase", "weight": 7 }
+            {
+              "hypothesisId": "hyp-pttd-tibialis-posterior",
+              "effect": "increase",
+              "weight": 7
+            }
           ]
         },
         {
           "label": "No, mantengo el arco del pie normal, el dolor es como ardor u hormigueo eléctrico",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-tarsal-tunnel-medial", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-tarsal-tunnel-medial",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-pttd-tibialis-posterior",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -76,14 +90,26 @@
         {
           "label": "A lo largo de la cuerda tendinosa detrás y debajo del tobillo interno que baja hacia el empeine",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-pttd-tibialis-posterior",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
           "label": "Dentro de la articulación profunda del tobillo al caminar por terrenos irregulares o empedrados",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-subtalar-oa", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-subtalar-oa",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-pttd-tibialis-posterior",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -94,9 +120,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder caminar distancias normales sin cojera ni cansancio en el tobillo", "hypothesisEffects": [] },
-        { "label": "Poder ponerme de puntillas con una sola pierna sin dolor", "hypothesisEffects": [] },
-        { "label": "Calzarme cómodamente sin que el pie deforme los zapatos hacia adentro", "hypothesisEffects": [] }
+        {
+          "label": "Poder caminar distancias normales sin cojera ni cansancio en el tobillo",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Poder ponerme de puntillas con una sola pierna sin dolor",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Calzarme cómodamente sin que el pie deforme los zapatos hacia adentro",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -117,14 +152,22 @@
             "label": "Incapaz de elevarse o el talón no invierte (Disfunción TTP positiva)",
             "value": "positive_pttd",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "increase", "weight": 7 }
+              {
+                "hypothesisId": "hyp-pttd-tibialis-posterior",
+                "effect": "increase",
+                "weight": 7
+              }
             ]
           },
           {
             "label": "Elevación monopodal potente con inversión simétrica indolora",
             "value": "normal",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "decrease", "weight": 5 }
+              {
+                "hypothesisId": "hyp-pttd-tibialis-posterior",
+                "effect": "decrease",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -142,7 +185,11 @@
             "label": "Positivo (se ven 3 o más dedos por el lateral / pie plano valgo evidente)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-pttd-tibialis-posterior",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
@@ -165,15 +212,27 @@
             "label": "Positivo (descargas eléctricas plantares)",
             "value": "positive_tinel",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-tarsal-tunnel-medial", "effect": "increase", "weight": 7 },
-              { "hypothesisId": "hyp-pttd-tibialis-posterior", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-tarsal-tunnel-medial",
+                "effect": "increase",
+                "weight": 7
+              },
+              {
+                "hypothesisId": "hyp-pttd-tibialis-posterior",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Negativo",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-tarsal-tunnel-medial", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-tarsal-tunnel-medial",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -185,7 +244,10 @@
       "id": "cluster-pttd-medial",
       "name": "Criterios Clínicos de Disfunción del Tendón Tibial Posterior",
       "description": "1. Single Heel Rise test patológico + 2. Palpación dolorosa del TTP + 3. Signo de 'Too Many Toes'",
-      "requiredTests": ["exam-single-heel-rise", "exam-too-many-toes"],
+      "requiredTests": [
+        "exam-single-heel-rise",
+        "exam-too-many-toes"
+      ],
       "threshold": 1,
       "concordanceText": "Patrón clínico patognomónico de Disfunción / Tendinopatía del Tibial Posterior (Sensibilidad >92%).",
       "evidenceNote": "El Single Heel Rise test es el estándar clínico funcional de referencia (Kohls-Gatzoulis et al., 2004)."
@@ -199,9 +261,21 @@
         "name": "Tendón Tibial Posterior (TTP)",
         "priority": 1,
         "findings": [
-          { "id": "us-ttp-normal", "label": "Tendón regular y continuo sin líquido en vaina", "concordanceEffect": "neutral" },
-          { "id": "us-ttp-tenosynovitis", "label": "Tenosinovitis anecoica moderada-severa e hiperemia Doppler en corte transversal", "concordanceEffect": "concordant" },
-          { "id": "us-ttp-tendinosis-tear", "label": "Tendinosis severa (engrosamiento hipoecoico >6 mm) / Desgarro longitudinal intrasubstancia", "concordanceEffect": "concordant" }
+          {
+            "id": "us-ttp-normal",
+            "label": "Tendón regular y continuo sin líquido en vaina",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-ttp-tenosynovitis",
+            "label": "Tenosinovitis anecoica moderada-severa e hiperemia Doppler en corte transversal",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-ttp-tendinosis-tear",
+            "label": "Tendinosis severa (engrosamiento hipoecoico >6 mm) / Desgarro longitudinal intrasubstancia",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Tendón tibial posterior: {finding}."
       }
@@ -287,7 +361,9 @@
           "indication": "Dolor agudo moderado limitante.",
           "example": "Gel de diclofenaco 3 veces/día o Ibuprofeno 600mg/8h durante 7-10 días",
           "duration": "10 días",
-          "guardrails": ["Excelente seguridad con formulación tópica"]
+          "guardrails": [
+            "Excelente seguridad con formulación tópica"
+          ]
         }
       ]
     },
@@ -299,7 +375,10 @@
           "name": "Infiltración Ecoguiada de la Vaina Sinovial del TTP",
           "indication": "Tenosinovitis con líquido anecoico circunferencial en ecografía.",
           "options": [
-            { "name": "Infiltración ecoguiada en plano con aguja fina dentro de la vaina sinovial de 1 ml corticoide + 2 ml anestésico local/suero", "evidence": "Alta / Nivel I (evita el riesgo de rotura completa)" }
+            {
+              "name": "Infiltración ecoguiada en plano con aguja fina dentro de la vaina sinovial de 1 ml corticoide + 2 ml anestésico local/suero",
+              "evidence": "Alta / Nivel I (evita el riesgo de rotura completa)"
+            }
           ],
           "contraindications": [
             "Infiltración intratendinosa a ciegas (alto riesgo de rotura espontánea del tendón y colapso del pie)"
@@ -311,9 +390,18 @@
   "followUp": {
     "timing": "Revisión a las 6-8 semanas",
     "parameters": [
-      { "name": "Capacidad de Single Heel Rise Test", "icon": "🦶" },
-      { "name": "Dolor a la palpación del TTP", "icon": "📊" },
-      { "name": "Tolerancia a las plantillas ortopédicas", "icon": "👟" }
+      {
+        "name": "Capacidad de Single Heel Rise Test",
+        "icon": "🦶"
+      },
+      {
+        "name": "Dolor a la palpación del TTP",
+        "icon": "📊"
+      },
+      {
+        "name": "Tolerancia a las plantillas ortopédicas",
+        "icon": "👟"
+      }
     ],
     "outcomes": [
       {

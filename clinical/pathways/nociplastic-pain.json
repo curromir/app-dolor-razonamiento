@@ -10,19 +10,22 @@
       "id": "rf-polymyalgia",
       "text": "Rigidez dolorosa severa de instauración aguda en hombros y caderas en paciente >50 años con reactantes de fase aguda muy elevados (VSG >50 mm/h) (sospecha de Polimialgia Reumática)",
       "severity": "critical",
-      "action": "Analítica urgente con VSG/PCR y valorar respuesta rápida a corticoides orales"
+      "action": "Analítica urgente con VSG/PCR y valorar respuesta rápida a corticoides orales",
+      "label": "Rigidez dolorosa severa de instauración aguda en hombros y caderas en paciente >50 años con reactantes de fase aguda muy elevados (VSG >50 mm/h) (sospecha de Polimialgia Reumática)"
     },
     {
       "id": "rf-autoimmune-systemic",
       "text": "Lesiones cutáneas tipo lupus (rash malar), úlceras orales, fenómeno de Raynaud severo o fiebre de origen desconocido (sospecha de conectivopatía autoinmune)",
       "severity": "critical",
-      "action": "Estudio inmunológico completo (ANA, ENA, complemento) y derivación a Reumatología"
+      "action": "Estudio inmunológico completo (ANA, ENA, complemento) y derivación a Reumatología",
+      "label": "Lesiones cutáneas tipo lupus (rash malar), úlceras orales, fenómeno de Raynaud severo o fiebre de origen desconocido (sospecha de conectivopatía autoinmune)"
     },
     {
       "id": "rf-myopathy",
       "text": "Debilidad muscular proximal franca (dificultad para levantarse de la silla o peinarse) con dolor muscular y CPK elevada (sospecha de miopatía inflamatoria / miositis)",
       "severity": "critical",
-      "action": "Analítica urgente con CPK, aldolasa y EMG de cuatro extremidades"
+      "action": "Analítica urgente con CPK, aldolasa y EMG de cuatro extremidades",
+      "label": "Debilidad muscular proximal franca (dificultad para levantarse de la silla o peinarse) con dolor muscular y CPK elevada (sospecha de miopatía inflamatoria / miositis)"
     }
   ],
   "hypotheses": [

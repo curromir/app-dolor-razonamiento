@@ -10,19 +10,22 @@
       "id": "rf-femoral-fracture",
       "text": "Imposibilidad para la carga y bipedestación tras caída o antecedente de osteoporosis severa (sospecha de fractura de cuello femoral / pertrocantérea)",
       "severity": "critical",
-      "action": "Radiografía de pelvis y cadera AP urgente"
+      "action": "Radiografía de pelvis y cadera AP urgente",
+      "label": "Imposibilidad para la carga y bipedestación tras caída o antecedente de osteoporosis severa (sospecha de fractura de cuello femoral / pertrocantérea)"
     },
     {
       "id": "rf-avascular-necrosis",
       "text": "Dolor inguinal y de cadera progresivo severo en paciente con tratamiento corticoideo crónico o consumo elevado de alcohol (sospecha de osteonecrosis de cabeza femoral)",
       "severity": "critical",
-      "action": "RM de caderas bilateral urgente"
+      "action": "RM de caderas bilateral urgente",
+      "label": "Dolor inguinal y de cadera progresivo severo en paciente con tratamiento corticoideo crónico o consumo elevado de alcohol (sospecha de osteonecrosis de cabeza femoral)"
     },
     {
       "id": "rf-septic-hip",
       "text": "Fiebre, impotencia funcional absoluta, dolor intolerable a cualquier mínima rotación pasiva de cadera",
       "severity": "critical",
-      "action": "Artrocentesis ecoguiada urgente y analítica con reactantes de fase aguda"
+      "action": "Artrocentesis ecoguiada urgente y analítica con reactantes de fase aguda",
+      "label": "Fiebre, impotencia funcional absoluta, dolor intolerable a cualquier mínima rotación pasiva de cadera"
     }
   ],
   "hypotheses": [
@@ -69,22 +72,46 @@
         {
           "label": "Directamente en el hueso lateral de la cadera (Trocánter mayor)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-coxarthrosis", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-gtps",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-coxarthrosis",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "En la ingle anterior profunda que a veces baja hacia el muslo anterior y rodilla",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-coxarthrosis", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-coxarthrosis",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-gtps",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "En la cara lateral con chasquido palpable al caminar o subir escaleras",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-snapping-hip", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-snapping-hip",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-gtps",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -98,13 +125,21 @@
         {
           "label": "Sí, me resulta imposible dormir sobre ese lado del dolor",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 4 }
+            {
+              "hypothesisId": "hyp-gtps",
+              "effect": "increase",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "No me molesta al apoyarme de lado",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-gtps",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -118,7 +153,11 @@
         {
           "label": "Sí, cruzar las piernas me produce un dolor punzante en la cadera",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-gtps",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
@@ -133,9 +172,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder dormir toda la noche de lado sin dolor", "hypothesisEffects": [] },
-        { "label": "Caminar distancias largas y subir escaleras sin cojera", "hypothesisEffects": [] },
-        { "label": "Volver a correr o practicar deporte sin molestias", "hypothesisEffects": [] }
+        {
+          "label": "Poder dormir toda la noche de lado sin dolor",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Caminar distancias largas y subir escaleras sin cojera",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Volver a correr o practicar deporte sin molestias",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -156,16 +204,32 @@
             "label": "Dolor exquisito a la palpación sobre faceta lateral del trocánter mayor",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 5 },
-              { "hypothesisId": "hyp-coxarthrosis", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-gtps",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-coxarthrosis",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Indoloro a la palpación trocantérea",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 5 },
-              { "hypothesisId": "hyp-coxarthrosis", "effect": "increase", "weight": 3 }
+              {
+                "hypothesisId": "hyp-gtps",
+                "effect": "decrease",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-coxarthrosis",
+                "effect": "increase",
+                "weight": 3
+              }
             ]
           }
         ]
@@ -184,14 +248,22 @@
             "label": "Dolor lateral antes de 30 segundos (SLS Positivo)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-gtps",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
             "label": "Negativo (tolera 30 segundos sin dolor)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-gtps",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           }
         ]
@@ -211,7 +283,11 @@
             "label": "Positivo (caída de hemipelvis contralateral con debilidad)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-gtps",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
@@ -236,15 +312,27 @@
             "label": "Dolor en cara lateral externa del trocánter por compresión",
             "value": "lateral_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-gtps", "effect": "increase", "weight": 3 }
+              {
+                "hypothesisId": "hyp-gtps",
+                "effect": "increase",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Dolor inguinal anterior profundo con rango limitado (Articular)",
             "value": "groin_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-coxarthrosis", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-gtps", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-coxarthrosis",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-gtps",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           },
           {
@@ -261,7 +349,11 @@
       "id": "cluster-gtps",
       "name": "Clúster Diagnóstico de Tendinopatía Glútea (GTPS)",
       "description": "1. Palpación trocantérea (+) + 2. Apoyo monopodal 30s (+) + 3. Dolor al decúbito lateral + 4. FABER con dolor lateral",
-      "requiredTests": ["exam-trochanter-palpation", "exam-single-leg-stance", "exam-cadera-faber"],
+      "requiredTests": [
+        "exam-trochanter-palpation",
+        "exam-single-leg-stance",
+        "exam-cadera-faber"
+      ],
       "threshold": 2,
       "concordanceText": "Cumple criterios clínicos de Síndrome de Dolor Trocantérico Mayor (Tendinopatía de glúteo medio/menor con/sin bursitis).",
       "evidenceNote": "La combinación de palpación dolorosa + apoyo monopodal de 30s tiene una sensibilidad del 98% y especificidad del 90% (Lequesne et al., 2008)."
@@ -275,10 +367,26 @@
         "name": "Tendón del Glúteo Medio (Faceta Lateral y Superoposterior)",
         "priority": 1,
         "findings": [
-          { "id": "us-gm-normal", "label": "Patrón fibrilar normal y regular", "concordanceEffect": "neutral" },
-          { "id": "us-gm-tendinopathy", "label": "Tendinosis (engrosamiento hipoecoico y pérdida de patrón fibrilar)", "concordanceEffect": "concordant" },
-          { "id": "us-gm-partial-tear", "label": "Rotura parcial o entesofito por avulsión", "concordanceEffect": "concordant" },
-          { "id": "us-gm-full-tear", "label": "Rotura de espesor completo con retracción muscular", "concordanceEffect": "concordant" }
+          {
+            "id": "us-gm-normal",
+            "label": "Patrón fibrilar normal y regular",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-gm-tendinopathy",
+            "label": "Tendinosis (engrosamiento hipoecoico y pérdida de patrón fibrilar)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-gm-partial-tear",
+            "label": "Rotura parcial o entesofito por avulsión",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-gm-full-tear",
+            "label": "Rotura de espesor completo con retracción muscular",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Tendón del glúteo medio: {finding}."
       },
@@ -287,8 +395,16 @@
         "name": "Bursa Trocantérea Subglútea Mayor / Media",
         "priority": 1,
         "findings": [
-          { "id": "us-bursa-normal", "label": "Bursa colapsada normal (<1.5 mm)", "concordanceEffect": "neutral" },
-          { "id": "us-bursa-effusion", "label": "Distensión líquida bursal anecoica / engrosamiento sinovial", "concordanceEffect": "concordant" }
+          {
+            "id": "us-bursa-normal",
+            "label": "Bursa colapsada normal (<1.5 mm)",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-bursa-effusion",
+            "label": "Distensión líquida bursal anecoica / engrosamiento sinovial",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Bursa trocantérea: {finding}."
       },
@@ -297,8 +413,16 @@
         "name": "Receso Anterior Coxofemoral (Descarte de Coxartrosis)",
         "priority": 2,
         "findings": [
-          { "id": "us-joint-normal", "label": "Margen óseo liso sin derrame anterior", "concordanceEffect": "neutral" },
-          { "id": "us-joint-arthrosis", "label": "Osteofitosis en cuello femoral anterior y derrame articular (Coxartrosis)", "concordanceEffect": "concordant" }
+          {
+            "id": "us-joint-normal",
+            "label": "Margen óseo liso sin derrame anterior",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-joint-arthrosis",
+            "label": "Osteofitosis en cuello femoral anterior y derrame articular (Coxartrosis)",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Receso anterior articular coxofemoral: {finding}."
       }
@@ -398,7 +522,11 @@
           "indication": "Fase aguda inflamatoria con dolor severo nocturno.",
           "example": "Diclofenaco tópico 2-3 veces/día o Naproxeno 500mg/12h (máximo 10-14 días)",
           "duration": "2 semanas",
-          "guardrails": ["Función renal", "Riesgo digestivo", "Edad avanzada"]
+          "guardrails": [
+            "Función renal",
+            "Riesgo digestivo",
+            "Edad avanzada"
+          ]
         }
       ]
     },
@@ -410,8 +538,14 @@
           "name": "Infiltración Ecoguiada de la Bursa Trocantérea Subglútea",
           "indication": "Bursitis trocantérea con distensión líquida visible en ecografía.",
           "options": [
-            { "name": "Anestésico local + Corticoide de depósito (Triamcinolona 40mg) en espacio subglúteo ecoguiado", "evidence": "Alta a corto plazo" },
-            { "name": "Ondas de choque focales (ESWT) / Plasma Rico en Plaquetas (PRP) en tendinopatía crónica de glúteo medio", "evidence": "Moderada a medio-largo plazo" }
+            {
+              "name": "Anestésico local + Corticoide de depósito (Triamcinolona 40mg) en espacio subglúteo ecoguiado",
+              "evidence": "Alta a corto plazo"
+            },
+            {
+              "name": "Ondas de choque focales (ESWT) / Plasma Rico en Plaquetas (PRP) en tendinopatía crónica de glúteo medio",
+              "evidence": "Moderada a medio-largo plazo"
+            }
           ],
           "contraindications": [
             "Infección local o sistémica",
@@ -424,10 +558,22 @@
   "followUp": {
     "timing": "Revisión a las 4-6 semanas",
     "parameters": [
-      { "name": "Dolor a la palpación del trocánter", "icon": "👆" },
-      { "name": "Capacidad de dormir sobre ese lado", "icon": "😴" },
-      { "name": "Tolerancia a caminar distancias", "icon": "🚶" },
-      { "name": "Test de apoyo monopodal 30s", "icon": "⏱️" }
+      {
+        "name": "Dolor a la palpación del trocánter",
+        "icon": "👆"
+      },
+      {
+        "name": "Capacidad de dormir sobre ese lado",
+        "icon": "😴"
+      },
+      {
+        "name": "Tolerancia a caminar distancias",
+        "icon": "🚶"
+      },
+      {
+        "name": "Test de apoyo monopodal 30s",
+        "icon": "⏱️"
+      }
     ],
     "outcomes": [
       {

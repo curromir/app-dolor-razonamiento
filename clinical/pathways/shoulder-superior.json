@@ -13,13 +13,15 @@
       "id": "rf-ac-deformity-grade4",
       "text": "Deformidad en 'tecla de piano' severa irreductible tras traumatismo directo con desplazamiento posterior de la clavícula en el trapecio (Sospecha Luxación AC Grado IV-VI)",
       "severity": "critical",
-      "action": "Inmovilización en cabestrillo, radiografía de ambas clavículas (proyección Zanca) y valoración urgente por Traumatología."
+      "action": "Inmovilización en cabestrillo, radiografía de ambas clavículas (proyección Zanca) y valoración urgente por Traumatología.",
+      "label": "Deformidad en 'tecla de piano' severa irreductible tras traumatismo directo con desplazamiento posterior de la clavícula en el trapecio (Sospecha Luxación AC Grado IV-VI)"
     },
     {
       "id": "rf-ac-infection",
       "text": "Eritema, calor local prominente, fluctuación dolorosa sobre articulación AC y fiebre sistémica (Sospecha Artritis Séptica AC)",
       "severity": "critical",
-      "action": "Punción-aspiración articular para cultivo y derivación urgente a Urgencias/Infecciosas."
+      "action": "Punción-aspiración articular para cultivo y derivación urgente a Urgencias/Infecciosas.",
+      "label": "Eritema, calor local prominente, fluctuación dolorosa sobre articulación AC y fiebre sistémica (Sospecha Artritis Séptica AC)"
     }
   ],
   "hypotheses": [

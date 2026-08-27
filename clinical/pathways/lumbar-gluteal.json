@@ -13,13 +13,15 @@
       "id": "rf-gluteal-abscess-mass",
       "text": "Masa glútea fluctuante, dolor nocturno severo no mecánico, fiebre o antecedente de punción/inyección intramuscular reciente (Sospecha Absceso / Infección Glútea o Tumor Pélvico)",
       "severity": "critical",
-      "action": "Hemocultivos, analítica con reactantes y RM de pelvis/glúteo urgente."
+      "action": "Hemocultivos, analítica con reactantes y RM de pelvis/glúteo urgente.",
+      "label": "Masa glútea fluctuante, dolor nocturno severo no mecánico, fiebre o antecedente de punción/inyección intramuscular reciente (Sospecha Absceso / Infección Glútea o Tumor Pélvico)"
     },
     {
       "id": "rf-progressive-motor-gluteal",
       "text": "Aparición de pie caído o pérdida de control de esfínteres (Sospecha Radiculopatía compresiva severa o Cauda Equina)",
       "severity": "critical",
-      "action": "RM lumbar urgente y derivación inmediata a Neurocirugía."
+      "action": "RM lumbar urgente y derivación inmediata a Neurocirugía.",
+      "label": "Aparición de pie caído o pérdida de control de esfínteres (Sospecha Radiculopatía compresiva severa o Cauda Equina)"
     }
   ],
   "hypotheses": [

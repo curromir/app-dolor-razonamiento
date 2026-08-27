@@ -1,4 +1,4 @@
-// Service Worker v41.0 - Audit Fixes: Mobile Nav, Filters, POCUS Bar, CatalogTestIds
+// Service Worker v41.0 - Simulador de Casos Clínicos a Ciegas & Red Flags Fix
 const CACHE_NAME = 'dolor-tests-v41';
 
 self.addEventListener('install', (event) => {

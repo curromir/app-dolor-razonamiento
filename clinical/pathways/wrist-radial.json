@@ -10,13 +10,15 @@
       "id": "rf-scaphoid-fracture",
       "text": "Dolor exquisito en el fondo de la tabaquera anatómica tras caída sobre la palma de la mano (sospecha de fractura de escafoides con riesgo de necrosis avascular)",
       "severity": "critical",
-      "action": "Inmovilización con espica de pulgar y radiografías específicas de escafoides / TC"
+      "action": "Inmovilización con espica de pulgar y radiografías específicas de escafoides / TC",
+      "label": "Dolor exquisito en el fondo de la tabaquera anatómica tras caída sobre la palma de la mano (sospecha de fractura de escafoides con riesgo de necrosis avascular)"
     },
     {
       "id": "rf-septic-wrist",
       "text": "Tumefacción eritematosa aguda con calor local intenso, fiebre y dolor intolerable a cualquier movimiento pasivo del carpo",
       "severity": "critical",
-      "action": "Artrocentesis urgente y cobertura antibiótica"
+      "action": "Artrocentesis urgente y cobertura antibiótica",
+      "label": "Tumefacción eritematosa aguda con calor local intenso, fiebre y dolor intolerable a cualquier movimiento pasivo del carpo"
     }
   ],
   "hypotheses": [
@@ -63,22 +65,46 @@
         {
           "label": "Al levantar objetos con el pulgar abierto (coger un bebé, verter una jarra, teclear con el móvil)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-de-quervain",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-rhizarthrosis-radial",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Al hacer fuerza de pinza o girar una llave / abrir un tarro con el pulgar",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-rhizarthrosis-radial",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-de-quervain",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Siento un crujido 'como cuero seco' unos 4 cm por encima de la muñeca al doblarla",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-intersection-syndrome", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-de-quervain", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-intersection-syndrome",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-de-quervain",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -92,19 +118,31 @@
         {
           "label": "Directamente sobre el hueso prominente lateral de la muñeca (Estiloides radial)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-de-quervain",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
           "label": "En la base misma del pulgar en la articulación móvil",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-rhizarthrosis-radial",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
           "label": "En el hueco blando entre los tendones dorsales (Tabaquera anatómica)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-scaphoid-pain", "effect": "increase", "weight": 6 }
+            {
+              "hypothesisId": "hyp-scaphoid-pain",
+              "effect": "increase",
+              "weight": 6
+            }
           ]
         }
       ]
@@ -115,9 +153,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder coger a mi hijo/bebé o cargar objetos sin dolor agudo en la muñeca", "hypothesisEffects": [] },
-        { "label": "Trabajar en ordenador / manualidades sin limitación del pulgar", "hypothesisEffects": [] },
-        { "label": "Realizar deportes de raqueta o gimnasio con agarre indoloro", "hypothesisEffects": [] }
+        {
+          "label": "Poder coger a mi hijo/bebé o cargar objetos sin dolor agudo en la muñeca",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Trabajar en ordenador / manualidades sin limitación del pulgar",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Realizar deportes de raqueta o gimnasio con agarre indoloro",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -139,15 +186,27 @@
             "label": "Positivo (dolor agudo exquisito sobre estiloides radial)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-de-quervain",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-rhizarthrosis-radial",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Negativo (desviación cubital con tracción indolora)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-de-quervain", "effect": "decrease", "weight": 5 }
+              {
+                "hypothesisId": "hyp-de-quervain",
+                "effect": "decrease",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -166,7 +225,11 @@
             "label": "Positivo (dolor agudo en hiperflexión y abducción del pulgar)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-de-quervain", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-de-quervain",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
@@ -190,14 +253,22 @@
             "label": "Positivo con crepitación en la base del pulgar (Rizartrosis)",
             "value": "positive_rhizarthrosis",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-rhizarthrosis-radial",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
             "label": "Negativo (rotación articular trapeciometacarpiana indolora)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-rhizarthrosis-radial", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-rhizarthrosis-radial",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -209,7 +280,11 @@
       "id": "cluster-de-quervain",
       "name": "Criterios Diagnósticos de Tenosinovitis de De Quervain",
       "description": "1. Dolor a la palpación de estiloides radial + 2. Test de Finkelstein (+) + 3. Test WHAT (+)",
-      "requiredTests": ["exam-mano-finkelstein", "exam-what-test", "exam-grind-rhizarthrosis"],
+      "requiredTests": [
+        "exam-mano-finkelstein",
+        "exam-what-test",
+        "exam-grind-rhizarthrosis"
+      ],
       "threshold": 2,
       "concordanceText": "Tríada clásica de Tenosinovitis de De Quervain confirmada clínicamente (Especificidad >95%).",
       "evidenceNote": "La combinación de Finkelstein + WHAT test tiene una sensibilidad superior al 98% (Goubau et al., 2014)."
@@ -223,9 +298,21 @@
         "name": "Primer Compartimento Dorsal (APL y EPB)",
         "priority": 1,
         "findings": [
-          { "id": "us-dorsal-normal", "label": "Retináculo fino (<0.8 mm) con tendones APL y EPB normales", "concordanceEffect": "neutral" },
-          { "id": "us-dorsal-tenosynovitis", "label": "Engrosamiento del retináculo extensor (>1.5-2.0 mm) con halo de tenosinovitis anecoica / hipervascularización Doppler", "concordanceEffect": "concordant" },
-          { "id": "us-dorsal-septum", "label": "Presencia de tabique osteofibroso intertendinoso (subcompartimento independiente para EPB)", "concordanceEffect": "concordant" }
+          {
+            "id": "us-dorsal-normal",
+            "label": "Retináculo fino (<0.8 mm) con tendones APL y EPB normales",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-dorsal-tenosynovitis",
+            "label": "Engrosamiento del retináculo extensor (>1.5-2.0 mm) con halo de tenosinovitis anecoica / hipervascularización Doppler",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-dorsal-septum",
+            "label": "Presencia de tabique osteofibroso intertendinoso (subcompartimento independiente para EPB)",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Primer compartimento dorsal de la muñeca: {finding}."
       }
@@ -312,7 +399,9 @@
           "indication": "Dolor agudo moderado.",
           "example": "Gel de diclofenaco 3 veces/día o Naproxeno 500mg/12h durante 7-10 días",
           "duration": "10 días",
-          "guardrails": ["Excelente perfil de seguridad en formulación tópica"]
+          "guardrails": [
+            "Excelente perfil de seguridad en formulación tópica"
+          ]
         }
       ]
     },
@@ -324,7 +413,10 @@
           "name": "Infiltración Peritendinosa Ecoguiada del Primer Compartimento Dorsal",
           "indication": "Tenosinovitis de De Quervain confirmada.",
           "options": [
-            { "name": "Infiltración ecoguiada en plano de 0.5-1 ml de corticoide (Triamcinolona o Metilprednisolona) + 1 ml anestésico local dentro de la vaina", "evidence": "Alta / Nivel I (>85% de curación con 1 sola inyección ecoguiada)" }
+            {
+              "name": "Infiltración ecoguiada en plano de 0.5-1 ml de corticoide (Triamcinolona o Metilprednisolona) + 1 ml anestésico local dentro de la vaina",
+              "evidence": "Alta / Nivel I (>85% de curación con 1 sola inyección ecoguiada)"
+            }
           ],
           "contraindications": [
             "Infiltración intratendinosa directa (la ecografía evita la necrosis o rotura del tendón)",
@@ -337,9 +429,18 @@
   "followUp": {
     "timing": "Revisión a las 4 semanas",
     "parameters": [
-      { "name": "Dolor con el Test de Finkelstein", "icon": "✋" },
-      { "name": "Capacidad de prensión y agarre", "icon": "✊" },
-      { "name": "Grosor ecográfico del retináculo", "icon": "📐" }
+      {
+        "name": "Dolor con el Test de Finkelstein",
+        "icon": "✋"
+      },
+      {
+        "name": "Capacidad de prensión y agarre",
+        "icon": "✊"
+      },
+      {
+        "name": "Grosor ecográfico del retináculo",
+        "icon": "📐"
+      }
     ],
     "outcomes": [
       {

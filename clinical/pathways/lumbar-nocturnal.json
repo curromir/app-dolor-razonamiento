@@ -13,19 +13,22 @@
       "id": "rf-oncology-red-flag",
       "text": "Antecedente personal de cáncer (mama, próstata, pulmón, riñón, tiroides), pérdida de peso inexplicable >5 kg en 1 mes o dolor óseo sordo implacable nocturno (Sospecha Metástasis Vertebral / Mieloma)",
       "severity": "critical",
-      "action": "RM de columna total urgente, analítica con hemograma, VSG/PCR, perfil proteico en suero y orina, y derivación preferente a Oncología/Medicina Interna."
+      "action": "RM de columna total urgente, analítica con hemograma, VSG/PCR, perfil proteico en suero y orina, y derivación preferente a Oncología/Medicina Interna.",
+      "label": "Antecedente personal de cáncer (mama, próstata, pulmón, riñón, tiroides), pérdida de peso inexplicable >5 kg en 1 mes o dolor óseo sordo implacable nocturno (Sospecha Metástasis Vertebral / Mieloma)"
     },
     {
       "id": "rf-spondylodiscitis-fever",
       "text": "Fiebre, escalofríos, infección urinaria o herida cutánea reciente, uso de drogas por vía parenteral o inmunosupresión con dolor a la percusión espinosa (Sospecha Espondilodiscitis Infecciosa / Absceso Epidural)",
       "severity": "critical",
-      "action": "Hemocultivos seriados, RM lumbar urgente y derivación inmediata a Urgencias hospitalarias."
+      "action": "Hemocultivos seriados, RM lumbar urgente y derivación inmediata a Urgencias hospitalarias.",
+      "label": "Fiebre, escalofríos, infección urinaria o herida cutánea reciente, uso de drogas por vía parenteral o inmunosupresión con dolor a la percusión espinosa (Sospecha Espondilodiscitis Infecciosa / Absceso Epidural)"
     },
     {
       "id": "rf-inflammatory-spondyloarthritis",
       "text": "Paciente <45 años con dolor nocturno que mejora con el ejercicio físico pero no con el reposo, rigidez matutina >30 min y respuesta espectacular a AINEs (Sospecha Espondiloartritis Axial / Espondilitis Anquilosante)",
       "severity": "high",
-      "action": "Solicitar HLA-B27, PCR/VSG, RM de articulaciones sacroilíacas (secuencia STIR para edema óseo) y derivar a Reumatología."
+      "action": "Solicitar HLA-B27, PCR/VSG, RM de articulaciones sacroilíacas (secuencia STIR para edema óseo) y derivar a Reumatología.",
+      "label": "Paciente <45 años con dolor nocturno que mejora con el ejercicio físico pero no con el reposo, rigidez matutina >30 min y respuesta espectacular a AINEs (Sospecha Espondiloartritis Axial / Espondilitis Anquilosante)"
     }
   ],
   "hypotheses": [

@@ -13,7 +13,8 @@
       "id": "rf-unclear-lumbar-visceral",
       "text": "Dolor lumbar cólico o terebrante irradiado a flanco/genitales, o masa pulsátil abdominal palpable (Sospecha Cólico Nefrítico, Pielonefritis o Aneurisma de Aorta)",
       "severity": "critical",
-      "action": "Sedimento de orina, ecografía abdominal urgente o Angio-TC según sospecha."
+      "action": "Sedimento de orina, ecografía abdominal urgente o Angio-TC según sospecha.",
+      "label": "Dolor lumbar cólico o terebrante irradiado a flanco/genitales, o masa pulsátil abdominal palpable (Sospecha Cólico Nefrítico, Pielonefritis o Aneurisma de Aorta)"
     }
   ],
   "hypotheses": [

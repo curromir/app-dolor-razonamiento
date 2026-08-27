@@ -10,19 +10,22 @@
       "id": "rf-sacroiliitis-septic",
       "text": "Fiebre, dolor pélvico e ilíaco agudo severo con impotencia para la marcha tras infección o posparto (sospecha de sacroileítis séptica)",
       "severity": "critical",
-      "action": "Analítica urgente con hemocultivos y RM sacroilíaca urgente"
+      "action": "Analítica urgente con hemocultivos y RM sacroilíaca urgente",
+      "label": "Fiebre, dolor pélvico e ilíaco agudo severo con impotencia para la marcha tras infección o posparto (sospecha de sacroileítis séptica)"
     },
     {
       "id": "rf-sacral-fracture",
       "text": "Dolor sacro agudo incapacitante tras caída o esfuerzo en paciente anciano o con osteoporosis/radioterapia pélvica (sospecha de fractura de sacro por estrés/insuficiencia)",
       "severity": "critical",
-      "action": "RM o TC de pelvis urgente para descartar fractura en H de Honda"
+      "action": "RM o TC de pelvis urgente para descartar fractura en H de Honda",
+      "label": "Dolor sacro agudo incapacitante tras caída o esfuerzo en paciente anciano o con osteoporosis/radioterapia pélvica (sospecha de fractura de sacro por estrés/insuficiencia)"
     },
     {
       "id": "rf-spondylitis",
       "text": "Varón joven (<45 años) con dolor lumbar/glúteo de ritmo inflamatorio (despierta en segunda mitad de la noche, rigidez >60 min y mejora con ejercicio) y talalgia (sospecha de Espondiloartritis anquilosante / HLA-B27)",
       "severity": "high",
-      "action": "HLA-B27, analítica con PCR/VSG y RM sacroilíaca (secuencias STIR para edema óseo subcondral)"
+      "action": "HLA-B27, analítica con PCR/VSG y RM sacroilíaca (secuencias STIR para edema óseo subcondral)",
+      "label": "Varón joven (<45 años) con dolor lumbar/glúteo de ritmo inflamatorio (despierta en segunda mitad de la noche, rigidez >60 min y mejora con ejercicio) y talalgia (sospecha de Espondiloartritis anquilosante / HLA-B27)"
     }
   ],
   "hypotheses": [
@@ -61,22 +64,46 @@
         {
           "label": "Justo debajo del hoyuelo de la espalda baja / EIPS en un lado (Signo de Fortin +)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-facet-l5-s1", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-si-dysfunction",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-facet-l5-s1",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "En el centro del glúteo (vientre muscular) que baja por la parte posterior del muslo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 1 }
+            {
+              "hypothesisId": "hyp-piriformis-syndrome",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-si-dysfunction",
+              "effect": "increase",
+              "weight": 1
+            }
           ]
         },
         {
           "label": "En la parte alta lumbar central o paravertebral por encima de la cintura",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-facet-l5-s1", "effect": "increase", "weight": 4 },
-            { "hypothesisId": "hyp-si-dysfunction", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-facet-l5-s1",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-si-dysfunction",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -90,14 +117,26 @@
         {
           "label": "Al levantarme de la silla, apoyarme en una sola pierna o girarme en la cama",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 4 }
+            {
+              "hypothesisId": "hyp-si-dysfunction",
+              "effect": "increase",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "Al estar mucho rato sentado en superficies duras (empeora sentado continuo)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-piriformis-syndrome",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-si-dysfunction",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -111,15 +150,31 @@
         {
           "label": "No, se queda en la nalga y muslo posterior sin pasar de la rodilla",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-si-dysfunction",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-piriformis-syndrome",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Sí, baja hasta el pie con sensación de hormigueo o descarga",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-si-dysfunction", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-piriformis-syndrome",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-si-dysfunction",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -130,9 +185,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder caminar distancias medias y estar de pie sin dolor en la nalga", "hypothesisEffects": [] },
-        { "label": "Levantarme del sofá o de la cama sin pinchazo agudo en la pelvis", "hypothesisEffects": [] },
-        { "label": "Conducir y permanecer sentado de forma cómoda", "hypothesisEffects": [] }
+        {
+          "label": "Poder caminar distancias medias y estar de pie sin dolor en la nalga",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Levantarme del sofá o de la cama sin pinchazo agudo en la pelvis",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Conducir y permanecer sentado de forma cómoda",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -154,15 +218,27 @@
             "label": "Positivo (reproduce dolor agudo sacroilíaco habitual)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-facet-l5-s1", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-si-dysfunction",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-facet-l5-s1",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Negativo (indoloro al empuje femoral axial)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-si-dysfunction", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-si-dysfunction",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -182,7 +258,11 @@
             "label": "Positivo (reproduce dolor posterior en la articulación)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 5 }
+              {
+                "hypothesisId": "hyp-si-dysfunction",
+                "effect": "increase",
+                "weight": 5
+              }
             ]
           },
           {
@@ -206,7 +286,11 @@
             "label": "Positivo (dolor en surco sacroilíaco)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-si-dysfunction", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-si-dysfunction",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
@@ -231,8 +315,16 @@
             "label": "Positivo (dolor profundo en el piriforme con irradiación)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-piriformis-syndrome", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-si-dysfunction", "effect": "decrease", "weight": 1 }
+              {
+                "hypothesisId": "hyp-piriformis-syndrome",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-si-dysfunction",
+                "effect": "decrease",
+                "weight": 1
+              }
             ]
           },
           {
@@ -249,7 +341,11 @@
       "id": "cluster-laslett-si",
       "name": "Clúster de Provocación de Laslett (Sacroilíaca)",
       "description": "1. Thigh Thrust (+) + 2. Distracción (+) + 3. Compresión (+) + 4. Sacral Thrust (+) (≥2 de 4 pruebas positivas)",
-      "requiredTests": ["exam-si-thigh-thrust", "exam-si-distraction", "exam-si-compression"],
+      "requiredTests": [
+        "exam-si-thigh-thrust",
+        "exam-si-distraction",
+        "exam-si-compression"
+      ],
       "threshold": 2,
       "concordanceText": "Cumple criterios del Clúster de Laslett (≥2 de 3 maniobras de provocación positivas). Sensibilidad 91%, Especificidad 87% para dolor de origen sacroilíaco.",
       "evidenceNote": "El Clúster de Laslett tiene la mayor precisión diagnóstica validada contra bloqueos anestésicos intraarticulares de referencia (Laslett et al., Spine 2005)."
@@ -264,9 +360,21 @@
         "name": "Articulación Sacroilíaca",
         "priority": 1,
         "findings": [
-          { "id": "si-normal", "label": "Interlínea sacroilíaca normal y simétrica", "concordanceEffect": "neutral" },
-          { "id": "si-edema-stir", "label": "Edema óseo subcondral en STIR / Sacroileítis activa", "concordanceEffect": "concordant" },
-          { "id": "si-osteoarthritis", "label": "Esclerosis subcondral, puentes óseos y estrechamiento degenerativo", "concordanceEffect": "concordant" }
+          {
+            "id": "si-normal",
+            "label": "Interlínea sacroilíaca normal y simétrica",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "si-edema-stir",
+            "label": "Edema óseo subcondral en STIR / Sacroileítis activa",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "si-osteoarthritis",
+            "label": "Esclerosis subcondral, puentes óseos y estrechamiento degenerativo",
+            "concordanceEffect": "concordant"
+          }
         ]
       }
     ],
@@ -364,7 +472,11 @@
           "indication": "Agudización de dolor articular sacroilíaco.",
           "example": "Etoricoxib 60-90 mg/día o Naproxeno 500mg/12h",
           "duration": "7-14 días",
-          "guardrails": ["Función renal", "Riesgo cardiovascular", "Riesgo GI"]
+          "guardrails": [
+            "Función renal",
+            "Riesgo cardiovascular",
+            "Riesgo GI"
+          ]
         }
       ]
     },
@@ -376,10 +488,19 @@
           "name": "Infiltración Intraarticular Sacroilíaca Ecoguiada o Fluoroscópica",
           "indication": "Sacroileítis o artropatía dolorosa confirmada.",
           "options": [
-            { "name": "Infiltración de corticoide de depósito (Triamcinolona 40mg) + anestésico local", "evidence": "Alta / Nivel I" },
-            { "name": "Radiofrecuencia (Neurotomía) de Ramos Laterales Sacros (S1, S2, S3) y ramo dorsal L5 (Rizolisis sacroilíaca)", "evidence": "Alta a medio-largo plazo (Cohen 2015)" }
+            {
+              "name": "Infiltración de corticoide de depósito (Triamcinolona 40mg) + anestésico local",
+              "evidence": "Alta / Nivel I"
+            },
+            {
+              "name": "Radiofrecuencia (Neurotomía) de Ramos Laterales Sacros (S1, S2, S3) y ramo dorsal L5 (Rizolisis sacroilíaca)",
+              "evidence": "Alta a medio-largo plazo (Cohen 2015)"
+            }
           ],
-          "contraindications": ["Infección activa", "Anticoagulación no suspendida según protocolo"]
+          "contraindications": [
+            "Infección activa",
+            "Anticoagulación no suspendida según protocolo"
+          ]
         }
       ]
     }
@@ -387,10 +508,22 @@
   "followUp": {
     "timing": "Revisión a las 4-6 semanas",
     "parameters": [
-      { "name": "Dolor al levantarse de la silla (EVA)", "icon": "📊" },
-      { "name": "Tolerancia a la bipedestación", "icon": "🚶" },
-      { "name": "Thigh Thrust y test de Laslett", "icon": "🎯" },
-      { "name": "Fuerza y estabilidad de glúteos", "icon": "💪" }
+      {
+        "name": "Dolor al levantarse de la silla (EVA)",
+        "icon": "📊"
+      },
+      {
+        "name": "Tolerancia a la bipedestación",
+        "icon": "🚶"
+      },
+      {
+        "name": "Thigh Thrust y test de Laslett",
+        "icon": "🎯"
+      },
+      {
+        "name": "Fuerza y estabilidad de glúteos",
+        "icon": "💪"
+      }
     ],
     "outcomes": [
       {

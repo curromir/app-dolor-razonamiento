@@ -10,13 +10,15 @@
       "id": "rf-locked-knee",
       "text": "Bloqueo articular mecánico agudo con rodilla fija en semiflexión e imposibilidad absoluta de extensión pasiva (sospecha de rotura meniscal en asa de cubo luxada)",
       "severity": "critical",
-      "action": "RM urgente de rodilla y derivación a Cirugía Ortopédica para artroscopia"
+      "action": "RM urgente de rodilla y derivación a Cirugía Ortopédica para artroscopia",
+      "label": "Bloqueo articular mecánico agudo con rodilla fija en semiflexión e imposibilidad absoluta de extensión pasiva (sospecha de rotura meniscal en asa de cubo luxada)"
     },
     {
       "id": "rf-septic-knee",
       "text": "Rodilla muy caliente, tumefacta con derrame a tensión, eritematosa y fiebre sistémica con impotencia funcional total",
       "severity": "critical",
-      "action": "Artrocentesis evacuadora diagnóstica urgente con cultivo de líquido sinovial"
+      "action": "Artrocentesis evacuadora diagnóstica urgente con cultivo de líquido sinovial",
+      "label": "Rodilla muy caliente, tumefacta con derrame a tensión, eritematosa y fiebre sistémica con impotencia funcional total"
     }
   ],
   "hypotheses": [
@@ -63,17 +65,41 @@
         {
           "label": "Justo en la hendidura media entre los dos huesos (Interlínea articular medial)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-medial-compartment-oa", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-medial-compartment-oa",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-medial-meniscus-tear",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-pes-anserine-bursitis",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "Unos 4-5 centímetros por debajo de la rodilla, en la parte alta de la espinilla/tibia",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "increase", "weight": 7 },
-            { "hypothesisId": "hyp-medial-compartment-oa", "effect": "decrease", "weight": 3 },
-            { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-pes-anserine-bursitis",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-medial-compartment-oa",
+              "effect": "decrease",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-medial-meniscus-tear",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -87,19 +113,31 @@
         {
           "label": "Al rotar o girar el cuerpo sobre la pierna apoyada o al ponerme en cuclillas (con sensación de pinchazo/chasquido)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "increase", "weight": 6 }
+            {
+              "hypothesisId": "hyp-medial-meniscus-tear",
+              "effect": "increase",
+              "weight": 6
+            }
           ]
         },
         {
           "label": "Al caminar distancias continuas o estar de pie mucho rato (me alivia sentarme)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-medial-compartment-oa", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-medial-compartment-oa",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
           "label": "Al bajar escaleras y por la noche en la cama si las rodillas se tocan",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "increase", "weight": 6 }
+            {
+              "hypothesisId": "hyp-pes-anserine-bursitis",
+              "effect": "increase",
+              "weight": 6
+            }
           ]
         }
       ]
@@ -110,9 +148,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder caminar distancias medias sin cojera ni pinchazos internos", "hypothesisEffects": [] },
-        { "label": "Subir y bajar escaleras de forma fluida", "hypothesisEffects": [] },
-        { "label": "Dormir de lado cómodamente y levantarme sin rigidez", "hypothesisEffects": [] }
+        {
+          "label": "Poder caminar distancias medias sin cojera ni pinchazos internos",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Subir y bajar escaleras de forma fluida",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Dormir de lado cómodamente y levantarme sin rigidez",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -133,17 +180,37 @@
             "label": "Dolor exquisito en interlínea femorotibial medial",
             "value": "joint_line_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-medial-compartment-oa", "effect": "increase", "weight": 5 },
-              { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "increase", "weight": 5 },
-              { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-medial-compartment-oa",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-medial-meniscus-tear",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-pes-anserine-bursitis",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Dolor selectivo a 4-5 cm distal en inserción anserina (Pata de Ganso)",
             "value": "anserine_pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "increase", "weight": 7 },
-              { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-pes-anserine-bursitis",
+                "effect": "increase",
+                "weight": 7
+              },
+              {
+                "hypothesisId": "hyp-medial-meniscus-tear",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           }
         ]
@@ -163,15 +230,27 @@
             "label": "Positivo (reproduce pinchazo agudo en interlínea interna a la rotación)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "increase", "weight": 7 },
-              { "hypothesisId": "hyp-pes-anserine-bursitis", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-medial-meniscus-tear",
+                "effect": "increase",
+                "weight": 7
+              },
+              {
+                "hypothesisId": "hyp-pes-anserine-bursitis",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Negativo (giro indoloro sobre la pierna)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-medial-meniscus-tear", "effect": "decrease", "weight": 5 }
+              {
+                "hypothesisId": "hyp-medial-meniscus-tear",
+                "effect": "decrease",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -189,14 +268,22 @@
             "label": "Positivo (dolor a lo largo del ligamento colateral medial sin bostezo / Grado I)",
             "value": "positive_mcl",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-mcl-sprain", "effect": "increase", "weight": 7 }
+              {
+                "hypothesisId": "hyp-mcl-sprain",
+                "effect": "increase",
+                "weight": 7
+              }
             ]
           },
           {
             "label": "Negativo (articulación firme e indolora al valgo)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-mcl-sprain", "effect": "decrease", "weight": 5 }
+              {
+                "hypothesisId": "hyp-mcl-sprain",
+                "effect": "decrease",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -208,7 +295,10 @@
       "id": "cluster-meniscal-medial",
       "name": "Clúster Compuesto de Lesión Meniscal Medial",
       "description": "1. Dolor a la palpación de interlínea + 2. Test de Thessaly (+) + 3. Dolor en rotación forzada",
-      "requiredTests": ["exam-palpation-joint-line-medial", "exam-thessaly-medial"],
+      "requiredTests": [
+        "exam-palpation-joint-line-medial",
+        "exam-thessaly-medial"
+      ],
       "threshold": 2,
       "concordanceText": "Alta probabilidad clínica de meniscopatía medial (Sensibilidad >90%).",
       "evidenceNote": "El clúster meniscal combinado supera ampliamente el rendimiento de cualquier prueba aislada (Wagemakers et al., 2008)."
@@ -222,9 +312,21 @@
         "name": "Interlínea Femorotibial y Menisco Medial (Corte Coronal)",
         "priority": 1,
         "findings": [
-          { "id": "us-medial-normal", "label": "Menisco triangular homogéneo alineado con el borde óseo", "concordanceEffect": "neutral" },
-          { "id": "us-medial-extrusion", "label": "Extrusión meniscal patológica (>3.0 mm fuera del borde tibial) con osteofitos marginales (Gonartrosis)", "concordanceEffect": "concordant" },
-          { "id": "us-medial-parameniscal-cyst", "label": "Quiste parameniscal anecoico / rotura meniscal horizontal", "concordanceEffect": "concordant" }
+          {
+            "id": "us-medial-normal",
+            "label": "Menisco triangular homogéneo alineado con el borde óseo",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-medial-extrusion",
+            "label": "Extrusión meniscal patológica (>3.0 mm fuera del borde tibial) con osteofitos marginales (Gonartrosis)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-medial-parameniscal-cyst",
+            "label": "Quiste parameniscal anecoico / rotura meniscal horizontal",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Interlínea medial de rodilla: {finding}."
       },
@@ -233,8 +335,16 @@
         "name": "Bursa y Tendones de la Pata de Ganso",
         "priority": 2,
         "findings": [
-          { "id": "us-anserine-normal", "label": "Tendones anserinos finos sin líquido en bursa", "concordanceEffect": "neutral" },
-          { "id": "us-anserine-distended", "label": "Distensión líquida anecoica de la bursa anserina e hiperemia Doppler", "concordanceEffect": "concordant" }
+          {
+            "id": "us-anserine-normal",
+            "label": "Tendones anserinos finos sin líquido en bursa",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-anserine-distended",
+            "label": "Distensión líquida anecoica de la bursa anserina e hiperemia Doppler",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Área de la pata de ganso: {finding}."
       }
@@ -333,14 +443,20 @@
           "indication": "Tratamiento de primera línea con máxima seguridad.",
           "example": "Gel de diclofenaco 3 veces/día",
           "duration": "4-6 semanas",
-          "guardrails": ["Excelente perfil de seguridad"]
+          "guardrails": [
+            "Excelente perfil de seguridad"
+          ]
         },
         {
           "name": "Paracetamol o AINE oral en ciclo breve",
           "indication": "Dolor moderado no controlado con tópico.",
           "example": "Paracetamol 1g/8h o Naproxeno 500mg/12h con IBP",
           "duration": "7-10 días",
-          "guardrails": ["Función renal", "Riesgo GI", "Edad >65 años"]
+          "guardrails": [
+            "Función renal",
+            "Riesgo GI",
+            "Edad >65 años"
+          ]
         }
       ]
     },
@@ -352,10 +468,19 @@
           "name": "Viscosuplementación con Ácido Hialurónico o Corticoide Intraarticular",
           "indication": "Gonartrosis medial confirmada.",
           "options": [
-            { "name": "Ácido hialurónico de alto peso molecular intraarticular ecoguiado (1 inyección)", "evidence": "Alta / Nivel I (alivio de 6 meses)" },
-            { "name": "Infiltración ecoguiada de bursa anserina con 1 ml corticoide + 2 ml anestésico local (si bursitis asociada)", "evidence": "Alta" }
+            {
+              "name": "Ácido hialurónico de alto peso molecular intraarticular ecoguiado (1 inyección)",
+              "evidence": "Alta / Nivel I (alivio de 6 meses)"
+            },
+            {
+              "name": "Infiltración ecoguiada de bursa anserina con 1 ml corticoide + 2 ml anestésico local (si bursitis asociada)",
+              "evidence": "Alta"
+            }
           ],
-          "contraindications": ["Infección activa", "Artritis séptica"]
+          "contraindications": [
+            "Infección activa",
+            "Artritis séptica"
+          ]
         }
       ]
     }
@@ -363,9 +488,18 @@
   "followUp": {
     "timing": "Revisión a las 6 semanas",
     "parameters": [
-      { "name": "Distancia caminada sin dolor (metros)", "icon": "🚶" },
-      { "name": "Dolor al bajar escaleras (EVA)", "icon": "📊" },
-      { "name": "Fuerza de cuádriceps", "icon": "💪" }
+      {
+        "name": "Distancia caminada sin dolor (metros)",
+        "icon": "🚶"
+      },
+      {
+        "name": "Dolor al bajar escaleras (EVA)",
+        "icon": "📊"
+      },
+      {
+        "name": "Fuerza de cuádriceps",
+        "icon": "💪"
+      }
     ],
     "outcomes": [
       {

@@ -9,73 +9,85 @@
       "id": "trauma",
       "label": "Traumatismo significativo",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Traumatismo significativo"
     },
     {
       "id": "fever",
       "label": "Fiebre / sospecha de infección",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Fiebre / sospecha de infección"
     },
     {
       "id": "cancer",
       "label": "Cáncer conocido / antecedente oncológico",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Cáncer conocido / antecedente oncológico"
     },
     {
       "id": "weight_loss",
       "label": "Pérdida ponderal inexplicada",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Pérdida ponderal inexplicada"
     },
     {
       "id": "immunosuppression",
       "label": "Inmunosupresión",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Inmunosupresión"
     },
     {
       "id": "constant_pain",
       "label": "Dolor desproporcionado / constante / nocturno sin alivio posicional",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Dolor desproporcionado / constante / nocturno sin alivio posicional"
     },
     {
       "id": "progressive_neuro",
       "label": "Déficit neurológico progresivo",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Déficit neurológico progresivo"
     },
     {
       "id": "sphincter",
       "label": "Alteración esfinteriana (vejiga/intestino)",
       "severity": "critical",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Alteración esfinteriana (vejiga/intestino)"
     },
     {
       "id": "saddle_anesthesia",
       "label": "Anestesia en silla de montar",
       "severity": "critical",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Anestesia en silla de montar"
     },
     {
       "id": "fracture_suspect",
       "label": "Sospecha de fractura vertebral",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Sospecha de fractura vertebral"
     },
     {
       "id": "vascular",
       "label": "Síntomas vasculares en miembros inferiores",
       "severity": "major",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Síntomas vasculares en miembros inferiores"
     },
     {
       "id": "age_extremes",
       "label": "Edad <20 o >55 con primer episodio",
       "severity": "minor",
-      "action": "Derivación / estudio urgente"
+      "action": "Derivación / estudio urgente",
+      "text": "Edad <20 o >55 con primer episodio"
     }
   ],
   "hypotheses": [

@@ -5,58 +5,64 @@
   "regionIcon": "🦴",
   "presentation": "Dolor lateral",
   "presentationDesc": "Dolor predominante en cara lateral del hombro, región deltoidea",
-  
   "redFlags": [
     {
       "id": "rf-trauma",
       "text": "Traumatismo agudo reciente con deformidad o incapacidad total para mover el brazo.",
       "severity": "critical",
-      "action": "Derivar a urgencias para descartar fractura o luxación (Radiografía urgente)."
+      "action": "Derivar a urgencias para descartar fractura o luxación (Radiografía urgente).",
+      "label": "Traumatismo agudo reciente con deformidad o incapacidad total para mover el brazo."
     },
     {
       "id": "rf-infection",
       "text": "Fiebre, enrojecimiento, calor y aumento de volumen súbito en la articulación.",
       "severity": "critical",
-      "action": "Derivar a urgencias para descartar artritis séptica (Artocentesis)."
+      "action": "Derivar a urgencias para descartar artritis séptica (Artocentesis).",
+      "label": "Fiebre, enrojecimiento, calor y aumento de volumen súbito en la articulación."
     },
     {
       "id": "rf-tumor",
       "text": "Antecedentes de cáncer, dolor nocturno severo que no cede al reposo, pérdida de peso inexplicable.",
       "severity": "high",
-      "action": "Solicitar pruebas de imagen (RM) y derivar a especialista para descartar malignidad o metástasis."
+      "action": "Solicitar pruebas de imagen (RM) y derivar a especialista para descartar malignidad o metástasis.",
+      "label": "Antecedentes de cáncer, dolor nocturno severo que no cede al reposo, pérdida de peso inexplicable."
     },
     {
       "id": "rf-neuro",
       "text": "Debilidad motora progresiva o pérdida de sensibilidad en brazo/mano, alteración de reflejos.",
       "severity": "high",
-      "action": "Evaluación neurológica urgente, RM cervical para descartar mielopatía o radiculopatía severa."
+      "action": "Evaluación neurológica urgente, RM cervical para descartar mielopatía o radiculopatía severa.",
+      "label": "Debilidad motora progresiva o pérdida de sensibilidad en brazo/mano, alteración de reflejos."
     },
     {
       "id": "rf-vascular",
       "text": "Frialdad, palidez o ausencia de pulso en la extremidad superior.",
       "severity": "critical",
-      "action": "Derivación urgente a urgencias/cirugía vascular."
+      "action": "Derivación urgente a urgencias/cirugía vascular.",
+      "label": "Frialdad, palidez o ausencia de pulso en la extremidad superior."
     },
     {
       "id": "rf-visceral-cardiac",
       "text": "Dolor de hombro izquierdo asociado a esfuerzo físico (no movimiento del brazo), sudoración o dolor torácico.",
       "severity": "critical",
-      "action": "Derivación inmediata a urgencias médicas (descartar infarto agudo de miocardio)."
+      "action": "Derivación inmediata a urgencias médicas (descartar infarto agudo de miocardio).",
+      "label": "Dolor de hombro izquierdo asociado a esfuerzo físico (no movimiento del brazo), sudoración o dolor torácico."
     },
     {
       "id": "rf-visceral-diaphragm",
       "text": "Dolor de hombro derecho inexplicable asociado a síntomas abdominales (náuseas, ictericia).",
       "severity": "high",
-      "action": "Evaluación médica general para descartar patología hepatobiliar (dolor referido frénico)."
+      "action": "Evaluación médica general para descartar patología hepatobiliar (dolor referido frénico).",
+      "label": "Dolor de hombro derecho inexplicable asociado a síntomas abdominales (náuseas, ictericia)."
     },
     {
       "id": "rf-necrosis",
       "text": "Dolor intenso en paciente con uso crónico de corticoides sistémicos, alcoholismo o drepanocitosis.",
       "severity": "high",
-      "action": "Sospecha de necrosis avascular. Solicitar RM y derivar a traumatología."
+      "action": "Sospecha de necrosis avascular. Solicitar RM y derivar a traumatología.",
+      "label": "Dolor intenso en paciente con uso crónico de corticoides sistémicos, alcoholismo o drepanocitosis."
     }
   ],
-  
   "hypotheses": [
     {
       "id": "hyp-subacromial",
@@ -107,7 +113,6 @@
       "score": 0
     }
   ],
-  
   "questions": [
     {
       "id": "q1",
@@ -118,37 +123,65 @@
         {
           "label": "Lateral (por debajo del hueso, como una charretera)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
-            { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 2 },
-            { "hypothesisId": "hyp-bursa-sasd", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-subacromial",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-supraespinoso",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-bursa-sasd",
+              "effect": "increase",
+              "weight": 2
+            }
           ],
           "nextQuestionId": "q2"
         },
         {
           "label": "Anterior (en la parte frontal del hombro)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-biceps", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-biceps",
+              "effect": "increase",
+              "weight": 3
+            }
           ],
           "nextQuestionId": "q2"
         },
         {
           "label": "Superior (justo arriba, en la unión con la clavícula)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-ac", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-ac",
+              "effect": "increase",
+              "weight": 3
+            }
           ],
           "nextQuestionId": "q2"
         },
         {
           "label": "Posterior (detrás del hombro)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 1 }
+            {
+              "hypothesisId": "hyp-cervical",
+              "effect": "increase",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q2"
         },
         {
           "label": "Dolor difuso, me duele todo el hombro y brazo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-cervical",
+              "effect": "increase",
+              "weight": 2
+            }
           ],
           "nextQuestionId": "q2"
         }
@@ -163,16 +196,32 @@
         {
           "label": "Sí, sobre todo a mitad del camino",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
-            { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-subacromial",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-supraespinoso",
+              "effect": "increase",
+              "weight": 2
+            }
           ],
           "nextQuestionId": "q3"
         },
         {
           "label": "No, o muy poco",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 },
-            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 1 }
+            {
+              "hypothesisId": "hyp-subacromial",
+              "effect": "decrease",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-cervical",
+              "effect": "increase",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q3"
         }
@@ -187,15 +236,27 @@
         {
           "label": "Sí, me despierta frecuentemente",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-bursa-sasd", "effect": "increase", "weight": 2 },
-            { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 }
+            {
+              "hypothesisId": "hyp-bursa-sasd",
+              "effect": "increase",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-supraespinoso",
+              "effect": "increase",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q4"
         },
         {
           "label": "No",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-bursa-sasd", "effect": "decrease", "weight": 1 }
+            {
+              "hypothesisId": "hyp-bursa-sasd",
+              "effect": "decrease",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q4"
         }
@@ -210,15 +271,27 @@
         {
           "label": "Sí, está como bloqueado o rígido",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 },
-            { "hypothesisId": "hyp-supraespinoso", "effect": "decrease", "weight": 1 }
+            {
+              "hypothesisId": "hyp-subacromial",
+              "effect": "decrease",
+              "weight": 2
+            },
+            {
+              "hypothesisId": "hyp-supraespinoso",
+              "effect": "decrease",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q5"
         },
         {
           "label": "No, si me lo mueven se mueve bien (aunque duela un poco)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 1 }
+            {
+              "hypothesisId": "hyp-subacromial",
+              "effect": "increase",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q5"
         }
@@ -233,22 +306,38 @@
         {
           "label": "Sí, claramente",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-cervical",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-subacromial",
+              "effect": "decrease",
+              "weight": 2
+            }
           ],
           "nextQuestionId": "q6"
         },
         {
           "label": "A veces, o solo un poco",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 1 }
+            {
+              "hypothesisId": "hyp-cervical",
+              "effect": "increase",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q6"
         },
         {
           "label": "No, nunca baja del codo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-cervical", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-cervical",
+              "effect": "decrease",
+              "weight": 2
+            }
           ],
           "nextQuestionId": "q6"
         }
@@ -263,14 +352,22 @@
         {
           "label": "Sí, es cuando más me duele",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-ac", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-ac",
+              "effect": "increase",
+              "weight": 2
+            }
           ],
           "nextQuestionId": "q7"
         },
         {
           "label": "No",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-ac", "effect": "decrease", "weight": 1 }
+            {
+              "hypothesisId": "hyp-ac",
+              "effect": "decrease",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q7"
         }
@@ -285,15 +382,27 @@
         {
           "label": "Sí",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 },
-            { "hypothesisId": "hyp-ac", "effect": "increase", "weight": 1 }
+            {
+              "hypothesisId": "hyp-supraespinoso",
+              "effect": "increase",
+              "weight": 1
+            },
+            {
+              "hypothesisId": "hyp-ac",
+              "effect": "increase",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q8"
         },
         {
           "label": "No, empezó poco a poco",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 1 }
+            {
+              "hypothesisId": "hyp-subacromial",
+              "effect": "increase",
+              "weight": 1
+            }
           ],
           "nextQuestionId": "q8"
         }
@@ -328,7 +437,6 @@
       ]
     }
   ],
-  
   "examination": {
     "title": "Exploración Express 90 segundos — Hombro Lateral",
     "steps": [
@@ -347,22 +455,38 @@
             "label": "Arco doloroso presente (60°-120°)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
-              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 }
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "increase",
+                "weight": 2
+              },
+              {
+                "hypothesisId": "hyp-supraespinoso",
+                "effect": "increase",
+                "weight": 1
+              }
             ]
           },
           {
             "label": "Dolor al final del rango (160°-180°)",
             "value": "pain_end_range",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-ac", "effect": "increase", "weight": 2 }
+              {
+                "hypothesisId": "hyp-ac",
+                "effect": "increase",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Sin dolor",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           }
         ]
@@ -378,40 +502,64 @@
         "essential": true,
         "mentorTip": "Aísla relativamente el supraespinoso. La debilidad franca es muy sugestiva de rotura masiva.",
         "results": [
-          { 
-            "label": "Negativo", 
-            "value": "negative", 
+          {
+            "label": "Negativo",
+            "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-supraespinoso", "effect": "decrease", "weight": 2 }
-            ] 
+              {
+                "hypothesisId": "hyp-supraespinoso",
+                "effect": "decrease",
+                "weight": 2
+              }
+            ]
           },
-          { 
-            "label": "Dolor, fuerza conservada", 
-            "value": "pain", 
+          {
+            "label": "Dolor, fuerza conservada",
+            "value": "pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
-              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 }
-            ] 
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "increase",
+                "weight": 2
+              },
+              {
+                "hypothesisId": "hyp-supraespinoso",
+                "effect": "increase",
+                "weight": 1
+              }
+            ]
           },
-          { 
-            "label": "Dolor + debilidad", 
-            "value": "pain_and_weakness", 
+          {
+            "label": "Dolor + debilidad",
+            "value": "pain_and_weakness",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 3 }
-            ] 
+              {
+                "hypothesisId": "hyp-supraespinoso",
+                "effect": "increase",
+                "weight": 3
+              }
+            ]
           },
-          { 
-            "label": "Debilidad franca sin dolor", 
-            "value": "weakness", 
+          {
+            "label": "Debilidad franca sin dolor",
+            "value": "weakness",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 3 },
-              { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 1 }
-            ] 
+              {
+                "hypothesisId": "hyp-supraespinoso",
+                "effect": "increase",
+                "weight": 3
+              },
+              {
+                "hypothesisId": "hyp-cervical",
+                "effect": "increase",
+                "weight": 1
+              }
+            ]
           },
-          { 
-            "label": "No valorable", 
-            "value": "not_assessable", 
-            "hypothesisEffects": [] 
+          {
+            "label": "No valorable",
+            "value": "not_assessable",
+            "hypothesisEffects": []
           }
         ]
       },
@@ -430,15 +578,27 @@
             "label": "Positivo (reproduce su dolor)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 2 },
-              { "hypothesisId": "hyp-bursa-sasd", "effect": "increase", "weight": 1 }
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "increase",
+                "weight": 2
+              },
+              {
+                "hypothesisId": "hyp-bursa-sasd",
+                "effect": "increase",
+                "weight": 1
+              }
             ]
           },
           {
             "label": "Negativo",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 1 }
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "decrease",
+                "weight": 1
+              }
             ]
           }
         ]
@@ -463,14 +623,22 @@
             "label": "Dolor con fuerza conservada",
             "value": "pain",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 1 }
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "increase",
+                "weight": 1
+              }
             ]
           },
           {
             "label": "Debilidad franca",
             "value": "weakness",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-supraespinoso", "effect": "increase", "weight": 1 }
+              {
+                "hypothesisId": "hyp-supraespinoso",
+                "effect": "increase",
+                "weight": 1
+              }
             ]
           }
         ]
@@ -490,14 +658,22 @@
             "label": "Completa y libre (o similar al contralateral)",
             "value": "normal",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subacromial", "effect": "increase", "weight": 1 }
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "increase",
+                "weight": 1
+              }
             ]
           },
           {
             "label": "Limitada marcadamente (>50% en rotación externa)",
             "value": "limited",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           }
         ]
@@ -517,34 +693,48 @@
             "label": "Negativo (no cambia síntomas del hombro)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-cervical", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-cervical",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Positivo (reproduce síntomas en hombro/brazo)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-cervical", "effect": "increase", "weight": 3 },
-              { "hypothesisId": "hyp-subacromial", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-cervical",
+                "effect": "increase",
+                "weight": 3
+              },
+              {
+                "hypothesisId": "hyp-subacromial",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           }
         ]
       }
     ]
   },
-  
   "clusters": [
     {
       "id": "cluster-impingement",
       "name": "Batería de Pinzamiento Subacromial",
       "description": "Neer + Hawkins + Arco Doloroso + Jobe",
-      "requiredTests": ["exam-arc", "exam-jobe", "exam-hawkins"],
+      "requiredTests": [
+        "exam-arc",
+        "exam-jobe",
+        "exam-hawkins"
+      ],
       "threshold": 2,
       "concordanceText": "Los hallazgos aumentan considerablemente la probabilidad de dolor relacionado con el espacio subacromial.",
       "evidenceNote": "Sensibilidad combinada >90% cuando ≥2 de 3 positivos (Arco doloroso, Hawkins, Debilidad/Dolor rotadores)."
     }
   ],
-  
   "ultrasound": {
     "clinicalQuestion": "¿Existe patología del supraespinoso o de la bursa subacromial-subdeltoidea que explique el patrón clínico?",
     "structures": [
@@ -553,11 +743,31 @@
         "name": "Tendón del Supraespinoso",
         "priority": 1,
         "findings": [
-          { "id": "us-supra-normal", "label": "Normal", "concordanceEffect": "neutral" },
-          { "id": "us-supra-tendinopathy", "label": "Tendinopatía (engrosamiento, hipoecogenicidad)", "concordanceEffect": "concordant" },
-          { "id": "us-supra-calcification", "label": "Calcificación", "concordanceEffect": "concordant" },
-          { "id": "us-supra-partial", "label": "Rotura parcial", "concordanceEffect": "concordant" },
-          { "id": "us-supra-complete", "label": "Rotura completa", "concordanceEffect": "concordant" }
+          {
+            "id": "us-supra-normal",
+            "label": "Normal",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-supra-tendinopathy",
+            "label": "Tendinopatía (engrosamiento, hipoecogenicidad)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-supra-calcification",
+            "label": "Calcificación",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-supra-partial",
+            "label": "Rotura parcial",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-supra-complete",
+            "label": "Rotura completa",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Tendón del supraespinoso: {finding}."
       },
@@ -566,9 +776,21 @@
         "name": "Bursa Subacromial-Subdeltoidea (SASD)",
         "priority": 1,
         "findings": [
-          { "id": "us-bursa-normal", "label": "Normal", "concordanceEffect": "neutral" },
-          { "id": "us-bursa-thickened", "label": "Engrosada (>2mm)", "concordanceEffect": "concordant" },
-          { "id": "us-bursa-distended", "label": "Distendida con líquido", "concordanceEffect": "concordant" }
+          {
+            "id": "us-bursa-normal",
+            "label": "Normal",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-bursa-thickened",
+            "label": "Engrosada (>2mm)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-bursa-distended",
+            "label": "Distendida con líquido",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Bursa SASD: {finding}."
       },
@@ -578,10 +800,26 @@
         "priority": 2,
         "condition": "Explorar si la anamnesis o exploración sugieren afectación bicipital",
         "findings": [
-          { "id": "us-bic-normal", "label": "Normal en corredera", "concordanceEffect": "neutral" },
-          { "id": "us-bic-fluid", "label": "Líquido peritendinoso", "concordanceEffect": "possible" },
-          { "id": "us-bic-tendinopathy", "label": "Tendinopatía", "concordanceEffect": "concordant" },
-          { "id": "us-bic-sublux", "label": "Subluxación/luxación", "concordanceEffect": "concordant" }
+          {
+            "id": "us-bic-normal",
+            "label": "Normal en corredera",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-bic-fluid",
+            "label": "Líquido peritendinoso",
+            "concordanceEffect": "possible"
+          },
+          {
+            "id": "us-bic-tendinopathy",
+            "label": "Tendinopatía",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-bic-sublux",
+            "label": "Subluxación/luxación",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Tendón largo del bíceps: {finding}."
       },
@@ -591,9 +829,21 @@
         "priority": 3,
         "condition": "Explorar si dolor en zona superior del hombro o cross-body test positivo",
         "findings": [
-          { "id": "us-ac-normal", "label": "Normal", "concordanceEffect": "neutral" },
-          { "id": "us-ac-oa", "label": "Signos degenerativos/artrosis", "concordanceEffect": "concordant" },
-          { "id": "us-ac-effusion", "label": "Derrame articular", "concordanceEffect": "concordant" }
+          {
+            "id": "us-ac-normal",
+            "label": "Normal",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-ac-oa",
+            "label": "Signos degenerativos/artrosis",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-ac-effusion",
+            "label": "Derrame articular",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Articulación AC: {finding}."
       }
@@ -616,7 +866,6 @@
       }
     }
   },
-  
   "differentialDiagnosis": [
     {
       "id": "dd-cervical",
@@ -655,7 +904,6 @@
       "keyDiscriminatingTest": "Analítica sanguínea (VSG/PCR elevadas)."
     }
   ],
-  
   "generators": [
     {
       "id": "gen-rotator-cuff",
@@ -663,7 +911,13 @@
       "painGenerator": "Dolor relacionado con manguito rotador / región subacromial",
       "mechanism": "nociceptive_mechanical",
       "mechanismLabel": "Predominio nociceptivo mecánico",
-      "supportingFindings": ["Dolor lateral", "Arco doloroso", "Hawkins positivo", "Jobe doloroso", "Movilidad pasiva conservada"],
+      "supportingFindings": [
+        "Dolor lateral",
+        "Arco doloroso",
+        "Hawkins positivo",
+        "Jobe doloroso",
+        "Movilidad pasiva conservada"
+      ],
       "requiredHypothesisLevel": "very_compatible"
     },
     {
@@ -672,7 +926,12 @@
       "painGenerator": "Dolor articular acromioclavicular",
       "mechanism": "nociceptive_mechanical",
       "mechanismLabel": "Predominio nociceptivo mecánico",
-      "supportingFindings": ["Dolor superior", "Test cruzado (cross-body) positivo", "Dolor al final de rango pasivo", "Ecografía con derrame AC"],
+      "supportingFindings": [
+        "Dolor superior",
+        "Test cruzado (cross-body) positivo",
+        "Dolor al final de rango pasivo",
+        "Ecografía con derrame AC"
+      ],
       "requiredHypothesisLevel": "compatible"
     },
     {
@@ -681,11 +940,14 @@
       "painGenerator": "Dolor tendinoso bicipital",
       "mechanism": "nociceptive_mechanical",
       "mechanismLabel": "Predominio nociceptivo mecánico",
-      "supportingFindings": ["Dolor anterior puro", "Dolor a la palpación de la corredera", "Ecografía con tenosinovitis bicipital"],
+      "supportingFindings": [
+        "Dolor anterior puro",
+        "Dolor a la palpación de la corredera",
+        "Ecografía con tenosinovitis bicipital"
+      ],
       "requiredHypothesisLevel": "compatible"
     }
   ],
-  
   "treatment": {
     "education": {
       "patientText": "Su dolor proviene de los tendones que ayudan a levantar el brazo. Esto ocurre comúnmente por sobrecarga o envejecimiento natural del tendón. Es importante que sepa que la mayoría de estos dolores mejoran sin cirugía, mediante un proceso gradual para fortalecer los tendones y recuperar su función. Mover el hombro dentro de un límite de dolor tolerable es seguro y beneficioso para su recuperación.",
@@ -694,10 +956,26 @@
     "exercise": {
       "objective": "Recuperar rango de movimiento y fuerza del manguito rotador de forma progresiva.",
       "phases": [
-        { "name": "Fase 1: Analgésica", "description": "Ejercicios pendulares de Codman, isométricos suaves en posiciones no dolorosas. Crioterapia post-ejercicio.", "duration": "1-2 semanas" },
-        { "name": "Fase 2: Isométrica y Rango", "description": "Activación isométrica en rotación externa e interna en posición neutra. Trabajo de movilidad escapular.", "duration": "2-4 semanas" },
-        { "name": "Fase 3: Carga progresiva", "description": "Fortalecimiento con banda elástica: rotación externa, abducción en plano escapular bajo el nivel de los hombros.", "duration": "4-8 semanas" },
-        { "name": "Fase 4: Funcional", "description": "Ejercicios de cadena cinética abierta y cerrada. Reintegración a actividad laboral/deportiva según objetivo.", "duration": "8-12 semanas" }
+        {
+          "name": "Fase 1: Analgésica",
+          "description": "Ejercicios pendulares de Codman, isométricos suaves en posiciones no dolorosas. Crioterapia post-ejercicio.",
+          "duration": "1-2 semanas"
+        },
+        {
+          "name": "Fase 2: Isométrica y Rango",
+          "description": "Activación isométrica en rotación externa e interna en posición neutra. Trabajo de movilidad escapular.",
+          "duration": "2-4 semanas"
+        },
+        {
+          "name": "Fase 3: Carga progresiva",
+          "description": "Fortalecimiento con banda elástica: rotación externa, abducción en plano escapular bajo el nivel de los hombros.",
+          "duration": "4-8 semanas"
+        },
+        {
+          "name": "Fase 4: Funcional",
+          "description": "Ejercicios de cadena cinética abierta y cerrada. Reintegración a actividad laboral/deportiva según objetivo.",
+          "duration": "8-12 semanas"
+        }
       ],
       "loadGuidance": "El dolor durante el ejercicio debe ser tolerable (≤4/10) y no empeorar más de 24h después. Si el dolor aumenta, reducir la carga pero no parar el ejercicio."
     },
@@ -709,21 +987,33 @@
           "indication": "Dolor leve-moderado, preferir si posible vía tópica.",
           "example": "Diclofenaco gel 1% / 3-4 aplicaciones diarias",
           "duration": "2-4 semanas",
-          "guardrails": ["Verificar alergias", "Precaución con piel dañada"]
+          "guardrails": [
+            "Verificar alergias",
+            "Precaución con piel dañada"
+          ]
         },
         {
           "name": "AINEs orales (ciclo corto)",
           "indication": "Dolor moderado-intenso que limita la rehabilitación o afecta seriamente el descanso nocturno.",
           "example": "Ibuprofeno 400-600mg / 8h o Naproxeno 500mg / 12h",
           "duration": "7-14 días máximo",
-          "guardrails": ["Función renal", "Función hepática", "Riesgo GI (considerar IBP)", "Anticoagulación", "Edad >65"]
+          "guardrails": [
+            "Función renal",
+            "Función hepática",
+            "Riesgo GI (considerar IBP)",
+            "Anticoagulación",
+            "Edad >65"
+          ]
         },
         {
           "name": "Paracetamol",
           "indication": "Alternativa si AINEs contraindicados (dolor de intensidad leve).",
           "example": "Paracetamol 1g / 8h",
           "duration": "Según necesidad",
-          "guardrails": ["Función hepática", "Dosis máxima 3-4g/día"]
+          "guardrails": [
+            "Función hepática",
+            "Dosis máxima 3-4g/día"
+          ]
         }
       ]
     },
@@ -735,36 +1025,83 @@
           "name": "Bursa Subacromial-Subdeltoidea (SASD)",
           "indication": "Bursitis clínica (dolor nocturno, dolor a elevación) y ecográfica concordante.",
           "options": [
-            { "name": "Anestésico local (diagnóstico/terapéutico)", "evidence": "Alta (confirmación diagnóstica)" },
-            { "name": "Corticoide (betametasona/triamcinolona)", "evidence": "Moderada a corto plazo (alivio sintomático)" }
+            {
+              "name": "Anestésico local (diagnóstico/terapéutico)",
+              "evidence": "Alta (confirmación diagnóstica)"
+            },
+            {
+              "name": "Corticoide (betametasona/triamcinolona)",
+              "evidence": "Moderada a corto plazo (alivio sintomático)"
+            }
           ],
-          "contraindications": ["Infección local/sistémica", "Alergia a componentes", "Anticoagulación no controlada", "Diabetes mal controlada (precaución)"],
+          "contraindications": [
+            "Infección local/sistémica",
+            "Alergia a componentes",
+            "Anticoagulación no controlada",
+            "Diabetes mal controlada (precaución)"
+          ],
           "postProcedure": "Ventana de oportunidad: Iniciar/intensificar rehabilitación en las 2-4 semanas post-infiltración para aprovechar la ventana analgésica."
         }
       ],
       "safetyNote": "La infiltración no es un punto final. El objetivo posterior es recuperar movimiento, fuerza y tolerancia a la carga. Evitar múltiples infiltraciones con corticoides (>3/año)."
     }
   },
-  
   "followUp": {
     "timing": "Revisión en 4-6 semanas",
     "parameters": [
-      { "name": "Dolor (EVA/NRS)", "icon": "📊" },
-      { "name": "Función (actividades diarias)", "icon": "🏃" },
-      { "name": "Sueño", "icon": "😴" },
-      { "name": "Tolerancia al ejercicio", "icon": "💪" },
-      { "name": "Consumo de analgésicos", "icon": "💊" },
-      { "name": "Objetivo funcional del paciente", "icon": "🎯" }
+      {
+        "name": "Dolor (EVA/NRS)",
+        "icon": "📊"
+      },
+      {
+        "name": "Función (actividades diarias)",
+        "icon": "🏃"
+      },
+      {
+        "name": "Sueño",
+        "icon": "😴"
+      },
+      {
+        "name": "Tolerancia al ejercicio",
+        "icon": "💪"
+      },
+      {
+        "name": "Consumo de analgésicos",
+        "icon": "💊"
+      },
+      {
+        "name": "Objetivo funcional del paciente",
+        "icon": "🎯"
+      }
     ],
     "outcomes": [
-      { "result": "improvement", "label": "Mejoría clara", "action": "Continuar rehabilitación, progresar carga hacia readaptación funcional.", "icon": "🟢" },
-      { "result": "partial", "label": "Mejoría parcial", "action": "Revisar adherencia al ejercicio, optimizar pauta y confirmar diagnóstico generador.", "icon": "🟡" },
-      { "result": "no_improvement", "label": "Sin mejoría", "action": "Reconsiderar hipótesis diagnóstica. ¿Es realmente el generador identificado? Valorar derivación o infiltración si no se hizo.", "icon": "🔴" },
-      { "result": "worsening", "label": "Empeoramiento", "action": "Reevaluar diagnóstico y banderas rojas (ej: capsulitis en evolución, rotura). Considerar RM u opinión especializada.", "icon": "🔴" }
+      {
+        "result": "improvement",
+        "label": "Mejoría clara",
+        "action": "Continuar rehabilitación, progresar carga hacia readaptación funcional.",
+        "icon": "🟢"
+      },
+      {
+        "result": "partial",
+        "label": "Mejoría parcial",
+        "action": "Revisar adherencia al ejercicio, optimizar pauta y confirmar diagnóstico generador.",
+        "icon": "🟡"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Sin mejoría",
+        "action": "Reconsiderar hipótesis diagnóstica. ¿Es realmente el generador identificado? Valorar derivación o infiltración si no se hizo.",
+        "icon": "🔴"
+      },
+      {
+        "result": "worsening",
+        "label": "Empeoramiento",
+        "action": "Reevaluar diagnóstico y banderas rojas (ej: capsulitis en evolución, rotura). Considerar RM u opinión especializada.",
+        "icon": "🔴"
+      }
     ],
     "keyPrinciple": "Si el tratamiento dirigido falla tras 6-12 semanas de buena adherencia, revisar el diagnóstico estructural y funcional."
   },
-  
   "evidence": [
     {
       "citation": "Hegedus EJ et al. Physical examination tests of the shoulder: a systematic review. Br J Sports Med. 2008;42(2):80-92.",

@@ -10,19 +10,22 @@
       "id": "rf-femoral-neck-fracture",
       "text": "Impotencia funcional para el apoyo monopodal con miembro inferior acortado en rotación externa tras caída o dolor agudo en anciano (sospecha de fractura de cuello femoral)",
       "severity": "critical",
-      "action": "Descarga articular inmediata, radiografía de pelvis AP y TC urgente"
+      "action": "Descarga articular inmediata, radiografía de pelvis AP y TC urgente",
+      "label": "Impotencia funcional para el apoyo monopodal con miembro inferior acortado en rotación externa tras caída o dolor agudo en anciano (sospecha de fractura de cuello femoral)"
     },
     {
       "id": "rf-avascular-necrosis",
       "text": "Dolor inguinal severo progresivo en reposo y de noche en paciente con tratamiento prolongado con corticoides sistémicos o alcoholismo (sospecha de Necrosis Avascular de Cabeza Femoral)",
       "severity": "critical",
-      "action": "RM urgente de ambas caderas para valorar descompresión / injerto antes del colapso"
+      "action": "RM urgente de ambas caderas para valorar descompresión / injerto antes del colapso",
+      "label": "Dolor inguinal severo progresivo en reposo y de noche en paciente con tratamiento prolongado con corticoides sistémicos o alcoholismo (sospecha de Necrosis Avascular de Cabeza Femoral)"
     },
     {
       "id": "rf-strangulated-hernia",
       "text": "Bultoma doloroso irreductible a tensión en el conducto inguinal o crural con vómitos o estreñimiento (sospecha de hernia inguinal estrangulada)",
       "severity": "critical",
-      "action": "Derivación quirúrgica urgente"
+      "action": "Derivación quirúrgica urgente",
+      "label": "Bultoma doloroso irreductible a tensión en el conducto inguinal o crural con vómitos o estreñimiento (sospecha de hernia inguinal estrangulada)"
     }
   ],
   "hypotheses": [
@@ -69,22 +72,46 @@
         {
           "label": "Mano en forma de 'C' abarcando la ingle y la parte profunda de la cadera (Signo de la C +)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-fai-labral-tear", "effect": "increase", "weight": 6 }
+            {
+              "hypothesisId": "hyp-coxarthrosis-primary",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-fai-labral-tear",
+              "effect": "increase",
+              "weight": 6
+            }
           ]
         },
         {
           "label": "En el pliegue de la ingle profundo al flexionar la pierna hacia el pecho",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-iliopsoas-tendinopathy", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-fai-labral-tear", "effect": "increase", "weight": 4 }
+            {
+              "hypothesisId": "hyp-iliopsoas-tendinopathy",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-fai-labral-tear",
+              "effect": "increase",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "Se origina en la cintura baja y baja en banda diagonal hacia la ingle",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-lumbar-referred-l2-l3", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-lumbar-referred-l2-l3",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-coxarthrosis-primary",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -98,13 +125,21 @@
         {
           "label": "Sí, me cuesta mucho agacharme a ponerme los zapatos o cruzar la pierna afectada",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "increase", "weight": 6 }
+            {
+              "hypothesisId": "hyp-coxarthrosis-primary",
+              "effect": "increase",
+              "weight": 6
+            }
           ]
         },
         {
           "label": "No, mantengo buena elasticidad para llegar a los pies",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-coxarthrosis-primary",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         }
       ]
@@ -115,9 +150,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Caminar distancias medias y subir cuestas sin pinchazo en la ingle", "hypothesisEffects": [] },
-        { "label": "Ponerse los calcetines y calzado con independencia y sin dolor", "hypothesisEffects": [] },
-        { "label": "Levantarme de sofás bajos o del coche sin bloqueo articular", "hypothesisEffects": [] }
+        {
+          "label": "Caminar distancias medias y subir cuestas sin pinchazo en la ingle",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Ponerse los calcetines y calzado con independencia y sin dolor",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Levantarme de sofás bajos o del coche sin bloqueo articular",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -138,16 +182,32 @@
             "label": "Positivo (dolor agudo en la ingle a la flexión-aducción-rotación interna)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-fai-labral-tear", "effect": "increase", "weight": 7 },
-              { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-fai-labral-tear",
+                "effect": "increase",
+                "weight": 7
+              },
+              {
+                "hypothesisId": "hyp-coxarthrosis-primary",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
             "label": "Negativo (maniobra FADIR indolora y con rango libre)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-fai-labral-tear", "effect": "decrease", "weight": 5 },
-              { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "decrease", "weight": 3 }
+              {
+                "hypothesisId": "hyp-fai-labral-tear",
+                "effect": "decrease",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-coxarthrosis-primary",
+                "effect": "decrease",
+                "weight": 3
+              }
             ]
           }
         ]
@@ -166,14 +226,22 @@
             "label": "Restricción severa (<15°) con tope duro doloroso (Coxartrosis)",
             "value": "restricted",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "increase", "weight": 7 }
+              {
+                "hypothesisId": "hyp-coxarthrosis-primary",
+                "effect": "increase",
+                "weight": 7
+              }
             ]
           },
           {
             "label": "Rotación interna conservada (>30°) simétrica",
             "value": "normal",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-coxarthrosis-primary", "effect": "decrease", "weight": 5 }
+              {
+                "hypothesisId": "hyp-coxarthrosis-primary",
+                "effect": "decrease",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -192,14 +260,22 @@
             "label": "Dolor en ingle al resistir la flexión de pierna recta (Test de Stinchfield +)",
             "value": "positive_psoas",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-iliopsoas-tendinopathy", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-iliopsoas-tendinopathy",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
             "label": "Negativo",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-iliopsoas-tendinopathy", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-iliopsoas-tendinopathy",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -211,7 +287,10 @@
       "id": "cluster-coxofemoral-oa",
       "name": "Criterios Clínicos ACR para Artrosis de Cadera (Coxartrosis)",
       "description": "1. Dolor inguinal en carga + 2. Rotación interna pasiva <15° + 3. Dolor con rotación interna + 4. Edad >50 años",
-      "requiredTests": ["exam-fadir-hip", "exam-passive-ir-hip"],
+      "requiredTests": [
+        "exam-fadir-hip",
+        "exam-passive-ir-hip"
+      ],
       "threshold": 2,
       "concordanceText": "Cumple criterios clínicos del Colegio Americano de Reumatología (ACR) para Coxartrosis (Sensibilidad 89%, Especificidad 89%).",
       "evidenceNote": "La combinación de dolor inguinal con limitación de rotación interna tiene la máxima precisión diagnóstica clínica."
@@ -226,10 +305,26 @@
         "name": "Articulación Coxofemoral",
         "priority": 1,
         "findings": [
-          { "id": "hip-normal", "label": "Interlínea articular coxofemoral preservada y esférica", "concordanceEffect": "neutral" },
-          { "id": "hip-oa-advanced", "label": "Estrechamiento de la interlínea articular, esclerosis subcondral y osteofitos periacetabulares (Coxartrosis)", "concordanceEffect": "concordant" },
-          { "id": "hip-fai-cam", "label": "Deformidad en mango de pistola / pérdida de concavidad cuello femoral (Giba tipo Cam / ángulo alfa >55°)", "concordanceEffect": "concordant" },
-          { "id": "hip-psoas-bursitis", "label": "Distensión líquida anecoica de la bursa iliopectínea / psoas en ecografía", "concordanceEffect": "concordant" }
+          {
+            "id": "hip-normal",
+            "label": "Interlínea articular coxofemoral preservada y esférica",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "hip-oa-advanced",
+            "label": "Estrechamiento de la interlínea articular, esclerosis subcondral y osteofitos periacetabulares (Coxartrosis)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "hip-fai-cam",
+            "label": "Deformidad en mango de pistola / pérdida de concavidad cuello femoral (Giba tipo Cam / ángulo alfa >55°)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "hip-psoas-bursitis",
+            "label": "Distensión líquida anecoica de la bursa iliopectínea / psoas en ecografía",
+            "concordanceEffect": "concordant"
+          }
         ]
       }
     ],
@@ -328,7 +423,11 @@
           "indication": "Dolor moderado-severo en brote inflamatorio.",
           "example": "Naproxeno 500mg/12h con Omeprazol o Etoricoxib 60 mg/día",
           "duration": "7-14 días",
-          "guardrails": ["Función renal", "Riesgo cardiovascular", "Edad >65 años"]
+          "guardrails": [
+            "Función renal",
+            "Riesgo cardiovascular",
+            "Edad >65 años"
+          ]
         }
       ]
     },
@@ -340,10 +439,19 @@
           "name": "Infiltración Intraarticular Coxofemoral Ecoguiada",
           "indication": "Coxartrosis grado II-III o choque FAI doloroso.",
           "options": [
-            { "name": "Infiltración ecoguiada en plano de ácido hialurónico de alto peso molecular o corticoide de depósito (Triamcinolona 40mg)", "evidence": "Alta / Nivel I (alivio de 3-6 meses)" },
-            { "name": "Bloqueo ecoguiado del plano pericapsular de cadera (PENG block) y radiofrecuencia de ramos articulares", "evidence": "Moderada-Alta para dolor refractario" }
+            {
+              "name": "Infiltración ecoguiada en plano de ácido hialurónico de alto peso molecular o corticoide de depósito (Triamcinolona 40mg)",
+              "evidence": "Alta / Nivel I (alivio de 3-6 meses)"
+            },
+            {
+              "name": "Bloqueo ecoguiado del plano pericapsular de cadera (PENG block) y radiofrecuencia de ramos articulares",
+              "evidence": "Moderada-Alta para dolor refractario"
+            }
           ],
-          "contraindications": ["Infección articular activa", "Necrosis avascular avanzada"]
+          "contraindications": [
+            "Infección articular activa",
+            "Necrosis avascular avanzada"
+          ]
         }
       ]
     }
@@ -351,9 +459,18 @@
   "followUp": {
     "timing": "Revisión a las 6-8 semanas",
     "parameters": [
-      { "name": "Distancia caminada sin dolor en ingle", "icon": "🚶" },
-      { "name": "Grados de rotación interna pasiva", "icon": "📐" },
-      { "name": "Capacidad para calzarse independientemente", "icon": "👟" }
+      {
+        "name": "Distancia caminada sin dolor en ingle",
+        "icon": "🚶"
+      },
+      {
+        "name": "Grados de rotación interna pasiva",
+        "icon": "📐"
+      },
+      {
+        "name": "Capacidad para calzarse independientemente",
+        "icon": "👟"
+      }
     ],
     "outcomes": [
       {

@@ -10,13 +10,15 @@
       "id": "rf-acute-limb-ischemia",
       "text": "Dolor agudo severo súbito en una pierna con pie frío, blanco/cianótico, sin pulsos periféricos y pérdida de sensibilidad ('Las 6 P' de la isquemia arterial aguda)",
       "severity": "critical",
-      "action": "Derivación inmediata a Cirugía Vascular / Revascularización urgente"
+      "action": "Derivación inmediata a Cirugía Vascular / Revascularización urgente",
+      "label": "Dolor agudo severo súbito en una pierna con pie frío, blanco/cianótico, sin pulsos periféricos y pérdida de sensibilidad ('Las 6 P' de la isquemia arterial aguda)"
     },
     {
       "id": "rf-cauda-equina-claudication",
       "text": "Aparición de incontinencia o retención urinaria, pérdida de control fecal o anestesia en la zona genital ('silla de montar') asociada a la claudicación",
       "severity": "critical",
-      "action": "RM lumbar urgente y descompresión neuroquirúrgica de urgencia"
+      "action": "RM lumbar urgente y descompresión neuroquirúrgica de urgencia",
+      "label": "Aparición de incontinencia o retención urinaria, pérdida de control fecal o anestesia en la zona genital ('silla de montar') asociada a la claudicación"
     }
   ],
   "hypotheses": [
@@ -55,15 +57,31 @@
         {
           "label": "Tengo que sentarme obligatoriamente o agacharme inclinando el cuerpo hacia adelante ('Signo del Carrito')",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 7 },
-            { "hypothesisId": "hyp-vascular-claudication", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-neurogenic-claudication",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-vascular-claudication",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "Se me alivia con solo quedarme de pie quieto en la acera (como mirando un escaparate)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 7 },
-            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-vascular-claudication",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-neurogenic-claudication",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         }
       ]
@@ -77,15 +95,31 @@
         {
           "label": "Sí, puedo pedalear en bicicleta inclinándome hacia adelante sin notar dolor en las piernas (Bicycle Test +)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 7 },
-            { "hypothesisId": "hyp-vascular-claudication", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-neurogenic-claudication",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-vascular-claudication",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "No, al pedalear me queman y duelen los gemelos exactamente a la misma distancia",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-vascular-claudication",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-neurogenic-claudication",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -99,13 +133,21 @@
         {
           "label": "Sí, subo mejor las cuestas arriba y empeoro mucho al bajar cuestas hacia abajo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 6 }
+            {
+              "hypothesisId": "hyp-neurogenic-claudication",
+              "effect": "increase",
+              "weight": 6
+            }
           ]
         },
         {
           "label": "Empeoro cuesta arriba porque exige más esfuerzo muscular a las piernas",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-vascular-claudication",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         }
       ]
@@ -116,9 +158,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder caminar por la calle más de 500 metros seguidos sin tener que sentarme en un banco", "hypothesisEffects": [] },
-        { "label": "Hacer la compra o pasear con mi familia sin pesadez extrema en las piernas", "hypothesisEffects": [] },
-        { "label": "Permanecer de pie cocinando o hablando sin dolor en las lumbares y piernas", "hypothesisEffects": [] }
+        {
+          "label": "Poder caminar por la calle más de 500 metros seguidos sin tener que sentarme en un banco",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Hacer la compra o pasear con mi familia sin pesadez extrema en las piernas",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Permanecer de pie cocinando o hablando sin dolor en las lumbares y piernas",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -139,16 +190,32 @@
             "label": "Alivio inmediato al flexionar el tronco (Claudicación Neurógena)",
             "value": "positive_neurogenic",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 8 },
-              { "hypothesisId": "hyp-vascular-claudication", "effect": "decrease", "weight": 5 }
+              {
+                "hypothesisId": "hyp-neurogenic-claudication",
+                "effect": "increase",
+                "weight": 8
+              },
+              {
+                "hypothesisId": "hyp-vascular-claudication",
+                "effect": "decrease",
+                "weight": 5
+              }
             ]
           },
           {
             "label": "Dolor persiste idéntico en flexión (Claudicación Vascular)",
             "value": "positive_vascular",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 7 },
-              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-vascular-claudication",
+                "effect": "increase",
+                "weight": 7
+              },
+              {
+                "hypothesisId": "hyp-neurogenic-claudication",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -167,16 +234,32 @@
             "label": "Pulsos pedio y tibial posterior potentes y simétricos con piel normotérmica",
             "value": "normal_pulses",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 5 },
-              { "hypothesisId": "hyp-vascular-claudication", "effect": "decrease", "weight": 7 }
+              {
+                "hypothesisId": "hyp-neurogenic-claudication",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-vascular-claudication",
+                "effect": "decrease",
+                "weight": 7
+              }
             ]
           },
           {
             "label": "Pulsos distales ausentes / disminuidos con frialdad cutánea",
             "value": "absent_pulses",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-vascular-claudication", "effect": "increase", "weight": 7 },
-              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-vascular-claudication",
+                "effect": "increase",
+                "weight": 7
+              },
+              {
+                "hypothesisId": "hyp-neurogenic-claudication",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           }
         ]
@@ -194,7 +277,11 @@
             "label": "Claudicación muy precoz en extensión que mejora ampliamente en flexión",
             "value": "positive_stenosis",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-neurogenic-claudication", "effect": "increase", "weight": 6 }
+              {
+                "hypothesisId": "hyp-neurogenic-claudication",
+                "effect": "increase",
+                "weight": 6
+              }
             ]
           },
           {
@@ -211,7 +298,10 @@
       "id": "cluster-neurogenic-claudication",
       "name": "Criterios Clínicos de Claudicación Neurógena por Estenosis Lumbar",
       "description": "1. Dolor bilateral en piernas inducido por bipedestación/marcha + 2. Alivio sentado o en flexión (Signo del Carrito) + 3. Bicycle test positivo + 4. Pulsos distales conservados",
-      "requiredTests": ["exam-van-gelderen-bicycle", "exam-peripheral-pulses"],
+      "requiredTests": [
+        "exam-van-gelderen-bicycle",
+        "exam-peripheral-pulses"
+      ],
       "threshold": 2,
       "concordanceText": "Tríada clásica de Claudicación Neurógena por Estenosis de Canal Lumbar confirmada (Sensibilidad >93%).",
       "evidenceNote": "El Bicycle test de Van Gelderen tiene una sensibilidad del 94% para discriminar claudicación neurógena de vascular (Dyck 1979)."
@@ -226,9 +316,21 @@
         "name": "Canal Vertebral Lumbar (Niveles L3-L4 y L4-L5)",
         "priority": 1,
         "findings": [
-          { "id": "canal-normal", "label": "Canal raquídeo amplio sin compresión de cauda equina", "concordanceEffect": "neutral" },
-          { "id": "canal-stenosis-severe", "label": "Estenosis central severa (área saco dural <75 mm²) por hipertrofia de ligamento amarillo y artrosis facetaria", "concordanceEffect": "concordant" },
-          { "id": "vascular-itb-low", "label": "Índice Tobillo-Brazo patológico <0.9 (Arteriopatía oclusiva periférica)", "concordanceEffect": "discordant" }
+          {
+            "id": "canal-normal",
+            "label": "Canal raquídeo amplio sin compresión de cauda equina",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "canal-stenosis-severe",
+            "label": "Estenosis central severa (área saco dural <75 mm²) por hipertrofia de ligamento amarillo y artrosis facetaria",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "vascular-itb-low",
+            "label": "Índice Tobillo-Brazo patológico <0.9 (Arteriopatía oclusiva periférica)",
+            "concordanceEffect": "discordant"
+          }
         ]
       }
     ],
@@ -314,7 +416,11 @@
           "indication": "Parestesias y disestesias en piernas durante la deambulación.",
           "example": "Pregabalina 25-50 mg/noche, titular según tolerancia",
           "duration": "4-8 semanas",
-          "guardrails": ["Somnolencia matutina", "Función renal", "Riesgo de caídas en ancianos"]
+          "guardrails": [
+            "Somnolencia matutina",
+            "Función renal",
+            "Riesgo de caídas en ancianos"
+          ]
         }
       ]
     },
@@ -326,7 +432,10 @@
           "name": "Infiltración Epidural Interlaminar o Caudal",
           "indication": "Estenosis de canal lumbar sintomática.",
           "options": [
-            { "name": "Infiltración epidural interlaminar o caudal con corticoide de depósito (Triamcinolona 40-80mg) + anestésico local", "evidence": "Alta / Nivel I (alivio de 3-6 meses para facilitar rehabilitación)" }
+            {
+              "name": "Infiltración epidural interlaminar o caudal con corticoide de depósito (Triamcinolona 40-80mg) + anestésico local",
+              "evidence": "Alta / Nivel I (alivio de 3-6 meses para facilitar rehabilitación)"
+            }
           ],
           "contraindications": [
             "Déficit motor progresivo o síndrome de cauda equina (indicación quirúrgica descompresiva urgente)",
@@ -340,10 +449,22 @@
   "followUp": {
     "timing": "Revisión a las 6-8 semanas",
     "parameters": [
-      { "name": "Distancia de marcha libre de claudicación (metros)", "icon": "🚶" },
-      { "name": "Frecuencia de paradas para sentarse", "icon": "🪑" },
-      { "name": "Fuerza y reflejos en miembros inferiores", "icon": "💪" },
-      { "name": "Ausencia de síntomas de cauda equina", "icon": "⚠️" }
+      {
+        "name": "Distancia de marcha libre de claudicación (metros)",
+        "icon": "🚶"
+      },
+      {
+        "name": "Frecuencia de paradas para sentarse",
+        "icon": "🪑"
+      },
+      {
+        "name": "Fuerza y reflejos en miembros inferiores",
+        "icon": "💪"
+      },
+      {
+        "name": "Ausencia de síntomas de cauda equina",
+        "icon": "⚠️"
+      }
     ],
     "outcomes": [
       {

@@ -10,19 +10,22 @@
       "id": "rf-septic",
       "text": "Fiebre, calor local intenso, eritema o antecedente de infiltración reciente (sospecha de artritis séptica glenohumeral)",
       "severity": "critical",
-      "action": "Artrocentesis urgente, analítica y cobertura antibiótica hospitalaria"
+      "action": "Artrocentesis urgente, analítica y cobertura antibiótica hospitalaria",
+      "label": "Fiebre, calor local intenso, eritema o antecedente de infiltración reciente (sospecha de artritis séptica glenohumeral)"
     },
     {
       "id": "rf-post-luxation",
       "text": "Antecedente de crisis convulsiva, electrocución o traumatismo con rotación interna fija bloqueada (sospecha de luxación posterior no diagnosticada)",
       "severity": "critical",
-      "action": "Radiografía axilar / TC de hombro urgente"
+      "action": "Radiografía axilar / TC de hombro urgente",
+      "label": "Antecedente de crisis convulsiva, electrocución o traumatismo con rotación interna fija bloqueada (sospecha de luxación posterior no diagnosticada)"
     },
     {
       "id": "rf-tumor",
       "text": "Masa palpable, dolor óseo nocturno profundo no mecánico o antecedentes de neoplasia",
       "severity": "high",
-      "action": "Radiografía urgente y resonancia magnética"
+      "action": "Radiografía urgente y resonancia magnética",
+      "label": "Masa palpable, dolor óseo nocturno profundo no mecánico o antecedentes de neoplasia"
     }
   ],
   "hypotheses": [
@@ -69,17 +72,41 @@
         {
           "label": "Sí, está totalmente bloqueado y nadie puede moverlo más allá de un tope duro (Pérdida PASIVA y Activa)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 4 },
-            { "hypothesisId": "hyp-massive-cuff-tear", "effect": "decrease", "weight": 4 }
+            {
+              "hypothesisId": "hyp-capsulitis",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-gh-osteoarthritis",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-massive-cuff-tear",
+              "effect": "decrease",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "No, yo no puedo levantarlo, pero el explorador puede moverlo casi completo (Pérdida solo ACTIVA)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-massive-cuff-tear", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 4 },
-            { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-massive-cuff-tear",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-capsulitis",
+              "effect": "decrease",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-gh-osteoarthritis",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -93,20 +120,36 @@
         {
           "label": "Rotación externa: no puedo peinarme, lavarme la nuca ni abrir la puerta hacia afuera",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 },
-            { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 3 }
+            {
+              "hypothesisId": "hyp-capsulitis",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-gh-osteoarthritis",
+              "effect": "increase",
+              "weight": 3
+            }
           ]
         },
         {
           "label": "Rotación interna: no puedo abrocharme el sostén ni alcanzarme el bolsillo trasero",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-capsulitis",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Elevación pura hacia arriba",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-massive-cuff-tear", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-massive-cuff-tear",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -120,7 +163,11 @@
         {
           "label": "Sí, tengo Diabetes Mellitus o patología tiroidea",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 }
+            {
+              "hypothesisId": "hyp-capsulitis",
+              "effect": "increase",
+              "weight": 4
+            }
           ]
         },
         {
@@ -138,21 +185,41 @@
         {
           "label": "1-4 meses: Dolor agudo muy intenso, especialmente nocturno, y empieza a perderse movimiento",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 3 },
-            { "hypothesisId": "hyp-calcific-block", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-capsulitis",
+              "effect": "increase",
+              "weight": 3
+            },
+            {
+              "hypothesisId": "hyp-calcific-block",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "4-12 meses: Dolor en reposo ha disminuido, pero el hombro está 'rígido como una piedra'",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 }
+            {
+              "hypothesisId": "hyp-capsulitis",
+              "effect": "increase",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "Varios años de evolución lenta progresiva con crujidos óseos ásperos",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-gh-osteoarthritis",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-capsulitis",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         }
       ]
@@ -163,9 +230,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder dormir de noche sobre ese lado sin despertarme", "hypothesisEffects": [] },
-        { "label": "Poder vestirme y asearme de forma independiente (peinado, espalda)", "hypothesisEffects": [] },
-        { "label": "Volver a realizar actividades laborales y deportivas", "hypothesisEffects": [] }
+        {
+          "label": "Poder dormir de noche sobre ese lado sin despertarme",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Poder vestirme y asearme de forma independiente (peinado, espalda)",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Volver a realizar actividades laborales y deportivas",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -186,16 +262,32 @@
             "label": "Restricción severa (<30° o pérdida >50% respecto al lado sano)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-capsulitis",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-gh-osteoarthritis",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           },
           {
             "label": "Rotación externa pasiva conservada (>60° simétrica)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 6 },
-              { "hypothesisId": "hyp-massive-cuff-tear", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-capsulitis",
+                "effect": "decrease",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-massive-cuff-tear",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -214,15 +306,27 @@
             "label": "Abducción GH pasiva limitada (<90°) con báscula escapular compensatoria",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 },
-              { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 3 }
+              {
+                "hypothesisId": "hyp-capsulitis",
+                "effect": "increase",
+                "weight": 4
+              },
+              {
+                "hypothesisId": "hyp-gh-osteoarthritis",
+                "effect": "increase",
+                "weight": 3
+              }
             ]
           },
           {
             "label": "Abducción pasiva completa (>150°)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-capsulitis",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -241,15 +345,27 @@
             "label": "Crepitación ósea franca y palpable con tope duro",
             "value": "bone_crepitus",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-gh-osteoarthritis", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-gh-osteoarthritis",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-capsulitis",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Tope firme elástico sin crepitación ósea",
             "value": "capsular_endfeel",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-capsulitis", "effect": "increase", "weight": 4 }
+              {
+                "hypothesisId": "hyp-capsulitis",
+                "effect": "increase",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -268,8 +384,16 @@
             "label": "El brazo cae bruscamente (Drop Arm +)",
             "value": "drop_arm_positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-massive-cuff-tear", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-capsulitis", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-massive-cuff-tear",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-capsulitis",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           },
           {
@@ -286,7 +410,11 @@
       "id": "cluster-capsulitis",
       "name": "Criterios Clínicos de Capsulitis Adhesiva",
       "description": "1. Pérdida pasiva de RE >50% + 2. Pérdida pasiva de ABD + 3. Antecedente endocrino/curso temporal + 4. Ausencia de crepitación ósea",
-      "requiredTests": ["exam-passive-er", "exam-passive-abduction", "exam-crepitus"],
+      "requiredTests": [
+        "exam-passive-er",
+        "exam-passive-abduction",
+        "exam-crepitus"
+      ],
       "threshold": 2,
       "concordanceText": "Patrón capsular clásico con restricción multidireccional pasiva. Alta probabilidad diagnóstica de Capsulitis Adhesiva.",
       "evidenceNote": "La pérdida aislada de rotación externa pasiva presenta especificidad >90% para capsulitis adhesiva (Kelley et al., JOSPT 2013)."
@@ -445,14 +573,21 @@
           "indication": "Dolor nocturno severo de fase inflamatoria temprana (<3 meses).",
           "example": "Prednisona 30 mg/día durante 10 días con pauta descendente rápida en 2 semanas",
           "duration": "2 semanas",
-          "guardrails": ["Diabetes mellitus (estrecha monitorización de glucemia)", "Hipertensión", "Riesgo GI"]
+          "guardrails": [
+            "Diabetes mellitus (estrecha monitorización de glucemia)",
+            "Hipertensión",
+            "Riesgo GI"
+          ]
         },
         {
           "name": "AINEs pauta corta + Analgesia simple",
           "indication": "Dolor moderado diurno.",
           "example": "Ibuprofeno 600mg/8h o Paracetamol 1g/8h",
           "duration": "2-3 semanas según necesidad",
-          "guardrails": ["Función renal", "Riesgo cardiovascular"]
+          "guardrails": [
+            "Función renal",
+            "Riesgo cardiovascular"
+          ]
         }
       ]
     },
@@ -464,8 +599,14 @@
           "name": "Hidrodilatación Capsular Glenohumeral Ecoguiada (Capsular Distension)",
           "indication": "Capsulitis adhesiva refractaria con pérdida marcada de rotación externa.",
           "options": [
-            { "name": "Inyección intraarticular GH de suero salino (20-40 ml) + corticoide + anestésico local hasta rotura capsular controlada", "evidence": "Alta / Nivel I" },
-            { "name": "Bloqueo ecoguiado del nervio supraescapular (SSNB) concomitante", "evidence": "Alta" }
+            {
+              "name": "Inyección intraarticular GH de suero salino (20-40 ml) + corticoide + anestésico local hasta rotura capsular controlada",
+              "evidence": "Alta / Nivel I"
+            },
+            {
+              "name": "Bloqueo ecoguiado del nervio supraescapular (SSNB) concomitante",
+              "evidence": "Alta"
+            }
           ],
           "contraindications": [
             "Infección local o sistémica",
@@ -480,10 +621,22 @@
   "followUp": {
     "timing": "Revisión a las 4-6 semanas",
     "parameters": [
-      { "name": "Grados de Rotación Externa Pasiva", "icon": "📐" },
-      { "name": "Dolor nocturno y calidad del sueño", "icon": "😴" },
-      { "name": "Capacidad para vestirse y asearse", "icon": "👕" },
-      { "name": "Consumo de analgésicos", "icon": "💊" }
+      {
+        "name": "Grados de Rotación Externa Pasiva",
+        "icon": "📐"
+      },
+      {
+        "name": "Dolor nocturno y calidad del sueño",
+        "icon": "😴"
+      },
+      {
+        "name": "Capacidad para vestirse y asearse",
+        "icon": "👕"
+      },
+      {
+        "name": "Consumo de analgésicos",
+        "icon": "💊"
+      }
     ],
     "outcomes": [
       {

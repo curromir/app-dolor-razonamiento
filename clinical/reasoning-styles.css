@@ -2334,3 +2334,143 @@ body.dark-theme .home-quick-tool-btn.vade {
 .home-quick-tool-btn:hover .tool-btn-arrow {
   transform: translateX(4px);
 }
+
+/* ==========================================================================
+   🎓 SIMULADOR DE CASOS CLÍNICOS A CIEGAS — BANNER & DEBRIEFING
+   ========================================================================== */
+
+.simulation-active-banner {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.06) 100%);
+  border: 1.5px solid rgba(139, 92, 246, 0.35);
+  border-left: 5px solid #8b5cf6;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.1);
+}
+
+body.dark-theme .simulation-active-banner {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18) 0%, rgba(30, 41, 59, 0.9) 100%);
+  border-color: rgba(168, 85, 247, 0.45);
+  border-left: 5px solid #a855f7;
+}
+
+.sim-banner-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.sim-banner-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.sim-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: #8b5cf6;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sim-badge.canonico {
+  background: #16a34a;
+}
+
+.sim-badge.trampa {
+  background: #9333ea;
+}
+
+.sim-badge.seguridad {
+  background: #dc2626;
+}
+
+.sim-badge.realista {
+  background: #d97706;
+}
+
+.sim-patient-info {
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.sim-history-btn {
+  background: rgba(139, 92, 246, 0.15);
+  color: #7c3aed;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sim-history-btn:hover {
+  background: #7c3aed;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+body.dark-theme .sim-history-btn {
+  color: #c4b5fd;
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+body.dark-theme .sim-history-btn:hover {
+  background: #8b5cf6;
+  color: #ffffff;
+}
+
+.sim-banner-complaint {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: var(--bg-card);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  border-left: 3.5px solid #8b5cf6;
+}
+
+.sim-quote-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.sim-quote-content {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.sim-quote-content strong {
+  color: #7c3aed;
+  font-weight: 800;
+}
+
+body.dark-theme .sim-quote-content strong {
+  color: #a78bfa;
+}
+
+/* Debriefing Card */
+.simulation-debriefing-card {
+  border: 2px solid #8b5cf6 !important;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+

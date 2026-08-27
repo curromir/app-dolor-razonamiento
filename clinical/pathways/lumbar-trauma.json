@@ -13,13 +13,15 @@
       "id": "rf-osteoporotic-fracture",
       "text": "Dolor lumbar agudo e invalidante tras caída desde la propia altura o esfuerzo mínimo en paciente >65 años, mujer posmenopáusica o tratamiento prolongado con corticoides (Sospecha Fractura Vertebral Osteoporótica)",
       "severity": "critical",
-      "action": "Radiografía lumbar y torácica urgente (AP y Lateral), reposo relativo y valoración de RM para determinar agudeza (edema óseo en STIR)."
+      "action": "Radiografía lumbar y torácica urgente (AP y Lateral), reposo relativo y valoración de RM para determinar agudeza (edema óseo en STIR).",
+      "label": "Dolor lumbar agudo e invalidante tras caída desde la propia altura o esfuerzo mínimo en paciente >65 años, mujer posmenopáusica o tratamiento prolongado con corticoides (Sospecha Fractura Vertebral Osteoporótica)"
     },
     {
       "id": "rf-high-energy-spine-trauma",
       "text": "Traumatismo de alta energía (accidente de tráfico, caída de altura >2 metros) con dolor vertebral severo o deformidad palpable en escalón espinoso",
       "severity": "critical",
-      "action": "Inmovilización en bloque con collarín y tabla espinal, y traslado inmediato a centro de trauma para TC raquídeo."
+      "action": "Inmovilización en bloque con collarín y tabla espinal, y traslado inmediato a centro de trauma para TC raquídeo.",
+      "label": "Traumatismo de alta energía (accidente de tráfico, caída de altura >2 metros) con dolor vertebral severo o deformidad palpable en escalón espinoso"
     }
   ],
   "hypotheses": [

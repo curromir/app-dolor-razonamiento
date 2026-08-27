@@ -10,19 +10,22 @@
       "id": "rf-calcaneal-stress-fracture",
       "text": "Dolor óseo severo al presionar con ambos pulgares los laterales del calcáneo (Squeeze test calcáneo +) en corredor o anciano con osteoporosis (sospecha de fractura de estrés)",
       "severity": "critical",
-      "action": "Descarga articular inmediata con bota y RM de calcáneo"
+      "action": "Descarga articular inmediata con bota y RM de calcáneo",
+      "label": "Dolor óseo severo al presionar con ambos pulgares los laterales del calcáneo (Squeeze test calcáneo +) en corredor o anciano con osteoporosis (sospecha de fractura de estrés)"
     },
     {
       "id": "rf-diabetic-phlegmon",
       "text": "Úlcera plantar, flemón con eritema ascendente o pérdida severa de sensibilidad en paciente diabético (sospecha de pie diabético infectado / celulitis)",
       "severity": "critical",
-      "action": "Derivación urgente a Unidad de Pie Diabético / Cirugía Vascular"
+      "action": "Derivación urgente a Unidad de Pie Diabético / Cirugía Vascular",
+      "label": "Úlcera plantar, flemón con eritema ascendente o pérdida severa de sensibilidad en paciente diabético (sospecha de pie diabético infectado / celulitis)"
     },
     {
       "id": "rf-bilateral-spondylitis",
       "text": "Talalgia bilateral severa en varón joven con dolor lumbar nocturno y rigidez matutina (sospecha de entesitis por espondiloartritis anquilosante)",
       "severity": "high",
-      "action": "Analítica con HLA-B27, PCR y RM sacroilíaca"
+      "action": "Analítica con HLA-B27, PCR y RM sacroilíaca",
+      "label": "Talalgia bilateral severa en varón joven con dolor lumbar nocturno y rigidez matutina (sospecha de entesitis por espondiloartritis anquilosante)"
     }
   ],
   "hypotheses": [
@@ -61,22 +64,46 @@
         {
           "label": "Al dar los primeros pasos por la mañana al levantarme de la cama ('Dolor del primer paso')",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-fat-pad-atrophy", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-plantar-fasciitis",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-fat-pad-atrophy",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Empeora de forma continua a lo largo del día conforme más tiempo paso de pie o caminando",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-fat-pad-atrophy", "effect": "increase", "weight": 5 },
-            { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 2 }
+            {
+              "hypothesisId": "hyp-fat-pad-atrophy",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-plantar-fasciitis",
+              "effect": "increase",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Siento ardor, quemazón y hormigueo que aumentan por la noche en reposo",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-tarsal-tunnel", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-plantar-fasciitis", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-tarsal-tunnel",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-plantar-fasciitis",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -90,19 +117,31 @@
         {
           "label": "En la parte delantera e interna del talón (cara plantar medial)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-plantar-fasciitis",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
           "label": "En el centro exacto del talón donde se apoya el peso",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-fat-pad-atrophy", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-fat-pad-atrophy",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
           "label": "Detrás del tobillo interno que baja hacia la planta y los dedos",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-tarsal-tunnel", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-tarsal-tunnel",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         }
       ]
@@ -113,9 +152,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder levantarme de la cama por la mañana y apoyar el pie sin cojear", "hypothesisEffects": [] },
-        { "label": "Poder estar de pie en mi jornada laboral o caminar distancias normales", "hypothesisEffects": [] },
-        { "label": "Volver a correr, practicar senderismo o deporte sin dolor plantar", "hypothesisEffects": [] }
+        {
+          "label": "Poder levantarme de la cama por la mañana y apoyar el pie sin cojear",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Poder estar de pie en mi jornada laboral o caminar distancias normales",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Volver a correr, practicar senderismo o deporte sin dolor plantar",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -136,15 +184,27 @@
             "label": "Dolor agudo exquisito a la presión en el tubérculo medial",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-tarsal-tunnel", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-plantar-fasciitis",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-tarsal-tunnel",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Tubérculo medial indoloro a la palpación",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-plantar-fasciitis", "effect": "decrease", "weight": 5 }
+              {
+                "hypothesisId": "hyp-plantar-fasciitis",
+                "effect": "decrease",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -164,7 +224,11 @@
             "label": "Positivo (reproduce dolor punzante en el talón al hiperextender el 1er dedo)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-plantar-fasciitis", "effect": "increase", "weight": 7 }
+              {
+                "hypothesisId": "hyp-plantar-fasciitis",
+                "effect": "increase",
+                "weight": 7
+              }
             ]
           },
           {
@@ -187,8 +251,16 @@
             "label": "Positivo (descargas eléctricas hacia la planta del pie)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-tarsal-tunnel", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-plantar-fasciitis", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-tarsal-tunnel",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-plantar-fasciitis",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
@@ -205,7 +277,10 @@
       "id": "cluster-plantar-fascia",
       "name": "Tríada Diagnóstica de Fascitis Plantar",
       "description": "1. Dolor del primer paso matutino + 2. Palpación del tubérculo medial (+) + 3. Test de Windlass (+)",
-      "requiredTests": ["exam-palpation-tubercle", "exam-tobillo-windlass"],
+      "requiredTests": [
+        "exam-palpation-tubercle",
+        "exam-tobillo-windlass"
+      ],
       "threshold": 2,
       "concordanceText": "Tríada clínica clásica de Fascitis Plantar confirmada (Especificidad >95%).",
       "evidenceNote": "El test de Windlass en bipedestación tiene una especificidad del 99% (De Garceau et al., 2003)."
@@ -219,10 +294,26 @@
         "name": "Fascia Plantar Proximal (Corte Longitudinal en Calcáneo)",
         "priority": 1,
         "findings": [
-          { "id": "us-fascia-normal", "label": "Fascia fina y regular (<3.8 mm de espesor)", "concordanceEffect": "neutral" },
-          { "id": "us-fascia-thickened", "label": "Engrosamiento hipoecoico patológico (espesor >4.5-5.5 mm) con desestructuración", "concordanceEffect": "concordant" },
-          { "id": "us-fascia-tear", "label": "Rotura parcial intrasubstancia / pérdida de continuidad fibrilar", "concordanceEffect": "concordant" },
-          { "id": "us-fascia-spur", "label": "Espolón calcáneo óseo entesofítico asociado", "concordanceEffect": "concordant" }
+          {
+            "id": "us-fascia-normal",
+            "label": "Fascia fina y regular (<3.8 mm de espesor)",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-fascia-thickened",
+            "label": "Engrosamiento hipoecoico patológico (espesor >4.5-5.5 mm) con desestructuración",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-fascia-tear",
+            "label": "Rotura parcial intrasubstancia / pérdida de continuidad fibrilar",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-fascia-spur",
+            "label": "Espolón calcáneo óseo entesofítico asociado",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Fascia plantar proximal: {finding}."
       }
@@ -309,7 +400,9 @@
           "indication": "Dolor agudo severo inicial.",
           "example": "Gel de diclofenaco 3 veces/día o Ibuprofeno 600mg/8h durante 7-10 días",
           "duration": "10 días",
-          "guardrails": ["Excelente seguridad con formulación tópica"]
+          "guardrails": [
+            "Excelente seguridad con formulación tópica"
+          ]
         }
       ]
     },
@@ -321,8 +414,14 @@
           "name": "Ondas de Choque Focales / Radiales (ESWT)",
           "indication": "Tratamiento de primera línea intervencionista no invasivo.",
           "options": [
-            { "name": "3-5 sesiones semanales de ondas de choque focales (ESWT)", "evidence": "Alta / Nivel I (Gollwitzer 2015)" },
-            { "name": "Infiltración ecoguiada perilesional de corticoide (Metilprednisolona 20mg) o Plasma Rico en Plaquetas (PRP)", "evidence": "Alta a corto plazo / Moderada" }
+            {
+              "name": "3-5 sesiones semanales de ondas de choque focales (ESWT)",
+              "evidence": "Alta / Nivel I (Gollwitzer 2015)"
+            },
+            {
+              "name": "Infiltración ecoguiada perilesional de corticoide (Metilprednisolona 20mg) o Plasma Rico en Plaquetas (PRP)",
+              "evidence": "Alta a corto plazo / Moderada"
+            }
           ],
           "contraindications": [
             "Infiltración intratendinosa directa (riesgo de rotura de fascia o atrofia de la almohadilla grasa si no se guía por ecografía)"
@@ -334,9 +433,18 @@
   "followUp": {
     "timing": "Revisión a las 6-8 semanas",
     "parameters": [
-      { "name": "Dolor del primer paso matutino", "icon": "🦶" },
-      { "name": "Distancia caminada sin dolor", "icon": "🚶" },
-      { "name": "Espesor ecográfico de la fascia plantar", "icon": "📐" }
+      {
+        "name": "Dolor del primer paso matutino",
+        "icon": "🦶"
+      },
+      {
+        "name": "Distancia caminada sin dolor",
+        "icon": "🚶"
+      },
+      {
+        "name": "Espesor ecográfico de la fascia plantar",
+        "icon": "📐"
+      }
     ],
     "outcomes": [
       {

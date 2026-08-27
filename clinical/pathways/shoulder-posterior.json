@@ -13,13 +13,15 @@
       "id": "rf-spinoglenoid-cyst-mass",
       "text": "Masa palpable en fosa infraespinosa con atrofia muscular rápida y debilidad severa aislada de rotación externa (Sospecha Quiste Paralabral Espinoglenoideo con atrapamiento del Nervio Supraescapular)",
       "severity": "critical",
-      "action": "RM de hombro urgente para valorar labrum posterior y descompresión ecoguiada o quirúrgica."
+      "action": "RM de hombro urgente para valorar labrum posterior y descompresión ecoguiada o quirúrgica.",
+      "label": "Masa palpable en fosa infraespinosa con atrofia muscular rápida y debilidad severa aislada de rotación externa (Sospecha Quiste Paralabral Espinoglenoideo con atrapamiento del Nervio Supraescapular)"
     },
     {
       "id": "rf-posterior-dislocation",
       "text": "Bloqueo mecánico rígido en rotación interna tras convulsión, descarga eléctrica o traumatismo (Sospecha Luxación Posterior Glenohumeral inadvertida)",
       "severity": "critical",
-      "action": "Radiografía en proyecciones axilar y escapular en 'Y' urgente."
+      "action": "Radiografía en proyecciones axilar y escapular en 'Y' urgente.",
+      "label": "Bloqueo mecánico rígido en rotación interna tras convulsión, descarga eléctrica o traumatismo (Sospecha Luxación Posterior Glenohumeral inadvertida)"
     }
   ],
   "hypotheses": [

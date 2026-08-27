@@ -13,7 +13,8 @@
       "id": "rf-ottawa-ankle-fracture",
       "text": "Incapacidad para dar 4 pasos inmediatamente tras el traumatismo y en la consulta, o dolor óseo exquisito en los 6 cm distales del maléolo lateral/medial o base del 5º metatarsiano (Criterios de Ottawa Positivos)",
       "severity": "critical",
-      "action": "Radiografía de tobillo y pie (AP, Lateral y Mortaja) obligatoria para descartar fractura maleolar o de Jones."
+      "action": "Radiografía de tobillo y pie (AP, Lateral y Mortaja) obligatoria para descartar fractura maleolar o de Jones.",
+      "label": "Incapacidad para dar 4 pasos inmediatamente tras el traumatismo y en la consulta, o dolor óseo exquisito en los 6 cm distales del maléolo lateral/medial o base del 5º metatarsiano (Criterios de Ottawa Positivos)"
     }
   ],
   "hypotheses": [

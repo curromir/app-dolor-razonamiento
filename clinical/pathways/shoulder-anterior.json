@@ -10,13 +10,15 @@
       "id": "rf-popeye-rupture",
       "text": "Chasquido audible súbito al hacer un esfuerzo con aparición de masa globular en el tercio distal del brazo y hematoma ('Signo de Popeye' por rotura aguda de LHBT)",
       "severity": "high",
-      "action": "Ecografía de hombro y valoración de tenodesis quirúrgica en pacientes activos/jóvenes"
+      "action": "Ecografía de hombro y valoración de tenodesis quirúrgica en pacientes activos/jóvenes",
+      "label": "Chasquido audible súbito al hacer un esfuerzo con aparición de masa globular en el tercio distal del brazo y hematoma ('Signo de Popeye' por rotura aguda de LHBT)"
     },
     {
       "id": "rf-glenohumeral-dislocation",
       "text": "Deformidad 'en charretera' con dolor intolerable e impotencia funcional tras traumatismo (sospecha de luxación glenohumeral anterior)",
       "severity": "critical",
-      "action": "Radiografía simple urgente de hombro y reducción cerrada bajo sedación"
+      "action": "Radiografía simple urgente de hombro y reducción cerrada bajo sedación",
+      "label": "Deformidad 'en charretera' con dolor intolerable e impotencia funcional tras traumatismo (sospecha de luxación glenohumeral anterior)"
     }
   ],
   "hypotheses": [
@@ -63,21 +65,41 @@
         {
           "label": "Al levantar el brazo recto hacia adelante con la palma hacia arriba o al cargar peso frontal",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-slap-labrum", "effect": "increase", "weight": 4 }
+            {
+              "hypothesisId": "hyp-lhbt-tendinopathy",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-slap-labrum",
+              "effect": "increase",
+              "weight": 4
+            }
           ]
         },
         {
           "label": "Al llevar la mano detrás de la espalda (desabrochar sujetador / sacar cartera del bolsillo trasero)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-subscapularis-tendinopathy", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "decrease", "weight": 2 }
+            {
+              "hypothesisId": "hyp-subscapularis-tendinopathy",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-lhbt-tendinopathy",
+              "effect": "decrease",
+              "weight": 2
+            }
           ]
         },
         {
           "label": "Siento un chasquido profundo doloroso con el brazo en alto al rotarlo o lanzar (como si algo se enganchara dentro)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-slap-labrum", "effect": "increase", "weight": 6 }
+            {
+              "hypothesisId": "hyp-slap-labrum",
+              "effect": "increase",
+              "weight": 6
+            }
           ]
         }
       ]
@@ -91,14 +113,26 @@
         {
           "label": "En una línea vertical por delante del hombro (corredera del brazo)",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "increase", "weight": 5 }
+            {
+              "hypothesisId": "hyp-lhbt-tendinopathy",
+              "effect": "increase",
+              "weight": 5
+            }
           ]
         },
         {
           "label": "En la parte más alta superior donde se juntan la clavícula y el hombro",
           "hypothesisEffects": [
-            { "hypothesisId": "hyp-ac-joint-anterior", "effect": "increase", "weight": 6 },
-            { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "decrease", "weight": 3 }
+            {
+              "hypothesisId": "hyp-ac-joint-anterior",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-lhbt-tendinopathy",
+              "effect": "decrease",
+              "weight": 3
+            }
           ]
         }
       ]
@@ -109,9 +143,18 @@
       "essential": true,
       "isFunctionalGoal": true,
       "answers": [
-        { "label": "Poder levantar objetos por delante del cuerpo y cargar peso sin pinchazo en el brazo", "hypothesisEffects": [] },
-        { "label": "Volver a practicar natación, pádel o ejercicios de gimnasio", "hypothesisEffects": [] },
-        { "label": "Mover el brazo hacia atrás sin tirantez ni dolor", "hypothesisEffects": [] }
+        {
+          "label": "Poder levantar objetos por delante del cuerpo y cargar peso sin pinchazo en el brazo",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Volver a practicar natación, pádel o ejercicios de gimnasio",
+          "hypothesisEffects": []
+        },
+        {
+          "label": "Mover el brazo hacia atrás sin tirantez ni dolor",
+          "hypothesisEffects": []
+        }
       ]
     }
   ],
@@ -133,15 +176,27 @@
             "label": "Positivo (dolor en la corredera bicipital anterior)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-subscapularis-tendinopathy", "effect": "decrease", "weight": 2 }
+              {
+                "hypothesisId": "hyp-lhbt-tendinopathy",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-subscapularis-tendinopathy",
+                "effect": "decrease",
+                "weight": 2
+              }
             ]
           },
           {
             "label": "Negativo (flexión anterior resistida indolora)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-lhbt-tendinopathy",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -161,7 +216,11 @@
             "label": "Positivo (dolor o chasquido en corredera bicipital)",
             "value": "positive",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "increase", "weight": 5 }
+              {
+                "hypothesisId": "hyp-lhbt-tendinopathy",
+                "effect": "increase",
+                "weight": 5
+              }
             ]
           },
           {
@@ -185,15 +244,27 @@
             "label": "Positivo para dolor profundo en fase 1 que cede en fase 2 (Sospecha SLAP)",
             "value": "positive_slap",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-slap-labrum", "effect": "increase", "weight": 6 },
-              { "hypothesisId": "hyp-lhbt-tendinopathy", "effect": "decrease", "weight": 1 }
+              {
+                "hypothesisId": "hyp-slap-labrum",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-lhbt-tendinopathy",
+                "effect": "decrease",
+                "weight": 1
+              }
             ]
           },
           {
             "label": "Negativo (sin dolor o no varía entre fases)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-slap-labrum", "effect": "decrease", "weight": 4 }
+              {
+                "hypothesisId": "hyp-slap-labrum",
+                "effect": "decrease",
+                "weight": 4
+              }
             ]
           }
         ]
@@ -212,14 +283,22 @@
             "label": "Positivo (dolor anterior y debilidad franca de rotación interna)",
             "value": "positive_subscap",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subscapularis-tendinopathy", "effect": "increase", "weight": 7 }
+              {
+                "hypothesisId": "hyp-subscapularis-tendinopathy",
+                "effect": "increase",
+                "weight": 7
+              }
             ]
           },
           {
             "label": "Negativo (fuerza potente indolora)",
             "value": "negative",
             "hypothesisEffects": [
-              { "hypothesisId": "hyp-subscapularis-tendinopathy", "effect": "decrease", "weight": 5 }
+              {
+                "hypothesisId": "hyp-subscapularis-tendinopathy",
+                "effect": "decrease",
+                "weight": 5
+              }
             ]
           }
         ]
@@ -231,7 +310,10 @@
       "id": "cluster-biceps-anterior",
       "name": "Batería de Afectación de Porción Larga del Bíceps",
       "description": "1. Speed Test (+) + 2. Test de Yergason (+) + 3. Palpación dolorosa en corredera bicipital",
-      "requiredTests": ["exam-speed-test", "exam-yergason-test"],
+      "requiredTests": [
+        "exam-speed-test",
+        "exam-yergason-test"
+      ],
       "threshold": 1,
       "concordanceText": "Batería de provocación bicipital positiva (Sensibilidad combinada >85%).",
       "evidenceNote": "La combinación de Speed + Yergason ofrece el mejor balance de sensibilidad y especificidad para tendinopatía de LHBT."
@@ -245,10 +327,26 @@
         "name": "Porción Larga del Bíceps en Corredera (Cortes Transversal y Longitudinal)",
         "priority": 1,
         "findings": [
-          { "id": "us-lhbt-normal", "label": "Tendón ovalado centrado en corredera sin líquido peritendinoso", "concordanceEffect": "neutral" },
-          { "id": "us-lhbt-tenosynovitis", "label": "Halo de líquido anecoico circumferential >2 mm / Tenosinovitis bicipital e hiperemia Doppler", "concordanceEffect": "concordant" },
-          { "id": "us-lhbt-subluxation", "label": "Subluxación o luxación medial del bíceps fuera de la corredera (rotura de polea / subescapular)", "concordanceEffect": "concordant" },
-          { "id": "us-lhbt-tear", "label": "Corredera vacía / Desgarro completo de LHBT", "concordanceEffect": "concordant" }
+          {
+            "id": "us-lhbt-normal",
+            "label": "Tendón ovalado centrado en corredera sin líquido peritendinoso",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-lhbt-tenosynovitis",
+            "label": "Halo de líquido anecoico circumferential >2 mm / Tenosinovitis bicipital e hiperemia Doppler",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-lhbt-subluxation",
+            "label": "Subluxación o luxación medial del bíceps fuera de la corredera (rotura de polea / subescapular)",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-lhbt-tear",
+            "label": "Corredera vacía / Desgarro completo de LHBT",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Tendón largo del bíceps en corredera: {finding}."
       },
@@ -257,8 +355,16 @@
         "name": "Tendón Subescapular en Troquín Menor",
         "priority": 2,
         "findings": [
-          { "id": "us-subscap-normal", "label": "Tendón continuo y homogéneo", "concordanceEffect": "neutral" },
-          { "id": "us-subscap-tear", "label": "Rotura parcial o completa de fibras superiores del subescapular", "concordanceEffect": "concordant" }
+          {
+            "id": "us-subscap-normal",
+            "label": "Tendón continuo y homogéneo",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-subscap-tear",
+            "label": "Rotura parcial o completa de fibras superiores del subescapular",
+            "concordanceEffect": "concordant"
+          }
         ],
         "reportTemplate": "Tendón subescapular: {finding}."
       }
@@ -357,7 +463,9 @@
           "indication": "Dolor agudo moderado limitante.",
           "example": "Gel de diclofenaco 3 veces/día o Naproxeno 500mg/12h durante 7-10 días",
           "duration": "10 días",
-          "guardrails": ["Excelente perfil de seguridad con gel tópico"]
+          "guardrails": [
+            "Excelente perfil de seguridad con gel tópico"
+          ]
         }
       ]
     },
@@ -369,7 +477,10 @@
           "name": "Infiltración Ecoguiada de la Vaina Bicipital (LHBT Sheath)",
           "indication": "Tenosinovitis con líquido anecoico periclavicular en corredera.",
           "options": [
-            { "name": "Infiltración ecoguiada con aguja en plano dentro de la vaina sinovial (sin penetrar el tendón): 1 ml corticoide de depósito + 2 ml anestésico local", "evidence": "Alta / Nivel I (evita el riesgo de rotura intratendinosa)" }
+            {
+              "name": "Infiltración ecoguiada con aguja en plano dentro de la vaina sinovial (sin penetrar el tendón): 1 ml corticoide de depósito + 2 ml anestésico local",
+              "evidence": "Alta / Nivel I (evita el riesgo de rotura intratendinosa)"
+            }
           ],
           "contraindications": [
             "Infiltración intratendinosa a ciegas (alto riesgo de necrosis fibrilar y rotura espontánea)",
@@ -382,9 +493,18 @@
   "followUp": {
     "timing": "Revisión a las 4-6 semanas",
     "parameters": [
-      { "name": "Dolor con el Speed Test", "icon": "✋" },
-      { "name": "Fuerza en rotación interna (Bear-Hug)", "icon": "💪" },
-      { "name": "Líquido ecográfico en vaina bicipital", "icon": "🔊" }
+      {
+        "name": "Dolor con el Speed Test",
+        "icon": "✋"
+      },
+      {
+        "name": "Fuerza en rotación interna (Bear-Hug)",
+        "icon": "💪"
+      },
+      {
+        "name": "Líquido ecográfico en vaina bicipital",
+        "icon": "🔊"
+      }
     ],
     "outcomes": [
       {

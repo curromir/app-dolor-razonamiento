@@ -13,7 +13,8 @@
       "id": "rf-ulnar-claw-hand",
       "text": "Atrofia marcada del primer interóseo dorsal, signo de Froment positivo y 'mano en garra' cubital aguda (Sospecha Neuropatía Cubital Severa con Denervación Motora)",
       "severity": "critical",
-      "action": "EMG/ENG urgente de nervio cubital y derivación a Cirugía de Mano/Traumatología para descompresión."
+      "action": "EMG/ENG urgente de nervio cubital y derivación a Cirugía de Mano/Traumatología para descompresión.",
+      "label": "Atrofia marcada del primer interóseo dorsal, signo de Froment positivo y 'mano en garra' cubital aguda (Sospecha Neuropatía Cubital Severa con Denervación Motora)"
     }
   ],
   "hypotheses": [

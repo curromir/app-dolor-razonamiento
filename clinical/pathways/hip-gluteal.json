@@ -13,7 +13,8 @@
       "id": "rf-pelvic-mass-sciatica",
       "text": "Ciatalgia rebelde que no responde a posturas, masa pélvica palpable en tacto rectal o antecedentes oncológicos pélvicos (Sospecha Tumor Pélvico / Schwannoma Ciático / Metástasis Iliosacra)",
       "severity": "critical",
-      "action": "RM de pelvis y columna lumbosacra urgente."
+      "action": "RM de pelvis y columna lumbosacra urgente.",
+      "label": "Ciatalgia rebelde que no responde a posturas, masa pélvica palpable en tacto rectal o antecedentes oncológicos pélvicos (Sospecha Tumor Pélvico / Schwannoma Ciático / Metástasis Iliosacra)"
     }
   ],
   "hypotheses": [
