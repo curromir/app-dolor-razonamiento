@@ -150,7 +150,26 @@
           </div>
         </article>
 
-        <!-- CARD 4: VADEMÉCUM DE DOLOR -->
+        <!-- CARD 4: ECOGRAFÍA EN DOLOR (POCUS) -->
+        <article class="home-mode-card glass-panel" id="btnLaunchUltrasoundMode" style="border-top: 4px solid #0284c7;">
+          <div class="mode-card-badge" style="background: rgba(14, 165, 233, 0.2); color: #0284c7;">POCUS & Imagen</div>
+          <div>
+            <span class="mode-card-icon">🩻</span>
+            <h2>Ecografía en Dolor</h2>
+            <p><strong>Generador de Informes POCUS en 15–30s:</strong> Exploración por localización, hallazgos combinados sin redundancias, Doppler, juicio de concordancia y copiado a Historia.</p>
+            <div class="mode-card-features">
+              <span class="mode-feature-pill">⚡ Consulta Rápida</span>
+              <span class="mode-feature-pill">🩻 11 Regiones</span>
+              <span class="mode-feature-pill">⚖️ Concordancia</span>
+              <span class="mode-feature-pill">📋 Copiar Informe</span>
+            </div>
+          </div>
+          <div class="mode-card-cta" style="color: #0284c7;">
+            <span>Abrir Ecografía POCUS</span> <span>→</span>
+          </div>
+        </article>
+
+        <!-- CARD 5: VADEMÉCUM DE DOLOR -->
         <article class="home-mode-card glass-panel" id="btnLaunchVademecumMode" style="border-top: 4px solid #8b5cf6;">
           <div class="mode-card-badge" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">Farmacología</div>
           <div>
@@ -170,9 +189,35 @@
         </article>
       </div>
 
-      <!-- Recent Consultations Bar -->
+      <!-- Recent Consultations Bar & Direct Clinical Tools Bar -->
       <div class="home-recents-section glass-panel" id="homeRecentsBox">
-        <div class="home-recents-title">
+        
+        <!-- Pestaña / Barra Destacada de Herramientas Directas -->
+        <div class="home-quick-tools-bar">
+          <div class="home-quick-tools-badge">
+            <span>🛠️</span> <span>HERRAMIENTAS DIRECTAS EN CONSULTA:</span>
+          </div>
+          <div class="home-quick-tools-buttons">
+            <button class="home-quick-tool-btn echo" onclick="window.switchTab('tab-ultrasound')">
+              <span class="tool-btn-icon">🩻</span>
+              <div class="tool-btn-texts">
+                <strong>ECOGRAFÍA EN DOLOR (POCUS)</strong>
+                <small>Generador de informes estructurados & concordancia clínica</small>
+              </div>
+              <span class="tool-btn-arrow">→</span>
+            </button>
+            <button class="home-quick-tool-btn vade" onclick="window.switchTab('tab-vademecum')">
+              <span class="tool-btn-icon">💊</span>
+              <div class="tool-btn-texts">
+                <strong>VADEMÉCUM EXPRESS</strong>
+                <small>1ª y 2ª opción clínica · Dosis en 5 segundos</small>
+              </div>
+              <span class="tool-btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="home-recents-title" style="margin-top: 1.25rem;">
           <span>⚡</span> <span>Acceso Directo a los 19 Clinical Pathways Activos</span>
         </div>
         <div class="recents-chips-list" id="recentsChipsList">
@@ -256,8 +301,13 @@
       window.ClinicalUI.switchAppMode('library');
     });
 
+    document.getElementById('btnLaunchUltrasoundMode')?.addEventListener('click', () => {
+      if (typeof window.switchTab === 'function') {
+        window.switchTab('tab-ultrasound');
+      }
+    });
+
     document.getElementById('btnLaunchVademecumMode')?.addEventListener('click', () => {
-      window.ClinicalUI.switchAppMode('library');
       if (typeof window.switchTab === 'function') {
         window.switchTab('tab-vademecum');
       }

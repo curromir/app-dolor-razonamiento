@@ -1128,13 +1128,20 @@ function setFilter(filter) {
 window.switchTab = function(tabId) {
   state.currentTab = tabId;
 
-  // Ensure library mode UI is visible
+  // Ensure home and clinical containers are hidden and library containers are shown
+  const homeEl = document.getElementById('home-screen');
+  const clinicalEl = document.getElementById('clinical-reasoning-container');
   const mainHeader = document.querySelector('.main-header');
-  if (mainHeader && mainHeader.style.display === 'none') {
-    if (window.ClinicalUI) {
-      window.ClinicalUI.switchAppMode('library');
-    }
-  }
+  const navTabs = document.querySelector('.nav-tabs-wrapper');
+  const filtersSection = document.querySelector('.filters-section');
+  const mainContent = document.querySelector('.main-content');
+
+  if (homeEl) homeEl.style.display = 'none';
+  if (clinicalEl) clinicalEl.style.display = 'none';
+  if (mainHeader) mainHeader.style.display = 'block';
+  if (navTabs) navTabs.style.display = 'block';
+  if (filtersSection) filtersSection.style.display = 'block';
+  if (mainContent) mainContent.style.display = 'block';
 
   // Desktop tabs sync
   document.querySelectorAll('.nav-tab').forEach(tab => {

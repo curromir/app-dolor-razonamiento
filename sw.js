@@ -1,5 +1,5 @@
-// Service Worker v37.0 - Acceso Directo Clinical Pathways
-const CACHE_NAME = 'dolor-tests-v37';
+// Service Worker v38.0 - Acceso Directo Ecografía POCUS & Vademécum en Inicio
+const CACHE_NAME = 'dolor-tests-v38';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
