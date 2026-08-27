@@ -1,5 +1,5 @@
-// Service Worker v41.0 - Simulador de Casos Clínicos a Ciegas & Red Flags Fix
-const CACHE_NAME = 'dolor-tests-v41';
+// Service Worker v42.0 - Fix Navegación Fluida Red Flags y Casos Clínicos
+const CACHE_NAME = 'dolor-tests-v42';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

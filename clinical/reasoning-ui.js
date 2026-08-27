@@ -701,7 +701,7 @@
             const flagAction = f.action || 'Derivación / estudio urgente';
             return `
               <label class="flag-checkbox-item ${isChecked ? 'checked' : ''}" id="flag_label_${f.id}">
-                <input type="checkbox" class="flag-checkbox-input" data-flag-id="${f.id}" ${isChecked ? 'checked' : ''}>
+                <input type="checkbox" class="flag-checkbox-input" data-flag-id="${f.id}" ${isChecked ? 'checked' : ''} onchange="window.ClinicalUI.toggleRedFlag('${f.id}', this.checked)">
                 <div class="flag-item-content">
                   <span class="flag-item-title">${flagTitle}</span>
                   ${(f.severity === 'critical' || f.severity === 'major') ? `<span class="flag-item-action">⚠️ Severidad ${f.severity === 'critical' ? 'Crítica' : 'Mayor'}: ${flagAction}</span>` : ''}
@@ -736,44 +736,80 @@
             <span>← Cambiar presentación</span>
           </button>
           
-          <button class="btn-primary" id="btnConfirmRedFlags" style="padding: 0.65rem 1.4rem;">
+          <button class="btn-primary" id="btnConfirmRedFlags" style="padding: 0.65rem 1.4rem;" onclick="window.ClinicalUI.confirmRedFlags()">
             <span>Continuar a Anamnesis Dirigida →</span>
           </button>
         </div>
       </div>
     `;
+  }
 
-    // Listen for checkbox changes
-    container.querySelectorAll('.flag-checkbox-input').forEach(input => {
-      input.addEventListener('change', () => {
-        const checkedMap = {};
-        container.querySelectorAll('.flag-checkbox-input').forEach(inp => {
-          const fid = inp.getAttribute('data-flag-id');
-          checkedMap[fid] = inp.checked;
-          const lbl = document.getElementById('flag_label_' + fid);
-          if (lbl) lbl.classList.toggle('checked', inp.checked);
-        });
+  function toggleRedFlag(flagId, isChecked) {
+    if (!uiState.engine) return;
+    if (!uiState.engine.session.redFlagResults) {
+      uiState.engine.session.redFlagResults = {};
+    }
+    uiState.engine.session.redFlagResults[flagId] = isChecked;
+    const lbl = document.getElementById('flag_label_' + flagId);
+    if (lbl) lbl.classList.toggle('checked', isChecked);
 
-        const res = uiState.engine.evaluateRedFlags(checkedMap);
-        renderRedFlagsView(container);
-      });
-    });
+    const checkedMap = uiState.engine.session.redFlagResults;
+    const res = uiState.engine.evaluateRedFlags(checkedMap);
+    const noticeEl = document.getElementById('redFlagStatusNotice');
+    if (noticeEl) {
+      noticeEl.innerHTML = !res.safe ? `
+        <div class="safety-header-banner critical" style="margin-top: 1rem;">
+          <span class="safety-banner-icon">🚨</span>
+          <div class="safety-banner-text">
+            <h4 style="margin: 0 0 0.2rem; color: var(--color-alarm);">BANDERA ROJA DETECTADA</h4>
+            <p style="color: var(--text-primary); font-size: 0.82rem;">Interrumpir el algoritmo musculoesquelético de dolor y valorar estudio dirigido / derivación urgente.</p>
+          </div>
+        </div>
+      ` : `
+        <div class="safety-header-banner safe" style="margin-top: 1rem;">
+          <span class="safety-banner-icon">🟢</span>
+          <div class="safety-banner-text">
+            <h4 style="margin: 0 0 0.2rem; color: var(--color-safe);">Sin banderas rojas activas</h4>
+            <p style="color: var(--text-primary); font-size: 0.82rem;">Seguro para continuar con el algoritmo musculoesquelético y anamnesis dirigida.</p>
+          </div>
+        </div>
+      `;
+    }
+  }
 
-    document.getElementById('btnConfirmRedFlags')?.addEventListener('click', () => {
-      const checkedMap = {};
+  function confirmRedFlags() {
+    if (!uiState.engine) return;
+    const container = document.getElementById('clinicalStepHost');
+    const checkedMap = {};
+    if (container) {
       container.querySelectorAll('.flag-checkbox-input').forEach(inp => {
         checkedMap[inp.getAttribute('data-flag-id')] = inp.checked;
       });
-      const res = uiState.engine.evaluateRedFlags(checkedMap);
-
-      if (!res.safe) {
-        if (!confirm('⚠️ Se han detectado posibles señales de alarma. ¿Deseas continuar bajo tu criterio clínico?')) {
-          return;
-        }
+    }
+    const res = uiState.engine.evaluateRedFlags(checkedMap);
+    
+    // In simulation mode, evaluate safety decision
+    if (uiState.simulation) {
+      const isExpectedSafe = uiState.simulation.caseData.expectedFlow?.redFlagsSafe !== false;
+      const userFoundSafe = res.safe;
+      const isCorrect = (isExpectedSafe === userFoundSafe);
+      uiState.simulation.evaluateDecision(
+        'seguridad',
+        'red_flags_evaluation',
+        isCorrect,
+        25,
+        isCorrect 
+          ? (isExpectedSafe ? 'Correcto: Paciente sin banderas rojas agudas.' : 'Correcto: Has identificado las banderas rojas críticas.')
+          : (isExpectedSafe ? 'Precaución: Marcaste señales de alarma cuando el cuadro es musculoesquelético estándar.' : 'Riesgo Clínico: El paciente presentaba banderas rojas críticas que no fueron identificadas.')
+      );
+      if (!isExpectedSafe && userFoundSafe) {
+        uiState.simulation.recordBias('cierre_prematuro', 'Omisión de Banderas Rojas', 'Se omitió descartar signos de alarma neurológica o sistémica grave.');
       }
-      uiState.engine.session.currentStep = 'anamnesis';
-      renderCurrentStep();
-    });
+    }
+
+    uiState.engine._addCompletedStep('red_flags');
+    uiState.engine.session.currentStep = 'anamnesis';
+    renderCurrentStep();
   }
 
   // ─────────────────────────────────────────────
@@ -2907,6 +2943,8 @@
       return startPathway(pathwayId);
     },
     openPatientHistoryModal: openPatientHistoryModal,
+    toggleRedFlag: toggleRedFlag,
+    confirmRedFlags: confirmRedFlags,
     goToStep: function (stepId) {
       if (uiState.engine) {
         uiState.engine.goToStep(stepId);
