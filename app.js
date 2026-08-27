@@ -1073,13 +1073,8 @@ function setupEventListeners() {
     });
   });
 
-  // Mobile Bottom bar items
-  document.querySelectorAll('.mobile-nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const tabId = item.getAttribute('data-tab');
-      switchTab(tabId);
-    });
-  });
+  // Mobile Bottom bar items — handled by inline onclick in index.html
+  // (no secondary listener needed; avoids conflict with switchAppMode)
 
   // Videoteca channel switcher
   document.querySelectorAll('.channel-btn').forEach(btn => {
@@ -1140,8 +1135,14 @@ window.switchTab = function(tabId) {
   if (clinicalEl) clinicalEl.style.display = 'none';
   if (mainHeader) mainHeader.style.display = 'block';
   if (navTabs) navTabs.style.display = 'block';
-  if (filtersSection) filtersSection.style.display = 'block';
+  if (filtersSection) filtersSection.style.display = (tabId === 'tab-tests') ? 'block' : 'none';
   if (mainContent) mainContent.style.display = 'block';
+
+  // Hide main search bar on non-test tabs (Vademecum/POCUS have their own)
+  const mainSearchContainer = document.querySelector('.search-container');
+  if (mainSearchContainer) {
+    mainSearchContainer.style.display = (tabId === 'tab-tests') ? 'block' : 'none';
+  }
 
   // Desktop tabs sync
   document.querySelectorAll('.nav-tab').forEach(tab => {

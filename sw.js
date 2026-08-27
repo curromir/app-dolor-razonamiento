@@ -1,5 +1,5 @@
-// Service Worker v40.0 - 35 Clinical Pathways & 4-Tier Visual Hierarchy
-const CACHE_NAME = 'dolor-tests-v40';
+// Service Worker v41.0 - Audit Fixes: Mobile Nav, Filters, POCUS Bar, CatalogTestIds
+const CACHE_NAME = 'dolor-tests-v41';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

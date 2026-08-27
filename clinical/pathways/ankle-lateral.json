@@ -92,7 +92,7 @@
         "id": "exam-anterior-drawer-ankle",
         "order": 1,
         "name": "Cajón Anterior de Tobillo y Talar Tilt",
-        "catalogTestId": "tobillo-cajon-anterior",
+        "catalogTestId": null,
         "category": "inestabilidad",
         "instruction": "Fijar la tibia con una mano y traccionar el calcáneo hacia adelante con el tobillo a 10-15° de flexión plantar.",
         "whatToLookFor": "Translación anterior aumentada o falta de tope firme (rotura del LPAA).",

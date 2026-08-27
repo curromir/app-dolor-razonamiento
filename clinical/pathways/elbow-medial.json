@@ -89,7 +89,7 @@
         "id": "exam-golfers-elbow-test",
         "order": 1,
         "name": "Test de Epitroclealgia (Flexión y Pronación Resistida de Muñeca)",
-        "catalogTestId": "codo-epitroclealgia",
+        "catalogTestId": "codo-golfer",
         "category": "provocacion",
         "instruction": "Con el codo extendido, resistir la flexión palmar y la pronación de la muñeca del paciente.",
         "whatToLookFor": "Dolor exquisito en la epitróclea medial.",

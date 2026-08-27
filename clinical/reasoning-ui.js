@@ -32,7 +32,7 @@
   async function initClinicalUI() {
     containers.home = document.getElementById('home-screen');
     containers.clinical = document.getElementById('clinical-reasoning-container');
-    containers.library = document.getElementById('library-container');
+    containers.library = document.querySelector('.main-content');
 
     // Preload treatments catalog if not already in window
     if (!window.TREATMENTS_CATALOG) {

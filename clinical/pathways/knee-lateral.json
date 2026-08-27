@@ -92,7 +92,7 @@
         "id": "exam-noble-compression",
         "order": 1,
         "name": "Test de Compresión de Noble / Test de Renne",
-        "catalogTestId": "rodilla-noble",
+        "catalogTestId": null,
         "category": "provocacion",
         "instruction": "Comprimir con el pulgar el epicóndilo femoral lateral mientras se extiende pasivamente la rodilla desde 90°.",
         "whatToLookFor": "Dolor exquisito agudo reproducido a unos 30° de flexión.",

@@ -79,7 +79,7 @@
         "id": "exam-seated-piriformis",
         "order": 1,
         "name": "Seated Piriformis Stretch Test / FAIR Test",
-        "catalogTestId": "cadera-fair",
+        "catalogTestId": "si-fair-test",
         "category": "provocacion",
         "instruction": "Paciente sentado. El examinador flexiona, aduce y rota internamente la cadera mientras palpa la escotadura ciática.",
         "whatToLookFor": "Reproducción del dolor glúteo profundo y parestesias en territorio ciático.",

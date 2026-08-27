@@ -223,7 +223,7 @@
         "id": "exam-cross-body",
         "order": 2,
         "name": "Test de Aducción Horizontal Cruzada (Cross-Body Adduction)",
-        "catalogTestId": "hombro-cross-body",
+        "catalogTestId": null,
         "category": "provocacion",
         "instruction": "Con el hombro flexionado a 90°, aducir pasivamente el brazo a través del tórax hacia el lado contrario mientras se estabiliza la escápula.",
         "whatToLookFor": "Reproducción del dolor exacto en el vértice superior del hombro.",
