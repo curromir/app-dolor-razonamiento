@@ -1,0 +1,302 @@
+{
+  "id": "shoulder-trauma",
+  "region": "hombro",
+  "regionLabel": "Hombro y Cintura Escapular",
+  "regionIcon": "🦴",
+  "presentation": "Traumatismo de Hombro",
+  "presentationDesc": "Dolor agudo e impotencia funcional tras caída, impacto directo o tracción brusca, requiriendo descartar fracturas, luxaciones o lesiones tendinosas agudas.",
+  "visualTier": "safety",
+  "visualLabel": "Situación especial",
+  "clinicalPriority": 31,
+  "redFlags": [
+    {
+      "id": "rf-fracture-dislocation",
+      "text": "Deformidad anatómica evidente (hombro en charretera, relieve clavicular desplazado), hematoma en extensión rápida o crepitación ósea a la palpación",
+      "severity": "critical",
+      "action": "Inmovilización estricta inmediata, radiografía urgente en 3 proyecciones y derivación a Urgencias de Traumatología."
+    },
+    {
+      "id": "rf-neurovascular-compromise",
+      "text": "Ausencia de pulso radial, frialdad/palidez en la mano o pérdida sensitiva completa distal a la lesión",
+      "severity": "critical",
+      "action": "Emergencia vascular quirúrgica urgente."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-proximal-humerus-clavicle-fracture",
+      "name": "Fractura de Húmero Proximal o Clavícula",
+      "shortName": "Fractura Ósea",
+      "description": "Solución de continuidad ósea con dolor exquisito, crepitación y hematoma progresivo de Hennequin.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-gh-ac-dislocation",
+      "name": "Luxación Glenohumeral o Acromioclavicular",
+      "shortName": "Luxación Articular",
+      "description": "Pérdida de congruencia articular con deformidad típica y bloqueo del movimiento.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-acute-cuff-tear-trauma",
+      "name": "Rotura Traumática Aguda del Manguito Rotador",
+      "shortName": "Rotura Traumática de Manguito",
+      "description": "Desgarro tendinoso agudo tras tracción violenta o caída con pseudoparálisis inmediata.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-simple-contusion",
+      "name": "Contusión Muscular / Esguince Simple",
+      "shortName": "Contusión / Esguince",
+      "description": "Impacto sobre partes blandas sin fractura, luxación ni rotura tendinosa mayor.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Cómo fue exactamente el golpe o la caída?»",
+      "explanation": "El mecanismo lesional orienta: caída sobre la mano en abducción (luxación/fractura); impacto directo superior (luxación AC/clavícula); tracción brusca (rotura tendinosa).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Caída sobre el brazo extendido o giro violento con sensación de que el hombro 'se salió de su sitio'",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-gh-ac-dislocation",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-acute-cuff-tear-trauma",
+              "effect": "increase",
+              "weight": 5
+            }
+          ]
+        },
+        {
+          "label": "Golpe seco directo con dolor óseo muy intenso y crujido audible",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-proximal-humerus-clavicle-fracture",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        },
+        {
+          "label": "Contusión leve sin crujido ni sensación de desgarro",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-simple-contusion",
+              "effect": "increase",
+              "weight": 6
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración de Seguridad Postraumática de Hombro",
+    "steps": [
+      {
+        "id": "exam-bone-palpation-trauma",
+        "order": 1,
+        "name": "Inspección de Deformidad y Palpación Ósea Sistemática",
+        "category": "inspeccion",
+        "instruction": "Inspeccionar contornos óseos (deltoides en charretera, signo de la tecla) y palpar clavícula, troquíter y acromion.",
+        "whatToLookFor": "Deformidad, hematoma de Hennequin precoz, crepitación.",
+        "essential": true,
+        "mentorTip": "Si hay sospecha de fractura o luxación, NO forzar maniobras de estrés ni rotaciones forzadas antes de la radiografía.",
+        "results": [
+          {
+            "label": "Deformidad franca o dolor óseo focal severo con crepitación",
+            "value": "bone_pain",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-proximal-humerus-clavicle-fracture",
+                "effect": "increase",
+                "weight": 7
+              },
+              {
+                "hypothesisId": "hyp-gh-ac-dislocation",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Sin deformidad ni dolor óseo exquisito",
+            "value": "normal_bones",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-simple-contusion",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-trauma-safety",
+      "name": "Criterios de Radiografía Urgente en Traumatismo de Hombro",
+      "description": "Edad >65 años + Traumatismo + Dolor óseo o deformidad o incapacidad activa total",
+      "requiredTests": [
+        "exam-bone-palpation-trauma"
+      ],
+      "threshold": 1,
+      "concordanceText": "Indicación mandatoria de estudio radiográfico sistemático (AP, escapular en Y, axilar).",
+      "evidenceNote": "Reglas de decisión clínica en trauma articular de hombro."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existen fracturas por arrancamiento del troquíter, hemartros o rotura tendinosa aguda del manguito?",
+    "structures": [
+      {
+        "id": "us-cortical-cuff-trauma",
+        "name": "Línea Cortical del Troquíter y Manguito Agudo",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-trauma-normal",
+            "label": "Cortical regular continua y tendones sin roturas agudas",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-trauma-cortical-step",
+            "label": "Escalón cortical óseo compatible con fractura/arrancamiento",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-trauma-acute-tear",
+            "label": "Rotura tendinosa aguda con hematoma anecoico/ecogénico circundante",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Evaluación ecográfica postraumática: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Hallazgo estructural compatible con el mecanismo del traumatismo.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Contusión con cambios inflamatorios menores.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Sin alteraciones agudas objetivables.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-fracture",
+      "name": "Fractura no desplazada de cuello quirúrgico de húmero",
+      "whatWouldReconsider": "Hematoma tardío en cara medial del brazo o axila (Hennequin).",
+      "keyDiscriminatingTest": "Radiografía en 3 proyecciones"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-trauma-shoulder",
+      "structuralDiagnosis": "Lesión Postraumática de Hombro",
+      "painGenerator": "Dolor nociceptivo postraumático de partes blandas u óseo",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo traumático agudo",
+      "supportingFindings": [
+        "Mecanismo de impacto claro",
+        "Dolor agudo",
+        "Radiografía sin fractura desplazada"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Tras un golpe en el hombro, lo fundamental en las primeras 48-72 horas es proteger la articulación, aplicar frío local y realizar una radiografía para asegurarnos de que no hay huesos rotos ni articulaciones desplazadas.",
+      "mentorNote": "Protocolo PEACE & LOVE: Protección, Elevación, Evitar antiinflamatorios masivos en primeras 48h si hay lesión tisular, Compresión, Educación."
+    },
+    "exercise": {
+      "objective": "Movilizaciones pasivas suaves tempranas (ejercicios pendulares de Codman) para evitar rigidez secundaria.",
+      "phases": [
+        {
+          "name": "Fase 1: Protección (0-7 días)",
+          "description": "Cabestrillo de confort y ejercicios pendulares suaves sin carga.",
+          "duration": "1 semana"
+        },
+        {
+          "name": "Fase 2: Movilidad Activo-Asistida",
+          "description": "Retirada progresiva del cabestrillo y elevación asistida.",
+          "duration": "2-4 semanas"
+        }
+      ],
+      "loadGuidance": "No forzar rangos con dolor agudo."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-01",
+      "options": [
+        {
+          "name": "Paracetamol 1g / 8h",
+          "indication": "Analgesia de base segura.",
+          "example": "Paracetamol 1g vo cada 8h",
+          "duration": "3-5 días",
+          "guardrails": [
+            "Función hepática"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Contraindicado en fase postraumática inmediata hasta tener diagnóstico óseo definitivo.",
+      "objective": "No procede en fase aguda.",
+      "targets": []
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 7-10 días con informe radiológico",
+    "parameters": [
+      {
+        "name": "Evolución del hematoma",
+        "icon": "🩸"
+      },
+      {
+        "name": "Movilidad pasiva",
+        "icon": "📐"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "normal_healing",
+        "label": "Evolución favorable",
+        "action": "Iniciar rehabilitación activa.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Hemos descartado lesiones mayores inmediatas. Ahora la clave es proteger el hombro unos días y empezar a moverlo suavemente para que no se quede rígido.",
+    "takeHomeMantra": "Proteger los primeros días y mover suave después es el secreto para recuperar un hombro tras un golpe."
+  },
+  "evidence": [
+    {
+      "citation": "Dubois B, Esculier JF. Soft-tissue injuries simply need PEACE and LOVE. Br J Sports Med. 2020;54(2):72-73.",
+      "topic": "PEACE & LOVE Protocol",
+      "year": 2020
+    }
+  ]
+}

@@ -1,0 +1,306 @@
+{
+  "id": "elbow-medial",
+  "region": "codo",
+  "regionLabel": "Codo",
+  "regionIcon": "🦾",
+  "presentation": "Dolor medial de codo",
+  "presentationDesc": "Dolor en la cara interna del codo, diferenciando la epitroclealgia (codo de golfista / tendinopatía de flexores-pronadores), la neuropatía del nervio cubital en el túnel epitrocleolecraniano y la inestabilidad del ligamento colateral medial (LCM).",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 20,
+  "redFlags": [
+    {
+      "id": "rf-ulnar-claw-hand",
+      "text": "Atrofia marcada del primer interóseo dorsal, signo de Froment positivo y 'mano en garra' cubital aguda (Sospecha Neuropatía Cubital Severa con Denervación Motora)",
+      "severity": "critical",
+      "action": "EMG/ENG urgente de nervio cubital y derivación a Cirugía de Mano/Traumatología para descompresión."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-medial-epicondylalgia",
+      "name": "Epitroclealgia / Tendinopatía de Flexores-Pronadores (Codo de Golfista)",
+      "shortName": "Epitroclealgia (Codo de Golfista)",
+      "description": "Sobrecarga o microrroturas en la inserción del pronador redondo y flexor radial del carpo en la epitróclea.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-cubital-tunnel-syndrome",
+      "name": "Neuropatía del Nervio Cubital en el Codo (Síndrome del Túnel Cubital)",
+      "shortName": "Túnel Cubital (Nervio Cubital)",
+      "description": "Compresión, tracción o subluxación del nervio cubital en el surco epitrocleolecraniano con parestesias en 4º-5º dedos.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-mcl-elbow-instability",
+      "name": "Insuficiencia / Esguince del Ligamento Colateral Medial (LCM) del Codo",
+      "shortName": "Ligamento Colateral Medial",
+      "description": "Sobrecarga en valgo (típica en lanzadores) con dolor a la apertura medial en valgo a 30°.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Siente hormigueo, acorchamiento o descargas eléctricas en los dedos meñique y anular de esa mano?»",
+      "explanation": "El compromiso del nervio cubital produce disestesias en el territorio sensitivo cubital (4º y 5º dedos); la epitroclealgia pura duele en el hueso sin hormigueos.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, se me duermen los dedos meñique y anular (sobre todo al flexionar el codo o hablar por teléfono)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-cubital-tunnel-syndrome",
+              "effect": "increase",
+              "weight": 8
+            },
+            {
+              "hypothesisId": "hyp-medial-epicondylalgia",
+              "effect": "decrease",
+              "weight": 3
+            }
+          ]
+        },
+        {
+          "label": "No, es solo dolor en el hueso del codo al doblar la muñeca con fuerza o agarrar peso",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-medial-epicondylalgia",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-cubital-tunnel-syndrome",
+              "effect": "decrease",
+              "weight": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Diferencial de Codo Medial",
+    "steps": [
+      {
+        "id": "exam-golfers-elbow-test",
+        "order": 1,
+        "name": "Test de Epitroclealgia (Flexión y Pronación Resistida de Muñeca)",
+        "catalogTestId": "codo-epitroclealgia",
+        "category": "provocacion",
+        "instruction": "Con el codo extendido, resistir la flexión palmar y la pronación de la muñeca del paciente.",
+        "whatToLookFor": "Dolor exquisito en la epitróclea medial.",
+        "essential": true,
+        "mentorTip": "La contracción resistida del pronador redondo y palmar mayor reproduce el dolor tendinoso.",
+        "results": [
+          {
+            "label": "Dolor agudo en la epitróclea a la flexión resistida",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-medial-epicondylalgia",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Indoloro a la fuerza de flexión",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-medial-epicondylalgia",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-tinel-ulnar-elbow",
+        "order": 2,
+        "name": "Signo de Tinel en Surco Epitrocleolecraniano / Test de Flexión de Codo",
+        "catalogTestId": "codo-tinel-cubital",
+        "category": "neurologia",
+        "instruction": "Percutir el nervio cubital en el surco epitrocleolecraniano y mantener flexión de codo >90° durante 60 segundos.",
+        "whatToLookFor": "Parestesias o descargas eléctricas irradiadas a 4º-5º dedos.",
+        "essential": true,
+        "mentorTip": "Si la percusión desencadena descargas distales, el nervio cubital está mecánicamente sensibilizado.",
+        "results": [
+          {
+            "label": "Tinel positivo con descargas a 4º-5º dedos",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-cubital-tunnel-syndrome",
+                "effect": "increase",
+                "weight": 8
+              }
+            ]
+          },
+          {
+            "label": "Tinel negativo",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-cubital-tunnel-syndrome",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-medial-elbow",
+      "name": "Batería de Separación Epitroclealgia vs Nervio Cubital",
+      "description": "Flexión resistida de muñeca vs Tinel cubital",
+      "requiredTests": [
+        "exam-golfers-elbow-test",
+        "exam-tinel-ulnar-elbow"
+      ],
+      "threshold": 1,
+      "concordanceText": "Diferencia de forma inequívoca el componente tendinoso del compromiso neural.",
+      "evidenceNote": "MacDermid JC, et al. Clinical diagnosis of medial epicondylalgia and cubital tunnel syndrome."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe engrosamiento del tendón común flexor o signos de atrapamiento/luxación dinámica del nervio cubital?",
+    "structures": [
+      {
+        "id": "us-medial-elbow-scan",
+        "name": "Tendón Común Flexor y Nervio Cubital",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-med-elbow-normal",
+            "label": "Tendón flexor y nervio cubital de morfología normal",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-med-tendinopathy",
+            "label": "Tendinosis del tendón flexor común con engrosamiento hipoecoico y microrroturas",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-ulnar-neuropathy",
+            "label": "Nervio cubital engrosado (área >10 mm²) en surco con pérdida del patrón fascicular o luxación dinámica anterior",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Estudio ecográfico de codo medial: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Hallazgo ecográfico concordante con la exploración clínica.",
+        "icon": "🟢"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-c8-radiculopathy",
+      "name": "Radiculopatía C8-T1",
+      "whatWouldReconsider": "Parestesias en borde medial del antebrazo con dolor cervical.",
+      "keyDiscriminatingTest": "Screening cervical / Reflejo tricipital"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-medial-elbow",
+      "structuralDiagnosis": "Epitroclealgia o Síndrome del Túnel Cubital",
+      "painGenerator": "Dolor tendinoso nociceptivo o neuropatía periférica por atrapamiento",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo tendinoso o neuropático por compresión",
+      "supportingFindings": [
+        "Test provocativo específico positivo",
+        "Ecografía concordante"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "En la epitroclealgia, los tendones que doblan la muñeca están fatigados; en el túnel cubital, el nervio sufre si doblamos el codo mucho rato. Evitar apoyar el codo sobre mesas duras, usar férula nocturna en semiflexión si hay hormigueos y hacer ejercicios excéntricos resolverá el problema.",
+      "mentorNote": "En el túnel cubital, evitar la hiperflexión mantenida (teléfono, dormir con codo muy doblado)."
+    },
+    "exercise": {
+      "objective": "Carga excéntrica de flexores-pronadores (Epitroclealgia) o deslizamiento neurodinámico del cubital.",
+      "phases": [
+        {
+          "name": "Fase 1: Control y Carga",
+          "description": "Ejercicios excéntricos con mancuerna ligera y neurodinámica cubital.",
+          "duration": "4-6 semanas"
+        }
+      ],
+      "loadGuidance": "Progresión sin desencadenar hormigueos distales."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-05",
+      "options": [
+        {
+          "name": "AINE tópico o neuromodulador",
+          "indication": "AINE tópico si tendinitis; pregabalina si disestesias.",
+          "example": "Diclofenaco tópico cada 12h",
+          "duration": "2 semanas",
+          "guardrails": [
+            "Piel intacta"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si fracaso conservador.",
+      "objective": "Infiltración peritendinosa ecoguiada o hidrodisección del nervio cubital.",
+      "targets": [
+        {
+          "name": "Epitróclea / Surco Cubital",
+          "indication": "Refractario",
+          "options": [
+            {
+              "name": "Corticoide / PRP en tendón; Hidrodisección en nervio",
+              "evidence": "Moderada"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Fuerza de agarre y hormigueos",
+        "icon": "✋"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "good",
+        "label": "Evolución favorable",
+        "action": "Progresar cargas.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Modificar el apoyo del codo y reentrenar la fuerza de la muñeca permitirá que el codo recupere su estabilidad sin dolor.",
+    "takeHomeMantra": "Proteger el codo de la presión directa y ejercitar la muñeca cura la cara interna del brazo."
+  },
+  "evidence": [
+    {
+      "citation": "Bevelacqua A, et al. Cubital tunnel syndrome and medial epicondylitis. Hand Clin. 2020;36(4):479-486.",
+      "topic": "Medial Elbow Pathologies",
+      "year": 2020
+    }
+  ]
+}

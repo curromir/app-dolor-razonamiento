@@ -1,0 +1,329 @@
+{
+  "id": "knee-lateral",
+  "region": "rodilla",
+  "regionLabel": "Rodilla",
+  "regionIcon": "🦵",
+  "presentation": "Dolor lateral de rodilla",
+  "presentationDesc": "Dolor en la cara externa de la rodilla, común en corredores o tras flexiones repetidas, diferenciando el síndrome de la banda iliotibial (BIT), meniscopatía lateral, artrosis femorotibial externa y ligamento colateral lateral.",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 20,
+  "redFlags": [
+    {
+      "id": "rf-lateral-mass-peroneal",
+      "text": "Masa palpable en cabeza del peroné con pie caído o pérdida de sensibilidad en dorso del pie (Sospecha Quiste Ganglionar / Tumoración con compresión del Nervio Peroneo Común)",
+      "severity": "critical",
+      "action": "RM de rodilla urgente y EMG para valorar compresión del nervio peroneo."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-itb-syndrome",
+      "name": "Síndrome de Fricción de la Banda Iliotibial (Rodilla del Corredor)",
+      "shortName": "Banda Iliotibial (BIT)",
+      "description": "Fricción o compresión de la bursa/tejido graso entre la cintilla iliotibial y el cóndilo femoral externo a 30° de flexión.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-lateral-meniscus-tear",
+      "name": "Meniscopatía / Quiste Parameniscal Lateral",
+      "shortName": "Menisco Lateral",
+      "description": "Lesión del menisco externo o quiste parameniscal con dolor en la interlínea articular lateral.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-lateral-compartment-oa",
+      "name": "Gonartrosis del Compartimento Femorotibial Lateral",
+      "shortName": "Gonartrosis Lateral",
+      "description": "Desgaste del compartimento externo con alineación en valgo y dolor continuo a la carga.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-lcl-sprain",
+      "name": "Esguince del Ligamento Colateral Lateral (LCL) / Tendinopatía Bíceps Femoral",
+      "shortName": "LCL / Bíceps Femoral",
+      "description": "Dolor por estrés en varo o sobrecarga en la inserción de la cabeza del peroné.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor aparece típicamente a los 15-20 minutos de empezar a correr o bajar cuestas y se siente como una quemazón en el lateral del fémur?»",
+      "explanation": "El patrón temporal y la quemazón sobre el epicóndilo lateral a 30° de flexión es el sello clínico del síndrome de la banda iliotibial.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, es una quemazón típica al correr o bajar cuestas que me obliga a parar",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-itb-syndrome",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        },
+        {
+          "label": "No, es un pinchazo mecánico profundo dentro de la rodilla al girar o ponerme en cuclillas",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-lateral-meniscus-tear",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-itb-syndrome",
+              "effect": "decrease",
+              "weight": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Dirigida — Rodilla Lateral",
+    "steps": [
+      {
+        "id": "exam-noble-compression",
+        "order": 1,
+        "name": "Test de Compresión de Noble / Test de Renne",
+        "catalogTestId": "rodilla-noble",
+        "category": "provocacion",
+        "instruction": "Comprimir con el pulgar el epicóndilo femoral lateral mientras se extiende pasivamente la rodilla desde 90°.",
+        "whatToLookFor": "Dolor exquisito agudo reproducido a unos 30° de flexión.",
+        "essential": true,
+        "mentorTip": "A 30° la cintilla pasa sobre el relieve óseo del cóndilo; altamente sensible para fricción de la BIT.",
+        "results": [
+          {
+            "label": "Dolor intenso reproducido a 30° de flexión",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-itb-syndrome",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Indoloro",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-itb-syndrome",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-lateral-joint-line",
+        "order": 2,
+        "name": "Palpación de la Interlínea Articular Lateral y Test de McMurray Lateral",
+        "catalogTestId": "rodilla-mcmurray",
+        "category": "menisco",
+        "instruction": "Palpar la hendidura articular externa y realizar rotación interna tibial con estrés en varo desde flexión máxima.",
+        "whatToLookFor": "Dolor o resalte en la interlínea lateral.",
+        "essential": true,
+        "mentorTip": "La interlínea lateral duele en menisco externo/artrosis; la BIT duele 2-3 cm más arriba en el cóndilo.",
+        "results": [
+          {
+            "label": "Dolor focal en la hendidura interlineal lateral",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-lateral-meniscus-tear",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-lateral-compartment-oa",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          },
+          {
+            "label": "Interlínea indolora",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-lateral-meniscus-tear",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-itb",
+      "name": "Clúster de Fricción de Banda Iliotibial",
+      "description": "Noble positivo + Palpación sobre cóndilo femoral + Dolor al correr",
+      "requiredTests": [
+        "exam-noble-compression"
+      ],
+      "threshold": 1,
+      "concordanceText": "Alta probabilidad de síndrome de fricción de la BIT.",
+      "evidenceNote": "Rosenthal MD. Clinical testing for ITB friction syndrome."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe engrosamiento de la banda iliotibial (>2.5 mm), líquido en el receso profundo o quiste meniscal?",
+    "structures": [
+      {
+        "id": "us-itb-scan",
+        "name": "Banda Iliotibial y Receso Graso Subyacente",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-itb-normal",
+            "label": "BIT normal ≤2.0 mm, ecogénica sin líquido subyacente",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-itb-thickened",
+            "label": "Engrosamiento hipoecoico de la BIT >2.5 mm con edema del tejido graso subyacente",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-parameniscal-cyst",
+            "label": "Quiste parameniscal anecoico lobulado en margen del menisco externo",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Evaluación ecográfica lateral de rodilla: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Noble positivo con engrosamiento y edema de la BIT en ecografía.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor lateral difuso con cambios ecográficos mínimos.",
+        "icon": "🟡"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-peroneal-proximal",
+      "name": "Inestabilidad de la articulación tibioperonea proximal",
+      "whatWouldReconsider": "Dolor y chasquido al movilizar la cabeza del peroné.",
+      "keyDiscriminatingTest": "Movilización anteroposterior cabeza del peroné"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-itb-syndrome",
+      "structuralDiagnosis": "Síndrome de Fricción de la Banda Iliotibial",
+      "painGenerator": "Dolor nociceptivo por compresión/fricción de la cintilla iliotibial",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo mecánico por sobrecarga",
+      "supportingFindings": [
+        "Dolor al correr",
+        "Noble positivo a 30°",
+        "Engrosamiento ecográfico de la BIT"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "La cintilla iliotibial es una banda tendinosa gruesa que ayuda a estabilizar la pelvis y la rodilla. En corredores se irrita por sobreuso o debilidad de los músculos de la cadera (glúteo medio). Reduciendo temporalmente el volumen de carrera y reforzando la cadera se recupera por completo.",
+      "mentorNote": "La debilidad de abductores de cadera (glúteo medio) provoca aducción femoral excesiva que tensa la BIT."
+    },
+    "exercise": {
+      "objective": "Fortalecer glúteo medio, control del valgo dinámico y técnica de zancada.",
+      "phases": [
+        {
+          "name": "Fase 1: Descarga y Glúteo Isométrico",
+          "description": "Reducción de carrera (sustituir por bicicleta suave o elíptica), clamshells y puentes laterales.",
+          "duration": "2-3 semanas"
+        },
+        {
+          "name": "Fase 2: Fuerza en Carga",
+          "description": "Sentadillas búlgaras, zancadas con control de rodilla y Monster walks con banda.",
+          "duration": "4-6 semanas"
+        },
+        {
+          "name": "Fase 3: Retorno a la Carrera",
+          "description": "Progresión gradual de carrera continua en llano (evitar bajadas).",
+          "duration": "6-12 semanas"
+        }
+      ],
+      "loadGuidance": "Dolor durante ejercicios ≤3/10."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-02",
+      "options": [
+        {
+          "name": "AINE tópico o ciclo oral corto",
+          "indication": "En fase irritativa aguda.",
+          "example": "Diclofenaco tópico cada 12h",
+          "duration": "10-14 días",
+          "guardrails": [
+            "Piel intacta"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo en casos crónicos recalcitrantes refractarios a 8 semanas de ejercicio.",
+      "objective": "Infiltración ecoguiada de la bursa profunda sub-BIT.",
+      "targets": [
+        {
+          "name": "Bursa profunda de la Banda Iliotibial",
+          "indication": "Fricción refractaria",
+          "options": [
+            {
+              "name": "Corticoide de depósito bajo volumen (0.5-1 ml)",
+              "evidence": "Moderada a corto plazo"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Tolerancia a la carrera sin quemazón lateral",
+        "icon": "🏃"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "good_recovery",
+        "label": "Evolución favorable",
+        "action": "Retorno gradual a entrenamientos.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "El problema no está en el fémur, sino en el control de la cadera que tensa la banda. Con los ejercicios de glúteo medio volverás a correr sin dolor.",
+    "takeHomeMantra": "Estabilizar la cadera es el mejor escudo para la cara lateral de la rodilla."
+  },
+  "evidence": [
+    {
+      "citation": "van der Worp MP, et al. Iliotibial band syndrome in runners: a systematic review. Sports Med. 2012;42(11):969-992.",
+      "topic": "ITB Syndrome Evidence",
+      "year": 2012
+    }
+  ]
+}

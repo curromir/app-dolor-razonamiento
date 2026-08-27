@@ -1,0 +1,408 @@
+{
+  "id": "shoulder-weakness",
+  "region": "hombro",
+  "regionLabel": "Hombro y Cintura Escapular",
+  "regionIcon": "🦴",
+  "presentation": "Debilidad / Pseudoparálisis",
+  "presentationDesc": "Pérdida marcada de fuerza o incapacidad activa para elevar o rotar el brazo, debiendo distinguir entre inhibición por dolor, rotura masiva del manguito o denervación neurológica.",
+  "visualTier": "safety",
+  "visualLabel": "Seguridad",
+  "clinicalPriority": 30,
+  "redFlags": [
+    {
+      "id": "rf-massive-tear-acute",
+      "text": "Pseudoparálisis aguda súbita (caída del brazo con elevación activa <60° pero movilidad pasiva completa) tras caída o esfuerzo en paciente activo",
+      "severity": "critical",
+      "action": "Ecografía urgente / RM de hombro y derivación precoz a Cirugía de Hombro (<3 semanas) para reparación tendinosa antes de la retracción/infiltración grasa."
+    },
+    {
+      "id": "rf-neuro-axillary-c5",
+      "text": "Pérdida motora de deltoides + hipoestesia en 'charretera' deltoidea o afectación motora multinivel (Sospecha Lesión Nervio Axilar / Radiculopatía C5 aguda)",
+      "severity": "critical",
+      "action": "EMG urgente y RM cervical/hombro según nivel de sospecha."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-massive-cuff-tear",
+      "name": "Rotura Masiva / Retraída del Manguito Rotador (≥2 tendones)",
+      "shortName": "Rotura Masiva de Manguito",
+      "description": "Desgarro completo de supra e infraespinoso o subescapular con pérdida del par de fuerzas glenohumeral.",
+      "initialLevel": "very_compatible",
+      "score": 0
+    },
+    {
+      "id": "hyp-pain-inhibition",
+      "name": "Inhibición Motora Secundaria al Dolor (Pseudodebilidad)",
+      "shortName": "Inhibición por Dolor",
+      "description": "La articulación y los tendones están íntegros, pero el dolor agudo intenso frena la contracción muscular voluntaria.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-neurological-deficit",
+      "name": "Déficit Neurológico Periférico / Plexopatía / Nervio Axilar o Supraescapular",
+      "shortName": "Causa Neurológica",
+      "description": "Denervación motora real con atrofia, arreflexia o hipoestesia asociada.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«Cuando alguien le levanta el brazo con cuidado, ¿el brazo se mueve completamente sin resistencia aunque usted solo no pueda levantarlo?»",
+      "explanation": "Movilidad pasiva conservada con elevación activa nula define la pseudoparálisis y descarta rigidez articular (capsulitis).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, si me lo levantan sube casi entero, pero yo solo no puedo mantenerlo",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-massive-cuff-tear",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-neurological-deficit",
+              "effect": "increase",
+              "weight": 6
+            }
+          ]
+        },
+        {
+          "label": "No, está completamente rígido y duro incluso cuando intentan moverlo",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-massive-cuff-tear",
+              "effect": "decrease",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-pain-inhibition",
+              "effect": "increase",
+              "weight": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿El problema principal es que NO PUEDE por falta de fuerza o que EL DOLOR LE OBLIGA a bajar el brazo?»",
+      "explanation": "Diferencia la debilidad real (neurológica/rotura) de la inhibición refleja por dolor.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "No tengo fuerza ni energía en el músculo, como si se hubiera desconectado",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-massive-cuff-tear",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-neurological-deficit",
+              "effect": "increase",
+              "weight": 6
+            }
+          ]
+        },
+        {
+          "label": "Tengo fuerza pero el pinchazo de dolor es tan agudo que tengo que soltar",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-pain-inhibition",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-massive-cuff-tear",
+              "effect": "decrease",
+              "weight": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración de Seguridad — Debilidad y Pseudoparálisis",
+    "steps": [
+      {
+        "id": "exam-passive-active-gap",
+        "order": 1,
+        "name": "Discrepancia Movilidad Activa vs Pasiva",
+        "category": "movilidad",
+        "instruction": "Medir elevación anterior activa (el paciente solo) frente a pasiva (elevada por el médico).",
+        "whatToLookFor": "Discrepancia >60° entre pasiva (normal) y activa (<90°) confirma pseudoparálisis.",
+        "essential": true,
+        "mentorTip": "La pseudoparálisis con pasiva libre es indicación de imagen prioritaria para descartar rotura masiva operable.",
+        "results": [
+          {
+            "label": "Discrepancia franca: pasiva libre, activa muy limitada",
+            "value": "gap_positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-massive-cuff-tear",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Ambas limitadas por igual (rigidez)",
+            "value": "stiff",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-massive-cuff-tear",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-drop-arm",
+        "order": 2,
+        "name": "Test de la Caída del Brazo (Drop Arm Test)",
+        "catalogTestId": "hombro-drop-arm",
+        "category": "fuerza",
+        "instruction": "Elevar pasivamente el brazo a 90° de abducción y pedir al paciente que lo baje lentamente.",
+        "whatToLookFor": "Incapacidad para controlar el descenso con caída brusca del brazo.",
+        "essential": true,
+        "mentorTip": "Altamente específico de rotura completa del supraespinoso/manguito superior.",
+        "results": [
+          {
+            "label": "Positivo: el brazo cae súbitamente",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-massive-cuff-tear",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Negativo: descenso controlado",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-massive-cuff-tear",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-subscap-belly",
+        "order": 3,
+        "name": "Test del Subescapular (Belly Press / Lift-Off)",
+        "catalogTestId": "hombro-belly-press",
+        "category": "fuerza",
+        "instruction": "El paciente presiona el abdomen con la palma de la mano manteniendo el codo adelantado.",
+        "whatToLookFor": "Si el codo cae hacia atrás (signo de Napoleón), indica rotura del subescapular anterior.",
+        "essential": true,
+        "mentorTip": "Una rotura combinada de supraespinoso + subescapular desestabiliza por completo el fulcro del hombro.",
+        "results": [
+          {
+            "label": "Positivo: codo cae hacia atrás (debilidad subescapular)",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-massive-cuff-tear",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          },
+          {
+            "label": "Negativo: codo se mantiene adelantado",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-massive-cuff-tear",
+                "effect": "decrease",
+                "weight": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-pseudoparalysis",
+      "name": "Clúster de Alerta de Pseudoparálisis de Hombro",
+      "description": "Discrepancia activa/pasiva + Drop Arm positivo + Lag signs positivos",
+      "requiredTests": [
+        "exam-passive-active-gap",
+        "exam-drop-arm"
+      ],
+      "threshold": 1,
+      "concordanceText": "Alta probabilidad de rotura masiva o lesión nerviosa que requiere imagen urgente y valoración traumatológica.",
+      "evidenceNote": "Collin et al., 2014: Clasificación de roturas masivas y riesgo de artropatía de manguito."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe rotura masiva completa con retracción tendinosa o signos de atrofia grasa muscular?",
+    "structures": [
+      {
+        "id": "us-massive-cuff",
+        "name": "Complejo Manguito (Supraespinoso, Infraespinoso, Subescapular)",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-cuff-intact",
+            "label": "Manguito continuo sin rotura transmural",
+            "concordanceEffect": "discordant"
+          },
+          {
+            "id": "us-cuff-massive-tear",
+            "label": "Rotura completa de espesor total ≥2 tendones con retracción a nivel glenoideo",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-cuff-deltoid-contact",
+            "label": "Ascenso de cabeza humeral con contacto deltoideo directo",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Evaluación del manguito: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Pseudoparálisis clínica con rotura masiva confirmada en ecografía.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Debilidad desproporcionada para el hallazgo ecográfico; sospechar causa neurológica añadida.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Manguito íntegro en paciente con parálisis deltoidea; sospechar lesión de nervio axilar o C5.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-axillary-nerve",
+      "name": "Lesión del Nervio Axilar / Circunflejo",
+      "whatWouldReconsider": "Hipoestesia en cara lateral del deltoides con manguito íntegro.",
+      "keyDiscriminatingTest": "Sensibilidad en charretera deltoidea y EMG"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-massive-tear",
+      "structuralDiagnosis": "Rotura Masiva del Manguito Rotador con Pérdida de Fulcro",
+      "painGenerator": "Disfunción biomecánica severa e incompetencia del manguito",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Disfunción biomecánica estructural",
+      "supportingFindings": [
+        "Discrepancia activa/pasiva",
+        "Drop Arm positivo",
+        "Rotura completa confirmada"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Existe una rotura importante de los tendones que levantan el brazo. Es fundamental que un cirujano ortopédico valore si en tu caso es conveniente reparar los tendones de forma precoz o realizar un programa especializado para reeducar otros músculos que compensen el movimiento.",
+      "mentorNote": "En pacientes jóvenes o activos con rotura aguda masiva, la ventana de reparación anatómica es <3-6 meses antes de la degeneración grasa irreversible."
+    },
+    "exercise": {
+      "objective": "En casos no quirúrgicos, reeducar el deltoides anterior y trapecio (Protocolo de Levy/Henseler).",
+      "phases": [
+        {
+          "name": "Fase 1: Supino / Gravedad Reducida",
+          "description": "Elevación anterior asistida en decúbito supino para activar deltoides anterior.",
+          "duration": "2-6 semanas"
+        },
+        {
+          "name": "Fase 2: Progresión Vertical",
+          "description": "Elevación en plano inclinado y control escapular progresivo.",
+          "duration": "6-12 semanas"
+        }
+      ],
+      "loadGuidance": "Ejercicios guiados por fisioterapeuta evitando forzar compensaciones dolorosas."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-01",
+      "options": [
+        {
+          "name": "Analgésicos simples / AINEs",
+          "indication": "Control sintomático del dolor.",
+          "example": "Paracetamol 1g/8h o metamizol",
+          "duration": "Según necesidad",
+          "guardrails": [
+            "Función renal",
+            "Riesgo hepático"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo con fines analgésicos en pacientes no candidatos quirúrgicos con dolor severo.",
+      "objective": "Aliviar el dolor para facilitar la reeducación del deltoides.",
+      "targets": [
+        {
+          "name": "Bursa Subacromial / Espacio Glenohumeral",
+          "indication": "Dolor refractario",
+          "options": [
+            {
+              "name": "Corticoide ecoguiado o Ácido Hialurónico",
+              "evidence": "Moderada analgésica"
+            }
+          ],
+          "contraindications": [
+            "Sospecha de cirugía de reparación inminente (evitar corticoides en los 3 meses previos)"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Valoración urgente por Cirugía Ortopédica en 1-2 semanas",
+    "parameters": [
+      {
+        "name": "Rango de elevación activa",
+        "icon": "📐"
+      },
+      {
+        "name": "Dolor nocturno",
+        "icon": "😴"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "surgical_candidate",
+        "label": "Candidato quirúrgico",
+        "action": "Derivar a Traumatología con RM.",
+        "icon": "🔴"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Hemos identificado por qué el hombro no responde con fuerza. Ahora lo prioritario es que el especialista valore la mejor opción anatómica para recuperar tu funcionalidad.",
+    "takeHomeMantra": "Actuar a tiempo en la debilidad muscular asegura el mejor pronóstico."
+  },
+  "evidence": [
+    {
+      "citation": "Collin P, et al. Relationship between massive rotator cuff tears and functional outcome. J Shoulder Elbow Surg. 2014;23(8):1194-1202.",
+      "topic": "Massive Cuff Tears & Pseudoparalysis",
+      "year": 2014
+    }
+  ]
+}

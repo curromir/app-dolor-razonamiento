@@ -1,0 +1,422 @@
+{
+  "id": "shoulder-posterior-pain",
+  "region": "hombro",
+  "regionLabel": "Hombro y Cintura Escapular",
+  "regionIcon": "🦴",
+  "presentation": "Dolor posterior (Infraespinoso / Manguito Posterior)",
+  "presentationDesc": "Dolor predominante en la cara posterior del hombro, fosa infraespinosa o región retrohumeral, exacerbado con la rotación externa resistida o deceleración.",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 21,
+  "redFlags": [
+    {
+      "id": "rf-spinoglenoid-cyst-mass",
+      "text": "Masa palpable en fosa infraespinosa con atrofia muscular rápida y debilidad severa aislada de rotación externa (Sospecha Quiste Paralabral Espinoglenoideo con atrapamiento del Nervio Supraescapular)",
+      "severity": "critical",
+      "action": "RM de hombro urgente para valorar labrum posterior y descompresión ecoguiada o quirúrgica."
+    },
+    {
+      "id": "rf-posterior-dislocation",
+      "text": "Bloqueo mecánico rígido en rotación interna tras convulsión, descarga eléctrica o traumatismo (Sospecha Luxación Posterior Glenohumeral inadvertida)",
+      "severity": "critical",
+      "action": "Radiografía en proyecciones axilar y escapular en 'Y' urgente."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-infraspinatus-tendinopathy",
+      "name": "Tendinopatía / Rotura del Infraespinoso o Redondo Menor",
+      "shortName": "Infraespinoso / Manguito Post.",
+      "description": "Sobrecarga, tendinosis o desgarro en la inserción posterolateral del troquíter humeral.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-posterior-capsule-tightness",
+      "name": "Tensión / Rigidez Capsular Posterior (GIRD)",
+      "shortName": "Cápsula Posterior / GIRD",
+      "description": "Déficit de rotación interna glenohumeral con dolor posterior por pinzamiento interno posterosuperior.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-suprascapular-neuropathy",
+      "name": "Neuropatía del Nervio Supraescapular (Escotadura Espinoglenoidea)",
+      "shortName": "Nervio Supraescapular",
+      "description": "Compresión nerviosa que genera dolor sordo posterior y debilidad en rotación externa.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-cervical-referred-posterior",
+      "name": "Dolor Referido Cervical C5-C7 / Miofascial Periescapular",
+      "shortName": "Referido Cervical / Periescapular",
+      "description": "Puntos gatillo en trapecio medio/romboides o radiculopatía cervical que se proyecta a región posterior.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor empeora al girar el brazo hacia afuera con fuerza (ej. usar un destornillador, peinarse, lanzar)?»",
+      "explanation": "La activación contrarresistencia del infraespinoso solicita el manguito posterior.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, al girar hacia afuera con fuerza",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-infraspinatus-tendinopathy",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-suprascapular-neuropathy",
+              "effect": "increase",
+              "weight": 4
+            }
+          ]
+        },
+        {
+          "label": "No, es un dolor continuo sordo que no cambia con la fuerza",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-cervical-referred-posterior",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-infraspinatus-tendinopathy",
+              "effect": "decrease",
+              "weight": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Ha notado que se le ha vaciado o 'hundido' la musculatura detrás del omóplato?»",
+      "explanation": "La atrofia de la fosa infraespinosa orienta fuertemente a denervación del nervio supraescapular o rotura masiva crónica.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, se nota claramente una pérdida de volumen muscular detrás del omóplato",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-suprascapular-neuropathy",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-infraspinatus-tendinopathy",
+              "effect": "increase",
+              "weight": 4
+            }
+          ]
+        },
+        {
+          "label": "No, el volumen muscular parece normal en ambos lados",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-suprascapular-neuropathy",
+              "effect": "decrease",
+              "weight": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Hombro Posterior",
+    "steps": [
+      {
+        "id": "exam-patte",
+        "order": 1,
+        "name": "Test de Patte (Rotación Externa a 90° de Abducción)",
+        "catalogTestId": "hombro-patte",
+        "category": "fuerza",
+        "instruction": "Hombro en 90° de abducción y 90° de flexión de codo. El examinador resiste la rotación externa.",
+        "whatToLookFor": "Dolor (tendinopatía) vs debilidad franca o incapacidad para sostener la postura (rotura/denervación).",
+        "essential": true,
+        "mentorTip": "Diferenciar si la debilidad es por inhibición álgica (cede si apoyas el codo) o debilidad real estructural.",
+        "results": [
+          {
+            "label": "Dolor con fuerza conservada",
+            "value": "pain_only",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-infraspinatus-tendinopathy",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          },
+          {
+            "label": "Debilidad franca / claudicación",
+            "value": "weakness",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-infraspinatus-tendinopathy",
+                "effect": "increase",
+                "weight": 6
+              },
+              {
+                "hypothesisId": "hyp-suprascapular-neuropathy",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          },
+          {
+            "label": "Normal sin dolor",
+            "value": "normal",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-infraspinatus-tendinopathy",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-er-lag",
+        "order": 2,
+        "name": "External Rotation Lag Sign (Signo del Retardo en Rotación Externa)",
+        "category": "fuerza",
+        "instruction": "El examinador coloca pasivamente el hombro en rotación externa casi máxima a 20° de abducción y le pide al paciente que mantenga la posición.",
+        "whatToLookFor": "Si el antebrazo cae hacia adelante en rotación interna (lag sign positivo), indica rotura completa del infraespinoso.",
+        "essential": true,
+        "mentorTip": "Especificidad cercana al 95% para rotura de espesor completo del infraespinoso.",
+        "results": [
+          {
+            "label": "Positivo: cae hacia adelante (incapaz de sostener rotación externa)",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-infraspinatus-tendinopathy",
+                "effect": "increase",
+                "weight": 8
+              }
+            ]
+          },
+          {
+            "label": "Negativo: sostiene la posición firmemente",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-infraspinatus-tendinopathy",
+                "effect": "decrease",
+                "weight": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-posterior-cuff",
+      "name": "Clúster de Integridad del Manguito Posterior",
+      "description": "Patte doloroso/débil + ER Lag Sign + Palpación troquíter posterior",
+      "requiredTests": [
+        "exam-patte",
+        "exam-er-lag"
+      ],
+      "threshold": 1,
+      "concordanceText": "Permite clasificar con alta precisión entre tendinopatía no rotuliana vs rotura del manguito posterior.",
+      "evidenceNote": "Hertel et al., 2002: Lag signs tienen excelente especificidad (>94%)."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe tendinopatía, rotura del infraespinoso o quiste en la escotadura espinoglenoidea?",
+    "structures": [
+      {
+        "id": "us-infraspinatus",
+        "name": "Tendón y Vientre Muscular del Infraespinoso",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-infra-normal",
+            "label": "Normal: ecoestructura fibrilar conservada",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-infra-tendinopathy",
+            "label": "Tendinosis: engrosamiento hipoecoico sin rotura",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-infra-tear",
+            "label": "Rotura parcial o completa del infraespinoso",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-infra-atrophy",
+            "label": "Atrofia con degeneración grasa del vientre muscular",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Tendón del infraespinoso: {finding}."
+      },
+      {
+        "id": "us-spinoglenoid-notch",
+        "name": "Escotadura Espinoglenoidea y Labrum Posterior",
+        "priority": 2,
+        "findings": [
+          {
+            "id": "us-notch-free",
+            "label": "Escotadura libre sin masas quísticas",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-notch-cyst",
+            "label": "Quiste paralabral anecoico/tabicado en escotadura con compresión nerviosa",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Escotadura espinoglenoidea: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Dolor posterior concordante con Patte doloroso y tendinosis/rotura de infraespinoso en ecografía.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Hallazgo ecográfico leve con sintomatología más amplia.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Infraespinoso normal en ecografía con dolor irradiado desde columna cervical.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-cervical",
+      "name": "Radiculopatía Cervical C6-C7",
+      "whatWouldReconsider": "Dolor interescapular que se extiende por el tríceps hacia la mano.",
+      "keyDiscriminatingTest": "Test de Spurling / Screening Cervical"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-infraspinatus",
+      "structuralDiagnosis": "Tendinopatía del Manguito Posterior (Infraespinoso)",
+      "painGenerator": "Dolor nociceptivo tendinoso mecánico del infraespinoso",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo tendinoso posterior",
+      "supportingFindings": [
+        "Dolor posterior",
+        "Patte doloroso",
+        "ER lag negativo (sin rotura masiva)",
+        "Tendinosis en ecografía"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El infraespinoso es el músculo que frena y estabiliza el hombro cuando gira hacia afuera. Con un programa progresivo de fuerza y elasticidad capsular, el tendón recupera su capacidad de carga.",
+      "mentorNote": "Enfatizar el fortalecimiento excéntrico de rotadores externos y estiramiento de cápsula posterior (Sleeper stretch)."
+    },
+    "exercise": {
+      "objective": "Fortalecer rotadores externos y recuperar la rotación interna glenohumeral.",
+      "phases": [
+        {
+          "name": "Fase 1: Isométricos",
+          "description": "Rotación externa isométrica en neutro y estiramiento suave posterior.",
+          "duration": "1-3 semanas"
+        },
+        {
+          "name": "Fase 2: Excéntricos",
+          "description": "Rotación externa con banda elástica (énfasis en la fase de retorno lento).",
+          "duration": "3-6 semanas"
+        },
+        {
+          "name": "Fase 3: Control Dinámico",
+          "description": "Ejercicios funcionales y lanzamientos controlados.",
+          "duration": "6-12 semanas"
+        }
+      ],
+      "loadGuidance": "Dolor tolerable durante el ejercicio (≤3/10) que remita al finalizar."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-01",
+      "options": [
+        {
+          "name": "AINE oral ciclo corto",
+          "indication": "En fases agudas irritativas.",
+          "example": "Naproxeno 500mg/12h con alimentos",
+          "duration": "5-7 días",
+          "guardrails": [
+            "Riesgo GI",
+            "Función renal"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si quiste espinoglenoideo compresivo o bursitis subdeltoidea posterior refractaria.",
+      "objective": "Aspiración ecoguiada de quiste o infiltración SASD posterior.",
+      "targets": [
+        {
+          "name": "Bursa Subdeltoidea Posterior / Quiste",
+          "indication": "Fracaso conservador",
+          "options": [
+            {
+              "name": "Aspiración ecoguiada + Corticoide",
+              "evidence": "Moderada"
+            }
+          ],
+          "contraindications": [
+            "Infección local"
+          ],
+          "safetyNote": "Evitar punzar el labrum en quistes comunicantes."
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Fuerza en rotación externa",
+        "icon": "💪"
+      },
+      {
+        "name": "Dolor nocturno",
+        "icon": "😴"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría clínica",
+        "action": "Progresar cargas de rotadores.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "El manguito posterior necesita recuperar su tono muscular gradualmente. Con los ejercicios de rotación externa y paciencia, volverás a tus actividades sin molestias.",
+    "takeHomeMantra": "El músculo aprende tolerando carga progresiva cada semana."
+  },
+  "evidence": [
+    {
+      "citation": "Hertel R, et al. Lag signs in the diagnosis of rotator cuff tears. J Shoulder Elbow Surg. 2002;11(4):307-312.",
+      "topic": "Lag Signs Accuracy",
+      "year": 2002
+    }
+  ]
+}

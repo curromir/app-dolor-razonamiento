@@ -1,5 +1,5 @@
-// Service Worker v39.0 - Barra Herramientas Directas en Consulta
-const CACHE_NAME = 'dolor-tests-v39';
+// Service Worker v40.0 - 35 Clinical Pathways & 4-Tier Visual Hierarchy
+const CACHE_NAME = 'dolor-tests-v40';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

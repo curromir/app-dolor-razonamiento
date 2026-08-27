@@ -1,0 +1,528 @@
+{
+  "id": "shoulder-superior-pain",
+  "region": "hombro",
+  "regionLabel": "Hombro y Cintura Escapular",
+  "regionIcon": "🦴",
+  "presentation": "Dolor superior (Acromioclavicular)",
+  "presentationDesc": "Dolor puntual en la cúspide o parte superior del hombro, que se exacerba al cruzar el brazo por delante del pecho (Cross-Body Adduction) o dormir sobre ese lado.",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 20,
+  "redFlags": [
+    {
+      "id": "rf-ac-deformity-grade4",
+      "text": "Deformidad en 'tecla de piano' severa irreductible tras traumatismo directo con desplazamiento posterior de la clavícula en el trapecio (Sospecha Luxación AC Grado IV-VI)",
+      "severity": "critical",
+      "action": "Inmovilización en cabestrillo, radiografía de ambas clavículas (proyección Zanca) y valoración urgente por Traumatología."
+    },
+    {
+      "id": "rf-ac-infection",
+      "text": "Eritema, calor local prominente, fluctuación dolorosa sobre articulación AC y fiebre sistémica (Sospecha Artritis Séptica AC)",
+      "severity": "critical",
+      "action": "Punción-aspiración articular para cultivo y derivación urgente a Urgencias/Infecciosas."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-ac-oa",
+      "name": "Artropatía / Artrosis Acromioclavicular Sintomática",
+      "shortName": "Artrosis AC",
+      "description": "Degeneración articular con hipertrofia ósea, osteofitos inferiores y sinovitis mecánica que duele a la palpación directa y aducción horizontal.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-ac-sprain",
+      "name": "Esguince / Inestabilidad Acromioclavicular Grado I-II",
+      "shortName": "Esguince AC",
+      "description": "Distensión o rotura parcial de ligamentos acromioclaviculares tras caída o sobrecarga deportiva con dolor puntual.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-subacromial-referred",
+      "name": "Dolor Subacromial / Manguito con Irradiación Superior",
+      "shortName": "Subacromial / Manguito",
+      "description": "Tendinopatía de supraespinoso o bursitis SASD cuyo dolor irradia hacia la zona acromial superior.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-cervical-referred-ac",
+      "name": "Dolor Referido Cervical C4-C5",
+      "shortName": "Referido Cervical",
+      "description": "Dolor originado en facetas o raíces cervicales medias que se proyecta sobre el vértice del hombro y trapecio superior.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Puede señalar con la punta de un solo dedo exactamente dónde siente el dolor principal?»",
+      "explanation": "El dolor acromioclavicular verdadero es exquisitamente focal y el paciente señala directamente el relieve óseo superior (Signo del dedo). El dolor subacromial o cervical es más difuso.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Justo encima del hueso en la cúspide del hombro (articulación acromioclavicular)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-ac-oa",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-ac-sprain",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-subacromial-referred",
+              "effect": "decrease",
+              "weight": 3
+            }
+          ]
+        },
+        {
+          "label": "En la cara lateral del brazo/deltoides o irradiado desde el cuello",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-cervical-referred-ac",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-subacromial-referred",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-ac-oa",
+              "effect": "decrease",
+              "weight": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Le molesta intensamente al ponerse el cinturón de seguridad, abrocharse el sujetador o cruzar el brazo por delante hacia el hombro contrario?»",
+      "explanation": "La aducción horizontal cruzada (Cross-body) comprime directamente las superficies de la articulación acromioclavicular.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, es el movimiento más doloroso y reproduce exactamente mi dolor",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-ac-oa",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-ac-sprain",
+              "effect": "increase",
+              "weight": 5
+            }
+          ]
+        },
+        {
+          "label": "No especialmente, me duele más al separar el brazo lateralmente hacia arriba",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-subacromial-referred",
+              "effect": "increase",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-ac-oa",
+              "effect": "decrease",
+              "weight": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "«¿Ha tenido un golpe directo sobre el hombro o una caída apoyando el brazo recientemente?»",
+      "explanation": "Diferencia artrosis crónica de esguince o lesión traumática aguda acromioclavicular.",
+      "essential": false,
+      "answers": [
+        {
+          "label": "Sí, caída/golpe directo reciente sobre el hombro",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-ac-sprain",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-ac-oa",
+              "effect": "decrease",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "label": "No, empezó gradualmente sin traumatismo previo",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-ac-oa",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-ac-sprain",
+              "effect": "decrease",
+              "weight": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Física Dirigida — Articulación Acromioclavicular",
+    "steps": [
+      {
+        "id": "exam-ac-palpation",
+        "order": 1,
+        "name": "Palpación directa de la articulación AC",
+        "category": "palpacion",
+        "instruction": "Palpar con el dedo índice la interlínea acromioclavicular en la cara superior del hombro y comparar con el lado contralateral.",
+        "whatToLookFor": "Dolor exquisito, engrosamiento óseo (osteofitos) o resalte a la presión.",
+        "essential": true,
+        "mentorTip": "La palpación AC tiene una sensibilidad del 96% pero baja especificidad. Si es completamente indolora, la artrosis AC es muy improbable como generador primario.",
+        "results": [
+          {
+            "label": "Dolor exquisito localizado en la interlínea AC",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ac-oa",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          },
+          {
+            "label": "Indoloro a la palpación",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ac-oa",
+                "effect": "decrease",
+                "weight": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-cross-body",
+        "order": 2,
+        "name": "Test de Aducción Horizontal Cruzada (Cross-Body Adduction)",
+        "catalogTestId": "hombro-cross-body",
+        "category": "provocacion",
+        "instruction": "Con el hombro flexionado a 90°, aducir pasivamente el brazo a través del tórax hacia el lado contrario mientras se estabiliza la escápula.",
+        "whatToLookFor": "Reproducción del dolor exacto en el vértice superior del hombro.",
+        "essential": true,
+        "mentorTip": "Si el dolor se localiza en la cara posterior del hombro, refleja tensión capsular posterior, no patología AC.",
+        "results": [
+          {
+            "label": "Dolor reproducido en el vértice superior / AC",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ac-oa",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          },
+          {
+            "label": "Dolor en cara posterior o indoloro",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ac-oa",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-obrien-ac",
+        "order": 3,
+        "name": "Test de O'Brien orientado a AC (Active Compression Test)",
+        "catalogTestId": "hombro-obrien",
+        "category": "provocacion",
+        "instruction": "Brazo flexionado a 90° con 10-15° de aducción horizontal y rotación interna máxima (pulgar abajo). Aplicar fuerza descendente.",
+        "whatToLookFor": "Dolor localizado en la cara SUPERIOR (AC) frente a dolor PROFUNDO articular (SLAP/Labrum).",
+        "essential": true,
+        "mentorTip": "El test de O'Brien es útil para AC si el dolor es claramente superficial y superior, aliviándose al rotar en supinación (pulgar arriba).",
+        "results": [
+          {
+            "label": "Dolor en cara superior que mejora con pulgar arriba",
+            "value": "positive_ac",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ac-oa",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          },
+          {
+            "label": "Dolor profundo o sin dolor",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ac-oa",
+                "effect": "decrease",
+                "weight": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-ac",
+      "name": "Tríada Diagnóstica Acromioclavicular",
+      "description": "Palpación dolorosa AC + Cross-body positivo + O'Brien superior positivo",
+      "requiredTests": [
+        "exam-ac-palpation",
+        "exam-cross-body",
+        "exam-obrien-ac"
+      ],
+      "threshold": 2,
+      "concordanceText": "La presencia de ≥2 maniobras específicas positivas aumenta exponencialmente la probabilidad de que la articulación AC sea el generador del dolor.",
+      "evidenceNote": "Sensibilidad combinada >90% con especificidad >85% (Chronopoulos et al., 2004)"
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe artrosis acromioclavicular con sinovitis, osteofitos prominentes o derrame que concuerde con el foco doloroso?",
+    "structures": [
+      {
+        "id": "us-ac-joint",
+        "name": "Articulación Acromioclavicular",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-ac-normal",
+            "label": "Normal: interlínea simétrica, cápsula plana ≤2 mm",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-ac-oa-mild",
+            "label": "Cambios degenerativos leves sin sinovitis",
+            "concordanceEffect": "possible"
+          },
+          {
+            "id": "us-ac-synovitis",
+            "label": "Artrosis con distensión capsular >3 mm y sinovitis activa",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-ac-geode",
+            "label": "Artrosis severa con geodas y osteofitos que protruyen hacia plano subacromial",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Articulación acromioclavicular: {finding}."
+      },
+      {
+        "id": "us-sasd-cuff",
+        "name": "Espacio Subacromial y Manguito Subyacente",
+        "priority": 2,
+        "condition": "Explorar para descartar conflicto secundario por osteofitos inferiores",
+        "findings": [
+          {
+            "id": "us-cuff-normal",
+            "label": "Supraespinoso y bursa SASD conservados",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-cuff-impingement",
+            "label": "Bursitis SASD subyacente por osteofito acromial inferior",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Espacio subacromial adyacente: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Dolor superior puntual, palpación dolorosa, cross-body positivo y artrosis AC con sinovitis en ecografía.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Cambios degenerativos AC moderados con exploración parcialmente positiva.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Artrosis AC ecográfica en paciente con dolor difuso o screening cervical positivo. Hallazgo probablemente incidental.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-cervical",
+      "name": "Dolor referido cervical C4-C5",
+      "whatWouldReconsider": "Movilidad cervical restringida que reproduce el dolor superior, parestesias o Spurling positivo.",
+      "keyDiscriminatingTest": "Screening de columna cervical"
+    },
+    {
+      "id": "dd-subacromial",
+      "name": "Pinzamiento subacromial",
+      "whatWouldReconsider": "Dolor predominantemente lateral en rango medio de elevación (arco doloroso 60-120°).",
+      "keyDiscriminatingTest": "Test de Hawkins / Arco doloroso"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-ac-joint",
+      "structuralDiagnosis": "Artropatía Acromioclavicular Sintomática",
+      "painGenerator": "Dolor articular nociceptivo mecánico por sobrecarga/degeneración acromioclavicular",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo articular localizado",
+      "supportingFindings": [
+        "Dolor superior con signo del dedo",
+        "Palpación dolorosa AC",
+        "Cross-body positivo",
+        "O'Brien superior positivo"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "La articulación acromioclavicular une la clavícula con el omóplato. Es muy frecuente tener desgaste con los años. La gran mayoría de los casos mejoran ajustando las cargas y evitando temporalmente posturas que compriman la articulación (como cruzar el brazo o dormir sobre ese hombro).",
+      "mentorNote": "Enseñar al paciente a evitar la aducción horizontal forzada y ejercicios de press de banca con agarre estrecho durante la fase irritativa."
+    },
+    "exercise": {
+      "objective": "Mejorar el control escapular y la estabilidad dinámica sin comprimir la articulación AC.",
+      "phases": [
+        {
+          "name": "Fase 1: Control de Carga",
+          "description": "Evitar cruzar el brazo en carga. Ejercicios isométricos en rotación externa.",
+          "duration": "1-2 semanas"
+        },
+        {
+          "name": "Fase 2: Fortalecimiento Escapular",
+          "description": "Fortalecimiento de serrato anterior y trapecio inferior (evitar aducción extrema).",
+          "duration": "3-6 semanas"
+        },
+        {
+          "name": "Fase 3: Reintegración Funcional",
+          "description": "Progresión a press con agarre neutro y ejercicios funcionales tolerados.",
+          "duration": "6-12 semanas"
+        }
+      ],
+      "loadGuidance": "El dolor durante los ejercicios debe ser ≤3/10 y regresar a la línea base en <24 horas."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-01",
+      "options": [
+        {
+          "name": "AINE tópico",
+          "indication": "Primera línea en dolor agudo o subagudo superficial.",
+          "example": "Diclofenaco gel 1% cada 8-12h",
+          "duration": "2-3 semanas",
+          "guardrails": [
+            "Piel intacta"
+          ]
+        },
+        {
+          "name": "Paracetamol o AINE oral corto",
+          "indication": "Dolor moderado que limita el sueño.",
+          "example": "Paracetamol 1g/8h o Ibuprofeno 400mg/8h con protector",
+          "duration": "5-7 días",
+          "guardrails": [
+            "Función renal",
+            "Riesgo cardiovascular",
+            "Edad >65"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si fracaso de medidas conservadoras tras 4-6 semanas Y dolor concordante con la exploración.",
+      "objective": "Infiltración intraarticular ecoguiada para resolver la sinovitis inflamatoria local.",
+      "targets": [
+        {
+          "name": "Articulación Acromioclavicular",
+          "indication": "Sinovitis AC concordante",
+          "options": [
+            {
+              "name": "Anestésico local (diagnóstico) + Corticoide de depósito (0.5 ml)",
+              "evidence": "Alta a corto plazo"
+            },
+            {
+              "name": "Ácido Hialurónico de bajo volumen",
+              "evidence": "Moderada"
+            }
+          ],
+          "contraindications": [
+            "Infección local o sistémica",
+            "Inestabilidad AC grado IV-VI quirúrgica"
+          ],
+          "postProcedure": "Reposo relativo articular 48h y retomar ejercicios escapulares a los 5 días.",
+          "safetyNote": "Volumen estricto ≤1 ml. La articulación AC tiene una capacidad de 0.5-1 ml; volúmenes mayores extravasan a la bursa SASD distorsionando el efecto diagnóstico."
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Dolor al cruzar el brazo (EVA)",
+        "icon": "📊"
+      },
+      {
+        "name": "Capacidad para dormir sobre el hombro",
+        "icon": "😴"
+      },
+      {
+        "name": "Tolerancia a cargas",
+        "icon": "💪"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Mejoría >50%",
+        "action": "Continuar rehabilitación y progresión de fuerza escapular.",
+        "icon": "🟢"
+      },
+      {
+        "result": "no_improvement",
+        "label": "Sin mejoría",
+        "action": "Revisar diagnóstico: descartar patología del manguito subacromial o componente cervical.",
+        "icon": "🔴"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Tu dolor proviene de la articulación acromioclavicular en la parte alta del hombro. Es una zona muy accesible y responde muy bien al ajuste de posturas y ejercicios de control escapular.",
+    "takeHomeMantra": "El descanso relativo de los movimientos cruzados y el refuerzo de la espalda calman la articulación sin necesidad de cirugía."
+  },
+  "evidence": [
+    {
+      "citation": "Chronopoulos E, et al. Diagnostic value of physical tests for isolated chronic acromioclavicular lesions. Am J Sports Med. 2004;32(3):655-661.",
+      "topic": "AC Joint Physical Examination Tests",
+      "year": 2004
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "id": "lumbar-unclear",
+  "region": "lumbar",
+  "regionLabel": "Columna Lumbar / Torácica",
+  "regionIcon": "⚡",
+  "presentation": "No está claro (Incertidumbre Diagnóstica Lumbar)",
+  "presentationDesc": "Cuadro lumbar atípico que no encaja claramente como discogénico, facetario, radicular ni estenosis. Algoritmo estructurado para separar causas viscerales, sacroilíacas, coxartrosis, vasculares o nociplásticas.",
+  "visualTier": "uncertain",
+  "visualLabel": "Cuando no encaja",
+  "clinicalPriority": 40,
+  "redFlags": [
+    {
+      "id": "rf-unclear-lumbar-visceral",
+      "text": "Dolor lumbar cólico o terebrante irradiado a flanco/genitales, o masa pulsátil abdominal palpable (Sospecha Cólico Nefrítico, Pielonefritis o Aneurisma de Aorta)",
+      "severity": "critical",
+      "action": "Sedimento de orina, ecografía abdominal urgente o Angio-TC según sospecha."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-hip-spine-syndrome",
+      "name": "Síndrome Cadera-Columna (Hip-Spine Syndrome)",
+      "shortName": "Coxartrosis Simuladora",
+      "description": "Artrosis de cadera avanzada que se manifiesta como dolor lumbar bajo y en nalga.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-sacroiliac-mimic",
+      "name": "Artropatía Sacroilíaca Verdadera",
+      "shortName": "Articulación Sacroilíaca",
+      "description": "Origen pélvico no lumbar que engaña a las maniobras de flexión raquídea.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-nociplastic-lumbar-syndrome",
+      "name": "Dolor Lumbar Crónico Nociplástico / Sensibilización Central",
+      "shortName": "Dolor Nociplástico / Sensibilización",
+      "description": "Dolor difuso multisitio con hiperalgesia donde las resonancias magnéticas muestran hallazgos degenerativos no explicativos.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-visceral-referred-lumbar",
+      "name": "Dolor Referido Visceral (Renal / Digestivo / Ginecológico)",
+      "shortName": "Origen Visceral Referido",
+      "description": "Dolor que no se reproduce con ninguna maniobra mecánica de la columna.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor cambia con los movimientos del cuerpo (agacharse, arquearse) o se comporta de forma totalmente independiente del movimiento?»",
+      "explanation": "El dolor verdaderamente no mecánico orienta a causa visceral, inflamatoria o sensibilización central.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Cambia con las posturas pero no logro saber cuál lo alivia",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-hip-spine-syndrome",
+              "effect": "increase",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-sacroiliac-mimic",
+              "effect": "increase",
+              "weight": 5
+            }
+          ]
+        },
+        {
+          "label": "No cambia en absoluto con el movimiento, es independiente de la postura",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-visceral-referred-lumbar",
+              "effect": "increase",
+              "weight": 8
+            },
+            {
+              "hypothesisId": "hyp-nociplastic-lumbar-syndrome",
+              "effect": "increase",
+              "weight": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Tiene dificultad para calzarse, cortarse las uñas de los pies o entrar/salir del coche?»",
+      "explanation": "La limitación severa de rotación interna y flexión de cadera delata coxartrosis oculta.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me cuesta muchísimo ponerme los calcetines y cruzar las piernas",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-hip-spine-syndrome",
+              "effect": "increase",
+              "weight": 8
+            }
+          ]
+        },
+        {
+          "label": "No, llego perfectamente a los pies sin rigidez en la ingle",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-hip-spine-syndrome",
+              "effect": "decrease",
+              "weight": 6
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Batería de Descarte para Incertidumbre Lumbar",
+    "steps": [
+      {
+        "id": "exam-fadir-hip-check",
+        "order": 1,
+        "name": "Screening de Cadera: Rotación Interna a 90° de Flexión (FADIR)",
+        "category": "cadera",
+        "instruction": "Flexionar cadera a 90° y rotar internamente comparando con el lado sano.",
+        "whatToLookFor": "Rigidez articular dura (<15° de rotación interna) o dolor inguinal exquisito.",
+        "essential": true,
+        "mentorTip": "En mayores de 60 años con dolor lumbar difuso, siempre explorar la cadera: la coxartrosis es el gran simulador lumbar.",
+        "results": [
+          {
+            "label": "Rotación interna de cadera muy limitada (<15°) con dolor",
+            "value": "hip_positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-hip-spine-syndrome",
+                "effect": "increase",
+                "weight": 8
+              }
+            ]
+          },
+          {
+            "label": "Cadera completamente libre e indolora",
+            "value": "hip_negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-hip-spine-syndrome",
+                "effect": "decrease",
+                "weight": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-laslett-si-screen",
+        "order": 2,
+        "name": "Screening Sacroilíaco de Laslett (Distracción + Thigh Thrust)",
+        "category": "sacroiliaca",
+        "instruction": "Compresión anteroposterior sobre crestas ilíacas y empuje anteroposterior sobre fémur flexionado a 90°.",
+        "whatToLookFor": "Reproducción del dolor exacto en la articulación sacroilíaca.",
+        "essential": true,
+        "mentorTip": "Laslett positivo con cadera libre descarta origen lumbar y orienta a pelvis.",
+        "results": [
+          {
+            "label": "Thigh Thrust / Distracción claramente positivos",
+            "value": "si_positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-sacroiliac-mimic",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Maniobras sacroilíacas negativas",
+            "value": "si_negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-sacroiliac-mimic",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-unclear-lumbar-discrim",
+      "name": "Algoritmo de Incertidumbre Lumbar",
+      "description": "Screening Cadera (FADIR) + Screening Sacroilíaco (Laslett) + Dolor No Mecánico",
+      "requiredTests": [
+        "exam-fadir-hip-check",
+        "exam-laslett-si-screen"
+      ],
+      "threshold": 1,
+      "concordanceText": "Permite separar el verdadero generador cuando la resonancia lumbar muestra múltiples anomalías degenerativas no concluyentes.",
+      "evidenceNote": "Parvizi et al. (Hip-Spine Syndrome) / Laslett et al."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe derrame en articulación coxofemoral o entesopatía trocantérica que aclare el cuadro?",
+    "structures": [
+      {
+        "id": "us-hip-joint-scan",
+        "name": "Receso Anterior Coxofemoral",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-hip-scan-normal",
+            "label": "Receso coxofemoral normal ≤6 mm sin derrame",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-hip-scan-effusion",
+            "label": "Derrame articular coxofemoral >8 mm con osteofito cefálico (Coxartrosis activa)",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Estudio articular de cadera: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "El generador real se ha identificado en cadera o pelvis.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor multifactorial.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Exploración y pruebas periféricas normales; considerar componente nociplástico o visceral.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-visceral-renal",
+      "name": "Cólico / Litiasis Renal o Infección Urinaria",
+      "whatWouldReconsider": "Dolor que no se reproduce con movilidad espinal y sedimento urinario patológico.",
+      "keyDiscriminatingTest": "Sedimento de orina / Puñopercusión renal"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-unclear-clarified",
+      "structuralDiagnosis": "Generador Aclarado (Cadera / Sacroilíaca / Nociplástico)",
+      "painGenerator": "Generador identificado tras descartar origen lumbar puro",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Generador extravertebral o central",
+      "supportingFindings": [
+        "Pruebas lumbares puras negativas",
+        "Screening de cadera/SI positivo o criterios centrales"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Muchas veces los dolores que sentimos en la parte baja de la espalda no vienen de las vértebras, sino de la articulación de la cadera o de la pelvis. Al explorar estas zonas hemos encontrado la verdadera clave para tratarla con éxito.",
+      "mentorNote": "Explicar el síndrome cadera-columna para evitar cirugías lumbares innecesarias cuando el generador primario es la cadera."
+    },
+    "exercise": {
+      "objective": "Tratamiento dirigido al generador identificado (movilidad de cadera, control pélvico o ejercicio aeróbico).",
+      "phases": [
+        {
+          "name": "Fase 1: Diana Específica",
+          "description": "Ejercicios adaptados a la articulación responsable.",
+          "duration": "4 semanas"
+        }
+      ],
+      "loadGuidance": "Adaptado al generador real."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-04",
+      "options": [
+        {
+          "name": "Según generador diana",
+          "indication": "AINE si componente articular coxofemoral; neuromodulador si nociplástico.",
+          "example": "Ajustar a la ficha específica",
+          "duration": "Variable",
+          "guardrails": [
+            "Función renal"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Dirigir el intervencionismo a la cadera o sacroilíaca si procede.",
+      "objective": "Bloqueo diagnóstico ecoguiado de cadera o sacroilíaca.",
+      "targets": []
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Respuesta al tratamiento dirigido",
+        "icon": "📊"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "clarified_success",
+        "label": "Evolución favorable",
+        "action": "Mantener pauta específica.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Haber encontrado que el problema estaba en otra articulación nos permite aplicar el tratamiento que realmente necesitas.",
+    "takeHomeMantra": "Tratar la causa real, y no solo el sitio donde duele, es la garantía de éxito."
+  },
+  "evidence": [
+    {
+      "citation": "Parvizi J, et al. The hip-spine syndrome: defining the relationship. J Am Acad Orthop Surg. 2010;18(6):345-351.",
+      "topic": "Hip-Spine Syndrome",
+      "year": 2010
+    }
+  ]
+}

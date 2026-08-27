@@ -1,0 +1,295 @@
+{
+  "id": "hip-gluteal",
+  "region": "cadera",
+  "regionLabel": "Cadera",
+  "regionIcon": "🦿",
+  "presentation": "Dolor glúteo profundo",
+  "presentationDesc": "Dolor en la profundidad de la nalga que empeora al estar sentado, diferenciando el síndrome del espacio glúteo profundo (atrapamiento no discogénico del nervio ciático / piriforme), entesopatía de isquiotibiales proximales y patología sacroilíaca.",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 22,
+  "redFlags": [
+    {
+      "id": "rf-pelvic-mass-sciatica",
+      "text": "Ciatalgia rebelde que no responde a posturas, masa pélvica palpable en tacto rectal o antecedentes oncológicos pélvicos (Sospecha Tumor Pélvico / Schwannoma Ciático / Metástasis Iliosacra)",
+      "severity": "critical",
+      "action": "RM de pelvis y columna lumbosacra urgente."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-deep-gluteal-entrapment",
+      "name": "Síndrome del Espacio Glúteo Profundo / Síndrome del Piriforme",
+      "shortName": "Espacio Glúteo Profundo / Piriforme",
+      "description": "Atrapamiento del nervio ciático en el espacio subglúteo por bandas fibrosas, músculo piriforme o gemelos-obturador interno.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-proximal-hamstring-tendinopathy",
+      "name": "Tendinopatía de Isquiotibiales Proximales (Tuberosidad Isquiática)",
+      "shortName": "Isquiotibiales Proximales",
+      "description": "Dolor nociceptivo en la tuberosidad isquiática al sentarse sobre superficies duras y con la flexión de cadera con rodilla extendida.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-ischiofemoral-impingement",
+      "name": "Pinzamiento Isquiofemoral (Espacio Cuadrado Femoral)",
+      "shortName": "Pinzamiento Isquiofemoral",
+      "description": "Estrechamiento del espacio entre el trocánter menor y el isquion con edema del músculo cuadrado femoral.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor se localiza exactamente donde se sienta (en el hueso del 'culito'/isquion) o es profundo en medio de la nalga con sensación de adormecimiento hacia el muslo?»",
+      "explanation": "El dolor sobre el isquion puro orienta a tendinopatía de isquiotibiales; el dolor en el centro de la nalga con disestesias orienta a atrapamiento del ciático.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "En el centro de la nalga con sensación de quemazón/hormigueo que baja por detrás del muslo",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-deep-gluteal-entrapment",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        },
+        {
+          "label": "Justo sobre el hueso donde apoyo el peso al sentarme (tuberosidad isquiática)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-proximal-hamstring-tendinopathy",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Dirigida del Espacio Glúteo Profundo",
+    "steps": [
+      {
+        "id": "exam-seated-piriformis",
+        "order": 1,
+        "name": "Seated Piriformis Stretch Test / FAIR Test",
+        "catalogTestId": "cadera-fair",
+        "category": "provocacion",
+        "instruction": "Paciente sentado. El examinador flexiona, aduce y rota internamente la cadera mientras palpa la escotadura ciática.",
+        "whatToLookFor": "Reproducción del dolor glúteo profundo y parestesias en territorio ciático.",
+        "essential": true,
+        "mentorTip": "El test FAIR sentado tensa el piriforme sobre el ciático; alta sensibilidad para dolor glúteo profundo.",
+        "results": [
+          {
+            "label": "Positivo: reproduce dolor ciático profundo",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-deep-gluteal-entrapment",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-deep-gluteal-entrapment",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-ischial-palpation",
+        "order": 2,
+        "name": "Palpación de la Tuberosidad Isquiática / Puranen-Orava Test",
+        "category": "palpacion",
+        "instruction": "Palpar directamente la inserción isquiática en decúbito prono y estirar isquiotibiales con flexión de cadera.",
+        "whatToLookFor": "Dolor exquisito en tuberosidad isquiática.",
+        "essential": true,
+        "mentorTip": "Positivo en tendinopatía de isquiotibiales proximales; indoloro en piriforme puro.",
+        "results": [
+          {
+            "label": "Dolor exquisito en el isquion",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-proximal-hamstring-tendinopathy",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Isquion indoloro",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-proximal-hamstring-tendinopathy",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-deep-gluteal",
+      "name": "Clúster del Síndrome Glúteo Profundo",
+      "description": "FAIR sentado positivo + Dolor al sentarse >30 min + Lasègue lumbar negativo",
+      "requiredTests": [
+        "exam-seated-piriformis"
+      ],
+      "threshold": 1,
+      "concordanceText": "Alta probabilidad de atrapamiento del nervio ciático en espacio subglúteo.",
+      "evidenceNote": "Martin HD, et al. Deep gluteal syndrome."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe engrosamiento del tendón isquiotibial común o alteración visible en la relación piriforme-ciático?",
+    "structures": [
+      {
+        "id": "us-deep-gluteal-scan",
+        "name": "Tuberosidad Isquiática y Nervio Ciático Subglúteo",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-sciatic-normal",
+            "label": "Nervio ciático y tendón isquiotibial normales",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-hamstring-insertional",
+            "label": "Tendinopatía de isquiotibiales con engrosamiento y entesofito isquiático",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-piriformis-hypertrophy",
+            "label": "Asimetría / hipertrofia del músculo piriforme con ciático adyacente",
+            "concordanceEffect": "possible"
+          }
+        ],
+        "reportTemplate": "Estudio glúteo profundo: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Cuadro clínico y pruebas provocativas concordantes.",
+        "icon": "🟢"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-lumbar-radiculopathy-s1",
+      "name": "Radiculopatía L5-S1 discogénica",
+      "whatWouldReconsider": "Dolor que se agrava con la tos/Valsalva o Slump test claramente positivo con inicio en columna.",
+      "keyDiscriminatingTest": "Slump test / RM lumbar"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-deep-gluteal",
+      "structuralDiagnosis": "Síndrome del Espacio Glúteo Profundo / Tendinopatía Isquiática",
+      "painGenerator": "Irritación del nervio ciático extraespinal o entesis isquiática",
+      "mechanism": "neuropathic_peripheral",
+      "mechanismLabel": "Neuropático periférico compresivo o nociceptivo",
+      "supportingFindings": [
+        "FAIR positivo",
+        "Dolor al sentarse prolongado",
+        "Resonancia lumbar sin compresión radicular"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El nervio ciático pasa por un túnel muscular en la nalga. Si el músculo piriforme está sobrecargado o nos sentamos muchas horas seguidas en sillas duras, el nervio se irrita. Con cojines ergonómicos, pausas activas y ejercicios de movilidad de cadera el nervio recupera su deslizamiento normal.",
+      "mentorNote": "Evitar estiramientos agresivos en flexión máxima que compriman el ciático contra el isquion."
+    },
+    "exercise": {
+      "objective": "Neurodinámica del ciático (slump sliders suaves) y fortalecimiento de glúteo mayor y rotadores.",
+      "phases": [
+        {
+          "name": "Fase 1: Deslizamiento Nervioso",
+          "description": "Sliders neurodinámicos suaves en sedestación y evitar sentarse en superficies duras.",
+          "duration": "3-4 semanas"
+        }
+      ],
+      "loadGuidance": "No provocar disestesias eléctricas durante los ejercicios."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-03",
+      "options": [
+        {
+          "name": "Neuromoduladores si hay dolor neuropático",
+          "indication": "Pregabalina o duloxetina.",
+          "example": "Pregabalina 25-75mg noche",
+          "duration": "4 semanas",
+          "guardrails": [
+            "Somnolencia"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si atrapamiento refractario a 6-8 semanas de fisioterapia.",
+      "objective": "Infiltración / hidrodisección ecoguiada del espacio periciático o piriforme.",
+      "targets": [
+        {
+          "name": "Espacio Periciático Subglúteo / Músculo Piriforme",
+          "indication": "Dolor refractario",
+          "options": [
+            {
+              "name": "Anestésico local + Corticoide de depósito / Toxina botulínica ecoguiada",
+              "evidence": "Moderada"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Tolerancia a la sedestación",
+        "icon": "🪑"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "good",
+        "label": "Evolución favorable",
+        "action": "Continuar neurodinámica y ergonomía.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Liberar la tensión del músculo en la nalga y cuidar las posturas al sentarte permitirá que el nervio ciático descanse y se desinflame.",
+    "takeHomeMantra": "El nervio ciático necesita espacio y movimiento suave para desinflamarse."
+  },
+  "evidence": [
+    {
+      "citation": "Martin HD, et al. The deep gluteal space. Muscles Ligaments Tendons J. 2015;5(3):210-215.",
+      "topic": "Deep Gluteal Space Anatomy & Syndrome",
+      "year": 2015
+    }
+  ]
+}

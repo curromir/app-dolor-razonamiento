@@ -1,0 +1,267 @@
+{
+  "id": "lumbar-trauma",
+  "region": "lumbar",
+  "regionLabel": "Columna Lumbar / Torácica",
+  "regionIcon": "⚡",
+  "presentation": "Traumatismo Lumbar",
+  "presentationDesc": "Dolor agudo lumbar tras caída, accidente o sobreesfuerzo brusco en paciente con factores de riesgo (osteoporosis, corticoides, edad avanzada), requiriendo despistaje de fractura vertebral por compresión.",
+  "visualTier": "safety",
+  "visualLabel": "Situación especial",
+  "clinicalPriority": 31,
+  "redFlags": [
+    {
+      "id": "rf-osteoporotic-fracture",
+      "text": "Dolor lumbar agudo e invalidante tras caída desde la propia altura o esfuerzo mínimo en paciente >65 años, mujer posmenopáusica o tratamiento prolongado con corticoides (Sospecha Fractura Vertebral Osteoporótica)",
+      "severity": "critical",
+      "action": "Radiografía lumbar y torácica urgente (AP y Lateral), reposo relativo y valoración de RM para determinar agudeza (edema óseo en STIR)."
+    },
+    {
+      "id": "rf-high-energy-spine-trauma",
+      "text": "Traumatismo de alta energía (accidente de tráfico, caída de altura >2 metros) con dolor vertebral severo o deformidad palpable en escalón espinoso",
+      "severity": "critical",
+      "action": "Inmovilización en bloque con collarín y tabla espinal, y traslado inmediato a centro de trauma para TC raquídeo."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-osteoporotic-vertebral-fracture",
+      "name": "Fractura Vertebral Osteoporótica por Compresión (Aplastamiento)",
+      "shortName": "Fractura Vertebral Osteoporótica",
+      "description": "Colapso del cuerpo vertebral por fragilidad ósea con dolor agudo exquisito a la percusión y limitación para incorporarse.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-lumbar-muscle-contusion-sprain",
+      "name": "Contusión Muscular Paravertebral / Esguince Miofascial",
+      "shortName": "Contusión / Esguince Lumbar",
+      "description": "Lesión de partes blandas paravertebrales sin pérdida de altura ni fractura ósea.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-acute-disc-herniation-trauma",
+      "name": "Hernia Discal Aguda Postraumática",
+      "shortName": "Hernia Discal Postraumática",
+      "description": "Extrusión discal aguda desencadenada por flexión o carga brusca con ciatalgia asociada.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Tiene antecedentes de osteoporosis, toma corticoides habitualmente o tiene más de 65 años?»",
+      "explanation": "Aumenta exponencialmente el riesgo de fractura vertebral incluso con traumatismos mínimos o toses fuertes.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí (osteoporosis diagnosticada, corticoides crónicos o edad >65)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-osteoporotic-vertebral-fracture",
+              "effect": "increase",
+              "weight": 8
+            }
+          ]
+        },
+        {
+          "label": "No, paciente joven sin factores de fragilidad ósea",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-osteoporotic-vertebral-fracture",
+              "effect": "decrease",
+              "weight": 5
+            },
+            {
+              "hypothesisId": "hyp-lumbar-muscle-contusion-sprain",
+              "effect": "increase",
+              "weight": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración de Seguridad Postraumática Lumbar",
+    "steps": [
+      {
+        "id": "exam-percussion-fracture",
+        "order": 1,
+        "name": "Percusión Espinosa Focal y Canto de Cama",
+        "category": "seguridad",
+        "instruction": "Percutir suavemente nivel a nivel las espinosas lumbares y evaluar el dolor al intentar pasar de decúbito a sedestación.",
+        "whatToLookFor": "Dolor exquisito focalizado + gran dificultad para cambiar de postura.",
+        "essential": true,
+        "mentorTip": "La incapacidad para girarse en la cama y la percusión focal positiva tienen alta correlación con fractura vertebral aguda.",
+        "results": [
+          {
+            "label": "Dolor exquisito localizado con impotencia para incorporarse",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-osteoporotic-vertebral-fracture",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Dolor muscular difuso bilateral sin dolor óseo exquisito",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-lumbar-muscle-contusion-sprain",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-spine-fracture-decision",
+      "name": "Regla de Decisión Clínica para Radiografía en Trauma Lumbar",
+      "description": "Edad >65 años + Traumatismo + Dolor a la percusión espinosa",
+      "requiredTests": [
+        "exam-percussion-fracture"
+      ],
+      "threshold": 1,
+      "concordanceText": "Indicación mandatoria de estudio radiográfico inmediato.",
+      "evidenceNote": "Henschke et al. / American College of Radiology."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "⚠️ LIMITACIÓN: La ecografía no descarta fracturas vertebrales. Se requiere Radiografía y RM.",
+    "structures": [
+      {
+        "id": "us-trauma-lumbar-scan",
+        "name": "Limitación de Imagen Ecográfica en Trauma Lumbar",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-trauma-rx-mandatory",
+            "label": "Radiografía lumbar AP y Lateral indicada para descartar aplastamiento vertebral",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Estudio por imagen: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Mecanismo y clínica compatibles con lesión postraumática confirmada por imagen.",
+        "icon": "🟢"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-disc-trauma",
+      "name": "Hernia discal aguda con radiculopatía",
+      "whatWouldReconsider": "Dolor que irradia por la pierna con Lasègue positivo.",
+      "keyDiscriminatingTest": "Test de Lasègue / Exploración neurológica"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-vertebral-fracture",
+      "structuralDiagnosis": "Fractura Vertebral por Fragilidad Ósea o Contusión Raquídea",
+      "painGenerator": "Dolor óseo nociceptivo agudo o lesión miofascial",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo postraumático óseo/muscular",
+      "supportingFindings": [
+        "Traumatismo previo",
+        "Percusión focal dolorosa",
+        "Confirmación radiológica"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Si se confirma una fractura vertebral por fragilidad, el hueso se consolida en la gran mayoría de casos en unas 6 a 12 semanas. La clave es el reposo relativo los primeros días con analgesia adecuada, evitando el encamamiento prolongado, y valorar tratamiento para fortalecer el hueso.",
+      "mentorNote": "Evitar reposo en cama estricto >48h para prevenir sarcopenia y desmineralización acelerada."
+    },
+    "exercise": {
+      "objective": "Paseos cortos frecuentes y mantenimiento del tono sin flexión forzada de tronco.",
+      "phases": [
+        {
+          "name": "Fase 1: Confort (1-3 semanas)",
+          "description": "Paseos tolerados, evitar agacharse con la espalda flexionada, soporte lumbar de confort si precisa.",
+          "duration": "3 semanas"
+        },
+        {
+          "name": "Fase 2: Estabilización Suave",
+          "description": "Ejercicios isométricos suaves de tronco en neutro.",
+          "duration": "4-8 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar flexión forzada y levantar cargas."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-04",
+      "options": [
+        {
+          "name": "Analgesia escalonada",
+          "indication": "Paracetamol + opioide menor si dolor severo.",
+          "example": "Paracetamol 1g/8h + Tramadol 25-50mg rescate",
+          "duration": "1-2 semanas",
+          "guardrails": [
+            "Estreñimiento",
+            "Somnolencia en ancianos"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si dolor severo invalidante refractario a analgesia en fractura aguda (<6-8 semanas con edema en RM).",
+      "objective": "Valoración de vertebroplastia / cifoplastia percutánea.",
+      "targets": [
+        {
+          "name": "Cuerpo Vertebral Afectado",
+          "indication": "Fractura osteoporótica aguda refractaria",
+          "options": [
+            {
+              "name": "Cifoplastia / Vertebroplastia",
+              "evidence": "Moderada para alivio rápido en casos seleccionados"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 2-3 semanas con control evolutivo",
+    "parameters": [
+      {
+        "name": "Capacidad para caminar y sentarse",
+        "icon": "🚶"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "consolidation",
+        "label": "Evolución favorable",
+        "action": "Iniciar prevención de osteoporosis (Densitometría / Calcio / Vit D / Antirresortivos).",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Cuidar la postura y mantener una actividad suave sin forzar permitirá que la vértebra se cure de forma segura.",
+    "takeHomeMantra": "El movimiento suave y la protección de cargas curan la columna sin necesidad de reposo en cama prolongado."
+  },
+  "evidence": [
+    {
+      "citation": "Henschke N, et al. Prevalence of and screening for serious spinal pathology in patients with low back pain. Arthritis Rheum. 2009;60(10):3072-3080.",
+      "topic": "Spinal Fracture Decision Rules",
+      "year": 2009
+    }
+  ]
+}

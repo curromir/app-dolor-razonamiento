@@ -1,0 +1,314 @@
+{
+  "id": "ankle-achilles",
+  "region": "tobillo_pie",
+  "regionLabel": "Tobillo y Pie",
+  "regionIcon": "🦶",
+  "presentation": "Tendón de Aquiles",
+  "presentationDesc": "Dolor y rigidez en el talón posterior o tendón de Aquiles, diferenciando tendinopatía de la porción media (2-6 cm), tendinopatía insercional con bursitis retrocalcánea y rotura aguda completa (Test de Thompson).",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 20,
+  "redFlags": [
+    {
+      "id": "rf-achilles-complete-rupture",
+      "text": "Sensación de 'pedrada' o chasquido súbito en el talón con 'hachazo' palpable y Test de Thompson positivo (ausencia de flexión plantar al comprimir la pantorrilla)",
+      "severity": "critical",
+      "action": "Inmovilización en equino inmediato con férula/bota ortopédica con alzas, ecografía urgente y derivación preferente a Traumatología."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-achilles-midportion",
+      "name": "Tendinopatía Aquilea de la Porción Media (2 a 6 cm proximal al calcáneo)",
+      "shortName": "Aquiles Porción Media",
+      "description": "Engrosamiento fusiforme con dolor matutino y desorganización de colágeno en la zona avascular media.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-achilles-insertional-haglund",
+      "name": "Tendinopatía Aquilea Insercional / Deformidad de Haglund / Bursitis Retrocalcánea",
+      "shortName": "Aquiles Insercional / Haglund",
+      "description": "Dolor en la misma inserción ósea en el calcáneo con prominencia ósea posterolateral y roce con el calzado.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-achilles-partial-rupture",
+      "name": "Microrrotura / Rotura Parcial del Tendón de Aquiles",
+      "shortName": "Rotura Parcial de Aquiles",
+      "description": "Fisura intrasustancia con dolor punzante e impotencia funcional para ponerse de puntillas.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor está en la 'cuerda' del tendón (unos centímetros por encima del talón) o justo en el mismo hueso del talón donde roza la zapatilla?»",
+      "explanation": "Diferencia la porción media (responde a ejercicios de Alfredson sobre escalón) de la insercional (empeora con dorsiflexión profunda sobre escalón).",
+      "essential": true,
+      "answers": [
+        {
+          "label": "A unos 2-5 cm por encima del talón, noto un engrosamiento como un 'huso' que duele al apretarlo con los dedos",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-achilles-midportion",
+              "effect": "increase",
+              "weight": 8
+            }
+          ]
+        },
+        {
+          "label": "Justo en el hueso del talón donde termina el tendón y roza el calzado",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-achilles-insertional-haglund",
+              "effect": "increase",
+              "weight": 8
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Dirigida del Tendón de Aquiles",
+    "steps": [
+      {
+        "id": "exam-thompson-test",
+        "order": 1,
+        "name": "Test de Thompson (Descarte de Rotura Completa)",
+        "catalogTestId": "tobillo-thompson",
+        "category": "seguridad",
+        "instruction": "Paciente en decúbito prono con los pies colgando fuera de la camilla. Comprimir la masa gemelar.",
+        "whatToLookFor": "Normal: la compresión produce flexión plantar pasiva del pie. Positivo (Rotura): el pie permanece inmóvil.",
+        "essential": true,
+        "mentorTip": "Thompson positivo = rotura completa de Aquiles. No diferir la inmovilización en equino.",
+        "results": [
+          {
+            "label": "Negativo: flexión plantar conservada al comprimir el gemelo",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-achilles-midportion",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          },
+          {
+            "label": "Positivo: pie inmóvil (Alerta de Rotura Completa)",
+            "value": "positive_rupture",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-achilles-partial-rupture",
+                "effect": "increase",
+                "weight": 9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-single-heel-raise",
+        "order": 2,
+        "name": "Elevación de Talón Monopodal (Single Heel Raise Test)",
+        "category": "fuerza",
+        "instruction": "Pedir al paciente que se ponga de puntillas sobre un solo pie.",
+        "whatToLookFor": "Capacidad para elevar el talón, dolor a la carga y número máximo de repeticiones.",
+        "essential": true,
+        "mentorTip": "Incapacidad para despegar el talón del suelo orienta a rotura o inhibición severa.",
+        "results": [
+          {
+            "label": "Capaz de elevar el talón con dolor leve",
+            "value": "capable",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-achilles-midportion",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          },
+          {
+            "label": "Incapaz de elevar el talón (claudicación)",
+            "value": "incapable",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-achilles-partial-rupture",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-achilles",
+      "name": "Clúster Diagnóstico de Tendinopatía Aquilea",
+      "description": "Dolor a la palpación del tendón + Engrosamiento + Rigidez matutina + Thompson negativo",
+      "requiredTests": [
+        "exam-thompson-test",
+        "exam-single-heel-raise"
+      ],
+      "threshold": 1,
+      "concordanceText": "Confirmación de tendinopatía no rotuliana del Aquiles.",
+      "evidenceNote": "Silbernagel KG, et al. Achilles tendinopathy guidelines."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe engrosamiento fusiforme (>6 mm), microrroturas, neovascularización Power Doppler o bursitis retrocalcánea?",
+    "structures": [
+      {
+        "id": "us-achilles-scan",
+        "name": "Tendón de Aquiles y Bursa Retrocalcánea",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-achilles-normal",
+            "label": "Tendón homogéneo ≤5 mm con patrón fibrilar continuo",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-achilles-tendinosis-mid",
+            "label": "Tendinopatía de porción media: engrosamiento fusiforme >6 mm hipoecoico con neovasos Doppler",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-achilles-insertional-bursa",
+            "label": "Tendinopatía insercional con entesofito calcáneo y bursitis retrocalcánea distendida",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Estudio ecográfico del tendón de Aquiles: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Tendinopatía aquilea ecográfica concordante con clínica.",
+        "icon": "🟢"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-plantaris-tendon",
+      "name": "Tendinopatía / Rotura del Tendón Plantar Delgado",
+      "whatWouldReconsider": "Dolor medial agudo en el tendón de Aquiles con eco que muestra tendón plantar disecado.",
+      "keyDiscriminatingTest": "Ecografía de alta resolución en eje corto medial"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-achilles-tendinopathy",
+      "structuralDiagnosis": "Tendinopatía Aquilea (Porción Media o Insercional)",
+      "painGenerator": "Dolor nociceptivo tendinoso por desorganización de colágeno y sobrecarga",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo tendinoso mecánico",
+      "supportingFindings": [
+        "Dolor matutino",
+        "Engrosamiento palpable",
+        "Thompson negativo",
+        "Eco concordante"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El tendón de Aquiles es el más potente del cuerpo. Cuando duele, no está 'inflamado', sino que ha perdido temporalmente su capacidad de soportar carga. El reposo total lo debilita más. La cura definitiva es el ejercicio de carga progresiva (Protocolo de Alfredson/Silbernagel). NUNCA se debe infiltrar corticoide dentro del tendón porque aumenta el riesgo de rotura.",
+      "mentorNote": "CONTRAINDICACIÓN FORMAL: Prohibido infiltrar corticoide intratendinoso en el Aquiles."
+    },
+    "exercise": {
+      "objective": "Programa de carga excéntrica/pesada lenta (HSR - Heavy Slow Resistance).",
+      "phases": [
+        {
+          "name": "Fase 1: Isométricos",
+          "description": "Elevación de talón mantenida 45s (5 repeticiones) para alivio analgésico.",
+          "duration": "1-2 semanas"
+        },
+        {
+          "name": "Fase 2: Heavy Slow Resistance (HSR)",
+          "description": "Elevaciones de talón en escalón (3 seg de subida, 3 seg de bajada) con carga progresiva.",
+          "duration": "4-12 semanas"
+        },
+        {
+          "name": "Fase 3: Pliometría y Retorno Deportivo",
+          "description": "Saltos y carrera progresiva.",
+          "duration": "12-24 semanas"
+        }
+      ],
+      "loadGuidance": "El dolor durante el ejercicio es aceptable si es ≤4/10 y no empeora a la mañana siguiente."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-07",
+      "options": [
+        {
+          "name": "Evitar AINEs prolongados",
+          "indication": "Pueden interferir con la síntesis de colágeno.",
+          "example": "Paracetamol puntual si precisa",
+          "duration": "Puntual",
+          "guardrails": [
+            "Función hepática"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo en casos refractarios a 3-6 meses de ejercicio bien realizado.",
+      "objective": "Ondas de Choque Focales/Radiales (ESWT) o PRP peritendinoso.",
+      "targets": [
+        {
+          "name": "Porción Media de Aquiles / Entesis",
+          "indication": "Tendinopatía crónica recalcitrante",
+          "options": [
+            {
+              "name": "Ondas de choque extracorpóreas (ESWT)",
+              "evidence": "Alta evidencia"
+            },
+            {
+              "name": "PRP peritendinoso (no intratendinoso)",
+              "evidence": "Moderada"
+            }
+          ],
+          "contraindications": [
+            "Infiltración de corticoides intratendinosos (contraindicado absoluto)"
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 6-8 semanas",
+    "parameters": [
+      {
+        "name": "Capacidad de elevaciones monopodales (VISA-A)",
+        "icon": "📊"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "good",
+        "label": "Evolución favorable",
+        "action": "Continuar progresión de carga.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "El tendón de Aquiles se fortalece trabajando con peso de forma lenta y controlada. Con paciencia y constancia recuperarás su elasticidad completa.",
+    "takeHomeMantra": "El tendón no necesita reposo; necesita la dosis adecuada de carga cada día."
+  },
+  "evidence": [
+    {
+      "citation": "Silbernagel KG, et al. Achilles tendinopathy: clinical practice guidelines linked to ICF. J Orthop Sports Phys Ther. 2021;51(5):CPG1-CPG66.",
+      "topic": "Achilles Tendinopathy Guidelines",
+      "year": 2021
+    }
+  ]
+}

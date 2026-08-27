@@ -1,0 +1,346 @@
+{
+  "id": "shoulder-unclear",
+  "region": "hombro",
+  "regionLabel": "Hombro y Cintura Escapular",
+  "regionIcon": "🦴",
+  "presentation": "No está claro (Incertidumbre Diagnóstica en Hombro)",
+  "presentationDesc": "El cuadro no encaja con los patrones habituales de manguito, rigidez o AC. Guía estructurada para desenmascarar dolor referido cervical, radiculopatías, afectación visceral o sensibilización central.",
+  "visualTier": "uncertain",
+  "visualLabel": "Cuando no encaja",
+  "clinicalPriority": 40,
+  "redFlags": [
+    {
+      "id": "rf-unclear-pancoast-visceral",
+      "text": "Dolor en hombro que no varía con movimientos del brazo, acompañado de síndrome de Horner (ptosis, miosis, enoftalmos), tabaquismo o dolor torácico (Sospecha Tumor de Pancoast o Causa Cardíaca/Diafragmática)",
+      "severity": "critical",
+      "action": "Radiografía de tórax urgente, ECG y derivación preferente."
+    },
+    {
+      "id": "rf-unclear-polymyalgia",
+      "text": "Dolor y rigidez matutina severa >45 min bilateral en cinturas escapular y pelviana en paciente >50 años con VSG/PCR muy elevadas (Sospecha Polimialgia Reumática)",
+      "severity": "critical",
+      "action": "Analítica urgente con reactantes de fase aguda y valoración reumatológica."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-cervical-spine-source",
+      "name": "Origen Cervical (Radiculopatía C5-C6 o Dolor Facetario Referido)",
+      "shortName": "Origen Cervical Referido",
+      "description": "El verdadero generador del dolor está en el cuello, aunque el paciente lo refiera en la región del hombro o deltoides.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-nociplastic-shoulder",
+      "name": "Dolor Nociplástico / Sensibilización Central",
+      "shortName": "Dolor Nociplástico / Generalizado",
+      "description": "Alodinia difusa, hiperalgesia, fatiga y dolor multisitio donde las pruebas mecánicas y de imagen son discordantes.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-complex-subacromial-glenohumeral",
+      "name": "Patología Glenohumeral Profunda (Labrum / Artrosis GH oculta)",
+      "shortName": "Patología GH Profunda / Labrum",
+      "description": "Lesión no evidente en exploraciones superficiales estándar (SLAP, condropatía glenohumeral temprana).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-visceral-referred",
+      "name": "Dolor Referido Visceral (Diafragmático / Biliar / Cardíaco)",
+      "shortName": "Dolor Referido Visceral",
+      "description": "Irritación del nervio frénico (C3-C5) que proyecta dolor en el dermatoma del hombro sin hallazgos mecánicos.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor del hombro cambia o se intensifica cuando mueve el cuello, tose o mantiene una postura fija con la cabeza?»",
+      "explanation": "La correlación entre movimientos cervicales y dolor de hombro es el discriminador clave para sospechar origen cervical.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, claramente al mover o girar el cuello siento punzadas en el hombro",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-cervical-spine-source",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        },
+        {
+          "label": "No, el cuello no influye en absoluto",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-cervical-spine-source",
+              "effect": "decrease",
+              "weight": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Tiene dolor en muchas otras partes del cuerpo, cansancio continuo, sueño no reparador o intolerancia al tacto suave?»",
+      "explanation": "Sugiere componente nociplástico / sensibilización central.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, me duele todo el cuerpo, estoy agotado/a y la ropa me molesta a veces",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-nociplastic-shoulder",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        },
+        {
+          "label": "No, el problema está localizado estrictamente en este hombro",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-nociplastic-shoulder",
+              "effect": "decrease",
+              "weight": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Batería de Descarte para Incertidumbre en Hombro",
+    "steps": [
+      {
+        "id": "exam-cervical-screening-full",
+        "order": 1,
+        "name": "Screening Cervical Completo (Spurling + Movilidad + Distracción)",
+        "category": "cervical",
+        "instruction": "Extensión + inclinación homolateral con compresión axial (Spurling) y movilidad cervical activa.",
+        "whatToLookFor": "Reproducción del dolor de hombro con maniobras cervicales.",
+        "essential": true,
+        "mentorTip": "Si Spurling reproduce el dolor del hombro, el hombro es inocente: tratar el cuello.",
+        "results": [
+          {
+            "label": "Spurling positivo: reproduce dolor de hombro",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-cervical-spine-source",
+                "effect": "increase",
+                "weight": 8
+              }
+            ]
+          },
+          {
+            "label": "Negativo: cuello libre e indoloro",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-cervical-spine-source",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-shoulder-all-negative",
+        "order": 2,
+        "name": "Exploración Manguito + Rango Pasivo Hombro",
+        "category": "hombro",
+        "instruction": "Comprobar arco doloroso, Hawkins, Jobe y rotación pasiva.",
+        "whatToLookFor": "¿El hombro tiene movilidad completa y maniobras mecánicas completamente negativas?",
+        "essential": true,
+        "mentorTip": "Un hombro que no duele al ser explorado pero el paciente se queja de hombro apunta a dolor referido o nociplástico.",
+        "results": [
+          {
+            "label": "Todas las pruebas de hombro son negativas / anodinas",
+            "value": "shoulder_negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-cervical-spine-source",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-nociplastic-shoulder",
+                "effect": "increase",
+                "weight": 5
+              },
+              {
+                "hypothesisId": "hyp-visceral-referred",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          },
+          {
+            "label": "Pruebas de hombro claramente positivas",
+            "value": "shoulder_positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-complex-subacromial-glenohumeral",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-unclear-discriminator",
+      "name": "Algoritmo de Discriminación en Hombro Atípico",
+      "description": "Separación de origen cervical vs nociplástico vs articular profundo",
+      "requiredTests": [
+        "exam-cervical-screening-full",
+        "exam-shoulder-all-negative"
+      ],
+      "threshold": 1,
+      "concordanceText": "Permite reorientar al clínico hacia el verdadero sistema generador evitando cirugías o infiltraciones en un hombro sano.",
+      "evidenceNote": "Wainner et al., 2003 / Guías IASP Dolor Nociplástico."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿La ecografía de hombro es estrictamente normal a pesar de la clínica del paciente?",
+    "structures": [
+      {
+        "id": "us-unclear-shoulder-scan",
+        "name": "Barrido Sistemático de Hombro (Manguito, Sasd, Bíceps, AC)",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-scan-strictly-normal",
+            "label": "Exploración ecográfica de hombro estrictamente normal (Sospechar dolor referido)",
+            "concordanceEffect": "discordant"
+          },
+          {
+            "id": "us-scan-incidental-mild",
+            "label": "Cambios degenerativos mínimos asintomáticos acordes a edad",
+            "concordanceEffect": "possible"
+          }
+        ],
+        "reportTemplate": "Estudio ecográfico: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Ecografía normal corrobora que el generador no está en el hombro sino en cuello/sistema central.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Hallazgo dudoso; prudencia antes de intervenir la imagen.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Dolor intenso con imagen y exploración de hombro negativas.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-visceral-phrenic",
+      "name": "Dolor Referido Diafragmático / Biliar",
+      "whatWouldReconsider": "Dolor en hombro derecho postprandial o disnea asociada.",
+      "keyDiscriminatingTest": "Anamnesis digestiva / Ecografía abdominal"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-referred-or-central",
+      "structuralDiagnosis": "Dolor de Hombro de Origen No Glenohumeral (Referido Cervical / Nociplástico)",
+      "painGenerator": "Generador extraarticular o procesamiento central del dolor",
+      "mechanism": "neuropathic_central",
+      "mechanismLabel": "Dolor referido o nociplástico",
+      "supportingFindings": [
+        "Pruebas de hombro negativas",
+        "Screening cervical o criterios nociplásticos positivos",
+        "Eco normal"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Los nervios que van al hombro nacen en el cuello. Cuando una prueba de hombro sale normal pero duele, muchas veces el responsable es un pequeño conflicto en el cuello o una mayor sensibilidad del sistema nervioso. Tratar el foco real evitará tratamientos innecesarios en el hombro.",
+      "mentorNote": "No forzar diagnósticos estructurales en el hombro si las pruebas apuntan a columna cervical o sensibilización."
+    },
+    "exercise": {
+      "objective": "Movilidad cervical activa, ejercicio aeróbico suave y desensibilización.",
+      "phases": [
+        {
+          "name": "Fase 1: Reorientación",
+          "description": "Movilidad cervical suave, higiene postural y paseos diarios.",
+          "duration": "2-4 semanas"
+        },
+        {
+          "name": "Fase 2: Ejercicio Generalizado",
+          "description": "Ejercicio aeróbico moderado (bicicleta, natación suave) y fuerza global.",
+          "duration": "4-8 semanas"
+        }
+      ],
+      "loadGuidance": "Fomentar el movimiento sin catastrofismo."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-11",
+      "options": [
+        {
+          "name": "Neuromoduladores (si componente neuropático/nociplástico)",
+          "indication": "Duloxetina o pregabalina según perfil.",
+          "example": "Duloxetina 30-60mg/día",
+          "duration": "Revisar en 4 semanas",
+          "guardrails": [
+            "Interacciones serotoninérgicas"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "NO infiltrar el hombro sin un generador local demostrado.",
+      "objective": "Dirigir el intervencionismo al cuello si se confirma radiculopatía o facetas.",
+      "targets": []
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 3-4 semanas",
+    "parameters": [
+      {
+        "name": "Evolución con enfoque cervical/central",
+        "icon": "📊"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "clarified",
+        "label": "Diagnóstico aclarado",
+        "action": "Seguir pathway específico correspondiente.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Haber descartado una rotura en el hombro es una excelente noticia. Ahora nos centraremos en el origen real para darte una solución definitiva.",
+    "takeHomeMantra": "Saber lo que NO es, es el primer paso para curar lo que SÍ es."
+  },
+  "evidence": [
+    {
+      "citation": "Wainner RS, et al. Reliability and diagnostic accuracy of the clinical examination and patient self-report measures for cervical radiculopathy. Spine. 2003;28(1):52-62.",
+      "topic": "Cervical Radiculopathy Cluster",
+      "year": 2003
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "id": "lumbar-gluteal",
+  "region": "lumbar",
+  "regionLabel": "Columna Lumbar / Torácica",
+  "regionIcon": "⚡",
+  "presentation": "Lumbar + glúteo",
+  "presentationDesc": "Dolor localizado en la región lumboglútea baja o nalga sin sobrepasar la rodilla, diferenciando dolor facetario bajo, articulación sacroilíaca, trocanteritis/GTPS y síndrome del piriforme.",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 20,
+  "redFlags": [
+    {
+      "id": "rf-gluteal-abscess-mass",
+      "text": "Masa glútea fluctuante, dolor nocturno severo no mecánico, fiebre o antecedente de punción/inyección intramuscular reciente (Sospecha Absceso / Infección Glútea o Tumor Pélvico)",
+      "severity": "critical",
+      "action": "Hemocultivos, analítica con reactantes y RM de pelvis/glúteo urgente."
+    },
+    {
+      "id": "rf-progressive-motor-gluteal",
+      "text": "Aparición de pie caído o pérdida de control de esfínteres (Sospecha Radiculopatía compresiva severa o Cauda Equina)",
+      "severity": "critical",
+      "action": "RM lumbar urgente y derivación inmediata a Neurocirugía."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-facet-referred-gluteal",
+      "name": "Dolor Referido Facetario Lumbar Bajo (L4-L5 / L5-S1)",
+      "shortName": "Facetario L4-S1",
+      "description": "Artropatía de facetas lumbares bajas que proyecta dolor somático referido a nalga y región glútea superior.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-si-joint-gluteal",
+      "name": "Disfunción / Artropatía Sacroilíaca",
+      "shortName": "Articulación Sacroilíaca",
+      "description": "Dolor centrado en la espina ilíaca posterosuperior (zona Fortin) con irradiación a la nalga inferior.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-gtps-trochanteric",
+      "name": "Síndrome de Dolor Trocantérico Mayor (GTPS / Glúteo Medio)",
+      "shortName": "Tendinopatía Glúteo Medio (GTPS)",
+      "description": "Entesopatía de glúteo medio/menor o bursitis trocantérica que duele al tumbarse de lado.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-deep-gluteal-syndrome",
+      "name": "Síndrome del Espacio Glúteo Profundo / Piriforme",
+      "shortName": "Piriforme / Glúteo Profundo",
+      "description": "Atrapamiento irritativo del nervio ciático en la escotadura ciática con dolor al estar sentado mucho rato.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor empeora claramente al estar sentado mucho tiempo y se clava en el centro de la nalga?»",
+      "explanation": "El dolor sentado prolongado con molestia en centro de nalga orienta a piriforme / espacio glúteo profundo.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, no tolero estar sentado más de 20-30 minutos en sillas duras",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-deep-gluteal-syndrome",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-si-joint-gluteal",
+              "effect": "increase",
+              "weight": 4
+            }
+          ]
+        },
+        {
+          "label": "No, me duele más al arquear la espalda hacia atrás estando de pie o caminando",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-facet-referred-gluteal",
+              "effect": "increase",
+              "weight": 6
+            },
+            {
+              "hypothesisId": "hyp-deep-gluteal-syndrome",
+              "effect": "decrease",
+              "weight": 3
+            }
+          ]
+        },
+        {
+          "label": "Me duele al tumbarme sobre ese lado en la cama",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-gtps-trochanteric",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Batería de Exploración Lumboglútea Diferencial",
+    "steps": [
+      {
+        "id": "exam-kemp-lumbar",
+        "order": 1,
+        "name": "Test de Kemp / Extensión-Rotación Lumbar (Facetario)",
+        "catalogTestId": "lumbar-kemp",
+        "category": "provocacion",
+        "instruction": "Extensión pasiva del raquis lumbar combinada con rotación e inclinación hacia el lado doloroso.",
+        "whatToLookFor": "Reproducción del dolor lumboglúteo con maniobra de carga facetaria.",
+        "essential": true,
+        "mentorTip": "Si Kemp es positivo y la flexión alivia, el componente facetario es muy probable.",
+        "results": [
+          {
+            "label": "Positivo: reproduce dolor en nalga/lumbar",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-facet-referred-gluteal",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-facet-referred-gluteal",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-fortin-si",
+        "order": 2,
+        "name": "Test del Dedo de Fortin / Palpación Sacroilíaca",
+        "category": "palpacion",
+        "instruction": "Pedir al paciente que señale el punto exacto con un dedo y palpar a 1 cm inferomedial de la EIPS.",
+        "whatToLookFor": "Concordancia con zona de Fortin (área de 1x2 cm bajo la espina ilíaca posterosuperior).",
+        "essential": true,
+        "mentorTip": "Fortin positivo orienta fuertemente a articulación sacroilíaca antes que a columna lumbar.",
+        "results": [
+          {
+            "label": "Positivo: señala exactamente zona Fortin",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-si-joint-gluteal",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          },
+          {
+            "label": "Negativo",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-si-joint-gluteal",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-trochanter-palpation",
+        "order": 3,
+        "name": "Palpación del Trocánter Mayor / FADER test",
+        "category": "palpacion",
+        "instruction": "Palpar la faceta lateral y posterosuperior del trocánter mayor con el paciente en decúbito lateral.",
+        "whatToLookFor": "Dolor exquisito trocantérico.",
+        "essential": true,
+        "mentorTip": "La palpación trocantérica positiva descarta el origen lumbar primario si la columna es flexible e indolora.",
+        "results": [
+          {
+            "label": "Dolor exquisito en trocánter mayor",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-gtps-trochanteric",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Indoloro en trocánter",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-gtps-trochanteric",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-gluteal-diff",
+      "name": "Batería Discriminativa de Dolor Glúteo",
+      "description": "Kemp vs Fortin vs Palpación Trocantérica",
+      "requiredTests": [
+        "exam-kemp-lumbar",
+        "exam-fortin-si",
+        "exam-trochanter-palpation"
+      ],
+      "threshold": 1,
+      "concordanceText": "Permite clasificar con precisión la estructura diana del dolor en la región lumboglútea.",
+      "evidenceNote": "Laslett et al. / Vleeming et al."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe tendinopatía de glúteo medio, bursitis trocantérica o signos de sacroilitis accesible?",
+    "structures": [
+      {
+        "id": "us-gluteus-med-min",
+        "name": "Tendón del Glúteo Medio y Menor / Trocánter Mayor",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-glute-normal",
+            "label": "Normal: inserción trocantérica fibrilar sin líquido peritendinoso",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-glute-tendinopathy",
+            "label": "Tendinopatía de glúteo medio con engrosamiento y calcificaciones",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-glute-bursitis",
+            "label": "Bursitis trocantérica con distensión líquida anecoica",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Evaluación trocantérica/glútea: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Dolor lumboglúteo con generador periférico o facetario concordante.",
+        "icon": "🟢"
+      },
+      "partial": {
+        "label": "Concordancia parcial",
+        "description": "Dolor mixto lumbar y glúteo.",
+        "icon": "🟡"
+      },
+      "discordant": {
+        "label": "Discordancia",
+        "description": "Exploración normal en paciente con sospecha de dolor referido.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-coxarthrosis",
+      "name": "Coxartrosis con irradiación a nalga",
+      "whatWouldReconsider": "Limitación de rotación interna de cadera con dolor en ingle.",
+      "keyDiscriminatingTest": "Test de FADIR / Rotación interna de cadera"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-lumbogluteal",
+      "structuralDiagnosis": "Dolor Lumboglúteo Mecánico Discriminado",
+      "painGenerator": "Generador somático mecánico según diana exploratoria",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo somático referido o regional",
+      "supportingFindings": [
+        "Pruebas de provocación específicas positivas",
+        "Sin déficit neurológico motor"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El dolor en la zona lumbar y la nalga es muy frecuente y la inmensa mayoría de las veces se debe a pequeñas articulaciones de la columna, la pelvis o los tendones del glúteo. Con ejercicios específicos de estabilización y control de posturas se resuelve favorablemente.",
+      "mentorNote": "Desmitificar hernias discales si no hay clínica radicular neurológica."
+    },
+    "exercise": {
+      "objective": "Fortalecimiento de glúteo medio, puente de glúteos y control lumbopélvico.",
+      "phases": [
+        {
+          "name": "Fase 1: Control Isométrico",
+          "description": "Puentes de glúteo bipodales, clamshells sin resistencia y paseos cortos.",
+          "duration": "2-4 semanas"
+        },
+        {
+          "name": "Fase 2: Fuerza y Carga",
+          "description": "Puente monopodal, sentadillas asistidas y planchas modificadas.",
+          "duration": "4-8 semanas"
+        }
+      ],
+      "loadGuidance": "Dolor durante los ejercicios ≤3/10."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-04",
+      "options": [
+        {
+          "name": "AINE oral ciclo corto",
+          "indication": "En fases agudas dolorosas.",
+          "example": "Ibuprofeno 400mg/8h o Naproxeno 500mg/12h con protector",
+          "duration": "5-7 días",
+          "guardrails": [
+            "Función renal",
+            "Riesgo GI"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si fracaso conservador y diana claramente demostrada.",
+      "objective": "Bloqueo diagnóstico/terapéutico eco/fluoroguiado (Facetario, Sacroilíaco o Bursa Trocantérica).",
+      "targets": [
+        {
+          "name": "Diana según sospecha (Facetas L4-S1 / SI / Trocanter)",
+          "indication": "Dolor refractario",
+          "options": [
+            {
+              "name": "Infiltración ecoguiada o fluoroguiada",
+              "evidence": "Alta a corto/medio plazo"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Tolerancia a estar sentado o caminar",
+        "icon": "🪑"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "improvement",
+        "label": "Evolución favorable",
+        "action": "Continuar fortalecimiento.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Hemos localizado exactamente la zona que produce la molestia en la nalga. El tratamiento dirigido a esa estructura te devolverá la comodidad al caminar y sentarte.",
+    "takeHomeMantra": "Identificar el punto exacto es la clave para no perder tiempo con tratamientos genéricos."
+  },
+  "evidence": [
+    {
+      "citation": "Laslett M. Evidence-based diagnosis and treatment of the painful sacroiliac joint. J Man Manip Ther. 2008;16(3):142-152.",
+      "topic": "SIJ & Lumbogluteal Differentiation",
+      "year": 2008
+    }
+  ]
+}

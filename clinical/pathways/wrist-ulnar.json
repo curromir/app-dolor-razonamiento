@@ -1,0 +1,300 @@
+{
+  "id": "wrist-ulnar",
+  "region": "muneca_mano",
+  "regionLabel": "Muñeca y Mano",
+  "regionIcon": "🤲",
+  "presentation": "Dolor cubital de muñeca",
+  "presentationDesc": "Dolor en el borde cubital / medial de la muñeca (el 'agujero negro' del dolor de muñeca), diferenciando lesiones del complejo del fibrocartílago triangular (TFCC), tendinopatía del ECU, inestabilidad de la articulación radiocubital distal (DRUJ) y artrosis pisopiramidal.",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 21,
+  "redFlags": [
+    {
+      "id": "rf-druj-dislocation",
+      "text": "Deformidad evidente en dorso de muñeca con 'tecla de piano' cubital fija tras caída y bloqueo de la pronosupinación (Sospecha Luxación Aguda de la Articulación Radiocubital Distal / Fractura de Galeazzi)",
+      "severity": "critical",
+      "action": "Inmovilización con férula braquiopalmar, radiografías estrictas AP y Lateral de muñeca y derivación urgente a Traumatología."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-tfcc-tear",
+      "name": "Lesión / Rotura del Complejo Fibrocartilaginoso Triangular (TFCC)",
+      "shortName": "Fibrocartílago Triangular (TFCC)",
+      "description": "Desgarro traumático o degenerativo del menisco de la muñeca con dolor a la desviación cubital y carga axial.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-ecu-tendinopathy",
+      "name": "Tendinopatía / Subluxación del Extensor Carpi Ulnaris (ECU / 6º Compartimento)",
+      "shortName": "Tendón ECU (6º Compartimento)",
+      "description": "Inflamación o inestabilidad del tendón extensor cubital del carpo en su corredera sobre la estiloides cubital.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-druj-instability-oa",
+      "name": "Inestabilidad / Artrosis Radiocubital Distal (DRUJ)",
+      "shortName": "Radiocubital Distal (DRUJ)",
+      "description": "Dolor y crepitación en la articulación entre radio y cúbito durante la pronosupinación.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor empeora al escurrir una bayeta, abrir una cerradura con llave o apoyarse con la palma abierta en la mesa para levantarse?»",
+      "explanation": "La torsión en pronosupinación bajo carga axial comprime el TFCC y estresa la articulación DRUJ.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, girar llaves, escurrir trapos o apoyarme en la mesa para levantarme es lo que más me duele",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-tfcc-tear",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-druj-instability-oa",
+              "effect": "increase",
+              "weight": 5
+            }
+          ]
+        },
+        {
+          "label": "Me duele al extender la muñeca desviándola hacia el lado del meñique con chasquido",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-ecu-tendinopathy",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Dirigida de Muñeca Cubital",
+    "steps": [
+      {
+        "id": "exam-fovea-sign-wrist",
+        "order": 1,
+        "name": "Ulnar Fovea Sign (Signo de la Fóvea Cubital)",
+        "catalogTestId": "muneca-fovea",
+        "category": "palpacion",
+        "instruction": "Palpar con el pulgar la depresión anatómica profunda entre la estiloides cubital y el tendón FCU.",
+        "whatToLookFor": "Dolor exquisito y reproducible en la fóvea.",
+        "essential": true,
+        "mentorTip": "Altamente sensible (>95%) para desgarros foveales del fibrocartílago triangular (TFCC) o ligamentos ulnotripolares.",
+        "results": [
+          {
+            "label": "Dolor exquisito en la fóvea cubital",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-tfcc-tear",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Indoloro en la fóvea",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-tfcc-tear",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-ecu-synergy-wrist",
+        "order": 2,
+        "name": "Test de Sinergia del ECU / Resistencia a Extensión-Desviación Cubital",
+        "catalogTestId": "muneca-ecu",
+        "category": "provocacion",
+        "instruction": "Resistir la extensión y desviación cubital de la muñeca mientras se palpa el 6º compartimento.",
+        "whatToLookFor": "Dolor o subluxación del tendón ECU fuera de su surco.",
+        "essential": true,
+        "mentorTip": "Diferencia la tendinopatía del ECU del TFCC profundo.",
+        "results": [
+          {
+            "label": "Dolor selectivo sobre el tendón ECU a la resistencia",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ecu-tendinopathy",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Indoloro",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ecu-tendinopathy",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-tfcc",
+      "name": "Batería Diagnóstica del Borde Cubital de Muñeca",
+      "description": "Fovea Sign + Test de Estrés en Desviación Cubital (Ulnar Grinding)",
+      "requiredTests": [
+        "exam-fovea-sign-wrist"
+      ],
+      "threshold": 1,
+      "concordanceText": "Alta precisión para patología del TFCC.",
+      "evidenceNote": "Tay SC, et al. The 'ulnar fovea sign' for TFCC tears."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe tenosinovitis del ECU o alteración visible en el margen accesible del fibrocartílago triangular?",
+    "structures": [
+      {
+        "id": "us-wrist-ulnar-scan",
+        "name": "Tendón ECU (6º Compartimento) y TFCC Periférico",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-wrist-ulnar-normal",
+            "label": "ECU en su corredera sin líquido; TFCC periférico homogéneo",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-ecu-tenosynovitis",
+            "label": "Tenosinovitis anecoica del ECU con hiperemia Doppler",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-tfcc-defect-peripheral",
+            "label": "Defecto hipoecoico / disrupción fibrilar en inserción del TFCC",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Estudio de muñeca cubital: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Fovea sign positivo y hallazgo ecográfico concordante.",
+        "icon": "🟢"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-pisiform-triquetral-oa",
+      "name": "Artrosis Pisopiramidal",
+      "whatWouldReconsider": "Dolor selectivo al cizallar el hueso pisiforme sobre el piramidal en cara palmar.",
+      "keyDiscriminatingTest": "Test de cizallamiento pisopiramidal"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-wrist-ulnar",
+      "structuralDiagnosis": "Patología del Borde Cubital de Muñeca (TFCC / ECU)",
+      "painGenerator": "Dolor nociceptivo ligamentoso/meniscal o tendinoso cubital",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo mecánico de muñeca",
+      "supportingFindings": [
+        "Fovea sign o ECU test positivo",
+        "Dolor en pronosupinación bajo carga"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El fibrocartílago triangular es el 'menisco' de la muñeca. Se irrita con giros forzados de muñeca (como abrir botes o cargar peso). El uso de una muñequera rígida de descarga (WristWidget o similar) durante unas semanas y el control de esfuerzos permiten que cicatrice.",
+      "mentorNote": "La inmovilización temporal que limite la pronosupinación y la desviación cubital alivia drásticamente el TFCC."
+    },
+    "exercise": {
+      "objective": "Fortalecimiento isométrico en neutro, pronosupinación libre sin carga y estabilidad propioceptiva.",
+      "phases": [
+        {
+          "name": "Fase 1: Inmovilización / Descarga",
+          "description": "Muñequera con fleje o cincha cubital y reposo de giros con peso.",
+          "duration": "3-6 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar apoyo en hiperextensión y torsión con fuerza."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-06",
+      "options": [
+        {
+          "name": "AINE tópico o ciclo corto",
+          "indication": "Fase dolorosa.",
+          "example": "Diclofenaco gel cada 12h",
+          "duration": "2 semanas",
+          "guardrails": [
+            "Piel intacta"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si fracaso conservador y dolor limitante.",
+      "objective": "Infiltración ecoguiada peritendinosa del ECU o intraarticular radio-cubitocarpiana.",
+      "targets": [
+        {
+          "name": "Vaina del ECU / Espacio Articular Cubitocarpiano",
+          "indication": "Dolor refractario",
+          "options": [
+            {
+              "name": "Corticoide bajo volumen ecoguiado",
+              "evidence": "Moderada"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4-6 semanas",
+    "parameters": [
+      {
+        "name": "Tolerancia a la carga y Fovea sign",
+        "icon": "✋"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "good",
+        "label": "Evolución favorable",
+        "action": "Retirar ortesis progresivamente.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Dar descanso al menisco de la muñeca con la muñequera adecuada es el secreto para que los tejidos se reparen.",
+    "takeHomeMantra": "Proteger la muñeca en los giros permite que el fibrocartílago cicatrice sin necesidad de cirugía."
+  },
+  "evidence": [
+    {
+      "citation": "Tay SC, et al. The 'ulnar fovea sign' for man-made lesions of the triangular fibrocartilage. J Hand Surg Am. 2007;32(4):438-444.",
+      "topic": "TFCC Diagnosis",
+      "year": 2007
+    }
+  ]
+}

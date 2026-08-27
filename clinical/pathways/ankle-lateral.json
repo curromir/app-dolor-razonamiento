@@ -1,0 +1,309 @@
+{
+  "id": "ankle-lateral",
+  "region": "tobillo_pie",
+  "regionLabel": "Tobillo y Pie",
+  "regionIcon": "🦶",
+  "presentation": "Dolor lateral de tobillo",
+  "presentationDesc": "Dolor tras esguince o sobrecarga en la cara externa del tobillo, diferenciando inestabilidad crónica de ligamentos (LPAA/LPC), tendinopatía o subluxación de peroneos, pinzamiento anterolateral y lesiones osteocondrales del astrágalo.",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 21,
+  "redFlags": [
+    {
+      "id": "rf-ottawa-ankle-fracture",
+      "text": "Incapacidad para dar 4 pasos inmediatamente tras el traumatismo y en la consulta, o dolor óseo exquisito en los 6 cm distales del maléolo lateral/medial o base del 5º metatarsiano (Criterios de Ottawa Positivos)",
+      "severity": "critical",
+      "action": "Radiografía de tobillo y pie (AP, Lateral y Mortaja) obligatoria para descartar fractura maleolar o de Jones."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-atfl-cfl-sprain",
+      "name": "Esguince / Inestabilidad Ligamentosa Lateral (LPAA / LPC)",
+      "shortName": "Ligamentos Laterales (LPAA/LPC)",
+      "description": "Lesión del ligamento peroneoastragalino anterior o peroneocalcáneo tras mecanismo de inversión.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-peroneal-tendinopathy-sublux",
+      "name": "Tendinopatía / Split Tear / Subluxación de Tendones Peroneos",
+      "shortName": "Tendones Peroneos (Corto y Largo)",
+      "description": "Dolor retromaleolar lateral que empeora con la eversión resistida o resalte al rotar el pie.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-anterolateral-impingement",
+      "name": "Pinzamiento Anterolateral de Tobillo (Meniscoide)",
+      "shortName": "Pinzamiento Anterolateral",
+      "description": "Sinovitis hipertrófica en la gotiera anterolateral tras esguinces de repetición que duele con la dorsiflexión.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-talar-osteochondral-lesion",
+      "name": "Lesión Osteocondral de la Cúpula Astragalina (OCD)",
+      "shortName": "Lesión Osteocondral de Astrágalo",
+      "description": "Dolor profundo persistente con bloqueos o derrames tras traumatismo antiguo.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor está justo delante del maléolo externo o por detrás del hueso siguiendo la cuerda de los tendones?»",
+      "explanation": "Delante orienta a ligamento LPAA / pinzamiento; detrás orienta a tendones peroneos.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Por delante del maléolo externo (zona anterior)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-atfl-cfl-sprain",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-anterolateral-impingement",
+              "effect": "increase",
+              "weight": 6
+            }
+          ]
+        },
+        {
+          "label": "Por detrás del maléolo externo, con sensación de crujido o resalte",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-peroneal-tendinopathy-sublux",
+              "effect": "increase",
+              "weight": 8
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración Dirigida de Tobillo Lateral",
+    "steps": [
+      {
+        "id": "exam-anterior-drawer-ankle",
+        "order": 1,
+        "name": "Cajón Anterior de Tobillo y Talar Tilt",
+        "catalogTestId": "tobillo-cajon-anterior",
+        "category": "inestabilidad",
+        "instruction": "Fijar la tibia con una mano y traccionar el calcáneo hacia adelante con el tobillo a 10-15° de flexión plantar.",
+        "whatToLookFor": "Translación anterior aumentada o falta de tope firme (rotura del LPAA).",
+        "essential": true,
+        "mentorTip": "Realizar a los 4-5 días tras el trauma agudo para evitar falsos negativos por contractura muscular de defensa.",
+        "results": [
+          {
+            "label": "Cajón anterior positivo con laxitud aumentada",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-atfl-cfl-sprain",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Tope firme estable",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-atfl-cfl-sprain",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-peroneal-eversion-resisted",
+        "order": 2,
+        "name": "Eversión Resistida y Test de Subluxación Peronea Dinámica",
+        "category": "peroneos",
+        "instruction": "Resistir la eversión activa del pie mientras el paciente pasa de flexión plantar a dorsiflexión rápida.",
+        "whatToLookFor": "Dolor retromaleolar o tendones peroneos saltando sobre el maléolo lateral.",
+        "essential": true,
+        "mentorTip": "Si los tendones saltan por encima del maléolo, indica rotura del retináculo peroneo superior.",
+        "results": [
+          {
+            "label": "Dolor retromaleolar o subluxación visible",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-peroneal-tendinopathy-sublux",
+                "effect": "increase",
+                "weight": 8
+              }
+            ]
+          },
+          {
+            "label": "Indoloro y estable",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-peroneal-tendinopathy-sublux",
+                "effect": "decrease",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-ankle-lateral",
+      "name": "Batería de Inestabilidad y Peroneos",
+      "description": "Cajón anterior + Eversión resistida + Ottawa rules",
+      "requiredTests": [
+        "exam-anterior-drawer-ankle",
+        "exam-peroneal-eversion-resisted"
+      ],
+      "threshold": 1,
+      "concordanceText": "Diferencia con precisión entre lesión ligamentosa y patología tendinosa de peroneos.",
+      "evidenceNote": "van Dijk CN, et al. Physical examination for ankle sprains."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe rotura/engrosamiento del LPAA, tenosinovitis o split longitudinal del peroneo corto?",
+    "structures": [
+      {
+        "id": "us-ankle-lat-scan",
+        "name": "Ligamento LPAA y Tendones Peroneos",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-ankle-lat-normal",
+            "label": "LPAA y peroneos continuos y normoecogénicos",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-atfl-tear",
+            "label": "Rotura / engrosamiento hipoecoico del ligamento LPAA",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-peroneal-split",
+            "label": "Tenosinovitis o rotura longitudinal (split tear) del peroneo corto con subluxación",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Estudio ecográfico de tobillo lateral: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Hallazgo ecográfico concordante con exploración clínica.",
+        "icon": "🟢"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-fifth-metatarsal",
+      "name": "Fractura de la base del 5º metatarsiano (Jones / Avulsión)",
+      "whatWouldReconsider": "Dolor exquisito en la apófisis estiloides del 5º metatarsiano.",
+      "keyDiscriminatingTest": "Palpación estiloides 5º meta / Radiografía de pie"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-ankle-lateral",
+      "structuralDiagnosis": "Lesión de Ligamentos Laterales o Tendones Peroneos",
+      "painGenerator": "Dolor nociceptivo mecánico ligamentoso o tendinoso",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo articular o tendinoso",
+      "supportingFindings": [
+        "Traumatismo en inversión",
+        "Pruebas específicas positivas",
+        "Eco concordante"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Los esguinces de tobillo y las molestias de los tendones peroneos se recuperan de forma excelente con ejercicios de propiocepción (equilibrio sobre un pie) y fortalecimiento. La inmovilización estricta con yeso ya no se recomienda; el movimiento temprano protegido da los mejores resultados.",
+      "mentorNote": "Fomentar la carga temprana con tobillera semirrígida en lugar de yeso para acelerar la cicatrización ligamentosa."
+    },
+    "exercise": {
+      "objective": "Propiocepción sobre plano inestable, fortalecimiento de peroneos y dorsiflexión.",
+      "phases": [
+        {
+          "name": "Fase 1: Propiocepción y Fuerza",
+          "description": "Equilibrio monopodal con ojos abiertos/cerrados y eversión con banda elástica.",
+          "duration": "4-8 semanas"
+        }
+      ],
+      "loadGuidance": "Dolor tolerable sin inestabilidad subjetiva."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-07",
+      "options": [
+        {
+          "name": "AINE tópico o ciclo oral corto",
+          "indication": "Control analgésico inicial.",
+          "example": "Diclofenaco tópico cada 12h",
+          "duration": "7-10 días",
+          "guardrails": [
+            "Piel intacta"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo en pinzamiento anterolateral meniscoide crónico o tenosinovitis recalcitrante.",
+      "objective": "Infiltración ecoguiada gotiera anterolateral.",
+      "targets": [
+        {
+          "name": "Gotiera Anterolateral",
+          "indication": "Pinzamiento crónico",
+          "options": [
+            {
+              "name": "Corticoide ecoguiado bajo volumen",
+              "evidence": "Moderada"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Estabilidad en apoyo monopodal y salto",
+        "icon": "🦶"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "stable",
+        "label": "Evolución favorable",
+        "action": "Retorno deportivo con prevención propioceptiva.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "El equilibrio y la fuerza de los músculos laterales son los verdaderos ligamentos activos de tu tobillo. Con el entrenamiento adecuado, volverás a caminar y correr con total seguridad.",
+    "takeHomeMantra": "El entrenamiento del equilibrio le devuelve al tobillo la seguridad que necesita."
+  },
+  "evidence": [
+    {
+      "citation": "Vuurberg G, et al. Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline. Br J Sports Med. 2018;52(15):956.",
+      "topic": "Ankle Sprain Evidence-Based Guideline",
+      "year": 2018
+    }
+  ]
+}

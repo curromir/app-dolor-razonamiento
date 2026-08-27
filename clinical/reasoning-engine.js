@@ -1970,95 +1970,95 @@ const CLINICAL_PATHWAYS_REGISTRY = {
     label: 'Hombro y Cintura Escapular',
     icon: '🦴',
     presentations: [
-      { id: 'shoulder-lateral-pain', label: 'Dolor lateral (Subacromial / Manguito)', file: 'clinical/pathways/shoulder-lateral.json', available: true },
-      { id: 'shoulder-stiffness', label: 'Rigidez (Capsulitis Adhesiva vs Artrosis)', file: 'clinical/pathways/shoulder-stiffness.json', available: true },
-      { id: 'shoulder-anterior-pain', label: 'Dolor anterior (Bíceps / Corredera / SLAP)', file: 'clinical/pathways/shoulder-anterior.json', available: true },
-      { id: 'shoulder-superior-pain', label: 'Dolor superior (Acromioclavicular)', file: null, available: false },
-      { id: 'shoulder-posterior-pain', label: 'Dolor posterior (Infraespinoso)', file: null, available: false },
-      { id: 'shoulder-weakness', label: 'Debilidad / Pseudoparálisis', file: null, available: false },
-      { id: 'shoulder-trauma', label: 'Traumatismo', file: null, available: false },
-      { id: 'shoulder-unclear', label: 'No está claro', file: null, available: false }
+      { id: 'shoulder-lateral-pain', label: 'Dolor lateral (Subacromial / Manguito)', file: 'clinical/pathways/shoulder-lateral.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 },
+      { id: 'shoulder-stiffness', label: 'Rigidez (Capsulitis Adhesiva vs Artrosis)', file: 'clinical/pathways/shoulder-stiffness.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 11 },
+      { id: 'shoulder-anterior-pain', label: 'Dolor anterior (Bíceps / Corredera / SLAP)', file: 'clinical/pathways/shoulder-anterior.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 12 },
+      { id: 'shoulder-superior-pain', label: 'Dolor superior (Acromioclavicular)', file: 'clinical/pathways/shoulder-superior.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 20 },
+      { id: 'shoulder-posterior-pain', label: 'Dolor posterior (Infraespinoso / Manguito Post.)', file: 'clinical/pathways/shoulder-posterior.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 21 },
+      { id: 'shoulder-weakness', label: 'Debilidad / Pseudoparálisis', file: 'clinical/pathways/shoulder-weakness.json', available: true, visualTier: 'safety', visualLabel: 'Seguridad', clinicalPriority: 30 },
+      { id: 'shoulder-trauma', label: 'Traumatismo de Hombro', file: 'clinical/pathways/shoulder-trauma.json', available: true, visualTier: 'safety', visualLabel: 'Situación especial', clinicalPriority: 31 },
+      { id: 'shoulder-unclear', label: 'No está claro (Incertidumbre)', file: 'clinical/pathways/shoulder-unclear.json', available: true, visualTier: 'uncertain', visualLabel: 'Cuando no encaja', clinicalPriority: 40 }
     ]
   },
   lumbar: {
     label: 'Columna Lumbar / Torácica',
     icon: '⚡',
     presentations: [
-      { id: 'lumbar-radicular-pain', label: 'Lumbar + irradiación a pierna (Radiculopatía L4/L5/S1)', file: 'clinical/pathways/lumbar-radicular.json', available: true },
-      { id: 'lumbar-axial-pain', label: 'Dolor lumbar axial (Síndrome Facetario vs Discogénico)', file: 'clinical/pathways/lumbar-axial.json', available: true },
-      { id: 'lumbar-claudication', label: 'Claudicación al caminar (Estenosis de Canal vs Vascular)', file: 'clinical/pathways/lumbar-claudication.json', available: true },
-      { id: 'lumbar-gluteal', label: 'Lumbar + glúteo', file: null, available: false },
-      { id: 'lumbar-nocturnal', label: 'Dolor nocturno / en reposo', file: null, available: false },
-      { id: 'lumbar-trauma', label: 'Traumatismo', file: null, available: false },
-      { id: 'lumbar-unclear', label: 'No está claro', file: null, available: false }
+      { id: 'lumbar-radicular-pain', label: 'Lumbar + irradiación a pierna (Radiculopatía L4/L5/S1)', file: 'clinical/pathways/lumbar-radicular.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 },
+      { id: 'lumbar-axial-pain', label: 'Dolor lumbar axial (Síndrome Facetario vs Discogénico)', file: 'clinical/pathways/lumbar-axial.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 11 },
+      { id: 'lumbar-claudication', label: 'Claudicación al caminar (Estenosis de Canal vs Vascular)', file: 'clinical/pathways/lumbar-claudication.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 12 },
+      { id: 'lumbar-gluteal', label: 'Lumbar + glúteo (Facetario vs Sacroilíaca vs Piriforme)', file: 'clinical/pathways/lumbar-gluteal.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 20 },
+      { id: 'lumbar-nocturnal', label: 'Dolor nocturno / en reposo (Banderas Rojas / Inflamatorio)', file: 'clinical/pathways/lumbar-nocturnal.json', available: true, visualTier: 'safety', visualLabel: 'Seguridad', clinicalPriority: 30 },
+      { id: 'lumbar-trauma', label: 'Traumatismo Lumbar (Fractura Osteoporótica)', file: 'clinical/pathways/lumbar-trauma.json', available: true, visualTier: 'safety', visualLabel: 'Situación especial', clinicalPriority: 31 },
+      { id: 'lumbar-unclear', label: 'No está claro (Incertidumbre)', file: 'clinical/pathways/lumbar-unclear.json', available: true, visualTier: 'uncertain', visualLabel: 'Cuando no encaja', clinicalPriority: 40 }
     ]
   },
   cervical: {
     label: 'Columna Cervical',
     icon: '🧠',
     presentations: [
-      { id: 'cervical-radicular', label: 'Dolor cervical irradiado (Radiculopatía C6/C7)', file: 'clinical/pathways/cervical-radicular.json', available: true },
-      { id: 'cervical-axial', label: 'Cervicalgia axial (Facetario vs Miofascial vs Cefalea)', file: 'clinical/pathways/cervical-axial.json', available: true }
+      { id: 'cervical-radicular', label: 'Dolor cervical irradiado (Radiculopatía C6/C7)', file: 'clinical/pathways/cervical-radicular.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 },
+      { id: 'cervical-axial', label: 'Cervicalgia axial (Facetario vs Miofascial vs Cefalea)', file: 'clinical/pathways/cervical-axial.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 11 }
     ]
   },
   rodilla: {
     label: 'Rodilla',
     icon: '🦵',
     presentations: [
-      { id: 'knee-oa-anterior', label: 'Dolor anterior / Artrosis (SDFP vs Gonartrosis vs Menisco)', file: 'clinical/pathways/knee-oa-anterior.json', available: true },
-      { id: 'knee-medial', label: 'Dolor medial (Gonartrosis Medial vs Menisco Interno vs Pata de Ganso)', file: 'clinical/pathways/knee-medial.json', available: true },
-      { id: 'knee-lateral', label: 'Dolor lateral', file: null, available: false },
-      { id: 'knee-posterior', label: 'Dolor posterior', file: null, available: false }
+      { id: 'knee-oa-anterior', label: 'Dolor anterior / Artrosis (SDFP vs Gonartrosis vs Menisco)', file: 'clinical/pathways/knee-oa-anterior.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 },
+      { id: 'knee-medial', label: 'Dolor medial (Gonartrosis Medial vs Menisco Interno vs Pata de Ganso)', file: 'clinical/pathways/knee-medial.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 11 },
+      { id: 'knee-lateral', label: 'Dolor lateral (Banda Iliotibial vs Menisco Lateral)', file: 'clinical/pathways/knee-lateral.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 20 },
+      { id: 'knee-posterior', label: 'Dolor posterior (Quiste de Baker vs Isquiotibiales)', file: 'clinical/pathways/knee-posterior.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 21 }
     ]
   },
   cadera: {
     label: 'Cadera',
     icon: '🦿',
     presentations: [
-      { id: 'hip-lateral', label: 'Dolor lateral (Síndrome Trocantérico / GTPS / Glúteo medio)', file: 'clinical/pathways/hip-lateral.json', available: true },
-      { id: 'hip-inguinal', label: 'Dolor inguinal (Coxartrosis vs Choque FAI vs Psoas)', file: 'clinical/pathways/hip-inguinal.json', available: true },
-      { id: 'hip-gluteal', label: 'Dolor glúteo profundo', file: null, available: false }
+      { id: 'hip-lateral', label: 'Dolor lateral (Síndrome Trocantérico / GTPS / Glúteo medio)', file: 'clinical/pathways/hip-lateral.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 },
+      { id: 'hip-inguinal', label: 'Dolor inguinal (Coxartrosis vs Choque FAI vs Psoas)', file: 'clinical/pathways/hip-inguinal.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 11 },
+      { id: 'hip-gluteal', label: 'Dolor glúteo profundo (Espacio Glúteo Profundo / Piriforme)', file: 'clinical/pathways/hip-gluteal.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 20 }
     ]
   },
   sacroiliaca: {
     label: 'Pelvis / Sacroilíaca',
     icon: '🎯',
     presentations: [
-      { id: 'si-posterior-pelvic', label: 'Dolor posterior pélvico (Articulación Sacroilíaca / Clúster de Laslett)', file: 'clinical/pathways/si-posterior-pelvic.json', available: true }
+      { id: 'si-posterior-pelvic', label: 'Dolor posterior pélvico (Articulación Sacroilíaca / Clúster de Laslett)', file: 'clinical/pathways/si-posterior-pelvic.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 }
     ]
   },
   codo: {
     label: 'Codo',
     icon: '🦾',
     presentations: [
-      { id: 'elbow-lateral', label: 'Dolor lateral (Epicondilalgia / Codo de Tenista vs Túnel Radial)', file: 'clinical/pathways/elbow-lateral.json', available: true },
-      { id: 'elbow-medial', label: 'Dolor medial (Epitroclealgia / Codo de Golfista)', file: null, available: false }
+      { id: 'elbow-lateral', label: 'Dolor lateral (Epicondilalgia / Codo de Tenista vs Túnel Radial)', file: 'clinical/pathways/elbow-lateral.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 },
+      { id: 'elbow-medial', label: 'Dolor medial (Epitroclealgia vs Nervio Cubital)', file: 'clinical/pathways/elbow-medial.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 20 }
     ]
   },
   muneca_mano: {
     label: 'Muñeca y Mano',
     icon: '🤲',
     presentations: [
-      { id: 'wrist-cts', label: 'Túnel carpiano (Nervio Mediano / Durkan / Phalen)', file: 'clinical/pathways/wrist-cts.json', available: true },
-      { id: 'wrist-radial', label: 'Dolor radial (Tenosinovitis de De Quervain / WHAT test)', file: 'clinical/pathways/wrist-radial.json', available: true },
-      { id: 'wrist-ulnar', label: 'Dolor cubital (Fibrocartílago triangular)', file: null, available: false }
+      { id: 'wrist-cts', label: 'Túnel carpiano (Nervio Mediano / Durkan / Phalen)', file: 'clinical/pathways/wrist-cts.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 },
+      { id: 'wrist-radial', label: 'Dolor radial (Tenosinovitis de De Quervain / WHAT test)', file: 'clinical/pathways/wrist-radial.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 11 },
+      { id: 'wrist-ulnar', label: 'Dolor cubital (Fibrocartílago triangular / TFCC vs ECU)', file: 'clinical/pathways/wrist-ulnar.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 20 }
     ]
   },
   tobillo_pie: {
     label: 'Tobillo y Pie',
     icon: '🦶',
     presentations: [
-      { id: 'ankle-plantar', label: 'Dolor plantar (Fascitis Plantar / Test de Windlass)', file: 'clinical/pathways/ankle-plantar.json', available: true },
-      { id: 'ankle-medial', label: 'Dolor medial (Tendón Tibial Posterior / TTP vs Túnel del Tarso)', file: 'clinical/pathways/ankle-medial.json', available: true },
-      { id: 'ankle-achilles', label: 'Tendón de Aquiles (Tendinopatía)', file: null, available: false },
-      { id: 'ankle-lateral', label: 'Dolor lateral (Ligamentos peroneos)', file: null, available: false }
+      { id: 'ankle-plantar', label: 'Dolor plantar (Fascitis Plantar / Test de Windlass)', file: 'clinical/pathways/ankle-plantar.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 },
+      { id: 'ankle-medial', label: 'Dolor medial (Tendón Tibial Posterior / TTP vs Túnel del Tarso)', file: 'clinical/pathways/ankle-medial.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 11 },
+      { id: 'ankle-achilles', label: 'Tendón de Aquiles (Porción Media vs Insercional vs Rotura)', file: 'clinical/pathways/ankle-achilles.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 20 },
+      { id: 'ankle-lateral', label: 'Dolor lateral (Ligamentos LPAA/LPC vs Peroneos)', file: 'clinical/pathways/ankle-lateral.json', available: true, visualTier: 'secondary', visualLabel: 'Menos habitual', clinicalPriority: 21 }
     ]
   },
   nociplastico: {
     label: 'Dolor Nociplástico / Generalizado',
     icon: '🌪️',
     presentations: [
-      { id: 'nociplastic-pain', label: 'Dolor Nociplástico / Sensibilización Central (Fibromialgia)', file: 'clinical/pathways/nociplastic-pain.json', available: true }
+      { id: 'nociplastic-pain', label: 'Dolor Nociplástico / Sensibilización Central (Fibromialgia)', file: 'clinical/pathways/nociplastic-pain.json', available: true, visualTier: 'primary', visualLabel: 'Frecuente', clinicalPriority: 10 }
     ]
   }
 };

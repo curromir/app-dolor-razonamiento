@@ -1,0 +1,361 @@
+{
+  "id": "lumbar-nocturnal",
+  "region": "lumbar",
+  "regionLabel": "Columna Lumbar / Torácica",
+  "regionIcon": "⚡",
+  "presentation": "Dolor nocturno / en reposo",
+  "presentationDesc": "Dolor lumbar continuo, sordo y no mecánico que despierta de madrugada sin alivio con los cambios de postura, requiriendo despistaje sistemático de neoplasias, infecciones, espondiloartritis o fracturas patológicas.",
+  "visualTier": "safety",
+  "visualLabel": "Seguridad",
+  "clinicalPriority": 30,
+  "redFlags": [
+    {
+      "id": "rf-oncology-red-flag",
+      "text": "Antecedente personal de cáncer (mama, próstata, pulmón, riñón, tiroides), pérdida de peso inexplicable >5 kg en 1 mes o dolor óseo sordo implacable nocturno (Sospecha Metástasis Vertebral / Mieloma)",
+      "severity": "critical",
+      "action": "RM de columna total urgente, analítica con hemograma, VSG/PCR, perfil proteico en suero y orina, y derivación preferente a Oncología/Medicina Interna."
+    },
+    {
+      "id": "rf-spondylodiscitis-fever",
+      "text": "Fiebre, escalofríos, infección urinaria o herida cutánea reciente, uso de drogas por vía parenteral o inmunosupresión con dolor a la percusión espinosa (Sospecha Espondilodiscitis Infecciosa / Absceso Epidural)",
+      "severity": "critical",
+      "action": "Hemocultivos seriados, RM lumbar urgente y derivación inmediata a Urgencias hospitalarias."
+    },
+    {
+      "id": "rf-inflammatory-spondyloarthritis",
+      "text": "Paciente <45 años con dolor nocturno que mejora con el ejercicio físico pero no con el reposo, rigidez matutina >30 min y respuesta espectacular a AINEs (Sospecha Espondiloartritis Axial / Espondilitis Anquilosante)",
+      "severity": "high",
+      "action": "Solicitar HLA-B27, PCR/VSG, RM de articulaciones sacroilíacas (secuencia STIR para edema óseo) y derivar a Reumatología."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-spinal-neoplasm-metastasis",
+      "name": "Sospecha de Neoplasia Vertebral / Metástasis Ósea",
+      "shortName": "Neoplasia / Metástasis",
+      "description": "Infiltración tumoral del cuerpo vertebral con dolor continuo que empeora en decúbito por estasis venoso.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-spondylodiscitis-infection",
+      "name": "Espondilodiscitis Infecciosa / Infección Raquídea",
+      "shortName": "Espondilodiscitis Infecciosa",
+      "description": "Infección bacteriana del disco y platillos vertebrales con percusión apofisaria exquisitamente dolorosa.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-axial-spondyloarthritis",
+      "name": "Espondiloartritis Axial Inflamatoria (SpA)",
+      "shortName": "Espondiloartritis Axial (Inflamatoria)",
+      "description": "Dolor inflamatorio que despierta en la segunda mitad de la noche y mejora al caminar y moverse.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-severe-mechanical-sleep",
+      "name": "Dolor Mecánico Lumbar Severo en Decúbito",
+      "shortName": "Dolor Mecánico en Decúbito",
+      "description": "Degeneración discal o artrosis facetaria severa que molesta al girarse en la cama pero cede al levantarse.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿El dolor mejora al levantarse de la cama y ponerse a caminar, o es continuo y no se calma con nada?»",
+      "explanation": "El dolor inflamatorio (Espondiloartritis) mejora con el ejercicio; el dolor tumoral o infeccioso es continuo y constante.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Mejora claramente en cuanto me levanto y me pongo en movimiento",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-axial-spondyloarthritis",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-spinal-neoplasm-metastasis",
+              "effect": "decrease",
+              "weight": 4
+            }
+          ]
+        },
+        {
+          "label": "Es constante, implacable, ni de pie ni tumbado encuentro alivio",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-spinal-neoplasm-metastasis",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-spondylodiscitis-infection",
+              "effect": "increase",
+              "weight": 6
+            }
+          ]
+        },
+        {
+          "label": "Solo me duele justo en el momento de girarme de un lado a otro en el colchón",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-severe-mechanical-sleep",
+              "effect": "increase",
+              "weight": 7
+            },
+            {
+              "hypothesisId": "hyp-spinal-neoplasm-metastasis",
+              "effect": "decrease",
+              "weight": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "«¿Ha tenido fiebre, sudoración nocturna profusa o pérdida de peso involuntaria en los últimos meses?»",
+      "explanation": "Síntomas B (constitucionales) indican patología sistémica, infecciosa u oncológica.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí (fiebre, sudoración empapando la cama o pérdida de peso)",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-spinal-neoplasm-metastasis",
+              "effect": "increase",
+              "weight": 8
+            },
+            {
+              "hypothesisId": "hyp-spondylodiscitis-infection",
+              "effect": "increase",
+              "weight": 8
+            }
+          ]
+        },
+        {
+          "label": "No, mi peso y temperatura son normales",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-spinal-neoplasm-metastasis",
+              "effect": "decrease",
+              "weight": 4
+            },
+            {
+              "hypothesisId": "hyp-spondylodiscitis-infection",
+              "effect": "decrease",
+              "weight": 4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración de Seguridad y Banderas Rojas Lumbares",
+    "steps": [
+      {
+        "id": "exam-spinous-percussion",
+        "order": 1,
+        "name": "Percusión de Apófisis Espinosas Vertebrales",
+        "category": "seguridad",
+        "instruction": "Percutir suavemente con el martillo de reflejos o el borde cubital de la mano cada apófisis espinosa lumbar y torácica.",
+        "whatToLookFor": "Dolor exquisito y focalizado en un único nivel vertebral (signo de alerta de fractura, infección o metástasis).",
+        "essential": true,
+        "mentorTip": "La percusión espinosa intensamente positiva obliga a solicitar imagen avanzada (RM).",
+        "results": [
+          {
+            "label": "Dolor exquisito focal a la percusión en una vértebra",
+            "value": "percussion_positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-spinal-neoplasm-metastasis",
+                "effect": "increase",
+                "weight": 7
+              },
+              {
+                "hypothesisId": "hyp-spondylodiscitis-infection",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Percusión indolora en toda la columna",
+            "value": "percussion_negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-severe-mechanical-sleep",
+                "effect": "increase",
+                "weight": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-neuro-screen-nocturnal",
+        "order": 2,
+        "name": "Screening Neurológico Motor y Reflejos",
+        "category": "neurologia",
+        "instruction": "Fuerza L4 (cuádriceps), L5 (primer dedo), S1 (puntillas), reflejos rotuliano y aquíleo.",
+        "whatToLookFor": "Déficit neurológico focal o signos de compresión medular/cauda equina.",
+        "essential": true,
+        "mentorTip": "Comprobar reflejo plantar (Babinski) para descartar mielopatía compresiva torácica.",
+        "results": [
+          {
+            "label": "Déficit motor o reflejos alterados",
+            "value": "neuro_deficit",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-spinal-neoplasm-metastasis",
+                "effect": "increase",
+                "weight": 6
+              }
+            ]
+          },
+          {
+            "label": "Exploración neurológica normal",
+            "value": "neuro_normal",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-axial-spondyloarthritis",
+                "effect": "increase",
+                "weight": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-red-flag-lumbar",
+      "name": "Criterios de Alerta de Dolor Lumbar No Mecánico",
+      "description": "Dolor nocturno constante + Percusión positiva o Síntomas B o Antecedente de cáncer",
+      "requiredTests": [
+        "exam-spinous-percussion"
+      ],
+      "threshold": 1,
+      "concordanceText": "Indicación estricta de RM de columna urgente y analítica completa.",
+      "evidenceNote": "Guías NICE NG59 / American College of Radiology Appropriateness Criteria."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "⚠️ LIMITACIÓN CLÍNICA: La ecografía no puede evaluar el cuerpo vertebral profundo ni el canal raquídeo. Se requiere RM.",
+    "structures": [
+      {
+        "id": "us-lumbar-limits",
+        "name": "Limitación de Ecografía en Dolor Nocturno",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-lumbar-unsuitable",
+            "label": "Ecografía no indicada: solicitar RM y analítica urgente",
+            "concordanceEffect": "discordant"
+          }
+        ],
+        "reportTemplate": "Estudio por imagen: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Alerta de Seguridad",
+        "description": "Cuadro no mecánico que requiere estudio diagnóstico hospitalario / RM.",
+        "icon": "🔴"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-visceral-aorta",
+      "name": "Aneurisma de Aorta Abdominal (AAA) / Patología Retroperitoneal",
+      "whatWouldReconsider": "Dolor lumbar sordo pulsátil en fumador >65 años.",
+      "keyDiscriminatingTest": "Palpación masa pulsátil / Ecografía abdominal urgente"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-non-mechanical-lumbar",
+      "structuralDiagnosis": "Dolor Lumbar No Mecánico / Alerta de Seguridad",
+      "painGenerator": "Proceso inflamatorio, infeccioso o infiltrativo raquídeo",
+      "mechanism": "inflammatory_central",
+      "mechanismLabel": "Dolor inflamatorio o patología de alarma",
+      "supportingFindings": [
+        "Dolor en reposo no mecánico",
+        "Percusión espinosa dolorosa",
+        "Síntomas B o antecedente oncológico"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "Tu dolor tiene características que hacen necesario realizar un estudio completo con análisis de sangre y una resonancia magnética para ver con detalle la estructura de las vértebras antes de iniciar cualquier tratamiento fisioterápico o medicación habitual.",
+      "mentorNote": "No iniciar manipulaciones vertebrales ni pautas ciegas sin imagen confirmatoria."
+    },
+    "exercise": {
+      "objective": "Suspender ejercicios de alta carga hasta tener diagnóstico etiológico confirmado.",
+      "phases": [
+        {
+          "name": "Fase de Diagnóstico",
+          "description": "Actividad suave tolerada sin impacto.",
+          "duration": "Hasta estudio"
+        }
+      ],
+      "loadGuidance": "Evitar esfuerzos bruscos."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-04",
+      "options": [
+        {
+          "name": "Analgesia de rescate para el confort",
+          "indication": "Paracetamol 1g o tramadol a dosis bajas según intensidad.",
+          "example": "Paracetamol 1g cada 8h",
+          "duration": "Hasta valoración médica",
+          "guardrails": [
+            "Seguridad hepática"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Contraindicado sin diagnóstico etiológico claro.",
+      "objective": "No procede.",
+      "targets": []
+    }
+  },
+  "followUp": {
+    "timing": "Valoración urgente preferente en <48-72 horas con resultados de RM/analítica",
+    "parameters": [
+      {
+        "name": "Banderas rojas neurológicas",
+        "icon": "⚠️"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "hospital_referral",
+        "label": "Derivación especializada",
+        "action": "Reumatología / Oncología / Infecciosas según hallazgos.",
+        "icon": "🔴"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "Hacer las pruebas adecuadas ahora es la decisión más responsable para asegurarnos de cuidar tu columna con la máxima seguridad.",
+    "takeHomeMantra": "La seguridad diagnóstica es siempre la máxima prioridad clínica."
+  },
+  "evidence": [
+    {
+      "citation": "Downie A, et al. Red flags to screen for malignancy and fracture in patients with low back pain: systematic review. BMJ. 2013;347:f7095.",
+      "topic": "Red Flags in Low Back Pain",
+      "year": 2013
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "id": "knee-posterior",
+  "region": "rodilla",
+  "regionLabel": "Rodilla",
+  "regionIcon": "🦵",
+  "presentation": "Dolor posterior de rodilla",
+  "presentationDesc": "Dolor y sensación de tensión o masa en el hueco poplíteo (Quiste de Baker, rotura de quiste, tendinopatía de isquiotibiales/poplíteo), integrando la regla de seguridad para descartar Trombosis Venosa Profunda (TVP).",
+  "visualTier": "secondary",
+  "visualLabel": "Menos habitual",
+  "clinicalPriority": 21,
+  "redFlags": [
+    {
+      "id": "rf-dvt-safety-override",
+      "text": "Edema unilateral doloroso de pantorrilla >3 cm de diferencia de perímetro, empastamiento gemelar, calor local o antecedentes trombóticos recientes (Sospecha Trombosis Venosa Profunda / TVP)",
+      "severity": "critical",
+      "action": "SAFETY OVERRIDE: Suspender exploración musculoesquelética. Solicitar Dímero-D y Eco-Doppler venoso de miembros inferiores urgente en Urgencias."
+    },
+    {
+      "id": "rf-popliteal-aneurysm",
+      "text": "Masa poplítea pulsátil expansiva con soplo auscultatorio (Sospecha Aneurisma de Arteria Poplítea)",
+      "severity": "critical",
+      "action": "Eco-Doppler arterial urgente y contraindicación absoluta de punción o aspiración a ciegas."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-bakers-cyst",
+      "name": "Quiste Poplíteo de Baker (Distensión Bursa Semimembranoso-Gastrocnemio)",
+      "shortName": "Quiste de Baker",
+      "description": "Colección líquida articular que se hernia hacia el hueco poplíteo por efecto válvula, secundaria a gonartrosis o rotura meniscal.",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-ruptured-baker-cyst",
+      "name": "Rotura / Fuga Aguda de Quiste de Baker (Pseudotromboflebitis)",
+      "shortName": "Rotura Aguda de Baker",
+      "description": "Extravasación de líquido sinovial al plano de los gemelos con dolor súbito y hematoma en tobillo (Signo de la creciente de Crescent).",
+      "initialLevel": "possible",
+      "score": 0
+    },
+    {
+      "id": "hyp-hamstring-tendinopathy-post",
+      "name": "Tendinopatía Distal de Isquiotibiales (Semimembranoso / Bíceps) o Poplíteo",
+      "shortName": "Tendinopatía Isquiotibiales/Poplíteo",
+      "description": "Dolor tendinoso mecánico que empeora con la flexión resistida de rodilla sin masa líquida.",
+      "initialLevel": "possible",
+      "score": 0
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "«¿Siente un bulto o tensión detrás de la rodilla que se hace más duro al estirar la pierna del todo y se ablanda al doblarla?»",
+      "explanation": "Signo de Foucher: el quiste de Baker se tensa en extensión y se relaja en semiflexión.",
+      "essential": true,
+      "answers": [
+        {
+          "label": "Sí, noto un bulto tenso al estirar la pierna que me impide doblarla del todo",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-bakers-cyst",
+              "effect": "increase",
+              "weight": 7
+            }
+          ]
+        },
+        {
+          "label": "Sentí un pinchazo repentino y el líquido bajó hacia la pantorrilla y el tobillo",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-ruptured-baker-cyst",
+              "effect": "increase",
+              "weight": 8
+            }
+          ]
+        },
+        {
+          "label": "No hay bulto, me duele al contraer con fuerza los músculos de atrás",
+          "hypothesisEffects": [
+            {
+              "hypothesisId": "hyp-hamstring-tendinopathy-post",
+              "effect": "increase",
+              "weight": 6
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "examination": {
+    "title": "Exploración de Hueco Poplíteo y Seguridad Venosa",
+    "steps": [
+      {
+        "id": "exam-foucher-sign",
+        "order": 1,
+        "name": "Palpación Poplítea y Signo de Foucher",
+        "category": "palpacion",
+        "instruction": "Palpar el hueco poplíteo medial (entre semimembranoso y gemelo medial) en extensión completa y luego a 45° de flexión.",
+        "whatToLookFor": "Masa fluctuante que se tensa en extensión y disminuye de tensión en flexión (Signo de Foucher positivo).",
+        "essential": true,
+        "mentorTip": "El quiste de Baker es siempre un síntoma de patología intraarticular (derrame por gonartrosis o menisco medial). No tratar solo el quiste: buscar la causa.",
+        "results": [
+          {
+            "label": "Foucher positivo: masa fluctuante típica",
+            "value": "positive",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-bakers-cyst",
+                "effect": "increase",
+                "weight": 7
+              }
+            ]
+          },
+          {
+            "label": "Hueco poplíteo libre y plano",
+            "value": "negative",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-bakers-cyst",
+                "effect": "decrease",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exam-calf-homans-dvt",
+        "order": 2,
+        "name": "Screening de TVP (Perímetro gemelar + Empastamiento)",
+        "category": "seguridad",
+        "instruction": "Medir perímetro de ambas pantorrillas a 10 cm bajo la tuberosidad tibial y palpar la masa gemelar.",
+        "whatToLookFor": "Diferencia >3 cm, dolor selectivo a la compresión gemelar profunda.",
+        "essential": true,
+        "mentorTip": "La rotura de Baker simula una TVP clínica (pseudotromboflebitis). Si hay duda, la ecografía Doppler es mandatoria.",
+        "results": [
+          {
+            "label": "Pantorrilla simétrica sin signos de TVP",
+            "value": "normal",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-bakers-cyst",
+                "effect": "increase",
+                "weight": 3
+              }
+            ]
+          },
+          {
+            "label": "Edema asimétrico marcado >3 cm (Alerta TVP)",
+            "value": "dvt_alert",
+            "hypothesisEffects": [
+              {
+                "hypothesisId": "hyp-ruptured-baker-cyst",
+                "effect": "increase",
+                "weight": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "id": "cluster-popliteal",
+      "name": "Clúster Poplíteo de Baker",
+      "description": "Foucher positivo + Limitación de flexión extrema + Derrame articular asociado",
+      "requiredTests": [
+        "exam-foucher-sign"
+      ],
+      "threshold": 1,
+      "concordanceText": "Alta especificidad para quiste de Baker secundario a patología articular.",
+      "evidenceNote": "Fritschy D, et al. The popliteal cyst."
+    }
+  ],
+  "ultrasound": {
+    "clinicalQuestion": "¿Existe quiste de Baker con su cuello comunicante característico entre semimembranoso y gemelo medial, o signos de rotura?",
+    "structures": [
+      {
+        "id": "us-baker-scan",
+        "name": "Bursa Semimembranoso-Gastrocnemio (Cuello del Quiste)",
+        "priority": 1,
+        "findings": [
+          {
+            "id": "us-baker-absent",
+            "label": "Hueco poplíteo libre sin colecciones quísticas",
+            "concordanceEffect": "neutral"
+          },
+          {
+            "id": "us-baker-classic",
+            "label": "Quiste de Baker anecoico con cuello en 'C' o 'pico de loro' entre semimembranoso y gemelo medial",
+            "concordanceEffect": "concordant"
+          },
+          {
+            "id": "us-baker-ruptured",
+            "label": "Quiste de Baker con márgenes desdibujados y líquido libre disecando el plano gemelar",
+            "concordanceEffect": "concordant"
+          }
+        ],
+        "reportTemplate": "Estudio ecográfico poplíteo: {finding}."
+      }
+    ],
+    "concordanceAssessment": {
+      "high": {
+        "label": "Concordancia alta",
+        "description": "Quiste de Baker visualizado con cuello comunicante confirmado.",
+        "icon": "🟢"
+      }
+    }
+  },
+  "differentialDiagnosis": [
+    {
+      "id": "dd-dvt",
+      "name": "Trombosis Venosa Profunda (TVP)",
+      "whatWouldReconsider": "Falta de compresibilidad de la vena poplítea en estudio Doppler.",
+      "keyDiscriminatingTest": "Eco-Doppler venoso con maniobra de compresión"
+    }
+  ],
+  "generators": [
+    {
+      "id": "gen-baker-joint-effusion",
+      "structuralDiagnosis": "Quiste Poplíteo de Baker Secundario a Patología Articular",
+      "painGenerator": "Tensión mecánica capsular por hipertensión intraarticular",
+      "mechanism": "nociceptive_mechanical",
+      "mechanismLabel": "Nociceptivo mecánico secundario",
+      "supportingFindings": [
+        "Signo de Foucher positivo",
+        "Quiste ecográfico con cuello comunicante"
+      ],
+      "requiredHypothesisLevel": "very_compatible"
+    }
+  ],
+  "treatment": {
+    "education": {
+      "patientText": "El quiste de Baker no es un tumor ni una bolsa aislada; es una válvula de escape de la rodilla cuando produce más líquido de la cuenta por desgaste o un menisco irritado. Si tratamos la causa de la rodilla, el bulto disminuye por sí solo.",
+      "mentorNote": "No aspirar el quiste de forma aislada sin tratar el derrame articular primario, ya que recidiva en >80%."
+    },
+    "exercise": {
+      "objective": "Mantener la movilidad suave y fortalecer cuádriceps para reducir el estrés articular.",
+      "phases": [
+        {
+          "name": "Fase 1: Movilidad y Descarga",
+          "description": "Flexoextensión suave sin forzar el final de rango.",
+          "duration": "2-4 semanas"
+        }
+      ],
+      "loadGuidance": "Evitar flexión forzada repetida."
+    },
+    "pharmacology": {
+      "fichaRef": "ficha-02",
+      "options": [
+        {
+          "name": "AINE oral ciclo corto",
+          "indication": "Control de sinovitis activa.",
+          "example": "Naproxeno 500mg/12h",
+          "duration": "5-7 días",
+          "guardrails": [
+            "Función renal"
+          ]
+        }
+      ]
+    },
+    "interventionism": {
+      "condition": "Solo si quiste a gran tensión que limita la flexión o rotura aguda.",
+      "objective": "Aspiración ecoguiada e infiltración intraarticular del compartimento anterior.",
+      "targets": [
+        {
+          "name": "Articulación Femorotibial + Quiste Poplíteo",
+          "indication": "Tensión poplítea severa",
+          "options": [
+            {
+              "name": "Aspiración ecoguiada + Corticoide intraarticular",
+              "evidence": "Alta"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "followUp": {
+    "timing": "Revisión en 4 semanas",
+    "parameters": [
+      {
+        "name": "Tensión en hueco poplíteo y flexión de rodilla",
+        "icon": "📐"
+      }
+    ],
+    "outcomes": [
+      {
+        "result": "good",
+        "label": "Evolución favorable",
+        "action": "Continuar rehabilitación de rodilla.",
+        "icon": "🟢"
+      }
+    ]
+  },
+  "coachClosing": {
+    "script": "El bulto detrás de la rodilla es solo el reflejo del exceso de líquido que la articulación produce para protegerse. Al calmar la articulación, la molestia desaparecerá.",
+    "takeHomeMantra": "Tratar la rodilla por dentro es la solución para que el quiste de atrás se desinfle."
+  },
+  "evidence": [
+    {
+      "citation": "Fritschy D, et al. The popliteal cyst. Knee Surg Sports Traumatol Arthrosc. 2006;14(7):623-628.",
+      "topic": "Baker Cyst Management",
+      "year": 2006
+    }
+  ]
+}

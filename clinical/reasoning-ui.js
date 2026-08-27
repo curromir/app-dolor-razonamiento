@@ -335,27 +335,41 @@
     const regionObj = registry[regionId];
     if (!regionObj) return renderRegionSelector();
 
+    // Sort presentations by clinicalPriority (Primary -> Secondary -> Safety -> Uncertain)
+    const sortedPresentations = [...(regionObj.presentations || [])].sort((a, b) => {
+      const pA = a.clinicalPriority !== undefined ? a.clinicalPriority : 99;
+      const pB = b.clinicalPriority !== undefined ? b.clinicalPriority : 99;
+      return pA - pB;
+    });
+
     containers.clinical.innerHTML = `
       <div class="reasoning-select-screen">
         <div class="reasoning-screen-header">
           <div class="home-hero-badge">${regionObj.icon} ${regionObj.label}</div>
           <h2>¿Cuál es el patrón principal del dolor?</h2>
-          <p>Selecciona cómo se presenta clínicamente el paciente.</p>
+          <p>Selecciona la presentación clínica del paciente organizada por prioridad y seguridad médica.</p>
         </div>
 
         <div class="presentations-list">
-          ${regionObj.presentations.map(p => `
-            <div class="presentation-card ${p.available ? 'active-pathway' : 'disabled'}" 
-                 onclick="${p.available ? `window.ClinicalUI.startPathwayDirect('${p.id}')` : `alert('Este Clinical Pathway está planificado para el próximo sprint y estará disponible próximamente.')`}">
-              <div class="pres-info-group">
-                <h4>${p.label}</h4>
-                <p>${p.available ? 'Clinical Pathway completo disponible (Anamnesis → Exploración → Eco → Plan)' : 'En desarrollo (Próximamente)'}</p>
+          ${sortedPresentations.map(p => {
+            const tier = p.visualTier || 'primary';
+            const badgeLabel = p.visualLabel || (tier === 'safety' ? 'Seguridad' : (tier === 'uncertain' ? 'Cuando no encaja' : (tier === 'secondary' ? 'Menos habitual' : 'Frecuente')));
+            return `
+              <div class="presentation-card tier-${tier} ${p.available ? 'active-pathway' : 'disabled'}" 
+                   onclick="${p.available ? `window.ClinicalUI.startPathwayDirect('${p.id}')` : `alert('Este Clinical Pathway estará disponible próximamente.')`}">
+                <div class="pres-info-group">
+                  <div class="pres-title-row">
+                    <h4>${p.label}</h4>
+                    <span class="pres-tier-badge ${tier}">${badgeLabel}</span>
+                  </div>
+                  <p>${p.available ? 'Clinical Pathway completo disponible (Anamnesis → Exploración → Eco → Plan)' : 'En desarrollo (Próximamente)'}</p>
+                </div>
+                <span class="pres-badge-status ${p.available ? 'available' : 'upcoming'}">
+                  ${p.available ? '▶ Iniciar Pathway' : 'Próximamente'}
+                </span>
               </div>
-              <span class="pres-badge-status ${p.available ? 'available' : 'upcoming'}">
-                ${p.available ? '▶ Iniciar Pathway' : 'Próximamente'}
-              </span>
-            </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
 
         <div style="text-align: center; margin-top: 2rem;">
@@ -411,22 +425,38 @@
           'shoulder-lateral-pain': 'clinical/pathways/shoulder-lateral.json',
           'shoulder-stiffness': 'clinical/pathways/shoulder-stiffness.json',
           'shoulder-anterior-pain': 'clinical/pathways/shoulder-anterior.json',
+          'shoulder-superior-pain': 'clinical/pathways/shoulder-superior.json',
+          'shoulder-posterior-pain': 'clinical/pathways/shoulder-posterior.json',
+          'shoulder-weakness': 'clinical/pathways/shoulder-weakness.json',
+          'shoulder-trauma': 'clinical/pathways/shoulder-trauma.json',
+          'shoulder-unclear': 'clinical/pathways/shoulder-unclear.json',
           'lumbar-radicular-pain': 'clinical/pathways/lumbar-radicular.json',
           'lumbar-axial-pain': 'clinical/pathways/lumbar-axial.json',
           'lumbar-axial': 'clinical/pathways/lumbar-axial.json',
           'lumbar-claudication': 'clinical/pathways/lumbar-claudication.json',
+          'lumbar-gluteal': 'clinical/pathways/lumbar-gluteal.json',
+          'lumbar-nocturnal': 'clinical/pathways/lumbar-nocturnal.json',
+          'lumbar-trauma': 'clinical/pathways/lumbar-trauma.json',
+          'lumbar-unclear': 'clinical/pathways/lumbar-unclear.json',
           'cervical-radicular': 'clinical/pathways/cervical-radicular.json',
           'cervical-axial': 'clinical/pathways/cervical-axial.json',
-          'hip-lateral': 'clinical/pathways/hip-lateral.json',
-          'hip-inguinal': 'clinical/pathways/hip-inguinal.json',
           'knee-oa-anterior': 'clinical/pathways/knee-oa-anterior.json',
           'knee-medial': 'clinical/pathways/knee-medial.json',
+          'knee-lateral': 'clinical/pathways/knee-lateral.json',
+          'knee-posterior': 'clinical/pathways/knee-posterior.json',
+          'hip-lateral': 'clinical/pathways/hip-lateral.json',
+          'hip-inguinal': 'clinical/pathways/hip-inguinal.json',
+          'hip-gluteal': 'clinical/pathways/hip-gluteal.json',
           'si-posterior-pelvic': 'clinical/pathways/si-posterior-pelvic.json',
           'elbow-lateral': 'clinical/pathways/elbow-lateral.json',
+          'elbow-medial': 'clinical/pathways/elbow-medial.json',
           'wrist-cts': 'clinical/pathways/wrist-cts.json',
           'wrist-radial': 'clinical/pathways/wrist-radial.json',
+          'wrist-ulnar': 'clinical/pathways/wrist-ulnar.json',
           'ankle-plantar': 'clinical/pathways/ankle-plantar.json',
           'ankle-medial': 'clinical/pathways/ankle-medial.json',
+          'ankle-achilles': 'clinical/pathways/ankle-achilles.json',
+          'ankle-lateral': 'clinical/pathways/ankle-lateral.json',
           'nociplastic-pain': 'clinical/pathways/nociplastic-pain.json'
         };
         filePath = pathMap[pathwayId] || `clinical/pathways/${pathwayId}.json`;
