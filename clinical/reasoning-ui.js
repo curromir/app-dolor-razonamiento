@@ -672,12 +672,14 @@
         <div class="red-flags-checklist">
           ${flags.map(f => {
             const isChecked = !!currentResults[f.id];
+            const flagText = f.text || f.label || f.description || '(sin texto)';
+            const isCritical = f.severity === 'critical' || f.severity === 'major';
             return `
               <label class="flag-checkbox-item ${isChecked ? 'checked' : ''}" id="flag_label_${f.id}">
                 <input type="checkbox" class="flag-checkbox-input" data-flag-id="${f.id}" ${isChecked ? 'checked' : ''}>
                 <div class="flag-item-content">
-                  <span class="flag-item-title">${f.text}</span>
-                  ${f.severity === 'critical' ? `<span class="flag-item-action">⚠️ Severidad Crítica: ${f.action}</span>` : ''}
+                  <span class="flag-item-title">${flagText}</span>
+                  ${isCritical ? `<span class="flag-item-action">⚠️ Severidad Crítica: ${f.action}</span>` : ''}
                 </div>
               </label>
             `;
