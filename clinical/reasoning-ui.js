@@ -506,6 +506,14 @@
             <!-- Rendered dynamically -->
           </div>
           <div class="clinical-bar-actions">
+            <!-- Quick Step Forward / Back Buttons -->
+            <button class="clinical-nav-pill" onclick="window.ClinicalUI.goToPrevStep()" title="Paso anterior">
+              <span>◀</span> <span>Anterior</span>
+            </button>
+            <button class="clinical-nav-pill next-highlight" onclick="window.ClinicalUI.goToNextStep()" title="Siguiente paso">
+              <span>Siguiente</span> <span>▶</span>
+            </button>
+
             <button class="clinical-action-btn ${uiState.expressMode ? 'active' : ''}" id="btnToggleExpress" title="Modo Express (3-5 min)">
               <span>⚡</span> <span>Express</span>
             </button>
@@ -518,7 +526,7 @@
           </div>
         </div>
 
-        <!-- Progress Steps Track -->
+        <!-- Progress Steps Track (100% Clickable) -->
         <div class="clinical-progress-track" id="clinicalProgressTrack">
           <!-- Rendered dynamically -->
         </div>
@@ -614,12 +622,104 @@
       <span class="breadcrumb-item active">${activeStepObj ? activeStepObj.label : ''}</span>
     `;
 
-    // Progress Steps
+    // Progress Steps (100% Clickable with tooltip)
     trackEl.innerHTML = progressSteps.map(step => `
-      <button class="progress-step-pill ${step.status}" onclick="window.ClinicalUI.goToStep('${step.id}')">
+      <button class="progress-step-pill ${step.status}" onclick="window.ClinicalUI.goToStep('${step.id}')" title="Ir directamente a ${step.label}">
         <span>${step.icon}</span> <span>${step.label}</span>
       </button>
     `).join('');
+  }
+
+  const CLINICAL_STEP_SEQUENCE = [
+    'red_flags',
+    'anamnesis',
+    'anamnesis_summary',
+    'examination',
+    'exam_summary',
+    'imaging',
+    'generator',
+    'treatment',
+    'follow_up',
+    'coach',
+    'summary'
+  ];
+
+  function goToNextStep() {
+    if (!uiState.engine) return;
+    const current = uiState.engine.getCurrentStep();
+    
+    if (current === 'red_flags') {
+      confirmRedFlags();
+      return;
+    }
+    if (current === 'anamnesis') {
+      const q = uiState.engine.getCurrentQuestion();
+      if (q) {
+        const allQuestions = uiState.expressMode ? uiState.engine.getEssentialQuestions() : uiState.engine.getQuestions();
+        const nextQ = allQuestions.find(item => uiState.engine.session.answers[item.id] === undefined && item.id !== q.id);
+        if (!nextQ) {
+          uiState.engine.session.currentStep = 'anamnesis_summary';
+          uiState.engine._addCompletedStep('anamnesis');
+          renderCurrentStep();
+          return;
+        }
+      }
+      uiState.engine.session.currentStep = 'anamnesis_summary';
+      uiState.engine._addCompletedStep('anamnesis');
+      renderCurrentStep();
+      return;
+    }
+    if (current === 'anamnesis_summary') {
+      proceedToExamination();
+      return;
+    }
+    if (current === 'examination') {
+      proceedToExamSummary();
+      return;
+    }
+    if (current === 'exam_summary') {
+      proceedToImaging();
+      return;
+    }
+    if (current === 'imaging') {
+      proceedToGenerator();
+      return;
+    }
+    if (current === 'generator') {
+      proceedToTreatment();
+      return;
+    }
+    if (current === 'treatment') {
+      proceedToFollowUp();
+      return;
+    }
+    if (current === 'follow_up') {
+      proceedToCoach();
+      return;
+    }
+    if (current === 'coach') {
+      proceedToSummary();
+      return;
+    }
+
+    const idx = CLINICAL_STEP_SEQUENCE.indexOf(current);
+    if (idx >= 0 && idx < CLINICAL_STEP_SEQUENCE.length - 1) {
+      uiState.engine._addCompletedStep(current);
+      uiState.engine.session.currentStep = CLINICAL_STEP_SEQUENCE[idx + 1];
+      renderCurrentStep();
+    }
+  }
+
+  function goToPrevStep() {
+    if (!uiState.engine) return;
+    const current = uiState.engine.getCurrentStep();
+    const idx = CLINICAL_STEP_SEQUENCE.indexOf(current);
+    if (idx > 0) {
+      uiState.engine.session.currentStep = CLINICAL_STEP_SEQUENCE[idx - 1];
+      renderCurrentStep();
+    } else if (idx === 0) {
+      renderPresentationSelector(uiState.engine.pathway.region);
+    }
   }
 
   function renderCurrentStep() {
@@ -688,6 +788,17 @@
             <h3>Paso 0 — Seguridad y Descarte de Banderas Rojas</h3>
             <p>Antes de aplicar algoritmos musculoesqueléticos, verifica la ausencia de señales de alarma.</p>
           </div>
+        </div>
+
+        <!-- Quick Top Action Bar (No need to scroll all 12 items) -->
+        <div class="safety-quick-banner">
+          <div class="safety-quick-info">
+            <span>💡</span>
+            <span><strong>Descarte Rápido:</strong> Si el paciente no presenta banderas rojas, puedes avanzar directamente:</span>
+          </div>
+          <button class="btn-primary" style="padding: 0.45rem 1.15rem; font-size: 0.84rem; white-space: nowrap;" onclick="window.ClinicalUI.confirmRedFlags()">
+            <span>Continuar a Anamnesis →</span>
+          </button>
         </div>
 
         <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">
@@ -2945,6 +3056,8 @@
     openPatientHistoryModal: openPatientHistoryModal,
     toggleRedFlag: toggleRedFlag,
     confirmRedFlags: confirmRedFlags,
+    goToNextStep: goToNextStep,
+    goToPrevStep: goToPrevStep,
     goToStep: function (stepId) {
       if (uiState.engine) {
         uiState.engine.goToStep(stepId);

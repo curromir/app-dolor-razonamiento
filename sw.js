@@ -1,5 +1,5 @@
-// Service Worker v42.0 - Fix Navegación Fluida Red Flags y Casos Clínicos
-const CACHE_NAME = 'dolor-tests-v42';
+// Service Worker v43.0 - Botones Anterior/Siguiente, Salto de Pestañas & Scroll Suave
+const CACHE_NAME = 'dolor-tests-v43';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

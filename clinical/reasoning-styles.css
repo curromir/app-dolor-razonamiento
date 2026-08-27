@@ -2474,3 +2474,114 @@ body.dark-theme .sim-quote-content strong {
   margin-bottom: 1.5rem;
 }
 
+/* ==========================================================================
+   🧭 NAVEGACIÓN RÁPIDA DE PASOS & SCROLLING SUAVE
+   ========================================================================== */
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
+.clinical-container,
+.clinical-flow-container,
+.safety-screen-card,
+.question-card,
+.clinical-summary-box {
+  overflow-y: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Quick Nav Pills in Top Bar */
+.clinical-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 800;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.clinical-nav-pill:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  transform: translateY(-1px);
+}
+
+.clinical-nav-pill.next-highlight {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #1d4ed8 100%);
+  color: #ffffff !important;
+  border-color: var(--accent-blue);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.clinical-nav-pill.next-highlight:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Quick Advance Banner on Red Flags */
+.safety-quick-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: rgba(16, 185, 129, 0.08);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(16, 185, 129, 0.25);
+  margin-bottom: 1.25rem;
+}
+
+body.dark-theme .safety-quick-banner {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.safety-quick-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+}
+
+.safety-quick-info strong {
+  color: #16a34a;
+}
+
+body.dark-theme .safety-quick-info strong {
+  color: #4ade80;
+}
+
+/* Interactive Top Step Pills */
+.progress-step-pill {
+  cursor: pointer !important;
+  user-select: none;
+}
+
+.progress-step-pill:hover {
+  border-color: var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+  background: var(--bg-card-hover) !important;
+  transform: translateY(-1px);
+}
+
+.progress-step-pill:active {
+  transform: scale(0.96);
+}
+
+
