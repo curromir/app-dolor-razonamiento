@@ -1,5 +1,5 @@
-// Service Worker v57.0 - Sprint 14 4-Doors Home Default
-const CACHE_NAME = 'dolor-tests-v57';
+// Service Worker v58.0 - Sprint 14 4-Doors Clean Home
+const CACHE_NAME = 'dolor-tests-v58';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

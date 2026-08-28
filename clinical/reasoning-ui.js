@@ -28,6 +28,21 @@
     auxModal: null
   };
 
+  function getHomeContainer() {
+    if (!containers.home) containers.home = document.getElementById('home-screen');
+    return containers.home;
+  }
+
+  function getClinicalContainer() {
+    if (!containers.clinical) containers.clinical = document.getElementById('clinical-reasoning-container');
+    return containers.clinical;
+  }
+
+  function getLibraryContainer() {
+    if (!containers.library) containers.library = document.getElementById('library-container');
+    return containers.library;
+  }
+
   // Initialize UI Controller
   async function initClinicalUI() {
     containers.home = document.getElementById('home-screen');
@@ -79,7 +94,8 @@
   // ─────────────────────────────────────────────
 
   function renderHomeScreen() {
-    if (!containers.home) return;
+    const homeEl = getHomeContainer();
+    if (!homeEl) return;
 
     const saved = getSavedClinicalSession();
     let resumeBannerHTML = '';
@@ -117,7 +133,7 @@
       `;
     }
 
-    containers.home.innerHTML = `
+    homeEl.innerHTML = `
       <div class="home-hero-clean glass-panel">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
           <div class="home-hero-badge">🩺 SISTEMA DE APOYO AL RAZONAMIENTO CLÍNICO</div>
@@ -259,12 +275,13 @@
   }
 
   function renderRegionSelector() {
-    if (!containers.clinical) return;
+    const clinicalEl = getClinicalContainer();
+    if (!clinicalEl) return;
 
     const registry = window.CLINICAL_PATHWAYS_REGISTRY || {};
     const regions = Object.keys(registry).map(k => ({ id: k, ...registry[k] }));
 
-    containers.clinical.innerHTML = `
+    clinicalEl.innerHTML = `
       <div class="reasoning-select-screen">
         <div class="reasoning-screen-header">
           <div class="home-hero-badge">Paso 1 · Identificación</div>
@@ -297,7 +314,8 @@
   }
 
   function renderPresentationSelector(regionId) {
-    if (!containers.clinical) return;
+    const clinicalEl = getClinicalContainer();
+    if (!clinicalEl) return;
     uiState.selectedRegion = regionId;
 
     const registry = window.CLINICAL_PATHWAYS_REGISTRY || {};
@@ -311,7 +329,7 @@
       return pA - pB;
     });
 
-    containers.clinical.innerHTML = `
+    clinicalEl.innerHTML = `
       <div class="reasoning-select-screen">
         <div class="reasoning-screen-header">
           <div class="home-hero-badge">${regionObj.icon} ${regionObj.label}</div>
@@ -500,9 +518,10 @@
   }
 
   function renderPathwayWorkspace() {
-    if (!containers.clinical || !uiState.engine) return;
+    const clinicalEl = getClinicalContainer();
+    if (!clinicalEl || !uiState.engine) return;
 
-    containers.clinical.innerHTML = `
+    clinicalEl.innerHTML = `
       <!-- Sticky Clinical Header Bar -->
       <header class="clinical-top-bar" id="clinicalTopBar">
         <div class="clinical-bar-main">
@@ -3535,7 +3554,8 @@
   }
 
   function renderReasoningHub(activeTab = 'pathways') {
-    if (!containers.clinical) return;
+    const clinicalEl = getClinicalContainer();
+    if (!clinicalEl) return;
 
     const registry = window.CLINICAL_PATHWAYS_REGISTRY || {};
     const allPathways = [];
@@ -3557,7 +3577,7 @@
     const safetyPathways = allPathways.filter(p => p.visualTier === 'safety');
     const uncertainPathways = allPathways.filter(p => p.visualTier === 'uncertain');
 
-    containers.clinical.innerHTML = `
+    clinicalEl.innerHTML = `
       <div class="reasoning-hub-screen">
         <div class="reasoning-hub-header glass-panel">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">

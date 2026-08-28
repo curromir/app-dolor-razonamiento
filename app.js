@@ -75,8 +75,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize Clinical Decision Support & Start on Dual Home
   if (window.ClinicalUI) {
-    window.ClinicalUI.init();
-    window.ClinicalUI.switchAppMode('home');
+    if (typeof window.ClinicalUI.init === 'function') {
+      await window.ClinicalUI.init();
+    }
+    if (typeof window.ClinicalUI.switchAppMode === 'function') {
+      window.ClinicalUI.switchAppMode('home');
+    }
   }
 });
 
