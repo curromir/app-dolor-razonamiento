@@ -1,5 +1,5 @@
-// Service Worker v53.0 - Cache Invalidation & Direct Table View Rendering Release
-const CACHE_NAME = 'dolor-tests-v53';
+// Service Worker v54.0 - Dr. Curro Mir Notion Epidural Protocol Release
+const CACHE_NAME = 'dolor-tests-v54';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

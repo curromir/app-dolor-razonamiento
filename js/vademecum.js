@@ -891,6 +891,94 @@
           </div>
         </section>
 
+        <!-- ⚡ TABLA PROTOCOLO NOTION DR. CURRO MIR: EPIDURAL CAUDAL, INTERLAMINAR Y TRANSFORAMINAL -->
+        <section class="glass-panel table-card" style="margin-top: 0.75rem; border-color: rgba(99, 102, 241, 0.4); background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(16, 185, 129, 0.03) 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h4 style="margin: 0; font-size: 0.98rem; font-weight: 900; color: #818cf8; display: flex; align-items: center; gap: 0.45rem;">
+                <span>📋</span> PROTOCOLO CLÍNICO NOTION DR. CURRO MIR — DOSIS DE EPIDURAL, CAUDAL Y FORAMINAL
+              </h4>
+              <p style="margin: 0.2rem 0 0; font-size: 0.75rem; color: var(--text-muted);">
+                Regla IPSIS 2025: Bupivacaína 0.25% (2.5 mg/mL) diluida a dosis bajas analgésicas + Dexametasona 4 mg/mL (Fortecortín) no particulada. Evita bloqueo motor prolongado.
+              </p>
+            </div>
+            <span class="treatment-badge-pill blue" style="font-size: 0.72rem;">Protocolo Oficial Notion</span>
+          </div>
+
+          <div class="table-responsive" style="margin-bottom: 0.75rem;">
+            <table class="clinical-table" style="font-size: 0.77rem;">
+              <thead>
+                <tr style="background: var(--bg-surface);">
+                  <th style="min-width: 170px;">Técnica / Abordaje</th>
+                  <th style="min-width: 130px;">💉 Bupivacaína 0.25%</th>
+                  <th style="min-width: 160px;">💊 Dexametasona 4 mg/mL</th>
+                  <th style="min-width: 110px;">💧 Suero Fis. 0.9%</th>
+                  <th style="min-width: 95px;">Vol. Final</th>
+                  <th style="min-width: 110px;">Bupi Total (mg)</th>
+                  <th style="min-width: 110px;">Conc. Final Bupi</th>
+                  <th style="min-width: 75px; text-align: center;">Copiar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: rgba(99, 102, 241, 0.04);">
+                  <td>
+                    <strong style="color: var(--accent-blue);">1. Transforaminal (1 raíz)</strong>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">L4, L5, S1 (Selectiva)</div>
+                  </td>
+                  <td><span style="font-weight: 700; color: #60a5fa;">0.5 mL</span> (1.25 mg)</td>
+                  <td><span style="font-weight: 700; color: #10b981;">1 mL = 4 mg</span><br><span style="font-size: 0.68rem; color: var(--text-muted);">(hasta 2 mL = 8 mg)</span></td>
+                  <td>0.5 mL</td>
+                  <td><strong style="color: #f59e0b; font-family: var(--font-mono);">2.0 mL</strong></td>
+                  <td><span style="font-weight: 700;">1.25 mg</span></td>
+                  <td><span style="color: #34d399; font-weight: 800; font-family: var(--font-mono);">0.0625%</span></td>
+                  <td style="text-align: center;">
+                    <button class="vade-copy-pill-btn" style="padding: 0.2rem 0.45rem; font-size: 0.68rem;" onclick="window.Vademecum.copyCustomText('TRANSFORAMINAL LUMBAR (Dr. Curro Mir):\n• Bupivacaína 0.25%: 0.5 mL (1.25 mg)\n• Dexametasona 4 mg/mL: 1 mL (4 mg)\n• Suero Fisiológico 0.9%: 0.5 mL\n• Volumen Total: 2.0 mL (Conc. final Bupi: 0.0625%)\n• Regla: ¡Solo Dexametasona no particulada! Límite volumen ≤4 mL.', event, 'Pauta TFESI Lumbar')">📋</button>
+                  </td>
+                </tr>
+                <tr style="background: rgba(99, 102, 241, 0.02);">
+                  <td>
+                    <strong style="color: var(--accent-blue);">2. Interlaminar Lumbar</strong>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">L3-L4 / L4-L5 (Bilateral/Multi)</div>
+                  </td>
+                  <td><span style="font-weight: 700; color: #60a5fa;">1.0 mL</span> (2.5 mg)<br><span style="font-size: 0.68rem; color: var(--text-muted);">(o 2 mL = 5 mg)</span></td>
+                  <td><span style="font-weight: 700; color: #10b981;">2 mL = 8 mg</span></td>
+                  <td>2.0 mL<br><span style="font-size: 0.68rem; color: var(--text-muted);">(1 mL si 2 mL bupi)</span></td>
+                  <td><strong style="color: #f59e0b; font-family: var(--font-mono);">5.0 mL</strong></td>
+                  <td><span style="font-weight: 700;">2.5 mg</span> (o 5 mg)</td>
+                  <td><span style="color: #34d399; font-weight: 800; font-family: var(--font-mono);">0.05%</span> (o 0.10%)</td>
+                  <td style="text-align: center;">
+                    <button class="vade-copy-pill-btn" style="padding: 0.2rem 0.45rem; font-size: 0.68rem;" onclick="window.Vademecum.copyCustomText('EPIDURAL INTERLAMINAR LUMBAR (Dr. Curro Mir):\n• Bupivacaína 0.25%: 1.0 mL (2.5 mg)\n• Dexametasona 4 mg/mL: 2.0 mL (8 mg)\n• Suero Fisiológico 0.9%: 2.0 mL\n• Volumen Total: 5.0 mL (Conc. final Bupi: 0.05%)\n• Regla: Pérdida de resistencia con salino/aire, descartar LCR/sangre.', event, 'Pauta ILESI Lumbar')">📋</button>
+                  </td>
+                </tr>
+                <tr style="background: rgba(99, 102, 241, 0.04);">
+                  <td>
+                    <strong style="color: var(--accent-blue);">3. Epidural Caudal</strong>
+                    <div style="font-size: 0.7rem; color: var(--text-muted);">Hiato Sacro (Ambulatoria)</div>
+                  </td>
+                  <td><span style="font-weight: 700; color: #60a5fa;">2.0 mL</span> (5 mg)<br><span style="font-size: 0.68rem; color: var(--text-muted);">(o 4 mL = 10 mg)</span></td>
+                  <td><span style="font-weight: 700; color: #10b981;">2 mL = 8 mg</span><br><span style="font-size: 0.68rem; color: var(--text-muted);">(o Trigon 1/2 amp 20 mg)</span></td>
+                  <td>11.0 mL<br><span style="font-size: 0.68rem; color: var(--text-muted);">(previo 5 mL SF hiato)</span></td>
+                  <td><strong style="color: #f59e0b; font-family: var(--font-mono);">15.0 mL</strong></td>
+                  <td><span style="font-weight: 700;">5.0 mg</span> (o 10 mg)</td>
+                  <td><span style="color: #34d399; font-weight: 800; font-family: var(--font-mono);">0.033%</span> (o 0.067%)</td>
+                  <td style="text-align: center;">
+                    <button class="vade-copy-pill-btn" style="padding: 0.2rem 0.45rem; font-size: 0.68rem;" onclick="window.Vademecum.copyCustomText('EPIDURAL CAUDAL (Dr. Curro Mir):\n• Comprobación Hiato Sacro: 5 mL SF\n• Bupivacaína 0.25%: 2.0 mL (5 mg)\n• Dexametasona 4 mg/mL: 2.0 mL (8 mg)\n• Suero Fisiológico 0.9%: 11.0 mL\n• Volumen Total: 15.0 mL (Conc. final Bupi: 0.033%)\n• Regla: Dosis ambulatoria segura de 5-10 mg repartidos en 15 mL.', event, 'Pauta Caudal')">📋</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: var(--radius-sm); padding: 0.45rem 0.65rem; font-size: 0.73rem; color: var(--text-secondary);">
+            <strong style="color: #ef4444;">🚨 ¿Por qué NO usar Trigon Depot ni Celestone Cronodose como corticoide epidural estándar?</strong>
+            <ul style="margin: 0.25rem 0 0; padding-left: 1.1rem; line-height: 1.35;">
+              <li><strong>Trigon Depot 40 mg/mL (Triamcinolona acetónido):</strong> Expresamente <em>contraindicado por AEMPS</em> para vía epidural/intratecal por riesgo de paraplejia/infarto espinal por embolización en arteria de Adamkiewicz.</li>
+              <li><strong>Celestone Cronodose (Betametasona fosfato + acetato particulado):</strong> Es una <em>suspensión particulada</em> y su ficha técnica indica que la administración epidural no está aprobada.</li>
+              <li><strong>Dexametasona fosfato sódico 4 mg/mL (Fortecortín):</strong> Solución acuosa 100% <em>no particulada</em>, estándar internacional de seguridad IPSIS / SIS / FDA.</li>
+            </ul>
+          </div>
+        </section>
+
         <!-- 📊 TABLA RESUMEN DE DOSIS DE INFILTRACIONES -->
         <section class="glass-panel table-card" style="margin-top: 0.75rem; border-color: rgba(16, 185, 129, 0.3);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
