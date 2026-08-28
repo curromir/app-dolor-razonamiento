@@ -201,6 +201,36 @@
       this.copyCustomText(text, event, `Pauta de ${drug.genericName}`);
     },
 
+    copyIntervention(interId, event) {
+      if (event) event.stopPropagation();
+      if (!this.data || !this.data.interventions) return;
+      const inter = this.data.interventions.find(i => i.id === interId);
+      if (!inter) return;
+
+      let text = `${inter.name}\n`;
+      text += `• Diana: ${(inter.target || '').replace(/\n/g, ' ')}\n`;
+      text += `• Indicación: ${inter.indication || ''}\n`;
+      
+      if (inter.parameters) {
+        text += `• Parámetros RF: ${inter.parameters.temperature || ''} / ${inter.parameters.time || ''}\n`;
+        if (inter.parameters.cannula) text += `• Cánula: ${inter.parameters.cannula}\n`;
+        if (inter.parameters.sensoryStimulation) text += `• Sensitiva (50 Hz): ${inter.parameters.sensoryStimulation}\n`;
+        if (inter.parameters.motorStimulation) text += `• Motora (2 Hz): ${inter.parameters.motorStimulation}\n`;
+      }
+      
+      if (inter.localAnesthetic) {
+        text += `• Anestésico Local: ${inter.localAnesthetic.drug || ''} ${inter.localAnesthetic.volume || ''} ${inter.localAnesthetic.dose ? '(' + inter.localAnesthetic.dose + ')' : ''}\n`;
+      }
+      if (inter.corticosteroid) {
+        text += `• Corticoide: ${inter.corticosteroid.drug || ''} ${inter.corticosteroid.dose ? '· ' + inter.corticosteroid.dose : ''} ${inter.corticosteroid.volume ? '(' + inter.corticosteroid.volume + ')' : ''}\n`;
+      }
+      if (inter.totalVolume) {
+        text += `• Volumen Total: ${inter.totalVolume}\n`;
+      }
+      
+      this.copyCustomText(text.trim(), event, `Pauta: ${inter.name}`);
+    },
+
     openDrug(drugId, options = {}) {
       this.openDrugModal(drugId, options);
     },
@@ -720,8 +750,8 @@
           <div class="vade-express-card-body">
             <!-- Indicación y Diana -->
             <div style="margin-bottom: 0.5rem;">
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>🎯 Diana:</strong> ${inter.target}</p>
-              <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;"><strong>Indicación:</strong> ${inter.indication}</p>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>🎯 Diana:</strong> ${(inter.target || '').replace(/\n/g, '<br>')}</p>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;"><strong>Indicación:</strong> ${inter.indication || ''}</p>
               ${inter.requiredDiagnosticTest ? `<p style="font-size: 0.76rem; color: #f59e0b; font-weight: 700; margin: 0.2rem 0 0;">🔍 Test previo: ${inter.requiredDiagnosticTest}</p>` : ''}
             </div>
 
@@ -810,7 +840,7 @@
 
             <!-- Botones de Acción -->
             <div class="vade-step-actions-bar" style="margin-top: 0.4rem;">
-              <button class="vade-copy-pill-btn" onclick="window.Vademecum.copyCustomText('${inter.name}: ${inter.parameters ? ('Parámetros: ' + (inter.parameters.temperature || '') + ' / ' + (inter.parameters.time || '') + ' | AL Pre-Lesión: ' + (inter.localAnesthetic?.drug || '') + ' ' + (inter.localAnesthetic?.volume || '') + (inter.target ? ' | Diana: ' + inter.target : '')) : ('AL ' + (inter.localAnesthetic?.drug || '') + ' ' + (inter.localAnesthetic?.volume || '') + ' + Corticoide ' + (inter.corticosteroid?.drug || '') + ' ' + (inter.corticosteroid?.dose || '') + ' (Vol. Total: ' + inter.totalVolume + ')')}', event, 'Pauta Intervencionista')">
+              <button class="vade-copy-pill-btn" onclick="window.Vademecum.copyIntervention('${inter.id}', event)">
                 📋 Copiar Pauta Intervencionista
               </button>
             </div>

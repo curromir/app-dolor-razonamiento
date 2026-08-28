@@ -1,5 +1,5 @@
-// Service Worker v50.0 - Dedicated Radiofrequency Tab & Independent Infiltraciones Tab Release
-const CACHE_NAME = 'dolor-tests-v50';
+// Service Worker v51.0 - Dedicated Radiofrequency Tab & Interactive Infiltraciones Release
+const CACHE_NAME = 'dolor-tests-v51';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
