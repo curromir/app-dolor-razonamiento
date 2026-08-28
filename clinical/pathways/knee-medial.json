@@ -461,28 +461,47 @@
       ]
     },
     "interventionism": {
-      "condition": "Dolor medial severo con limitación funcional que no responde a ejercicio y analgesia básica.",
-      "objective": "Infiltración intraarticular o de bursa anserina ecoguiada.",
+      "condition": "Gonartrosis de compartimento medial o bursitis de la pata de ganso (anserina).",
+      "objective": "Viscosuplementación con Ácido Hialurónico o infiltración bursa anserina ecoguiada.",
       "targets": [
         {
-          "name": "Viscosuplementación con Ácido Hialurónico o Corticoide Intraarticular",
-          "indication": "Gonartrosis medial confirmada.",
-          "options": [
-            {
-              "name": "Ácido hialurónico de alto peso molecular intraarticular ecoguiado (1 inyección)",
-              "evidence": "Alta / Nivel I (alivio de 6 meses)"
-            },
-            {
-              "name": "Infiltración ecoguiada de bursa anserina con 1 ml corticoide + 2 ml anestésico local (si bursitis asociada)",
-              "evidence": "Alta"
-            }
-          ],
-          "contraindications": [
-            "Infección activa",
-            "Artritis séptica"
+          "name": "Infiltración Intraarticular de Rodilla / Ácido Hialurónico o Corticoide",
+          "indication": "Gonartrosis medial confirmada en RX / sinovitis dolorosa.",
+          "localAnesthetic": {
+            "drug": "Mepivacaína 1%",
+            "volume": "2 a 3 mL",
+            "dose": "20-30 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 40 mg o Betametasona 1 mL (6 mg)",
+            "dose": "40 mg o 6 mg",
+            "volume": "1 mL"
+          },
+          "totalVolume": "3 a 4 mL",
+          "safetyWarnings": [
+            "Máximo 3 infiltraciones/año; evacuar derrame previo"
+          ]
+        },
+        {
+          "name": "Infiltración Ecoguiada de Bursa Anserina (Pata de Ganso)",
+          "indication": "Dolor localizado 2-3 cm distal a la interlínea medial sobre inserción anserina.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "1.5 a 2 mL",
+            "dose": "15-20 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 20 mg o Betametasona depot 0.5-1 mL",
+            "dose": "20 mg o 3-6 mg",
+            "volume": "0.5 a 1 mL"
+          },
+          "totalVolume": "2 a 3 mL",
+          "safetyWarnings": [
+            "Evitar inyección en ligamento colateral medial (LCM)"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

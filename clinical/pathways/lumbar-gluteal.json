@@ -335,20 +335,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si fracaso conservador y diana claramente demostrada.",
-      "objective": "Bloqueo diagnóstico/terapéutico eco/fluoroguiado (Facetario, Sacroilíaco o Bursa Trocantérica).",
+      "condition": "Dolor lumboglúteo con sospecha mixta facetaria, sacroilíaca o síndrome del piriforme.",
+      "objective": "Bloqueo diagnóstico diferencial guiado por el generador principal.",
       "targets": [
         {
-          "name": "Diana según sospecha (Facetas L4-S1 / SI / Trocanter)",
-          "indication": "Dolor refractario",
-          "options": [
-            {
-              "name": "Infiltración ecoguiada o fluoroguiada",
-              "evidence": "Alta a corto/medio plazo"
-            }
+          "name": "Infiltración Diagnóstica / Terapéutica según Generador Diferencial",
+          "indication": "Confirmación del generador lumbosacro (SI vs Faceta vs Piriforme).",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1-2% o Bupivacaína 0.25%",
+            "volume": "1.5 a 2 mL (SIJ) o 0.5 mL (MBB)",
+            "dose": "10-20 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 20-40 mg o Betametasona depot 1 mL",
+            "dose": "20-40 mg o 6 mg",
+            "volume": "1 mL"
+          },
+          "totalVolume": "2 a 2.5 mL (SIJ) o 0.5 mL (MBB)",
+          "safetyWarnings": [
+            "Evaluar respuesta en la tarea que reproduce el dolor para confirmar generador"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

@@ -222,20 +222,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si dolor severo invalidante refractario a analgesia en fractura aguda (<6-8 semanas con edema en RM).",
-      "objective": "Valoración de vertebroplastia / cifoplastia percutánea.",
+      "condition": "Fractura vertebral osteoporótica aguda (<6-8 semanas con edema en RM) con dolor severo invalidante.",
+      "objective": "Cifoplastia / Vertebroplastia percutánea o bloqueo analgésico regional.",
       "targets": [
         {
-          "name": "Cuerpo Vertebral Afectado",
-          "indication": "Fractura osteoporótica aguda refractaria",
-          "options": [
-            {
-              "name": "Cifoplastia / Vertebroplastia",
-              "evidence": "Moderada para alivio rápido en casos seleccionados"
-            }
+          "name": "Valoración de Cifoplastia Percutánea / Bloqueo Somático",
+          "indication": "Fractura osteoporótica aguda refractaria a analgesia que impide la bipedestación.",
+          "localAnesthetic": {
+            "drug": "Bupivacaína 0.25% o Ropivacaína 0.2% local/periostal",
+            "volume": "5 a 10 mL",
+            "dose": "12.5-25 mg"
+          },
+          "corticosteroid": {
+            "drug": "Sin corticoide de rutina",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "5 a 10 mL",
+          "safetyWarnings": [
+            "Descartar compromiso de muro posterior y compresión de canal en TAC previo"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

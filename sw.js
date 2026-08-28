@@ -1,5 +1,5 @@
-// Service Worker v45.0 - Deep Review & Performance Release (Session Persistence, 9-D Debriefing, Mobile Navigation)
-const CACHE_NAME = 'dolor-tests-v45';
+// Service Worker v46.0 - Interventional Pharmacology & Exact Dosages Release
+const CACHE_NAME = 'dolor-tests-v46';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

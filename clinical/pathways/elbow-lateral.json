@@ -415,28 +415,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Tendinopatía crónica severa (>6 meses) refractaria a programa de ejercicios bien cumplido.",
-      "objective": "Estimular la regeneración tisular y revertir la neovascularización patológica.",
+      "condition": "Epicondilalgia lateral recalcitrante (>6 meses) con tendinosis del ECRB en ecografía.",
+      "objective": "Ondas de choque focales o infiltración de PRP intratendinoso (evitar corticoides repetidos).",
       "targets": [
         {
-          "name": "Ondas de Choque Focales (ESWT) o Plasma Rico en Plaquetas (PRP)",
-          "indication": "Tendinosis del ECRB confirmada en ecografía sin rotura masiva.",
-          "options": [
-            {
-              "name": "Ondas de choque radiales/focales (3-5 sesiones semanales)",
-              "evidence": "Alta / Nivel I"
-            },
-            {
-              "name": "Infiltración ecoguiada de PRP intratendinoso",
-              "evidence": "Moderada a medio-largo plazo (Mishra 2014)"
-            }
-          ],
-          "contraindications": [
-            "Infiltración reciente con corticoide en los últimos 3 meses",
-            "Infección local"
+          "name": "Infiltración Ecoguiada de PRP Intratendinoso o Bloqueo Diagnóstico Peritendinoso",
+          "indication": "Tendinosis crónica del extensor radial corto del carpo (ECRB) con neovascularización.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% peritendinosa (bloqueo diagnóstico)",
+            "volume": "0.5 a 1 mL",
+            "dose": "5-10 mg"
+          },
+          "corticosteroid": {
+            "drug": "PRP Leucocito-Pobre 2-3 mL (Corticoide solo en rescate agudo excepcional: Betametasona 0.5 mL o Triamcinolona 10 mg)",
+            "dose": "10 mg o 3 mg",
+            "volume": "0.25 a 0.5 mL"
+          },
+          "totalVolume": "2 a 3 mL (PRP) o 1.5 mL (rescate corticoide)",
+          "safetyWarnings": [
+            "El corticoide intratendinoso repetido aumenta el riesgo de rotura tendinosa y recurrencia a 1 año; no mezclar PRP con AL"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

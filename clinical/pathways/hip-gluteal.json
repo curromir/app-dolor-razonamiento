@@ -249,20 +249,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si atrapamiento refractario a 6-8 semanas de fisioterapia.",
-      "objective": "Infiltración / hidrodisección ecoguiada del espacio periciático o piriforme.",
+      "condition": "Dolor glúteo profundo / síndrome del piriforme / compresión del nervio ciático en espacio subglúteo.",
+      "objective": "Infiltración ecoguiada del músculo piriforme / hidrodisección del nervio ciático.",
       "targets": [
         {
-          "name": "Espacio Periciático Subglúteo / Músculo Piriforme",
-          "indication": "Dolor refractario",
-          "options": [
-            {
-              "name": "Anestésico local + Corticoide de depósito / Toxina botulínica ecoguiada",
-              "evidence": "Moderada"
-            }
+          "name": "Infiltración Ecoguiada del Piriforme e Hidrodisección del Nervio Ciático",
+          "indication": "Dolor glúteo con maniobra de FAIR positiva y atrapamiento ciático extrapélvico.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.2% o Mepivacaína 1%",
+            "volume": "5 a 8 mL",
+            "dose": "10-50 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 40 mg o Betametasona depot 1 mL",
+            "dose": "40 mg o 6 mg",
+            "volume": "1 mL"
+          },
+          "totalVolume": "6 a 10 mL",
+          "safetyWarnings": [
+            "Identificar la arteria glútea superior/inferior con Doppler color; aspirar antes de inyectar"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

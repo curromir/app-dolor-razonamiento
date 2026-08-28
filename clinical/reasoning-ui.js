@@ -2147,6 +2147,59 @@
               </div>
             `}
 
+            <!-- PATHWAY SPECIFIC INTERVENTIONAL TARGETS WITH EXACT DOSAGES -->
+            ${(plan.tiers[6].pathwayTargets && plan.tiers[6].pathwayTargets.length > 0) ? `
+              <div class="structure-box" style="margin-bottom: 0.75rem; border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.04);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; flex-wrap: wrap;">
+                  <h4 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: #10b981; display: flex; align-items: center; gap: 0.4rem;">
+                    <span>💉</span> <span>Técnica Intervencionista y Dosificación Específica:</span>
+                  </h4>
+                  <span class="treatment-badge-pill green" style="font-size: 0.72rem;">Protocolo Clínico & Evidencia</span>
+                </div>
+                ${plan.tiers[6].pathwayCondition ? `<p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 0.5rem;"><strong>Condición:</strong> ${plan.tiers[6].pathwayCondition}</p>` : ''}
+                
+                <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                  ${plan.tiers[6].pathwayTargets.map(tgt => `
+                    <div class="structure-box" style="background: rgba(255, 255, 255, 0.03); border-color: var(--border-color);">
+                      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.4rem;">
+                        <strong style="font-size: 0.88rem; color: var(--text-primary);">${tgt.name}</strong>
+                      </div>
+                      ${tgt.indication ? `<p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 0.4rem;"><strong>Indicación:</strong> ${tgt.indication}</p>` : ''}
+                      
+                      <div class="pharma-spec-grid" style="margin-bottom: 0.4rem;">
+                        ${tgt.localAnesthetic ? `
+                          <div class="pharma-spec-item">
+                            <strong style="color: #60a5fa;">💉 Anestésico Local (AL)</strong>
+                            <span>${tgt.localAnesthetic.drug} · ${tgt.localAnesthetic.volume} ${tgt.localAnesthetic.dose ? '(' + tgt.localAnesthetic.dose + ')' : ''}</span>
+                          </div>
+                        ` : ''}
+                        ${tgt.corticosteroid ? `
+                          <div class="pharma-spec-item">
+                            <strong style="color: ${(tgt.corticosteroid.drug && (tgt.corticosteroid.drug.includes('PROHIBIDO') || tgt.corticosteroid.drug.includes('SIN CORTICOIDE'))) ? '#ef4444' : '#10b981'};">💊 Corticoide / Inyectable</strong>
+                            <span>${tgt.corticosteroid.drug} ${tgt.corticosteroid.dose ? '· ' + tgt.corticosteroid.dose : ''} ${tgt.corticosteroid.volume ? '(' + tgt.corticosteroid.volume + ')' : ''}</span>
+                          </div>
+                        ` : ''}
+                        ${tgt.totalVolume ? `
+                          <div class="pharma-spec-item">
+                            <strong style="color: #f59e0b;">📏 Volumen Total</strong>
+                            <span>${tgt.totalVolume}</span>
+                          </div>
+                        ` : ''}
+                      </div>
+
+                      ${(tgt.safetyWarnings && tgt.safetyWarnings.length > 0) ? `
+                        <div style="border-top: 1px solid var(--border-color); padding-top: 0.35rem; margin-top: 0.35rem;">
+                          ${tgt.safetyWarnings.map(sw => `
+                            <p style="font-size: 0.74rem; color: #ef4444; font-weight: 600; margin: 0.15rem 0;">⚠️ ${sw}</p>
+                          `).join('')}
+                        </div>
+                      ` : ''}
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
             <!-- CORTICOSTEROID INJECTION -->
             ${plan.tiers[6].corticosteroid ? `
               <div class="structure-box" style="margin-bottom: 0.65rem;">

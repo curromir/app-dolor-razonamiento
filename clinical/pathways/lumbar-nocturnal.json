@@ -328,9 +328,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Contraindicado sin diagnóstico etiológico claro.",
-      "objective": "No procede.",
-      "targets": []
+      "condition": "Dolor lumbar severo con predominio nocturno tras descartar causas oncológicas e infecciosas.",
+      "objective": "Manejo conservador multimodal o derivación preferente.",
+      "targets": [
+        {
+          "name": "Valoración Especializada / Descarte de Patología Inflamatoria o Espinal Grave",
+          "indication": "Solo si se descarta bandera roja activa y existe componente mecánico secundario.",
+          "localAnesthetic": {
+            "drug": "Según protocolo específico de generador confirmado",
+            "volume": "1 a 3 mL",
+            "dose": "Variable"
+          },
+          "corticosteroid": {
+            "drug": "Dexametasona no particulada si indicación epidural",
+            "dose": "4 a 8 mg",
+            "volume": "1 a 2 mL"
+          },
+          "totalVolume": "2 a 4 mL",
+          "safetyWarnings": [
+            "¡Descartar espondilodiscitis, metástasis espinal y espondiloartritis antes de cualquier técnica invasiva!"
+          ]
+        }
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

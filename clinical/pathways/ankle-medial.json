@@ -368,23 +368,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Tenosinovitis severa de TTP confirmada en ecografía que no responde a plantillas y fisioterapia.",
-      "objective": "Infiltración peritendinosa ecoguiada dentro de la vaina del TTP (¡NUNCA intratendinosa!).",
+      "condition": "Tenosinovitis severa del tendón tibial posterior (TTP) o túnel tarsiano.",
+      "objective": "Infiltración dentro de la vaina sinovial ecoguiada (evitar inyección intratendinosa).",
       "targets": [
         {
           "name": "Infiltración Ecoguiada de la Vaina Sinovial del TTP",
-          "indication": "Tenosinovitis con líquido anecoico circunferencial en ecografía.",
-          "options": [
-            {
-              "name": "Infiltración ecoguiada en plano con aguja fina dentro de la vaina sinovial de 1 ml corticoide + 2 ml anestésico local/suero",
-              "evidence": "Alta / Nivel I (evita el riesgo de rotura completa)"
-            }
-          ],
-          "contraindications": [
-            "Infiltración intratendinosa a ciegas (alto riesgo de rotura espontánea del tendón y colapso del pie)"
+          "indication": "Tenosinovitis con derrame peritendinoso circunferencial sin rotura longitudinal.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "1 a 1.5 mL",
+            "dose": "10-15 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona acetónido 10-20 mg",
+            "dose": "10-20 mg",
+            "volume": "0.25 a 0.5 mL"
+          },
+          "totalVolume": "1.5 a 2 mL",
+          "safetyWarnings": [
+            "Inyección en plano dentro de la vaina; ¡PROHIBIDO inyectar en el espesor del tendón por riesgo de pie plano valgo adquirido!"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

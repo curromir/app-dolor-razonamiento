@@ -299,9 +299,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Dirigir el intervencionismo a la cadera o sacroilíaca si procede.",
-      "objective": "Bloqueo diagnóstico ecoguiado de cadera o sacroilíaca.",
-      "targets": []
+      "condition": "Incertidumbre diagnóstica lumbar tras examen y pruebas iniciales.",
+      "objective": "Bloqueos diagnósticos escalonados o reevaluación clínica sin intervencionismo precipitado.",
+      "targets": [
+        {
+          "name": "Bloqueo Diagnóstico Selectivo según Hipótesis Prevalente (MBB vs SI vs Epidural)",
+          "indication": "Utilizar únicamente con anestésico local puro de corta duración para probar generador.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1-2% o Mepivacaína 1%",
+            "volume": "0.5 a 1.5 mL",
+            "dose": "5-15 mg"
+          },
+          "corticosteroid": {
+            "drug": "⛔ SIN CORTICOIDE en bloqueos puramente diagnósticos",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "0.5 a 1.5 mL",
+          "safetyWarnings": [
+            "Registrar dolor antes y después con tarea provocadora para validar hipótesis"
+          ]
+        }
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

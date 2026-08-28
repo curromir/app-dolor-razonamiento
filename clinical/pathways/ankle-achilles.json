@@ -261,27 +261,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo en casos refractarios a 3-6 meses de ejercicio bien realizado.",
-      "objective": "Ondas de Choque Focales/Radiales (ESWT) o PRP peritendinoso.",
+      "condition": "Tendinopatía aquílea crónica refractaria (>6 meses) que no responde a ejercicios excéntricos/isométricos y ondas de choque.",
+      "objective": "Bioestimulación peritendinosa con PRP o hidrodisección del paratendón (¡NUNCA corticoide intratendinoso!).",
       "targets": [
         {
-          "name": "Porción Media de Aquiles / Entesis",
-          "indication": "Tendinopatía crónica recalcitrante",
-          "options": [
-            {
-              "name": "Ondas de choque extracorpóreas (ESWT)",
-              "evidence": "Alta evidencia"
-            },
-            {
-              "name": "PRP peritendinoso (no intratendinoso)",
-              "evidence": "Moderada"
-            }
-          ],
-          "contraindications": [
-            "Infiltración de corticoides intratendinosos (contraindicado absoluto)"
+          "name": "Infiltración Ecoguiada de PRP o Alto Volumen en Paratendón Aquíleo",
+          "indication": "Tendinosis aquílea nodular o hipervascularización sin rotura completa.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Ropivacaína 0.1%",
+            "volume": "2 a 5 mL (paratendón)",
+            "dose": "20-50 mg"
+          },
+          "corticosteroid": {
+            "drug": "⛔ CORTICOIDE ESTRICTAMENTE PROHIBIDO (Riesgo inminente de rotura completa del tendón de Aquiles)",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "5 a 10 mL (con suero fisiológico en hidrodisección)",
+          "safetyWarnings": [
+            "¡NUNCA INYECTAR CORTICOIDES EN EL TENDÓN DE AQUILES! Causa necrosis focal acelerada y rotura espontánea"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

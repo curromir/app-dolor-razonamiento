@@ -406,24 +406,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Dolor refractario tras 3-4 semanas de férula de espica bien cumplida.",
-      "objective": "Depósito ecoguiado de corticoide dentro de la vaina sinovial del 1er compartimento asegurando tratar ambos tendones (APL y EPB).",
+      "condition": "Tenosinovitis de De Quervain en 1.er compartimento extensor radial.",
+      "objective": "Infiltración ecoguiada de la vaina del tendón extensor corto y abductor largo del pulgar.",
       "targets": [
         {
-          "name": "Infiltración Peritendinosa Ecoguiada del Primer Compartimento Dorsal",
-          "indication": "Tenosinovitis de De Quervain confirmada.",
-          "options": [
-            {
-              "name": "Infiltración ecoguiada en plano de 0.5-1 ml de corticoide (Triamcinolona o Metilprednisolona) + 1 ml anestésico local dentro de la vaina",
-              "evidence": "Alta / Nivel I (>85% de curación con 1 sola inyección ecoguiada)"
-            }
-          ],
-          "contraindications": [
-            "Infiltración intratendinosa directa (la ecografía evita la necrosis o rotura del tendón)",
-            "Infección local"
+          "name": "Infiltración Ecoguiada de la Vaina de De Quervain",
+          "indication": "Dolor agudo en estiloides radial con Finkelstein y Eichhoff positivos.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "0.75 a 1 mL",
+            "dose": "7.5-10 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona acetónido 10 mg (0.25 mL)",
+            "dose": "10 mg",
+            "volume": "0.25 mL"
+          },
+          "totalVolume": "1 a 1.25 mL",
+          "safetyWarnings": [
+            "Inyectar exclusivamente en la vaina intrasinovial; evitar rama sensitiva del nervio radial"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

@@ -369,24 +369,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si quiste espinoglenoideo compresivo o bursitis subdeltoidea posterior refractaria.",
-      "objective": "Aspiración ecoguiada de quiste o infiltración SASD posterior.",
+      "condition": "Tendinopatía del infraespinoso / manguito posterior o bloqueo supraescapular.",
+      "objective": "Bloqueo del nervio supraescapular ecoguiado o infiltración peritendinosa.",
       "targets": [
         {
-          "name": "Bursa Subdeltoidea Posterior / Quiste",
-          "indication": "Fracaso conservador",
-          "options": [
-            {
-              "name": "Aspiración ecoguiada + Corticoide",
-              "evidence": "Moderada"
-            }
-          ],
-          "contraindications": [
-            "Infección local"
-          ],
-          "safetyNote": "Evitar punzar el labrum en quistes comunicantes."
+          "name": "Bloqueo Ecoguiado del Nervio Supraescapular en Fosa Supraespinosa",
+          "indication": "Dolor de hombro crónico refractario / capsulitis o artrosis con componente nociceptivo amplio.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.2% o Bupivacaína 0.25%",
+            "volume": "4 a 5 mL",
+            "dose": "8-12.5 mg"
+          },
+          "corticosteroid": {
+            "drug": "Sin corticoide de rutina (o Dexametasona 2-4 mg si objetivo prolongado)",
+            "dose": "0 - 4 mg",
+            "volume": "0 a 1 mL"
+          },
+          "totalVolume": "4 a 5 mL",
+          "safetyWarnings": [
+            "Identificar arteria y vena supraescapular con Doppler en la escotadura escapular"
+          ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

@@ -999,39 +999,30 @@
       ]
     },
     "interventionism": {
-      "condition": "Dolor radicular severo que limita la rehabilitación y la función, con concordancia clínico-radiológica estricta.",
-      "imagingPrinciple": "LA RM NO LA PIDE EL CALENDARIO. LA PIDE UNA PREGUNTA CLÍNICA (urgente si déficit progresivo/cauda equina; electiva en síntomas persistentes candidatos a intervención).",
-      "approaches": [
+      "condition": "Radiculopatía lumbar unilateral compresiva (L4, L5 o S1) con conflicto disco-radicular en RM.",
+      "objective": "Inyección epidural transforaminal selectiva para alivio rápido y ventana de rehabilitación.",
+      "targets": [
         {
-          "id": "tfesi",
-          "name": "Inyección Epidural Transforaminal (TFESI)",
-          "target": "Foramen intervertebral concordante",
-          "indication": "Radiculopatía unilateral con nivel y raíz bien definidos y lesión focal concordante en RM.",
-          "advantage": "Tratamiento selectivo directo a la raíz afectada (NASS)."
-        },
-        {
-          "id": "ilesi",
-          "name": "Inyección Epidural Interlaminar (ILESI)",
-          "target": "Espacio interlaminar lumbar",
-          "indication": "Afectación bilateral, varios territorios o estenosis de canal central.",
-          "advantage": "Más amplia, menos selectiva."
-        },
-        {
-          "id": "caudal",
-          "name": "Inyección Epidural Caudal",
-          "target": "Hiato sacro",
-          "indication": "Niveles lumbares bajos (L5-S1), postquirúrgico con fibrosis o acceso interlaminar difícil.",
-          "advantage": "Difusión amplia ascendente desde sacro."
-        },
-        {
-          "id": "drg_prf",
-          "name": "Radiofrecuencia Pulsada del Ganglio de la Raíz Dorsal (PRF-DRG)",
-          "target": "Ganglio de la raíz dorsal (DRG)",
-          "indication": "Dolor radicular crónico refractario (>3-6 meses) tras fracaso de epidural.",
-          "evidenceBadge": "🟠 Opción avanzada / Evidencia limitada (baja certeza)."
+          "name": "Inyección Epidural Transforaminal Lumbar (TFESI Lumbar)",
+          "indication": "Dolor radicular irradiado por debajo de la rodilla con Lasègue positivo y déficit no progresivo.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.1-0.2% o Bupivacaína 0.125-0.25% o Salino 0.9%",
+            "volume": "1 a 1.5 mL",
+            "dose": "1-3 mg"
+          },
+          "corticosteroid": {
+            "drug": "Dexametasona fosfato sódico (NO PARTICULADA OBLIGATORIA)",
+            "dose": "4 a 10 mg (habitual 8-10 mg)",
+            "volume": "1 a 2.5 mL (dexametasona 4 mg/mL)"
+          },
+          "totalVolume": "2 a 3 mL máximo (inyección lenta tras control radiológico con contraste)",
+          "safetyWarnings": [
+            "⛔ ¡OBLIGATORIO CORTICOIDE NO PARTICULADO (Dexametasona)! Evitar corticoides particulados por riesgo de infarto medular parapléjico en arteria de Adamkiewicz",
+            "Comprobar tiempos de suspensión de anticoagulantes según pautas ASRA 2024"
+          ]
         }
       ],
-      "strictWarning": "❌ PROHIBIDO OFRECER Radiofrecuencia convencional de ramos mediales para radiculopatía (inerva exclusivamente articulaciones facetarias posteriores, no raíces nerviosas)."
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "evidence": [

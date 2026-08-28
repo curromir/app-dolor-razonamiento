@@ -425,25 +425,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Claudicación neurógena severa con distancia de marcha <100 metros refractaria a fisioterapia y fármacos.",
-      "objective": "Infiltración epidural interlaminar o caudal ecoguiada/fluoroscópica.",
+      "condition": "Estenosis de canal lumbar central o foraminal con claudicación neurógena de la marcha.",
+      "objective": "Inyección epidural interlaminar o caudal para desinflamación multisegmentaria.",
       "targets": [
         {
-          "name": "Infiltración Epidural Interlaminar o Caudal",
-          "indication": "Estenosis de canal lumbar sintomática.",
-          "options": [
-            {
-              "name": "Infiltración epidural interlaminar o caudal con corticoide de depósito (Triamcinolona 40-80mg) + anestésico local",
-              "evidence": "Alta / Nivel I (alivio de 3-6 meses para facilitar rehabilitación)"
-            }
-          ],
-          "contraindications": [
-            "Déficit motor progresivo o síndrome de cauda equina (indicación quirúrgica descompresiva urgente)",
-            "Infección sistémica",
-            "Anticoagulación no controlada"
+          "name": "Inyección Epidural Interlaminar Lumbar (ILESI) o Caudal",
+          "indication": "Claudicación neurógena de la marcha con limitación <200 metros y estenosis en RM.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.1-0.2% o Mepivacaína 1% diluida",
+            "volume": "3 a 5 mL (ILESI) o 8 a 12 mL (Caudal)",
+            "dose": "3-10 mg"
+          },
+          "corticosteroid": {
+            "drug": "Dexametasona fosfato sódico 8-10 mg no particulada",
+            "dose": "8 a 10 mg",
+            "volume": "2 a 2.5 mL"
+          },
+          "totalVolume": "5 a 6 mL (ILESI) o 10 a 15 mL (Caudal)",
+          "safetyWarnings": [
+            "Pérdida de resistencia cuidadosa; verificar ausencia de síndrome de cauda equina agudo"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

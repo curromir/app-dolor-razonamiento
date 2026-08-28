@@ -549,32 +549,47 @@
       ]
     },
     "interventionism": {
-      "condition": "Dolor limitante de gonartrosis o dolor patelofemoral refractario a fisioterapia y tratamiento oral.",
-      "objective": "Reducir el dolor articular y mejorar la viscoelasticidad sinovial para permitir la rehabilitación activa.",
+      "condition": "Gonartrosis tricompartimental o femororrotuliana con limitación funcional severa.",
+      "objective": "Infiltración intraarticular o bloqueo / radiofrecuencia de nervios geniculados.",
       "targets": [
         {
-          "name": "Infiltración Intraarticular de Rodilla Ecoguiada",
-          "indication": "Gonartrosis sintomática grado II-III de Kellgren-Lawrence.",
-          "options": [
-            {
-              "name": "Ácido Hialurónico de alto peso molecular (Viscosuplementación)",
-              "evidence": "Alta / Recomendación OARSI"
-            },
-            {
-              "name": "Corticoide de depósito (Triamcinolona 40mg) si existe brote con derrame sinovial",
-              "evidence": "Alta a corto plazo"
-            },
-            {
-              "name": "Radiofrecuencia (Neurotomía) de Nervios Geniculados de la rodilla en gonartrosis avanzada no quirúrgica",
-              "evidence": "Alta / Nivel I (Choi 2011)"
-            }
-          ],
-          "contraindications": [
-            "Infección articular activa (artritis séptica)",
-            "Prótesis total de rodilla ya implantada"
+          "name": "Infiltración Intraarticular de Rodilla con Corticoide / HA / PRP",
+          "indication": "Brote inflamatorio agudo de gonartrosis con sinovitis o derrame a tensión.",
+          "localAnesthetic": {
+            "drug": "Mepivacaína 1% o Lidocaína 1%",
+            "volume": "2 a 4 mL",
+            "dose": "20-40 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 40 mg o Betametasona depot 1 mL (6 mg)",
+            "dose": "40 mg o 6 mg",
+            "volume": "1 mL"
+          },
+          "totalVolume": "3 a 5 mL (tras evacuación de líquido sinovial)",
+          "safetyWarnings": [
+            "No realizar infiltración corticoidea en los 3 meses previos a cirugía protésica de rodilla"
+          ]
+        },
+        {
+          "name": "Bloqueo y Radiofrecuencia de Nervios Geniculados de Rodilla",
+          "indication": "Dolor severo crónico refractario en pacientes no candidatos quirúrgicos.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 2% o Bupivacaína 0.5%",
+            "volume": "0.5 a 1 mL por nervio (SM, SL, IM)",
+            "dose": "5-10 mg"
+          },
+          "corticosteroid": {
+            "drug": "Sin corticoide (o Dexametasona 1 mg por diana)",
+            "dose": "0 - 1 mg",
+            "volume": "0 - 0.25 mL"
+          },
+          "totalVolume": "0.5 a 1 mL por diana",
+          "safetyWarnings": [
+            "Marcar puntos diana sobre periostio femoral y tibial para evitar nervio peroneo común"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

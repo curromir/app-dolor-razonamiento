@@ -264,9 +264,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Contraindicado en fase postraumática inmediata hasta tener diagnóstico óseo definitivo.",
-      "objective": "No procede en fase aguda.",
-      "targets": []
+      "condition": "Traumatismo de hombro con sospecha de luxación, fractura o rotura tendinosa masiva aguda.",
+      "objective": "Manejo conservador urgente / estudio de imagen / derivación traumatológica.",
+      "targets": [
+        {
+          "name": "Bloqueo Analgésico Supraescapular / Infiltración Bursal de Rescate",
+          "indication": "Solo si se han descartado fracturas óseas desplazadas o luxación activa.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.2% o Lidocaína 1%",
+            "volume": "4 a 5 mL",
+            "dose": "8-10 mg o 40-50 mg"
+          },
+          "corticosteroid": {
+            "drug": "Sin corticoide en fase traumática aguda",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "4 a 5 mL",
+          "safetyWarnings": [
+            "Descartar lesión neurovascular axilar y fractura de troquíter en RX previa"
+          ]
+        }
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

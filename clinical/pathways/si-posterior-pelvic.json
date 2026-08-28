@@ -481,28 +481,47 @@
       ]
     },
     "interventionism": {
-      "condition": "Dolor sacroilíaco severo (>3 meses) con Clúster de Laslett positivo refractario a tratamiento médico.",
-      "objective": "Infiltración intraarticular o bloqueo de ramos laterales sacros (S1-S3) guiado por fluoroscopia o ecografía.",
+      "condition": "Disfunción articular sacroilíaca o sacroileítis con Clúster de Laslett positivo (≥3/5 maniobras).",
+      "objective": "Infiltración intraarticular sacroilíaca ecoguiada o bloqueo de ramos laterales (S1-S3).",
       "targets": [
         {
-          "name": "Infiltración Intraarticular Sacroilíaca Ecoguiada o Fluoroscópica",
-          "indication": "Sacroileítis o artropatía dolorosa confirmada.",
-          "options": [
-            {
-              "name": "Infiltración de corticoide de depósito (Triamcinolona 40mg) + anestésico local",
-              "evidence": "Alta / Nivel I"
-            },
-            {
-              "name": "Radiofrecuencia (Neurotomía) de Ramos Laterales Sacros (S1, S2, S3) y ramo dorsal L5 (Rizolisis sacroilíaca)",
-              "evidence": "Alta a medio-largo plazo (Cohen 2015)"
-            }
-          ],
-          "contraindications": [
-            "Infección activa",
-            "Anticoagulación no suspendida según protocolo"
+          "name": "Infiltración Intraarticular Sacroilíaca (IA) Ecoguiada",
+          "indication": "Dolor en nalga / Fortin finger test positivo con dolor a Thigh Thrust y Distracción.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1-2% o Bupivacaína 0.25%",
+            "volume": "1 a 1.5 mL",
+            "dose": "10-20 mg o 2.5-3.75 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 20-40 mg o Betametasona depot 1 mL (6 mg)",
+            "dose": "20-40 mg o 6 mg",
+            "volume": "0.5 a 1 mL (omitir en test puramente diagnóstico)"
+          },
+          "totalVolume": "1.5 a 2.5 mL máximo",
+          "safetyWarnings": [
+            "¡Volumen bajo estricto (≤2-2.5 mL)! Evitar rotura de la cápsula anterior y difusión al plexo lumbosacro"
+          ]
+        },
+        {
+          "name": "Bloqueo Diagnóstico de Ramos Laterales Sacros (S1-S3 + L5 dorsal)",
+          "indication": "Paso 1 antes de radiofrecuencia (rizolisis sacra) para dolor sacroilíaco posterior.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1-2% o Bupivacaína 0.25%",
+            "volume": "0.3 a 0.5 mL por diana",
+            "dose": "3-10 mg"
+          },
+          "corticosteroid": {
+            "drug": "⛔ SIN CORTICOIDE",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "0.3 a 0.5 mL por foramen/diana",
+          "safetyWarnings": [
+            "No penetrar en agujeros sacros anteriores para no bloquear raíces sacras ventrales"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

@@ -432,28 +432,47 @@
       ]
     },
     "interventionism": {
-      "condition": "Dolor coxofemoral moderado-severo refractario a tratamiento farmacológico y fisioterapia.",
-      "objective": "Infiltración intraarticular coxofemoral ecoguiada o bloqueo de nervios articulares (PENG / Femoral).",
+      "condition": "Coxartrosis sintomática moderada-severa o dolor articular en choque femoroacetabular.",
+      "objective": "Infiltración intraarticular de cadera ecoguiada / Bloqueo PENG.",
       "targets": [
         {
-          "name": "Infiltración Intraarticular Coxofemoral Ecoguiada",
-          "indication": "Coxartrosis grado II-III o choque FAI doloroso.",
-          "options": [
-            {
-              "name": "Infiltración ecoguiada en plano de ácido hialurónico de alto peso molecular o corticoide de depósito (Triamcinolona 40mg)",
-              "evidence": "Alta / Nivel I (alivio de 3-6 meses)"
-            },
-            {
-              "name": "Bloqueo ecoguiado del plano pericapsular de cadera (PENG block) y radiofrecuencia de ramos articulares",
-              "evidence": "Moderada-Alta para dolor refractario"
-            }
-          ],
-          "contraindications": [
-            "Infección articular activa",
-            "Necrosis avascular avanzada"
+          "name": "Infiltración Intraarticular de Cadera Ecoguiada",
+          "indication": "Coxartrosis con limitación de rotación interna y FADIR/FABER positivo.",
+          "localAnesthetic": {
+            "drug": "Mepivacaína 1% o Bupivacaína 0.25% o Ropivacaína 0.2%",
+            "volume": "3 a 5 mL",
+            "dose": "30-50 mg o 7.5-12.5 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 40 mg o Betametasona depot 1-2 mL (6-12 mg)",
+            "dose": "40 mg o 6-12 mg",
+            "volume": "1 a 2 mL"
+          },
+          "totalVolume": "5 a 7 mL",
+          "safetyWarnings": [
+            "Control Doppler color del paquete femoral; en bloqueo diagnóstico omitir corticoide para medir respuesta pura"
+          ]
+        },
+        {
+          "name": "Bloqueo PENG (Pericapsular Nerve Group)",
+          "indication": "Dolor agudo o crónico de cadera con preservación de la fuerza del cuádriceps.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.2% o Bupivacaína 0.25%",
+            "volume": "15 a 20 mL",
+            "dose": "30-50 mg"
+          },
+          "corticosteroid": {
+            "drug": "Sin corticoide de rutina",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "15 a 20 mL",
+          "safetyWarnings": [
+            "Mantener aguja en plano óseo profundo bajo el tendón del psoas para evitar bloqueo del nervio femoral motor"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

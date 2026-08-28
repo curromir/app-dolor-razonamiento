@@ -356,23 +356,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo con fines analgésicos en pacientes no candidatos quirúrgicos con dolor severo.",
-      "objective": "Aliviar el dolor para facilitar la reeducación del deltoides.",
+      "condition": "Debilidad severa de hombro (Drop Arm positivo o paresia de rotadores).",
+      "objective": "Diferenciar pseudoparálisis por dolor (inhibición artrógena) de rotura masiva o neuropatía.",
       "targets": [
         {
-          "name": "Bursa Subacromial / Espacio Glenohumeral",
-          "indication": "Dolor refractario",
-          "options": [
-            {
-              "name": "Corticoide ecoguiado o Ácido Hialurónico",
-              "evidence": "Moderada analgésica"
-            }
-          ],
-          "contraindications": [
-            "Sospecha de cirugía de reparación inminente (evitar corticoides en los 3 meses previos)"
+          "name": "Test Diagnóstico de Infiltración Subacromial Analgésica",
+          "indication": "Permite evaluar si la fuerza se recupera tras aliviar el dolor (diferenciar rotura verdadera vs inhibición).",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "4 a 5 mL",
+            "dose": "40-50 mg"
+          },
+          "corticosteroid": {
+            "drug": "Sin corticoide (o Betametasona 1 mL si se confirma bursitis)",
+            "dose": "0 - 6 mg",
+            "volume": "0 a 1 mL"
+          },
+          "totalVolume": "4 a 5 mL",
+          "safetyWarnings": [
+            "Si la debilidad persiste intacta tras abolición completa del dolor, solicitar RM preferente y valorar cirugía"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

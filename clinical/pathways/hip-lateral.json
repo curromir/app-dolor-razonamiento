@@ -531,28 +531,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si dolor refractario limitante con confirmación ecográfica de bursitis o tendinosis.",
-      "objective": "Aliviar el dolor para permitir el programa de carga y fortalecimiento de glúteo medio.",
+      "condition": "Síndrome Doloroso del Trocánter Mayor (GTPS) con bursitis trocantérica severa.",
+      "objective": "Infiltración de la bursa subglútea mayor ecoguiada para facilitar la carga del glúteo medio.",
       "targets": [
         {
-          "name": "Infiltración Ecoguiada de la Bursa Trocantérea Subglútea",
-          "indication": "Bursitis trocantérea con distensión líquida visible en ecografía.",
-          "options": [
-            {
-              "name": "Anestésico local + Corticoide de depósito (Triamcinolona 40mg) en espacio subglúteo ecoguiado",
-              "evidence": "Alta a corto plazo"
-            },
-            {
-              "name": "Ondas de choque focales (ESWT) / Plasma Rico en Plaquetas (PRP) en tendinopatía crónica de glúteo medio",
-              "evidence": "Moderada a medio-largo plazo"
-            }
-          ],
-          "contraindications": [
-            "Infección local o sistémica",
-            "Rotura completa de espesor total del tendón glúteo (indicación de valoración quirúrgica)"
+          "name": "Infiltración Ecoguiada de Bursa Trocantérica / Subglútea Mayor",
+          "indication": "Dolor a la palpación de la faceta lateral del trocánter con limitación para dormir en decúbito lateral.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "3 a 5 mL",
+            "dose": "30-50 mg"
+          },
+          "corticosteroid": {
+            "drug": "Betametasona depot 1 mL (6 mg) o Triamcinolona 20-40 mg",
+            "dose": "6 mg o 20-40 mg",
+            "volume": "1 mL"
+          },
+          "totalVolume": "4 a 6 mL",
+          "safetyWarnings": [
+            "¡NUNCA intratendinoso en tendón de glúteo medio/menor! Visualizar plano bursal con sonda lineal"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

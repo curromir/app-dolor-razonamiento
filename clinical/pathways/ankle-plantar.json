@@ -407,27 +407,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Fascitis plantar crónica (>3-6 meses) refractaria a protocolo de estiramiento y taloneras.",
-      "objective": "Reducir la inflamación y estimular la remodelación del colágeno mediante ondas de choque o infiltración ecoguiada.",
+      "condition": "Fasciopatía plantar recalcitrante (>6 meses) invalidante que fracasó con plantillas, ejercicios y ESWT.",
+      "objective": "Infiltración perifascial subcalcánea ecoguiada / PRP intratendinoso.",
       "targets": [
         {
-          "name": "Ondas de Choque Focales / Radiales (ESWT)",
-          "indication": "Tratamiento de primera línea intervencionista no invasivo.",
-          "options": [
-            {
-              "name": "3-5 sesiones semanales de ondas de choque focales (ESWT)",
-              "evidence": "Alta / Nivel I (Gollwitzer 2015)"
-            },
-            {
-              "name": "Infiltración ecoguiada perilesional de corticoide (Metilprednisolona 20mg) o Plasma Rico en Plaquetas (PRP)",
-              "evidence": "Alta a corto plazo / Moderada"
-            }
-          ],
-          "contraindications": [
-            "Infiltración intratendinosa directa (riesgo de rotura de fascia o atrofia de la almohadilla grasa si no se guía por ecografía)"
+          "name": "Infiltración Perifascial Ecoguiada de Fascia Plantar / PRP",
+          "indication": "Engrosamiento fascial >4.5 mm en inserción calcánea con dolor a los primeros pasos matutinos.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Bupivacaína 0.25%",
+            "volume": "1 a 1.5 mL",
+            "dose": "10-15 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 10-20 mg (uso muy restringido) o PRP 2-3 mL",
+            "dose": "10-20 mg",
+            "volume": "0.25 a 0.5 mL"
+          },
+          "totalVolume": "1.5 a 2 mL",
+          "safetyWarnings": [
+            "⚠️ Riesgo de atrofia de la almohadilla grasa plantar y rotura fascial si se repiten corticoides; preferir PRP o ESWT"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

@@ -762,29 +762,30 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si dolor radicular severo refractario a tratamiento médico (>4 semanas) con concordancia clínico-imagen alta/parcial.",
-      "objective": "Desinflamar la raíz nerviosa comprometida mediante depósito de anestésico local y corticoide guiado por fluoroscopia o ecografía.",
+      "condition": "Radiculopatía cervical compresiva refractaria con dolor severo de brazo concordante con RM.",
+      "objective": "Epidural transforaminal o interlaminar para reducir inflamación perirradicular.",
       "targets": [
         {
-          "name": "Epidural Cervical Interlaminar (C7-T1) o Bloqueo Foraminal Selectivo",
-          "indication": "Radiculopatía cervical C6 o C7 confirmada con dolor limitante.",
-          "options": [
-            {
-              "name": "Infiltración epidural interlaminar C7-T1 con corticoide no particulado (Dexametasona)",
-              "evidence": "Alta / Nivel I"
-            },
-            {
-              "name": "Bloqueo radicular selectivo cervical guiado por ecografía/fluroscopia",
-              "evidence": "Moderada"
-            }
-          ],
-          "contraindications": [
-            "Coagulopatía / Anticoagulación activa",
-            "Infección local o sistémica",
-            "Uso de corticoides particulados en columna cervical (Riesgo de embolización)"
+          "name": "Inyección Epidural Transforaminal Cervical (TFESI Cervical) o Interlaminar C7-T1",
+          "indication": "Radiculopatía C5, C6 o C7 unilateral con déficit o dolor que bloquea la rehabilitación.",
+          "localAnesthetic": {
+            "drug": "Suero fisiológico 0.9% o Ropivacaína 0.1%",
+            "volume": "0.5 a 1 mL",
+            "dose": "0.5-1 mg"
+          },
+          "corticosteroid": {
+            "drug": "Dexametasona fosfato sódico (ESTRICTAMENTE NO PARTICULADA)",
+            "dose": "4 a 8 mg",
+            "volume": "1 a 2 mL"
+          },
+          "totalVolume": "1 a 1.5 mL (TFESI) o 2.5 a 3.5 mL (ILESI C7-T1)",
+          "safetyWarnings": [
+            "🚨 ¡PROHIBIDO CORTICOIDE PARTICULADO! (Triamcinolona, Betametasona depot, Depo-Medrol). Riesgo de infarto medular/cerebeloso por embolia microvascular",
+            "Control fluoroscópico en tiempo real con inyección de contraste radiológico o ecografía Doppler de alta resolución"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

@@ -94,10 +94,12 @@
     setMode(newMode) {
       this.mode = newMode;
       const btnExpress = document.getElementById('vade-tab-btn-express');
+      const btnInterventions = document.getElementById('vade-tab-btn-interventions');
       const btnFull = document.getElementById('vade-tab-btn-full');
       const btnFavs = document.getElementById('vade-tab-btn-favs');
       
       if (btnExpress) btnExpress.classList.toggle('active', newMode === 'express');
+      if (btnInterventions) btnInterventions.classList.toggle('active', newMode === 'interventions');
       if (btnFull) btnFull.classList.toggle('active', newMode === 'full');
       if (btnFavs) btnFavs.classList.toggle('active', newMode === 'favs');
 
@@ -108,6 +110,14 @@
       this.activeCategory = cat;
       document.querySelectorAll('.vade-cat-chip').forEach(chip => {
         chip.classList.toggle('active', chip.getAttribute('data-cat') === cat);
+      });
+      this.render();
+    },
+
+    setInterventionRegion(reg) {
+      this.activeInterventionRegion = reg;
+      document.querySelectorAll('.vade-inter-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.getAttribute('data-reg') === reg);
       });
       this.render();
     },
@@ -487,11 +497,163 @@
 
       if (this.mode === 'express') {
         this.renderExpressView(container);
+      } else if (this.mode === 'interventions') {
+        this.renderInterventionsView(container);
       } else if (this.mode === 'full') {
         this.renderFullView(container);
       } else if (this.mode === 'favs') {
         this.renderFavoritesView(container);
       }
+    },
+
+    
+    renderInterventionsView(container) {
+      let inters = this.data.interventions || [];
+      if (this.activeInterventionRegion && this.activeInterventionRegion !== 'all') {
+        inters = inters.filter(i => {
+          if (this.activeInterventionRegion === 'raquis') return i.category === 'raquis' || i.region === 'lumbar' || i.region === 'cervical';
+          return i.region === this.activeInterventionRegion || i.category === this.activeInterventionRegion;
+        });
+      }
+
+      const laRef = this.data.local_anesthetics_reference?.agents || [];
+      const csRef = this.data.corticosteroids_injectable_reference?.agents || [];
+
+      container.innerHTML = `
+        <!-- HEADER INTERVENCIONISMO -->
+        <section class="vade-five-doses-section" style="border-color: rgba(16, 185, 129, 0.4); background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(99, 102, 241, 0.04) 100%);">
+          <div class="vade-section-header">
+            <span style="font-size: 1.5rem;">💉</span>
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 900; color: #10b981; margin: 0;">FÁRMACOS, DOSIS Y VOLÚMENES EN TÉCNICAS INTERVENCIONISTAS</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Anestésicos Locales · Corticoides (Particulados vs No Particulados) · Volúmenes Articulares y Espinales</p>
+            </div>
+          </div>
+
+          <!-- Quick Reference Accordions: AL & Corticosteroids -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.75rem; margin-top: 0.75rem;">
+            <!-- Local Anesthetics Reference -->
+            <div class="structure-box" style="background: var(--bg-surface); border-color: rgba(59, 130, 246, 0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                <strong style="font-size: 0.86rem; color: #60a5fa;">🧪 Anestésicos Locales (Dosis Máximas)</strong>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Seguridad LAST</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.75rem;">
+                ${laRef.map(la => `
+                  <div style="padding: 0.3rem 0.45rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border-left: 3px solid #60a5fa;">
+                    <div style="display: flex; justify-content: space-between;">
+                      <strong style="color: var(--text-primary);">${la.name} (${la.concentrations})</strong>
+                      <span style="color: #f59e0b; font-weight: 700;">Máx: ${la.maxDosePlain}</span>
+                    </div>
+                    <div style="color: var(--text-secondary); font-size: 0.72rem;">Latencia: ${la.latency} · Duración: ${la.clinicalDuration}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Corticosteroids Injectable Reference -->
+            <div class="structure-box" style="background: var(--bg-surface); border-color: rgba(239, 68, 68, 0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                <strong style="font-size: 0.86rem; color: #f87171;">💊 Corticoides: Particulados vs No Particulados</strong>
+                <span style="font-size: 0.7rem; color: #ef4444; font-weight: 700;">Regla Espinal</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.75rem;">
+                ${csRef.map(cs => `
+                  <div style="padding: 0.3rem 0.45rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border-left: 3px solid ${cs.type.includes('NO PARTICULADO') ? '#10b981' : '#ef4444'};">
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                      <strong style="color: var(--text-primary);">${cs.name}</strong>
+                      <span style="font-size: 0.7rem; font-weight: 700; color: ${cs.type.includes('NO PARTICULADO') ? '#10b981' : '#f87171'};">${cs.type}</span>
+                    </div>
+                    <div style="font-size: 0.72rem; color: var(--text-secondary); margin: 0.1rem 0;">Dosis habitual: <strong>${cs.usualDose}</strong></div>
+                    <div style="font-size: 0.7rem; color: ${cs.spinalSafety.includes('PROHIBIDO') ? '#ef4444' : '#10b981'}; font-weight: 600;">${cs.spinalSafety}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filtros por Región Anatómica -->
+        <div class="vade-category-toolbar" style="margin-top: 0.75rem;">
+          <button class="vade-inter-chip ${(!this.activeInterventionRegion || this.activeInterventionRegion === 'all') ? 'active' : ''}" data-reg="all" onclick="window.Vademecum.setInterventionRegion('all')">🌐 Todas (${(this.data.interventions || []).length})</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'raquis' ? 'active' : ''}" data-reg="raquis" onclick="window.Vademecum.setInterventionRegion('raquis')">⚡ Raquis & Epidurales</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'hombro' ? 'active' : ''}" data-reg="hombro" onclick="window.Vademecum.setInterventionRegion('hombro')">🦴 Hombro</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'rodilla' ? 'active' : ''}" data-reg="rodilla" onclick="window.Vademecum.setInterventionRegion('rodilla')">🦵 Rodilla</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'cadera' ? 'active' : ''}" data-reg="cadera" onclick="window.Vademecum.setInterventionRegion('cadera')">🦿 Cadera</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'codo' ? 'active' : ''}" data-reg="codo" onclick="window.Vademecum.setInterventionRegion('codo')">🦾 Codo</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'muneca_mano' ? 'active' : ''}" data-reg="muneca_mano" onclick="window.Vademecum.setInterventionRegion('muneca_mano')">🤲 Mano & Muñeca</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'tobillo_pie' ? 'active' : ''}" data-reg="tobillo_pie" onclick="window.Vademecum.setInterventionRegion('tobillo_pie')">🦶 Tobillo & Pie</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'sacroiliaca' ? 'active' : ''}" data-reg="sacroiliaca" onclick="window.Vademecum.setInterventionRegion('sacroiliaca')">🎯 Sacroilíaca</button>
+        </div>
+
+        <!-- Grid de Técnicas Intervencionistas -->
+        <div class="vade-express-grid" style="margin-top: 0.75rem;">
+          ${inters.map(inter => this.renderInterventionCard(inter)).join('')}
+        </div>
+      `;
+    },
+
+    renderInterventionCard(inter) {
+      return `
+        <article class="vade-express-card" id="inter-${inter.id}" style="border-left: 4px solid #10b981;">
+          <div class="vade-express-card-header">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <span class="vade-card-icon">${inter.category === 'raquis' || inter.region === 'lumbar' || inter.region === 'cervical' ? '⚡' : '💉'}</span>
+              <div>
+                <h3 class="vade-card-title">${inter.name}</h3>
+                <span class="vade-card-category">${inter.categoryLabel || inter.region}</span>
+              </div>
+            </div>
+            ${inter.evidence?.badge ? `<span class="treatment-badge-pill green" style="font-size: 0.68rem;">${inter.evidence.badge}</span>` : ''}
+          </div>
+
+          <div class="vade-express-card-body">
+            <!-- Indicación y Diana -->
+            <div style="margin-bottom: 0.5rem;">
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>🎯 Diana:</strong> ${inter.target}</p>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;"><strong>Indicación:</strong> ${inter.indication}</p>
+            </div>
+
+            <!-- Fármacos y Dosis Grid -->
+            <div class="pharma-spec-grid" style="margin-bottom: 0.5rem;">
+              ${inter.localAnesthetic ? `
+                <div class="pharma-spec-item">
+                  <strong style="color: #60a5fa;">💉 Anestésico Local</strong>
+                  <span>${inter.localAnesthetic.drug || ''} · ${inter.localAnesthetic.volume || ''} ${inter.localAnesthetic.dose ? '(' + inter.localAnesthetic.dose + ')' : ''}</span>
+                </div>
+              ` : ''}
+              ${inter.corticosteroid ? `
+                <div class="pharma-spec-item">
+                  <strong style="color: ${(inter.corticosteroid.drug && (inter.corticosteroid.drug.includes('PROHIBIDO') || inter.corticosteroid.drug.includes('SIN CORTICOIDE'))) ? '#ef4444' : '#10b981'};">💊 Corticoide / Inyectable</strong>
+                  <span>${inter.corticosteroid.drug || ''} ${inter.corticosteroid.dose ? '· ' + inter.corticosteroid.dose : ''} ${inter.corticosteroid.volume ? '(' + inter.corticosteroid.volume + ')' : ''}</span>
+                </div>
+              ` : ''}
+              ${inter.totalVolume ? `
+                <div class="pharma-spec-item">
+                  <strong style="color: #f59e0b;">📏 Volumen Total</strong>
+                  <span>${inter.totalVolume}</span>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Alertas de Seguridad -->
+            ${(inter.safetyWarnings && inter.safetyWarnings.length > 0) ? `
+              <div style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: var(--radius-sm); padding: 0.4rem 0.6rem; margin-bottom: 0.5rem;">
+                ${inter.safetyWarnings.map(w => `
+                  <div style="font-size: 0.74rem; color: #ef4444; font-weight: 600; margin: 0.15rem 0;">⚠️ ${w}</div>
+                `).join('')}
+              </div>
+            ` : ''}
+
+            <!-- Botones de Acción -->
+            <div class="vade-step-actions-bar" style="margin-top: 0.4rem;">
+              <button class="vade-copy-pill-btn" onclick="window.Vademecum.copyCustomText('${inter.name}: AL ${inter.localAnesthetic?.drug || ''} ${inter.localAnesthetic?.volume || ''} + Corticoide ${inter.corticosteroid?.drug || ''} ${inter.corticosteroid?.dose || ''} (Vol. Total: ${inter.totalVolume})', event, 'Receta Intervencionista')">
+                📋 Copiar Pauta Intervencionista
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
     },
 
     renderExpressView(container) {
@@ -981,6 +1143,15 @@
           </div>
         ` : ''}
 
+                ${matchingInterventions.length ? `
+          <div style="margin-bottom: 2rem;">
+            <h4 style="font-size: 0.95rem; font-weight: 800; color: #10b981; margin-bottom: 0.75rem;">💉 Procedimientos Intervencionistas Coincidentes</h4>
+            <div class="vade-express-grid">
+              ${matchingInterventions.map(inter => this.renderInterventionCard(inter)).join('')}
+            </div>
+          </div>
+        ` : ''}
+
         ${matchingDrugs.length ? `
           <div>
             <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--accent-blue); margin-bottom: 0.75rem;">💊 Fármacos Coincidentes</h4>
@@ -990,7 +1161,7 @@
           </div>
         ` : ''}
 
-        ${matchingConditions.length === 0 && matchingDrugs.length === 0 ? `
+        ${matchingConditions.length === 0 && matchingDrugs.length === 0 && matchingInterventions.length === 0 ? `
           <div class="glass-panel" style="padding: 2.5rem; text-align: center;">
             <span style="font-size: 2.5rem;">🔍</span>
             <p style="color: var(--text-secondary); margin-top: 0.5rem;">No se encontraron resultados para "${q}".</p>

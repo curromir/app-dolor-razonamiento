@@ -312,9 +312,29 @@
       ]
     },
     "interventionism": {
-      "condition": "NO infiltrar el hombro sin un generador local demostrado.",
-      "objective": "Dirigir el intervencionismo al cuello si se confirma radiculopatía o facetas.",
-      "targets": []
+      "condition": "Incertidumbre diagnóstica en hombro con sospecha de patología referida cervical o mixta.",
+      "objective": "Bloqueos diagnósticos diferenciales escalonados.",
+      "targets": [
+        {
+          "name": "Test Diagnóstico Subacromial (Neer Sign) con Anestésico Local",
+          "indication": "Diferenciar dolor subacromial vs referido cervical (desaparición de dolor confirma origen subacromial).",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "3 a 4 mL",
+            "dose": "30-40 mg"
+          },
+          "corticosteroid": {
+            "drug": "⛔ SIN CORTICOIDE en test diagnóstico puro inicial",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "3 a 4 mL",
+          "safetyWarnings": [
+            "Reevaluar arco doloroso y maniobras provocadoras 15-20 min tras la inyección"
+          ]
+        }
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

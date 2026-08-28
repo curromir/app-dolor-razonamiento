@@ -1018,32 +1018,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si concordancia clínico-ecográfica ≥ parcial Y dolor significativo que limita rehabilitación o sueño Y sin contraindicaciones.",
-      "objective": "Reducir temporalmente el dolor para facilitar recuperación funcional.",
+      "condition": "Síndrome subacromial / bursitis SASD severa con dolor agudo que impide la fisioterapia.",
+      "objective": "Infiltración ecoguiada de bursa subacromial-subdeltoidea (SASD) para abrir ventana terapéutica.",
       "targets": [
         {
-          "name": "Bursa Subacromial-Subdeltoidea (SASD)",
-          "indication": "Bursitis clínica (dolor nocturno, dolor a elevación) y ecográfica concordante.",
-          "options": [
-            {
-              "name": "Anestésico local (diagnóstico/terapéutico)",
-              "evidence": "Alta (confirmación diagnóstica)"
-            },
-            {
-              "name": "Corticoide (betametasona/triamcinolona)",
-              "evidence": "Moderada a corto plazo (alivio sintomático)"
-            }
-          ],
-          "contraindications": [
-            "Infección local/sistémica",
-            "Alergia a componentes",
-            "Anticoagulación no controlada",
-            "Diabetes mal controlada (precaución)"
-          ],
-          "postProcedure": "Ventana de oportunidad: Iniciar/intensificar rehabilitación en las 2-4 semanas post-infiltración para aprovechar la ventana analgésica."
+          "name": "Infiltración Ecoguiada de Bursa Subacromial-Subdeltoidea (SASD)",
+          "indication": "Bursitis SASD ecográfica concordante con arco doloroso, Hawkins y Jobe positivos.",
+          "localAnesthetic": {
+            "drug": "Mepivacaína 1% o Lidocaína 1%",
+            "volume": "3 a 4 mL",
+            "dose": "30-40 mg"
+          },
+          "corticosteroid": {
+            "drug": "Betametasona depot (Celestone Cronodose) 1 mL (6 mg) o Triamcinolona 20-40 mg",
+            "dose": "6 mg o 20-40 mg",
+            "volume": "1 mL"
+          },
+          "totalVolume": "4 a 5 mL",
+          "safetyWarnings": [
+            "⛔ ¡NUNCA intratendinoso en supraespinoso! Control de glucemia en diabéticos 48-72h"
+          ]
         }
       ],
-      "safetyNote": "La infiltración no es un punto final. El objetivo posterior es recuperar movimiento, fuerza y tolerancia a la carga. Evitar múltiples infiltraciones con corticoides (>3/año)."
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

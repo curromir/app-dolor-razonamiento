@@ -592,30 +592,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Indicada en fase dolorosa o rígida precoz con gran impacto en el sueño y calidad de vida.",
-      "objective": "Distender mecánicamente la cápsula fibrótica y suprimir la sinovitis para abrir una ventana de rehabilitación inmediata.",
+      "condition": "Capsulitis adhesiva de hombro (hombro congelado) con restricción severa del rango pasivo.",
+      "objective": "Infiltración intraarticular glenohumeral con corticoide o hidrodilatación capsular.",
       "targets": [
         {
-          "name": "Hidrodilatación Capsular Glenohumeral Ecoguiada (Capsular Distension)",
-          "indication": "Capsulitis adhesiva refractaria con pérdida marcada de rotación externa.",
-          "options": [
-            {
-              "name": "Inyección intraarticular GH de suero salino (20-40 ml) + corticoide + anestésico local hasta rotura capsular controlada",
-              "evidence": "Alta / Nivel I"
-            },
-            {
-              "name": "Bloqueo ecoguiado del nervio supraescapular (SSNB) concomitante",
-              "evidence": "Alta"
-            }
-          ],
-          "contraindications": [
-            "Infección local o sistémica",
-            "Alergia a fármacos",
-            "Desgarro masivo no diagnosticado"
-          ],
-          "postProcedure": "Iniciar movilización activa y pasiva asistida en las primeras 24-48 horas post-hidrodilatación."
+          "name": "Infiltración Intraarticular Glenohumeral Ecoguiada / Hidrodilatación",
+          "indication": "Fase inflamatoria/congelación de capsulitis con dolor nocturno severo y pérdida de rotación externa.",
+          "localAnesthetic": {
+            "drug": "Mepivacaína 1% o Ropivacaína 0.2%",
+            "volume": "4 a 6 mL (hasta 15 mL en hidrodilatación)",
+            "dose": "40-60 mg"
+          },
+          "corticosteroid": {
+            "drug": "Betametasona depot 1 mL (6 mg) o Triamcinolona 40 mg",
+            "dose": "6 mg o 40 mg",
+            "volume": "1 mL"
+          },
+          "totalVolume": "5 a 8 mL (hasta 15-20 mL en hidrodilatación con salino)",
+          "safetyWarnings": [
+            "Iniciar movilización activa y fisioterapia inmediata en las 48-72h post-infiltración"
+          ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

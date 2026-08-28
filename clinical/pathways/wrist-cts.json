@@ -419,28 +419,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Síndrome del túnel carpiano moderado con mala respuesta a férula nocturna (>6 semanas).",
-      "objective": "Desinflamar el nervio mediano y descomprimir el túnel carpiano.",
+      "condition": "Síndrome del Túnel Carpiano (CTS) sintomático que no responde a férula nocturna.",
+      "objective": "Infiltración subsinovial ecoguiada / hidrodisección del nervio mediano.",
       "targets": [
         {
-          "name": "Infiltración Perineural Ecoguiada del Túnel Carpiano / Hidrodisección",
-          "indication": "STC moderado sin atrofia tenar severa.",
-          "options": [
-            {
-              "name": "Infiltración ecoguiada ulnar con aguja en plano: 1 ml corticoide de depósito (Metilprednisolona o Triamcinolona) + 2-3 ml anestésico local/suero",
-              "evidence": "Alta / Nivel I (Chesterton 2018)"
-            },
-            {
-              "name": "Hidrodisección ecoguiada del nervio mediano con suero salino o dextrosa 5%",
-              "evidence": "Moderada"
-            }
-          ],
-          "contraindications": [
-            "Atrofia tenar severa o denervación axonal completa (indicación de cirugía descompresiva)",
-            "Infección local"
+          "name": "Infiltración / Hidrodisección Ecoguiada del Túnel Carpiano",
+          "indication": "Parestesias nocturnas en dedos 1º-3º con Durkan y Phalen positivos.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Ropivacaína 0.1%",
+            "volume": "1 a 1.5 mL",
+            "dose": "10-15 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 20 mg o Dexametasona 4 mg no particulada",
+            "dose": "20 mg o 4 mg",
+            "volume": "0.5 a 1 mL"
+          },
+          "totalVolume": "1.5 a 2.5 mL (o 5-8 mL con D5W en hidrodisección)",
+          "safetyWarnings": [
+            "⛔ ¡NUNCA pinchar dentro del nervio mediano! Abordaje ecoguiado cubital en plano"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

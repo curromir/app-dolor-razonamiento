@@ -805,186 +805,792 @@
   "corticosteroid_injections": {
     "subacromial_bursa": {
       "id": "inj-corticoid-subacromial",
-      "name": "Infiltración Ecoguiada de la Bursa Subacromial-Subdeltoidea (SASD)",
-      "category": "injection",
-      "indication": "Bursitis subacromial severa / dolor agudo que impide activamente la realización de la fisioterapia y el sueño.",
-      "target": "Espacio bursal SASD ecoguiado (evitar infiltrar el espesor del tendón supraespinoso)",
-      "drugOptions": [
-        {
-          "drug": "Trifosfato de Betametasona / Acetato (6 mg) o Triamcinolona Acatónido (20 - 40 mg)",
-          "volume": "1 mL de corticoide + 3-4 mL de Anestésico Local (Mepivacaína 1% o Ropivacaína 0.2%)",
-          "totalVolume": "4 - 5 mL"
-        }
+      "name": "Infiltración Ecoguiada de Bursa Subacromial-Subdeltoidea (SASD)",
+      "region": "hombro",
+      "target": "Espacio bursal SASD ecoguiado en plano",
+      "indication": "Bursitis subacromial severa / pinzamiento subacromial con dolor agudo que impide la fisioterapia activa y el sueño.",
+      "localAnesthetic": {
+        "drug": "Mepivacaína 1% o Lidocaína 1%",
+        "volume": "3 a 4 mL",
+        "dose": "30-40 mg"
+      },
+      "corticosteroid": {
+        "drug": "Betametasona depot (Celestone Cronodose) o Triamcinolona acetónido (Trigon depot)",
+        "dose": "6 mg (Betametasona) o 20-40 mg (Triamcinolona)",
+        "volume": "1 mL"
+      },
+      "totalVolume": "4 a 5 mL",
+      "technique": "Aguja 22-25G abordaje lateral o posterolateral ecoguiado en plano; visualizar expansión de la bursa.",
+      "safetyWarnings": [
+        "¡PROHIBIDO INFILTRAR INTRATENDINOSO! (Riesgo de necrosis y rotura del supraespinoso)",
+        "Control de glucemia capilar en diabéticos durante 48-72h (hiperglucemia reactiva)",
+        "Máximo 2-3 infiltraciones al año espaciadas ≥6-8 semanas"
       ],
-      "maxFrequency": "Máximo 2 a 3 infiltraciones al año, espaciadas al menos 6-8 semanas entre sí.",
-      "diabeticPrecautions": "Advertir al paciente diabético sobre elevaciones glucémicas reactivas en las primeras 48-72h. Monitorizar glucemias capilares.",
-      "tendonWarning": "¡PROHIBIDO INFILTRAR EN EL ESPESOR INTRATENDINOSO! (Riesgo elevado de necrosis focal y rotura tendinosa espontánea).",
-      "contraindications": [
-        "Infección sistémica o articular sospechada",
-        "Rotura masiva sintomática subsidiaria de reparación quirúrgica precoz en paciente joven",
-        "Diabetes mellitus descompensada (HbA1c >8.5-9% sin control)",
-        "Anticoagulación no controlada (INR >3.0)"
-      ],
-      "precautions": [
-        "Explicar que la infiltración busca una 'ventana de oportunidad' para trabajar con el fisioterapeuta, no es una cura definitiva"
-      ],
-      "reassessment": "A las 2-3 semanas para valorar ventana de mejoría e iniciar fisioterapia activa.",
-      "whyThisTreatment": "Potente inhibición de fosfolipasa A2 y citoquinas inflamatorias en la bursa para un alivio sintomático rápido a corto plazo.",
-      "whenToAvoid": "Evitar infiltraciones repetidas sin respuesta funcional. Evitar si no existe limitación dolorosa para el ejercicio activo.",
       "evidence": {
         "level": "moderate",
-        "badge": "🔵 EVIDENCIA ALTA A CORTO PLAZO (ALIVIO DE RESCATE)",
-        "note": "Eficaz para reducción rápida del dolor a 4-8 semanas; sin diferencias a 6-12 meses frente a fisioterapia activa sola."
+        "badge": "🔵 EVIDENCIA MODERADA A CORTO PLAZO",
+        "note": "Alivio rápido de 2 a 6 semanas para abrir ventana de rehabilitación activa."
+      }
+    },
+    "glenohumeral_joint": {
+      "id": "inj-glenohumeral-ia",
+      "name": "Infiltración Intraarticular Glenohumeral Ecoguiada",
+      "region": "hombro",
+      "target": "Interlínea articular glenohumeral posterior bajo el reborde labral",
+      "indication": "Capsulitis adhesiva en fase dolorosa / omartrosis moderada-severa con limitación funcional.",
+      "localAnesthetic": {
+        "drug": "Mepivacaína 1% o Ropivacaína 0.2%",
+        "volume": "4 a 6 mL",
+        "dose": "40-60 mg o 8-12 mg"
+      },
+      "corticosteroid": {
+        "drug": "Betametasona depot 1 mL (6 mg) o Triamcinolona 40 mg",
+        "dose": "6 mg o 40 mg",
+        "volume": "1 mL"
+      },
+      "totalVolume": "5 a 8 mL (hasta 15-20 mL en hidrodilatación capsular)",
+      "technique": "Abordaje posterior ecoguiado con transductor axial sobre cabeza humeral y glena.",
+      "safetyWarnings": [
+        "Asepsia estricta en quirófano o sala de técnicas",
+        "Descartar infección articular si hay derrame caliente previo"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN CAPSULITIS ADHESIVA",
+        "note": "Consensos AAOS 2025: acelera la recuperación de rango en fase de congelación inicial."
+      }
+    },
+    "acromioclavicular_joint": {
+      "id": "inj-ac-joint",
+      "name": "Infiltración Articulación Acromioclavicular (AC)",
+      "region": "hombro",
+      "target": "Interlínea acromioclavicular ecoguiada superior",
+      "indication": "Artrosis acromioclavicular dolorosa o dolor postraumático con Cross-Body test y O'Brien positivo.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1%",
+        "volume": "0.5 a 1 mL",
+        "dose": "5-10 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona acetónido o Betametasona depot",
+        "dose": "10-20 mg (Triamcinolona) o 3-6 mg (Betametasona)",
+        "volume": "0.25 a 0.5 mL"
+      },
+      "totalVolume": "1 a 1.5 mL máximo (cavidad articular de muy baja compliancia)",
+      "technique": "Aguja 25-27G abordaje coronal/superior ecoguiado con aguja fuera de plano o en plano.",
+      "safetyWarnings": [
+        "No sobredistender la cápsula articular (dolor agudo por sobrepresión)"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA",
+        "note": "Alivio rápido del dolor selectivo superior de hombro."
+      }
+    },
+    "elbow_intraarticular": {
+      "id": "inj-elbow-ia",
+      "name": "Infiltración Intraarticular de Codo (Humeroradial / Fosa Olecraniana)",
+      "region": "codo",
+      "target": "Receso articular posterolateral o fosa olecraniana ecoguiada",
+      "indication": "Artritis inflamatoria / artrosis de codo con sinovitis o rigidez dolorosa.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1% o Mepivacaína 1%",
+        "volume": "1.5 a 2 mL",
+        "dose": "15-20 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona 10-20 mg o Betametasona 3-6 mg",
+        "dose": "10-20 mg",
+        "volume": "0.5 a 1 mL"
+      },
+      "totalVolume": "2 a 3 mL",
+      "technique": "Codo en flexión 90°, transductor en plano sagital posterior o coronal posterolateral.",
+      "safetyWarnings": [
+        "Evitar nervio radial y cubital comprobando vasos con Doppler color"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA",
+        "note": "Control sintomático eficaz en sinovitis articular."
+      }
+    },
+    "de_quervain_sheath": {
+      "id": "inj-de-quervain",
+      "name": "Infiltración Ecoguiada Vaina 1.er Compartimento Extensor (De Quervain)",
+      "region": "muneca_mano",
+      "target": "Vaina sinovial común / subcompartimentos de EPB y APL sobre estiloides radial",
+      "indication": "Tenosinovitis de De Quervain refractaria a férula y AINEs tópicos con Finkelstein positivo.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1% o Mepivacaína 1%",
+        "volume": "0.75 a 1 mL",
+        "dose": "7.5-10 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona acetónido 40 mg/mL",
+        "dose": "10 mg (0.25 mL)",
+        "volume": "0.25 mL"
+      },
+      "totalVolume": "1 a 1.25 mL",
+      "technique": "Aguja 25-27G ecoguiada en eje corto/largo; bañar ambos tendones (identificar tabique intertendinoso).",
+      "safetyWarnings": [
+        "¡NUNCA intratendinoso! Inyectar exclusivamente en el espacio peritendinoso intrasinovial",
+        "Evitar rama sensitiva del nervio radial (alodinia/neuroma si se lesiona)",
+        "Riesgo de despigmentación cutánea o atrofia dérmica si se extravasa a tejido subcutáneo superficial"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / TASA DE ÉXITO >85%",
+        "note": "Tratamiento no quirúrgico más resolutivo en De Quervain."
+      }
+    },
+    "carpal_tunnel": {
+      "id": "inj-carpal-tunnel",
+      "name": "Infiltración / Hidrodisección Ecoguiada del Túnel Carpiano (CTS)",
+      "region": "muneca_mano",
+      "target": "Espacio subsinovial perineural profundo o superficial al nervio mediano bajo retináculo",
+      "indication": "Síndrome del Túnel Carpiano leve a moderado con Durkan/Phalen positivo que no responde a férula nocturna.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1% o Ropivacaína 0.1%",
+        "volume": "1 a 1.5 mL",
+        "dose": "10-15 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona acetónido o Dexametasona no particulada",
+        "dose": "20 mg (Triamcinolona) o 4 mg (Dexametasona)",
+        "volume": "0.5 a 1 mL"
+      },
+      "totalVolume": "1.5 a 2.5 mL (o 5-8 mL con D5W en hidrodisección pura)",
+      "technique": "Abordaje ecoguiado transversal cubital en plano, aguja dirigida bajo el nervio mediano.",
+      "safetyWarnings": [
+        "⛔ ¡NUNCA pinchar el espesor del nervio mediano! (Riesgo de daño fascicular severo)",
+        "Si el paciente refiere parestesias o dolor eléctrico fulgurante, RETIRAR la aguja inmediatamente",
+        "AAOS 2024: Corticoide ofrece alivio temporal a corto plazo; no sustituye cirugía si hay atrofia tenar o déficit motor"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA A CORTO PLAZO",
+        "note": "Alivio sintomático eficaz a 1-3 meses; no modifica pronóstico a 1 año."
+      }
+    },
+    "trigger_finger": {
+      "id": "inj-trigger-finger",
+      "name": "Infiltración Ecoguiada de Dedo en Resorte (Polea A1)",
+      "region": "muneca_mano",
+      "target": "Vaina tendinosa flexora bajo/proximal a la polea A1 ecoguiada",
+      "indication": "Tenosinovitis estenosante digital / resalte con bloqueo matutino doloroso.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1%",
+        "volume": "0.5 a 0.75 mL",
+        "dose": "5-7.5 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona acetónido",
+        "dose": "10 mg (0.25 mL)",
+        "volume": "0.25 mL"
+      },
+      "totalVolume": "0.8 a 1 mL",
+      "technique": "Aguja 27G longitudinal o transversal ecoguiada dentro de la vaina.",
+      "safetyWarnings": [
+        "No inyectar intratendinoso; confirmar paso libre de fluido intrasinovial"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / RESOLUCIÓN >70-80%",
+        "note": "Primera línea intervencionista antes de valorar liberación percutánea o quirúrgica."
+      }
+    },
+    "rhizarthrosis_cmc1": {
+      "id": "inj-cmc1-rhizarthrosis",
+      "name": "Infiltración Articulación Trapeciometacarpiana (CMC1 / Rizartrosis)",
+      "region": "muneca_mano",
+      "target": "Interlínea articular CMC1 ecoguiada dorsal",
+      "indication": "Rizartrosis sintomática (Eaton-Littler II-III) con limitación de pinza y dolor en la base del pulgar.",
+      "localAnesthetic": {
+        "drug": "Mepivacaína 1% o Lidocaína 1%",
+        "volume": "0.5 mL",
+        "dose": "5 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona acetónido o Betametasona depot",
+        "dose": "5-10 mg",
+        "volume": "0.25 a 0.5 mL"
+      },
+      "totalVolume": "0.5 a 0.8 mL",
+      "technique": "Tracción suave del pulgar con transductor longitudinal sobre el trapecio y 1.er metacarpiano.",
+      "safetyWarnings": [
+        "Espacio articular milimétrico; evitar arteria radial adyacente en tabaquera anatómica"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA",
+        "note": "Alivio del dolor en brotes artrósicos de 4 a 12 semanas."
+      }
+    },
+    "hip_intraarticular": {
+      "id": "inj-hip-ia",
+      "name": "Infiltración Intraarticular de Cadera (Coxofemoral) Ecoguiada",
+      "region": "cadera",
+      "target": "Receso articular anterior en la unión cabeza-cuello femoral ecoguiado",
+      "indication": "Coxartrosis sintomática moderada-severa / confirmación diagnóstica en conflicto cadera-columna (hip-spine).",
+      "localAnesthetic": {
+        "drug": "Mepivacaína 1% o Bupivacaína 0.25% o Ropivacaína 0.2%",
+        "volume": "3 a 5 mL",
+        "dose": "30-50 mg o 7.5-12.5 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona 40 mg o Betametasona depot 1-2 mL (6-12 mg)",
+        "dose": "40 mg o 6-12 mg",
+        "volume": "1 a 2 mL (omitr en bloqueo puramente diagnóstico)"
+      },
+      "totalVolume": "5 a 7 mL",
+      "technique": "Transductor convexo/lineal en eje longitudinal oblicuo sobre cuello femoral. Aguja 20-22G espinal 90 mm en plano de distal a proximal.",
+      "safetyWarnings": [
+        "Visualizar paquete vascular femoral (arteria/vena femoral) con Doppler color antes de la punción",
+        "Descartar necrosis avascular de cabeza femoral en RM previa",
+        "En bloqueo diagnóstico: NO usar corticoide; registrar dolor antes y 30 min después con tarea provocadora"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA DIAGNÓSTICA Y TERAPÉUTICA",
+        "note": "Gold standard para diferenciar dolor coxofemoral vs lumbosacro."
+      }
+    },
+    "trochanteric_bursa_gtps": {
+      "id": "inj-trochanteric-bursa",
+      "name": "Infiltración Ecoguiada de Bursa Trocantérica / Glútea (GTPS)",
+      "region": "cadera",
+      "target": "Bursa subglútea mayor o espacio peritendinoso del glúteo medio/menor ecoguiado",
+      "indication": "Síndrome Doloroso del Trocánter Mayor (GTPS) con bursitis severa que impide dormir en decúbito ipsilateral y rehabilitar.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1% o Mepivacaína 1%",
+        "volume": "3 a 5 mL",
+        "dose": "30-50 mg"
+      },
+      "corticosteroid": {
+        "drug": "Betametasona depot 1 mL (6 mg) o Triamcinolona 20-40 mg",
+        "dose": "6 mg o 20-40 mg",
+        "volume": "1 mL"
+      },
+      "totalVolume": "4 a 6 mL",
+      "technique": "Paciente en decúbito lateral. Transductor transversal/longitudinal sobre faceta lateral del trocánter mayor.",
+      "safetyWarnings": [
+        "¡NUNCA intratendinoso en tendón de glúteo medio/menor! (Riesgo de rotura tendinosa espontánea)"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA A CORTO PLAZO",
+        "note": "Alivio rápido para permitir ejercicios de carga progresiva del glúteo."
+      }
+    },
+    "peng_block": {
+      "id": "inj-peng-block",
+      "name": "Bloqueo Pericapsular de Ramas Nerviosas de Cadera (PENG Block)",
+      "region": "cadera",
+      "target": "Plano fascial entre tendón del psoas y rama iliopúbica (inervación capsular anterior: nervio femoral, accesorio y obturador)",
+      "indication": "Dolor severo de cadera / fractura de cadera / dolor postquirúrgico o artrosis no operable con preservación motora.",
+      "localAnesthetic": {
+        "drug": "Ropivacaína 0.2% o Bupivacaína 0.25%",
+        "volume": "15 a 20 mL",
+        "dose": "30-40 mg o 37.5-50 mg"
+      },
+      "corticosteroid": {
+        "drug": "Sin corticoide de rutina (o Dexametasona 4 mg si objetivo prolongado)",
+        "dose": "0 - 4 mg",
+        "volume": "0 a 1 mL"
+      },
+      "totalVolume": "15 a 20 mL",
+      "technique": "Transductor lineal o convexo sobre eminencia iliopúbica y espina ilíaca anteroinferior. Aguja en plano de lateral a medial.",
+      "safetyWarnings": [
+        "Bloqueo estrictamente sensitivo capsular: preserva fuerza de cuádriceps si se mantiene en plano óseo profundo bajo el psoas",
+        "No demuestra por sí solo el origen intraarticular del dolor (es un bloqueo regional analgésico)"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN ANALGESIA SENSITIVA DE CADERA",
+        "note": "Excelente perfil analgésico sin bloqueo motor del cuádriceps (Girón-Arango 2018)."
       }
     },
     "knee_intraarticular": {
       "id": "inj-corticoid-knee",
       "name": "Infiltración Intraarticular de Corticoide en Rodilla",
-      "category": "injection",
-      "indication": "Brote inflamatorio agudo de gonartrosis con derrame articular a tensión.",
+      "region": "rodilla",
       "target": "Receso suprapatelar o lateral ecoguiado",
-      "drugOptions": [
-        {
-          "drug": "Triamcinolona Acatónido 40 mg o Parametasona 20 mg",
-          "volume": "1 mL corticoide + 2-3 mL anestésico local (Mepivacaína 1%)",
-          "totalVolume": "3 - 4 mL"
-        }
+      "indication": "Brote inflamatorio agudo de gonartrosis con derrame articular a tensión o sinovitis dolorosa.",
+      "localAnesthetic": {
+        "drug": "Mepivacaína 1% o Lidocaína 1%",
+        "volume": "2 a 4 mL",
+        "dose": "20-40 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona acetónido 40 mg o Betametasona depot 1 mL (6 mg)",
+        "dose": "40 mg o 6 mg",
+        "volume": "1 mL"
+      },
+      "totalVolume": "3 a 5 mL (tras artrocentesis evacuadora previa)",
+      "technique": "Transductor transversal/longitudinal sobre polo superior de la rótula; evacuar líquido sinovial si existe derrame antes de inyectar.",
+      "safetyWarnings": [
+        "Máximo 3 infiltraciones/año (las inyecciones trimestrales repetidas aceleran la pérdida de volumen de cartílago articular en RM)",
+        "Descartar artritis séptica con artrocentesis y cultivo si fiebre o rodilla caliente/eritematosa",
+        "Evitar infiltrar en los 3 meses previos a una artroplastia total de rodilla programada"
       ],
-      "maxFrequency": "Máximo 3 infiltraciones/año (las inyecciones frecuentes repetidas pueden acelerar la pérdida de volumen de cartílago articular a largo plazo).",
-      "diabeticPrecautions": "Control de glucemias durante 72h.",
-      "contraindications": [
-        "Sospecha de artritis séptica (artrocentesis obligatoria previa si hay fiebre o sospecha)",
-        "Infección cutánea activa",
-        "Prótesis articular prevista en los próximos 3 meses (riesgo de infección periprotésica)"
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN BROTE AGUDO DE GONARTROSIS",
+        "note": "Alivio rápido demostrado de 2 a 6 semanas (OARSI / AAOS)."
+      }
+    },
+    "pes_anserine_bursa": {
+      "id": "inj-pes-anserine",
+      "name": "Infiltración Ecoguiada de Bursa Anserina (Pata de Ganso)",
+      "region": "rodilla",
+      "target": "Bursa anserina profunda a tendones de sartorio, grácil y semitendinoso sobre cara medial de tibia proximal",
+      "indication": "Bursitis anserina con dolor medial infrarticular y palpación dolorosa 2-3 cm distal a la interlínea.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1% o Mepivacaína 1%",
+        "volume": "1.5 a 2 mL",
+        "dose": "15-20 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona acetónido 20 mg o Betametasona depot 0.5-1 mL",
+        "dose": "20 mg o 3-6 mg",
+        "volume": "0.5 a 1 mL"
+      },
+      "totalVolume": "2 a 3 mL",
+      "technique": "Abordaje longitudinal oblicuo ecoguiado en plano bajo los tendones de la pata de ganso.",
+      "safetyWarnings": [
+        "No inyectar en el espesor del ligamento colateral medial (LCM) ni intratendinoso"
       ],
-      "precautions": [
-        "Reposo relativo de la articulación durante 24-48h"
-      ],
-      "reassessment": "A las 3 semanas.",
-      "whyThisTreatment": "Resolución rápida de la sinovitis exudativa aguda en brotes artrósicos.",
-      "whenToAvoid": "Evitar como tratamiento crónico pautado a intervalos fijos sin derrame ni signos inflamatorios.",
       "evidence": {
         "level": "moderate",
-        "badge": "🔵 EVIDENCIA MODERADA EN BROTE INFLAMATORIO",
-        "note": "Alivio sintomático demostrado de 2 a 6 semanas; no recomendado en inyecciones continuadas trimestrales."
+        "badge": "🔵 EVIDENCIA MODERADA",
+        "note": "Alivio eficaz del dolor medial secundario a sobrecarga o gonartrosis interna."
+      }
+    },
+    "ankle_tibiotalar_joint": {
+      "id": "inj-ankle-tibiotalar",
+      "name": "Infiltración Intraarticular Tibiotalar (Tobillo IA) Ecoguiada",
+      "region": "tobillo_pie",
+      "target": "Receso articular anterior tibiotalar ecoguiado",
+      "indication": "Artrosis tibiotalar postraumática o primaria / pinzamiento óseo anterior con dolor a la flexión dorsal/plantar.",
+      "localAnesthetic": {
+        "drug": "Mepivacaína 1% o Ropivacaína 0.2%",
+        "volume": "1.5 a 2.5 mL",
+        "dose": "15-25 mg o 3-5 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona 20-40 mg o Betametasona depot 0.5-1 mL",
+        "dose": "20-40 mg o 3-6 mg",
+        "volume": "0.5 a 1 mL"
+      },
+      "totalVolume": "2 a 3 mL",
+      "technique": "Abordaje anteromedial o anterolateral ecoguiado en receso anterior, identificando arteria tibial anterior y tendón extensor hallucis.",
+      "safetyWarnings": [
+        "Identificar y evitar arteria tibial anterior y nervio peroneo profundo con Doppler color"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA (AAOS 2026)",
+        "note": "Alivio sintomático en artrosis y sinovitis de tobillo."
+      }
+    },
+    "subtalar_joint": {
+      "id": "inj-subtalar-joint",
+      "name": "Infiltración Articulación Subastragalina (Subtalar) Ecoguiada",
+      "region": "tobillo_pie",
+      "target": "Seno del tarso o articulación subtalar posterior ecoguiada",
+      "indication": "Artrosis subtalar / dolor de retropié al caminar en terreno irregular tras fractura de calcáneo o esguince crónico.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1% o Ropivacaína 0.2%",
+        "volume": "1 a 1.5 mL",
+        "dose": "10-15 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona acetónido 20 mg",
+        "dose": "20 mg",
+        "volume": "0.5 mL"
+      },
+      "totalVolume": "1.5 a 2 mL",
+      "technique": "Abordaje lateral ecoguiado oblicuo hacia el seno del tarso bajo maléolo externo.",
+      "safetyWarnings": [
+        "Diferenciar claramente dolor tibiotalar (flexo-extensión) vs subtalar (inversión/eversión en terreno irregular)"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA",
+        "note": "Excelente precisión diagnóstica y terapéutica ecoguiada."
+      }
+    },
+    "morton_neuroma": {
+      "id": "inj-morton-neuroma",
+      "name": "Infiltración Ecoguiada de Neuroma de Morton / Espacio Intermetatarsal",
+      "region": "tobillo_pie",
+      "target": "Espacio intermetatarsal (3.er o 2.º espacio) ecoguiado dorsal",
+      "indication": "Neuroma de Morton con signo de Mulder positivo y metatarsalgia quemante al calzar zapato estrecho.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1% o Bupivacaína 0.25%",
+        "volume": "1 mL",
+        "dose": "10 mg o 2.5 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona 10-20 mg o Betametasona depot 0.5 mL",
+        "dose": "10-20 mg",
+        "volume": "0.25 a 0.5 mL"
+      },
+      "totalVolume": "1.25 a 1.5 mL",
+      "technique": "Abordaje dorsal ecoguiado en plano, introduciendo la aguja entre las cabezas metatarsianas adyacente al engrosamiento perineural.",
+      "safetyWarnings": [
+        "¡NUNCA abordar por vía plantar! (Riesgo de dolor por cicatriz en zona de carga y atrofia grasa)",
+        "Máximo 1-2 infiltraciones; si recidiva valorar neurolisis o escisión quirúrgica"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA A CORTO PLAZO",
+        "note": "Tasa de alivio sintomático inicial del 60-70%."
+      }
+    },
+    "sacroiliac_joint_ia": {
+      "id": "inj-sacroiliac-ia",
+      "name": "Infiltración Articulación Sacroilíaca (IA) Ecoguiada / Fluoroscópica",
+      "region": "sacroiliaca",
+      "target": "Tercio inferior de la articulación sacroilíaca dorsal",
+      "indication": "Sacroileítis inflamatoria o disfunción articular sacroilíaca con Clúster de Laslett positivo (≥3/5 maniobras).",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1-2% o Bupivacaína 0.25%",
+        "volume": "1 a 1.5 mL",
+        "dose": "10-20 mg o 2.5-3.75 mg"
+      },
+      "corticosteroid": {
+        "drug": "Triamcinolona 20-40 mg o Betametasona depot 1 mL (6 mg)",
+        "dose": "20-40 mg o 6 mg",
+        "volume": "0.5 a 1 mL (omitir en test puramente diagnóstico)"
+      },
+      "totalVolume": "1.5 a 2.5 mL máximo",
+      "technique": "Abordaje oblicuo ecoguiado o fluoroscópico en tercio inferior de la hendidura sacroilíaca.",
+      "safetyWarnings": [
+        "¡Volumen bajo estricto (≤2-2.5 mL)! El exceso de volumen rompe la cápsula anterior y difunde al plexo lumbosacro y nervio ciático",
+        "En bloqueo diagnóstico: evaluar alivio en tarea provocadora a los 30 min sin corticoide"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR SACROILÍACO CONCORDANTE",
+        "note": "Consenso Internacional 2025: técnica de elección para confirmación y alivio temporal."
       }
     }
   },
   "spinal_interventions": {
-    "transforaminal_epidural": {
-      "id": "sp-tfesi",
-      "name": "Inyección Epidural Transforaminal Lumbar (TFESI)",
+    "transforaminal_epidural_lumbar": {
+      "id": "sp-tfesi-lumbar",
+      "name": "Inyección Epidural Transforaminal Lumbar (TFESI Lumbar)",
       "category": "epidural_approach",
-      "indication": "Radiculopatía lumbar unilateral compresiva con nivel y raíz bien definidos y lesión focal concordante en RM (ej. hernia discal posterolateral o subarticular L5-S1 comprimiendo S1).",
-      "concept": "Tratamiento selectivo directo a la raíz afectada y al espacio epidural anterior.",
-      "advantage": "Concentra el volumen del fármaco en el foramen y cara ventral del saco dural, justo donde se produce el conflicto disco-radicular (NASS).",
-      "target": "Foramen intervertebral bajo control fluoroscópico / ecográfico con contraste radiológico obligatorio",
-      "drugs": "Corticoide no particulado (Dexametasona 4 a 8 mg) + Anestésico local (Ropivacaína 0.1-0.2% o Bupivacaína 0.125% 1-2 mL)",
-      "volume": "2 a 3 mL máximo (inyección lenta tras comprobar ausencia de inyección intravascular o intratecal)",
-      "expectedBenefit": "La epidural no elimina mecánicamente la hernia. Busca reducir temporalmente el dolor y la inflamación radicular (beneficio concentrado en los primeros 3 meses según revisión AAN 2025) para mejorar sueño, movimiento y función mientras progresa la reabsorción tisular.",
-      "contraindications": [
-        "Infección espinal o sistémica",
-        "Anticoagulación no retirada según guías ASRA",
-        "Déficit motor progresivo rápido / Cauda equina (cirugía urgente)",
-        "Alergia a contraste yodado"
+      "region": "lumbar",
+      "indication": "Radiculopatía lumbar unilateral compresiva con raíz diana identificada y lesión focal concordante en RM (hernia discal posterolateral L4-L5, L5-S1 o estenosis foraminal).",
+      "concept": "Inyección selectiva directa en el foramen y espacio epidural anterior ventral.",
+      "target": "Polo superior del foramen intervertebral bajo arco seguro subpedicular o abordaje retrodiscal (fluoroscopia con contraste radiológico obligatorio / ecoguiado).",
+      "localAnesthetic": {
+        "drug": "Ropivacaína 0.1-0.2% o Bupivacaína 0.125-0.25% o Salino",
+        "volume": "1 a 1.5 mL",
+        "dose": "1-3 mg"
+      },
+      "corticosteroid": {
+        "drug": "Dexametasona fosfato sódico (NO PARTICULADA OBLIGATORIA)",
+        "dose": "4 a 10 mg (habitual 8-10 mg)",
+        "volume": "1 a 2.5 mL (dexametasona 4 mg/mL)"
+      },
+      "totalVolume": "2 a 3 mL máximo (inyección lenta tras comprobación de dispersión de contraste)",
+      "safetyWarnings": [
+        "⛔ ¡OBLIGATORIO CORTICOIDE NO PARTICULADO (Dexametasona)! Evitar corticoides particulados (Triamcinolona, Metilprednisolona, Betametasona acetato) por riesgo de embolización en la arteria radiculomedular de Adamkiewicz e infarto espinal parapléjico (FDA Safety Warning / SIS Guidelines)",
+        "Verificar tiempos de suspensión de anticoagulantes y antiagregantes según guías ASRA 2024",
+        "Descartar síndrome de cauda equina o déficit motor rápidamente progresivo (indicación de descompresión quirúrgica urgente)"
       ],
-      "reassessment": "Revisión obligatoria a las 3-6 semanas evaluando dolor de pierna, fuerza, reflejos, Lasègue y función.",
+      "expectedBenefit": "Alivio de dolor radicular e inflamación concentrado en los primeros 3 meses (AAN 2025 / NASS) para permitir rehabilitación.",
       "evidence": {
         "level": "high",
-        "badge": "🟢 EVIDENCIA ALTA EN RADICULOPATÍA FOCAL CONCORDANTE",
-        "note": "Recomendada por NASS y guías internacionales para alivio sintomático a corto y medio plazo en hernia discal concordante."
+        "badge": "🟢 EVIDENCIA ALTA EN RADICULOPATÍA CONCORDANTE (NASS / SIS)",
+        "note": "Técnica de elección para radiculopatía focal disco-radicular."
       }
     },
-    "interlaminar_epidural": {
-      "id": "sp-ilesi",
-      "name": "Inyección Epidural Interlaminar Lumbar (ILESI)",
+    "transforaminal_epidural_cervical": {
+      "id": "sp-tfesi-cervical",
+      "name": "Inyección Epidural Transforaminal Cervical (TFESI Cervical)",
       "category": "epidural_approach",
-      "indication": "Radiculopatía bilateral, afectación de varios territorios radiculares, estenosis de canal central o cuando se busca una dispersión epidural más amplia.",
-      "concept": "Más amplia, menos selectiva.",
-      "advantage": "Permite distribuir un volumen mayor en el espacio epidural posterior y bañar múltiples segmentos vertebrales simultáneamente.",
-      "target": "Espacio interlaminar lumbar (L3-L4 o L4-L5) con técnica de pérdida de resistencia",
-      "drugs": "Corticoide (Dexametasona 8 mg o particulado en niveles bajos) + Anestésico local (Mepivacaína 1% o Ropivacaína 0.2%)",
-      "volume": "4 a 6 mL",
-      "expectedBenefit": "Alivio sintomático y reducción de la inflamación multiradicular para facilitar la movilización activa.",
-      "contraindications": [
-        "Infección",
-        "Coagulopatía / Anticoagulación",
-        "Cirugía previa con pérdida de referencias interlaminares"
+      "region": "cervical",
+      "indication": "Radiculopatía cervical unilateral refractaria (C5, C6, C7 o C8) con déficit o dolor severo concordante en RM.",
+      "concept": "Inyección selectiva en foramen cervical posterior a la arteria vertebral.",
+      "target": "Aspecto posterior del foramen intervertebral cervical bajo fluoroscopia estricta o ecografía de alta resolución con Doppler continuo.",
+      "localAnesthetic": {
+        "drug": "Suero fisiológico 0.9% o Ropivacaína 0.1%",
+        "volume": "0.5 mL",
+        "dose": "0.5 mg"
+      },
+      "corticosteroid": {
+        "drug": "Dexametasona fosfato sódico (ESTRICTAMENTE NO PARTICULADA)",
+        "dose": "4 a 8 mg",
+        "volume": "1 a 2 mL"
+      },
+      "totalVolume": "1 a 1.5 mL máximo",
+      "safetyWarnings": [
+        "🚨 ¡MÁXIMA ALERTA DE SEGURIDAD!: PROHIBIDO CUALQUIER CORTICOIDE PARTICULADO (Triamcinolona, Betametasona depot, Depo-Medrol). Riesgo catastrófico de ictus cerebeloso, infarto de tronco o tetraplejia por embolia en arteria vertebral o radicular",
+        "Uso obligatorio de aguja punta roma / extensión con inyección en tiempo real de contraste bajo angiografía por sustracción digital si fluoroscopia"
       ],
-      "reassessment": "A las 3-6 semanas.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA CON NO PARTICULADO (SIS / ASRA)",
+        "note": "Eficaz en radiculopatía cervical cuando se ejecuta bajo estrictos protocolos de seguridad."
+      }
+    },
+    "interlaminar_epidural_lumbar": {
+      "id": "sp-ilesi-lumbar",
+      "name": "Inyección Epidural Interlaminar Lumbar (ILESI Lumbar)",
+      "category": "epidural_approach",
+      "region": "lumbar",
+      "indication": "Radiculopatía lumbar bilateral, afectación multirradicular o estenosis de canal central lumbar con claudicación neurógena.",
+      "concept": "Difusión epidural amplia dorsal y multisegmentaria.",
+      "target": "Espacio interlaminar L3-L4 o L4-L5 con técnica de pérdida de resistencia.",
+      "localAnesthetic": {
+        "drug": "Ropivacaína 0.1-0.2% o Mepivacaína 1% o Salino",
+        "volume": "2 a 4 mL",
+        "dose": "2-8 mg o 20-40 mg"
+      },
+      "corticosteroid": {
+        "drug": "Dexametasona fosfato sódico (preferente) o Triamcinolona",
+        "dose": "8 a 10 mg (Dexametasona) o 40 mg (Triamcinolona)",
+        "volume": "1 a 2.5 mL"
+      },
+      "totalVolume": "4 a 6 mL",
+      "safetyWarnings": [
+        "Pérdida de resistencia con suero salino o aire; comprobar ausencia de LCR o reflujo hemático",
+        "Anticoagulación retirada según protocolo ASRA para punción neuroaxial"
+      ],
       "evidence": {
         "level": "moderate",
-        "badge": "🔵 EVIDENCIA MODERADA EN AFECTACIÓN BILATERAL / MULTISEGMENTARIA",
-        "note": "Reconocida por ASIPP y consensos internacionales para dolor radicular difuso o estenosis central."
+        "badge": "🔵 EVIDENCIA MODERADA EN AFECTACIÓN MULTISEGMENTARIA",
+        "note": "Alivio sintomático eficaz en estenosis central y radiculopatía bilateral."
+      }
+    },
+    "interlaminar_epidural_cervical": {
+      "id": "sp-ilesi-cervical",
+      "name": "Inyección Epidural Interlaminar Cervical (ILESI Cervical C7-T1)",
+      "category": "epidural_approach",
+      "region": "cervical",
+      "indication": "Cervicobraquialgia bilateral o multinivel, estenosis foraminal múltiple en cuello.",
+      "concept": "Difusión epidural amplia desde la unión cervicotorácica.",
+      "target": "Espacio interlaminar C7-T1 (o C6-C7) bajo fluoroscopia y pérdida de resistencia.",
+      "localAnesthetic": {
+        "drug": "Suero fisiológico 0.9% o Ropivacaína 0.1%",
+        "volume": "1.5 a 2.5 mL",
+        "dose": "1.5-2.5 mg"
+      },
+      "corticosteroid": {
+        "drug": "Dexametasona fosfato sódico no particulada",
+        "dose": "4 a 8 mg",
+        "volume": "1 a 2 mL"
+      },
+      "totalVolume": "2.5 a 3.5 mL máximo",
+      "safetyWarnings": [
+        "Realizar exclusivamente en C7-T1 donde el espacio epidural posterior es más amplio",
+        "¡Nunca por encima de C6-C7 interlaminar por riesgo de daño medular directo!"
+      ],
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA EN C7-T1",
+        "note": "Alternativa más segura a la transforaminal cervical para afectación multinivel."
       }
     },
     "caudal_epidural": {
       "id": "sp-caudal-epidural",
       "name": "Inyección Epidural Caudal",
       "category": "epidural_approach",
-      "indication": "Niveles lumbares bajos (L5-S1), afectación multisegmentaria sacrolumbar, acceso interlaminar difícil, o determinadas situaciones postquirúrgicas (fibrosis epidural / síndrome postlaminectomía).",
-      "concept": "Difusión amplia ascendente desde el hiato sacro.",
-      "advantage": "Acceso seguro y relativamente sencillo a través del hiato sacro, evitando el canal lumbar instrumentado.",
-      "target": "Hiato sacro ecoguiado o fluoroscópico",
-      "drugs": "Corticoide + Anestésico local diluido en suero fisiológico",
-      "volume": "8 a 15 mL (mayor volumen para permitir ascenso del fármaco hasta L4-L5 y L5-S1)",
-      "expectedBenefit": "Alivio analgésico regional para niveles lumbosacros bajos.",
-      "contraindications": [
-        "Infección en zona sacrococcígea / quiste pilonidal",
-        "Anticoagulación no controlada"
+      "region": "lumbar",
+      "indication": "Estenosis de canal lumbar distal (L5-S1), síndrome de cirugía fallida de espalda (FBSS / fibrosis postquirúrgica) o acceso interlaminar bloqueado.",
+      "concept": "Acceso seguro distal a través del hiato sacro.",
+      "target": "Hiato sacro ecoguiado o fluoroscópico bajo ligamento sacrococcígeo.",
+      "localAnesthetic": {
+        "drug": "Ropivacaína 0.1-0.2% o Lidocaína 0.5% diluida en suero",
+        "volume": "5 a 10 mL",
+        "dose": "5-15 mg"
+      },
+      "corticosteroid": {
+        "drug": "Dexametasona fosfato 8-10 mg o Triamcinolona 40 mg",
+        "dose": "8-10 mg o 40 mg",
+        "volume": "1 a 2.5 mL"
+      },
+      "totalVolume": "10 a 15 mL (hasta 20 mL para ascenso a L4-L5)",
+      "safetyWarnings": [
+        "Aspirar antes de inyectar para descartar punción de seno venoso sacro o saco dural bajo",
+        "Descartar infección cutánea sacrococcígea o quiste pilonidal"
       ],
-      "reassessment": "A las 4-6 semanas.",
       "evidence": {
         "level": "moderate",
-        "badge": "🔵 EVIDENCIA MODERADA EN NIVELES BAJOS Y POSTQUIRÚRGICOS",
-        "note": "Útil y segura en estenosis lumbar distal y síndrome de cirugía de espalda fallida (FBSS)."
+        "badge": "🔵 EVIDENCIA MODERADA EN NIVELES BAJOS Y FBSS",
+        "note": "Excelente perfil de seguridad con muy bajo riesgo de punción dural accidental."
+      }
+    },
+    "medial_branch_block_lumbar": {
+      "id": "sp-mbb-lumbar",
+      "name": "Bloqueo Diagnóstico de Ramos Mediales Lumbares (MBB Lumbar)",
+      "category": "diagnostic_block",
+      "region": "lumbar",
+      "indication": "Paso 1 OBLIGATORIO para sospecha de Dolor Lumbar Axial Facetario (síndrome facetario mecánico crónico >3 meses).",
+      "concept": "Bloqueo anestésico puro de la inervación de la articulación facetaria.",
+      "target": "Unión de apófisis transversa y apófisis articular superior (cuello del Scottie dog) para ramos mediales L1-L4 y ramo dorsal L5 sobre el ala sacra.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1-2% o Bupivacaína 0.25-0.5%",
+        "volume": "0.3 a 0.5 mL por ramo medial",
+        "dose": "3-10 mg por diana"
+      },
+      "corticosteroid": {
+        "drug": "⛔ SIN CORTICOIDE (No indicado)",
+        "dose": "0 mg",
+        "volume": "0 mL"
+      },
+      "totalVolume": "0.3 a 0.5 mL por diana (volumen bajo estricto)",
+      "safetyWarnings": [
+        "⛔ ¡NUNCA AÑADIR CORTICOIDE!: El corticoide no aumenta la precisión diagnóstica y provoca falsos positivos prolongados",
+        "Criterio de éxito: Alivio ≥70-80% del dolor lumbar axial con la tarea provocadora durante la ventana de acción del AL",
+        "¡PROHIBIDO OFRECER PARA CIÁTICA/RADICULOPATÍA!: El ramo medial inerva la faceta; no la raíz ciática"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA / ESTÁNDAR DIAGNÓSTICO (SIS / ASRA)",
+        "note": "Requisito imprescindible para indicar radiofrecuencia térmica (rizolisis)."
+      }
+    },
+    "medial_branch_block_cervical": {
+      "id": "sp-mbb-cervical",
+      "name": "Bloqueo Diagnóstico de Ramos Mediales Cervicales (MBB Cervical / TON)",
+      "category": "diagnostic_block",
+      "region": "cervical",
+      "indication": "Cervicalgia axial facetaria crónica o Cefalea cervicogénica (bloqueo del tercer nervio occipital / TON en C2-C3).",
+      "concept": "Bloqueo anestésico puro de los ramos mediales cervicales.",
+      "target": "Centro del pilar articular cervical en proyección lateral fluoroscópica o ecoguiada.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1-2% o Bupivacaína 0.25-0.5%",
+        "volume": "0.2 a 0.3 mL por ramo",
+        "dose": "2-6 mg"
+      },
+      "corticosteroid": {
+        "drug": "⛔ SIN CORTICOIDE (No indicado)",
+        "dose": "0 mg",
+        "volume": "0 mL"
+      },
+      "totalVolume": "0.2 a 0.3 mL por diana",
+      "safetyWarnings": [
+        "Volumen muy bajo para evitar bloqueo del nervio frénico o plexo braquial"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA DIAGNÓSTICA (SIS)",
+        "note": "Indispensable antes de rizolisis cervical."
+      }
+    },
+    "facet_radiofrequency": {
+      "id": "sp-facet-rf",
+      "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales Facetarios (Rizolisis Facetaria)",
+      "category": "radiofrequency",
+      "region": "lumbar",
+      "indication": "Dolor lumbar o cervical axial facetario crónico tras confirmación previa con bloqueo diagnóstico positivo (≥70-80% de alivio).",
+      "technique": "Termolesión continua a 80°C durante 90 segundos por ramo medial (2 ramas por faceta).",
+      "localAnesthetic": {
+        "drug": "Lidocaína 2% o Bupivacaína 0.5%",
+        "volume": "0.5 a 1 mL por cánula antes de la lesión",
+        "dose": "10-20 mg"
+      },
+      "corticosteroid": {
+        "drug": "Sin corticoide (o Dexametasona 1 mg por ramo para prevenir neuritis post-RF)",
+        "dose": "0 - 1 mg",
+        "volume": "0 - 0.25 mL"
+      },
+      "totalVolume": "0.5 a 1 mL por diana",
+      "safetyWarnings": [
+        "Estimulación sensitiva (50 Hz <0.5 V) y motora (2 Hz >1.5-2 V) obligatoria para descartar proximidad a la raíz motora ventral",
+        "¡PROHIBIDO para ciática o radiculopatía!"
+      ],
+      "expectedBenefit": "Alivio analgésico duradero de 9 a 18 meses para dolor lumbar axial facetario.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR FACETARIO AXIAL (NICE / SIS)",
+        "note": "Técnica intervencionista estándar con mayor evidencia para dolor axial posterior."
       }
     },
     "drg_pulsed_radiofrequency": {
       "id": "sp-drg-prf",
       "name": "Radiofrecuencia Pulsada del Ganglio de la Raíz Dorsal (PRF-DRG)",
       "category": "radiofrequency",
-      "indication": "Dolor radicular lumbosacro crónico refractario (>3-6 meses) tras fracaso del manejo conservador estructurado e infiltración epidural, con raíz bien identificada.",
-      "target": "Polo superior del foramen intervertebral adyacente al ganglio de la raíz dorsal (control fluoroscópico estricto)",
-      "technique": "Radiofrecuencia pulsada (42°C, 2 Hz, ancho de pulso 20 ms durante 120-240 segundos)",
-      "concept": "Neuromodulación biológica no ablativa que altera la expresión de citoquinas y canales iónicos sin provocar lesión térmica destructiva del nervio.",
-      "contraindications": [
-        "Infección local/sistémica",
-        "Déficit motor agudo",
-        "Falta de correlación anatómica"
+      "region": "lumbar",
+      "indication": "Dolor radicular neuropático crónico lumbosacro refractario (>3-6 meses) tras fracaso de epidural y tratamiento conservador.",
+      "technique": "Radiofrecuencia pulsada no destructiva: 42°C, 2 Hz, 20 ms de ancho de pulso durante 120-240 s.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1-2% o Ropivacaína 0.2%",
+        "volume": "0.5 a 1 mL",
+        "dose": "5-10 mg"
+      },
+      "corticosteroid": {
+        "drug": "Dexametasona no particulada (opcional coadyuvante)",
+        "dose": "2 a 4 mg",
+        "volume": "0.5 a 1 mL"
+      },
+      "totalVolume": "1 a 1.5 mL",
+      "safetyWarnings": [
+        "Neuromodulación biológica sin corte térmico del nervio",
+        "Control fluoroscópico estricto en polo superior del foramen"
       ],
-      "reassessment": "A las 6-12 semanas.",
-      "whyThisTreatment": "Opción intervencionista avanzada en dolor radicular neuropático crónico cuando se desea evitar la cirugía o la radiofrecuencia térmica destructiva.",
-      "whenToAvoid": "NO es tratamiento estándar de primera línea. Evitar en radiculopatía aguda <6-12 semanas donde la evolución natural y la epidural son de elección.",
       "evidence": {
         "level": "limited",
-        "badge": "🟠 OPCIÓN AVANZADA / EVIDENCIA LIMITADA (Baja certeza)",
-        "note": "Revisiones sistemáticas (2024-2025) describen posible beneficio analgésico a 3 meses pero con baja certeza global y sin mejoría funcional contundente demostrada."
+        "badge": "🟠 OPCIÓN AVANZADA / EVIDENCIA LIMITADA",
+        "note": "Posible beneficio a 3 meses con baja certeza global (revisiones 2024-2025)."
       }
     },
-    "facet_radiofrequency": {
-      "id": "sp-facet-rf",
-      "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales Facetarios (80°C / 90s)",
-      "category": "radiofrequency",
-      "indication": "Dolor LUMBAR AXIAL o CERVICAL FACETARIO crónico tras bloqueo diagnóstico previo confirmatorio (>50-80% de alivio transitorio).",
-      "requiredDiagnosis": "Respuesta positiva a bloqueos diagnósticos de ramos mediales. ¡ESTRICTAMENTE INDICADO PARA DOLOR FACETARIO AXIAL!",
-      "target": "Ramos mediales dorsales vertebrales (inervación exclusiva de las articulaciones facetarias)",
-      "technique": "Radiofrecuencia térmica convencional continua (80°C durante 90 segundos)",
-      "contraindications": [
-        "Infección local o sistémica",
-        "Falta de respuesta al bloqueo diagnóstico previo",
-        "Presencia de marcapasos no protegido"
+    "si_lateral_branches_block": {
+      "id": "sp-si-lbb",
+      "name": "Bloqueo Diagnóstico de Ramos Laterales Sacros (S1-S3 + L5 dorsal)",
+      "category": "diagnostic_block",
+      "region": "sacroiliaca",
+      "indication": "Diagnóstico y pronóstico previo a radiofrecuencia (coooled RF / rizolisis sacra) del complejo sacroilíaco posterior.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 1-2% o Bupivacaína 0.25%",
+        "volume": "0.3 a 0.5 mL por diana",
+        "dose": "3-10 mg"
+      },
+      "corticosteroid": {
+        "drug": "⛔ SIN CORTICOIDE",
+        "dose": "0 mg",
+        "volume": "0 mL"
+      },
+      "totalVolume": "0.3 a 0.5 mL por foramen/diana (S1, S2, S3 ramas laterales + L5 ramo dorsal)",
+      "safetyWarnings": [
+        "No inyectar dentro de los agujeros sacros anteriores para no bloquear raíces sacras ventrales"
       ],
-      "precautions": [
-        "¡PROHIBIDO OFRECER PARA RADICULOPATÍA / CIÁTICA!: La RF de ramos mediales inerva exclusivamente las articulaciones facetarias posteriores; NO trata la compresión ni la inflamación de la raíz nerviosa espinal."
-      ],
-      "reassessment": "A las 6-8 semanas.",
-      "whyThisTreatment": "Desnervación térmica de las fibras nociceptivas articulares facetarias para dolor lumbar axial mecánico.",
-      "whenToAvoid": "NUNCA realizar en dolor radicular irradiado a pierna ni sin bloqueo diagnóstico previo positivo.",
       "evidence": {
         "level": "high",
-        "badge": "🟢 EVIDENCIA ALTA EN DOLOR FACETARIO AXIAL (SIS / NICE)",
-        "note": "Recomendada en dolor lumbar axial crónico tras bloqueo diagnóstico positivo; NULA indicación en radiculopatía."
+        "badge": "🟢 EVIDENCIA ALTA DIAGNÓSTICA SACRA",
+        "note": "Consenso Internacional Sacroilíaco 2025."
+      }
+    },
+    "genicular_radiofrequency": {
+      "id": "sp-genicular-rf",
+      "name": "Bloqueo y Radiofrecuencia de Nervios Geniculados de Rodilla",
+      "category": "radiofrequency",
+      "region": "rodilla",
+      "indication": "Gonartrosis severa refractaria en pacientes no candidatos a prótesis de rodilla o con dolor persistente post-artroplastia.",
+      "target": "Nervios geniculados superomedial, superolateral e inferomedial sobre el periostio femoral y tibial.",
+      "localAnesthetic": {
+        "drug": "Lidocaína 2% o Bupivacaína 0.5%",
+        "volume": "0.5 a 1 mL por nervio",
+        "dose": "5-10 mg"
+      },
+      "corticosteroid": {
+        "drug": "Sin corticoide (o Dexametasona 1 mg por diana)",
+        "dose": "0 - 1 mg",
+        "volume": "0 - 0.25 mL"
+      },
+      "totalVolume": "0.5 a 1 mL por diana (3 dianas)",
+      "safetyWarnings": [
+        "Evitar paquete poplíteo y nervio ciático poplíteo externo (marcador óseo estricto)"
+      ],
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR CRÓNICO DE RODILLA",
+        "note": "Alivio sintomático prolongado de 6 a 12 meses."
       }
     }
   },
@@ -1039,5 +1645,100 @@
     "Interacciones serotoninérgicas (riesgo de Síndrome Serotoninérgico)",
     "Antecedentes psiquiátricos (viraje maníaco, ideación)",
     "Pauta de retirada lenta y progresiva"
-  ]
+  ],
+  "local_anesthetics_reference": {
+    "title": "Guía Práctica de Anestésicos Locales en Medicina del Dolor",
+    "agents": [
+      {
+        "name": "Lidocaína",
+        "concentrations": "1% (10 mg/mL) - 2% (20 mg/mL)",
+        "latency": "Rápida (2 a 5 minutos)",
+        "clinicalDuration": "Corta (45 a 90 minutos)",
+        "maxDosePlain": "4.5 mg/kg (máx. 300 mg)",
+        "maxDoseEpi": "7 mg/kg (máx. 500 mg con Adrenalina)",
+        "preferredUse": "Bloqueos diagnósticos rápidos (MBB, ramos laterales, muñeca/pie), infiltración cutánea antes de punción."
+      },
+      {
+        "name": "Mepivacaína",
+        "concentrations": "1% (10 mg/mL) - 2% (20 mg/mL)",
+        "latency": "Rápida (3 a 5 minutos)",
+        "clinicalDuration": "Intermedia (90 a 180 minutos)",
+        "maxDosePlain": "4.5 mg/kg (máx. 300 mg)",
+        "maxDoseEpi": "7 mg/kg (máx. 400 mg)",
+        "preferredUse": "Infiltraciones intraarticulares (hombro, rodilla, cadera), bloqueos periféricos ecoguiados."
+      },
+      {
+        "name": "Bupivacaína",
+        "concentrations": "0.25% (2.5 mg/mL) - 0.5% (5 mg/mL)",
+        "latency": "Intermedia (10 a 20 minutos)",
+        "clinicalDuration": "Larga (4 a 8 horas)",
+        "maxDosePlain": "2 mg/kg (máx. 150 mg)",
+        "maxDoseEpi": "2.5 mg/kg (máx. 200 mg)",
+        "preferredUse": "Bloqueos diagnósticos de larga duración, analgesia post-procedimiento, epidurales diluidas (0.125-0.25%)."
+      },
+      {
+        "name": "Ropivacaína",
+        "concentrations": "0.2% (2 mg/mL) - 0.5% (5 mg/mL) - 0.75%",
+        "latency": "Rápida-Intermedia (10 a 15 minutos)",
+        "clinicalDuration": "Larga (4 a 8 horas)",
+        "maxDosePlain": "3 mg/kg (máx. 225 mg)",
+        "maxDoseEpi": "3.5 mg/kg (máx. 250 mg)",
+        "preferredUse": "Epidurales transforaminales e interlaminares (0.1-0.2%), PENG block, bloqueo supraescapular (menor cardiotoxicidad y menor bloqueo motor que Bupivacaína)."
+      },
+      {
+        "name": "Levobupivacaína",
+        "concentrations": "0.25% (2.5 mg/mL) - 0.5% (5 mg/mL)",
+        "latency": "Intermedia (10 a 15 minutos)",
+        "clinicalDuration": "Larga (5 a 8 horas)",
+        "maxDosePlain": "2 mg/kg (máx. 150 mg)",
+        "maxDoseEpi": "2.5 mg/kg (máx. 200 mg)",
+        "preferredUse": "Enantiómero S(-) de la bupivacaína con perfil de seguridad cardiovascular superior."
+      }
+    ]
+  },
+  "corticosteroids_injectable_reference": {
+    "title": "Guía Comparativa de Corticoides Inyectables: Particulados vs No Particulados",
+    "agents": [
+      {
+        "name": "Dexametasona Fosfato Sódico",
+        "type": "NO PARTICULADO (Soluble en agua)",
+        "crystalSize": "0 µm (Molécula disuelta libre de cristales)",
+        "relativePotency": "25 - 30 veces superior a Hidrocortisona",
+        "mineralocorticoid": "Nulo (0)",
+        "usualDose": "4 a 10 mg (1 a 2.5 mL de 4 mg/mL)",
+        "spinalSafety": "🟢 ELECCIÓN OBLIGATORIA EN TRANSFORAMINAL CERVICAL Y LUMBAR (Sin riesgo de embolización microvascular)",
+        "mainIndications": "Epidural transforaminal lumbar y cervical, epidural interlaminar, hidrodisecciones nerviosas, túnel carpiano."
+      },
+      {
+        "name": "Betametasona Depot (Celestone Cronodose / Diprostene)",
+        "type": "MICRO-PARTICULADO DUAL (Fosfato sódico soluble 3 mg + Acetato particulado 3 mg)",
+        "crystalSize": "Micropartículas pequeñas (3 a 10 µm)",
+        "relativePotency": "25 - 30 veces superior a Hidrocortisona",
+        "mineralocorticoid": "Mínimo",
+        "usualDose": "1 vial = 1 mL (contiene 6 mg totales de betametasona)",
+        "spinalSafety": "⛔ PROHIBIDO EN TRANSFORAMINAL CERVICAL; Evitar en transforaminal lumbar",
+        "mainIndications": "Bursa subacromial (SASD), bursa trocantérica, gonartrosis articular, omartrosis, coxartrosis."
+      },
+      {
+        "name": "Triamcinolona Acetónido (Trigon Depot)",
+        "type": "PARTICULADO EN SUSPENSIÓN",
+        "crystalSize": "Cristales grandes agregables (10 a 100 µm)",
+        "relativePotency": "5 veces superior a Hidrocortisona",
+        "mineralocorticoid": "Nulo",
+        "usualDose": "10 a 40 mg (0.25 a 1 mL de presentación 40 mg/mL)",
+        "spinalSafety": "⛔ PROHIBIDO EN TRANSFORAMINAL; No recomendado en espacio epidural",
+        "mainIndications": "Infiltraciones intraarticulares periféricas (rodilla, cadera, hombro, tobillo), De Quervain, dedo en resorte, túnel carpiano."
+      },
+      {
+        "name": "Metilprednisolona Acetato (Depo-Medrol)",
+        "type": "PARTICULADO DENSO EN SUSPENSIÓN",
+        "crystalSize": "Cristales densos con alta agregación (hasta >100 µm)",
+        "relativePotency": "5 veces superior a Hidrocortisona",
+        "mineralocorticoid": "Mínimo",
+        "usualDose": "20 a 80 mg",
+        "spinalSafety": "⛔ PROHIBIDO EN TRANSFORAMINAL (Mayor riesgo de embolización microvascular histórica)",
+        "mainIndications": "Infiltraciones intraarticulares grandes en reumatología."
+      }
+    ]
+  }
 }

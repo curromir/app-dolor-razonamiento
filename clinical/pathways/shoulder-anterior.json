@@ -470,24 +470,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Tenosinovitis bicipital severa refractaria a tratamiento conservador (>6-8 semanas) con confirmación ecográfica.",
-      "objective": "Infiltración ecoguiada de la vaina del tendón largo del bíceps.",
+      "condition": "Tenosinovitis de la porción larga del bíceps (PLB) refractaria a fisioterapia.",
+      "objective": "Infiltración ecoguiada de la corredera bicipital / vaina del bíceps.",
       "targets": [
         {
-          "name": "Infiltración Ecoguiada de la Vaina Bicipital (LHBT Sheath)",
-          "indication": "Tenosinovitis con líquido anecoico periclavicular en corredera.",
-          "options": [
-            {
-              "name": "Infiltración ecoguiada con aguja en plano dentro de la vaina sinovial (sin penetrar el tendón): 1 ml corticoide de depósito + 2 ml anestésico local",
-              "evidence": "Alta / Nivel I (evita el riesgo de rotura intratendinosa)"
-            }
-          ],
-          "contraindications": [
-            "Infiltración intratendinosa a ciegas (alto riesgo de necrosis fibrilar y rotura espontánea)",
-            "Infección articular"
+          "name": "Infiltración Ecoguiada de la Vaina del Bíceps (Corredera Bicipital)",
+          "indication": "Tenosinovitis con líquido anecoico en corredera con Speed y Yergason positivos.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "1.5 a 2 mL",
+            "dose": "15-20 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 20 mg o Betametasona depot 0.5-1 mL",
+            "dose": "20 mg o 3-6 mg",
+            "volume": "0.5 a 1 mL"
+          },
+          "totalVolume": "2 a 3 mL",
+          "safetyWarnings": [
+            "Inyectar dentro de la vaina sinovial peritendinosa; ¡NUNCA en el espesor intratendinoso del bíceps!"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

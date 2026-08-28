@@ -254,20 +254,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si fracaso conservador y dolor limitante.",
-      "objective": "Infiltración ecoguiada peritendinosa del ECU o intraarticular radio-cubitocarpiana.",
+      "condition": "Dolor cubital de muñeca / lesión del fibrocartílago triangular (TFCC) o tenosinovitis ECU.",
+      "objective": "Infiltración intraarticular radiocubital distal (DRUJ) o vaina del extensor carpi ulnaris (ECU).",
       "targets": [
         {
-          "name": "Vaina del ECU / Espacio Articular Cubitocarpiano",
-          "indication": "Dolor refractario",
-          "options": [
-            {
-              "name": "Corticoide bajo volumen ecoguiado",
-              "evidence": "Moderada"
-            }
+          "name": "Infiltración Ecoguiada de la Vaina del ECU o Articulación Radiocubital Distal (DRUJ)",
+          "indication": "Dolor en borde cubital con Fovea sign o ECU synergy test positivo.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "1 a 1.5 mL",
+            "dose": "10-15 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 10-20 mg o Betametasona depot 0.5 mL",
+            "dose": "10-20 mg o 3 mg",
+            "volume": "0.25 a 0.5 mL"
+          },
+          "totalVolume": "1.25 a 1.5 mL",
+          "safetyWarnings": [
+            "Visualizar arteria y rama dorsal del nervio cubital con Doppler ecográfico"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

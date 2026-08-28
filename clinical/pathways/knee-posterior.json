@@ -264,20 +264,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si quiste a gran tensión que limita la flexión o rotura aguda.",
-      "objective": "Aspiración ecoguiada e infiltración intraarticular del compartimento anterior.",
+      "condition": "Quiste de Baker sintomático a tensión o tendinopatía de poplíteo/isquiotibiales.",
+      "objective": "Aspiración ecoguiada del quiste de Baker e infiltración intraarticular de base.",
       "targets": [
         {
-          "name": "Articulación Femorotibial + Quiste Poplíteo",
-          "indication": "Tensión poplítea severa",
-          "options": [
-            {
-              "name": "Aspiración ecoguiada + Corticoide intraarticular",
-              "evidence": "Alta"
-            }
+          "name": "Aspiración Ecoguiada de Quiste de Baker e Infiltración Intraarticular",
+          "indication": "Quiste poplíteo sintomático a tensión secundario a patología meniscal o gonartrosis.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% subcutánea + Mepivacaína 1% IA",
+            "volume": "2 a 3 mL",
+            "dose": "20-30 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 40 mg o Betametasona 1 mL intraarticular (no dentro del quiste)",
+            "dose": "40 mg o 6 mg",
+            "volume": "1 mL"
+          },
+          "totalVolume": "Aspiración de contenido + 3-4 mL IA",
+          "safetyWarnings": [
+            "Visualizar arteria y vena poplítea con Doppler color continuo antes de puncionar en hueco poplíteo"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

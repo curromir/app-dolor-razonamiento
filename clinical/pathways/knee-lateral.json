@@ -283,20 +283,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo en casos crónicos recalcitrantes refractarios a 8 semanas de ejercicio.",
-      "objective": "Infiltración ecoguiada de la bursa profunda sub-BIT.",
+      "condition": "Síndrome de la cintilla iliotibial (fricción ITB) o artrosis femorotibial externa.",
+      "objective": "Infiltración peritendinosa de la bursa de la cintilla iliotibial ecoguiada.",
       "targets": [
         {
-          "name": "Bursa profunda de la Banda Iliotibial",
-          "indication": "Fricción refractaria",
-          "options": [
-            {
-              "name": "Corticoide de depósito bajo volumen (0.5-1 ml)",
-              "evidence": "Moderada a corto plazo"
-            }
+          "name": "Infiltración Ecoguiada de Bursa Sub-Iliotibial sobre Epicóndilo Lateral",
+          "indication": "Dolor punzante lateral al correr a los 30° de flexión de rodilla (test de Noble positivo).",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Mepivacaína 1%",
+            "volume": "1.5 a 2 mL",
+            "dose": "15-20 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona 20 mg o Betametasona depot 0.5-1 mL",
+            "dose": "20 mg o 3-6 mg",
+            "volume": "0.5 a 1 mL"
+          },
+          "totalVolume": "2 a 3 mL",
+          "safetyWarnings": [
+            "Inyectar en el espacio bursal bajo la cintilla; no infiltrar el espesor del tendón"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

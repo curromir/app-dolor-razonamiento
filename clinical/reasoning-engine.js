@@ -1059,6 +1059,9 @@ class ClinicalReasoningEngine {
       }
     }
 
+    const pathwayIntervention = treatment.interventionism || {};
+    const pathwayTargets = pathwayIntervention.targets || [];
+
     const comparisonTable = catalog.comparison_tables?.joint_injectables || null;
 
     const interventionism = {
@@ -1071,7 +1074,11 @@ class ClinicalReasoningEngine {
         : (!concordance || concordance === 'discordant')
           ? '⚠️ La concordancia clínico-imagen no apoya una intervención invasiva dirigida sobre este hallazgo.'
           : null,
-      philosophy: 'La infiltración no es el punto final del tratamiento; es una "ventana de oportunidad" para reducir el dolor agudo e iniciar de inmediato la rehabilitación activa.',
+      philosophy: 'La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una "ventana de oportunidad" analgésica. El objetivo angular posterior es recuperar movimiento, fuerza, sueño y tolerancia a la carga.',
+      pathwayTargets: pathwayTargets,
+      pathwayCondition: pathwayIntervention.condition || '',
+      pathwayObjective: pathwayIntervention.objective || '',
+      pathwaySafetyNote: pathwayIntervention.safetyNote || '',
       corticosteroid: corticoidInj,
       hyaluronicAcid: haInj,
       prp: prpInj,
@@ -1177,7 +1184,17 @@ class ClinicalReasoningEngine {
       lines.push(`   • ${plan.tiers[5].eswt.name}: ${plan.tiers[5].eswt.sessions} (${plan.tiers[5].eswt.interval}).`);
       lines.push(``);
     }
-    if (!plan.tiers[6].isBlocked && plan.tiers[6].corticosteroid) {
+    if (!plan.tiers[6].isBlocked && plan.tiers[6].pathwayTargets && plan.tiers[6].pathwayTargets.length > 0) {
+      lines.push(`6. PROCEDIMIENTO INTERVENCIONISTA (Ventana de oportunidad):`);
+      plan.tiers[6].pathwayTargets.forEach(tgt => {
+        lines.push(`   • ${tgt.name}`);
+        if (tgt.localAnesthetic) lines.push(`     - Anestésico Local: ${tgt.localAnesthetic.drug} (${tgt.localAnesthetic.volume})`);
+        if (tgt.corticosteroid) lines.push(`     - Corticoide: ${tgt.corticosteroid.drug} ${tgt.corticosteroid.dose ? '· ' + tgt.corticosteroid.dose : ''} (${tgt.corticosteroid.volume || ''})`);
+        if (tgt.totalVolume) lines.push(`     - Volumen Total: ${tgt.totalVolume}`);
+      });
+      lines.push(`   - Reevaluar en 2-4 semanas para inicio/intensificación de rehabilitación activa.`);
+      lines.push(``);
+    } else if (!plan.tiers[6].isBlocked && plan.tiers[6].corticosteroid) {
       lines.push(`6. PROCEDIMIENTO INTERVENCIONISTA (Ventana de oportunidad):`);
       lines.push(`   • ${plan.tiers[6].corticosteroid.name} ecoguiada.`);
       lines.push(`   - Reevaluar en 2-3 semanas para inicio de rehabilitación activa.`);

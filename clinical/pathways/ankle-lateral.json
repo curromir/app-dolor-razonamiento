@@ -263,20 +263,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo en pinzamiento anterolateral meniscoide crónico o tenosinovitis recalcitrante.",
-      "objective": "Infiltración ecoguiada gotiera anterolateral.",
+      "condition": "Artrosis subtalar / pinzamiento de retropié doloroso tras esguince de repetición.",
+      "objective": "Infiltración articular ecoguiada para control del dolor mecánico.",
       "targets": [
         {
-          "name": "Gotiera Anterolateral",
-          "indication": "Pinzamiento crónico",
-          "options": [
-            {
-              "name": "Corticoide ecoguiado bajo volumen",
-              "evidence": "Moderada"
-            }
+          "name": "Infiltración Ecoguiada de Articulación Subastragalina (Subtalar)",
+          "indication": "Dolor persistente al caminar por terreno irregular con dolor focal en seno del tarso.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Ropivacaína 0.2%",
+            "volume": "1 a 1.5 mL",
+            "dose": "10-15 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona acetónido 20 mg",
+            "dose": "20 mg",
+            "volume": "0.5 mL"
+          },
+          "totalVolume": "1.5 a 2 mL",
+          "safetyWarnings": [
+            "Comprobar ausencia de fractura oculta del proceso lateral del astrágalo en RM previa"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

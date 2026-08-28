@@ -418,19 +418,29 @@
       "strictWarning": "❌ OPIOIDES CONTRAINDICADOS: El uso de opioides en dolor nociplástico empeora la sensibilización central por hiperalgesia inducida por opioides (HIO) y está unánimemente desaconsejado."
     },
     "interventionism": {
-      "condition": "Terapia no invasiva de neuromodulación y abordaje cognitivo-conductual.",
+      "condition": "Dolor nociplástico primario / sensibilización central generalizada.",
+      "objective": "Abordaje multimodal no invasivo (evitar intervencionismo repetido sobre hallazgos incidentales).",
       "targets": [
         {
-          "name": "Terapia Cognitivo-Conductual (TCC) / Terapia de Aceptación y Compromiso (ACT)",
-          "indication": "Pilar no farmacológico esencial para manejo de dolor persistente.",
-          "evidence": "Alta / Grado A"
-        },
-        {
-          "name": "Neuromodulación No Invasiva (tDCS / TMS)",
-          "indication": "Modulación de la excitabilidad de la corteza motora primaria (M1) o córtex prefrontal dorsolateral.",
-          "evidence": "Moderada"
+          "name": "Infiltración Selectiva de Puntos Gatillo Miofasciales Desencadenantes (Opcional)",
+          "indication": "Puntos gatillo miofasciales activos focales que perpetúan contractura severa.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 0.5-1% o Mepivacaína 0.5%",
+            "volume": "0.5 a 1 mL por punto gatillo",
+            "dose": "2.5-5 mg"
+          },
+          "corticosteroid": {
+            "drug": "⛔ SIN CORTICOIDE (No indicado en puntos gatillo miofasciales)",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "0.5 a 1 mL por punto (máx. 3-4 puntos)",
+          "safetyWarnings": [
+            "No encadenar infiltraciones; el tratamiento angular es la educación, ejercicio dosificado, sueño y neuromodulación"
+          ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

@@ -459,30 +459,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si fracaso de medidas conservadoras tras 4-6 semanas Y dolor concordante con la exploración.",
-      "objective": "Infiltración intraarticular ecoguiada para resolver la sinovitis inflamatoria local.",
+      "condition": "Artrosis acromioclavicular sintomática o pinzamiento AC superior.",
+      "objective": "Infiltración de la articulación acromioclavicular ecoguiada.",
       "targets": [
         {
-          "name": "Articulación Acromioclavicular",
-          "indication": "Sinovitis AC concordante",
-          "options": [
-            {
-              "name": "Anestésico local (diagnóstico) + Corticoide de depósito (0.5 ml)",
-              "evidence": "Alta a corto plazo"
-            },
-            {
-              "name": "Ácido Hialurónico de bajo volumen",
-              "evidence": "Moderada"
-            }
-          ],
-          "contraindications": [
-            "Infección local o sistémica",
-            "Inestabilidad AC grado IV-VI quirúrgica"
-          ],
-          "postProcedure": "Reposo relativo articular 48h y retomar ejercicios escapulares a los 5 días.",
-          "safetyNote": "Volumen estricto ≤1 ml. La articulación AC tiene una capacidad de 0.5-1 ml; volúmenes mayores extravasan a la bursa SASD distorsionando el efecto diagnóstico."
+          "name": "Infiltración Articulación Acromioclavicular (AC)",
+          "indication": "Dolor en la punta superior del hombro con Cross-Body y palpación focal AC dolorosa.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1%",
+            "volume": "0.5 a 1 mL",
+            "dose": "5-10 mg"
+          },
+          "corticosteroid": {
+            "drug": "Triamcinolona acetónido 10-20 mg o Betametasona 0.5 mL",
+            "dose": "10-20 mg o 3 mg",
+            "volume": "0.25 a 0.5 mL"
+          },
+          "totalVolume": "1 a 1.5 mL",
+          "safetyWarnings": [
+            "No sobrepasar 1.5 mL en la cápsula acromioclavicular para evitar dolor por sobrepresión"
+          ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

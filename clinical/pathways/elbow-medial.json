@@ -260,20 +260,29 @@
       ]
     },
     "interventionism": {
-      "condition": "Solo si fracaso conservador.",
-      "objective": "Infiltración peritendinosa ecoguiada o hidrodisección del nervio cubital.",
+      "condition": "Epitroclealgia refractaria o sospecha de neuropatía cubital en canal epitrocleolecraneano.",
+      "objective": "Hidrodisección perineural del nervio cubital o infiltración peritendinosa flexo-pronadora.",
       "targets": [
         {
-          "name": "Epitróclea / Surco Cubital",
-          "indication": "Refractario",
-          "options": [
-            {
-              "name": "Corticoide / PRP en tendón; Hidrodisección en nervio",
-              "evidence": "Moderada"
-            }
+          "name": "Hidrodisección Ecoguiada del Nervio Cubital en Canal Epitrocleolecraneano",
+          "indication": "Neuropatía cubital con parestesias en 4º-5º dedos y signo de Tinel cubital positivo.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.1% o Lidocaína 0.5%",
+            "volume": "2 a 4 mL",
+            "dose": "2-20 mg"
+          },
+          "corticosteroid": {
+            "drug": "Dexametasona 2-4 mg no particulada + Suero salino / D5W",
+            "dose": "2 a 4 mg",
+            "volume": "0.5 a 1 mL"
+          },
+          "totalVolume": "5 a 8 mL (hidrodisección)",
+          "safetyWarnings": [
+            "⛔ ¡NUNCA INTRANEURAL! La inyección debe despegar la fascia superficial y profunda del nervio sin penetrar el epineuro"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {

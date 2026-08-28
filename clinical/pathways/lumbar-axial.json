@@ -522,38 +522,47 @@
       ]
     },
     "interventionism": {
-      "condition": "Dolor facetario severo y limitante (>3 meses) refractario a fisioterapia con sospecha clínica y de imagen concordante.",
-      "objective": "Confirmar el generador mediante bloqueo diagnóstico de ramos mediales y proceder a radiofrecuencia (rizolisis) para alivio duradero de 9 a 18 meses.",
+      "condition": "Dolor lumbar axial facetario crónico (>3 meses) con dolor a la extensión y rotación.",
+      "objective": "Bloqueo diagnóstico de ramos mediales (MBB) y radiofrecuencia (rizolisis).",
       "targets": [
         {
-          "name": "Bloqueo Diagnóstico de Ramos Mediales Lumbares (MBB)",
-          "indication": "Paso 1 OBLIGATORIO: Infiltración de 0.5 ml de anestésico local sobre el ramo medial de la rama dorsal guiado por fluoroscopia o ecografía.",
-          "options": [
-            {
-              "name": "Bloqueo diagnóstico con Lidocaína / Bupivacaína (alivio >70-80% en diario de dolor de 6 horas confirma diagnóstico)",
-              "evidence": "Alta / Nivel I"
-            }
-          ],
-          "contraindications": [
-            "Infección activa",
-            "Anticoagulación no controlada"
+          "name": "Bloqueo Diagnóstico de Ramos Mediales Lumbares (MBB Lumbar)",
+          "indication": "Paso 1 OBLIGATORIO: Infiltración selectiva de 0.3 a 0.5 mL de AL sobre cada ramo medial.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1-2% o Bupivacaína 0.25-0.5%",
+            "volume": "0.3 a 0.5 mL por ramo",
+            "dose": "3-10 mg"
+          },
+          "corticosteroid": {
+            "drug": "⛔ SIN CORTICOIDE (No indicado en MBB diagnóstico)",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "0.3 a 0.5 mL por diana",
+          "safetyWarnings": [
+            "⛔ NUNCA usar corticoide en MBB diagnóstico; evaluar alivio ≥70-80% durante la ventana del AL; NO indicado para ciática"
           ]
         },
         {
-          "name": "Radiofrecuencia Convencional Térmica de Ramos Mediales (Rizolisis Facetaria)",
-          "indication": "Paso 2: Realizar tras confirmación con bloqueo diagnóstico positivo previo.",
-          "options": [
-            {
-              "name": "Termolesión a 80°C durante 90 segundos sobre el ramo medial en la unión apófisis transversa-superior",
-              "evidence": "Alta / Nivel I (Manchikanti 2020)"
-            }
-          ],
-          "contraindications": [
-            "Portador de marcapasos sin control",
-            "Infección local"
+          "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales (Rizolisis Facetaria)",
+          "indication": "Paso 2: Realizar tras confirmación con bloqueo diagnóstico previo positivo.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 2% o Bupivacaína 0.5%",
+            "volume": "0.5 a 1 mL por cánula antes de lesión",
+            "dose": "10-20 mg"
+          },
+          "corticosteroid": {
+            "drug": "Sin corticoide (o Dexametasona 1 mg por ramo)",
+            "dose": "0 - 1 mg",
+            "volume": "0 - 0.25 mL"
+          },
+          "totalVolume": "0.5 a 1 mL por diana (80°C durante 90 segundos)",
+          "safetyWarnings": [
+            "Estimulación sensitiva (50 Hz) y motora (2 Hz) obligatoria para descartar proximidad a la raíz motora espinal"
           ]
         }
-      ]
+      ],
+      "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."
     }
   },
   "followUp": {
