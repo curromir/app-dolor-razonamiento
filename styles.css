@@ -217,8 +217,14 @@ body.dark-theme .main-header {
   color: var(--text-muted);
   font-size: 1.2rem;
   cursor: pointer;
-  padding: 0 0.25rem;
+  padding: 0;
   line-height: 1;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
 }
 
 .clear-btn:hover {
@@ -723,10 +729,17 @@ body.dark-theme .nav-tab-theme:hover {
 .btn-fav {
   background: transparent;
   border: none;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   cursor: pointer;
   color: var(--text-muted);
   transition: var(--transition);
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  touch-action: manipulation;
 }
 
 .btn-fav:hover, .btn-fav.active {
@@ -1413,8 +1426,8 @@ body.dark-theme .case-option-btn.incorrect {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
@@ -1423,6 +1436,7 @@ body.dark-theme .case-option-btn.incorrect {
   cursor: pointer;
   z-index: 10;
   transition: var(--transition);
+  touch-action: manipulation;
 }
 
 .modal-close-btn:hover {
@@ -1586,12 +1600,16 @@ body.dark-theme .mobile-bottom-bar {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.2rem;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.4rem;
   font-family: inherit;
   transition: var(--transition);
+  min-height: 48px;
+  min-width: 48px;
+  touch-action: manipulation;
 }
 
 .mob-icon {
@@ -1599,13 +1617,38 @@ body.dark-theme .mobile-bottom-bar {
 }
 
 .mob-label {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
 }
 
 .mobile-nav-item.active {
   color: var(--accent-blue);
   transform: translateY(-2px);
+}
+
+.mobile-more-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.85rem 0.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  min-height: 64px;
+  transition: var(--transition);
+  touch-action: manipulation;
+}
+
+.mobile-more-btn:active {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--accent-primary, #6366f1);
+  transform: scale(0.98);
 }
 
 /* Generic Utilities */

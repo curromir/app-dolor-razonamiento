@@ -290,8 +290,9 @@ class ClinicalReasoningEngine {
     const supportingData = [];
     Object.entries(this.session.answers).forEach(([qId, aIdx]) => {
       const q = this.getQuestions().find(qu => qu.id === qId);
-      if (q && q.answers[aIdx]) {
-        supportingData.push(q.answers[aIdx].label);
+      const answersList = q ? (q.answers || q.options || []) : [];
+      if (answersList[aIdx]) {
+        supportingData.push(answersList[aIdx].label || answersList[aIdx].text || String(answersList[aIdx]));
       }
     });
 
@@ -405,10 +406,12 @@ class ClinicalReasoningEngine {
     const threshold = cluster.threshold || Math.ceil(requiredTests.length / 2);
     const met = positiveCount >= threshold;
 
-    this.session.clusterResults[clusterId] = { met, positiveCount, totalEvaluated, threshold };
+    const previouslyApplied = this.session.clusterResults[clusterId]?.bonusApplied === true;
+    this.session.clusterResults[clusterId] = { met, positiveCount, totalEvaluated, threshold, bonusApplied: previouslyApplied };
 
-    // Apply cluster effect to hypotheses if met
-    if (met) {
+    // Apply cluster effect to hypotheses if met — only once (idempotency guard)
+    if (met && !previouslyApplied) {
+      this.session.clusterResults[clusterId].bonusApplied = true;
       this.session.hypotheses.forEach(h => {
         if (h.level === 'very_compatible' || h.level === 'compatible') {
           h.score += 2;
@@ -416,7 +419,7 @@ class ClinicalReasoningEngine {
             source: `cluster:${clusterId}`,
             effect: 'increase',
             weight: 2,
-            reason: `Clúster ${cluster.name} concordante (${positiveCount}/${requiredTests.length})`,
+            reason: `Clúster ${cluster.name || cluster.label} concordante (${positiveCount}/${requiredTests.length})`,
             timestamp: new Date().toISOString()
           });
         }
@@ -1355,8 +1358,10 @@ class ClinicalReasoningEngine {
     const anamnesisData = [];
     Object.entries(this.session.answers).forEach(([qId, aIdx]) => {
       const q = this.getQuestions().find(qu => qu.id === qId);
-      if (q && q.answers[aIdx] && !q.isFunctionalGoal) {
-        anamnesisData.push(`- ${q.text} → ${q.answers[aIdx].label}`);
+      const answersList = q ? (q.answers || q.options || []) : [];
+      if (q && answersList[aIdx] && !q.isFunctionalGoal) {
+        const label = answersList[aIdx].label || answersList[aIdx].text || String(answersList[aIdx]);
+        anamnesisData.push(`- ${q.text} → ${label}`);
       }
     });
     if (anamnesisData.length > 0) {

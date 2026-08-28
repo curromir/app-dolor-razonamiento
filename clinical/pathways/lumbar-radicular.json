@@ -55,14 +55,14 @@
       "text": "Déficit neurológico progresivo"
     },
     {
-      "id": "sphincter",
+      "id": "rf-sphincter",
       "label": "Alteración esfinteriana (vejiga/intestino)",
       "severity": "critical",
       "action": "Derivación / estudio urgente",
       "text": "Alteración esfinteriana (vejiga/intestino)"
     },
     {
-      "id": "saddle_anesthesia",
+      "id": "rf-saddle-anesthesia",
       "label": "Anestesia en silla de montar",
       "severity": "critical",
       "action": "Derivación / estudio urgente",
@@ -458,9 +458,9 @@
         "name": "Fuerza cuádriceps (extensión rodilla)",
         "catalogTestId": null,
         "essential": true,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Paciente sentado con piernas colgando. Pida extensión activa de rodilla contra resistencia manual aplicada sobre la tibia distal. Compare bilateralmente.",
+        "whatToLookFor": "Debilidad de extensión de rodilla (grado <4/5 en escala MRC). Dificultad para subir escaleras o ponerse de pie desde silla.",
+        "mentorTip": "L4 inerva predominantemente cuádriceps y tibial anterior. Una paresia L4 pura es relativamente rara — descarte plexopatía lumbar o neuropatía femoral.",
         "category": "neurologia",
         "results": [
           {
@@ -498,9 +498,9 @@
         "name": "Fuerza extensor hallucis longus (dorsiflexión primer dedo)",
         "catalogTestId": null,
         "essential": true,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Con el paciente sentado, pida dorsiflexión máxima del primer dedo del pie contra resistencia. Después, dorsiflexión del tobillo. Compare bilateralmente.",
+        "whatToLookFor": "Debilidad de extensión del hallux (primer dedo) o del tobillo. El paciente puede referir 'tropiezos' o pie caído.",
+        "mentorTip": "El extensor hallucis longus es el músculo centinela de L5. Una debilidad aislada de este músculo con Lasègue positivo es altamente sugestiva de hernia L4-L5.",
         "category": "neurologia",
         "results": [
           {
@@ -538,9 +538,9 @@
         "name": "Fuerza flexión plantar (ponerse de puntillas)",
         "catalogTestId": null,
         "essential": true,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Paciente de pie. Pida elevación unilateral sobre la punta del pie (heel raise) 5 repeticiones. Compare bilateralmente.",
+        "whatToLookFor": "Incapacidad para completar 5 repeticiones de heel raise unilateral o fatiga precoz comparada con el lado sano.",
+        "mentorTip": "El tríceps sural (gemelos + sóleo) es tan potente que la debilidad por radiculopatía S1 puede ser sutil. El heel raise repetido es más sensible que la resistencia manual.",
         "category": "neurologia",
         "results": [
           {
@@ -578,9 +578,9 @@
         "name": "Reflejo rotuliano",
         "catalogTestId": null,
         "essential": false,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Paciente sentado con piernas colgando relajadas. Percuta el tendón rotuliano justo debajo de la rótula con martillo de reflejos. Compare bilateralmente.",
+        "whatToLookFor": "Hipo/arreflexia rotuliana unilateral. Asimetría significativa de amplitud respecto al lado contralateral.",
+        "mentorTip": "Si el reflejo parece normal pero hay sospecha clínica, aplique la maniobra de Jendrassik (tracción de manos entrelazadas) para sensibilizar la exploración.",
         "category": "reflejos",
         "results": [
           {
@@ -607,9 +607,9 @@
         "name": "Reflejo aquíleo",
         "catalogTestId": null,
         "essential": true,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Paciente sentado o en decúbito prono con el pie relajado en ligera dorsiflexión pasiva. Percuta el tendón de Aquiles. Compare bilateralmente.",
+        "whatToLookFor": "Hipo/arreflexia aquílea unilateral. En mayores de 60 años puede estar bilateralmente disminuido — valore asimetría.",
+        "mentorTip": "El reflejo aquíleo abolido unilateralmente es uno de los signos más fiables de radiculopatía S1 (LR+ 3.5). Combinado con Lasègue positivo y debilidad de heel raise configura la tríada radicular S1.",
         "category": "reflejos",
         "results": [
           {
@@ -636,9 +636,9 @@
         "name": "Sensibilidad dermatomas L4/L5/S1",
         "catalogTestId": null,
         "essential": false,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Con el paciente en decúbito supino, explore con un algodón o punta roma los dermatomas: L4 (cara medial de pierna), L5 (dorso del pie y primer espacio interdigital), S1 (borde lateral del pie y planta).",
+        "whatToLookFor": "Hipoestesia, disestesia o parestesias en el territorio dermatomérico correspondiente. Delimite el área afectada.",
+        "mentorTip": "La exploración sensitiva tiene alta variabilidad interobservador. Es más útil para confirmar el nivel radicular sospechado que como test de screening. Si no hay déficit sensitivo, no descarta radiculopatía.",
         "category": "neurologia",
         "results": [
           {
@@ -687,9 +687,9 @@
         "name": "Test de Lasègue (SLR)",
         "catalogTestId": "lumbar-lasegue",
         "essential": true,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Paciente en decúbito supino relajado. Eleve pasivamente la pierna extendida sujetando el talón. Registre el ángulo en que aparece dolor irradiado por debajo de la rodilla (no dolor lumbar aislado ni tirón posterior).",
+        "whatToLookFor": "Positivo: reproducción del dolor radicular irradiado por debajo de rodilla entre 30° y 60° de elevación. Dolor solo lumbar o tirón isquiotibial NO es positivo.",
+        "mentorTip": "La especificidad de Lasègue mejora significativamente cuando se aplica la sensibilización con dorsiflexión de tobillo (Bragard). Un Lasègue positivo <30° sugiere hernia extruida voluminosa.",
         "category": "neurodinamica",
         "results": [
           {
@@ -749,9 +749,9 @@
         "name": "Slump Test",
         "catalogTestId": "lumbar-slump",
         "essential": true,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Paciente sentado al borde de la camilla. Pida flexión cervical (mentón al pecho), luego flexión torácica (slump). Mantenga la posición y extienda pasivamente la rodilla. Añada dorsiflexión de tobillo. Repita contralateral.",
+        "whatToLookFor": "Positivo: reproducción del dolor radicular habitual del paciente con la extensión de rodilla + dorsiflexión. Los síntomas deben aliviarse al extender el cuello (liberando tensión neural).",
+        "mentorTip": "El Slump test es más sensible que el Lasègue (Sn 0.84 vs 0.52) pero menos específico. Es especialmente útil cuando el Lasègue es negativo pero persiste la sospecha clínica de irritación neural.",
         "category": "neurodinamica",
         "results": [
           {
@@ -788,9 +788,9 @@
         "name": "Lasègue Cruzado",
         "catalogTestId": "lumbar-lasegue-cruzado",
         "essential": false,
-        "instruction": "",
-        "whatToLookFor": "",
-        "mentorTip": "",
+        "instruction": "Paciente en decúbito supino. Eleve pasivamente la pierna NO afectada (contralateral) con la rodilla extendida.",
+        "whatToLookFor": "Positivo: reproducción del dolor ciático en la pierna AFECTADA al elevar la pierna sana. Es el signo más específico de compresión radicular.",
+        "mentorTip": "El Lasègue cruzado positivo tiene una especificidad del 90% (LR+ 4.4) para hernia discal con compresión radicular. Aunque su sensibilidad es baja (~25%), cuando es positivo tiene alto valor predictivo.",
         "category": "neurodinamica",
         "results": [
           {
@@ -810,9 +810,14 @@
   "clusters": [
     {
       "id": "radicular-syndrome",
-      "label": "Síndrome radicular lumbar",
-      "condition": "exam-lasegue:positive-30-60 AND exam-slump:positive-radiation",
-      "concordanceText": "Los hallazgos aumentan considerablemente la probabilidad de afectación radicular en un contexto clínico compatible."
+      "name": "Síndrome radicular lumbar",
+      "requiredTests": [
+        "exam-lasegue",
+        "exam-slump"
+      ],
+      "threshold": 1,
+      "concordanceText": "Signos de tensión neural positivos — compatible con irritación radicular activa.",
+      "evidenceNote": "Lasègue: Sn 0.91, Sp 0.26; Slump: Sn 0.84, Sp 0.83 (Majlesi 2008, Urban 1981)"
     }
   ],
   "imaging": {

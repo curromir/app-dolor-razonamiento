@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Load Database
 async function loadCatalog() {
+  state.renderedTabs = new Set(['tab-tests']);
+
   if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.tests_catalog) {
     state.catalog = window.EMBEDDED_BUNDLE.tests_catalog;
     state.tests = state.catalog.tests || [];
@@ -90,12 +92,6 @@ async function loadCatalog() {
     updateCounts();
     renderAtlasRegions();
     applyFilterAndSort();
-    renderVideoteca('all');
-    renderComparativeTable();
-    renderNotionGuide();
-    renderFichas();
-    renderCases();
-    renderFavorites();
     return;
   }
 
@@ -109,12 +105,6 @@ async function loadCatalog() {
     updateCounts();
     renderAtlasRegions();
     applyFilterAndSort();
-    renderVideoteca('all');
-    renderComparativeTable();
-    renderNotionGuide();
-    renderFichas();
-    renderCases();
-    renderFavorites();
   } catch (err) {
     if (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.tests_catalog) {
       state.catalog = window.EMBEDDED_BUNDLE.tests_catalog;
@@ -124,12 +114,6 @@ async function loadCatalog() {
       updateCounts();
       renderAtlasRegions();
       applyFilterAndSort();
-      renderVideoteca('all');
-      renderComparativeTable();
-      renderNotionGuide();
-      renderFichas();
-      renderCases();
-      renderFavorites();
       return;
     }
     console.error('Error inicializando catálogo:', err);
@@ -324,47 +308,53 @@ function renderTestsGrid() {
   attachCardEvents();
 }
 
-// Attach Card Button Events
-function attachCardEvents() {
-  // Favorites toggle
-  document.querySelectorAll('.btn-fav').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const id = btn.getAttribute('data-fav-id');
-      toggleFavorite(id);
-    });
-  });
+// Setup Delegated Card Events on #testsGrid
+function setupGridEventDelegation() {
+  if (!DOM.testsGrid || DOM.testsGrid._delegationAttached) return;
+  DOM.testsGrid._delegationAttached = true;
 
-  // Video button
-  document.querySelectorAll('.btn-card-video').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  DOM.testsGrid.addEventListener('click', (e) => {
+    const favBtn = e.target.closest('.btn-fav');
+    if (favBtn) {
       e.stopPropagation();
-      const id = btn.getAttribute('data-video-test');
+      const id = favBtn.getAttribute('data-fav-id');
+      if (id) toggleFavorite(id);
+      return;
+    }
+
+    const vidBtn = e.target.closest('.btn-card-video');
+    if (vidBtn) {
+      e.stopPropagation();
+      const id = vidBtn.getAttribute('data-video-test');
       const test = state.tests.find(t => t.id === id);
       if (test && test.videos && test.videos.length > 0) {
         openVideoModal(test, 0);
       }
-    });
-  });
+      return;
+    }
 
-  // Full detail button
-  document.querySelectorAll('.btn-card-detail').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    const detailBtn = e.target.closest('.btn-card-detail');
+    if (detailBtn) {
       e.stopPropagation();
-      const id = btn.getAttribute('data-detail-id');
+      const id = detailBtn.getAttribute('data-detail-id');
       const test = state.tests.find(t => t.id === id);
       if (test) openTestDetailModal(test);
-    });
-  });
+      return;
+    }
 
-  // Card click defaults to opening detail
-  document.querySelectorAll('.test-card').forEach(card => {
-    card.addEventListener('click', () => {
+    const card = e.target.closest('.test-card');
+    if (card) {
       const id = card.getAttribute('data-id');
       const test = state.tests.find(t => t.id === id);
       if (test) openTestDetailModal(test);
-    });
+      return;
+    }
   });
+}
+
+// Attach Card Button Events
+function attachCardEvents() {
+  setupGridEventDelegation();
 }
 
 // Open Full Test Clinical Detail Modal
@@ -558,8 +548,12 @@ function closeAllModals() {
     DOM.videoModal.style.display = 'none';
     if (DOM.videoIframe) DOM.videoIframe.src = '';
   }
+  document.querySelectorAll('.modal-overlay').forEach(m => {
+    m.style.display = 'none';
+  });
   document.body.style.overflow = '';
 }
+window.closeAllModals = closeAllModals;
 
 // Render Videoteca Tab (Sorted by Region & Test Name)
 function renderVideoteca(channelFilter = 'all') {
@@ -1030,16 +1024,26 @@ function toggleFavorite(id) {
   renderFavorites();
 }
 
+// Utility: Debounce function
+function debounce(fn, wait = 200) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
 // Event Listeners Setup
 function setupEventListeners() {
-  // Search input
+  // Search input with 200ms debounce
   if (DOM.searchInput) {
+    const debouncedFilter = debounce(() => applyFilterAndSort(), 200);
     DOM.searchInput.addEventListener('input', (e) => {
       state.searchQuery = e.target.value;
       if (DOM.clearSearchBtn) {
-        DOM.clearSearchBtn.style.display = state.searchQuery ? 'block' : 'none';
+        DOM.clearSearchBtn.style.display = state.searchQuery ? 'inline-flex' : 'none';
       }
-      applyFilterAndSort();
+      debouncedFilter();
     });
   }
 
@@ -1190,6 +1194,18 @@ window.switchTab = function(tabId) {
   document.querySelectorAll('.tab-pane').forEach(pane => {
     pane.classList.toggle('active', pane.id === tabId);
   });
+
+  // Lazy render tab contents on first visit
+  if (!state.renderedTabs) state.renderedTabs = new Set(['tab-tests']);
+  if (!state.renderedTabs.has(tabId)) {
+    if (tabId === 'tab-videos') renderVideoteca('all');
+    else if (tabId === 'tab-comparativa') renderComparativeTable();
+    else if (tabId === 'tab-notion') renderNotionGuide();
+    else if (tabId === 'tab-fichas') renderFichas();
+    else if (tabId === 'tab-quiz') renderCases();
+    else if (tabId === 'tab-favoritos') renderFavorites();
+    state.renderedTabs.add(tabId);
+  }
 
   if (tabId === 'tab-vademecum' && window.Vademecum) {
     window.Vademecum.setMode('express');

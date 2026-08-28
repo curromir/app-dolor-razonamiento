@@ -81,6 +81,42 @@
   function renderHomeScreen() {
     if (!containers.home) return;
 
+    const saved = getSavedClinicalSession();
+    let resumeBannerHTML = '';
+    if (saved && saved.pathwayId) {
+      const stepNames = {
+        'red_flags': 'Banderas Rojas (Seguridad)',
+        'anamnesis': 'Anamnesis Dirigida',
+        'anamnesis_summary': 'Puente Diagnóstico',
+        'examination': 'Exploración Física',
+        'exam_summary': 'Mapa de Concordancia',
+        'imaging': 'Ecografía / Imagen',
+        'generator': 'Generador Diagnóstico',
+        'treatment': 'Plan Terapéutico',
+        'follow_up': 'Seguimiento',
+        'coach': 'Cierre Coach',
+        'summary': 'Resumen de Consulta'
+      };
+      const currentStepName = stepNames[saved.sessionState?.currentStep] || saved.sessionState?.currentStep || 'En curso';
+      const timeAgoStr = new Date(saved.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      resumeBannerHTML = `
+        <div class="resume-session-banner glass-panel" style="margin-bottom: 1.25rem; border-left: 4px solid var(--accent-primary, #6366f1); padding: 0.85rem 1.2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; background: rgba(99, 102, 241, 0.08); border-radius: var(--radius-md);">
+          <div>
+            <div style="font-weight: 800; font-size: 0.92rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.4rem;">
+              <span>🔄</span> Consulta en Curso Guardada
+            </div>
+            <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              ${saved.pathwayPresentation || saved.pathwayId} — Paso actual: <strong style="color: var(--accent-primary, #818cf8);">${currentStepName}</strong> (guardado a las ${timeAgoStr})
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="vade-primary-btn" style="padding: 0.45rem 0.95rem; font-size: 0.82rem; cursor: pointer;" onclick="window.ClinicalUI.resumeLastSession()">Continuar Consulta →</button>
+            <button class="clinical-action-btn" style="padding: 0.45rem 0.75rem; font-size: 0.82rem; cursor: pointer;" onclick="window.ClinicalUI.discardLastSession()">Descartar</button>
+          </div>
+        </div>
+      `;
+    }
+
     containers.home.innerHTML = `
       <div class="home-hero glass-panel">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
@@ -93,6 +129,8 @@
         <h1>Medicina del Dolor de Alta Precisión</h1>
         <p>Acompañamiento diagnóstico estructurado desde el motivo de consulta del paciente hasta el generador probable, ecografía dirigida y plan terapéutico.</p>
       </div>
+
+      ${resumeBannerHTML}
 
       <div class="home-modes-grid">
         <!-- MODE 1: CLINICAL REASONING -->
@@ -385,7 +423,7 @@
   // 2. PATHWAY LAUNCHER & ORCHESTRATION
   // ─────────────────────────────────────────────
 
-  async function startPathway(pathwayId) {
+  async function startPathway(pathwayId, options = {}) {
     uiState.currentPathwayId = pathwayId;
 
     // 1. Immediately switch view mode to clinical (showing #clinical-reasoning-container and hiding #home-screen)
@@ -513,8 +551,18 @@
     uiState.engine.setMentorMode(uiState.mentorMode);
     uiState.engine.setExpressMode(uiState.expressMode);
 
-    // 6. Save as recent
-    saveRecentSession(pathwayId);
+    if (options && options.savedState) {
+      uiState.engine.restoreSession(options.savedState);
+    }
+    if (options && options.radicularPhase) {
+      uiState.radicularPhase = options.radicularPhase;
+    }
+    if (options && options.trainingMode !== undefined) {
+      uiState.trainingMode = options.trainingMode;
+    }
+
+    // 6. Save as current & recent
+    saveCurrentClinicalSession();
 
     // 7. Render Master Layout
     renderPathwayWorkspace();
@@ -754,6 +802,7 @@
 
     const step = uiState.engine.getCurrentStep();
     uiState.currentStepView = step;
+    saveCurrentClinicalSession();
 
     switch (step) {
       case 'red_flags':
@@ -1094,6 +1143,28 @@
   function renderAnamnesisSummaryView(container) {
     const summary = uiState.engine.getAnamnesisSummary();
 
+    if (uiState.simulation) {
+      const topHypo = uiState.engine.getHypothesesRanked()[0];
+      const expectedHypo = uiState.simulation.caseData.expectedFlow?.topHypothesis;
+      const isCorrect = topHypo && (!expectedHypo || topHypo.id === expectedHypo);
+      uiState.simulation.evaluateDecision(
+        'anamnesis',
+        'anamnesis_completeness',
+        true,
+        0,
+        'Anamnesis dirigida completada con éxito.'
+      );
+      uiState.simulation.evaluateDecision(
+        'diferencial',
+        'hypothesis_orientation',
+        isCorrect,
+        20,
+        isCorrect
+          ? 'Correcto: Las respuestas orientan la hipótesis diana al primer lugar.'
+          : 'Diferencial desviado: La hipótesis principal resultante no coincide con la esperada en este caso clínico.'
+      );
+    }
+
     container.innerHTML = `
       <div class="summary-bridge-card glass-panel">
         <div class="summary-bridge-header">
@@ -1270,6 +1341,26 @@
 
   function proceedToExamSummary() {
     if (!uiState.engine) return;
+
+    if (uiState.simulation) {
+      const keyTests = uiState.simulation.caseData.expectedFlow?.keyTests || [];
+      const evaluated = uiState.engine.session.examinationFindings || {};
+      const missingKeyTests = keyTests.filter(tId => evaluated[tId] === undefined);
+      const isExamComplete = missingKeyTests.length === 0;
+      uiState.simulation.evaluateDecision(
+        'exploracion',
+        'key_maneuvers_performed',
+        isExamComplete,
+        missingKeyTests.length * 15,
+        isExamComplete
+          ? 'Correcto: Se evaluaron las maniobras exploratorias clave del caso.'
+          : `Exploración parcial: Faltaron maniobras discriminadoras clave (${missingKeyTests.join(', ')}).`
+      );
+      if (!isExamComplete) {
+        uiState.simulation.recordBias('cierre_prematuro', 'Exploración Incompleta', 'Se avanzó sin completar las pruebas ortopédicas/neurológicas discriminadoras.');
+      }
+    }
+
     uiState.engine.session.currentStep = 'exam_summary';
     renderCurrentStep();
   }
@@ -1384,7 +1475,7 @@
           ${structures.map(st => `
             <div class="structure-box">
               <div class="structure-box-title">
-                <span>🎯 ${st.name} ${st.priority === 1 ? '<span class="pres-badge-status available" style="font-size: 0.65rem;">Prioridad 1</span>' : ''}</span>
+                <span>🎯 ${st.name} ${st.priority === 1 ? '<span class="pres-badge-status available" style="font-size: 0.74rem;">Prioridad 1</span>' : ''}</span>
                 <span style="font-size: 0.72rem; color: var(--text-muted);">${st.condition || ''}</span>
               </div>
 
@@ -1439,6 +1530,32 @@
 
   function proceedToGenerator() {
     if (!uiState.engine) return;
+
+    if (uiState.simulation) {
+      const expectedConc = uiState.simulation.caseData.expectedFlow?.imagingConcordance;
+      const actualConc = uiState.engine.session.concordanceLevel || 'high';
+      const isConcCorrect = !expectedConc || (expectedConc === actualConc);
+      uiState.simulation.evaluateDecision(
+        'imagen',
+        'imaging_performance',
+        true,
+        0,
+        'Protocolo de imagen completado.'
+      );
+      uiState.simulation.evaluateDecision(
+        'concordancia',
+        'clinical_imaging_concordance',
+        isConcCorrect,
+        25,
+        isConcCorrect
+          ? 'Correcto: Evaluación de concordancia clínico-radiológica adecuada.'
+          : `Discrepancia de concordancia: Se esperaba '${expectedConc}' y se consideró '${actualConc}'. Cuidado con tratar imágenes incidentales.`
+      );
+      if (expectedConc === 'discordant' && actualConc === 'high') {
+        uiState.simulation.recordBias('sesgo_imagen', 'Anclaje en Imagen Incidental', 'Se asumió como generador un hallazgo radiológico no concordante con la clínica.');
+      }
+    }
+
     uiState.engine.proceedToGenerator();
     renderCurrentStep();
   }
@@ -1509,6 +1626,25 @@
 
   function proceedToTreatment() {
     if (!uiState.engine) return;
+
+    if (uiState.simulation) {
+      const topHypo = uiState.engine.getHypothesesRanked()[0];
+      const expectedHypo = uiState.simulation.caseData.expectedFlow?.topHypothesis;
+      const isGenCorrect = !expectedHypo || (topHypo && topHypo.id === expectedHypo);
+      uiState.simulation.evaluateDecision(
+        'generador',
+        'generator_identification',
+        isGenCorrect,
+        25,
+        isGenCorrect
+          ? 'Correcto: Generador de dolor identificado con precisión clínica.'
+          : `Generador discrepante: La clave diagnóstica era '${uiState.simulation.caseData.expectedFlow?.expectedGenerator || 'específica del caso'}' y el generador seleccionado fue '${topHypo ? topHypo.name : 'no especificado'}'.`
+      );
+      if (!isGenCorrect) {
+        uiState.simulation.recordBias('cierre_prematuro', 'Error de Generador', 'El generador seleccionado no explica la concordancia de los datos clínicos.');
+      }
+    }
+
     uiState.engine.proceedToTreatment();
     renderCurrentStep();
   }
@@ -2090,7 +2226,7 @@
                       </div>
                       <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>Indicación:</strong> ${ap.indication}</p>
                       <p style="font-size: 0.76rem; color: var(--accent-blue); font-weight: 600; margin: 0 0 0.25rem;"><strong>Ventaja:</strong> ${ap.advantage || ap.concept}</p>
-                      <span class="treatment-badge-pill ${ap.evidence?.badge?.includes('ALTA') ? 'green' : 'blue'}" style="font-size: 0.65rem;">${ap.evidence?.badge || 'Reconocida'}</span>
+                      <span class="treatment-badge-pill ${ap.evidence?.badge?.includes('ALTA') ? 'green' : 'blue'}" style="font-size: 0.74rem;">${ap.evidence?.badge || 'Reconocida'}</span>
                     </div>
                   `).join('')}
                 </div>
@@ -2104,7 +2240,7 @@
                     <div class="structure-box" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.3);">
                       <div style="display: flex; justify-content: space-between; align-items: center;">
                         <strong style="font-size: 0.82rem; color: #f59e0b;">⚡ ${plan.tiers[6].spinal.drgPrf.name}</strong>
-                        <span class="treatment-badge-pill orange" style="font-size: 0.65rem;">Opción Avanzada / Evidencia Limitada</span>
+                        <span class="treatment-badge-pill orange" style="font-size: 0.74rem;">Opción Avanzada / Evidencia Limitada</span>
                       </div>
                       <p style="font-size: 0.76rem; color: var(--text-secondary); margin: 0.25rem 0 0;">${plan.tiers[6].spinal.drgPrf.indication} (Revisiones 2024-2025: posible alivio analgésico a 3 meses con baja certeza global).</p>
                     </div>
@@ -2223,7 +2359,7 @@
                 <td>Rápido control de la sinovitis exudativa y dolor agudo</td>
                 <td>24 - 72 h</td>
                 <td>2 - 6 semanas</td>
-                <td><span class="treatment-badge-pill blue" style="font-size: 0.65rem;">Moderada / Brote</span></td>
+                <td><span class="treatment-badge-pill blue" style="font-size: 0.74rem;">Moderada / Brote</span></td>
                 <td>Brote agudo con derrame a tensión que bloquea la fisioterapia.</td>
               </tr>
               <tr>
@@ -2231,7 +2367,7 @@
                 <td>Viscosuplementación y alivio mecánico articular</td>
                 <td>2 - 4 sem</td>
                 <td>4 - 9 meses</td>
-                <td><span class="treatment-badge-pill yellow" style="font-size: 0.65rem;">Pacientes selecc.</span></td>
+                <td><span class="treatment-badge-pill yellow" style="font-size: 0.74rem;">Pacientes selecc.</span></td>
                 <td>Artrosis leve-moderada (KL II-III) sin derrame activo ni respuesta a AINEs.</td>
               </tr>
               <tr>
@@ -2239,7 +2375,7 @@
                 <td>Modulación del microambiente inflamatorio articular</td>
                 <td>3 - 6 sem</td>
                 <td>6 - 12 meses</td>
-                <td><span class="treatment-badge-pill blue" style="font-size: 0.65rem;">Moderada KL I-III</span></td>
+                <td><span class="treatment-badge-pill blue" style="font-size: 0.74rem;">Moderada KL I-III</span></td>
                 <td>Artrosis leve-moderada en pacientes activos que buscan alivio más duradero.</td>
               </tr>
             </tbody>
@@ -2251,6 +2387,15 @@
 
   function proceedToFollowUp() {
     if (!uiState.engine) return;
+    if (uiState.simulation) {
+      uiState.simulation.evaluateDecision(
+        'tratamiento',
+        'multimodal_plan_design',
+        true,
+        0,
+        'Plan terapéutico multimodal escalonado completado.'
+      );
+    }
     uiState.engine.proceedToFollowUp();
     renderCurrentStep();
   }
@@ -2546,7 +2691,8 @@
               const inp = document.getElementById('newCoachPhraseInput');
               if (inp && inp.value.trim().length > 5) {
                 window.ClinicalUI.toggleCoachFavorite(inp.value.trim(), 'Mi Frase');
-                document.getElementById('auxDecisionModal')?.remove();
+                const m = document.getElementById('clinicalAuxModal');
+                if (m) { m.style.display = 'none'; document.body.style.overflow = ''; }
               }
             ">Guardar</button>
           </div>
@@ -2568,7 +2714,8 @@
                       <p style="margin: 0; font-size: 0.8rem; color: var(--text-primary); line-height: 1.4; flex: 1;">«${p}»</p>
                       <button class="coach-star-btn ${isFav ? 'active' : ''}" style="cursor: pointer; background: transparent; border: none; font-size: 1rem; color: ${isFav ? '#f59e0b' : 'var(--text-muted)'};" onclick="
                         window.ClinicalUI.toggleCoachFavorite('${p.replace(/'/g, "\\'")}', '${cat.label.replace(/'/g, "\\'")}');
-                        document.getElementById('auxDecisionModal')?.remove();
+                        const m = document.getElementById('clinicalAuxModal');
+                        if (m) { m.style.display = 'none'; document.body.style.overflow = ''; }
                       ">${isFav ? '★' : '☆'}</button>
                     </div>
                   `;
@@ -2583,6 +2730,15 @@
 
   function proceedToSummary() {
     if (!uiState.engine) return;
+    if (uiState.simulation) {
+      uiState.simulation.evaluateDecision(
+        'seguimiento',
+        'follow_up_protocol',
+        true,
+        0,
+        'Protocolo de seguimiento y reevaluación definido.'
+      );
+    }
     uiState.engine.proceedToSummary();
     renderCurrentStep();
   }
@@ -2603,7 +2759,7 @@
               🎓 AUDITORÍA CLÍNICA: ${uiState.simulation.caseData.title}
             </span>
             <span style="font-weight: 800; font-size: 0.85rem; color: #10b981; background: rgba(16, 185, 129, 0.15); padding: 0.25rem 0.65rem; border-radius: var(--radius-full);">
-              Puntuación: ${uiState.simulation.getOverallScore()}/100 · ${uiState.simulation.getDebriefingReport().grade}
+              Puntuación Global: ${uiState.simulation.getOverallScore()}/100 · ${uiState.simulation.getDebriefingReport().grade}
             </span>
           </div>
           
@@ -2612,6 +2768,32 @@
             <p style="margin: 0; font-size: 0.86rem; color: var(--text-secondary); line-height: 1.45;">
               ${uiState.simulation.caseData.expectedFlow?.discriminatorNote || 'La clave del caso radica en correlacionar siempre la anamnesis y la exploración física con la imagen.'}
             </p>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <h5 style="margin: 0 0 0.45rem; font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 800;">📊 Desglose por Dimensiones de Competencia:</h5>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr)); gap: 0.4rem;">
+              ${Object.entries(uiState.simulation.scores).map(([dim, score]) => {
+                const dimLabels = {
+                  seguridad: 'Seguridad',
+                  anamnesis: 'Anamnesis',
+                  diferencial: 'Diferencial',
+                  exploracion: 'Exploración',
+                  imagen: 'Imagen',
+                  concordancia: 'Concordancia',
+                  generador: 'Generador',
+                  tratamiento: 'Tratamiento',
+                  seguimiento: 'Seguimiento'
+                };
+                const color = score >= 80 ? '#10b981' : score >= 60 ? '#f59e0b' : '#ef4444';
+                return `
+                  <div style="background: var(--bg-surface); padding: 0.4rem 0.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); text-align: center;">
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: capitalize; font-weight: 700;">${dimLabels[dim] || dim}</div>
+                    <div style="font-size: 0.95rem; font-weight: 800; color: ${color};">${score}%</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
           </div>
 
           ${(uiState.simulation.caseData.trapsToAvoid || []).length > 0 ? `
@@ -2626,7 +2808,7 @@
           ` : ''}
 
           <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1rem;">
-            <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('clinical'); window.ClinicalUI.renderCaseSelector();" style="font-size: 0.84rem; padding: 0.5rem 1.1rem; background: #8b5cf6;">
+            <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('clinical'); window.ClinicalUI.renderCaseSelector();" style="font-size: 0.84rem; padding: 0.5rem 1.1rem; background: #8b5cf6; cursor: pointer;">
               🎓 Evaluar Otro Caso Simulado
             </button>
           </div>
@@ -2645,7 +2827,7 @@
         <textarea class="clinical-summary-textarea" id="clinicalSummaryText">${summary.text}</textarea>
 
         <div class="summary-actions-bar">
-          <button class="clinical-action-btn" onclick="window.ClinicalUI.goToStep('treatment')">
+          <button class="clinical-action-btn" onclick="window.ClinicalUI.goToStep('coach')">
             <span>← Revisar Pasos</span>
           </button>
 
@@ -2691,7 +2873,7 @@
           <div class="aux-item-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
               <h4>${d.name}</h4>
-              ${d.currentlyExcluded ? '<span class="pres-badge-status available" style="font-size: 0.65rem;">Poco apoyado por clínica</span>' : ''}
+              ${d.currentlyExcluded ? '<span class="pres-badge-status available" style="font-size: 0.74rem;">Poco apoyado por clínica</span>' : ''}
             </div>
             <p style="margin-bottom: 0.35rem;"><strong>¿Qué me haría reconsiderarlo?</strong> ${d.whatWouldReconsider || ''}</p>
             <p style="font-size: 0.78rem; color: var(--accent-blue);"><strong>Test discriminativo clave:</strong> ${d.keyDiscriminatingTest || ''}</p>
@@ -2954,7 +3136,7 @@
                 ${m.item}
               </span>
             </div>
-            <span class="pres-badge-status ${m.completed ? 'available' : 'upcoming'}" style="font-size: 0.65rem;">
+            <span class="pres-badge-status ${m.completed ? 'available' : 'upcoming'}" style="font-size: 0.74rem;">
               ${m.completed ? 'Completado' : (m.essential ? '⚡ Esencial' : 'Opcional')}
             </span>
           </div>
@@ -2999,15 +3181,68 @@
   // 14. SESSION PERSISTENCE & MODE SWITCHER
   // ─────────────────────────────────────────────
 
-  function saveRecentSession(pathwayId) {
+  function saveCurrentClinicalSession() {
+    if (!uiState.engine || !uiState.engine.pathway) return;
     try {
+      const stateObj = {
+        pathwayId: uiState.engine.pathway.id,
+        pathwayRegion: uiState.engine.pathway.region,
+        pathwayPresentation: uiState.engine.pathway.presentation,
+        sessionState: uiState.engine.getSessionState(),
+        radicularPhase: uiState.radicularPhase,
+        trainingMode: uiState.trainingMode,
+        timestamp: new Date().toISOString()
+      };
+      localStorage.setItem('dolor_clinical_session_v4', JSON.stringify(stateObj));
       localStorage.setItem('dolor_last_session', JSON.stringify({
-        pathwayId,
+        pathwayId: uiState.engine.pathway.id,
         timestamp: new Date().toISOString()
       }));
     } catch (e) {
-      console.warn('Error saving session:', e);
+      console.warn('Error saving clinical session:', e);
     }
+  }
+
+  function getSavedClinicalSession() {
+    try {
+      const raw = localStorage.getItem('dolor_clinical_session_v4');
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      const sessionDate = new Date(data.timestamp);
+      const now = new Date();
+      // Keep valid for 48 hours
+      if ((now - sessionDate) > 48 * 3600 * 1000) {
+        return null;
+      }
+      return data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function clearClinicalSession() {
+    try {
+      localStorage.removeItem('dolor_clinical_session_v4');
+    } catch (e) {}
+  }
+
+  async function resumeLastSession() {
+    const saved = getSavedClinicalSession();
+    if (!saved || !saved.pathwayId) return;
+    await startPathway(saved.pathwayId, {
+      savedState: saved.sessionState,
+      radicularPhase: saved.radicularPhase,
+      trainingMode: saved.trainingMode
+    });
+  }
+
+  function discardLastSession() {
+    clearClinicalSession();
+    renderHomeScreen();
+  }
+
+  function saveRecentSession(pathwayId) {
+    saveCurrentClinicalSession();
   }
 
   function renderRecentPathwaysList() {
@@ -3018,6 +3253,7 @@
 
   function setRadicularPhase(phase) {
     uiState.radicularPhase = phase;
+    saveCurrentClinicalSession();
     renderCurrentStep();
   }
 
@@ -3124,6 +3360,11 @@
     copyCoachScript: copyCoachScript,
     toggleCoachFavorite: toggleCoachFavorite,
     openCoachLibraryModal: openCoachLibraryModal,
+    resumeLastSession: resumeLastSession,
+    discardLastSession: discardLastSession,
+    saveCurrentClinicalSession: saveCurrentClinicalSession,
+    getSavedClinicalSession: getSavedClinicalSession,
+    clearClinicalSession: clearClinicalSession,
     injectUltrasoundReport: function(echoData) {
       if (!uiState.engine) return;
       if (echoData.concordance) {

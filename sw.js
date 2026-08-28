@@ -1,5 +1,5 @@
-// Service Worker v44.0 - Soporte de Ejecución Local & Embedded Data Bundle
-const CACHE_NAME = 'dolor-tests-v44';
+// Service Worker v45.0 - Deep Review & Performance Release (Session Persistence, 9-D Debriefing, Mobile Navigation)
+const CACHE_NAME = 'dolor-tests-v45';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

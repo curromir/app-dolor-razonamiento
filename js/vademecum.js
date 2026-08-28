@@ -432,6 +432,7 @@
 
       modal.style.display = 'flex';
       modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
     },
 
     closeDrugModal() {
@@ -440,6 +441,7 @@
         modal.style.display = 'none';
         modal.classList.remove('open');
       }
+      document.body.style.overflow = '';
     },
 
     openCondition(conditionId) {
@@ -1019,6 +1021,7 @@
       }
       modal.style.display = 'flex';
       modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
     },
 
     closeInteractionsModal() {
@@ -1027,6 +1030,7 @@
         modal.style.display = 'none';
         modal.classList.remove('open');
       }
+      document.body.style.overflow = '';
     }
   };
 

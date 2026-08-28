@@ -722,7 +722,7 @@ ${concText}`;
               <h3 style="margin: 0; font-size: 1.1rem; color: #f59e0b; display: flex; align-items: center; gap: 0.5rem;">
                 <span>🤔</span> ¿QUÉ HACER SI LA ECO NO CUADRA CON LA CLÍNICA?
               </h3>
-              <button class="modal-close" onclick="document.getElementById('echo-not-fitting-modal').style.display='none'">✖</button>
+              <button class="modal-close" onclick="document.getElementById('echo-not-fitting-modal').style.display='none'; document.body.style.overflow='';">✖</button>
             </div>
             
             <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.84rem; line-height: 1.5; color: var(--text-primary);">
@@ -744,7 +744,7 @@ ${concText}`;
               </div>
             </div>
 
-            <button class="vade-primary-btn" style="width: 100%; margin-top: 1.25rem;" onclick="document.getElementById('echo-not-fitting-modal').style.display='none'">
+            <button class="vade-primary-btn" style="width: 100%; margin-top: 1.25rem;" onclick="document.getElementById('echo-not-fitting-modal').style.display='none'; document.body.style.overflow='';">
               Entendido
             </button>
           </div>
@@ -752,6 +752,7 @@ ${concText}`;
         document.body.appendChild(modal);
       }
       modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     },
 
     renderRegionView(container) {

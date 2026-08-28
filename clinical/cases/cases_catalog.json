@@ -18,7 +18,11 @@
       "redFlagsSafe": true,
       "topHypothesis": "hyp-s1",
       "discriminatorNote": "La irradiación a planta/talón con reflejo aquíleo disminuido y Lasègue positivo a 40° confirma afectación selectiva de la raíz S1.",
-      "keyTests": ["exam-motor-s1", "exam-reflex-s1", "exam-lasegue"],
+      "keyTests": [
+        "exam-motor-s1",
+        "exam-reflex-s1",
+        "exam-lasegue"
+      ],
       "imagingConcordance": "concordant",
       "expectedGenerator": "Radiculopatía S1 (Neuropático)",
       "targetTreatment": "Neuromoduladores + Ejercicio de dirección preferencial + Infiltración epidural transforaminal si dolor incapacitante"
@@ -49,7 +53,11 @@
       "redFlagsSafe": true,
       "topHypothesis": "hyp-s1",
       "discriminatorNote": "Test de Windlass negativo, tubérculo medial indoloro. En cambio, Lasègue derecho positivo a 50° y reflejo aquíleo derecho abolido: se trata de una radiculopatía S1 enmascarada.",
-      "keyTests": ["exam-tobillo-windlass", "exam-reflex-s1", "exam-lasegue"],
+      "keyTests": [
+        "exam-tobillo-windlass",
+        "exam-reflex-s1",
+        "exam-lasegue"
+      ],
       "imagingConcordance": "concordant",
       "expectedGenerator": "Radiculopatía S1 (Dolor Neuropático Referido a Talón)",
       "targetTreatment": "Reorientar tratamiento: suspender ondas de choque locales y pautar abordaje para radiculopatía lumbar S1 (neuromodulador + fisioterapia neural)."
@@ -80,7 +88,12 @@
       "redFlagsSafe": true,
       "topHypothesis": "hyp-subacromial",
       "discriminatorNote": "Movilidad pasiva libre (descarta capsulitis) con Jobe doloroso pero con fuerza 5/5 conservada (descarta rotura masiva): tendinopatía subacromial de supraespinoso.",
-      "keyTests": ["exam-arc", "exam-jobe", "exam-hawkins", "exam-passive-rom"],
+      "keyTests": [
+        "exam-arc",
+        "exam-jobe",
+        "exam-hawkins",
+        "exam-passive-rom"
+      ],
       "imagingConcordance": "concordant",
       "expectedGenerator": "Dolor relacionado con manguito rotador / región subacromial",
       "targetTreatment": "Educación + Carga excéntrica e isométrica de manguito + AINE tópico"
@@ -111,7 +124,11 @@
       "redFlagsSafe": true,
       "topHypothesis": "hyp-cervical",
       "discriminatorNote": "Jobe y Hawkins negativos con movilidad de hombro libre. Test de Spurling cervical positivo y parestesias en primer dedo: se trata de una radiculopatía C5-C6 referida a hombro.",
-      "keyTests": ["exam-cervical-screening", "exam-jobe", "exam-arc"],
+      "keyTests": [
+        "exam-cervical-screening",
+        "exam-jobe",
+        "exam-arc"
+      ],
       "imagingConcordance": "concordant",
       "expectedGenerator": "Radiculopatía Cervical C5/C6 (Dolor Referido a Hombro)",
       "targetTreatment": "Descartar patología de hombro y tratar columna cervical (retracción cervical, neuromodulación)."
@@ -142,7 +159,11 @@
       "redFlagsSafe": true,
       "topHypothesis": "hyp-cts-idiopathic",
       "discriminatorNote": "Flick sign positivo, Durkan intensamente positivo a los 10 segundos, respeto estricto del meñique y ecografía con CSA del nervio mediano de 13.5 mm² en pisiforme.",
-      "keyTests": ["exam-mano-durkan", "exam-mano-phalen", "exam-thenar-motor"],
+      "keyTests": [
+        "exam-mano-durkan",
+        "exam-mano-phalen",
+        "exam-thenar-motor"
+      ],
       "imagingConcordance": "concordant",
       "expectedGenerator": "Síndrome del Túnel Carpiano (Nervio Mediano)",
       "targetTreatment": "Férula nocturna neutra de 0° + Infiltración ecoguiada del túnel carpiano"
@@ -173,7 +194,11 @@
       "redFlagsSafe": true,
       "topHypothesis": "hyp-neurogenic-claudication",
       "discriminatorNote": "Signo del carrito positivo, Bicycle test aliviado en flexión, pulsos pedios presentes y potentes: estenosis de canal lumbar típica.",
-      "keyTests": ["exam-van-gelderen-bicycle", "exam-peripheral-pulses", "exam-postural-extension-walk"],
+      "keyTests": [
+        "exam-van-gelderen-bicycle",
+        "exam-peripheral-pulses",
+        "exam-postural-extension-walk"
+      ],
       "imagingConcordance": "concordant",
       "expectedGenerator": "Claudicación Neurógena por Estenosis de Canal Lumbar",
       "targetTreatment": "Ejercicios de flexión lumbar + Bicicleta estática + Infiltración epidural interlaminar"
@@ -204,7 +229,10 @@
       "redFlagsSafe": true,
       "topHypothesis": "hyp-vascular-claudication",
       "discriminatorNote": "Bicycle test positivo invariable en flexión, pulsos pedios y tibiales posteriores abolidos bilateralmente y pies fríos: arteriopatía periférica obstructiva.",
-      "keyTests": ["exam-van-gelderen-bicycle", "exam-peripheral-pulses"],
+      "keyTests": [
+        "exam-van-gelderen-bicycle",
+        "exam-peripheral-pulses"
+      ],
       "imagingConcordance": "discordant",
       "expectedGenerator": "Claudicación Vascular Periférica (Isquemia de Esfuerzo)",
       "targetTreatment": "Derivación preferente a Cirugía Vascular + Índice Tobillo-Brazo + Abandono tabáquico."
@@ -235,7 +263,9 @@
       "redFlagsSafe": false,
       "topHypothesis": "rf-cervical-myelopathy",
       "discriminatorNote": "🚨 BANDERA ROJA CRÍTICA: Signo de Hoffmann positivo bilateral, hiperreflexia rotuliana y marcha espástica espinotalámica: Mielopatía Cervical Compresiva.",
-      "keyTests": ["exam-hoffmann-cervical"],
+      "keyTests": [
+        "exam-hoffmann-cervical"
+      ],
       "imagingConcordance": "discordant",
       "expectedGenerator": "Compresión Medular Cervical (Mielopatía)",
       "targetTreatment": "🚨 PARADA INMEDIATA DEL PATHWAY MUSCULOESQUELÉTICO → Collarín cervical rígido + RM cervical urgente + Derivación a Neurocirugía."
@@ -264,9 +294,11 @@
     },
     "expectedFlow": {
       "redFlagsSafe": false,
-      "topHypothesis": "rf-cauda-equina",
+      "topHypothesis": "rf-sphincter",
       "discriminatorNote": "🚨 BANDERA ROJA CRÍTICA: Anestesia en silla de montar + alteración de esfínteres = Síndrome de Cauda Equina por hernia masiva L4-L5.",
-      "keyTests": ["exam-lasegue"],
+      "keyTests": [
+        "exam-lasegue"
+      ],
       "imagingConcordance": "concordant",
       "expectedGenerator": "Síndrome de Cauda Equina Agudo",
       "targetTreatment": "🚨 DERIVACIÓN URGENTE A URGENCIAS QUIRÚRGICAS para descompresión neuroquirúrgica en <24-48 horas."
