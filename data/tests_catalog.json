@@ -53,7 +53,7 @@
         "id": "sacroiliaca",
         "name": "Pelvis y Art. Sacroilíaca",
         "icon": "🎯",
-        "desc": "Clúster de Laslett (Gold Standard), síndrome del piriforme, inestabilidad pélvica postparto y ASLR"
+        "desc": "Clúster de Laslett (Batería de provocación), síndrome del piriforme, inestabilidad pélvica y ASLR"
       },
       {
         "id": "cadera",
@@ -515,7 +515,7 @@
         "2. Aplicar una fuerza en valgo constante mientras se extiende rápidamente el codo hasta los 30°."
       ],
       "positive_sign": "Dolor agudo tipo desgarro ('shear pain') en la cara medial del codo reproducido entre los 120° y 70° de flexión.",
-      "clinical_interpretation": "Lesión o rotura del ligamento colateral medial (LCM). Gold standard clínico para lanzadores.",
+      "clinical_interpretation": "Lesión o rotura del ligamento colateral medial (LCM). Prueba de referencia para valorar la integridad del LCM en deportistas de lanzamiento.",
       "sensitivity": "100%",
       "specificity": "78%",
       "sens_val": 100,
@@ -724,7 +724,7 @@
         "3. Aplicar una compresión axial suave y progresiva hacia abajo sobre el vértex craneal (7-10 kg)."
       ],
       "positive_sign": "Reproducción de dolor radicular o parestesias irradiadas hacia el miembro superior ipsilateral.",
-      "clinical_interpretation": "Compresión foraminal de raíz cervical (hernia discal o uncoartrosis).",
+      "clinical_interpretation": "Radiculopatía cervical foraminal. Maniobra altamente específica (Sp 93-100%, LR+ >10), ideal para confirmar radiculopatía cervical cuando es positiva.",
       "sensitivity": "50%",
       "specificity": "96%",
       "sens_val": 50,
@@ -924,7 +924,7 @@
       "region": "sacroiliaca",
       "region_label": "Pelvis y Art. Sacroilíaca",
       "category": "sacroiliaca",
-      "category_label": "Clúster de Laslett (Gold Standard)",
+      "category_label": "Clúster de Laslett",
       "target_structure": "Articulación sacroilíaca ipsilateral",
       "objective": "Aplicar cizallamiento anteroposterior sobre la articulación sacroilíaca a través del fémur.",
       "patient_position": "Paciente en decúbito supino.",
@@ -977,7 +977,7 @@
       "region": "sacroiliaca",
       "region_label": "Pelvis y Art. Sacroilíaca",
       "category": "sacroiliaca",
-      "category_label": "Clúster de Laslett (Gold Standard)",
+      "category_label": "Clúster de Laslett",
       "target_structure": "Ligamentos sacroilíacos anteriores y articulación sacroilíaca",
       "objective": "Separar las alas ilíacas anteriormente para tensar la cara anterior y comprimir la cara posterior de la ASI.",
       "patient_position": "Paciente en decúbito supino.",
@@ -1146,7 +1146,7 @@
         "4. Evaluar milímetros de desplazamiento y firmeza del tope."
       ],
       "positive_sign": "Traslación anterior aumentada (>3 mm vs sano) y tope final blando o ausente.",
-      "clinical_interpretation": "Ruptura del LCA. Gold standard de la exploración física del LCA.",
+      "clinical_interpretation": "Ruptura del LCA. Prueba de alta precisión diagnóstica para valorar la integridad del LCA (Sn 85%, Sp 94%).",
       "sensitivity": "89%",
       "specificity": "96%",
       "sens_val": 89,

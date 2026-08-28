@@ -1989,6 +1989,196 @@ class ClinicalReasoningEngine {
       warnings
     };
   }
+
+  // ─────────────────────────────────────────────
+  // SPRINT 14 — ADVANCED REASONING & DECISION MODULES
+  // ─────────────────────────────────────────────
+
+  /**
+   * Calculates post-test probability using Bayesian Nomogram / Odds formula:
+   * pretestOdds = p / (1 - p)
+   * posttestOdds = pretestOdds * LR
+   * posttestProb = posttestOdds / (1 + posttestOdds)
+   */
+  calculateBayesianPostTest(pretestProb = 0.30, lr = 1.0) {
+    const p = Math.max(0.01, Math.min(0.99, Number(pretestProb) || 0.30));
+    const likelihoodRatio = Math.max(0.01, Number(lr) || 1.0);
+    const pretestOdds = p / (1 - p);
+    const posttestOdds = pretestOdds * likelihoodRatio;
+    const posttestProb = posttestOdds / (1 + posttestOdds);
+    return {
+      pretestProb: p,
+      pretestPct: Math.round(p * 100),
+      lr: likelihoodRatio,
+      posttestProb,
+      posttestPct: Math.round(posttestProb * 100),
+      shift: Math.round((posttestProb - p) * 100)
+    };
+  }
+
+  /**
+   * Determines the 4-level Clinical Certainty state:
+   * 'high' (Alta), 'moderate' (Moderada), 'low' (Baja), 'indeterminate' (Indeterminada)
+   */
+  getClinicalCertainty() {
+    const ranked = this.getHypothesesRanked();
+    const top1 = ranked[0] || {};
+    const top2 = ranked[1] || {};
+    const conf = this.session.confidenceLevel || 'low';
+    const concordance = this.session.concordanceLevel || 'neutral';
+    const scoreDiff = (top1.score || 0) - (top2.score || 0);
+
+    let level = 'low';
+    let label = 'Certeza Baja';
+    let color = '#ef4444';
+    let icon = '🟡';
+
+    if (this.session.hasActiveRedFlag) {
+      level = 'indeterminate';
+      label = 'Interrumpida por Alerta de Seguridad';
+      color = '#ef4444';
+      icon = '🚨';
+    } else if (top1.level === 'very_compatible' && scoreDiff >= 3 && (concordance === 'high' || concordance === 'neutral')) {
+      level = 'high';
+      label = 'Certeza Alta';
+      color = '#10b981';
+      icon = '🟢';
+    } else if (top1.level === 'compatible' || (top1.level === 'very_compatible' && scoreDiff >= 1)) {
+      level = 'moderate';
+      label = 'Certeza Moderada';
+      color = '#f59e0b';
+      icon = '🟡';
+    } else if (Math.abs(scoreDiff) <= 1 && top1.score <= 1) {
+      level = 'indeterminate';
+      label = 'Certeza Indeterminada (Dilema Clínico)';
+      color = '#8b5cf6';
+      icon = '🟣';
+    }
+
+    // Collect facts supporting and contradicting
+    const supporting = [];
+    const contradicting = [];
+
+    if (top1.history) {
+      top1.history.forEach(h => {
+        if (h.effect === 'increase') supporting.push(h.reason || h.source);
+        if (h.effect === 'decrease') contradicting.push(h.reason || h.source);
+      });
+    }
+
+    let decisiveToIncrease = 'Explorar maniobras de provocación con alto LR+ o solicitar ecografía/RM concordante.';
+    if (top2 && top2.name) {
+      decisiveToIncrease = `Descartar explícitamente ${top2.name} mediante pruebas discriminativas.`;
+    }
+
+    return {
+      level,
+      label,
+      color,
+      icon,
+      topHypothesis: top1,
+      supporting: [...new Set(supporting)],
+      contradicting: [...new Set(contradicting)],
+      decisiveToIncrease
+    };
+  }
+
+  /**
+   * Teaching synthesis: "¿Qué cambió mi decisión?"
+   */
+  getDecisionChangeSynthesis() {
+    const certainty = this.getClinicalCertainty();
+    const ranked = this.getHypothesesRanked();
+    const top1 = ranked[0] || {};
+    const top2 = ranked[1] || {};
+
+    let mostSupporting = certainty.supporting[0] || 'Concordancia anatómica de los síntomas del paciente.';
+    let mostWeakening = certainty.contradicting[0] || 'Ausencia de hallazgos neurológicos deficitarios puros o simetría de reflejos.';
+    let mainAlternative = top2.name ? `${top2.name} (${this.getHypothesisLevelLabel(top2.level)})` : 'Dolor miofascial / referido regional.';
+    
+    let mustNotMiss = 'Descartar banderas rojas: pérdida de fuerza progresiva, síndrome de cauda equina, neoplasia previa o dolor inflamatorio nocturno.';
+    if (this.session.hasActiveRedFlag) {
+      mustNotMiss = '¡Alerta de seguridad positiva activa! Priorizar descarte de patología grave.';
+    }
+
+    let pendingFactToChangeConduct = 'Si la ecografía/RM muestra rotura completa o estenosis severa con déficit motor objetivo -> Valorar cirugía/procedimiento invasivo.';
+    if (top1.id?.includes('radic')) {
+      pendingFactToChangeConduct = 'Aparición de pie caído o pérdida de control de esfínteres obligaría a RM urgente y descompresión neuroquirúrgica inmediata.';
+    } else if (top1.id?.includes('manguito') || top1.id?.includes('supra')) {
+      pendingFactToChangeConduct = 'Debilidad franca sin dolor (pseudoparálisis) obligaría a valorar rotura masiva del manguito para reparación temprana.';
+    }
+
+    return {
+      mostSupporting,
+      mostWeakening,
+      mainAlternative,
+      mustNotMiss,
+      pendingFactToChangeConduct
+    };
+  }
+
+  /**
+   * Generates standard structured text ready to copy into hospital EHR / Medical History
+   */
+  generateStandardClinicalOutput() {
+    const certainty = this.getClinicalCertainty();
+    const diagnosis = this.generateWorkingDiagnosis();
+    const synthesis = this.getDecisionChangeSynthesis();
+    const pathway = this.pathway;
+    const dateStr = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+    const topHyp = diagnosis.topHypothesis || {};
+    const generator = diagnosis.generator || {};
+
+    const findingsText = Object.entries(this.session.examinationFindings)
+      .map(([stepId, val]) => {
+        const step = this.getExaminationStep(stepId);
+        const name = step ? step.name : stepId;
+        const resObj = step?.results?.find(r => r.value === val);
+        const resLabel = resObj ? resObj.label : val;
+        return `  • ${name}: ${resLabel}`;
+      }).join('\n') || '  • Exploración sistemática completada sin hallazgos atípicos.';
+
+    const echoText = this.generateImagingReport() || 'Sin hallazgos estructurales discordantes reportados.';
+
+    return `================================================================================
+📋 NOTA DE CONSULTA CLÍNICA DE ALTA PRECISIÓN — DOLOR
+Fecha: ${dateStr} | Región: ${pathway.regionLabel || pathway.region}
+================================================================================
+
+1. SAFETY & BANDERAS ROJAS:
+   ${this.session.hasActiveRedFlag ? '🚨 POSIBLE ALERTA DE SEGURIDAD DETECTADA' : '✅ Sin señales de alarma evidentes (Red Flags descartadas)'}
+
+2. FENOTIPO Y ORIENTACIÓN DIAGNÓSTICA:
+   • Patrón Clínico: ${pathway.presentation || pathway.id}
+   • Diagnóstico Clínico Principal: ${topHyp.name || 'En estudio'}
+   • Generador Tisular Probable: ${generator.painGenerator || topHyp.name || 'Generador nociceptivo/neuropático'}
+   • Nivel de Certeza Clínica: ${certainty.label.toUpperCase()}
+   • Concordancia Clínico-Imagen: ${this.session.concordanceLevel ? this.session.concordanceLevel.toUpperCase() : 'NO REQUERIDA INICIALMENTE'}
+
+3. EXPLORACIÓN FÍSICA DIRIGIDA (TESTS DISCRIMINATIVOS):
+${findingsText}
+
+4. POCUS / CORRELACIÓN DE IMAGEN:
+   ${echoText}
+
+5. SÍNTESIS DOCENTE (¿QUÉ CAMBIÓ MI DECISIÓN?):
+   • Dato clave que apoya: ${synthesis.mostSupporting}
+   • Dato que debilita/matiza: ${synthesis.mostWeakening}
+   • Principal alternativa a vigilar: ${synthesis.mainAlternative}
+   • Must-Not-Miss: ${synthesis.mustNotMiss}
+
+6. PLAN TERAPÉUTICO Y CONDUCTA:
+   • Educación: Desmitificación, autoeficacia y manejo del dolor.
+   • Modificación de carga: Actividad submáxima tolerable (dolor ≤3-4/10).
+   • Farmacoterapia / Intervencionismo: Según concordancia y comorbilidades.
+   • Objetivo Funcional del Paciente: ${this.session.functionalGoal || 'Recuperar actividad y alivio del dolor'}
+   • Revisión programada: En 4 a 6 semanas (adelantar si signos de alarma).
+
+================================================================================
+Generado con Sistema de Razonamiento Clínico en Dolor · Dr. Curro Mir
+================================================================================`;
+  }
 }
 
 // ─────────────────────────────────────────────

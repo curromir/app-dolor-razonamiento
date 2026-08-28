@@ -2584,4 +2584,314 @@ body.dark-theme .safety-quick-info strong {
   transform: scale(0.96);
 }
 
+/* ==========================================================================
+   SPRINT 14 — ARCHITECTURE & CLEAN UI DESIGN SYSTEM
+   ========================================================================== */
+
+/* Clean Home Hero */
+.home-hero-clean {
+  text-align: center;
+  padding: 2.25rem 1.5rem 1.75rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.75rem;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(139, 92, 246, 0.06) 100%);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-clean-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  margin: 0 0 0.4rem;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.home-clean-subtitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* 4 Master Doors Grid */
+.home-4doors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.home-door-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.home-door-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.home-door-card.door-consultation {
+  border-top: 4px solid #10b981;
+}
+
+.home-door-card.door-consultation:hover {
+  border-color: #10b981;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+}
+
+.home-door-card.door-reasoning {
+  border-top: 4px solid #8b5cf6;
+}
+
+.home-door-card.door-reasoning:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.15);
+}
+
+.home-door-card.door-techniques {
+  border-top: 4px solid #06b6d4;
+}
+
+.home-door-card.door-techniques:hover {
+  border-color: #06b6d4;
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.15);
+}
+
+.home-door-card.door-library {
+  border-top: 4px solid #f59e0b;
+}
+
+.home-door-card.door-library:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+}
+
+.door-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.door-icon {
+  font-size: 2rem;
+}
+
+.door-pill-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.badge-express {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.badge-deep {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+.badge-pocus {
+  background: rgba(6, 182, 212, 0.15);
+  color: #06b6d4;
+}
+
+.badge-library {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.door-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.4rem;
+  color: var(--text-primary);
+}
+
+.door-desc {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0 0 1rem;
+  flex: 1;
+}
+
+.door-features-pills {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.door-features-pills span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+.door-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-primary, #6366f1);
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Universal Search Box */
+.home-universal-search-box {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-surface);
+  position: relative;
+}
+
+.universal-search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.universal-search-input-wrapper:focus-within {
+  border-color: var(--accent-primary, #6366f1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.universal-search-input-wrapper input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  outline: none;
+  font-family: inherit;
+}
+
+.home-search-clear-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 0.25rem;
+}
+
+.universal-search-results-panel {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.home-quick-pathways-panel {
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 2rem;
+}
+
+.home-quick-pathways-title {
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+/* Header Main Nav Buttons */
+.header-nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.header-nav-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.header-nav-btn.active {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+  color: var(--accent-primary, #818cf8);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Reasoning Hub Subtabs */
+.reasoning-subtab-btn {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.reasoning-subtab-btn:hover {
+  border-color: var(--accent-primary, #6366f1);
+  color: var(--text-primary);
+}
+
+.reasoning-subtab-btn.active {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: var(--accent-primary, #6366f1);
+  color: var(--accent-primary, #818cf8);
+  font-weight: 800;
+}
+
+/* Mobile Bottom Bar Sync */
+.mobile-nav-item.active {
+  color: var(--accent-primary, #818cf8) !important;
+}
+
+.mobile-nav-item.active .mob-icon {
+  transform: scale(1.15);
+}
+
 

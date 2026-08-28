@@ -45,24 +45,43 @@
       <!-- Rendered dynamically by reasoning-ui.js -->
     </section>
 
-    <!-- Top Header (Library Mode) -->
-    <header class="main-header" style="display: none;">
+    <!-- Top Header (Sprint 14 Unified Master Navigation) -->
+    <header class="main-header" id="appMainHeader" style="display: none;">
       <div class="header-inner container">
         <div class="brand-section">
           <div class="brand-icon-wrapper" onclick="window.ClinicalUI.switchAppMode('home')" style="cursor: pointer;" title="Volver al Inicio">
             <span class="brand-emoji">🩺</span>
           </div>
-          <div class="brand-titles">
-            <h1 onclick="window.ClinicalUI.switchAppMode('home')" style="cursor: pointer;" title="Volver al Inicio">Test de Exploración Física en Dolor</h1>
-            <p class="brand-sub">Guía Clínica por Áreas & Vídeos Didácticos (Physiotutors & Educom™)</p>
+          <div class="brand-titles" onclick="window.ClinicalUI.switchAppMode('home')" style="cursor: pointer;" title="Volver al Inicio">
+            <h1>DOLOR</h1>
+            <p class="brand-sub">Razonamiento Clínico · Dr. Curro Mir</p>
           </div>
         </div>
+
+        <!-- 4 Master Areas Navigation (Desktop) -->
+        <nav class="header-main-nav" style="display: flex; gap: 0.4rem; align-items: center;">
+          <button class="header-nav-btn active" data-mode="home" onclick="window.ClinicalUI.switchAppMode('home')">
+            <span>🏠</span> <span>Inicio</span>
+          </button>
+          <button class="header-nav-btn" data-mode="consultation" onclick="window.ClinicalUI.startConsultaExpress()">
+            <span>🩺</span> <span>Consulta</span>
+          </button>
+          <button class="header-nav-btn" data-mode="reasoning" onclick="window.ClinicalUI.startRazonamientoDeep()">
+            <span>🧠</span> <span>Razonamiento</span>
+          </button>
+          <button class="header-nav-btn" data-mode="techniques" onclick="window.ClinicalUI.switchAppMode('techniques')">
+            <span>🩻</span> <span>Técnicas</span>
+          </button>
+          <button class="header-nav-btn" data-mode="library" onclick="window.ClinicalUI.switchAppMode('library')">
+            <span>📚</span> <span>Biblioteca</span>
+          </button>
+        </nav>
 
         <!-- Search Bar -->
         <div class="search-container">
           <div class="search-input-box">
             <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" placeholder="Buscar test, síntoma, nervio o área (ej: Spurling, Lasègue, ciática, menisco, Laslett)..." autocomplete="off" spellcheck="false">
+            <input type="text" id="searchInput" placeholder="Buscar test, síntoma, fármaco o técnica..." autocomplete="off" spellcheck="false">
             <button id="clearSearchBtn" class="clear-btn" title="Limpiar búsqueda" style="display:none;">&times;</button>
             <kbd class="search-kbd">/</kbd>
           </div>
@@ -70,12 +89,6 @@
 
         <!-- Quick Controls -->
         <div class="header-controls">
-          <button id="btnNavToClinical" class="ctrl-btn primary-highlight" title="Ir al Modo Razonamiento Clínico" onclick="window.ClinicalUI.switchAppMode('clinical')">
-            <span>🩺</span> <span class="btn-label">Modo Consulta</span>
-          </button>
-          <button id="btnNavToHome" class="ctrl-btn" title="Ir al Inicio" onclick="window.ClinicalUI.switchAppMode('home')">
-            <span>🏠</span> <span class="btn-label">Inicio</span>
-          </button>
           <button id="btnToggleAtlas" class="ctrl-btn" title="Mostrar/ocultar mapa corporal interactivo">
             <span>🧍</span> <span class="btn-label">Atlas</span>
           </button>
@@ -651,31 +664,27 @@
 
     </main>
 
-    <!-- Bottom Navigation Bar for Mobile Safari / iPhone -->
-    <nav class="mobile-bottom-bar">
-      <button class="mobile-nav-item active" data-tab="tab-home" onclick="window.ClinicalUI.switchAppMode('home')">
+    <!-- Bottom Navigation Bar for Mobile Safari / iPhone (Sprint 14 4 Areas) -->
+    <nav class="mobile-bottom-bar" id="mobileBottomNav">
+      <button class="mobile-nav-item active" data-mode="home" onclick="window.ClinicalUI.switchAppMode('home')">
         <span class="mob-icon">🏠</span>
         <span class="mob-label">Inicio</span>
       </button>
-      <button class="mobile-nav-item" data-tab="tab-clinical" onclick="window.ClinicalUI.switchAppMode('clinical')">
+      <button class="mobile-nav-item" data-mode="consultation" onclick="window.ClinicalUI.startConsultaExpress()">
         <span class="mob-icon">🩺</span>
         <span class="mob-label">Consulta</span>
       </button>
-      <button class="mobile-nav-item" data-tab="tab-vademecum" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-vademecum');">
-        <span class="mob-icon">💊</span>
-        <span class="mob-label">Vademécum</span>
+      <button class="mobile-nav-item" data-mode="reasoning" onclick="window.ClinicalUI.startRazonamientoDeep()">
+        <span class="mob-icon">🧠</span>
+        <span class="mob-label">Razonamiento</span>
       </button>
-      <button class="mobile-nav-item" data-tab="tab-tests" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-tests');">
+      <button class="mobile-nav-item" data-mode="techniques" onclick="window.ClinicalUI.switchAppMode('techniques')">
+        <span class="mob-icon">🩻</span>
+        <span class="mob-label">Técnicas</span>
+      </button>
+      <button class="mobile-nav-item" data-mode="library" onclick="window.ClinicalUI.switchAppMode('library')">
         <span class="mob-icon">📚</span>
         <span class="mob-label">Biblioteca</span>
-      </button>
-      <button class="mobile-nav-item" data-tab="tab-fichas" onclick="window.ClinicalUI.switchAppMode('library'); window.switchTab('tab-fichas');">
-        <span class="mob-icon">🗂️</span>
-        <span class="mob-label">Fichas</span>
-      </button>
-      <button class="mobile-nav-item" data-tab="tab-more" onclick="const m = document.getElementById('mobileMoreModal'); if (m) { m.style.display = 'flex'; document.body.style.overflow = 'hidden'; }">
-        <span class="mob-icon">⋯</span>
-        <span class="mob-label">Más</span>
       </button>
     </nav>
 
@@ -795,11 +804,11 @@
 
   </div>
 
-  <script src="data/embedded_bundle.js?v=55.0"></script>
-  <script src="clinical/reasoning-engine.js?v=55.0"></script>
-  <script src="clinical/reasoning-ui.js?v=55.0"></script>
-  <script src="js/vademecum.js?v=55.0"></script>
-  <script src="js/ultrasound.js?v=55.0"></script>
-  <script src="app.js?v=55.0"></script>
+  <script src="data/embedded_bundle.js?v=56.0"></script>
+  <script src="clinical/reasoning-engine.js?v=56.0"></script>
+  <script src="clinical/reasoning-ui.js?v=56.0"></script>
+  <script src="js/vademecum.js?v=56.0"></script>
+  <script src="js/ultrasound.js?v=56.0"></script>
+  <script src="app.js?v=56.0"></script>
 </body>
 </html>

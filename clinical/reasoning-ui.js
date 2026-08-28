@@ -100,7 +100,7 @@
       const currentStepName = stepNames[saved.sessionState?.currentStep] || saved.sessionState?.currentStep || 'En curso';
       const timeAgoStr = new Date(saved.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       resumeBannerHTML = `
-        <div class="resume-session-banner glass-panel" style="margin-bottom: 1.25rem; border-left: 4px solid var(--accent-primary, #6366f1); padding: 0.85rem 1.2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; background: rgba(99, 102, 241, 0.08); border-radius: var(--radius-md);">
+        <div class="resume-session-banner glass-panel" style="margin-bottom: 1.5rem; border-left: 4px solid var(--accent-primary, #6366f1); padding: 0.9rem 1.25rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; background: rgba(99, 102, 241, 0.08); border-radius: var(--radius-md);">
           <div>
             <div style="font-weight: 800; font-size: 0.92rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.4rem;">
               <span>🔄</span> Consulta en Curso Guardada
@@ -118,213 +118,144 @@
     }
 
     containers.home.innerHTML = `
-      <div class="home-hero glass-panel">
-        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
-          <div class="home-hero-badge">🩺 Sistema de Apoyo al Razonamiento Clínico</div>
+      <div class="home-hero-clean glass-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="home-hero-badge">🩺 SISTEMA DE APOYO AL RAZONAMIENTO CLÍNICO</div>
           <button class="home-theme-toggle-btn" onclick="window.toggleAppTheme()" style="background: var(--bg-surface); border: 1.5px solid var(--border-color); border-radius: var(--radius-full); padding: 0.35rem 0.85rem; font-size: 0.8rem; font-weight: 700; color: var(--text-primary); cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);" title="Alternar entre modo Claro y Oscuro">
             <span id="homeThemeIcon">${(localStorage.getItem('dolor_theme') === 'dark') ? '☀️' : '🌙'}</span>
             <span id="homeThemeLabel">${(localStorage.getItem('dolor_theme') === 'dark') ? 'Modo Claro' : 'Modo Oscuro'}</span>
           </button>
         </div>
-        <h1>Medicina del Dolor de Alta Precisión</h1>
-        <p>Acompañamiento diagnóstico estructurado desde el motivo de consulta del paciente hasta el generador probable, ecografía dirigida y plan terapéutico.</p>
+        <h1 class="home-clean-title">DOLOR</h1>
+        <p class="home-clean-subtitle">Sistema de apoyo al razonamiento clínico · Dr. Curro Mir</p>
       </div>
 
       ${resumeBannerHTML}
 
-      <div class="home-modes-grid">
-        <!-- MODE 1: CLINICAL REASONING -->
-        <article class="mode-card primary-mode" id="btnLaunchClinicalMode">
-          <div>
-            <span class="mode-card-icon">🩺</span>
-            <h2>Modo Consulta</h2>
-            <p><strong>Copiloto en tiempo real:</strong> Diseñado para usar con el paciente delante. Anamnesis dirigida, discriminación de hipótesis, exploración express y plan.</p>
-            <div class="mode-card-features">
-              <span class="mode-feature-pill">⚠️ Red Flags</span>
-              <span class="mode-feature-pill">⚡ Express 90s</span>
-              <span class="mode-feature-pill">💡 Discriminador</span>
-              <span class="mode-feature-pill">📋 Copiar a HC</span>
-            </div>
+      <!-- 4 GRANDES PUERTAS CLÍNICAS -->
+      <div class="home-4doors-grid">
+        
+        <!-- PUERTA 1: CONSULTA (Alta Precisión Express 30-120s) -->
+        <article class="home-door-card door-consultation" onclick="window.ClinicalUI.startConsultaExpress()">
+          <div class="door-header">
+            <span class="door-icon">🩺</span>
+            <span class="door-pill-badge badge-express">⚡ 30–120 seg</span>
           </div>
-          <div class="mode-card-cta">
-            <span>Iniciar Consulta Clínica</span> <span>→</span>
+          <h2 class="door-title">CONSULTA</h2>
+          <p class="door-desc"><strong>Resolver un paciente:</strong> Modo de alta velocidad para consulta presencial. Red flags, patrón dominante, exploración discriminativa, POCUS y conducta.</p>
+          <div class="door-features-pills">
+            <span>⚠️ Safety First</span>
+            <span>🎯 2-4 Tests Clave</span>
+            <span>📋 Salida a HC</span>
           </div>
-        </article>
-
-        <!-- MODE 2: TRAINING CASES -->
-        <article class="mode-card" id="btnLaunchTrainingMode" style="border-color: rgba(139, 92, 246, 0.4); background: linear-gradient(145deg, rgba(139, 92, 246, 0.08) 0%, rgba(30, 41, 59, 0.6) 100%);">
-          <div>
-            <span class="mode-card-icon">🎓</span>
-            <h2>Modo Entrenamiento</h2>
-            <p><strong>Casos Clínicos Simulados a Ciegas:</strong> Entrena con casos Canónicos, Realistas, Trampas Diagnósticas y Emergencias de Seguridad con auditoría de sesgos.</p>
-            <div class="mode-card-features">
-              <span class="mode-feature-pill">🟢 Canónicos</span>
-              <span class="mode-feature-pill">🟡 Realistas</span>
-              <span class="mode-feature-pill">🟣 Trampas</span>
-              <span class="mode-feature-pill">🔴 Seguridad</span>
-            </div>
-          </div>
-          <div class="mode-card-cta" style="color: #a78bfa;">
-            <span>Entrenar con Casos</span> <span>→</span>
+          <div class="door-cta">
+            <span>Iniciar Consulta Rápida</span> <span>→</span>
           </div>
         </article>
 
-        <!-- MODE 3: CLINICAL LIBRARY -->
-        <article class="home-mode-card glass-panel" id="btnLaunchLibraryMode">
-          <div class="mode-card-badge" style="background: rgba(37, 99, 235, 0.2); color: var(--accent-blue);">Biblioteca</div>
-          <div>
-            <span class="mode-card-icon">📚</span>
-            <h2>Biblioteca Clínica</h2>
-            <p><strong>Atlas y Material de Consulta:</strong> Catálogo de 43 tests psicométricos, 86 vídeos HD (Physiotutors & Educom™), 17 fichas Notion v2.6, clústeres y simulador.</p>
-            <div class="mode-card-features">
-              <span class="mode-feature-pill">🧍 Atlas SVG</span>
-              <span class="mode-feature-pill">🎬 Videoteca HD</span>
-              <span class="mode-feature-pill">🗂️ Fichas v2.6</span>
-              <span class="mode-feature-pill">📝 Simulador</span>
-            </div>
+        <!-- PUERTA 2: RAZONAMIENTO (Comprender y Profundizar) -->
+        <article class="home-door-card door-reasoning" onclick="window.ClinicalUI.startRazonamientoDeep()">
+          <div class="door-header">
+            <span class="door-icon">🧠</span>
+            <span class="door-pill-badge badge-deep">Pathways & Casos</span>
           </div>
-          <div class="mode-card-cta">
-            <span>Explorar Biblioteca</span> <span>→</span>
+          <h2 class="door-title">RAZONAMIENTO</h2>
+          <p class="door-desc"><strong>Entender el caso:</strong> 35 vías clínicas jerarquizadas (Primary, Secondary, Safety), 9 casos clínicos simulados a ciegas, cálculo bayesiano y sesgos.</p>
+          <div class="door-features-pills">
+            <span>🗂️ 35 Pathways</span>
+            <span>🎓 9 Casos Ciegos</span>
+            <span>📊 Bayes Pre/Post</span>
+          </div>
+          <div class="door-cta">
+            <span>Entrar a Razonamiento</span> <span>→</span>
           </div>
         </article>
 
-        <!-- CARD 4: VADEMÉCUM DE DOLOR -->
-        <article class="home-mode-card glass-panel" id="btnLaunchVademecumMode" style="border-top: 4px solid #8b5cf6;">
-          <div class="mode-card-badge" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">Farmacología</div>
-          <div>
-            <span class="mode-card-icon">💊</span>
-            <h2>Vademécum de Dolor</h2>
-            <p><strong>Chuleta Farmacológica de Consulta:</strong> Dosis iniciales, habituales, máximas, titulación, precauciones, interacciones, modo Express en 5–10s y fichas completas.</p>
-            <div class="mode-card-features">
-              <span class="mode-feature-pill">⚡ Modo Express</span>
-              <span class="mode-feature-pill">🧠 5 Dosis Clave</span>
-              <span class="mode-feature-pill">⚠️ Interacciones</span>
-              <span class="mode-feature-pill">⭐ Mis Fármacos</span>
-            </div>
+        <!-- PUERTA 3: TÉCNICAS (POCUS e Intervencionismo) -->
+        <article class="home-door-card door-techniques" onclick="window.ClinicalUI.switchAppMode('techniques')">
+          <div class="door-header">
+            <span class="door-icon">🩻</span>
+            <span class="door-pill-badge badge-pocus">POCUS & Raquis</span>
           </div>
-          <div class="mode-card-cta">
-            <span>Abrir Vademécum</span> <span>→</span>
+          <h2 class="door-title">TÉCNICAS</h2>
+          <p class="door-desc"><strong>POCUS e intervencionismo:</strong> Ecografía dirigida en dolor, 28 técnicas de infiltraciones, protocolo epidural Notion (Dr. Curro Mir) y radiofrecuencia.</p>
+          <div class="door-features-pills">
+            <span>🔊 Sonoanatomía</span>
+            <span>💉 Dosis & Dilución</span>
+            <span>⚡ Radiofrecuencia</span>
+          </div>
+          <div class="door-cta">
+            <span>Abrir Técnicas y Dosis</span> <span>→</span>
+          </div>
+        </article>
+
+        <!-- PUERTA 4: BIBLIOTECA (Tests · Fármacos · Fichas · Vídeos) -->
+        <article class="home-door-card door-library" onclick="window.ClinicalUI.switchAppMode('library')">
+          <div class="door-header">
+            <span class="door-icon">📚</span>
+            <span class="door-pill-badge badge-library">43 Tests & Fármacos</span>
+          </div>
+          <h2 class="door-title">BIBLIOTECA</h2>
+          <p class="door-desc"><strong>Atlas y recursos clínicos:</strong> 43 tests físicos auditados con atlas interactivo SVG, vademécum de dolor con 5 dosis clave, interacciones y videoteca HD.</p>
+          <div class="door-features-pills">
+            <span>🧍 Atlas SVG</span>
+            <span>💊 Vademécum</span>
+            <span>🎬 Vídeos HD</span>
+          </div>
+          <div class="door-cta">
+            <span>Ver Biblioteca Completa</span> <span>→</span>
           </div>
         </article>
       </div>
 
-      <!-- Recent Consultations Bar & Direct Clinical Tools Bar -->
-      <div class="home-recents-section glass-panel" id="homeRecentsBox">
-        
-        <!-- Pestaña / Barra Destacada de Herramientas Directas -->
-        <div class="home-quick-tools-bar">
-          <div class="home-quick-tools-badge">
-            <span>🛠️</span> <span>HERRAMIENTAS DIRECTAS EN CONSULTA:</span>
-          </div>
-          <div class="home-quick-tools-buttons">
-            <button class="home-quick-tool-btn echo" onclick="window.switchTab('tab-ultrasound')">
-              <span class="tool-btn-icon">🩻</span>
-              <div class="tool-btn-texts">
-                <strong>ECOGRAFÍA EN DOLOR (POCUS)</strong>
-                <small>Generador de informes estructurados & concordancia clínica</small>
-              </div>
-              <span class="tool-btn-arrow">→</span>
-            </button>
-            <button class="home-quick-tool-btn vade" onclick="window.switchTab('tab-vademecum')">
-              <span class="tool-btn-icon">💊</span>
-              <div class="tool-btn-texts">
-                <strong>VADEMÉCUM EXPRESS</strong>
-                <small>1ª y 2ª opción clínica · Dosis en 5 segundos</small>
-              </div>
-              <span class="tool-btn-arrow">→</span>
-            </button>
-          </div>
+      <!-- BUSCADOR UNIVERSAL DIRECTO -->
+      <div class="home-universal-search-box glass-panel">
+        <div class="universal-search-input-wrapper">
+          <span class="search-icon">🔎</span>
+          <input type="text" id="homeUniversalSearchInput" placeholder="Buscar cualquier síntoma, test, fármaco, diana o técnica..." autocomplete="off" oninput="window.ClinicalUI.handleUniversalSearch(this.value)">
+          <button id="homeClearSearchBtn" class="home-search-clear-btn" style="display:none;" onclick="window.ClinicalUI.clearUniversalSearch()">&times;</button>
+          <kbd class="search-kbd">/</kbd>
         </div>
+        <div id="homeUniversalSearchResults" class="universal-search-results-panel" style="display:none;"></div>
+      </div>
 
-        <div class="home-recents-title" style="margin-top: 1.25rem;">
-          <span>⚡</span> <span>Acceso Directo a los 19 Clinical Pathways Activos</span>
+      <!-- ACCESO DIRECTO RÁPIDO A CASOS Y VÍAS MÁS FRECUENTES -->
+      <div class="home-quick-pathways-panel glass-panel">
+        <div class="home-quick-pathways-title">
+          <span>⚡</span> <span>Vías Clínicas de Alta Frecuencia (Acceso Directo Express):</span>
         </div>
-        <div class="recents-chips-list" id="recentsChipsList">
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('shoulder-lateral-pain')">
-            <span>🦴</span> <span>Hombro: Lateral</span>
+        <div class="recents-chips-list">
+          <button class="recent-pathway-chip primary" onclick="window.ClinicalUI.startPathwayDirect('shoulder-lateral-pain')">
+            <span>🦴</span> <span>Hombro: Manguito / Lateral</span>
           </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('shoulder-stiffness')">
-            <span>🧊</span> <span>Hombro: Rigidez</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('shoulder-anterior-pain')">
-            <span>🦴</span> <span>Hombro: Anterior / Bíceps</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('lumbar-radicular-pain')">
+          <button class="recent-pathway-chip primary" onclick="window.ClinicalUI.startPathwayDirect('lumbar-radicular-pain')">
             <span>⚡</span> <span>Lumbar: Radiculopatía L4-S1</span>
           </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('lumbar-axial-pain')">
-            <span>🦴</span> <span>Lumbar: Axial (Facetas)</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('lumbar-claudication')">
-            <span>⚡</span> <span>Lumbar: Claudicación / Estenosis</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('cervical-radicular')">
+          <button class="recent-pathway-chip primary" onclick="window.ClinicalUI.startPathwayDirect('cervical-radicular')">
             <span>🧠</span> <span>Cervical: Radiculopatía C6/C7</span>
           </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('cervical-axial')">
-            <span>🧠</span> <span>Cervical: Axial / Cefalea</span>
+          <button class="recent-pathway-chip primary" onclick="window.ClinicalUI.startPathwayDirect('knee-oa-anterior')">
+            <span>🦵</span> <span>Rodilla: Gonartrosis / Menisco</span>
           </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('hip-lateral')">
-            <span>🦿</span> <span>Cadera: Lateral (GTPS)</span>
+          <button class="recent-pathway-chip primary" onclick="window.ClinicalUI.startPathwayDirect('hip-lateral')">
+            <span>🦿</span> <span>Cadera: GTPS / Trocantérea</span>
           </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('hip-inguinal')">
-            <span>🦿</span> <span>Cadera: Inguinal (Coxartrosis)</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('knee-oa-anterior')">
-            <span>🦵</span> <span>Rodilla: Anterior / Artrosis</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('knee-medial')">
-            <span>🦵</span> <span>Rodilla: Medial / Menisco</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('si-posterior-pelvic')">
-            <span>🎯</span> <span>Sacroilíaca: Laslett</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('elbow-lateral')">
-            <span>🦾</span> <span>Codo: Epicondilalgia</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('wrist-cts')">
+          <button class="recent-pathway-chip primary" onclick="window.ClinicalUI.startPathwayDirect('wrist-cts')">
             <span>🤲</span> <span>Mano: Túnel Carpiano</span>
           </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('wrist-radial')">
-            <span>🖐️</span> <span>Muñeca: De Quervain</span>
+          <button class="recent-pathway-chip primary" onclick="window.ClinicalUI.startPathwayDirect('si-posterior-pelvic')">
+            <span>🎯</span> <span>Sacroilíaca: Laslett</span>
           </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('ankle-plantar')">
-            <span>🦶</span> <span>Pie: Fascitis Plantar</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('ankle-medial')">
-            <span>🦶</span> <span>Tobillo: Medial / Tibial Post</span>
-          </button>
-          <button class="recent-pathway-chip" onclick="window.ClinicalUI.startPathwayDirect('nociplastic-pain')">
-            <span>🌪️</span> <span>Dolor Nociplástico / Fibromialgia</span>
+          <button class="recent-pathway-chip safety" onclick="window.ClinicalUI.startPathwayDirect('lumbar-nocturnal')">
+            <span>🚨</span> <span>Lumbar: Alarma Nocturna</span>
           </button>
         </div>
       </div>
 
       <div class="safety-disclaimer-footer">
-        <p><strong>AVISO CLÍNICO:</strong> Esta herramienta es un sistema de apoyo al razonamiento y toma de decisiones clínicas para profesionales médicos. No sustituye el juicio clínico independiente ni establece diagnósticos automatizados.</p>
+        <p><strong>AVISO MÉDICO:</strong> DOLOR es un sistema de apoyo al razonamiento clínico para facultativos. Diseñado por el Dr. Curro Mir. No sustituye el juicio clínico individual.</p>
       </div>
     `;
-
-    // Event listeners for mode cards
-    document.getElementById('btnLaunchClinicalMode')?.addEventListener('click', () => {
-      window.ClinicalUI.switchAppMode('clinical');
-      renderRegionSelector();
-    });
-
-    document.getElementById('btnLaunchTrainingMode')?.addEventListener('click', () => {
-      window.ClinicalUI.switchAppMode('clinical');
-      renderCaseSelector();
-    });
-
-    document.getElementById('btnLaunchLibraryMode')?.addEventListener('click', () => {
-      window.ClinicalUI.switchAppMode('library');
-    });
-
-    document.getElementById('btnLaunchVademecumMode')?.addEventListener('click', () => {
-      if (typeof window.switchTab === 'function') {
-        window.switchTab('tab-vademecum');
-      }
-    });
   }
 
   function renderRegionSelector() {
@@ -3019,6 +2950,12 @@
 
   function renderClinicalSummaryView(container) {
     const summary = uiState.engine.generateClinicalSummary();
+    const certainty = uiState.engine.getClinicalCertainty ? uiState.engine.getClinicalCertainty() : { label: 'Moderada', color: '#f59e0b', icon: '🟡', supporting: [], contradicting: [], decisiveToIncrease: '' };
+    const decisionChange = uiState.engine.getDecisionChangeSynthesis ? uiState.engine.getDecisionChangeSynthesis() : { mostSupporting: '', mostWeakening: '', mainAlternative: '', mustNotMiss: '', pendingFactToChangeConduct: '' };
+    const standardOutput = uiState.engine.generateStandardClinicalOutput ? uiState.engine.generateStandardClinicalOutput() : summary.text;
+    const diagnosis = uiState.engine.generateWorkingDiagnosis();
+    const topHyp = diagnosis.topHypothesis || {};
+    const generator = diagnosis.generator || {};
 
     container.innerHTML = `
       ${uiState.simulation ? `
@@ -3078,52 +3015,89 @@
           ` : ''}
 
           <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1rem;">
-            <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('clinical'); window.ClinicalUI.renderCaseSelector();" style="font-size: 0.84rem; padding: 0.5rem 1.1rem; background: #8b5cf6; cursor: pointer;">
+            <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('reasoning'); window.ClinicalUI.renderCaseSelector();" style="font-size: 0.84rem; padding: 0.5rem 1.1rem; background: #8b5cf6; cursor: pointer;">
               🎓 Evaluar Otro Caso Simulado
             </button>
           </div>
         </div>
       ` : ''}
 
-      <div class="clinical-summary-box glass-panel">
-        <div class="home-hero-badge" style="margin-bottom: 0.75rem;">
-          📋 Informe de Consulta — Listo para Copiar a Historia Clínica
+      <!-- SPRINT 14: TARJETA DE SÍNTESIS Y CERTEZA CLÍNICA -->
+      <div class="standard-output-card glass-panel" style="margin-bottom: 1.5rem; border-left: 5px solid ${certainty.color};">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+          <div style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">
+            IMPRESIÓN DIAGNÓSTICA & FENOTIPO
+          </div>
+          <div class="certainty-badge-pill" style="background: ${certainty.color}22; color: ${certainty.color}; border: 1.5px solid ${certainty.color}; padding: 0.3rem 0.85rem; border-radius: var(--radius-full); font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <span>${certainty.icon}</span> <span>Nivel de Certeza: ${certainty.label}</span>
+          </div>
         </div>
 
-        <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 1rem;">
-          Texto formateado y estructurado listo para volcar directamente al programa de historia clínica (Diraya / Gestor Hospitalario). Puedes editarlo antes de copiar.
-        </p>
+        <div class="output-grid-two-cols" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+          <div style="background: var(--bg-surface); padding: 0.9rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Diagnóstico Clínico Principal</div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin-top: 0.2rem;">${topHyp.name || 'Diagnóstico en estudio'}</div>
+            <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">${topHyp.description || ''}</div>
+          </div>
 
-        <textarea class="clinical-summary-textarea" id="clinicalSummaryText">${summary.text}</textarea>
+          <div style="background: var(--bg-surface); padding: 0.9rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Generador Probable & Mecanismo</div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: var(--accent-primary, #818cf8); margin-top: 0.2rem;">${generator.painGenerator || topHyp.name || 'Generador nociceptivo'}</div>
+            <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Mecanismo: <strong>${generator.mechanismLabel || 'Predominio nociceptivo/mecánico'}</strong>
+            </div>
+          </div>
+        </div>
 
-        <div class="summary-actions-bar">
-          <button class="clinical-action-btn" onclick="window.ClinicalUI.goToStep('coach')">
-            <span>← Revisar Pasos</span>
+        <!-- SPRINT 14: TARJETA DOCENTE ¿QUÉ CAMBIÓ MI DECISIÓN? -->
+        <div class="decision-reflection-box" style="background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: var(--radius-md); padding: 1rem 1.15rem; margin-bottom: 1.25rem;">
+          <div style="font-weight: 800; font-size: 0.88rem; color: var(--accent-primary, #818cf8); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.75rem;">
+            <span>💡</span> <span>¿QUÉ CAMBIÓ MI DECISIÓN? (Reflexión Clínica Docente)</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.84rem;">
+            <div><strong style="color: #10b981;">🟢 Dato clave que más apoya:</strong> ${decisionChange.mostSupporting}</div>
+            <div><strong style="color: #f59e0b;">⚠️ Dato que matiza o contradice:</strong> ${decisionChange.mostWeakening}</div>
+            <div><strong style="color: var(--text-secondary);">⚖️ Principal alternativa a vigilar:</strong> ${decisionChange.mainAlternative}</div>
+            <div><strong style="color: #ef4444;">🚨 Must-Not-Miss (Seguridad):</strong> ${decisionChange.mustNotMiss}</div>
+            <div><strong style="color: #3b82f6;">🔍 Dato pendiente que cambiaría conducta:</strong> ${decisionChange.pendingFactToChangeConduct}</div>
+          </div>
+        </div>
+
+        <!-- 3 BOTONES DE ACCIÓN ESTÁNDAR SPRINT 14 -->
+        <div class="standard-action-buttons-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-top: 1.25rem;">
+          <button class="vade-primary-btn" id="btnCopyStandardHC" onclick="window.ClinicalUI.copyStandardClinicalOutput()" style="padding: 0.75rem 1rem; font-size: 0.9rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer;">
+            <span>📋</span> <span id="copyStandardHCLabel">COPIAR HISTORIA</span>
           </button>
 
-          <button class="btn-copy-summary" id="btnCopyReport">
-            <span>📋</span> <span id="copyReportLabel">Copiar a Historia Clínica</span>
+          <button class="clinical-action-btn" onclick="window.ClinicalUI.openContextualCoachModal()" style="padding: 0.75rem 1rem; font-size: 0.9rem; font-weight: 700; background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.4); color: #10b981; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer;">
+            <span>🗣️</span> <span>COACH PACIENTE</span>
+          </button>
+
+          <button class="clinical-action-btn" onclick="window.ClinicalUI.startRazonamientoDeep(window.ClinicalUI.uiState?.currentPathwayId || uiState.currentPathwayId)" style="padding: 0.75rem 1rem; font-size: 0.9rem; font-weight: 700; background: rgba(139, 92, 246, 0.12); border-color: rgba(139, 92, 246, 0.4); color: #a78bfa; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer;">
+            <span>🧠</span> <span>PROFUNDIZAR / ¿POR QUÉ?</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TEXTAREA DE SALIDA COMPLETA -->
+      <div class="clinical-summary-box glass-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <h4 style="margin: 0; font-size: 0.9rem; color: var(--text-primary);">Nota Estructurada Completa para Volcado</h4>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Editable</span>
+        </div>
+        <textarea class="clinical-summary-textarea" id="clinicalSummaryText" style="min-height: 240px; font-family: monospace; font-size: 0.82rem; line-height: 1.45;">${standardOutput}</textarea>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <button class="clinical-action-btn" onclick="window.ClinicalUI.goToStep('coach')">
+            <span>← Paso Anterior</span>
+          </button>
+          <button class="vade-primary-btn" onclick="window.ClinicalUI.switchAppMode('home')" style="background: var(--bg-surface); color: var(--text-primary); border: 1.5px solid var(--border-color);">
+            <span>🏠 Finalizar y Volver al Inicio</span>
           </button>
         </div>
       </div>
     `;
-
-    document.getElementById('btnCopyReport')?.addEventListener('click', () => {
-      const textarea = document.getElementById('clinicalSummaryText');
-      if (textarea) {
-        navigator.clipboard.writeText(textarea.value).then(() => {
-          const lbl = document.getElementById('copyReportLabel');
-          if (lbl) {
-            lbl.textContent = '¡Copiado al Portapapeles! ✅';
-            setTimeout(() => { lbl.textContent = 'Copiar a Historia Clínica'; }, 2500);
-          }
-        }).catch(err => {
-          textarea.select();
-          document.execCommand('copy');
-          alert('Informe copiado.');
-        });
-      }
-    });
   }
 
   // ─────────────────────────────────────────────
@@ -3527,16 +3501,495 @@
     renderCurrentStep();
   }
 
+
+  // ─────────────────────────────────────────────
+  // SPRINT 14 — FOUR MASTER AREAS & REASONING HUB
+  // ─────────────────────────────────────────────
+
+  function startConsultaExpress(regionId) {
+    uiState.expressMode = true;
+    uiState.mentorMode = false;
+    localStorage.setItem('dolor_express_mode', 'true');
+    localStorage.setItem('dolor_mentor_mode', 'false');
+
+    switchAppMode('consultation');
+    if (regionId) {
+      renderPresentationSelector(regionId);
+    } else {
+      renderRegionSelector();
+    }
+  }
+
+  function startRazonamientoDeep(pathwayId) {
+    uiState.expressMode = false;
+    uiState.mentorMode = true;
+    localStorage.setItem('dolor_express_mode', 'false');
+    localStorage.setItem('dolor_mentor_mode', 'true');
+
+    switchAppMode('reasoning');
+    if (pathwayId) {
+      startPathway(pathwayId);
+    } else {
+      renderReasoningHub();
+    }
+  }
+
+  function renderReasoningHub(activeTab = 'pathways') {
+    if (!containers.clinical) return;
+
+    const registry = window.CLINICAL_PATHWAYS_REGISTRY || {};
+    const allPathways = [];
+    for (const regKey in registry) {
+      const reg = registry[regKey];
+      (reg.presentations || []).forEach(p => {
+        allPathways.push({
+          ...p,
+          regionId: regKey,
+          regionLabel: reg.label,
+          regionIcon: reg.icon
+        });
+      });
+    }
+
+    // Classify pathways by visualTier
+    const primaryPathways = allPathways.filter(p => p.visualTier === 'primary' || !p.visualTier);
+    const secondaryPathways = allPathways.filter(p => p.visualTier === 'secondary');
+    const safetyPathways = allPathways.filter(p => p.visualTier === 'safety');
+    const uncertainPathways = allPathways.filter(p => p.visualTier === 'uncertain');
+
+    containers.clinical.innerHTML = `
+      <div class="reasoning-hub-screen">
+        <div class="reasoning-hub-header glass-panel">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <div class="home-hero-badge" style="background: rgba(139, 92, 246, 0.15); color: #a78bfa;">
+              🧠 MODO RAZONAMIENTO CLÍNICO
+            </div>
+            <button class="clinical-action-btn" onclick="window.ClinicalUI.switchAppMode('home')" style="font-size: 0.8rem; padding: 0.35rem 0.8rem;">
+              <span>🏠 Volver al Inicio</span>
+            </button>
+          </div>
+          <h2>Comprender, Simular y Profundizar</h2>
+          <p>Explora 35 vías clínicas jerarquizadas, entrena con 9 casos clínicos a ciegas con auditoría de sesgos, o utiliza la calculadora bayesiana.</p>
+
+          <!-- SUBTABS DE RAZONAMIENTO -->
+          <div class="reasoning-subtabs-bar" style="display: flex; gap: 0.5rem; margin-top: 1.25rem; flex-wrap: wrap;">
+            <button class="reasoning-subtab-btn ${activeTab === 'pathways' ? 'active' : ''}" onclick="window.ClinicalUI.renderReasoningHub('pathways')">
+              <span>🗂️</span> <span>35 Clinical Pathways</span>
+            </button>
+            <button class="reasoning-subtab-btn ${activeTab === 'cases' ? 'active' : ''}" onclick="window.ClinicalUI.renderCaseSelector()">
+              <span>🎓</span> <span>9 Casos Simulados (A Ciegas)</span>
+            </button>
+            <button class="reasoning-subtab-btn ${activeTab === 'bayes' ? 'active' : ''}" onclick="window.ClinicalUI.openBayesianCalculatorModal()">
+              <span>📊</span> <span>Calculadora Bayesiana (Pre/Post)</span>
+            </button>
+          </div>
+        </div>
+
+        ${activeTab === 'pathways' ? `
+          <!-- SECCIÓN 1: PATHWAYS JERARQUIZADOS POR TIERS -->
+          <div class="pathways-tier-group" style="margin-top: 1.5rem;">
+            
+            <!-- TIER 1: PRIMARY / FRECUENTES -->
+            <div class="tier-container" style="margin-bottom: 2rem;">
+              <div class="tier-heading-row" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.85rem;">
+                <span style="font-size: 1.1rem;">🟢</span>
+                <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">Vías Principales de Consulta Diaria (${primaryPathways.length})</h3>
+                <span class="pres-tier-badge primary" style="margin-left: auto;">Alta Frecuencia</span>
+              </div>
+              <div class="tier-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                ${primaryPathways.map(p => `
+                  <div class="presentation-card tier-primary active-pathway" onclick="window.ClinicalUI.startPathwayDirect('${p.id}')">
+                    <div class="pres-info-group">
+                      <div class="pres-title-row">
+                        <span style="font-size: 1.2rem;">${p.regionIcon}</span>
+                        <h4>${p.label}</h4>
+                      </div>
+                      <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.25rem;">Región: ${p.regionLabel}</p>
+                    </div>
+                    <span class="pres-badge-status available">▶ Explorar</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- TIER 2: SECONDARY / MENOS HABITUALES -->
+            <div class="tier-container" style="margin-bottom: 2rem;">
+              <div class="tier-heading-row" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.85rem;">
+                <span style="font-size: 1.1rem;">🟣</span>
+                <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">Vías Secundarias y Diagnóstico de Descarte (${secondaryPathways.length})</h3>
+                <span class="pres-tier-badge secondary" style="margin-left: auto;">Menos habitual</span>
+              </div>
+              <div class="tier-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                ${secondaryPathways.map(p => `
+                  <div class="presentation-card tier-secondary active-pathway" onclick="window.ClinicalUI.startPathwayDirect('${p.id}')">
+                    <div class="pres-info-group">
+                      <div class="pres-title-row">
+                        <span style="font-size: 1.2rem;">${p.regionIcon}</span>
+                        <h4>${p.label}</h4>
+                      </div>
+                      <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.25rem;">Región: ${p.regionLabel}</p>
+                    </div>
+                    <span class="pres-badge-status available">▶ Explorar</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- TIER 3: SAFETY & BANDERAS ROJAS -->
+            <div class="tier-container" style="margin-bottom: 2rem;">
+              <div class="tier-heading-row" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.85rem;">
+                <span style="font-size: 1.1rem;">🔴</span>
+                <h3 style="margin: 0; font-size: 1.1rem; color: #ef4444;">Emergencias de Seguridad y Alarma (${safetyPathways.length})</h3>
+                <span class="pres-tier-badge safety" style="margin-left: auto;">Crítico</span>
+              </div>
+              <div class="tier-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                ${safetyPathways.map(p => `
+                  <div class="presentation-card tier-safety active-pathway" onclick="window.ClinicalUI.startPathwayDirect('${p.id}')">
+                    <div class="pres-info-group">
+                      <div class="pres-title-row">
+                        <span style="font-size: 1.2rem;">${p.regionIcon}</span>
+                        <h4>${p.label}</h4>
+                      </div>
+                      <p style="font-size: 0.78rem; color: #ef4444; margin-top: 0.25rem;">Región: ${p.regionLabel} · Descarte urgente</p>
+                    </div>
+                    <span class="pres-badge-status available" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">▶ Safety</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- TIER 4: UNCERTAINTY -->
+            ${uncertainPathways.length > 0 ? `
+              <div class="tier-container" style="margin-bottom: 2rem;">
+                <div class="tier-heading-row" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.85rem;">
+                  <span style="font-size: 1.1rem;">🟡</span>
+                  <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">Manejo de la Incertidumbre Clínica (${uncertainPathways.length})</h3>
+                  <span class="pres-tier-badge uncertain" style="margin-left: auto;">Incertidumbre</span>
+                </div>
+                <div class="tier-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                  ${uncertainPathways.map(p => `
+                    <div class="presentation-card tier-uncertain active-pathway" onclick="window.ClinicalUI.startPathwayDirect('${p.id}')">
+                      <div class="pres-info-group">
+                        <div class="pres-title-row">
+                          <span style="font-size: 1.2rem;">${p.regionIcon}</span>
+                          <h4>${p.label}</h4>
+                        </div>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.25rem;">Región: ${p.regionLabel}</p>
+                      </div>
+                      <span class="pres-badge-status available">▶ Explorar</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }
+
+  function openBayesianCalculatorModal(testName = 'Test de Spurling', sn = 0.50, sp = 0.94, lrPlus = 8.3, lrMinus = 0.53) {
+    const modalHtml = `
+      <div class="aux-modal-header" style="border-bottom: 2px solid var(--accent-primary, #6366f1);">
+        <h3><span>📊</span> <span>Calculadora Bayesiana de Probabilidad Pre/Post-Test</span></h3>
+      </div>
+      <div class="aux-items-list">
+        <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Los tests ortopédicos no emiten diagnósticos absolutos; modifican la probabilidad clínica previa mediante su <strong>Likelihood Ratio (LR)</strong>.
+        </p>
+
+        <!-- PRESETS RÁPIDOS -->
+        <div style="margin-bottom: 1.25rem;">
+          <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.4rem;">Presets Clínicos Auditados:</div>
+          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+            <button class="vade-quick-tag" onclick="window.ClinicalUI.setBayesPreset('Spurling (Cervical)', 0.50, 0.94, 8.3, 0.53)">Spurling (Radic. Cervical)</button>
+            <button class="vade-quick-tag" onclick="window.ClinicalUI.setBayesPreset('Lasègue <60° (Hernia L5/S1)', 0.91, 0.26, 1.23, 0.35)">Lasègue SLR (Sensible)</button>
+            <button class="vade-quick-tag" onclick="window.ClinicalUI.setBayesPreset('Lasègue Cruzado', 0.25, 0.90, 4.4, 0.83)">Lasègue Cruzado (Específico)</button>
+            <button class="vade-quick-tag" onclick="window.ClinicalUI.setBayesPreset('Clúster Laslett ≥3+', 0.91, 0.87, 7.0, 0.10)">Laslett Sacroilíaca ≥3+</button>
+            <button class="vade-quick-tag" onclick="window.ClinicalUI.setBayesPreset('Lever Sign / Lelli (LCA)', 0.94, 0.98, 47.0, 0.06)">Lever Sign Lelli (LCA)</button>
+          </div>
+        </div>
+
+        <!-- CONTROLES INTERACTIVOS -->
+        <div style="background: var(--bg-surface); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 1.25rem;">
+          <div style="font-weight: 800; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;" id="bayesTestTitle">
+            ${testName}
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <label style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 0.3rem;">
+                Probabilidad Pretest (%): <strong id="bayesPretestVal">30%</strong>
+              </label>
+              <input type="range" id="bayesPretestSlider" min="1" max="99" value="30" style="width: 100%; cursor: pointer;" oninput="window.ClinicalUI.recalcBayesLive()">
+            </div>
+
+            <div>
+              <label style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 0.3rem;">
+                Resultado del Test:
+              </label>
+              <select id="bayesResultSelect" style="width: 100%; padding: 0.4rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); font-weight: 700;" onchange="window.ClinicalUI.recalcBayesLive()">
+                <option value="pos" selected>Positivo (+) — Aplica LR+ (<span id="bayesLrPosText">${lrPlus}</span>)</option>
+                <option value="neg">Negativo (-) — Aplica LR- (<span id="bayesLrNegText">${lrMinus}</span>)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- RESULTADO VISUAL BAYES -->
+          <div id="bayesOutputCard" style="background: rgba(16, 185, 129, 0.08); border: 1.5px solid #10b981; border-radius: var(--radius-md); padding: 1rem; text-align: center;">
+            <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 800; color: #10b981; margin-bottom: 0.25rem;">
+              Probabilidad Post-Test Calculada:
+            </div>
+            <div style="font-size: 2.2rem; font-weight: 900; color: #10b981;" id="bayesPosttestVal">
+              78%
+            </div>
+            <div style="font-size: 0.84rem; color: var(--text-secondary); margin-top: 0.35rem;" id="bayesShiftText">
+              El test positivo elevó la probabilidad diagnóstica del <strong>30%</strong> al <strong>78%</strong> (+48%).
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: right;">
+          <button class="vade-primary-btn" onclick="window.ClinicalUI.closeAuxModal()" style="padding: 0.5rem 1.25rem;">Entendido</button>
+        </div>
+      </div>
+    `;
+
+    showAuxModal(modalHtml);
+    window._currentBayesParams = { testName, sn, sp, lrPlus, lrMinus };
+    recalcBayesLive();
+  }
+
+  function setBayesPreset(name, sn, sp, lrPlus, lrMinus) {
+    window._currentBayesParams = { testName: name, sn, sp, lrPlus, lrMinus };
+    const titleEl = document.getElementById('bayesTestTitle');
+    const lrPosEl = document.getElementById('bayesLrPosText');
+    const lrNegEl = document.getElementById('bayesLrNegText');
+    if (titleEl) titleEl.textContent = name;
+    if (lrPosEl) lrPosEl.textContent = lrPlus;
+    if (lrNegEl) lrNegEl.textContent = lrMinus;
+    recalcBayesLive();
+  }
+
+  function recalcBayesLive() {
+    const slider = document.getElementById('bayesPretestSlider');
+    const select = document.getElementById('bayesResultSelect');
+    const pretestValEl = document.getElementById('bayesPretestVal');
+    const posttestValEl = document.getElementById('bayesPosttestVal');
+    const shiftTextEl = document.getElementById('bayesShiftText');
+    const outCard = document.getElementById('bayesOutputCard');
+
+    if (!slider || !select || !window._currentBayesParams) return;
+
+    const pretestPct = Number(slider.value) || 30;
+    if (pretestValEl) pretestValEl.textContent = `${pretestPct}%`;
+
+    const isPos = select.value === 'pos';
+    const lr = isPos ? (window._currentBayesParams.lrPlus || 1.0) : (window._currentBayesParams.lrMinus || 1.0);
+
+    const pretestProb = pretestPct / 100;
+    const pretestOdds = pretestProb / (1 - pretestProb);
+    const posttestOdds = pretestOdds * lr;
+    const posttestProb = posttestOdds / (1 + posttestOdds);
+    const posttestPct = Math.round(posttestProb * 100);
+    const diff = posttestPct - pretestPct;
+
+    if (posttestValEl) posttestValEl.textContent = `${posttestPct}%`;
+    if (shiftTextEl) {
+      if (diff >= 0) {
+        shiftTextEl.innerHTML = `El test ${isPos ? 'positivo (+)' : 'negativo (-)'} eleva la sospecha clínica de <strong>${pretestPct}%</strong> a <strong>${posttestPct}%</strong> (+${diff}%).`;
+      } else {
+        shiftTextEl.innerHTML = `El test ${isPos ? 'positivo (+)' : 'negativo (-)'} reduce la probabilidad diagnóstica de <strong>${pretestPct}%</strong> a <strong>${posttestPct}%</strong> (${diff}%).`;
+      }
+    }
+
+    if (outCard) {
+      const color = posttestPct >= 70 ? '#10b981' : posttestPct >= 40 ? '#f59e0b' : '#3b82f6';
+      outCard.style.borderColor = color;
+      outCard.style.background = `${color}11`;
+      if (posttestValEl) posttestValEl.style.color = color;
+    }
+  }
+
+  function openContextualCoachModal() {
+    if (!uiState.engine) return;
+    const diagnosis = uiState.engine.generateWorkingDiagnosis();
+    const certainty = uiState.engine.getClinicalCertainty();
+    const pathway = uiState.engine.pathway;
+    const topHyp = diagnosis.topHypothesis || {};
+    const generator = diagnosis.generator || {};
+
+    showAuxModal(`
+      <div class="aux-modal-header" style="border-bottom: 2px solid #10b981;">
+        <h3><span>🗣️</span> <span>Guion y Pedagogía para el Paciente (Coach Clínico)</span></h3>
+      </div>
+      <div class="aux-items-list">
+        <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Explicación adaptada al diagnóstico de <strong>${topHyp.name || pathway.presentation}</strong> sin términos amenazantes ni efecto nocebo.
+        </p>
+
+        <div class="coach-speech-card" style="background: rgba(16, 185, 129, 0.08); border-left: 4px solid #10b981; padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1rem;">
+          <h4 style="color: #10b981; margin: 0 0 0.5rem; font-size: 0.95rem;">1. Metáfora Explicativa del Origen del Dolor:</h4>
+          <p style="font-size: 0.86rem; color: var(--text-primary); line-height: 1.5; margin: 0;">
+            "Lo que sientes en tu ${pathway.regionLabel || 'zona afectada'} no se debe a que la estructura esté rota irreparablemente, sino a que el sistema de alarma de los tejidos está excesivamente sensibilizado. Nuestro objetivo es calmar esa alarma y reeducar la tolerancia al movimiento."
+          </p>
+        </div>
+
+        <div class="coach-speech-card" style="background: rgba(99, 102, 241, 0.08); border-left: 4px solid #6366f1; padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1rem;">
+          <h4 style="color: #818cf8; margin: 0 0 0.5rem; font-size: 0.95rem;">2. Mensaje sobre el Ejercicio y la Carga:</h4>
+          <p style="font-size: 0.86rem; color: var(--text-primary); line-height: 1.5; margin: 0;">
+            "El dolor durante el ejercicio no significa daño. Una molestia leve (hasta 3-4 sobre 10) que desaparece en las horas siguientes es el estímulo seguro y necesario para que el tejido se fortalezca y recupere su función."
+          </p>
+        </div>
+
+        <div class="coach-speech-card" style="background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.25rem;">
+          <h4 style="color: #f59e0b; margin: 0 0 0.5rem; font-size: 0.95rem;">3. Expectativas sobre Infiltraciones o Fármacos:</h4>
+          <p style="font-size: 0.86rem; color: var(--text-primary); line-height: 1.5; margin: 0;">
+            "La medicación o la técnica ecoguiada no son una solución mágica que reemplace la rehabilitación; son una 'ventana de oportunidad' para bajar la intensidad del dolor y permitirte recuperar tu actividad diaria y tu ejercicio sin sufrimiento."
+          </p>
+        </div>
+
+        <div style="text-align: right;">
+          <button class="vade-primary-btn" onclick="window.ClinicalUI.closeAuxModal()" style="padding: 0.5rem 1.25rem;">Cerrar</button>
+        </div>
+      </div>
+    `);
+  }
+
+  function copyStandardClinicalOutput() {
+    if (!uiState.engine) return;
+    const text = uiState.engine.generateStandardClinicalOutput ? uiState.engine.generateStandardClinicalOutput() : '';
+    const textarea = document.getElementById('clinicalSummaryText');
+    const content = (textarea && textarea.value) ? textarea.value : text;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(content).then(() => {
+        const lbl = document.getElementById('copyStandardHCLabel');
+        if (lbl) {
+          lbl.textContent = '¡COPIADO A HC! ✅';
+          setTimeout(() => { lbl.textContent = 'COPIAR HISTORIA'; }, 2500);
+        }
+      }).catch(() => {
+        if (textarea) textarea.select();
+        document.execCommand('copy');
+      });
+    } else {
+      if (textarea) textarea.select();
+      document.execCommand('copy');
+    }
+  }
+
+  function handleUniversalSearch(query) {
+    const q = (query || '').trim().toLowerCase();
+    const resultsContainer = document.getElementById('homeUniversalSearchResults');
+    const clearBtn = document.getElementById('homeClearSearchBtn');
+    if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+
+    if (!resultsContainer) return;
+
+    if (!q || q.length < 2) {
+      resultsContainer.style.display = 'none';
+      resultsContainer.innerHTML = '';
+      return;
+    }
+
+    const matches = [];
+
+    // 1. Search Pathways
+    const registry = window.CLINICAL_PATHWAYS_REGISTRY || {};
+    for (const regKey in registry) {
+      const reg = registry[regKey];
+      (reg.presentations || []).forEach(p => {
+        if (p.label.toLowerCase().includes(q) || reg.label.toLowerCase().includes(q)) {
+          matches.push({
+            type: 'pathway',
+            icon: reg.icon || '🩺',
+            badge: 'Clinical Pathway',
+            title: p.label,
+            subtitle: `Región: ${reg.label}`,
+            action: `window.ClinicalUI.startPathwayDirect('${p.id}')`
+          });
+        }
+      });
+    }
+
+    // 2. Search Tests
+    const tests = (window.state && window.state.tests) || (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.tests_catalog && window.EMBEDDED_BUNDLE.tests_catalog.tests) || [];
+    tests.forEach(t => {
+      if (t.name.toLowerCase().includes(q) || (t.clinical_interpretation && t.clinical_interpretation.toLowerCase().includes(q)) || (t.area && t.area.toLowerCase().includes(q))) {
+        matches.push({
+          type: 'test',
+          icon: '📋',
+          badge: 'Test Físico',
+          title: t.name,
+          subtitle: `${t.area_label || t.area} · Sn: ${Math.round((t.sensitivity || 0.8) * 100)}% | Sp: ${Math.round((t.specificity || 0.8) * 100)}%`,
+          action: `window.ClinicalUI.switchAppMode('library'); if (window.openTestModal) window.openTestModal('${t.id}')`
+        });
+      }
+    });
+
+    // 3. Search Drugs / Infiltrations / RF in Vademecum
+    const vade = (window.EMBEDDED_BUNDLE && window.EMBEDDED_BUNDLE.vademecum && window.EMBEDDED_BUNDLE.vademecum.drugs) || [];
+    vade.forEach(d => {
+      if (d.name.toLowerCase().includes(q) || (d.category && d.category.toLowerCase().includes(q)) || (d.indication && d.indication.toLowerCase().includes(q))) {
+        matches.push({
+          type: 'drug',
+          icon: d.category === 'intervencionismo_ecoguiado' ? '💉' : d.category === 'radiofrecuencia' ? '⚡' : '💊',
+          badge: d.category === 'intervencionismo_ecoguiado' ? 'Infiltración' : d.category === 'radiofrecuencia' ? 'Radiofrecuencia' : 'Fármaco',
+          title: d.name,
+          subtitle: `${d.indication || d.mechanism || 'Vademécum de Dolor'}`,
+          action: `window.ClinicalUI.switchAppMode('techniques'); if (window.Vademecum) { window.Vademecum.setMode('drugs'); window.Vademecum.openDrugModal('${d.id}'); }`
+        });
+      }
+    });
+
+    if (matches.length === 0) {
+      resultsContainer.style.display = 'block';
+      resultsContainer.innerHTML = `
+        <div style="padding: 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+          No se encontraron resultados para "<strong>${escapeHtml(query)}</strong>". Prueba con <em>ciática, hombro, pregabalina, epidural, Lasègue, facetario</em>...
+        </div>
+      `;
+      return;
+    }
+
+    resultsContainer.style.display = 'block';
+    resultsContainer.innerHTML = `
+      <div class="universal-search-results-list" style="display: flex; flex-direction: column; gap: 0.35rem;">
+        ${matches.slice(0, 8).map(m => `
+          <div class="universal-search-item" onclick="${m.action}" style="display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); background: var(--bg-surface); border: 1px solid var(--border-color); cursor: pointer; transition: all 0.15s ease;">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <span style="font-size: 1.2rem;">${m.icon}</span>
+              <div>
+                <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">${m.title}</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">${m.subtitle}</div>
+              </div>
+            </div>
+            <span class="treatment-badge-pill blue" style="font-size: 0.7rem;">${m.badge}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function clearUniversalSearch() {
+    const input = document.getElementById('homeUniversalSearchInput');
+    if (input) input.value = '';
+    handleUniversalSearch('');
+  }
+
+
   function switchAppMode(mode) {
     const homeEl = document.getElementById('home-screen');
     const clinicalEl = document.getElementById('clinical-reasoning-container');
-    const mainHeader = document.querySelector('.main-header');
+    const mainHeader = document.querySelector('.main-header') || document.getElementById('appMainHeader');
     const navTabs = document.querySelector('.nav-tabs-wrapper');
     const filtersSection = document.querySelector('.filters-section');
     const mainContent = document.querySelector('.main-content');
     const mobileBottomBar = document.querySelector('.mobile-bottom-bar');
 
-    // Reset all modes
+    // Reset all workspaces
     if (homeEl) homeEl.style.display = 'none';
     if (clinicalEl) clinicalEl.style.display = 'none';
     if (mainHeader) mainHeader.style.display = 'none';
@@ -3549,7 +4002,7 @@
         homeEl.style.display = 'block';
         renderHomeScreen();
       }
-    } else if (mode === 'clinical') {
+    } else if (mode === 'consultation' || mode === 'clinical') {
       if (clinicalEl) {
         clinicalEl.style.display = 'block';
         if (!uiState.engine) {
@@ -3558,6 +4011,20 @@
           renderCurrentStep();
         }
       }
+    } else if (mode === 'reasoning') {
+      if (clinicalEl) {
+        clinicalEl.style.display = 'block';
+        if (!uiState.engine) {
+          renderReasoningHub();
+        } else {
+          renderCurrentStep();
+        }
+      }
+    } else if (mode === 'techniques') {
+      if (mainHeader) mainHeader.style.display = 'block';
+      if (navTabs) navTabs.style.display = 'block';
+      if (mainContent) mainContent.style.display = 'block';
+      if (window.switchTab) window.switchTab('tab-ultrasound');
     } else if (mode === 'library') {
       if (mainHeader) mainHeader.style.display = 'block';
       if (navTabs) navTabs.style.display = 'block';
@@ -3566,11 +4033,19 @@
       if (window.switchTab) window.switchTab('tab-tests');
     }
 
-    // Sync mobile bottom bar items if present
+    // Sync header navigation buttons
+    document.querySelectorAll('.header-nav-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-mode') === mode);
+    });
+
+    // Sync mobile bottom bar items
     document.querySelectorAll('.mobile-nav-item').forEach(btn => {
-      const tab = btn.getAttribute('data-tab');
-      if (mode === 'home' && tab === 'tab-home') btn.classList.add('active');
-      else if (mode === 'clinical' && tab === 'tab-clinical') btn.classList.add('active');
+      const btnMode = btn.getAttribute('data-mode') || btn.getAttribute('data-tab');
+      if (mode === 'home' && (btnMode === 'home' || btnMode === 'tab-home')) btn.classList.add('active');
+      else if ((mode === 'consultation' || mode === 'clinical') && (btnMode === 'consultation' || btnMode === 'tab-clinical')) btn.classList.add('active');
+      else if (mode === 'reasoning' && (btnMode === 'reasoning' || btnMode === 'tab-quiz')) btn.classList.add('active');
+      else if (mode === 'techniques' && (btnMode === 'techniques' || btnMode === 'tab-vademecum')) btn.classList.add('active');
+      else if (mode === 'library' && (btnMode === 'library' || btnMode === 'tab-tests')) btn.classList.add('active');
       else btn.classList.remove('active');
     });
 
@@ -3584,6 +4059,17 @@
   window.ClinicalUI = {
     init: initClinicalUI,
     switchAppMode: switchAppMode,
+    startConsultaExpress: startConsultaExpress,
+    startRazonamientoDeep: startRazonamientoDeep,
+    renderReasoningHub: renderReasoningHub,
+    openBayesianCalculatorModal: openBayesianCalculatorModal,
+    setBayesPreset: setBayesPreset,
+    recalcBayesLive: recalcBayesLive,
+    openContextualCoachModal: openContextualCoachModal,
+    copyStandardClinicalOutput: copyStandardClinicalOutput,
+    handleUniversalSearch: handleUniversalSearch,
+    clearUniversalSearch: clearUniversalSearch,
+    closeAuxModal: closeAuxModal,
     renderHomeScreen: renderHomeScreen,
     renderRegionSelector: renderRegionSelector,
     selectRegion: renderPresentationSelector,
