@@ -2122,6 +2122,20 @@
                 </div>
               </div>
             ` : ''}
+
+            ${plan.tiers[4].neuromodulationNotice ? `
+              <div class="safety-header-banner safe" style="margin-top: 1rem; border: 1.5px dashed rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.05); padding: 0.9rem 1.15rem; border-radius: var(--radius-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.4rem;">
+                  <strong style="font-size: 0.88rem; color: #dc2626; display: flex; align-items: center; gap: 0.4rem;">
+                    <span>🚫</span> ${plan.tiers[4].neuromodulationNotice.title}
+                  </strong>
+                  <span class="treatment-badge-pill red" style="font-size: 0.68rem;">${plan.tiers[4].neuromodulationNotice.badge}</span>
+                </div>
+                <p style="margin: 0; font-size: 0.82rem; color: var(--text-secondary); line-height: 1.45;">
+                  ${plan.tiers[4].neuromodulationNotice.reason}
+                </p>
+              </div>
+            ` : ''}
           </div>
         </div>
 

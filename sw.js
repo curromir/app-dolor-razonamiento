@@ -1,5 +1,5 @@
-// Service Worker v55.0 - Fix Anamnesis Review Backwards Navigation Release
-const CACHE_NAME = 'dolor-tests-v55';
+// Service Worker v61.0 - Official Release with Strict Mechanism-based Pharmacology
+const CACHE_NAME = 'dolor-tests-v61';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
