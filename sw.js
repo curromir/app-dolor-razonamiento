@@ -1,5 +1,5 @@
-// Service Worker v46.0 - Interventional Pharmacology & Exact Dosages Release
-const CACHE_NAME = 'dolor-tests-v46';
+// Service Worker v47.0 - Dr. Curro Mir Prednisone Tapering Protocol Release
+const CACHE_NAME = 'dolor-tests-v47';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

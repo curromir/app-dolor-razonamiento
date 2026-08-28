@@ -2115,7 +2115,7 @@
     },
     {
       "id": "med-prednisone",
-      "genericName": "Prednisona / Metilprednisolona Oral",
+      "genericName": "Prednisona 30 mg (Pauta Descendente Dr. Curro Mir)",
       "brandNames": [
         "Dacortin",
         "Prednisona",
@@ -2127,8 +2127,8 @@
       "safetyTrafficLight": "orange",
       "categoryBadge": "🟡 Uso Seleccionado / NO Rutinario en Ciática",
       "quickSummary": {
-        "initialDose": "Pauta Pragmática: 40 mg matutina x 5d | Pauta RCT: 60mg x5d → 40mg x5d → 20mg x5d",
-        "targetDose": "Pauta corta matutina con desayuno",
+        "initialDose": "Pauta Dr. Curro Mir (16d): 30mg (1 comp) x4d → 22.5mg (¾ comp) x4d → 15mg (½ comp) x4d → 7.5mg (¼ comp) x4d → Fin",
+        "targetDose": "1 comp (30 mg) matutino inicial con descenso cada 4 días",
         "maxDose": "60 mg/día (total 600 mg en RCT Goldberg)",
         "keyIndications": [
           "Radiculopatía lumbar aguda severa incapacitante seleccionada",
@@ -2151,8 +2151,8 @@
         }
       ],
       "dosing": {
-        "initial": "Pauta clínica pragmática: 40 mg/día en toma única matutina con desayuno durante 5 días y suspender",
-        "usual": "Pauta del ensayo clínico RCT de Goldberg: 60 mg/d (días 1–5) → 40 mg/d (días 6–10) → 20 mg/d (días 11–15) [total 600 mg]",
+        "initial": "1 comprimido de 30 mg por la mañana con desayuno durante 4 días",
+        "usual": "Pauta descendente de 16 días: 30 mg (1 comp) x4d → 22,5 mg (¾ comp) x4d → 15 mg (½ comp) x4d → 7,5 mg (¼ comp) x4d → Suspender",
         "maximum": "60 mg/día en ciclo corto descendente",
         "titration": [
           "Etiquetar explícitamente la pauta pragmática como práctica clínica y NO del RCT principal",
@@ -2160,7 +2160,34 @@
         ],
         "timing": "Toma única matutina con el desayuno (para mimetizar el pico fisiológico de cortisol y evitar insomnio).",
         "onset": "1 a 2 días",
-        "reviewInterval": "Reevaluar a los 7–14 días"
+        "reviewInterval": "Reevaluar a los 7–14 días",
+        "schedule": [
+          {
+            "period": "Días 1 a 4",
+            "dose": "30 mg (1 comp)",
+            "timing": "Mañana con desayuno"
+          },
+          {
+            "period": "Días 5 a 8",
+            "dose": "22,5 mg (¾ comp)",
+            "timing": "Mañana con desayuno"
+          },
+          {
+            "period": "Días 9 a 12",
+            "dose": "15 mg (½ comp)",
+            "timing": "Mañana con desayuno"
+          },
+          {
+            "period": "Días 13 a 16",
+            "dose": "7,5 mg (¼ comp)",
+            "timing": "Mañana con desayuno"
+          },
+          {
+            "period": "Día 17",
+            "dose": "0 mg",
+            "timing": "Suspender"
+          }
+        ]
       },
       "safety": {
         "contraindications": [
@@ -2200,7 +2227,7 @@
         "Evidencia del Ensayo de Goldberg (JAMA 2015): La prednisona oral en hernia discal aguda produjo una modesta mejoría funcional a corto plazo sin mejoría estadísticamente significativa en el dolor y con mayor tasa de efectos adversos. Reservar solo para casos seleccionados.",
         "Tomar SIEMPRE por la mañana con el desayuno para evitar insomnio nocturno y supresión del eje suprarrenal."
       ],
-      "prescriptionTemplate": "Prednisona 40 mg: Tomar 1 comprimido por la mañana con el desayuno durante 5 días y después suspender (+ Omeprazol 20 mg/día). No repetir.",
+      "prescriptionTemplate": "Prednisona 30 mg (comp. ranurados): 1 comp (30 mg) × 4d → ¾ comp (22,5 mg) × 4d → ½ comp (15 mg) × 4d → ¼ comp (7,5 mg) × 4d → Suspender (+ Omeprazol 20 mg/día).",
       "clinicalVersion": "v2.6",
       "lastReviewed": "Agosto 2026"
     },

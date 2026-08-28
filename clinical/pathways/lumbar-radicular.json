@@ -972,17 +972,18 @@
           ]
         },
         {
-          "name": "Corticoide Oral (Uso Seleccionado / No Rutinario)",
+          "name": "Corticoide Oral — Pauta Descendente Dr. Curro Mir (16 días)",
           "indication": "Radiculopatía aguda severa con intenso dolor e inflamación perineural.",
-          "example": "Prednisona 40 mg / 24 h por la mañana durante 5 días y suspender",
-          "duration": "5 días (NO repetir ciclos)",
+          "example": "Prednisona 30 mg (comp. ranurados): 1 comp (30 mg) × 4 días → ¾ comp (22,5 mg) × 4 días → ½ comp (15 mg) × 4 días → ¼ comp (7,5 mg) × 4 días → Suspender (+ Omeprazol 20 mg/día)",
+          "duration": "16 días en pauta descendente progresiva",
           "evidenceNote": "El RCT principal (Goldberg JAMA 2015) demostró modesta mejoría funcional sin mejoría del dolor frente a placebo. La pauta de 40 mg/d x5d es una práctica clínica pragmática seleccionada, NO la pauta validada del RCT. NICE no lo recomienda de rutina.",
           "guardrails": [
             "Diabetes mellitus (monitorizar glucemia)",
             "HTA",
             "Insomnio",
             "Úlcera péptica"
-          ]
+          ],
+          "taperingSchedule": "30 mg x4d → 22.5 mg x4d → 15 mg x4d → 7.5 mg x4d → Fin"
         },
         {
           "name": "Neuromoduladores (Condition-Specific Override)",

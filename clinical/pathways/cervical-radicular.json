@@ -749,15 +749,16 @@
           ]
         },
         {
-          "name": "AINEs / Corticoides en ciclo corto",
+          "name": "Corticoide Oral — Pauta Descendente Dr. Curro Mir (16 días)",
           "indication": "Fase hiperaguda inflamatoria (primeras 1-2 semanas).",
-          "example": "Metilprednisolona oral pauta descendente en 6 días o Naproxeno 500mg/12h",
-          "duration": "7-10 días máximo",
+          "example": "Prednisona 30 mg (comp. ranurados): 1 comp (30 mg) × 4 días → ¾ comp (22,5 mg) × 4 días → ½ comp (15 mg) × 4 días → ¼ comp (7,5 mg) × 4 días → Suspender (+ Omeprazol 20 mg/día)",
+          "duration": "16 días en pauta descendente progresiva",
           "guardrails": [
             "Riesgo gastrointestinal",
             "Hipertensión",
             "Diabetes (control de glucemias)"
-          ]
+          ],
+          "taperingSchedule": "30 mg x4d → 22.5 mg x4d → 15 mg x4d → 7.5 mg x4d → Fin"
         }
       ]
     },

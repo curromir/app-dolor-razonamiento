@@ -1160,7 +1160,15 @@ class ClinicalReasoningEngine {
     if (pharma.length > 0) {
       pharma.forEach(m => {
         if (!m.isContraindicated) {
-          lines.push(`   • ${m.genericName}: ${m.usualDose} (${m.frequency}). Duración: ${m.duration || 'Ciclo corto'}.`);
+          if (m.taperingSchedule) {
+            lines.push(`   • ${m.genericName}:`);
+            lines.push(`     - Pauta Descendente: 1 comp (30 mg) × 4d → ¾ comp (22,5 mg) × 4d → ½ comp (15 mg) × 4d → ¼ comp (7,5 mg) × 4d → Suspender.`);
+            m.taperingSchedule.forEach(s => {
+              lines.push(`       · ${s.days}: ${s.dose} (${s.tabletFraction}) — ${s.timing}`);
+            });
+          } else {
+            lines.push(`   • ${m.genericName}: ${m.usualDose} (${m.frequency}). Duración: ${m.duration || 'Ciclo corto'}.`);
+          }
           if (m.activeWarnings && m.activeWarnings.length > 0) {
             lines.push(`     ${m.activeWarnings.join(' ')}`);
           }

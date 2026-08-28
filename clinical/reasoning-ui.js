@@ -1937,6 +1937,20 @@
                     </div>
                   </div>
 
+                  ${opt.taperingSchedule ? `
+                    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; margin-top: 0.45rem;">
+                      <strong style="font-size: 0.82rem; color: #10b981; display: block; margin-bottom: 0.3rem;">📋 Pauta Descendente Escalonada Dr. Curro Mir (16 días):</strong>
+                      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.35rem; font-size: 0.74rem;">
+                        ${opt.taperingSchedule.map(s => `
+                          <div style="background: var(--bg-surface); padding: 0.3rem 0.45rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                            <strong style="color: var(--text-primary); display: block;">${s.days}</strong>
+                            <span style="color: #60a5fa; font-weight: 700;">${s.dose} (${s.tabletFraction})</span>
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+                  ` : ''}
+
                   ${(opt.activeWarnings || []).map(w => `
                     <div class="pharma-warning-pill">${w}</div>
                   `).join('')}

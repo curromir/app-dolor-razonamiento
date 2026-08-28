@@ -396,14 +396,14 @@
     },
     "prednisone_oral": {
       "id": "med-prednisone-oral",
-      "genericName": "Prednisona Oral (Uso Seleccionado en Ciática)",
+      "genericName": "Prednisona Oral 30 mg (Pauta Descendente Dr. Curro Mir / Radiculopatía)",
       "category": "Corticoide sistémico oral",
       "indication": "Uso seleccionado y NO rutinario en radiculopatía lumbar aguda severa hiperálgica con sospecha de edema perineural agudo.",
-      "initialDose": "40 mg / 24 h por la mañana durante 5 días y suspender (pauta pragmática clínica)",
-      "usualDose": "40 mg / 24 h en toma única matutina con desayuno",
-      "frequency": "Una toma matutina (para respetar el ritmo circadiano de cortisol)",
+      "initialDose": "30 mg (1 comp entero) por la mañana con el desayuno × 4 días",
+      "usualDose": "Pauta descendente de 16 días: 1 comp (30 mg) × 4d → ¾ comp (22.5 mg) × 4d → ½ comp (15 mg) × 4d → ¼ comp (7.5 mg) × 4d → Suspender",
+      "frequency": "Toma única matutina con el desayuno (respetar ritmo circadiano y prevenir insomnio)",
       "maximumDose": "60 mg / día en pauta de ensayo de Goldberg (60mg x5d → 40mg x5d → 20mg x5d; total 600 mg)",
-      "duration": "Ciclo corto máximo de 5 a 15 días; NO repetir ciclos automáticamente.",
+      "duration": "Pauta completa de 16 días (4 escalones de 4 días cada uno)",
       "rescueDose": "No aplicable.",
       "renalAdjustment": "No requiere ajuste específico.",
       "hepaticAdjustment": "La prednisona requiere conversión hepática a prednisolona; precaución en hepatopatía grave.",
@@ -437,7 +437,41 @@
         "level": "limited",
         "badge": "🟡 USO SELECCIONADO / NO RUTINARIO EN CIÁTICA",
         "note": "Desaconsejado de rutina por NICE NG59 debido a modesto beneficio funcional sin reducción del dolor y más efectos adversos (RCT Goldberg JAMA)."
-      }
+      },
+      "prescriptionTemplate": "Prednisona 30 mg (comprimidos ranurados): Tomar 1 vez al día por la mañana con el desayuno:\n• Días 1 a 4: 1 comprimido (30 mg)\n• Días 5 a 8: ¾ de comprimido (22,5 mg)\n• Días 9 a 12: ½ comprimido (15 mg)\n• Días 13 a 16: ¼ de comprimido (7,5 mg)\n• Día 17: Suspender.\n(+ Omeprazol 20 mg/día en ayunas). En pacientes diabéticos: monitorizar glucemias capilares.",
+      "taperingSchedule": [
+        {
+          "days": "Días 1 a 4 (4 días)",
+          "tabletFraction": "1 comp entero",
+          "dose": "30 mg/día",
+          "timing": "Mañana con desayuno"
+        },
+        {
+          "days": "Días 5 a 8 (4 días)",
+          "tabletFraction": "¾ de comprimido",
+          "dose": "22,5 mg/día",
+          "timing": "Mañana con desayuno"
+        },
+        {
+          "days": "Días 9 a 12 (4 días)",
+          "tabletFraction": "½ comprimido",
+          "dose": "15 mg/día",
+          "timing": "Mañana con desayuno"
+        },
+        {
+          "days": "Días 13 a 16 (4 días)",
+          "tabletFraction": "¼ de comprimido",
+          "dose": "7,5 mg/día",
+          "timing": "Mañana con desayuno"
+        },
+        {
+          "days": "Día 17",
+          "tabletFraction": "0",
+          "dose": "0 mg",
+          "timing": "SUSPENDER TRATAMIENTO"
+        }
+      ],
+      "rationale": "La pauta descendente en 4 escalones de 4 días de Prednisona 30 mg permite una alta cobertura antiinflamatoria en la fase hiperaguda (edema intraneural) seguida de una retirada gradual que previene el rebote sintomático y la inhibición del eje suprarrenal."
     }
   },
   "physiotherapy_protocols": {
