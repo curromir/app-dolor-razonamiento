@@ -1023,20 +1023,38 @@
       "targets": [
         {
           "name": "Infiltración Ecoguiada de Bursa Subacromial-Subdeltoidea (SASD)",
-          "indication": "Bursitis SASD ecográfica concordante con arco doloroso, Hawkins y Jobe positivos.",
+          "indication": "Bursitis SASD / Síndrome Subacromial con concordancia ecográfica y dolor que bloquea rehabilitación.",
           "localAnesthetic": {
             "drug": "Mepivacaína 1% o Lidocaína 1%",
             "volume": "3 a 4 mL",
             "dose": "30-40 mg"
           },
           "corticosteroid": {
-            "drug": "Betametasona depot (Celestone Cronodose) 1 mL (6 mg) o Triamcinolona 20-40 mg",
+            "drug": "Betametasona depot 1 mL (6 mg) o Triamcinolona 20-40 mg",
             "dose": "6 mg o 20-40 mg",
             "volume": "1 mL"
           },
           "totalVolume": "4 a 5 mL",
           "safetyWarnings": [
-            "⛔ ¡NUNCA intratendinoso en supraespinoso! Control de glucemia en diabéticos 48-72h"
+            "¡ESTRICTAMENTE INTRABURSAL! Evitar inyección intratendinosa en supraespinoso por riesgo de necrosis y rotura tendinosa",
+            "Control de glucemias en diabéticos"
+          ]
+        },
+        {
+          "name": "Radiofrecuencia Pulsada (PRF) del Nervio Supraescapular y Axilar",
+          "type": "Radiofrecuencia Pulsada (PRF) — No Ablativa (42°C / 240 s)",
+          "indication": "Dolor de hombro crónico refractario (rotura no reparable de manguito, omartrosis, capsulitis) con preservación motora.",
+          "target": "Escotadura escapular (nervio supraescapular) y cuello quirúrgico humeral posterior (nervio axilar).",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.2% o Lidocaína 1%",
+            "volume": "1.0 a 2.0 mL",
+            "dose": "2-4 mg o 10-20 mg"
+          },
+          "totalVolume": "1.0 a 2.0 mL",
+          "parameters": "PRF a 42°C / 240 s (2 Hz, ancho de pulso 20 ms, 45-60 V) | Sensitiva: 50 Hz <0.4 V",
+          "safetyWarnings": [
+            "No sobrepasar los 42°C",
+            "Preserva íntegramente la fuerza motora de supraespinoso e infraespinoso"
           ]
         }
       ],

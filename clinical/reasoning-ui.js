@@ -2343,11 +2343,70 @@
                   ` : ''}
                 </div>
               </div>
-            ` : plan.tiers[6].spinal?.facetRf ? `
-              <div class="structure-box" style="margin-bottom: 0.65rem;">
-                <h4 style="margin: 0 0 0.25rem; font-size: 0.9rem; color: var(--text-primary);">🔥 ${plan.tiers[6].spinal.facetRf.name}</h4>
-                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.25rem 0;">${plan.tiers[6].spinal.indication}</p>
-                <span class="treatment-badge-pill green" style="font-size: 0.68rem;">🟢 Evidencia Alta tras Bloqueo Positivo</span>
+            ` : ''}
+
+            <!-- PROTOCOLIZED RADIOFREQUENCY (THERMAL / PRF / COOLED) -->
+            ${plan.tiers[6].radiofrequency ? `
+              <div class="structure-box" style="margin-bottom: 0.75rem; border-color: rgba(99, 102, 241, 0.45); background: rgba(99, 102, 241, 0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.4rem;">
+                  <div>
+                    <h4 style="margin: 0; font-size: 0.98rem; font-weight: 800; color: var(--accent-blue); display: flex; align-items: center; gap: 0.4rem;">
+                      <span>⚡</span> <span>${plan.tiers[6].radiofrequency.name}</span>
+                    </h4>
+                    <span style="font-size: 0.76rem; color: #a5b4fc; font-weight: 700;">${plan.tiers[6].radiofrequency.type}</span>
+                  </div>
+                  ${plan.tiers[6].radiofrequency.evidence?.badge ? `<span class="treatment-badge-pill green" style="font-size: 0.7rem;">${plan.tiers[6].radiofrequency.evidence.badge}</span>` : ''}
+                </div>
+
+                <div style="margin-bottom: 0.45rem;">
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>🎯 Diana:</strong> ${plan.tiers[6].radiofrequency.target}</p>
+                  <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0 0 0.25rem;"><strong>Indicación:</strong> ${plan.tiers[6].radiofrequency.indication}</p>
+                  ${plan.tiers[6].radiofrequency.requiredDiagnosticTest ? `<p style="font-size: 0.76rem; color: #f59e0b; font-weight: 700; margin: 0;">🔍 Test Requerido: ${plan.tiers[6].radiofrequency.requiredDiagnosticTest}</p>` : ''}
+                </div>
+
+                <!-- Parameters Grid -->
+                ${plan.tiers[6].radiofrequency.parameters ? `
+                  <div style="background: rgba(0, 0, 0, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-sm); padding: 0.5rem 0.65rem; margin-bottom: 0.45rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                      <strong style="font-size: 0.8rem; color: var(--accent-blue);">⚡ Parámetros Físicos:</strong>
+                      <span style="font-size: 0.76rem; color: #a5b4fc; font-weight: 800;">${plan.tiers[6].radiofrequency.parameters.temperature || ''} · ${plan.tiers[6].radiofrequency.parameters.time || ''}</span>
+                    </div>
+                    <div class="pharma-spec-grid" style="font-size: 0.74rem;">
+                      ${plan.tiers[6].radiofrequency.parameters.cannula ? `<div class="pharma-spec-item"><strong>Cánula / Punta</strong><span>${plan.tiers[6].radiofrequency.parameters.cannula}</span></div>` : ''}
+                      ${plan.tiers[6].radiofrequency.parameters.sensoryStimulation ? `<div class="pharma-spec-item"><strong style="color: #60a5fa;">Sensitiva (50 Hz)</strong><span>${plan.tiers[6].radiofrequency.parameters.sensoryStimulation}</span></div>` : ''}
+                      ${plan.tiers[6].radiofrequency.parameters.motorStimulation ? `<div class="pharma-spec-item"><strong style="color: #f87171;">Motora (2 Hz)</strong><span>${plan.tiers[6].radiofrequency.parameters.motorStimulation}</span></div>` : ''}
+                    </div>
+                  </div>
+                ` : ''}
+
+                <!-- Local Anesthetic Doses -->
+                ${plan.tiers[6].radiofrequency.pharmacology ? `
+                  <div class="pharma-spec-grid" style="margin-bottom: 0.45rem;">
+                    <div class="pharma-spec-item">
+                      <strong style="color: #60a5fa;">💉 AL Pre-Lesión</strong>
+                      <span>${plan.tiers[6].radiofrequency.pharmacology.preLesionAnesthetic || 'Lidocaína 2% 0.5-1 mL'}</span>
+                    </div>
+                    <div class="pharma-spec-item">
+                      <strong style="color: #f59e0b;">📏 Volumen / Diana</strong>
+                      <span>${plan.tiers[6].radiofrequency.pharmacology.totalVolumePerTarget || '0.5 - 1.0 mL'}</span>
+                    </div>
+                    ${plan.tiers[6].radiofrequency.pharmacology.postLesionOption ? `
+                      <div class="pharma-spec-item">
+                        <strong style="color: #10b981;">💊 Post-Lesión</strong>
+                        <span>${plan.tiers[6].radiofrequency.pharmacology.postLesionOption}</span>
+                      </div>
+                    ` : ''}
+                  </div>
+                ` : ''}
+
+                <!-- Warnings -->
+                ${(plan.tiers[6].radiofrequency.safetyWarnings && plan.tiers[6].radiofrequency.safetyWarnings.length > 0) ? `
+                  <div style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: var(--radius-sm); padding: 0.35rem 0.5rem; margin-top: 0.35rem;">
+                    ${plan.tiers[6].radiofrequency.safetyWarnings.map(w => `
+                      <div style="font-size: 0.72rem; color: #ef4444; font-weight: 600; margin: 0.1rem 0;">⚠️ ${w}</div>
+                    `).join('')}
+                  </div>
+                ` : ''}
               </div>
             ` : ''}
 

@@ -1,5 +1,5 @@
-// Service Worker v47.0 - Dr. Curro Mir Prednisone Tapering Protocol Release
-const CACHE_NAME = 'dolor-tests-v47';
+// Service Worker v48.0 - Radiofrequency Protocols & Target-Specific Dosing Release
+const CACHE_NAME = 'dolor-tests-v48';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

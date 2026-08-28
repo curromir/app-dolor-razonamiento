@@ -436,39 +436,38 @@
       "objective": "Infiltración intraarticular de cadera ecoguiada / Bloqueo PENG.",
       "targets": [
         {
-          "name": "Infiltración Intraarticular de Cadera Ecoguiada",
-          "indication": "Coxartrosis con limitación de rotación interna y FADIR/FABER positivo.",
+          "name": "Infiltración Intraarticular de Cadera Ecoguiada (Corticoides / Ácido Hialurónico)",
+          "indication": "Coxartrosis grado II-IV con dolor inguinal mecánico moderado-severo que limita la marcha y fisioterapia.",
           "localAnesthetic": {
-            "drug": "Mepivacaína 1% o Bupivacaína 0.25% o Ropivacaína 0.2%",
+            "drug": "Mepivacaína 1% o Ropivacaína 0.2%",
             "volume": "3 a 5 mL",
-            "dose": "30-50 mg o 7.5-12.5 mg"
+            "dose": "30-50 mg o 6-10 mg"
           },
           "corticosteroid": {
-            "drug": "Triamcinolona 40 mg o Betametasona depot 1-2 mL (6-12 mg)",
-            "dose": "40 mg o 6-12 mg",
-            "volume": "1 a 2 mL"
+            "drug": "Triamcinolona acetónido 40 mg (1 mL) o Betametasona 6 mg (1 mL)",
+            "dose": "40 mg o 6 mg",
+            "volume": "1 mL"
           },
-          "totalVolume": "5 a 7 mL",
+          "totalVolume": "5 a 7 mL máximo",
           "safetyWarnings": [
-            "Control Doppler color del paquete femoral; en bloqueo diagnóstico omitir corticoide para medir respuesta pura"
+            "Visualizar paquete vascular femoral (arteria/vena) con Doppler color antes de la punción",
+            "Descartar osteonecrosis avascular de cabeza femoral en RM previa"
           ]
         },
         {
-          "name": "Bloqueo PENG (Pericapsular Nerve Group)",
-          "indication": "Dolor agudo o crónico de cadera con preservación de la fuerza del cuádriceps.",
+          "name": "Radiofrecuencia de Ramas Articulares Sensitivas de Cadera (Femoral & Obturador) / Cooled RF",
+          "type": "Cooled RF (60°C / 150 s) o Térmica Convencional (80°C / 90 s)",
+          "indication": "Coxartrosis severa dolorosa inoperable o dolor persistente post-artroplastia de cadera tras bloqueo sensitivo positivo.",
+          "target": "1. Ramas articulares del nervio femoral: reborde anterolateral superior del acetábulo (bajo EIIA).\n2. Rama articular del nervio obturador: cuello articular inferomedial bajo la escotadura acetabular.",
           "localAnesthetic": {
-            "drug": "Ropivacaína 0.2% o Bupivacaína 0.25%",
-            "volume": "15 a 20 mL",
-            "dose": "30-50 mg"
+            "drug": "Lidocaína 2% pre-lesión",
+            "volume": "1.0 mL por diana",
+            "dose": "20 mg"
           },
-          "corticosteroid": {
-            "drug": "Sin corticoide de rutina",
-            "dose": "0 mg",
-            "volume": "0 mL"
-          },
-          "totalVolume": "15 a 20 mL",
+          "totalVolume": "1.0 mL por punto",
+          "parameters": "80°C / 90 s o Cooled RF 60°C / 150 s | Sensitiva: 50 Hz <0.5 V | Motora: 2 Hz >2.0 V (ausencia de contracción de cuádriceps)",
           "safetyWarnings": [
-            "Mantener aguja en plano óseo profundo bajo el tendón del psoas para evitar bloqueo del nervio femoral motor"
+            "Preservación motora estricta: verificar ausencia de fasciculaciones en cuádriceps (femoral motor) y aductores"
           ]
         }
       ],

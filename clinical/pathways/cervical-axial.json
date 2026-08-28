@@ -494,39 +494,41 @@
       "objective": "Bloqueo diagnóstico de ramos mediales cervicales y radiofrecuencia (rizolisis).",
       "targets": [
         {
-          "name": "Bloqueo Diagnóstico de Ramos Mediales Cervicales (MBB Cervical)",
-          "indication": "Paso 1 OBLIGATORIO: Anestesia selectiva del ramo medial sobre el pilar articular.",
+          "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales Cervicales (C3-C7)",
+          "type": "Térmica Continua (80°C / 90 s)",
+          "indication": "Cervicalgia axial mecánica facetaria crónica >3 meses tras bloqueo diagnóstico positivo (≥70-80% alivio).",
+          "target": "Cintura del pilar articular cervical en visión lateral / tangencial al ramo.",
           "localAnesthetic": {
-            "drug": "Lidocaína 1-2% o Bupivacaína 0.25-0.5%",
-            "volume": "0.2 a 0.3 mL por diana",
-            "dose": "2-6 mg"
+            "drug": "Lidocaína 2% pre-lesión",
+            "volume": "0.3 a 0.5 mL por diana",
+            "dose": "6-10 mg"
           },
           "corticosteroid": {
-            "drug": "⛔ SIN CORTICOIDE (No indicado en bloqueos diagnósticos)",
-            "dose": "0 mg",
-            "volume": "0 mL"
+            "drug": "Dexametasona 0.5-1 mg opcional",
+            "dose": "0.5-1 mg",
+            "volume": "0.25 mL"
           },
-          "totalVolume": "0.2 a 0.3 mL por nivel (2 niveles por faceta)",
+          "totalVolume": "0.3 a 0.5 mL por diana",
+          "parameters": "80°C / 90 s | Sensitiva: 50 Hz <0.5 V | Motora: 2 Hz >2.0 V (ausencia de contracción en brazo y diafragma)",
           "safetyWarnings": [
-            "Volumen milimétrico estricto para no difundir a la raíz espinal o nervio frénico"
+            "Posición paralela estricta en el pilar óseo; nunca avanzar hacia foramen anterior",
+            "Descartar estimulación del nervio frénico"
           ]
         },
         {
-          "name": "Radiofrecuencia Térmica de Ramos Mediales Cervicales (80°C / 90s)",
-          "indication": "Paso 2: Tras confirmación con bloqueo diagnóstico previo (alivio ≥70-80%).",
+          "name": "Radiofrecuencia Térmica del Tercer Nervio Occipital (TON / C2-C3)",
+          "type": "Térmica Continua (80°C / 90 s)",
+          "indication": "Cefalea cervicogénica / dolor occipital originado en faceta C2-C3 tras bloqueo diagnóstico confirmatorio.",
+          "target": "Cruces del TON sobre la articulación C2-C3 (3 lesiones tangenciales).",
           "localAnesthetic": {
-            "drug": "Lidocaína 2%",
-            "volume": "0.5 mL por cánula antes de la lesión",
+            "drug": "Lidocaína 2% pre-lesión",
+            "volume": "0.5 mL por lesión",
             "dose": "10 mg"
           },
-          "corticosteroid": {
-            "drug": "Sin corticoide (o Dexametasona 1 mg anti-neuritis)",
-            "dose": "0 - 1 mg",
-            "volume": "0 - 0.25 mL"
-          },
-          "totalVolume": "0.5 mL por diana",
+          "totalVolume": "0.5 mL por punto (3 puntos)",
+          "parameters": "80°C / 90 s por cada una de las 3 lesiones tangenciales",
           "safetyWarnings": [
-            "Estimulación motora obligatoria a 2 Hz >2V para descartar cercanía a la raíz motora cervical"
+            "Advertir al paciente sobre entumecimiento cutáneo temporal occipital"
           ]
         }
       ],

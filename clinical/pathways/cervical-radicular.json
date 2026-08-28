@@ -779,10 +779,27 @@
             "dose": "4 a 8 mg",
             "volume": "1 a 2 mL"
           },
-          "totalVolume": "1 a 1.5 mL (TFESI) o 2.5 a 3.5 mL (ILESI C7-T1)",
+          "totalVolume": "1.5 a 2.5 mL",
           "safetyWarnings": [
-            "🚨 ¡PROHIBIDO CORTICOIDE PARTICULADO! (Triamcinolona, Betametasona depot, Depo-Medrol). Riesgo de infarto medular/cerebeloso por embolia microvascular",
-            "Control fluoroscópico en tiempo real con inyección de contraste radiológico o ecografía Doppler de alta resolución"
+            "¡OBLIGATORIO CORTICOIDE NO PARTICULADO (Dexametasona)! Prohibidos particulados por riesgo de infarto medular o cerebeloso",
+            "Control con contraste y sustracción digital bajo fluoroscopia"
+          ]
+        },
+        {
+          "name": "Radiofrecuencia Pulsada (PRF) del Ganglio de la Raíz Dorsal Cervical",
+          "type": "Radiofrecuencia Pulsada (PRF) — No Ablativa (42°C / 240 s)",
+          "indication": "Cervicobraquialgia neuropática crónica refractaria (>3 meses) con afectación de una raíz cervical (C5-C8).",
+          "target": "Aspecto dorsal del foramen intervertebral cervical adyacente al DRG bajo fluoroscopia con contraste.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1% o Suero fisiológico 0.9%",
+            "volume": "0.5 mL",
+            "dose": "5 mg"
+          },
+          "totalVolume": "0.5 a 1.0 mL",
+          "parameters": "PRF 42°C / 240 s (2 Hz / 20 ms) | Sensitiva: 50 Hz <0.4 V en territorio del brazo",
+          "safetyWarnings": [
+            "¡PROHIBIDA la termolesión ablativa en raíces cervicales!: Aplicar exclusivamente RF pulsada a 42°C para preservar fuerza en el brazo",
+            "Control vascular exhaustivo con Doppler / contraste para no comprometer arteria vertebral"
           ]
         }
       ],

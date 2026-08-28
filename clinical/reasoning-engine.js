@@ -1063,6 +1063,25 @@ class ClinicalReasoningEngine {
       }
     }
 
+    let rfProtocol = null;
+    if (pathwayId.includes('lumbar-axial')) {
+      rfProtocol = catalog.radiofrequency_protocols?.facet_rf_lumbar;
+    } else if (pathwayId.includes('cervical-axial')) {
+      rfProtocol = catalog.radiofrequency_protocols?.facet_rf_cervical;
+    } else if (pathwayId.includes('si-posterior') || pathwayId.includes('sacroiliaca')) {
+      rfProtocol = catalog.radiofrequency_protocols?.si_lateral_branches_rf;
+    } else if (pathwayId.includes('knee')) {
+      rfProtocol = catalog.radiofrequency_protocols?.genicular_rf_knee;
+    } else if (pathwayId.includes('hip')) {
+      rfProtocol = catalog.radiofrequency_protocols?.hip_articular_branches_rf;
+    } else if (pathwayId.includes('shoulder')) {
+      rfProtocol = catalog.radiofrequency_protocols?.suprascapular_prf_shoulder;
+    } else if (pathwayId.includes('lumbar-radicular')) {
+      rfProtocol = catalog.radiofrequency_protocols?.drg_prf_lumbar;
+    } else if (pathwayId.includes('cervical-radicular')) {
+      rfProtocol = catalog.radiofrequency_protocols?.drg_prf_cervical;
+    }
+
     const pathwayIntervention = treatment.interventionism || {};
     const pathwayTargets = pathwayIntervention.targets || [];
 
@@ -1089,6 +1108,7 @@ class ClinicalReasoningEngine {
       hyaluronicAcid: haInj,
       prp: prpInj,
       spinal: spinalInt,
+      radiofrequency: rfProtocol,
       comparisonTable: comparisonTable,
       whyThisTreatment: 'Alivio rápido de la inflamación nociceptiva o modulación biológica para romper barreras dolorosas al movimiento.',
       whenToAvoid: 'Prohibido infiltrar corticoides intratendinosos por riesgo de rotura. No realizar infiltraciones repetidas a intervalos fijos sin objetivo funcional.'
@@ -1206,7 +1226,25 @@ class ClinicalReasoningEngine {
         if (tgt.corticosteroid) lines.push(`     - Corticoide: ${tgt.corticosteroid.drug} ${tgt.corticosteroid.dose ? '· ' + tgt.corticosteroid.dose : ''} (${tgt.corticosteroid.volume || ''})`);
         if (tgt.totalVolume) lines.push(`     - Volumen Total: ${tgt.totalVolume}`);
       });
+      if (plan.tiers[6].radiofrequency) {
+        const rf = plan.tiers[6].radiofrequency;
+        lines.push(`   [Técnica de Radiofrecuencia]:`);
+        lines.push(`   • ${rf.name} (${rf.type})`);
+        lines.push(`     - Diana: ${rf.target}`);
+        if (rf.parameters) lines.push(`     - Parámetros: ${rf.parameters.temperature} / ${rf.parameters.time}`);
+        if (rf.pharmacology) lines.push(`     - Anestésico Pre-Lesión: ${rf.pharmacology.preLesionAnesthetic}`);
+      }
       lines.push(`   - Reevaluar en 2-4 semanas para inicio/intensificación de rehabilitación activa.`);
+      lines.push(``);
+    } else if (!plan.tiers[6].isBlocked && plan.tiers[6].radiofrequency) {
+      const rf = plan.tiers[6].radiofrequency;
+      lines.push(`6. PROCEDIMIENTO INTERVENCIONISTA (Radiofrecuencia):`);
+      lines.push(`   • ${rf.name} (${rf.type})`);
+      lines.push(`     - Diana: ${rf.target}`);
+      if (rf.parameters) lines.push(`     - Parámetros: ${rf.parameters.temperature} / ${rf.parameters.time} | Estimulación: ${rf.parameters.sensoryStimulation || '50 Hz'} / ${rf.parameters.motorStimulation || '2 Hz'}`);
+      if (rf.pharmacology) lines.push(`     - Anestésico Pre-Lesión: ${rf.pharmacology.preLesionAnesthetic} (Vol: ${rf.pharmacology.totalVolumePerTarget})`);
+      if (rf.requiredDiagnosticTest) lines.push(`     - Test previo: ${rf.requiredDiagnosticTest}`);
+      lines.push(`   - Reevaluar en 4-6 semanas.`);
       lines.push(``);
     } else if (!plan.tiers[6].isBlocked && plan.tiers[6].corticosteroid) {
       lines.push(`6. PROCEDIMIENTO INTERVENCIONISTA (Ventana de oportunidad):`);

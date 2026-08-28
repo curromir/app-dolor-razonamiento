@@ -1774,5 +1774,347 @@
         "mainIndications": "Infiltraciones intraarticulares grandes en reumatología."
       }
     ]
+  },
+  "radiofrequency_protocols": {
+    "facet_rf_lumbar": {
+      "id": "rf-facet-lumbar",
+      "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales Lumbares (Rizolisis Facetaria Lumbar)",
+      "type": "Térmica Continua Convencional (Ablativa)",
+      "region": "lumbar",
+      "category": "raquis",
+      "indication": "Dolor lumbar axial facetario mecánico crónico (>3 meses) tras confirmación con bloqueo diagnóstico de ramos mediales positivo (alivio ≥70-80% durante la ventana del anestésico local).",
+      "requiredDiagnosticTest": "Bloqueo anestésico puro previo confirmatorio de ramos mediales (L1-L4) y ramo dorsal L5. ¡PROHIBIDO si el bloqueo fue negativo o en dolor radicular/ciática pura!",
+      "target": "Unión de la apófisis transversa y apófisis articular superior (cuello del Scottie dog) para ramos mediales L1-L4; hendidura entre apófisis articular superior de S1 y ala sacra para ramo dorsal L5 (2 ramos por cada articulación facetaria sintomática).",
+      "imagingGuidance": "Fluoroscopia (proyección oblicua ipsilateral a 25-30° para el cuello del Scottie dog y proyección lateral para profundidad del tercio posterior) o ecografía con transductor convexo.",
+      "parameters": {
+        "cannula": "Cánula 20-22G, 100 mm con punta activa de 5 a 10 mm (cánula curva para posicionamiento paralelo al ramo)",
+        "temperature": "80°C constante",
+        "time": "90 segundos por ramo",
+        "frequency": "Radiofrecuencia térmica continua (onda de radiofrecuencia a 460-500 kHz)",
+        "sensoryStimulation": "50 Hz: reproducción de parestesia/concordancia dolorosa en la zona lumbar con umbral < 0.5 V",
+        "motorStimulation": "2 Hz: comprobar ausencia de contracción o fasciculaciones en glúteo/pierna (miotomas L2-S1) con estímulo > 1.5 - 2.0 V (garantiza distancia segura de la raíz motora ventral)"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 1 a 2 mL subcutánea por punto de punción",
+        "preLesionAnesthetic": "Lidocaína 2% o Bupivacaína 0.5% (0.5 a 1.0 mL por cánula, inyectar lentamente 1-2 min antes de iniciar la termolesión)",
+        "postLesionOption": "Dexametasona no particulada 1 mg (0.25 mL de 4 mg/mL) por diana (opcional para prevenir neuritis química post-RF)",
+        "totalVolumePerTarget": "0.5 a 1.0 mL"
+      },
+      "safetyWarnings": [
+        "⛔ ¡PROHIBIDO para ciática o radiculopatía!: El ramo medial inerva exclusivamente las facetas posteriores; no descomprime ni desinflama raíces nerviosas",
+        "Estimulación motora obligatoria a 2 Hz >1.5-2.0V para evitar denervación accidental de la raíz motora de la pierna",
+        "En pacientes con marcapasos/desfibrilador (DAI): desactivar DAI y colocar placa neutra alejada del generador cardíaco"
+      ],
+      "expectedBenefit": "Alivio analgésico duradero de 9 a 18 meses; las fibras nerviosas se regeneran lentamente con el tiempo (permite repetir el procedimiento si el dolor recidiva con mismo patrón).",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR FACETARIO AXIAL (SIS / NICE NG59)",
+        "note": "Tratamiento intervencionista de referencia con mayor evidencia en dolor lumbar axial crónico."
+      }
+    },
+    "facet_rf_cervical": {
+      "id": "rf-facet-cervical",
+      "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales Cervicales (C3-C7)",
+      "type": "Térmica Continua Convencional (Ablativa)",
+      "region": "cervical",
+      "category": "raquis",
+      "indication": "Cervicalgia axial mecánica facetaria crónica (>3 meses) o dolor referido a cintura escapular tras bloqueo diagnóstico previo de ramos mediales positivo (≥70-80% de alivio).",
+      "requiredDiagnosticTest": "Bloqueo diagnóstico selectivo de ramos mediales cervicales con AL puro (0.2-0.3 mL por ramo).",
+      "target": "Cintura/centro del pilar articular cervical en proyección lateral fluoroscópica o ecoguiada (abordaje tangencial paralelo al ramo).",
+      "imagingGuidance": "Fluoroscopia lateral estricta y AP / Oblicua o ecografía de alta resolución en eje largo del pilar articular.",
+      "parameters": {
+        "cannula": "Cánula 22G, 50-100 mm con punta activa de 5 mm",
+        "temperature": "80°C",
+        "time": "90 segundos por nivel (múltiples lesiones si es necesario cubrir el ancho del pilar)",
+        "frequency": "Continua",
+        "sensoryStimulation": "50 Hz < 0.5 V (concordancia cervical)",
+        "motorStimulation": "2 Hz > 1.5 - 2.0 V (ausencia de contracción en deltoides, bíceps o diafragma para descartar cercanía a raíz ventral o nervio frénico)"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 1 mL",
+        "preLesionAnesthetic": "Lidocaína 2% 0.3 a 0.5 mL por cánula antes de lesionar",
+        "postLesionOption": "Dexametasona 0.5 a 1 mg por diana",
+        "totalVolumePerTarget": "0.3 a 0.5 mL"
+      },
+      "safetyWarnings": [
+        "Posicionamiento paralelo estricto en el pilar óseo; evitar penetrar hacia el foramen intervertebral anterior (arteria vertebral y raíz espinal)",
+        "Descartar estimulación del nervio frénico (C3-C5) observando excursión respiratoria"
+      ],
+      "expectedBenefit": "Alivio del dolor cervical axial de 9 a 14 meses (Lord et al. / SIS Guidelines).",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR FACETARIO CERVICAL (SIS)",
+        "note": "Gold standard en dolor facetario cervical crónico confirmado."
+      }
+    },
+    "ton_rf_cervicogenic": {
+      "id": "rf-ton-cervical",
+      "name": "Radiofrecuencia Térmica del Tercer Nervio Occipital (TON / C2-C3)",
+      "type": "Térmica Continua Convencional",
+      "region": "cervical",
+      "category": "raquis",
+      "indication": "Cefalea cervicogénica / dolor occipital originado en la articulación C2-C3 tras bloqueo diagnóstico confirmatorio del TON.",
+      "requiredDiagnosticTest": "Bloqueo diagnóstico comparativo del TON con Lidocaína vs Bupivacaína.",
+      "target": "Cruces del tercer nervio occipital sobre el aspecto lateral de la articulación zigoapofisaria C2-C3.",
+      "imagingGuidance": "Fluoroscopia lateral estricta y oblicuas (técnica de Govind/Bogduk: 3 lesiones tangenciales).",
+      "parameters": {
+        "cannula": "Cánula 20-22G, 50-100 mm con punta activa curva de 5-10 mm",
+        "temperature": "80°C",
+        "time": "90 segundos por cada una de las 3 lesiones tangenciales (superior, media e inferior)",
+        "frequency": "Continua",
+        "sensoryStimulation": "50 Hz < 0.5 V (sensación occipital concordante)",
+        "motorStimulation": "2 Hz > 2.0 V (ausencia de contracción de extremidad superior)"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 1 mL",
+        "preLesionAnesthetic": "Lidocaína 2% 0.5 mL antes de cada lesión",
+        "totalVolumePerTarget": "0.5 mL por punto"
+      },
+      "safetyWarnings": [
+        "Advertir al paciente sobre posible entumecimiento temporal cutáneo occipital post-procedimiento"
+      ],
+      "expectedBenefit": "Resolución de cefalea cervicogénica C2-C3 durante 9 a 12 meses (Govind et al.).",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN CEFALEA CERVICOGÉNICA C2-C3",
+        "note": "Técnica de elección en disfunción zigoapofisaria C2-C3."
+      }
+    },
+    "si_lateral_branches_rf": {
+      "id": "rf-si-lateral-branches",
+      "name": "Radiofrecuencia de Ramos Laterales Sacros (S1-S3 + L5 dorsal) / Cooled RF",
+      "type": "Cooled RF (Enfriada) o RF Térmica Multitrodo",
+      "region": "sacroiliaca",
+      "category": "sacroiliaca",
+      "indication": "Dolor sacroilíaco posterior crónico refractario tras respuesta positiva a bloqueos diagnósticos de ramos laterales (>50-75% de alivio con tarea provocadora).",
+      "requiredDiagnosticTest": "Bloqueo anestésico de ramos laterales S1-S3 + ramo dorsal L5.",
+      "target": "Aspecto lateral de los forámenes sacros posteriores S1, S2, S3 (dianas periósticas a las 12:00, 2:00, 4:00 en lado derecho / 12:00, 10:00, 8:00 en lado izquierdo) + ramo dorsal L5 en el ala sacra.",
+      "imagingGuidance": "Fluoroscopia AP/oblicua con ángulo contralateral para alinear el foramen sacro posterior con el anterior.",
+      "parameters": {
+        "cannula": "Cánula Cooled RF 17-18G con punta activa de 4 mm refrigerada internamente por agua (crea lesión esférica de 8-10 mm)",
+        "temperature": "60°C en tejido refrigerado (equivalente a 80°C perilesional)",
+        "time": "150 segundos por punto con Cooled RF (o 80°C / 90 s si RF convencional)",
+        "sensoryStimulation": "50 Hz < 0.5 V",
+        "motorStimulation": "2 Hz > 2.0 V (ausencia de contracción motora en pierna o esfínteres)"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 3 a 5 mL",
+        "preLesionAnesthetic": "Lidocaína 2% 0.5 a 1.0 mL por punto de lesión (total 4-6 mL)",
+        "totalVolumePerTarget": "0.5 a 1.0 mL por punto"
+      },
+      "safetyWarnings": [
+        "¡No introducir la cánula dentro del foramen sacro anterior para no lesionar las raíces sacras ventrales!",
+        "Comprobar ausencia de contracción del esfínter anal o flexión plantar durante la estimulación motora"
+      ],
+      "expectedBenefit": "Alivio analgésico de 6 a 12 meses en dolor del complejo sacroilíaco posterior (Consenso Internacional 2025).",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR SACROILÍACO POSTERIOR",
+        "note": "Cooled RF es la técnica con mayor tasa de éxito demostrada para inervación sacra variable."
+      }
+    },
+    "genicular_rf_knee": {
+      "id": "rf-genicular-knee",
+      "name": "Radiofrecuencia Térmica Continua / Cooled RF de Nervios Geniculados de Rodilla",
+      "type": "Térmica Continua (80°C) o Cooled RF (60°C)",
+      "region": "rodilla",
+      "category": "rodilla",
+      "indication": "Gonartrosis severa crónica dolorosa en pacientes no candidatos a cirugía protésica, pacientes con comorbilidades graves o dolor persistente tras artroplastia total de rodilla.",
+      "requiredDiagnosticTest": "Bloqueo diagnóstico previo de nervios geniculados (SM, SL, IM) con 0.5-1 mL de AL (alivio ≥50%).",
+      "target": "3 nervios geniculados clásicos en contacto perióstico óseo:\n1. Geniculado Superomedial (SMGN): Unión cóndilo-diáfisis femoral medial.\n2. Geniculado Superolateral (SLGN): Unión cóndilo-diáfisis femoral lateral.\n3. Geniculado Inferomedial (IMGN): Unión cóndilo-diáfisis tibial medial.",
+      "imagingGuidance": "Fluoroscopia AP y lateral estricta (cánula en la mitad posterior del hueso) o ecografía de alta resolución identificando las arterias geniculadas con Doppler color.",
+      "parameters": {
+        "cannula": "Cánula 20-22G, 100 mm con punta activa de 5 o 10 mm (o Cooled RF 18G)",
+        "temperature": "80°C (convencional) o 60°C (Cooled RF)",
+        "time": "90 segundos por diana (150 s en Cooled RF)",
+        "frequency": "Continua",
+        "sensoryStimulation": "50 Hz < 0.6 V (concordancia en rodilla)",
+        "motorStimulation": "2 Hz > 2.0 V (ausencia absoluta de flexión/extensión del pie o dedos para descartar proximidad al nervio peroneo común o tibial)"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 1 a 2 mL por punto",
+        "preLesionAnesthetic": "Lidocaína 2% o Bupivacaína 0.5% (0.5 a 1.0 mL por cánula antes de lesionar)",
+        "postLesionOption": "Dexametasona 1 mg por diana",
+        "totalVolumePerTarget": "0.5 a 1.0 mL por diana (3 dianas)"
+      },
+      "safetyWarnings": [
+        "Contacto óseo obligatorio en todo momento para evitar estructuras vasculares poplíteas",
+        "En nervio inferomedial (tibial) y superolateral (femoral): comprobar estimulación motora distal para no lesionar el nervio peroneo común"
+      ],
+      "expectedBenefit": "Alivio del dolor y mejora funcional de 6 a 12 meses (Choi et al. / Davis et al. RCTs).",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR CRÓNICO DE RODILLA (AAOS / ASRA)",
+        "note": "Excelente alternativa no quirúrgica con múltiples ensayos controlados aleatorizados favorables."
+      }
+    },
+    "hip_articular_branches_rf": {
+      "id": "rf-hip-articular-branches",
+      "name": "Radiofrecuencia de Ramas Articulares Sensitivas de Cadera (Femoral & Obturador) / Cooled RF",
+      "type": "Cooled RF o Térmica Continua",
+      "region": "cadera",
+      "category": "cadera",
+      "indication": "Coxartrosis moderada-severa inoperable, dolor crónico de cadera con alto riesgo quirúrgico o dolor persistente post-artroplastia de cadera.",
+      "requiredDiagnosticTest": "Bloqueo diagnóstico sensitivo previo de ramas articulares o bloqueo PENG con AL.",
+      "target": "1. Ramas articulares del nervio femoral: reborde anterolateral del acetábulo (entre las 11:00 y las 2:00 debajo de la EIIA).\n2. Rama articular del nervio obturador: cuello articular inferomedial bajo la escotadura acetabular (gota de lágrima).",
+      "imagingGuidance": "Fluoroscopia AP oblicua y lateral o ecografía de alta resolución en plano.",
+      "parameters": {
+        "cannula": "Cánula 18-20G con punta activa de 10 mm o Cooled RF",
+        "temperature": "80°C (convencional) o 60°C (Cooled RF)",
+        "time": "90 a 150 segundos por diana",
+        "sensoryStimulation": "50 Hz < 0.5 V",
+        "motorStimulation": "2 Hz > 2.0 V (ausencia de contracción de cuádriceps o aductores de cadera)"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 2 a 3 mL",
+        "preLesionAnesthetic": "Lidocaína 2% 1.0 mL por cánula antes de lesionar",
+        "totalVolumePerTarget": "1.0 mL por punto"
+      },
+      "safetyWarnings": [
+        "Visualizar paquete vascular femoral (arteria y vena femoral) con Doppler color antes del abordaje anterior",
+        "Preservación motora estricta: verificar que no haya fasciculaciones del cuádriceps (femoral motor) ni de aductores (obturador motor)"
+      ],
+      "expectedBenefit": "Alivio del dolor articular de 6 a 12 meses preservando la deambulación autónoma.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN ANALGESIA SENSITIVA DE CADERA",
+        "note": "Permite control del dolor sin afectación motora ni debilidad del cuádriceps."
+      }
+    },
+    "suprascapular_prf_shoulder": {
+      "id": "prf-suprascapular-shoulder",
+      "name": "Radiofrecuencia Pulsada (PRF) del Nervio Supraescapular y Axilar de Hombro",
+      "type": "Radiofrecuencia Pulsada (PRF) — No Ablativa / Neuromoduladora",
+      "region": "hombro",
+      "category": "hombro",
+      "indication": "Dolor de hombro crónico refractario (omartrosis, rotura masiva no reparable del manguito rotador, capsulitis adhesiva recalcitrante) donde se busca analgesia prolongada sin lesionar las fibras motoras del supra e infraespinoso.",
+      "requiredDiagnosticTest": "Bloqueo diagnóstico del nervio supraescapular con AL previo positivo.",
+      "target": "Escotadura escapular (nervio supraescapular bajo ligamento transverso superior en fosa supraespinosa) y aspecto posterior del cuello quirúrgico humeral (nervio axilar).",
+      "imagingGuidance": "Ecografía de alta resolución con transductor lineal en eje coronal oblicuo o fluoroscopia en proyección AP/oblicua con ángulo craneal.",
+      "parameters": {
+        "cannula": "Cánula 21-22G, 50-100 mm con punta activa de 5 a 10 mm",
+        "temperature": "42°C máximo (campo electromagnético sin quemadura térmica)",
+        "time": "240 segundos (4 minutos)",
+        "frequency": "2 Hz con ancho de pulso de 20 ms (trenes de pulsos de alto voltaje)",
+        "voltage": "45 a 60 V (manteniendo temperatura constante ≤42°C)",
+        "sensoryStimulation": "50 Hz < 0.4 V (sensación de presión/parestesia en fosa supraespinosa y hombro)"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 1 mL",
+        "preLesionAnesthetic": "Ropivacaína 0.2% o Lidocaína 1% 1 a 2 mL",
+        "totalVolumePerTarget": "1.0 a 2.0 mL"
+      },
+      "safetyWarnings": [
+        "Al ser PRF no ablativa (42°C), PRESERVA ÍNTEGRAMENTE la función motora del supraespinoso e infraespinoso",
+        "Visualizar arteria supraescapular con Doppler color en la escotadura para evitar punción vascular",
+        "No sobrepasar los 42°C para evitar desnaturalización de proteínas neuronales"
+      ],
+      "expectedBenefit": "Neuromodulación de fibras nociceptivas tipo C y A-delta con reducción del dolor durante 3 a 6 meses (Eyigor et al. / Keskinbora et al.).",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN DOLOR CRÓNICO DE HOMBRO (ESRA / ASRA)",
+        "note": "Excelente perfil de seguridad sin riesgo de debilidad motora ni atrofia muscular."
+      }
+    },
+    "drg_prf_lumbar": {
+      "id": "prf-drg-lumbar",
+      "name": "Radiofrecuencia Pulsada (PRF) del Ganglio de la Raíz Dorsal Lumbar (PRF-DRG)",
+      "type": "Radiofrecuencia Pulsada (PRF) — No Ablativa",
+      "region": "lumbar",
+      "category": "raquis",
+      "indication": "Dolor radicular neuropático crónico lumbosacro refractario (>3-6 meses) tras fracaso de infiltraciones epidurales transforaminales y tratamiento médico multimodal.",
+      "requiredDiagnosticTest": "Radiculopatía concordante con raíz identificada clínica y radiológicamente.",
+      "target": "Polo superior del foramen intervertebral lumbar adyacente al ganglio de la raíz dorsal (porción extraforaminal o foraminal dorsal).",
+      "imagingGuidance": "Fluoroscopia con proyección oblicua ipsilateral (visión subpedicular) y proyección lateral, con inyección obligatoria de contraste radiológico para descartar penetración intratecal o vascular.",
+      "parameters": {
+        "cannula": "Cánula 20-22G, 100 mm con punta activa curva de 5 mm",
+        "temperature": "42°C",
+        "time": "120 a 240 segundos (2 a 4 minutos)",
+        "frequency": "2 Hz con pulsos de 20 ms",
+        "sensoryStimulation": "50 Hz < 0.5 V (reproducción del dolor radicular o parestesia en el dermatoma correspondiente)",
+        "motorStimulation": "2 Hz: comprobar que el umbral motor sea al menos el doble del umbral sensitivo"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 1 a 2 mL",
+        "preLesionAnesthetic": "Ropivacaína 0.2% o Lidocaína 1% (0.5 a 1.0 mL)",
+        "corticosteroidOption": "Dexametasona no particulada 2 a 4 mg tras el pulso de RF",
+        "totalVolumePerTarget": "1.0 a 1.5 mL"
+      },
+      "safetyWarnings": [
+        "¡ESTRICTAMENTE NO ABLATIVA!: NUNCA aplicar RF térmica continua en el DRG (riesgo de dolor por desaferentación, neuritis severa o déficit motor permanente)",
+        "Verificar contraste bajo fluoroscopia para evitar inyección intravascular en arteria radicular"
+      ],
+      "expectedBenefit": "Neuromodulación biológica que reduce la hiperexcitabilidad neuronal central y periférica.",
+      "evidence": {
+        "level": "limited",
+        "badge": "🟠 OPCIÓN AVANZADA / EVIDENCIA MODERADA EN DOLOR CRÓNICO",
+        "note": "Indicada en dolor radicular persistente cuando se desea evitar la cirugía descompresiva."
+      }
+    },
+    "drg_prf_cervical": {
+      "id": "prf-drg-cervical",
+      "name": "Radiofrecuencia Pulsada (PRF) del Ganglio de la Raíz Dorsal Cervical",
+      "type": "Radiofrecuencia Pulsada (PRF) — No Ablativa",
+      "region": "cervical",
+      "category": "raquis",
+      "indication": "Cervicobraquialgia neuropática crónica refractaria (>3 meses) con afectación de una raíz cervical (C5, C6, C7 o C8).",
+      "requiredDiagnosticTest": "Correlación clínica dermatomérica y RM cervical confirmatoria.",
+      "target": "Aspecto dorsal del foramen intervertebral cervical adyacente al DRG.",
+      "imagingGuidance": "Fluoroscopia con contraste o ecografía Doppler de alta resolución para visualizar la arteria vertebral y vasos radiculares.",
+      "parameters": {
+        "cannula": "Cánula 22G, 50-100 mm con punta activa de 4-5 mm",
+        "temperature": "42°C",
+        "time": "120 a 240 segundos",
+        "frequency": "2 Hz / 20 ms",
+        "sensoryStimulation": "50 Hz < 0.4 V en territorio del brazo"
+      },
+      "pharmacology": {
+        "preLesionAnesthetic": "Lidocaína 1% o Suero 0.5 mL",
+        "totalVolumePerTarget": "0.5 a 1.0 mL"
+      },
+      "safetyWarnings": [
+        "¡PROHIBIDA la termolesión ablativa en raíces cervicales!: Aplicar exclusivamente RF pulsada a 42°C para preservar fuerza en el brazo",
+        "Control vascular exhaustivo para no comprometer la arteria vertebral"
+      ],
+      "expectedBenefit": "Alivio del dolor radicular cervical de 3 a 6 meses (Van Zundert et al. RCT).",
+      "evidence": {
+        "level": "moderate",
+        "badge": "🔵 EVIDENCIA MODERADA EN CERVICOBRAQUIALGIA CRÓNICA",
+        "note": "Ensayo clínico aleatorizado de Van Zundert demostró superioridad frente a sham."
+      }
+    },
+    "gon_prf_arnold": {
+      "id": "prf-gon-arnold",
+      "name": "Radiofrecuencia Pulsada (PRF) del Nervio Occipital Mayor (Arnold / GON)",
+      "type": "Radiofrecuencia Pulsada (PRF) — No Ablativa",
+      "region": "cervical",
+      "category": "raquis",
+      "indication": "Neuralgia occipital de Arnold / Cefalea occipital crónica o migraña transformada refractaria tras alivio temporal con bloqueos anestésicos repetidos.",
+      "requiredDiagnosticTest": "Bloqueo diagnóstico ecoguiado del nervio occipital mayor con Lidocaína o Bupivacaína.",
+      "target": "Nervio occipital mayor en el plano interfascial entre músculo oblicuo inferior de la cabeza y semiespinoso de la cabeza (a nivel C2) o a nivel de la línea nucal superior medial a la arteria occipital.",
+      "imagingGuidance": "Ecografía de alta resolución con transductor lineal en eje transversal oblicuo sobre el músculo oblicuo inferior de la cabeza.",
+      "parameters": {
+        "cannula": "Cánula 22G, 50 mm con punta activa de 5 mm",
+        "temperature": "42°C",
+        "time": "240 segundos (4 minutos)",
+        "frequency": "2 Hz / 20 ms de ancho de pulso",
+        "sensoryStimulation": "50 Hz < 0.4 V (reproducción de hormigueo en territorio occipitoparietal)"
+      },
+      "pharmacology": {
+        "skinAnesthesia": "Lidocaína 1% 0.5 mL",
+        "preLesionAnesthetic": "Ropivacaína 0.2% o Lidocaína 1% (1.0 mL)",
+        "totalVolumePerTarget": "1.0 mL"
+      },
+      "safetyWarnings": [
+        "Al ser PRF no ablativa, NO produce alopecia ni hipoestesia dolorosa en el cuero cabelludo",
+        "Identificar arteria occipital con Doppler color antes de introducir la aguja"
+      ],
+      "expectedBenefit": "Reducción sostenida de la frecuencia e intensidad de las crisis occipitales durante 3 a 6 meses.",
+      "evidence": {
+        "level": "high",
+        "badge": "🟢 EVIDENCIA ALTA EN NEURALGIA OCCIPITAL (AHS / ASRA)",
+        "note": "Tratamiento intervencionista de elección cuando los bloqueos anestésicos son de corta duración."
+      }
+    }
   }
 }

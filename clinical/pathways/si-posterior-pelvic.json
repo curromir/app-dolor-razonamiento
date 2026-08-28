@@ -485,39 +485,38 @@
       "objective": "Infiltración intraarticular sacroilíaca ecoguiada o bloqueo de ramos laterales (S1-S3).",
       "targets": [
         {
-          "name": "Infiltración Intraarticular Sacroilíaca (IA) Ecoguiada",
-          "indication": "Dolor en nalga / Fortin finger test positivo con dolor a Thigh Thrust y Distracción.",
+          "name": "Radiofrecuencia de Ramos Laterales Sacros (S1-S3 + L5 dorsal) / Cooled RF",
+          "type": "Cooled RF (60°C / 150 s) o Térmica (80°C / 90 s)",
+          "indication": "Dolor sacroilíaco posterior crónico refractario tras bloqueo diagnóstico positivo de ramos laterales (>50-75% alivio).",
+          "target": "Borde lateral de forámenes sacros posteriores S1, S2, S3 (dianas periósticas) y ramo dorsal L5 en ala sacra.",
           "localAnesthetic": {
-            "drug": "Lidocaína 1-2% o Bupivacaína 0.25%",
-            "volume": "1 a 1.5 mL",
-            "dose": "10-20 mg o 2.5-3.75 mg"
+            "drug": "Lidocaína 2% pre-lesión",
+            "volume": "0.5 a 1.0 mL por diana",
+            "dose": "10-20 mg"
           },
-          "corticosteroid": {
-            "drug": "Triamcinolona 20-40 mg o Betametasona depot 1 mL (6 mg)",
-            "dose": "20-40 mg o 6 mg",
-            "volume": "0.5 a 1 mL (omitir en test puramente diagnóstico)"
-          },
-          "totalVolume": "1.5 a 2.5 mL máximo",
+          "totalVolume": "0.5 a 1.0 mL por diana (total 4-6 mL)",
+          "parameters": "Cooled RF: 60°C / 150 s (lesión esférica 8-10 mm) | Sensitiva: 50 Hz <0.5 V | Motora: 2 Hz >2.0 V",
           "safetyWarnings": [
-            "¡Volumen bajo estricto (≤2-2.5 mL)! Evitar rotura de la cápsula anterior y difusión al plexo lumbosacro"
+            "No introducir cánula dentro del foramen sacro anterior",
+            "Comprobar ausencia de contracción de esfínteres o flexión plantar"
           ]
         },
         {
-          "name": "Bloqueo Diagnóstico de Ramos Laterales Sacros (S1-S3 + L5 dorsal)",
-          "indication": "Paso 1 antes de radiofrecuencia (rizolisis sacra) para dolor sacroilíaco posterior.",
+          "name": "Infiltración Intraarticular Sacroilíaca Ecoguiada / Fluoroguiada",
+          "indication": "Sacroileítis inflamatoria activa o dolor articular con respuesta transitoria.",
           "localAnesthetic": {
-            "drug": "Lidocaína 1-2% o Bupivacaína 0.25%",
-            "volume": "0.3 a 0.5 mL por diana",
-            "dose": "3-10 mg"
+            "drug": "Ropivacaína 0.2% o Bupivacaína 0.25%",
+            "volume": "1.0 a 1.5 mL",
+            "dose": "2-3 mg"
           },
           "corticosteroid": {
-            "drug": "⛔ SIN CORTICOIDE",
-            "dose": "0 mg",
-            "volume": "0 mL"
+            "drug": "Triamcinolona acetónido 40 mg o Betametasona 6 mg",
+            "dose": "40 mg o 6 mg",
+            "volume": "1.0 mL"
           },
-          "totalVolume": "0.3 a 0.5 mL por foramen/diana",
+          "totalVolume": "1.5 a 2.5 mL máximo (capacidad articular limitada)",
           "safetyWarnings": [
-            "No penetrar en agujeros sacros anteriores para no bloquear raíces sacras ventrales"
+            "Inyección lenta a baja presión para no romper la cápsula anterior"
           ]
         }
       ],

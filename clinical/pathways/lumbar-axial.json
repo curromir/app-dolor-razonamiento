@@ -526,39 +526,43 @@
       "objective": "Bloqueo diagnóstico de ramos mediales (MBB) y radiofrecuencia (rizolisis).",
       "targets": [
         {
-          "name": "Bloqueo Diagnóstico de Ramos Mediales Lumbares (MBB Lumbar)",
-          "indication": "Paso 1 OBLIGATORIO: Infiltración selectiva de 0.3 a 0.5 mL de AL sobre cada ramo medial.",
+          "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales Lumbares (Rizolisis Facetaria)",
+          "type": "Térmica Continua (80°C / 90 s)",
+          "indication": "Dolor lumbar axial facetario crónico >3 meses tras bloqueo diagnóstico de ramos mediales positivo (alivio ≥70-80%).",
+          "target": "Unión de apófisis transversa y articular superior (cuello del Scottie dog) L1-L4 y hendidura S1-ala sacra para L5.",
           "localAnesthetic": {
-            "drug": "Lidocaína 1-2% o Bupivacaína 0.25-0.5%",
-            "volume": "0.3 a 0.5 mL por ramo",
-            "dose": "3-10 mg"
-          },
-          "corticosteroid": {
-            "drug": "⛔ SIN CORTICOIDE (No indicado en MBB diagnóstico)",
-            "dose": "0 mg",
-            "volume": "0 mL"
-          },
-          "totalVolume": "0.3 a 0.5 mL por diana",
-          "safetyWarnings": [
-            "⛔ NUNCA usar corticoide en MBB diagnóstico; evaluar alivio ≥70-80% durante la ventana del AL; NO indicado para ciática"
-          ]
-        },
-        {
-          "name": "Radiofrecuencia Térmica Convencional de Ramos Mediales (Rizolisis Facetaria)",
-          "indication": "Paso 2: Realizar tras confirmación con bloqueo diagnóstico previo positivo.",
-          "localAnesthetic": {
-            "drug": "Lidocaína 2% o Bupivacaína 0.5%",
-            "volume": "0.5 a 1 mL por cánula antes de lesión",
+            "drug": "Lidocaína 2% o Bupivacaína 0.5% pre-lesión",
+            "volume": "0.5 a 1.0 mL por diana",
             "dose": "10-20 mg"
           },
           "corticosteroid": {
-            "drug": "Sin corticoide (o Dexametasona 1 mg por ramo)",
-            "dose": "0 - 1 mg",
-            "volume": "0 - 0.25 mL"
+            "drug": "Dexametasona 1 mg por diana (opcional post-lesión)",
+            "dose": "1 mg",
+            "volume": "0.25 mL"
           },
-          "totalVolume": "0.5 a 1 mL por diana (80°C durante 90 segundos)",
+          "totalVolume": "0.5 a 1.0 mL por ramo (2 ramos por faceta sintomática)",
+          "parameters": "80°C / 90 s | Sensitiva: 50 Hz <0.5 V | Motora: 2 Hz >2.0 V (ausencia de fasciculaciones en pierna)",
           "safetyWarnings": [
-            "Estimulación sensitiva (50 Hz) y motora (2 Hz) obligatoria para descartar proximidad a la raíz motora espinal"
+            "⛔ PROHIBIDO para ciática o radiculopatía pura",
+            "Estimulación motora obligatoria a 2 Hz >1.5-2.0 V"
+          ]
+        },
+        {
+          "name": "Bloqueo Diagnóstico Selectivo de Ramos Mediales Lumbares (MBB)",
+          "indication": "Paso diagnóstico OBLIGATORIO previo a la radiofrecuencia para confirmar generador facetario.",
+          "localAnesthetic": {
+            "drug": "Lidocaína 1-2% o Bupivacaína 0.25-0.5% (AL puro)",
+            "volume": "0.3 a 0.5 mL por diana",
+            "dose": "3-5 mg"
+          },
+          "corticosteroid": {
+            "drug": "ESTRICTAMENTE SIN CORTICOIDE (solo diagnóstico)",
+            "dose": "0 mg",
+            "volume": "0 mL"
+          },
+          "totalVolume": "0.3 a 0.5 mL por ramo",
+          "safetyWarnings": [
+            "No exceder 0.5 mL para evitar falsos positivos por difusión a la raíz espinal ventral"
           ]
         }
       ],

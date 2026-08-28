@@ -1021,6 +1021,45 @@
             "⛔ ¡OBLIGATORIO CORTICOIDE NO PARTICULADO (Dexametasona)! Evitar corticoides particulados por riesgo de infarto medular parapléjico en arteria de Adamkiewicz",
             "Comprobar tiempos de suspensión de anticoagulantes según pautas ASRA 2024"
           ]
+        },
+        {
+          "name": "Inyección Epidural Interlaminar Lumbar (ILESI Lumbar)",
+          "indication": "Radiculopatía lumbar bilateral, estenosis de canal central o cuando el abordaje transforaminal está contraindicado.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.1-0.2% o Bupivacaína 0.125%",
+            "volume": "2 a 4 mL",
+            "dose": "2-4 mg"
+          },
+          "corticosteroid": {
+            "drug": "Dexametasona fosfato sódico 8 a 10 mg",
+            "dose": "8-10 mg",
+            "volume": "2 a 2.5 mL"
+          },
+          "totalVolume": "4 a 6 mL",
+          "safetyWarnings": [
+            "Técnica de pérdida de resistencia con suero (LOR). Control de contraste fluoroscópico en proyección lateral"
+          ]
+        },
+        {
+          "name": "Radiofrecuencia Pulsada (PRF) del Ganglio de la Raíz Dorsal Lumbar (PRF-DRG)",
+          "type": "Radiofrecuencia Pulsada (PRF) — No Ablativa (42°C / 240 s)",
+          "indication": "Dolor radicular neuropático crónico refractario (>3-6 meses) tras fracaso de epidurales y terapia multimodal.",
+          "target": "Polo superior del foramen intervertebral lumbar adyacente al DRG bajo fluoroscopia y contraste.",
+          "localAnesthetic": {
+            "drug": "Ropivacaína 0.2% o Lidocaína 1%",
+            "volume": "0.5 a 1.0 mL",
+            "dose": "1-2 mg o 5-10 mg"
+          },
+          "corticosteroid": {
+            "drug": "Dexametasona no particulada 2 a 4 mg (opcional tras el pulso)",
+            "dose": "2-4 mg",
+            "volume": "0.5 a 1 mL"
+          },
+          "totalVolume": "1.0 a 1.5 mL",
+          "parameters": "PRF 42°C / 240 s (2 Hz / 20 ms) | Sensitiva: 50 Hz <0.5 V | Motora: 2 Hz con umbral motor > doble del sensitivo",
+          "safetyWarnings": [
+            "¡ESTRICTAMENTE NO ABLATIVA!: NUNCA aplicar RF térmica continua en el DRG por riesgo de dolor por desaferentación o déficit motor"
+          ]
         }
       ],
       "safetyNote": "La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una ventana funcional. El objetivo angular posterior es recuperar movimiento, fuerza y tolerancia a la carga."

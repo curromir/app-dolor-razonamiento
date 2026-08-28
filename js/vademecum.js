@@ -511,6 +511,9 @@
       let inters = this.data.interventions || [];
       if (this.activeInterventionRegion && this.activeInterventionRegion !== 'all') {
         inters = inters.filter(i => {
+          if (this.activeInterventionRegion === 'radiofrecuencia') {
+            return i.id?.startsWith('rf-') || i.id?.startsWith('prf-') || (i.type && (i.type.includes('Radiofrecuencia') || i.type.includes('Térmica') || i.type.includes('Pulsada') || i.type.includes('Cooled')));
+          }
           if (this.activeInterventionRegion === 'raquis') return i.category === 'raquis' || i.region === 'lumbar' || i.region === 'cervical';
           return i.region === this.activeInterventionRegion || i.category === this.activeInterventionRegion;
         });
@@ -525,8 +528,8 @@
           <div class="vade-section-header">
             <span style="font-size: 1.5rem;">💉</span>
             <div>
-              <h3 style="font-size: 1.05rem; font-weight: 900; color: #10b981; margin: 0;">FÁRMACOS, DOSIS Y VOLÚMENES EN TÉCNICAS INTERVENCIONISTAS</h3>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Anestésicos Locales · Corticoides (Particulados vs No Particulados) · Volúmenes Articulares y Espinales</p>
+              <h3 style="font-size: 1.05rem; font-weight: 900; color: #10b981; margin: 0;">FÁRMACOS, DOSIS, VOLÚMENES Y RADIOFRECUENCIA (PRF/TÉRMICA)</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Anestésicos Locales · Corticoides Espinales/Articulares · Radiofrecuencia Térmica Convencional · Radiofrecuencia Pulsada (PRF)</p>
             </div>
           </div>
 
@@ -573,9 +576,10 @@
           </div>
         </section>
 
-        <!-- Filtros por Región Anatómica -->
+        <!-- Filtros por Región Anatómica & Modalidad -->
         <div class="vade-category-toolbar" style="margin-top: 0.75rem;">
           <button class="vade-inter-chip ${(!this.activeInterventionRegion || this.activeInterventionRegion === 'all') ? 'active' : ''}" data-reg="all" onclick="window.Vademecum.setInterventionRegion('all')">🌐 Todas (${(this.data.interventions || []).length})</button>
+          <button class="vade-inter-chip ${this.activeInterventionRegion === 'radiofrecuencia' ? 'active' : ''}" data-reg="radiofrecuencia" onclick="window.Vademecum.setInterventionRegion('radiofrecuencia')" style="border-color: rgba(99, 102, 241, 0.6); color: #a5b4fc;">⚡ Radiofrecuencia & PRF</button>
           <button class="vade-inter-chip ${this.activeInterventionRegion === 'raquis' ? 'active' : ''}" data-reg="raquis" onclick="window.Vademecum.setInterventionRegion('raquis')">⚡ Raquis & Epidurales</button>
           <button class="vade-inter-chip ${this.activeInterventionRegion === 'hombro' ? 'active' : ''}" data-reg="hombro" onclick="window.Vademecum.setInterventionRegion('hombro')">🦴 Hombro</button>
           <button class="vade-inter-chip ${this.activeInterventionRegion === 'rodilla' ? 'active' : ''}" data-reg="rodilla" onclick="window.Vademecum.setInterventionRegion('rodilla')">🦵 Rodilla</button>
@@ -594,17 +598,19 @@
     },
 
     renderInterventionCard(inter) {
+      const isRF = inter.id?.startsWith('rf-') || inter.id?.startsWith('prf-') || (inter.type && (inter.type.includes('Radiofrecuencia') || inter.type.includes('Térmica') || inter.type.includes('Pulsada') || inter.type.includes('Cooled')));
+      
       return `
-        <article class="vade-express-card" id="inter-${inter.id}" style="border-left: 4px solid #10b981;">
+        <article class="vade-express-card" id="inter-${inter.id}" style="border-left: 4px solid ${isRF ? '#6366f1' : '#10b981'};">
           <div class="vade-express-card-header">
             <div style="display: flex; align-items: center; gap: 0.6rem;">
-              <span class="vade-card-icon">${inter.category === 'raquis' || inter.region === 'lumbar' || inter.region === 'cervical' ? '⚡' : '💉'}</span>
+              <span class="vade-card-icon">${isRF ? '⚡' : inter.category === 'raquis' || inter.region === 'lumbar' || inter.region === 'cervical' ? '💉' : '🩹'}</span>
               <div>
                 <h3 class="vade-card-title">${inter.name}</h3>
-                <span class="vade-card-category">${inter.categoryLabel || inter.region}</span>
+                <span class="vade-card-category" style="color: ${isRF ? '#a5b4fc' : 'var(--text-muted)'};">${inter.type || inter.categoryLabel || inter.region}</span>
               </div>
             </div>
-            ${inter.evidence?.badge ? `<span class="treatment-badge-pill green" style="font-size: 0.68rem;">${inter.evidence.badge}</span>` : ''}
+            ${inter.evidence?.badge ? `<span class="treatment-badge-pill ${inter.evidence.badge.includes('ALTA') ? 'green' : 'blue'}" style="font-size: 0.68rem;">${inter.evidence.badge}</span>` : ''}
           </div>
 
           <div class="vade-express-card-body">
@@ -612,13 +618,29 @@
             <div style="margin-bottom: 0.5rem;">
               <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>🎯 Diana:</strong> ${inter.target}</p>
               <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;"><strong>Indicación:</strong> ${inter.indication}</p>
+              ${inter.requiredDiagnosticTest ? `<p style="font-size: 0.76rem; color: #f59e0b; font-weight: 700; margin: 0.2rem 0 0;">🔍 Test previo: ${inter.requiredDiagnosticTest}</p>` : ''}
             </div>
+
+            <!-- RF Parameters Box (if available) -->
+            ${inter.parameters ? `
+              <div style="background: rgba(99, 102, 241, 0.07); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-sm); padding: 0.5rem 0.65rem; margin-bottom: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                  <strong style="font-size: 0.82rem; color: var(--accent-blue);">⚡ Parámetros de Radiofrecuencia:</strong>
+                  <span style="font-size: 0.74rem; color: #a5b4fc; font-weight: 800;">${inter.parameters.temperature || ''} · ${inter.parameters.time || ''}</span>
+                </div>
+                <div class="pharma-spec-grid" style="font-size: 0.74rem;">
+                  ${inter.parameters.cannula ? `<div class="pharma-spec-item"><strong>Cánula / Punta</strong><span>${inter.parameters.cannula}</span></div>` : ''}
+                  ${inter.parameters.sensoryStimulation ? `<div class="pharma-spec-item"><strong style="color: #60a5fa;">Sensitiva (50 Hz)</strong><span>${inter.parameters.sensoryStimulation}</span></div>` : ''}
+                  ${inter.parameters.motorStimulation ? `<div class="pharma-spec-item"><strong style="color: #f87171;">Motora (2 Hz)</strong><span>${inter.parameters.motorStimulation}</span></div>` : ''}
+                </div>
+              </div>
+            ` : ''}
 
             <!-- Fármacos y Dosis Grid -->
             <div class="pharma-spec-grid" style="margin-bottom: 0.5rem;">
               ${inter.localAnesthetic ? `
                 <div class="pharma-spec-item">
-                  <strong style="color: #60a5fa;">💉 Anestésico Local</strong>
+                  <strong style="color: #60a5fa;">💉 Anestésico Local (AL)</strong>
                   <span>${inter.localAnesthetic.drug || ''} · ${inter.localAnesthetic.volume || ''} ${inter.localAnesthetic.dose ? '(' + inter.localAnesthetic.dose + ')' : ''}</span>
                 </div>
               ` : ''}
@@ -647,7 +669,7 @@
 
             <!-- Botones de Acción -->
             <div class="vade-step-actions-bar" style="margin-top: 0.4rem;">
-              <button class="vade-copy-pill-btn" onclick="window.Vademecum.copyCustomText('${inter.name}: AL ${inter.localAnesthetic?.drug || ''} ${inter.localAnesthetic?.volume || ''} + Corticoide ${inter.corticosteroid?.drug || ''} ${inter.corticosteroid?.dose || ''} (Vol. Total: ${inter.totalVolume})', event, 'Receta Intervencionista')">
+              <button class="vade-copy-pill-btn" onclick="window.Vademecum.copyCustomText('${inter.name}: ${inter.parameters ? ('Parámetros: ' + (inter.parameters.temperature || '') + ' / ' + (inter.parameters.time || '') + ' | AL Pre-Lesión: ' + (inter.localAnesthetic?.drug || '') + ' ' + (inter.localAnesthetic?.volume || '') + (inter.target ? ' | Diana: ' + inter.target : '')) : ('AL ' + (inter.localAnesthetic?.drug || '') + ' ' + (inter.localAnesthetic?.volume || '') + ' + Corticoide ' + (inter.corticosteroid?.drug || '') + ' ' + (inter.corticosteroid?.dose || '') + ' (Vol. Total: ' + inter.totalVolume + ')')}', event, 'Pauta Intervencionista')">
                 📋 Copiar Pauta Intervencionista
               </button>
             </div>
