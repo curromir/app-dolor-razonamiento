@@ -5,32 +5,32 @@
 
 cd "$(dirname "$0")"
 
+# Encontrar un puerto libre dinámicamente para evitar conflictos con otras versiones abiertas
 PORT=8080
-
-# Verificar si el puerto 8080 está ocupado, usar 8000 como alternativa si es necesario
-if lsof -Pi :$PORT -sTCP:LISTEN -t >/dev/null 2>&1 ; then
-    PORT=8000
-fi
+for p in 8080 8081 8082 8083 8084 8085 8000 8001 8002 3000 5000; do
+    if ! lsof -Pi :$p -sTCP:LISTEN -t >/dev/null 2>&1 ; then
+        PORT=$p
+        break
+    fi
+done
 
 echo "========================================================"
-echo "🩺 INICIANDO APP DE DOLOR EN LOCAL (MODO OFFLINE / SERVIDOR LOCAL)"
+echo "🩺 INICIANDO APP DE DOLOR (VERSIÓN LOCAL)"
 echo "📍 Dirección: http://localhost:$PORT"
+echo "📂 Carpeta: $(basename "$(pwd)")"
 echo "========================================================"
-echo "Abriendo tu navegador..."
+echo "Abriendo tu navegador en http://localhost:$PORT..."
 
-# Iniciar servidor local ligero en segundo plano
 python3 -m http.server $PORT &
 SERVER_PID=$!
 
 sleep 1
 
-# Abrir en el navegador predeterminado
 open "http://localhost:$PORT"
 
 echo ""
-echo "✅ App iniciada con éxito."
-echo "💡 Para detener el servidor local cuando termines, simplemente cierra esta ventana del Terminal."
+echo "✅ App iniciada con éxito en el puerto $PORT."
+echo "💡 Para detener el servidor cuando termines, simplemente cierra esta ventana."
 echo ""
 
-# Esperar a que el proceso termine
 wait $SERVER_PID
