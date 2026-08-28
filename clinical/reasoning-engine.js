@@ -1040,10 +1040,14 @@ class ClinicalReasoningEngine {
     }
 
     if (isRadicular) {
+      const isCervical = pathwayId.includes('cervical');
       spinalInt = {
-        approaches: [
-          catalog.spinal_interventions?.transforaminal_epidural,
-          catalog.spinal_interventions?.interlaminar_epidural,
+        approaches: isCervical ? [
+          catalog.spinal_interventions?.transforaminal_epidural_cervical || catalog.spinal_interventions?.transforaminal_epidural,
+          catalog.spinal_interventions?.interlaminar_epidural_cervical || catalog.spinal_interventions?.interlaminar_epidural
+        ].filter(Boolean) : [
+          catalog.spinal_interventions?.transforaminal_epidural_lumbar || catalog.spinal_interventions?.transforaminal_epidural,
+          catalog.spinal_interventions?.interlaminar_epidural_lumbar || catalog.spinal_interventions?.interlaminar_epidural,
           catalog.spinal_interventions?.caudal_epidural
         ].filter(Boolean),
         drgPrf: catalog.spinal_interventions?.drg_pulsed_radiofrequency,
@@ -1071,9 +1075,11 @@ class ClinicalReasoningEngine {
       isBlocked: !isInterventionSafe,
       blockReason: this.session.hasActiveRedFlag
         ? '🚨 Intervencionismo bloqueado por presencia de Banderas Rojas activas que requieren derivación urgente.'
-        : (!concordance || concordance === 'discordant')
+        : (concordance === 'discordant')
           ? '⚠️ La concordancia clínico-imagen no apoya una intervención invasiva dirigida sobre este hallazgo.'
-          : null,
+          : (!isInterventionSafe)
+            ? '⚠️ Requiere confirmar concordancia clínico-imagen (alta o parcial) antes de proceder con técnica invasiva.'
+            : '',
       philosophy: 'La técnica intervencionista es una herramienta diagnóstica y terapéutica para abrir una "ventana de oportunidad" analgésica. El objetivo angular posterior es recuperar movimiento, fuerza, sueño y tolerancia a la carga.',
       pathwayTargets: pathwayTargets,
       pathwayCondition: pathwayIntervention.condition || '',

@@ -2153,7 +2153,7 @@
           <div class="tier-body">
             ${plan.tiers[6].isBlocked ? `
               <p style="font-size: 0.84rem; color: var(--color-alarm); font-weight: 700; margin-bottom: 0.5rem;">
-                ${plan.tiers[6].blockReason}
+                ${plan.tiers[6].blockReason || '⚠️ Requiere confirmar concordancia clínico-imagen (alta o parcial) antes de proceder con técnica invasiva.'}
               </p>
             ` : `
               <div class="intervention-window-banner" style="margin-bottom: 0.75rem;">
@@ -2285,15 +2285,44 @@
                 <h4 style="margin: 0 0 0.35rem; font-size: 0.98rem; font-weight: 800; color: var(--accent-blue);">🎯 Selección de Técnica Epidural Lumbar (Por Anatomía y Objetivo):</h4>
                 <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.65rem;">${plan.tiers[6].spinal.expectedBenefit}</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.65rem; margin-bottom: 0.75rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.75rem; margin-bottom: 0.75rem;">
                   ${plan.tiers[6].spinal.approaches.map(ap => `
-                    <div class="structure-box">
-                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
-                        <strong style="font-size: 0.88rem; color: var(--text-primary);">${ap.name}</strong>
+                    <div class="structure-box" style="background: var(--bg-surface); border-color: var(--border-color);">
+                      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.4rem;">
+                        <strong style="font-size: 0.9rem; color: var(--text-primary);">${ap.name}</strong>
+                        <span class="treatment-badge-pill ${ap.evidence?.badge?.includes('ALTA') ? 'green' : 'blue'}" style="font-size: 0.68rem;">${ap.evidence?.badge || 'Reconocida'}</span>
                       </div>
                       <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 0.25rem;"><strong>Indicación:</strong> ${ap.indication}</p>
-                      <p style="font-size: 0.76rem; color: var(--accent-blue); font-weight: 600; margin: 0 0 0.25rem;"><strong>Ventaja:</strong> ${ap.advantage || ap.concept}</p>
-                      <span class="treatment-badge-pill ${ap.evidence?.badge?.includes('ALTA') ? 'green' : 'blue'}" style="font-size: 0.74rem;">${ap.evidence?.badge || 'Reconocida'}</span>
+                      <p style="font-size: 0.76rem; color: var(--accent-blue); font-weight: 600; margin: 0 0 0.4rem;"><strong>Ventaja:</strong> ${ap.advantage || ap.concept}</p>
+                      
+                      <div class="pharma-spec-grid" style="margin-bottom: 0.4rem;">
+                        ${ap.localAnesthetic ? `
+                          <div class="pharma-spec-item">
+                            <strong style="color: #60a5fa;">💉 Anestésico Local (AL)</strong>
+                            <span>${ap.localAnesthetic.drug || ''} · ${ap.localAnesthetic.volume || ''} ${ap.localAnesthetic.dose ? '(' + ap.localAnesthetic.dose + ')' : ''}</span>
+                          </div>
+                        ` : (ap.drugs ? `<div class="pharma-spec-item"><strong style="color: #60a5fa;">💉 Fármacos</strong><span>${ap.drugs}</span></div>` : '')}
+                        ${ap.corticosteroid ? `
+                          <div class="pharma-spec-item">
+                            <strong style="color: ${ap.corticosteroid.drug?.includes('NO PARTICULADA') ? '#10b981' : '#ef4444'};">💊 Corticoide / Inyectable</strong>
+                            <span>${ap.corticosteroid.drug || ''} ${ap.corticosteroid.dose ? '· ' + ap.corticosteroid.dose : ''} ${ap.corticosteroid.volume ? '(' + ap.corticosteroid.volume + ')' : ''}</span>
+                          </div>
+                        ` : ''}
+                        ${ap.totalVolume || ap.volume ? `
+                          <div class="pharma-spec-item">
+                            <strong style="color: #f59e0b;">📏 Volumen Total</strong>
+                            <span>${ap.totalVolume || ap.volume}</span>
+                          </div>
+                        ` : ''}
+                      </div>
+
+                      ${(ap.safetyWarnings && ap.safetyWarnings.length > 0) ? `
+                        <div style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: var(--radius-sm); padding: 0.35rem 0.5rem; margin-top: 0.35rem;">
+                          ${ap.safetyWarnings.map(w => `
+                            <div style="font-size: 0.72rem; color: #ef4444; font-weight: 600; margin: 0.1rem 0;">⚠️ ${w}</div>
+                          `).join('')}
+                        </div>
+                      ` : ''}
                     </div>
                   `).join('')}
                 </div>
