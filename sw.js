@@ -1,5 +1,5 @@
-// Service Worker v52.0 - Full Master Dosage Tables & Radiofrequency Tables Release
-const CACHE_NAME = 'dolor-tests-v52';
+// Service Worker v53.0 - Cache Invalidation & Direct Table View Rendering Release
+const CACHE_NAME = 'dolor-tests-v53';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

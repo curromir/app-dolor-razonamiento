@@ -93,6 +93,10 @@
 
     setMode(newMode) {
       this.mode = newMode;
+      this.searchQuery = '';
+      const searchInput = document.getElementById('vademecum-search-input');
+      if (searchInput) searchInput.value = '';
+
       const btnExpress = document.getElementById('vade-tab-btn-express');
       const btnInterventions = document.getElementById('vade-tab-btn-interventions');
       const btnRF = document.getElementById('vade-tab-btn-radiofrequency');

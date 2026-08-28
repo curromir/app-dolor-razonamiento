@@ -1208,7 +1208,8 @@ window.switchTab = function(tabId) {
   }
 
   if (tabId === 'tab-vademecum' && window.Vademecum) {
-    window.Vademecum.setMode('express');
+    if (!window.Vademecum.mode) window.Vademecum.setMode('express');
+    else window.Vademecum.render();
   }
 
   if (tabId === 'tab-ultrasound' && window.Ultrasound) {
