@@ -1,5 +1,5 @@
-// Service Worker v54.0 - Dr. Curro Mir Notion Epidural Protocol Release
-const CACHE_NAME = 'dolor-tests-v54';
+// Service Worker v55.0 - Fix Anamnesis Review Backwards Navigation Release
+const CACHE_NAME = 'dolor-tests-v55';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

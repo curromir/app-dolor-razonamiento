@@ -788,7 +788,11 @@
     const current = uiState.engine.getCurrentStep();
     const idx = CLINICAL_STEP_SEQUENCE.indexOf(current);
     if (idx > 0) {
-      uiState.engine.session.currentStep = CLINICAL_STEP_SEQUENCE[idx - 1];
+      const prevStep = CLINICAL_STEP_SEQUENCE[idx - 1];
+      if (prevStep === 'anamnesis') {
+        uiState.activeQuestionIndex = 0;
+      }
+      uiState.engine.session.currentStep = prevStep;
       renderCurrentStep();
     } else if (idx === 0) {
       renderPresentationSelector(uiState.engine.pathway.region);
@@ -1002,19 +1006,26 @@
   // ─────────────────────────────────────────────
 
   function renderAnamnesisView(container) {
-    const q = uiState.engine.getCurrentQuestion();
-    if (!q) {
-      uiState.engine.session.currentStep = 'anamnesis_summary';
-      return renderCurrentStep();
-    }
-
     const allQuestions = uiState.expressMode
       ? uiState.engine.getEssentialQuestions()
       : uiState.engine.getQuestions();
 
-    const qIndex = allQuestions.findIndex(item => item.id === q.id);
+    if (!allQuestions || allQuestions.length === 0) {
+      uiState.engine.session.currentStep = 'anamnesis_summary';
+      return renderCurrentStep();
+    }
+
+    // Determine active question index
+    if (typeof uiState.activeQuestionIndex !== 'number' || uiState.activeQuestionIndex < 0 || uiState.activeQuestionIndex >= allQuestions.length) {
+      const firstUnanswered = allQuestions.findIndex(item => uiState.engine.session.answers[item.id] === undefined);
+      uiState.activeQuestionIndex = firstUnanswered >= 0 ? firstUnanswered : 0;
+    }
+
+    const qIndex = uiState.activeQuestionIndex;
+    const q = allQuestions[qIndex];
     const totalQ = allQuestions.length;
     const selectedAnswerIdx = uiState.engine.session.answers[q.id];
+    const allAnswered = allQuestions.every(item => uiState.engine.session.answers[item.id] !== undefined);
 
     container.innerHTML = `
       <div class="anamnesis-layout">
@@ -1022,7 +1033,20 @@
         <div class="question-card">
           <div class="question-header">
             <span class="question-num-pill">Pregunta ${qIndex + 1} de ${totalQ} ${q.essential ? '• ⚡ Clave' : ''}</span>
-            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">Anamnesis Dirigida</span>
+            
+            <!-- Quick Question Pagination Pills -->
+            <div style="display: flex; gap: 0.35rem; align-items: center; flex-wrap: wrap;">
+              ${allQuestions.map((item, idx) => {
+                const isAns = uiState.engine.session.answers[item.id] !== undefined;
+                const isCur = idx === qIndex;
+                return `
+                  <button style="width: 24px; height: 24px; border-radius: 50%; font-size: 0.72rem; font-weight: 800; border: 1px solid ${isCur ? 'var(--accent-blue)' : isAns ? 'var(--accent-emerald)' : 'var(--border-color)'}; background: ${isCur ? 'var(--accent-blue)' : isAns ? 'rgba(16, 185, 129, 0.15)' : 'var(--bg-surface)'}; color: ${isCur ? '#fff' : isAns ? 'var(--accent-emerald)' : 'var(--text-muted)'}; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0;"
+                          onclick="window.ClinicalUI.setQuestionIndex(${idx})" title="Ir a pregunta ${idx + 1}">
+                    ${idx + 1}
+                  </button>
+                `;
+              }).join('')}
+            </div>
           </div>
 
           <h2 class="question-title">${q.text}</h2>
@@ -1058,6 +1082,35 @@
               </button>
             </div>
           ` : ''}
+
+          <!-- Bottom Navigation Bar inside Question Card -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid var(--border-color); flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              ${qIndex > 0 ? `
+                <button class="clinical-action-btn" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;" onclick="window.ClinicalUI.setQuestionIndex(${qIndex - 1})">
+                  ← Pregunta Anterior
+                </button>
+              ` : `
+                <button class="clinical-action-btn" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;" onclick="window.ClinicalUI.goToStep('red_flags')">
+                  ← Banderas Rojas
+                </button>
+              `}
+            </div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              ${qIndex < totalQ - 1 ? `
+                <button class="clinical-action-btn" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;" onclick="window.ClinicalUI.setQuestionIndex(${qIndex + 1})">
+                  Pregunta Siguiente →
+                </button>
+              ` : ''}
+              
+              ${allAnswered ? `
+                <button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.82rem;" onclick="window.ClinicalUI.proceedToAnamnesisSummary()">
+                  Ver Resumen Anamnesis →
+                </button>
+              ` : ''}
+            </div>
+          </div>
         </div>
 
         <!-- Dynamic Hypothesis Panel (Sidebar) -->
@@ -1121,19 +1174,44 @@
   function answerQuestion(questionId, answerIndex) {
     if (!uiState.engine) return;
     uiState.engine.processAnswer(questionId, answerIndex);
-    renderCurrentStep();
+    
+    const allQuestions = uiState.expressMode
+      ? uiState.engine.getEssentialQuestions()
+      : uiState.engine.getQuestions();
+
+    if (uiState.activeQuestionIndex < allQuestions.length - 1) {
+      uiState.activeQuestionIndex++;
+      renderCurrentStep();
+    } else {
+      uiState.engine.session.currentStep = 'anamnesis_summary';
+      renderCurrentStep();
+    }
   }
 
   function saveCustomGoal() {
     const input = document.getElementById('customGoalInput');
     if (input && uiState.engine) {
       uiState.engine.session.functionalGoal = input.value.trim();
-      const currentQ = uiState.engine.getCurrentQuestion();
+      const allQuestions = uiState.expressMode
+        ? uiState.engine.getEssentialQuestions()
+        : uiState.engine.getQuestions();
+      const currentQ = allQuestions[uiState.activeQuestionIndex];
       if (currentQ) {
         uiState.engine.processAnswer(currentQ.id, 0);
       }
+      if (uiState.activeQuestionIndex < allQuestions.length - 1) {
+        uiState.activeQuestionIndex++;
+      } else {
+        uiState.engine.session.currentStep = 'anamnesis_summary';
+      }
       renderCurrentStep();
     }
+  }
+
+  function proceedToAnamnesisSummary() {
+    if (!uiState.engine) return;
+    uiState.engine.session.currentStep = 'anamnesis_summary';
+    renderCurrentStep();
   }
 
   // ─────────────────────────────────────────────
@@ -3520,10 +3598,21 @@
     goToPrevStep: goToPrevStep,
     goToStep: function (stepId) {
       if (uiState.engine) {
+        if (stepId === 'anamnesis') {
+          uiState.activeQuestionIndex = 0;
+        }
         uiState.engine.goToStep(stepId);
         renderCurrentStep();
       }
     },
+    setQuestionIndex: function (idx) {
+      uiState.activeQuestionIndex = idx;
+      if (uiState.engine) {
+        uiState.engine.session.currentStep = 'anamnesis';
+      }
+      renderCurrentStep();
+    },
+    proceedToAnamnesisSummary: proceedToAnamnesisSummary,
     answerQuestion: answerQuestion,
     saveCustomGoal: saveCustomGoal,
     proceedToExamination: proceedToExamination,

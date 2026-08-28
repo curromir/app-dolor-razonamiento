@@ -146,6 +146,49 @@ class ClinicalReasoningEngine {
     return this.getCurrentQuestion();
   }
 
+  recalculateAllHypotheses() {
+    // Reset hypotheses to baseline definitions
+    this.session.hypotheses = (this.pathway.hypotheses || []).map(h => ({
+      id: h.id,
+      name: h.name,
+      shortName: h.shortName || h.name,
+      description: h.description,
+      initialLevel: h.initialLevel || 'possible',
+      level: h.initialLevel || 'possible',
+      score: h.score || 0,
+      history: []
+    }));
+
+    // Replay Anamnesis Answers
+    for (const [qId, ansIdx] of Object.entries(this.session.answers || {})) {
+      const q = this.getQuestions().find(item => item.id === qId);
+      if (q) {
+        const answers = q.answers || q.options || [];
+        const ans = answers[ansIdx];
+        if (ans && ans.hypothesisEffects) {
+          ans.hypothesisEffects.forEach(effect => {
+            this._applyHypothesisEffect(effect, `anamnesis:${qId}`, ans.label);
+          });
+        }
+      }
+    }
+
+    // Replay Examination Findings
+    for (const [stepId, val] of Object.entries(this.session.examinationFindings || {})) {
+      const step = this.getExaminationStep(stepId);
+      if (step) {
+        const resultObj = (step.results || []).find(r => r.value === val);
+        if (resultObj && resultObj.hypothesisEffects) {
+          resultObj.hypothesisEffects.forEach(effect => {
+            this._applyHypothesisEffect(effect, `examination:${stepId}`, resultObj.label);
+          });
+        }
+      }
+    }
+
+    this._recalculateHypothesisLevels();
+  }
+
   processAnswer(questionId, answerIndex) {
     const question = this.getQuestions().find(q => q.id === questionId);
     if (!question) return;
@@ -162,18 +205,11 @@ class ClinicalReasoningEngine {
       this.session.functionalGoal = answer.label;
     }
 
-    // Apply hypothesis effects
-    if (answer.hypothesisEffects) {
-      answer.hypothesisEffects.forEach(effect => {
-        this._applyHypothesisEffect(effect, `anamnesis:${questionId}`, answer.label);
-      });
-    }
+    // Recalculate cleanly from scratch
+    this.recalculateAllHypotheses();
 
-    this._recalculateHypothesisLevels();
-
-    // Check if anamnesis is complete
+    // Mark completed step if all questions answered
     if (!this.getCurrentQuestion()) {
-      this.session.currentStep = 'anamnesis_summary';
       this._addCompletedStep('anamnesis');
     }
 
