@@ -1168,16 +1168,27 @@ window.switchTab = function(tabId) {
   // Ensure home and clinical containers are hidden and library containers are shown
   const homeEl = document.getElementById('home-screen');
   const clinicalEl = document.getElementById('clinical-reasoning-container');
-  const mainHeader = document.querySelector('.main-header');
+  const libraryEl = document.getElementById('library-container');
+  const mainHeader = document.querySelector('.main-header') || document.getElementById('appMainHeader');
   const navTabs = document.querySelector('.nav-tabs-wrapper');
   const filtersSection = document.querySelector('.filters-section');
   const mainContent = document.querySelector('.main-content');
 
-  if (homeEl) homeEl.style.display = 'none';
-  if (clinicalEl) clinicalEl.style.display = 'none';
+  if (homeEl) {
+    homeEl.style.display = 'none';
+    homeEl.classList.remove('active');
+  }
+  if (clinicalEl) {
+    clinicalEl.style.display = 'none';
+    clinicalEl.classList.remove('active');
+  }
+  if (libraryEl) {
+    libraryEl.style.display = 'block';
+    libraryEl.classList.add('active');
+  }
   if (mainHeader) mainHeader.style.display = 'block';
   if (navTabs) navTabs.style.display = 'block';
-  if (filtersSection) filtersSection.style.display = 'block';
+  if (filtersSection) filtersSection.style.display = (tabId === 'tab-tests') ? 'block' : 'none';
   if (mainContent) mainContent.style.display = 'block';
 
   // Desktop tabs sync

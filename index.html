@@ -41,12 +41,14 @@
     </section>
 
     <!-- CLINICAL REASONING WORKSPACE CONTAINER -->
-    <section id="clinical-reasoning-container" class="clinical-container">
+    <section id="clinical-reasoning-container" class="clinical-container" style="display: none;">
       <!-- Rendered dynamically by reasoning-ui.js -->
     </section>
 
-    <!-- Top Header (Sprint 14 Unified Master Navigation) -->
-    <header class="main-header" id="appMainHeader" style="display: none;">
+    <!-- LIBRARY WORKSPACE CONTAINER (Técnicas / Biblioteca) -->
+    <div id="library-container" style="display: none;">
+      <!-- Top Header (Sprint 14 Unified Master Navigation) -->
+      <header class="main-header" id="appMainHeader">
       <div class="header-inner container">
         <div class="brand-section">
           <div class="brand-icon-wrapper" onclick="window.ClinicalUI.switchAppMode('home')" style="cursor: pointer;" title="Volver al Inicio">
@@ -663,6 +665,7 @@
       </section>
 
     </main>
+    </div> <!-- /#library-container -->
 
     <!-- Bottom Navigation Bar for Mobile Safari / iPhone (Sprint 14 4 Areas) -->
     <nav class="mobile-bottom-bar" id="mobileBottomNav">
@@ -804,11 +807,11 @@
 
   </div>
 
-  <script src="data/embedded_bundle.js?v=56.0"></script>
-  <script src="clinical/reasoning-engine.js?v=56.0"></script>
-  <script src="clinical/reasoning-ui.js?v=56.0"></script>
-  <script src="js/vademecum.js?v=56.0"></script>
-  <script src="js/ultrasound.js?v=56.0"></script>
-  <script src="app.js?v=56.0"></script>
+  <script src="data/embedded_bundle.js?v=57.0"></script>
+  <script src="clinical/reasoning-engine.js?v=57.0"></script>
+  <script src="clinical/reasoning-ui.js?v=57.0"></script>
+  <script src="js/vademecum.js?v=57.0"></script>
+  <script src="js/ultrasound.js?v=57.0"></script>
+  <script src="app.js?v=57.0"></script>
 </body>
 </html>

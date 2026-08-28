@@ -1,5 +1,5 @@
-// Service Worker v56.0 - Sprint 14 Consolidation Release
-const CACHE_NAME = 'dolor-tests-v56';
+// Service Worker v57.0 - Sprint 14 4-Doors Home Default
+const CACHE_NAME = 'dolor-tests-v57';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

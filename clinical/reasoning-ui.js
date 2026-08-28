@@ -3983,15 +3983,25 @@
   function switchAppMode(mode) {
     const homeEl = document.getElementById('home-screen');
     const clinicalEl = document.getElementById('clinical-reasoning-container');
-    const mainHeader = document.querySelector('.main-header') || document.getElementById('appMainHeader');
+    const libraryEl = document.getElementById('library-container');
+    const mainHeader = document.getElementById('appMainHeader') || document.querySelector('.main-header');
     const navTabs = document.querySelector('.nav-tabs-wrapper');
     const filtersSection = document.querySelector('.filters-section');
     const mainContent = document.querySelector('.main-content');
-    const mobileBottomBar = document.querySelector('.mobile-bottom-bar');
 
     // Reset all workspaces
-    if (homeEl) homeEl.style.display = 'none';
-    if (clinicalEl) clinicalEl.style.display = 'none';
+    if (homeEl) {
+      homeEl.style.display = 'none';
+      homeEl.classList.remove('active');
+    }
+    if (clinicalEl) {
+      clinicalEl.style.display = 'none';
+      clinicalEl.classList.remove('active');
+    }
+    if (libraryEl) {
+      libraryEl.style.display = 'none';
+      libraryEl.classList.remove('active');
+    }
     if (mainHeader) mainHeader.style.display = 'none';
     if (navTabs) navTabs.style.display = 'none';
     if (filtersSection) filtersSection.style.display = 'none';
@@ -4000,11 +4010,13 @@
     if (mode === 'home') {
       if (homeEl) {
         homeEl.style.display = 'block';
+        homeEl.classList.add('active');
         renderHomeScreen();
       }
     } else if (mode === 'consultation' || mode === 'clinical') {
       if (clinicalEl) {
         clinicalEl.style.display = 'block';
+        clinicalEl.classList.add('active');
         if (!uiState.engine) {
           renderRegionSelector();
         } else {
@@ -4014,6 +4026,7 @@
     } else if (mode === 'reasoning') {
       if (clinicalEl) {
         clinicalEl.style.display = 'block';
+        clinicalEl.classList.add('active');
         if (!uiState.engine) {
           renderReasoningHub();
         } else {
@@ -4021,11 +4034,13 @@
         }
       }
     } else if (mode === 'techniques') {
+      if (libraryEl) libraryEl.style.display = 'block';
       if (mainHeader) mainHeader.style.display = 'block';
       if (navTabs) navTabs.style.display = 'block';
       if (mainContent) mainContent.style.display = 'block';
       if (window.switchTab) window.switchTab('tab-ultrasound');
     } else if (mode === 'library') {
+      if (libraryEl) libraryEl.style.display = 'block';
       if (mainHeader) mainHeader.style.display = 'block';
       if (navTabs) navTabs.style.display = 'block';
       if (filtersSection) filtersSection.style.display = 'block';
