@@ -565,6 +565,11 @@
         });
       }
 
+      const facetLumbar = (this.data.interventions || []).find(i => i.id === 'rf-facet-lumbar')?.facetLevelMapping?.levels || [];
+      const facetCervical = (this.data.interventions || []).find(i => i.id === 'rf-facet-cervical')?.facetLevelMapping?.levels || [];
+      const drgLumbar = (this.data.interventions || []).find(i => i.id === 'prf-drg-lumbar')?.rootLevelMapping?.levels || [];
+      const drgCervical = (this.data.interventions || []).find(i => i.id === 'prf-drg-cervical')?.rootLevelMapping?.levels || [];
+
       container.innerHTML = `
         <!-- HEADER RADIOFRECUENCIA -->
         <section class="vade-five-doses-section" style="border-color: rgba(99, 102, 241, 0.4); background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(16, 185, 129, 0.04) 100%);">
@@ -572,7 +577,7 @@
             <span style="font-size: 1.6rem;">⚡</span>
             <div>
               <h3 style="font-size: 1.05rem; font-weight: 900; color: var(--accent-blue); margin: 0;">RADIOFRECUENCIA TÉRMICA CONVENCIONAL, COOLED Y PULSADA (PRF)</h3>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Dianas Anatómicas · Mapeo Nivel por Nivel de Facetas y DRG · Dosis de Anestésicos Locales Pre-Lesión · Parámetros de Estimulación (50 Hz / 2 Hz)</p>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Tablas de Dosis y Parámetros Físicos · Estimulación (50 Hz / 2 Hz) · Mapeo Nivel por Nivel de Facetas y DRG · AL Pre-Lesión</p>
             </div>
           </div>
 
@@ -624,8 +629,179 @@
           </div>
         </section>
 
+        <!-- 📊 TABLA 1: TABLA MAESTRA DE RADIOFRECUENCIA -->
+        <section class="glass-panel table-card" style="margin-top: 0.75rem; border-color: rgba(99, 102, 241, 0.3);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h4 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: var(--accent-blue); display: flex; align-items: center; gap: 0.4rem;">
+                <span>📊</span> TABLA MAESTRA DE RADIOFRECUENCIA (TÉRMICA, COOLED Y PULSADA)
+              </h4>
+              <p style="margin: 0.2rem 0 0; font-size: 0.75rem; color: var(--text-muted);">Parámetros físicos, estimulación (50 Hz / 2 Hz), anestésicos locales pre-lesión y dianas anatómicas</p>
+            </div>
+            <span class="treatment-badge-pill blue" style="font-size: 0.72rem;">10 Técnicas Estandarizadas</span>
+          </div>
+
+          <div class="table-responsive" style="max-height: 420px; overflow-y: auto;">
+            <table class="clinical-table" style="font-size: 0.78rem;">
+              <thead>
+                <tr style="position: sticky; top: 0; background: var(--bg-surface); z-index: 2;">
+                  <th style="min-width: 170px;">Procedimiento / Región</th>
+                  <th style="min-width: 130px;">⚡ Parámetros & Tipo</th>
+                  <th style="min-width: 180px;">🎯 Diana Anatómica Exacta</th>
+                  <th style="min-width: 140px;">💉 AL Pre-Lesión</th>
+                  <th style="min-width: 150px;">⚡ Estimulación (50 Hz / 2 Hz)</th>
+                  <th style="min-width: 190px;">🔍 Requisito / Alerta de Seguridad</th>
+                  <th style="min-width: 80px; text-align: center;">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rfItems.map(i => `
+                  <tr>
+                    <td>
+                      <strong style="color: var(--text-primary); display: block;">${i.name}</strong>
+                      <span style="font-size: 0.7rem; color: #a5b4fc;">${i.type || i.categoryLabel || i.region}</span>
+                    </td>
+                    <td>
+                      <span style="color: ${i.type?.includes('Pulsada') ? '#60a5fa' : i.type?.includes('Cooled') ? '#34d399' : '#f87171'}; font-weight: 800; font-family: var(--font-mono);">
+                        ${i.parameters?.temperature || ''} / ${i.parameters?.time || ''}
+                      </span>
+                      <div style="font-size: 0.7rem; color: var(--text-secondary);">${i.parameters?.cannula || ''}</div>
+                    </td>
+                    <td>
+                      <span style="font-size: 0.72rem; color: var(--text-secondary);">${(i.target || '').replace(/\n/g, '<br>')}</span>
+                    </td>
+                    <td>
+                      <span style="color: #60a5fa; font-weight: 700;">${i.localAnesthetic?.drug || '—'}</span>
+                      <div style="font-size: 0.7rem; color: var(--text-secondary);">${i.localAnesthetic?.volume || ''} ${i.localAnesthetic?.dose ? '(' + i.localAnesthetic.dose + ')' : ''}</div>
+                    </td>
+                    <td>
+                      <div style="font-size: 0.7rem; color: #60a5fa;"><strong>50 Hz:</strong> ${i.parameters?.sensoryStimulation || '—'}</div>
+                      <div style="font-size: 0.7rem; color: #f87171;"><strong>2 Hz:</strong> ${i.parameters?.motorStimulation || '—'}</div>
+                    </td>
+                    <td>
+                      ${i.requiredDiagnosticTest ? `<div style="font-size: 0.7rem; color: #f59e0b; font-weight: 700;">🔍 ${i.requiredDiagnosticTest}</div>` : ''}
+                      <span style="font-size: 0.7rem; color: ${(i.safetyWarnings && i.safetyWarnings[0]?.includes('¡') || i.safetyWarnings && i.safetyWarnings[0]?.includes('PROHIBIDO')) ? '#ef4444' : 'var(--text-secondary)'};">
+                        ${(i.safetyWarnings && i.safetyWarnings.length > 0) ? i.safetyWarnings[0] : (i.indication || '—')}
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="vade-copy-pill-btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem;" onclick="window.Vademecum.copyIntervention('${i.id}', event)" title="Copiar pauta RF">
+                        📋 Copiar
+                      </button>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 📍 TABLA 2: MAPEO NIVEL POR NIVEL DE FACETAS (LUMBAR & CERVICAL) -->
+        <section class="glass-panel table-card" style="margin-top: 0.75rem; border-color: rgba(99, 102, 241, 0.3);">
+          <h4 style="margin: 0 0 0.5rem; font-size: 0.95rem; font-weight: 800; color: #a5b4fc; display: flex; align-items: center; gap: 0.4rem;">
+            <span>📍</span> MAPEO CLÍNICO DE FACETAS: NÚMERO DE FACETA Y RAMOS MEDIALES A LESIONAR
+          </h4>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0 0 0.75rem;">Cada articulación facetaria recibe doble inervación: ramo medial del mismo nivel y del nivel suprayacente (Dwyer / Aprill / Bogduk / Fukui).</p>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.75rem;">
+            <!-- Facetas Lumbares -->
+            <div class="structure-box" style="background: var(--bg-surface); padding: 0.75rem;">
+              <strong style="color: #60a5fa; font-size: 0.84rem; display: block; margin-bottom: 0.4rem;">🦴 Columna Lumbar (L1-L2 a L5-S1)</strong>
+              <div class="table-responsive">
+                <table class="clinical-table" style="font-size: 0.75rem;">
+                  <thead>
+                    <tr><th>Faceta</th><th>Ramos Mediales a Lesionar</th><th>Patrón de Dolor Clínico</th></tr>
+                  </thead>
+                  <tbody>
+                    ${facetLumbar.map(l => `
+                      <tr>
+                        <td><strong style="color: var(--accent-blue);">${l.facet}</strong></td>
+                        <td><span style="font-weight: 700; color: var(--text-primary);">${l.nerves}</span></td>
+                        <td><span style="color: var(--text-secondary); font-size: 0.72rem;">${l.painPattern}</span></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Facetas Cervicales -->
+            <div class="structure-box" style="background: var(--bg-surface); padding: 0.75rem;">
+              <strong style="color: #a5b4fc; font-size: 0.84rem; display: block; margin-bottom: 0.4rem;">🦴 Columna Cervical (C2-C3 a C7-T1)</strong>
+              <div class="table-responsive">
+                <table class="clinical-table" style="font-size: 0.75rem;">
+                  <thead>
+                    <tr><th>Faceta</th><th>Ramos Mediales a Lesionar</th><th>Patrón de Dolor Clínico</th></tr>
+                  </thead>
+                  <tbody>
+                    ${facetCervical.map(l => `
+                      <tr>
+                        <td><strong style="color: var(--accent-blue);">${l.facet}</strong></td>
+                        <td><span style="font-weight: 700; color: var(--text-primary);">${l.nerves}</span></td>
+                        <td><span style="color: var(--text-secondary); font-size: 0.72rem;">${l.painPattern}</span></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 📍 TABLA 3: MAPEO DE GANGLIO DE LA RAÍZ DORSAL (DRG PRF) -->
+        <section class="glass-panel table-card" style="margin-top: 0.75rem; border-color: rgba(245, 158, 11, 0.3);">
+          <h4 style="margin: 0 0 0.5rem; font-size: 0.95rem; font-weight: 800; color: #f59e0b; display: flex; align-items: center; gap: 0.4rem;">
+            <span>📍</span> GANGLIO DE LA RAÍZ DORSAL (DRG PRF 42°C / 240 s): NIVELES Y DERMATOMAS
+          </h4>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0 0 0.75rem;">Radiofrecuencia Pulsada (PRF) estrictamente no ablativa en radiculopatía crónica refractaria (preserva motricidad).</p>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.75rem;">
+            <!-- DRG Lumbar -->
+            <div class="structure-box" style="background: var(--bg-surface); padding: 0.75rem;">
+              <strong style="color: #f59e0b; font-size: 0.84rem; display: block; margin-bottom: 0.4rem;">⚡ DRG Lumbosacro (L4, L5, S1)</strong>
+              <div class="table-responsive">
+                <table class="clinical-table" style="font-size: 0.75rem;">
+                  <thead>
+                    <tr><th>Raíz / Foramen</th><th>Dermatoma / Territorio</th><th>Dosis Fármaco Post-Pulso</th></tr>
+                  </thead>
+                  <tbody>
+                    ${drgLumbar.map(l => `
+                      <tr>
+                        <td><strong style="color: #f59e0b;">${l.root}</strong><br><span style="font-size: 0.7rem; color: var(--text-muted);">${l.foramen}</span></td>
+                        <td><span style="color: var(--text-secondary); font-size: 0.72rem;">${l.painPattern}</span></td>
+                        <td><span style="color: #60a5fa; font-weight: 700; font-size: 0.72rem;">${l.dose || '—'}</span></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- DRG Cervical -->
+            <div class="structure-box" style="background: var(--bg-surface); padding: 0.75rem;">
+              <strong style="color: #f59e0b; font-size: 0.84rem; display: block; margin-bottom: 0.4rem;">⚡ DRG Cervical (C5, C6, C7, C8)</strong>
+              <div class="table-responsive">
+                <table class="clinical-table" style="font-size: 0.75rem;">
+                  <thead>
+                    <tr><th>Raíz / Foramen</th><th>Dermatoma / Territorio</th><th>Dosis Fármaco Post-Pulso</th></tr>
+                  </thead>
+                  <tbody>
+                    ${drgCervical.map(l => `
+                      <tr>
+                        <td><strong style="color: #f59e0b;">${l.root}</strong><br><span style="font-size: 0.7rem; color: var(--text-muted);">${l.foramen}</span></td>
+                        <td><span style="color: var(--text-secondary); font-size: 0.72rem;">${l.painPattern}</span></td>
+                        <td><span style="color: #60a5fa; font-weight: 700; font-size: 0.72rem;">${l.dose || '—'}</span></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- Filtros por Categoría de Radiofrecuencia -->
-        <div class="vade-category-toolbar" style="margin-top: 0.75rem;">
+        <div class="vade-category-toolbar" style="margin-top: 1rem;">
           <button class="vade-rf-chip ${(!this.activeRfCategory || this.activeRfCategory === 'all') ? 'active' : ''}" data-rf="all" onclick="window.Vademecum.setRfCategory('all')">🌐 Todos los Protocolos RF (${rfItems.length})</button>
           <button class="vade-rf-chip ${this.activeRfCategory === 'lumbar_sacro' ? 'active' : ''}" data-rf="lumbar_sacro" onclick="window.Vademecum.setRfCategory('lumbar_sacro')">⚡ Facetas Lumbares & Sacro</button>
           <button class="vade-rf-chip ${this.activeRfCategory === 'cervical_ton' ? 'active' : ''}" data-rf="cervical_ton" onclick="window.Vademecum.setRfCategory('cervical_ton')">⚡ Facetas Cervicales & TON</button>
@@ -635,7 +811,7 @@
           <button class="vade-rf-chip ${this.activeRfCategory === 'hombro_periferico' ? 'active' : ''}" data-rf="hombro_periferico" onclick="window.Vademecum.setRfCategory('hombro_periferico')">🦴 Hombro & Arnold (PRF)</button>
         </div>
 
-        <!-- Grid de Radiofrecuencia -->
+        <!-- Grid de Tarjetas Individuales -->
         <div class="vade-express-grid" style="margin-top: 0.75rem;">
           ${rfItems.map(inter => this.renderInterventionCard(inter)).join('')}
         </div>
@@ -664,7 +840,7 @@
             <span style="font-size: 1.5rem;">💉</span>
             <div>
               <h3 style="font-size: 1.05rem; font-weight: 900; color: #10b981; margin: 0;">FÁRMACOS, DOSIS Y VOLÚMENES EN INFILTRACIONES Y RAQUIS</h3>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Anestésicos Locales · Corticoides (Particulados vs No Particulados) · Volúmenes Articulares y Técnicas Epidurales Espinales</p>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Tablas de Dosis Articulares y Espinales · Anestésicos Locales (Dosis Máximas LAST) · Corticoides (Particulados vs No Particulados)</p>
             </div>
           </div>
 
@@ -711,8 +887,67 @@
           </div>
         </section>
 
+        <!-- 📊 TABLA RESUMEN DE DOSIS DE INFILTRACIONES -->
+        <section class="glass-panel table-card" style="margin-top: 0.75rem; border-color: rgba(16, 185, 129, 0.3);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h4 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: #10b981; display: flex; align-items: center; gap: 0.4rem;">
+                <span>📊</span> TABLA RESUMEN DE DOSIS Y VOLÚMENES (INFILTRACIONES & RAQUIS)
+              </h4>
+              <p style="margin: 0.2rem 0 0; font-size: 0.75rem; color: var(--text-muted);">Dosis recomendadas, volúmenes máximos y alertas de seguridad</p>
+            </div>
+            <span class="treatment-badge-pill green" style="font-size: 0.72rem;">28 Procedimientos Protocolizados</span>
+          </div>
+
+          <div class="table-responsive" style="max-height: 420px; overflow-y: auto;">
+            <table class="clinical-table" style="font-size: 0.78rem;">
+              <thead>
+                <tr style="position: sticky; top: 0; background: var(--bg-surface); z-index: 2;">
+                  <th style="min-width: 170px;">Procedimiento / Diana</th>
+                  <th style="min-width: 150px;">💉 Anestésico Local (AL)</th>
+                  <th style="min-width: 170px;">💊 Corticoide / Inyectable</th>
+                  <th style="min-width: 85px;">Vol. Total</th>
+                  <th style="min-width: 220px;">🛡️ Regla de Oro / Alerta Clave</th>
+                  <th style="min-width: 80px; text-align: center;">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${inters.map(i => `
+                  <tr>
+                    <td>
+                      <strong style="color: var(--text-primary); display: block;">${i.name}</strong>
+                      <span style="font-size: 0.7rem; color: var(--text-muted);">${(i.target || '').replace(/\n/g, ' ')}</span>
+                    </td>
+                    <td>
+                      <span style="color: #60a5fa; font-weight: 700;">${i.localAnesthetic?.drug || '—'}</span>
+                      <div style="font-size: 0.7rem; color: var(--text-secondary);">${i.localAnesthetic?.volume || ''} ${i.localAnesthetic?.dose ? '(' + i.localAnesthetic.dose + ')' : ''}</div>
+                    </td>
+                    <td>
+                      <span style="color: ${(i.corticosteroid?.drug && (i.corticosteroid.drug.includes('PROHIBIDO') || i.corticosteroid.drug.includes('SIN CORTICOIDE'))) ? '#ef4444' : '#10b981'}; font-weight: 700;">${i.corticosteroid?.drug || '—'}</span>
+                      <div style="font-size: 0.7rem; color: var(--text-secondary);">${i.corticosteroid?.dose || ''} ${i.corticosteroid?.volume ? '(' + i.corticosteroid.volume + ')' : ''}</div>
+                    </td>
+                    <td>
+                      <span style="font-family: var(--font-mono); font-weight: 800; color: #f59e0b;">${i.totalVolume || '—'}</span>
+                    </td>
+                    <td>
+                      <span style="font-size: 0.72rem; color: ${(i.safetyWarnings && i.safetyWarnings[0]?.includes('¡') || i.safetyWarnings && i.safetyWarnings[0]?.includes('PROHIBIDO')) ? '#f87171' : 'var(--text-secondary)'}; font-weight: ${(i.safetyWarnings && i.safetyWarnings[0]?.includes('¡')) ? '700' : 'normal'};">
+                        ${(i.safetyWarnings && i.safetyWarnings.length > 0) ? i.safetyWarnings[0] : (i.indication || '—')}
+                      </span>
+                    </td>
+                    <td style="text-align: center;">
+                      <button class="vade-copy-pill-btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem;" onclick="window.Vademecum.copyIntervention('${i.id}', event)" title="Copiar pauta clínica">
+                        📋 Copiar
+                      </button>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <!-- Filtros por Región Anatómica -->
-        <div class="vade-category-toolbar" style="margin-top: 0.75rem;">
+        <div class="vade-category-toolbar" style="margin-top: 1rem;">
           <button class="vade-inter-chip ${(!this.activeInterventionRegion || this.activeInterventionRegion === 'all') ? 'active' : ''}" data-reg="all" onclick="window.Vademecum.setInterventionRegion('all')">🌐 Todas las Infiltraciones (${inters.length})</button>
           <button class="vade-inter-chip ${this.activeInterventionRegion === 'raquis' ? 'active' : ''}" data-reg="raquis" onclick="window.Vademecum.setInterventionRegion('raquis')">⚡ Raquis & Epidurales</button>
           <button class="vade-inter-chip ${this.activeInterventionRegion === 'hombro' ? 'active' : ''}" data-reg="hombro" onclick="window.Vademecum.setInterventionRegion('hombro')">🦴 Hombro</button>
