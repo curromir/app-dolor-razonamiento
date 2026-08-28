@@ -621,6 +621,43 @@
               ${inter.requiredDiagnosticTest ? `<p style="font-size: 0.76rem; color: #f59e0b; font-weight: 700; margin: 0.2rem 0 0;">🔍 Test previo: ${inter.requiredDiagnosticTest}</p>` : ''}
             </div>
 
+            <!-- Facet Level Breakdown by Clinical Pattern (if available) -->
+            ${inter.facetLevelMapping ? `
+              <div style="background: rgba(99, 102, 241, 0.06); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-sm); padding: 0.5rem 0.65rem; margin-bottom: 0.5rem;">
+                <strong style="font-size: 0.8rem; color: #a5b4fc; display: block; margin-bottom: 0.2rem;">📍 Mapeo de Facetas y Dianas por Clínica:</strong>
+                <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0 0 0.35rem;">${inter.facetLevelMapping.rule}</p>
+                <div style="display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.74rem;">
+                  ${inter.facetLevelMapping.levels.map(lvl => `
+                    <div style="background: var(--bg-surface); padding: 0.35rem 0.5rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-blue);">
+                      <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                        <strong style="color: var(--text-primary);">${lvl.facet}: ${lvl.nerves}</strong>
+                      </div>
+                      <span style="color: var(--text-secondary); font-size: 0.72rem;">Patrón dolor: ${lvl.painPattern}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- DRG Root Level Breakdown by Dermatome (if available) -->
+            ${inter.rootLevelMapping ? `
+              <div style="background: rgba(245, 158, 11, 0.06); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-sm); padding: 0.5rem 0.65rem; margin-bottom: 0.5rem;">
+                <strong style="font-size: 0.8rem; color: #f59e0b; display: block; margin-bottom: 0.2rem;">📍 Mapeo de Ganglio Raíz Dorsal (DRG) por Nivel / Clínica:</strong>
+                <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0 0 0.35rem;">${inter.rootLevelMapping.rule}</p>
+                <div style="display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.74rem;">
+                  ${inter.rootLevelMapping.levels.map(lvl => `
+                    <div style="background: var(--bg-surface); padding: 0.35rem 0.5rem; border-radius: var(--radius-sm); border-left: 3px solid #f59e0b;">
+                      <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                        <strong style="color: var(--text-primary);">${lvl.root} (${lvl.foramen})</strong>
+                        <span style="color: #60a5fa; font-weight: 600; font-size: 0.7rem;">${lvl.dose || ''}</span>
+                      </div>
+                      <span style="color: var(--text-secondary); font-size: 0.72rem;">Dermatoma: ${lvl.painPattern}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
             <!-- RF Parameters Box (if available) -->
             ${inter.parameters ? `
               <div style="background: rgba(99, 102, 241, 0.07); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-sm); padding: 0.5rem 0.65rem; margin-bottom: 0.5rem;">

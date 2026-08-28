@@ -1810,6 +1810,36 @@
         "level": "high",
         "badge": "🟢 EVIDENCIA ALTA EN DOLOR FACETARIO AXIAL (SIS / NICE NG59)",
         "note": "Tratamiento intervencionista de referencia con mayor evidencia en dolor lumbar axial crónico."
+      },
+      "facetLevelMapping": {
+        "rule": "Cada articulación facetaria lumbar requiere lesionar 2 nervios: el ramo medial del mismo nivel y el ramo medial del nivel inmediatamente superior (en L5-S1: ramo medial L4 + ramo dorsal L5 en ala sacra).",
+        "levels": [
+          {
+            "facet": "L1-L2",
+            "nerves": "Ramos mediales de T12 y L1",
+            "painPattern": "Dolor lumbar alto / charnela toracolumbar y flanco."
+          },
+          {
+            "facet": "L2-L3",
+            "nerves": "Ramos mediales de L1 y L2",
+            "painPattern": "Dolor lumbar alto-medio y cresta ilíaca superior."
+          },
+          {
+            "facet": "L3-L4",
+            "nerves": "Ramos mediales de L2 y L3",
+            "painPattern": "Dolor lumbar medio, cresta ilíaca y cuadrante superior de la nalga."
+          },
+          {
+            "facet": "L4-L5",
+            "nerves": "Ramos mediales de L3 y L4",
+            "painPattern": "Dolor lumbar bajo, nalga, trocánter mayor y cara lateral de muslo (la faceta más frecuentemente afectada)."
+          },
+          {
+            "facet": "L5-S1",
+            "nerves": "Ramo medial de L4 y Ramo dorsal de L5 (ala sacra)",
+            "painPattern": "Dolor lumbosacro distal, espina ilíaca posterosuperior (EIPS), nalga profunda y cara posterior de muslo sin pasar de rodilla (pseudociática)."
+          }
+        ]
       }
     },
     "facet_rf_cervical": {
@@ -1845,6 +1875,41 @@
         "level": "high",
         "badge": "🟢 EVIDENCIA ALTA EN DOLOR FACETARIO CERVICAL (SIS)",
         "note": "Gold standard en dolor facetario cervical crónico confirmado."
+      },
+      "facetLevelMapping": {
+        "rule": "Cada articulación facetaria cervical zigoapofisaria recibe inervación de los ramos mediales que cruzan los pilares articulares superior e inferior a la articulación (técnica de Dwyer/Aprill/Bogduk).",
+        "levels": [
+          {
+            "facet": "C2-C3",
+            "nerves": "Tercer Nervio Occipital (TON) + Ramo medial de C3",
+            "painPattern": "Cefalea cervicogénica occipital, dolor suboccipital y retroauricular."
+          },
+          {
+            "facet": "C3-C4",
+            "nerves": "Ramos mediales de C3 y C4",
+            "painPattern": "Dolor cervical posterolateral alto, ángulo mandibular y fosa supraclavicular alta."
+          },
+          {
+            "facet": "C4-C5",
+            "nerves": "Ramos mediales de C4 y C5",
+            "painPattern": "Dolor cervical medio, base posterolateral del cuello y fosa supraclavicular."
+          },
+          {
+            "facet": "C5-C6",
+            "nerves": "Ramos mediales de C5 y C6",
+            "painPattern": "Dolor en base del cuello, ángulo superior de la escápula y hombro proximal (muy frecuente)."
+          },
+          {
+            "facet": "C6-C7",
+            "nerves": "Ramos mediales de C6 y C7",
+            "painPattern": "Dolor periescapular, interescapular medial, fosa infraespinosa."
+          },
+          {
+            "facet": "C7-T1",
+            "nerves": "Ramos mediales de C7 y C8 / ramo medial de T1",
+            "painPattern": "Dolor interescapular medio e inferior."
+          }
+        ]
       }
     },
     "ton_rf_cervicogenic": {
@@ -2049,6 +2114,29 @@
         "level": "limited",
         "badge": "🟠 OPCIÓN AVANZADA / EVIDENCIA MODERADA EN DOLOR CRÓNICO",
         "note": "Indicada en dolor radicular persistente cuando se desea evitar la cirugía descompresiva."
+      },
+      "rootLevelMapping": {
+        "rule": "Radiofrecuencia Pulsada (PRF 42°C / 240 s) no destructiva orientada al foramen intervertebral concordante con la distribución dermatomérica y de déficit neurológico.",
+        "levels": [
+          {
+            "root": "L4 DRG",
+            "foramen": "Foramen L3-L4 (polo superior)",
+            "painPattern": "Cara anterior de muslo, rodilla anterior y cara anteromedial de pierna. Reflejo rotuliano disminuido.",
+            "dose": "Ropivacaína 0.2% 0.5-1 mL + Dexametasona 2-4 mg tras el pulso"
+          },
+          {
+            "root": "L5 DRG",
+            "foramen": "Foramen L4-L5 (polo superior subpedicular)",
+            "painPattern": "Cara lateral de muslo y pierna, dorso del pie y primer dedo. Debilidad en flexión dorsal del hallux.",
+            "dose": "Ropivacaína 0.2% 0.5-1 mL + Dexametasona 2-4 mg tras el pulso"
+          },
+          {
+            "root": "S1 DRG",
+            "foramen": "1er Foramen sacro posterior (S1)",
+            "painPattern": "Cara posterior de muslo, hueco poplíteo, pantorrilla posterior, talón y planta/borde lateral del pie. Reflejo aquíleo abolido.",
+            "dose": "Ropivacaína 0.2% 0.5-1 mL + Dexametasona 2-4 mg tras el pulso"
+          }
+        ]
       }
     },
     "drg_prf_cervical": {
@@ -2081,6 +2169,35 @@
         "level": "moderate",
         "badge": "🔵 EVIDENCIA MODERADA EN CERVICOBRAQUIALGIA CRÓNICA",
         "note": "Ensayo clínico aleatorizado de Van Zundert demostró superioridad frente a sham."
+      },
+      "rootLevelMapping": {
+        "rule": "Radiofrecuencia Pulsada (PRF 42°C / 240 s) no ablativa en foramen cervical bajo fluoroscopia/Doppler para preservar fuerza en el brazo.",
+        "levels": [
+          {
+            "root": "C5 DRG",
+            "foramen": "Foramen C4-C5 (aspecto dorsal)",
+            "painPattern": "Cara lateral del hombro y brazo proximal (músculo deltoides).",
+            "dose": "Lidocaína 1% 0.5 mL"
+          },
+          {
+            "root": "C6 DRG",
+            "foramen": "Foramen C5-C6 (aspecto dorsal)",
+            "painPattern": "Cara lateral de antebrazo, pulgar y dedo índice (reflejo bicipital).",
+            "dose": "Lidocaína 1% 0.5 mL"
+          },
+          {
+            "root": "C7 DRG",
+            "foramen": "Foramen C6-C7 (aspecto dorsal)",
+            "painPattern": "Dedo medio de la mano, dorso de mano/muñeca y tríceps (reflejo tricipital).",
+            "dose": "Lidocaína 1% 0.5 mL"
+          },
+          {
+            "root": "C8 DRG",
+            "foramen": "Foramen C7-T1 (aspecto dorsal)",
+            "painPattern": "Borde medial/cubital de mano, dedo anular y meñique.",
+            "dose": "Lidocaína 1% 0.5 mL"
+          }
+        ]
       }
     },
     "gon_prf_arnold": {

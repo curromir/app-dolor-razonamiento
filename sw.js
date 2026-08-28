@@ -1,5 +1,5 @@
-// Service Worker v48.0 - Radiofrequency Protocols & Target-Specific Dosing Release
-const CACHE_NAME = 'dolor-tests-v48';
+// Service Worker v49.0 - Facet & DRG Root-Level Mapping Radiofrequency Release
+const CACHE_NAME = 'dolor-tests-v49';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
