@@ -863,8 +863,8 @@ class ClinicalReasoningEngine {
       pharmaOptions.push(pMed);
     }
 
-    // Check Topical NSAID
-    if (meds.nsaid_topical && (pathwayId.includes('knee') || pathwayId.includes('wrist') || pathwayId.includes('ankle') || pathwayId.includes('elbow'))) {
+    // Check Topical NSAID (indicated for peripheral musculoskeletal pain: shoulder, knee, elbow, wrist, ankle, foot)
+    if (meds.nsaid_topical && (pathwayId.includes('shoulder') || pathwayId.includes('hombro') || pathwayId.includes('knee') || pathwayId.includes('wrist') || pathwayId.includes('ankle') || pathwayId.includes('elbow') || pathwayId.includes('foot') || pathwayId.includes('fascia'))) {
       const topMed = { ...meds.nsaid_topical };
       pharmaOptions.push(topMed);
     }
@@ -899,10 +899,18 @@ class ClinicalReasoningEngine {
       pharmaOptions.push(nsaidOral);
     }
 
-    // Check Oral Corticosteroid for Radicular Sciatica (Goldberg Trial Evidence)
-    const isRadicular = pathwayId.includes('radicular');
-    const isNociplastic = pathwayId.includes('nociplastic');
+    // ─────────────────────────────────────────
+    // CLASIFICACIÓN DE MECANISMO DE DOLOR
+    // ─────────────────────────────────────────
+    const selectedGen = this.session.selectedGenerator || (this.pathway.generators && this.pathway.generators[0]) || {};
+    const mechanism = selectedGen.mechanism || this.pathway.mechanism || 'nociceptive_mechanical';
 
+    const isRadicular = pathwayId.includes('radicular');
+    const isNociplastic = mechanism === 'nociplastic' || pathwayId.includes('nociplastic') || pathwayId.includes('fibromyalgia') || pathwayId.includes('central_sensitization');
+    const isNeuropathic = mechanism === 'neuropathic' || isRadicular || pathwayId.includes('carpal') || pathwayId.includes('cubital') || pathwayId.includes('neuralgia') || pathwayId.includes('neuropathy') || pathwayId.includes('thoracic-outlet') || pathwayId.includes('crps');
+    const isNociceptive = !isNeuropathic && !isNociplastic;
+
+    // Check Oral Corticosteroid for Radicular Sciatica (Goldberg Trial Evidence)
     if (isRadicular && meds.prednisone_oral) {
       const pred = { ...meds.prednisone_oral };
       const predWarnings = [];
@@ -915,85 +923,103 @@ class ClinicalReasoningEngine {
 
     // ─────────────────────────────────────────
     // 🧠 NEUROMODULACIÓN FARMACOLÓGICA ESTRUCTURADA
+    // (Solo indicada en dolor neuropático o nociplástico)
     // ─────────────────────────────────────────
-    const neuromodulationDrugs = [];
-    const neuroKeys = ['duloxetine', 'venlafaxine_xr', 'amitriptyline', 'pregabalin', 'gabapentin'];
+    let neuromodulationCard = null;
+    let neuromodulationNotice = null;
 
-    neuroKeys.forEach(k => {
-      if (meds[k]) {
-        const drug = { ...meds[k] };
-        const drugWarnings = [];
+    if (isNeuropathic || isNociplastic) {
+      const neuromodulationDrugs = [];
+      const neuroKeys = ['duloxetine', 'venlafaxine_xr', 'amitriptyline', 'pregabalin', 'gabapentin'];
 
-        // Apply Comorbidity Rules
-        if (drug.id === 'med-duloxetine') {
-          if (patientProfile.hepatic) drugWarnings.push('🚫 Contraindicada en hepatopatía activa o insuficiencia hepática.');
-          if (patientProfile.renal) drugWarnings.push('🚫 Contraindicada en insuficiencia renal severa (ClCr <30 ml/min).');
-          if (patientProfile.hta || patientProfile.cv) drugWarnings.push('⚠️ Monitorizar TA por efecto noradrenérgico.');
-        } else if (drug.id === 'med-venlafaxine-xr') {
-          if (patientProfile.hta || patientProfile.cv) drugWarnings.push('⚠️ Control estricto de TA (elevación tensional dosis-dependiente).');
-          if (patientProfile.renal) drugWarnings.push('⚠️ Ajustar dosis (reducir 25-50% si FG <60).');
-        } else if (drug.id === 'med-amitriptyline') {
-          if (patientProfile.age_over_65) drugWarnings.push('👴 >65 años: Iniciar a 10 mg/noche; alto riesgo anticolinérgico (sedación, caídas, estreñimiento, retención urinaria).');
-          if (patientProfile.cv) drugWarnings.push('⚠️ Precaución en cardiopatía (riesgo de hipotensión ortostática y arritmias/QT).');
-        } else if (drug.id === 'med-pregabalin' || drug.id === 'med-gabapentin') {
-          if (patientProfile.renal) drugWarnings.push('⚠️ AJUSTE RENAL OBLIGATORIO: Eliminación 100% renal inalterada; reducir dosis según FG.');
-          if (patientProfile.age_over_65) drugWarnings.push('👴 >65 años: Alto riesgo de sedación matutina, ataxia y caídas; iniciar a dosis mínimas.');
-        }
+      neuroKeys.forEach(k => {
+        if (meds[k]) {
+          const drug = { ...meds[k] };
+          const drugWarnings = [];
 
-        // Apply CONDITION-SPECIFIC OVERRIDE ENGINE
-        if (isRadicular) {
-          if (drug.id === 'med-pregabalin' || drug.id === 'med-gabapentin') {
-            drug.isRoutinelyRecommended = false;
-            drug.overrideBadge = '🔴 NO USO RUTINARIO EN CIÁTICA (NICE NG59 / ACP)';
-            drug.overrideReason = 'NICE y guías internacionales desaconsejan gabapentinoides de rutina en ciática común por balance beneficio/riesgo desfavorable. Reservar como opción excepcional para dolor urente continuo refractario.';
-          } else {
-            drug.isRoutinelyRecommended = true;
-            drug.overrideBadge = '🔵 MODULACIÓN EN DOLOR REFRACTARIO';
-          }
-        } else if (isNociplastic) {
+          // Apply Comorbidity Rules
           if (drug.id === 'med-duloxetine') {
-            drug.isRoutinelyRecommended = true;
-            drug.overrideBadge = '🟢 OPCIÓN PREFERENTE / RESPALDADA (NICE: 30mg → 60mg/d)';
-          } else if (drug.id === 'med-amitriptyline') {
-            drug.isRoutinelyRecommended = true;
-            drug.overrideBadge = '🟢/🟡 ALTERNATIVA DE ELECCIÓN SI INSOMNIO (10-25mg noche)';
+            if (patientProfile.hepatic) drugWarnings.push('🚫 Contraindicada en hepatopatía activa o insuficiencia hepática.');
+            if (patientProfile.renal) drugWarnings.push('🚫 Contraindicada en insuficiencia renal severa (ClCr <30 ml/min).');
+            if (patientProfile.hta || patientProfile.cv) drugWarnings.push('⚠️ Monitorizar TA por efecto noradrenérgico.');
           } else if (drug.id === 'med-venlafaxine-xr') {
-            drug.isRoutinelyRecommended = true;
-            drug.overrideBadge = '🟡 ALTERNATIVA INDIVIDUALIZADA (No equivalente de rutina a duloxetina en fibromialgia)';
-          } else {
-            drug.isRoutinelyRecommended = true;
-            drug.overrideBadge = '🟡 SEGUNDA LÍNEA';
+            if (patientProfile.hta || patientProfile.cv) drugWarnings.push('⚠️ Control estricto de TA (elevación tensional dosis-dependiente).');
+            if (patientProfile.renal) drugWarnings.push('⚠️ Ajustar dosis (reducir 25-50% si FG <60).');
+          } else if (drug.id === 'med-amitriptyline') {
+            if (patientProfile.age_over_65) drugWarnings.push('👴 >65 años: Iniciar a 10 mg/noche; alto riesgo anticolinérgico (sedación, caídas, estreñimiento, retención urinaria).');
+            if (patientProfile.cv) drugWarnings.push('⚠️ Precaución en cardiopatía (riesgo de hipotensión ortostática y arritmias/QT).');
+          } else if (drug.id === 'med-pregabalin' || drug.id === 'med-gabapentin') {
+            if (patientProfile.renal) drugWarnings.push('⚠️ AJUSTE RENAL OBLIGATORIO: Eliminación 100% renal inalterada; reducir dosis según FG.');
+            if (patientProfile.age_over_65) drugWarnings.push('👴 >65 años: Alto riesgo de sedación matutina, ataxia y caídas; iniciar a dosis mínimas.');
           }
-        } else {
-          // General Neuropathic Pain
-          drug.isRoutinelyRecommended = true;
-          drug.overrideBadge = '🟢 PRIMERA LÍNEA EN DOLOR NEUROPÁTICO (NeuPSIG 2025)';
+
+          // Apply CONDITION-SPECIFIC OVERRIDE ENGINE
+          if (isRadicular) {
+            if (drug.id === 'med-pregabalin' || drug.id === 'med-gabapentin') {
+              drug.isRoutinelyRecommended = false;
+              drug.overrideBadge = '🔴 NO USO RUTINARIO EN CIÁTICA (NICE NG59 / ACP)';
+              drug.overrideReason = 'NICE y guías internacionales desaconsejan gabapentinoides de rutina en ciática común por balance beneficio/riesgo desfavorable. Reservar como opción excepcional para dolor urente continuo refractario.';
+            } else {
+              drug.isRoutinelyRecommended = true;
+              drug.overrideBadge = '🔵 MODULACIÓN EN DOLOR REFRACTARIO';
+            }
+          } else if (isNociplastic) {
+            if (drug.id === 'med-duloxetine') {
+              drug.isRoutinelyRecommended = true;
+              drug.overrideBadge = '🟢 OPCIÓN PREFERENTE / RESPALDADA (NICE: 30mg → 60mg/d)';
+            } else if (drug.id === 'med-amitriptyline') {
+              drug.isRoutinelyRecommended = true;
+              drug.overrideBadge = '🟢/🟡 ALTERNATIVA DE ELECCIÓN SI INSOMNIO (10-25mg noche)';
+            } else if (drug.id === 'med-venlafaxine-xr') {
+              drug.isRoutinelyRecommended = true;
+              drug.overrideBadge = '🟡 ALTERNATIVA INDIVIDUALIZADA (No equivalente de rutina a duloxetina en fibromialgia)';
+            } else {
+              drug.isRoutinelyRecommended = true;
+              drug.overrideBadge = '🟡 SEGUNDA LÍNEA';
+            }
+          } else {
+            // General Neuropathic Pain
+            drug.isRoutinelyRecommended = true;
+            drug.overrideBadge = '🟢 PRIMERA LÍNEA EN DOLOR NEUROPÁTICO (NeuPSIG 2025)';
+          }
+
+          drug.activeWarnings = drugWarnings;
+          neuromodulationDrugs.push(drug);
         }
+      });
 
-        drug.activeWarnings = drugWarnings;
-        neuromodulationDrugs.push(drug);
-      }
-    });
-
-    const neuromodulationCard = {
-      id: 'pharma-neuromodulation-card',
-      title: '🧠 Neuromodulación Farmacológica (NeuPSIG 2025 / NICE)',
-      principle: catalog.neuromodulation_principle || 'La dosis objetivo no es la dosis máxima. Es la menor dosis que proporciona una mejoría clínicamente útil con tolerabilidad aceptable.',
-      safetyChecklist: catalog.neuromodulation_safety_checklist || [
-        'Función renal', 'Función hepática', 'Edad/Fragilidad', 'Riesgo de caídas', 'Somnolencia', 'Conducción', 'HTA', 'Interacciones serotoninérgicas', 'Antecedentes psiquiátricos', 'Retirada progresiva'
-      ],
-      drugs: neuromodulationDrugs
-    };
+      neuromodulationCard = {
+        id: 'pharma-neuromodulation-card',
+        title: isNociplastic ? '🧠 Neuromodulación en Dolor Nociplástico (NICE / EULAR)' : '🧠 Neuromodulación Farmacológica (NeuPSIG 2025 / NICE)',
+        principle: catalog.neuromodulation_principle || 'La dosis objetivo no es la dosis máxima. Es la menor dosis que proporciona una mejoría clínicamente útil con tolerabilidad aceptable.',
+        safetyChecklist: catalog.neuromodulation_safety_checklist || [
+          'Función renal', 'Función hepática', 'Edad/Fragilidad', 'Riesgo de caídas', 'Somnolencia', 'Conducción', 'HTA', 'Interacciones serotoninérgicas', 'Antecedentes psiquiátricos', 'Retirada progresiva'
+        ],
+        drugs: neuromodulationDrugs
+      };
+    } else {
+      // Nociceptive Mechanical / Inflammatory Pain (Rotator Cuff, Osteoarthritis, Tendinopathy)
+      neuromodulationNotice = {
+        title: 'Farmacología Neuromoduladora',
+        badge: '🔴 NO INDICADA EN DOLOR MECÁNICO / MANGUITO ROTADOR',
+        reason: 'En patología mecánica del manguito rotador, tendinopatías y dolor osteomuscular nociceptivo puro, los fármacos neuromoduladores (Pregabalina, Gabapentina, Duloxetina, Amitriptilina) NO tienen indicación ni beneficio analgésico demostrado y añaden riesgo innecesario de efectos adversos (sedación, ataxia, mareos, caídas).'
+      };
+    }
 
     const pharmacology = {
       id: 'step-5-pharmacology',
       title: '5. Farmacología Contextualizada y Dosificación',
-      badge: '💊 DOSIFICACIÓN ADULTA ORIENTATIVA',
-      generalAdvice: 'La selección farmacológica depende de las comorbilidades del paciente. Usar la menor dosis eficaz durante el menor tiempo posible. No existen recetas universales.',
+      badge: isNociceptive ? '💊 ANALGESIA MECÁNICO-NOCICEPTIVA' : '💊 DOSIFICACIÓN ADULTA ORIENTATIVA',
+      generalAdvice: isNociceptive
+        ? 'En dolor nociceptivo mecánico (manguito rotador), el tratamiento nuclear es la rehabilitación activa y la gestión de cargas. Los fármacos son un soporte transitorio para permitir el descanso y el ejercicio.'
+        : 'La selección farmacológica depende de las comorbilidades del paciente. Usar la menor dosis eficaz durante el menor tiempo posible. No existen recetas universales.',
       options: pharmaOptions,
       neuromodulation: neuromodulationCard,
-      whyThisTreatment: 'Control sintomático del dolor para posibilitar el descanso y la adherencia al programa de rehabilitación activa.',
-      whenToAvoid: 'No prescribir AINEs orales de forma continuada en ancianos o en insuficiencia renal. No pautar gabapentinoides por automatismo en ciática o dolor puramente axial.'
+      neuromodulationNotice: neuromodulationNotice,
+      whyThisTreatment: isNociceptive
+        ? 'Control sintomático del dolor para posibilitar el descanso nocturno y la adherencia al programa de rehabilitación activa y fortalecimiento progresivo.'
+        : 'Control sintomático del dolor para posibilitar el descanso y la adherencia al programa de rehabilitación activa.',
+      whenToAvoid: 'No prescribir AINEs orales de forma continuada en ancianos o en insuficiencia renal. No pautar gabapentinoides ni neuromoduladores por automatismo en dolor puramente nociceptivo/axial.'
     };
 
     // ─────────────────────────────────────────
