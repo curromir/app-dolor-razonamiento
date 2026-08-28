@@ -3440,6 +3440,14 @@
     document.body.style.overflow = 'hidden';
   }
 
+  function closeAuxModal() {
+    const modal = document.getElementById('clinicalAuxModal');
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+
   // ─────────────────────────────────────────────
   // 14. SESSION PERSISTENCE & MODE SWITCHER
   // ─────────────────────────────────────────────
