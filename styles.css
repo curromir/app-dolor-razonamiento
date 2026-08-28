@@ -3331,6 +3331,8 @@ body.dark-theme .vade-dose-override {
 }
 
 .vade-cat-chip,
+.vade-inter-chip,
+.vade-rf-chip,
 .vade-group-chip {
   flex-shrink: 0;
   padding: 0.45rem 0.9rem;
@@ -3345,17 +3347,23 @@ body.dark-theme .vade-dose-override {
 }
 
 .vade-cat-chip:hover,
+.vade-inter-chip:hover,
+.vade-rf-chip:hover,
 .vade-group-chip:hover {
   background: #e2e8f0;
   color: var(--text-primary);
 }
 
 body.dark-theme .vade-cat-chip,
+body.dark-theme .vade-inter-chip,
+body.dark-theme .vade-rf-chip,
 body.dark-theme .vade-group-chip {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 .vade-cat-chip.active,
+.vade-inter-chip.active,
+.vade-rf-chip.active,
 .vade-group-chip.active {
   background: #4f46e5 !important;
   color: #ffffff !important;

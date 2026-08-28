@@ -95,11 +95,13 @@
       this.mode = newMode;
       const btnExpress = document.getElementById('vade-tab-btn-express');
       const btnInterventions = document.getElementById('vade-tab-btn-interventions');
+      const btnRF = document.getElementById('vade-tab-btn-radiofrequency');
       const btnFull = document.getElementById('vade-tab-btn-full');
       const btnFavs = document.getElementById('vade-tab-btn-favs');
       
       if (btnExpress) btnExpress.classList.toggle('active', newMode === 'express');
       if (btnInterventions) btnInterventions.classList.toggle('active', newMode === 'interventions');
+      if (btnRF) btnRF.classList.toggle('active', newMode === 'radiofrequency');
       if (btnFull) btnFull.classList.toggle('active', newMode === 'full');
       if (btnFavs) btnFavs.classList.toggle('active', newMode === 'favs');
 
@@ -118,6 +120,14 @@
       this.activeInterventionRegion = reg;
       document.querySelectorAll('.vade-inter-chip').forEach(chip => {
         chip.classList.toggle('active', chip.getAttribute('data-reg') === reg);
+      });
+      this.render();
+    },
+
+    setRfCategory(cat) {
+      this.activeRfCategory = cat;
+      document.querySelectorAll('.vade-rf-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.getAttribute('data-rf') === cat);
       });
       this.render();
     },
@@ -499,6 +509,8 @@
         this.renderExpressView(container);
       } else if (this.mode === 'interventions') {
         this.renderInterventionsView(container);
+      } else if (this.mode === 'radiofrequency') {
+        this.renderRadiofrequencyView(container);
       } else if (this.mode === 'full') {
         this.renderFullView(container);
       } else if (this.mode === 'favs') {
@@ -506,14 +518,107 @@
       }
     },
 
+    renderRadiofrequencyView(container) {
+      let rfItems = (this.data.interventions || []).filter(i => 
+        i.id?.startsWith('rf-') || i.id?.startsWith('prf-') || (i.type && (i.type.includes('Radiofrecuencia') || i.type.includes('Térmica') || i.type.includes('Pulsada') || i.type.includes('Cooled')))
+      );
+
+      if (this.activeRfCategory && this.activeRfCategory !== 'all') {
+        rfItems = rfItems.filter(i => {
+          if (this.activeRfCategory === 'lumbar_sacro') return i.region === 'lumbar' || i.region === 'sacroiliaca';
+          if (this.activeRfCategory === 'cervical_ton') return i.region === 'cervical';
+          if (this.activeRfCategory === 'drg') return i.id?.includes('drg');
+          if (this.activeRfCategory === 'rodilla') return i.region === 'rodilla';
+          if (this.activeRfCategory === 'cadera') return i.region === 'cadera';
+          if (this.activeRfCategory === 'hombro_periferico') return i.region === 'hombro' || i.category === 'hombro';
+          return true;
+        });
+      }
+
+      container.innerHTML = `
+        <!-- HEADER RADIOFRECUENCIA -->
+        <section class="vade-five-doses-section" style="border-color: rgba(99, 102, 241, 0.4); background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(16, 185, 129, 0.04) 100%);">
+          <div class="vade-section-header">
+            <span style="font-size: 1.6rem;">⚡</span>
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 900; color: var(--accent-blue); margin: 0;">RADIOFRECUENCIA TÉRMICA CONVENCIONAL, COOLED Y PULSADA (PRF)</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Dianas Anatómicas · Mapeo Nivel por Nivel de Facetas y DRG · Dosis de Anestésicos Locales Pre-Lesión · Parámetros de Estimulación (50 Hz / 2 Hz)</p>
+            </div>
+          </div>
+
+          <!-- Quick Reference Accordions: Physical Modes & Stimulation -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.75rem; margin-top: 0.75rem;">
+            <!-- Modalidades Físicas -->
+            <div class="structure-box" style="background: var(--bg-surface); border-color: rgba(99, 102, 241, 0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                <strong style="font-size: 0.86rem; color: var(--accent-blue);">🔥 Modalidades: Térmica vs Pulsada vs Cooled</strong>
+                <span style="font-size: 0.7rem; color: #a5b4fc; font-weight: 700;">Biofísica</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.75rem;">
+                <div style="padding: 0.35rem 0.45rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border-left: 3px solid #ef4444;">
+                  <strong style="color: #f87171;">Térmica Continua (80°C / 90 s):</strong>
+                  <div style="color: var(--text-secondary); font-size: 0.72rem;">Termolesión ablativa de ramos mediales facetarios (lumbar/cervical) y geniculados. AL pre-lesión: Lidocaína 2% 0.5-1 mL. Alivio 9-18 meses.</div>
+                </div>
+                <div style="padding: 0.35rem 0.45rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border-left: 3px solid #3b82f6;">
+                  <strong style="color: #60a5fa;">Pulsada PRF (42°C / 240 s):</strong>
+                  <div style="color: var(--text-secondary); font-size: 0.72rem;">Campo electromagnético no térmico (2 Hz / 20 ms). Ganglio Raíz Dorsal (DRG), Supraescapular, Arnold. <strong>Preserva función motora sin desaferentación.</strong></div>
+                </div>
+                <div style="padding: 0.35rem 0.45rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border-left: 3px solid #10b981;">
+                  <strong style="color: #34d399;">Cooled RF Enfriada (60°C / 150 s):</strong>
+                  <div style="color: var(--text-secondary); font-size: 0.72rem;">Lesión esférica grande de 8-10 mm refrigerada por agua para ramos laterales sacros (S1-S3 + L5) y ramas articulares de cadera.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Estimulación y Seguridad -->
+            <div class="structure-box" style="background: var(--bg-surface); border-color: rgba(245, 158, 11, 0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                <strong style="font-size: 0.86rem; color: #f59e0b;">⚡ Parámetros de Estimulación & Seguridad</strong>
+                <span style="font-size: 0.7rem; color: #f59e0b; font-weight: 700;">Guía SIS 2024</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.75rem;">
+                <div style="padding: 0.35rem 0.45rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border-left: 3px solid #60a5fa;">
+                  <strong style="color: #60a5fa;">Estimulación Sensitiva (50 Hz):</strong>
+                  <div style="color: var(--text-secondary); font-size: 0.72rem;">Reproducción de concordancia dolorosa/parestesia en la zona diana con umbral <strong>&lt; 0.5 V</strong>.</div>
+                </div>
+                <div style="padding: 0.35rem 0.45rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border-left: 3px solid #f87171;">
+                  <strong style="color: #f87171;">Estimulación Motora (2 Hz):</strong>
+                  <div style="color: var(--text-secondary); font-size: 0.72rem;">Ausencia de contracción motora radicular en extremidades con estímulo <strong>&gt; 1.5 - 2.0 V</strong> (descarta proximidad a raíz motora ventral).</div>
+                </div>
+                <div style="padding: 0.35rem 0.45rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border-left: 3px solid #eab308;">
+                  <strong style="color: #facc15;">Bloqueo Diagnóstico Previo:</strong>
+                  <div style="color: var(--text-secondary); font-size: 0.72rem;">Obligatorio alivio <strong>≥70-80%</strong> con anestésico local puro antes de indicar rizolisis térmica.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filtros por Categoría de Radiofrecuencia -->
+        <div class="vade-category-toolbar" style="margin-top: 0.75rem;">
+          <button class="vade-rf-chip ${(!this.activeRfCategory || this.activeRfCategory === 'all') ? 'active' : ''}" data-rf="all" onclick="window.Vademecum.setRfCategory('all')">🌐 Todos los Protocolos RF (${rfItems.length})</button>
+          <button class="vade-rf-chip ${this.activeRfCategory === 'lumbar_sacro' ? 'active' : ''}" data-rf="lumbar_sacro" onclick="window.Vademecum.setRfCategory('lumbar_sacro')">⚡ Facetas Lumbares & Sacro</button>
+          <button class="vade-rf-chip ${this.activeRfCategory === 'cervical_ton' ? 'active' : ''}" data-rf="cervical_ton" onclick="window.Vademecum.setRfCategory('cervical_ton')">⚡ Facetas Cervicales & TON</button>
+          <button class="vade-rf-chip ${this.activeRfCategory === 'drg' ? 'active' : ''}" data-rf="drg" onclick="window.Vademecum.setRfCategory('drg')">⚡ Ganglio Raíz Dorsal (DRG PRF)</button>
+          <button class="vade-rf-chip ${this.activeRfCategory === 'rodilla' ? 'active' : ''}" data-rf="rodilla" onclick="window.Vademecum.setRfCategory('rodilla')">🦵 Rodilla (Geniculados)</button>
+          <button class="vade-rf-chip ${this.activeRfCategory === 'cadera' ? 'active' : ''}" data-rf="cadera" onclick="window.Vademecum.setRfCategory('cadera')">🦿 Cadera (Ramas Articulares)</button>
+          <button class="vade-rf-chip ${this.activeRfCategory === 'hombro_periferico' ? 'active' : ''}" data-rf="hombro_periferico" onclick="window.Vademecum.setRfCategory('hombro_periferico')">🦴 Hombro & Arnold (PRF)</button>
+        </div>
+
+        <!-- Grid de Radiofrecuencia -->
+        <div class="vade-express-grid" style="margin-top: 0.75rem;">
+          ${rfItems.map(inter => this.renderInterventionCard(inter)).join('')}
+        </div>
+      `;
+    },
     
     renderInterventionsView(container) {
-      let inters = this.data.interventions || [];
+      let inters = (this.data.interventions || []).filter(i => 
+        !i.id?.startsWith('rf-') && !i.id?.startsWith('prf-') && !(i.type && (i.type.includes('Radiofrecuencia') || i.type.includes('Térmica') || i.type.includes('Pulsada') || i.type.includes('Cooled')))
+      );
+
       if (this.activeInterventionRegion && this.activeInterventionRegion !== 'all') {
         inters = inters.filter(i => {
-          if (this.activeInterventionRegion === 'radiofrecuencia') {
-            return i.id?.startsWith('rf-') || i.id?.startsWith('prf-') || (i.type && (i.type.includes('Radiofrecuencia') || i.type.includes('Térmica') || i.type.includes('Pulsada') || i.type.includes('Cooled')));
-          }
           if (this.activeInterventionRegion === 'raquis') return i.category === 'raquis' || i.region === 'lumbar' || i.region === 'cervical';
           return i.region === this.activeInterventionRegion || i.category === this.activeInterventionRegion;
         });
@@ -528,8 +633,8 @@
           <div class="vade-section-header">
             <span style="font-size: 1.5rem;">💉</span>
             <div>
-              <h3 style="font-size: 1.05rem; font-weight: 900; color: #10b981; margin: 0;">FÁRMACOS, DOSIS, VOLÚMENES Y RADIOFRECUENCIA (PRF/TÉRMICA)</h3>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Anestésicos Locales · Corticoides Espinales/Articulares · Radiofrecuencia Térmica Convencional · Radiofrecuencia Pulsada (PRF)</p>
+              <h3 style="font-size: 1.05rem; font-weight: 900; color: #10b981; margin: 0;">FÁRMACOS, DOSIS Y VOLÚMENES EN INFILTRACIONES Y RAQUIS</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.2rem 0 0;">Anestésicos Locales · Corticoides (Particulados vs No Particulados) · Volúmenes Articulares y Técnicas Epidurales Espinales</p>
             </div>
           </div>
 
@@ -576,10 +681,9 @@
           </div>
         </section>
 
-        <!-- Filtros por Región Anatómica & Modalidad -->
+        <!-- Filtros por Región Anatómica -->
         <div class="vade-category-toolbar" style="margin-top: 0.75rem;">
-          <button class="vade-inter-chip ${(!this.activeInterventionRegion || this.activeInterventionRegion === 'all') ? 'active' : ''}" data-reg="all" onclick="window.Vademecum.setInterventionRegion('all')">🌐 Todas (${(this.data.interventions || []).length})</button>
-          <button class="vade-inter-chip ${this.activeInterventionRegion === 'radiofrecuencia' ? 'active' : ''}" data-reg="radiofrecuencia" onclick="window.Vademecum.setInterventionRegion('radiofrecuencia')" style="border-color: rgba(99, 102, 241, 0.6); color: #a5b4fc;">⚡ Radiofrecuencia & PRF</button>
+          <button class="vade-inter-chip ${(!this.activeInterventionRegion || this.activeInterventionRegion === 'all') ? 'active' : ''}" data-reg="all" onclick="window.Vademecum.setInterventionRegion('all')">🌐 Todas las Infiltraciones (${inters.length})</button>
           <button class="vade-inter-chip ${this.activeInterventionRegion === 'raquis' ? 'active' : ''}" data-reg="raquis" onclick="window.Vademecum.setInterventionRegion('raquis')">⚡ Raquis & Epidurales</button>
           <button class="vade-inter-chip ${this.activeInterventionRegion === 'hombro' ? 'active' : ''}" data-reg="hombro" onclick="window.Vademecum.setInterventionRegion('hombro')">🦴 Hombro</button>
           <button class="vade-inter-chip ${this.activeInterventionRegion === 'rodilla' ? 'active' : ''}" data-reg="rodilla" onclick="window.Vademecum.setInterventionRegion('rodilla')">🦵 Rodilla</button>

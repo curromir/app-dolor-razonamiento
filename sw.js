@@ -1,5 +1,5 @@
-// Service Worker v49.0 - Facet & DRG Root-Level Mapping Radiofrequency Release
-const CACHE_NAME = 'dolor-tests-v49';
+// Service Worker v50.0 - Dedicated Radiofrequency Tab & Independent Infiltraciones Tab Release
+const CACHE_NAME = 'dolor-tests-v50';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
